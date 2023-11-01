@@ -1,24 +1,40 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import './style.scss';
+import $ from 'jquery';
+import _ from 'underscore';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+import TodoItem from './models/todo.model.ts';
+import TodoView  from './views/todo.view.ts';
+import TodoList from './collections/todo.collection.ts';
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const $todoList = $('#todo-list');
+const $addTodoButton = $('#add-todo-button');
+
+// Представлення для кожного завдання
+const todoList = new TodoList();
+
+// Додаємо нове завдання до списку
+function addTodo() {
+  const taskText = prompt('Введіть текст завдання:');
+  if (taskText) {
+    const newTask = new TodoItem({ title: taskText, done: false });
+    todoList.add(newTask);
+  }
+}
+
+// Визначаємо подію для кнопки "Додати завдання"
+$addTodoButton.on('click', addTodo);
+
+// Відображаємо існуючі завдання
+function renderTodos() {
+  $todoList.empty();
+  todoList.each((task: any) => {
+    const view = new TodoView({ model: task });
+    $todoList.append(view.render().el);
+  });
+}
+
+// Оновлення списку завдань, коли вони змінюються
+todoList.on('add remove reset', renderTodos);
+
+// Викликаємо функцію для відображення початкового списку завдань
+renderTodos();

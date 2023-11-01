@@ -1,18 +1,36 @@
-import './style.scss';
+import './scss/style.scss';
+import './scss/index.scss';
 import $ from 'jquery';
 import _ from 'underscore';
+
+import HeaderView from './views/header.view.ts';
+import HeaderModel from './models/header.model.ts';
+
+const headerModel = new HeaderModel({
+  title: 'Заголовок вашого додатку',
+  subtitle: 'Підзаголовок або опис'
+});
+
+const headerView = new HeaderView({ model: headerModel });
+
+document.body.prepend(headerView.el);
+
+
+
+headerView.render();
 
 import TodoItem from './models/todo.model.ts';
 import TodoView  from './views/todo.view.ts';
 import TodoList from './collections/todo.collection.ts';
 
+
+
 const $todoList = $('#todo-list');
 const $addTodoButton = $('#add-todo-button');
-
-// Представлення для кожного завдання
 const todoList = new TodoList();
 
-// Додаємо нове завдання до списку
+
+
 function addTodo() {
   const taskText = prompt('Введіть текст завдання:');
   if (taskText) {
@@ -21,10 +39,8 @@ function addTodo() {
   }
 }
 
-// Визначаємо подію для кнопки "Додати завдання"
 $addTodoButton.on('click', addTodo);
 
-// Відображаємо існуючі завдання
 function renderTodos() {
   $todoList.empty();
   todoList.each((task: any) => {
@@ -33,8 +49,7 @@ function renderTodos() {
   });
 }
 
-// Оновлення списку завдань, коли вони змінюються
 todoList.on('add remove reset', renderTodos);
 
-// Викликаємо функцію для відображення початкового списку завдань
 renderTodos();
+

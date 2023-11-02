@@ -10,8 +10,14 @@
     <div id="app">
       <h1>Список задач</h1>
       <ul id="todo-list"></ul>
+      <ul>
+        <li><a href="#help">Help</a></li>
+        <li><a href="#search/kiwis">Search Kiwis</a></li>
+        <li><a href="#search/bananas/p3">Search Bananas (Page 3)</a></li>
+      </ul>
       <button id="add-todo-button">Добавить задачу</button>
     </div>
+    <div id="content"></div>
     <script type="text/template" id="todo-template">
       <input class="toggle" type="checkbox" <%= done ? 'checked' : '' %>
       <label><%= title %></label>

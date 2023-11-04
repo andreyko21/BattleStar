@@ -1,29 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Battle - Main</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <link rel="stylesheet" href="src/styles/style.scss">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Battle - Main</title>
-</head>
-
-<body>
-  <div class="wrapper">
-    <main class="page">
-      <div class="button">
-        <button class="btn btn_transparent">Перейти в кошелёк</button>
-        <button class="btn btn_yellow">Подать заявку</button>
-        <button class="btn btn_money">1000 <span>BS</span></button>
-      </div>
-      
-      
-    </main>
-  </div>
-
-
-</body>
-<script type="module" src="src/main.ts"></script>
-
+  <body>
+    <load
+      ="src/html/header.html"
+      label="Go to Google"
+      href="https://google.com"
+      param="Hello World!"
+    />
+    <div class="wrapper">
+      <main></main>
+    </div>
+  </body>
+  <script type="module" src="src/main.ts"></script>
 </html>

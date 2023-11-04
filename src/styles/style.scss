@@ -12,9 +12,9 @@
 /**
 * Подключение sass function и mixins и extends стилей
 */
-
+@import "config/functions";
+@import "config/mixins";
 @import "config/patternSelectors";
-
 /** Обнуление */
 @import "config/reset";
 
@@ -43,3 +43,5 @@
 // @import 'components/tabs';
 // @import 'components/accordion';
 // @import 'components/footer';
+
+@import "components/btns";

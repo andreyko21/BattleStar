@@ -1,13 +1,11 @@
-
-
-[class*='__container'] {
+[class*="__container"] {
   max-width: rem($containerWidth + $mainOffset * 2);
   margin: 0 auto;
   padding: 0 rem($mainOffset);
 }
 
 // Стили отзывчивых картинок (IBG) ============================================
-[class*='-ibg'] {
+[class*="-ibg"] {
   position: relative;
 
   img {
@@ -20,7 +18,7 @@
   }
 }
 
-[class*='-ibg_contain'] {
+[class*="-ibg_contain"] {
   img {
     object-fit: contain;
   }
@@ -28,15 +26,16 @@
 
 // Оболочка ===================================================================
 .wrapper {
-  display: flex;
+  display: grid;
+  grid-template:
+    "sidebar header"
+    "sidebar main" auto/min-content auto;
   flex-direction: column;
   min-height: 100%;
 
-  /** Поменять на clip - если используется в проекте position: sticky */
-  overflow: hidden;
+  overflow: clip;
 }
 
 .page {
   flex: 1 1 auto;
-
 }

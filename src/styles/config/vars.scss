@@ -4,7 +4,7 @@ $maxWidthContainer: 1556; // ширина контейнера с учетом p
 $containerWidth: 1526; // ширина контейнера из макета
 
 $mainOffset: 15; // отступы безопасности для контейнера
-$mainFont: 'Roboto'; // !указать здесь основное семейство шрифта
+$mainFont: "Roboto"; // !указать здесь основное семейство шрифта
 $mainWeight: 400; // !указать здесь основное начертание шрифта
 
 $headerHeight: 100;
@@ -16,6 +16,11 @@ $whiteColor: #fff;
 $blackColor: #131313;
 $grayColor: #6f6f6f;
 $redColor: #ff4040;
+
+$MidnightBlue: #0c0c0e;
+$Goldenrod: #fac704;
+$OliveDrab: #7b6303;
+$DimGray: #606060;
 
 $firstAccentColor: $blackColor;
 $secondAccentColor: $redColor;

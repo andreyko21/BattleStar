@@ -4,18 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/styles/index.scss" />
     <title>Battle - Main</title>
   </head>
 
-  <body>
-    <load
-      ="src/html/header.html"
-      label="Go to Google"
-      href="https://google.com"
-      param="Hello World!"
-    />
+  <body class="page">
     <div class="wrapper">
-      <main></main>
+      <load
+        ="src/html/header.html"
+        label="Go to Google"
+        href="https://google.com"
+        param="Hello World!"
+      />
+      <load ="src/html/sidebar.html" />
+
+      <main class="main"></main>
     </div>
   </body>
   <script type="module" src="src/main.ts"></script>

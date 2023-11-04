@@ -3,7 +3,7 @@ import handlebars from "vite-plugin-handlebars";
 import { resolve } from "path";
 import FullReload from "vite-plugin-full-reload";
 import { viteStaticCopy } from "vite-plugin-static-copy";
-
+import injectHTML from "vite-plugin-html-inject";
 import pages from "./pages.config.js";
 
 const pagesInput = {};
@@ -30,6 +30,7 @@ export default defineConfig({
   },
 
   plugins: [
+    injectHTML(),
     handlebars({
       reloadOnPartialChange: true,
       partialDirectory: resolve(__dirname, "src/pages/partials"),

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Вход</title>
+</head>
+
+<body>
+   <div class="wrapper">
+      <main class="page">
+         <section class="sign">
+            <div class="sign__container">
+               <div class="sign__content">
+                  <div class="sign__logo">
+                     <img src="src/svg/signLogo.svg" alt="logo">
+                  </div>
+                  <div class="sign__tabs">
+                     <p class="sign__tabs-enter">ВОЙТИ</p>
+                     <p class="sign__tabs-create">СОЗДАТЬ АККАУНТ</p>
+                  </div>
+                  <div class="sign__form form">
+                     <form class="form__signin">
+                        <div class="form__signin-nickname">
+                           <input class="form__signin-inp" type="text" id="nickname" name="nickname" required>
+                           <label class="form__signin-label" for="nickname">Никнейм или электронная почта</label>
+                        </div>
+                        <div class="form__signin-password">
+                           <input class="form__signin-inp" type="password" id="password" name="password" required>
+                           <label class="form__signin-label" for="password">Пароль</label>
+
+                        </div>
+                        <div class="form__signin-forgot">
+                           <p>Забыли пароль?</p>
+                           <a href="#">Восстановить</a>
+                        </div>
+                        <div class="form__signin-btn">
+                           <button class="btn btn_sign" type="submit">Войти</button>
+                        </div>
+                        <div class="form__signin-social">
+                           <p>Или войдите через</p>
+                           <div class="form__signin-social-icons">
+                              <a href="#"><img src="src/svg/vk.svg" alt="vk"></a>
+                              <a href="#"><img src="src/svg/inst.svg" alt="inst"></a>
+                              <a href="#"><img src="src/svg/fb.svg" alt="fb"></a>
+                           </div>
+                        </div>
+                        <div class="form__signin-agreement">
+                           <p>
+                              Создавая аккаунт в “Название” вы соглашаетесь с
+                           </p>
+                           <a href="#">пользовательским соглашением</a>
+                        </div>
+                     </form>
+                     <form class="form__sign-up">
+
+                     </form>
+                  </div>
+
+
+               </div>
+            </div>
+         </section>
+      </main>
+   </div>
+   <script type="module" src="src/sign.ts"></script>
+</body>
+
+</html>

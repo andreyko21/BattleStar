@@ -1,0 +1,7 @@
+@import "./style.scss";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+
+.main {
+  grid-area: main;
+}

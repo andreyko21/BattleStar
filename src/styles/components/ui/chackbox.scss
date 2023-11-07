@@ -72,7 +72,7 @@
       }
 
       &:checked::before {
-         content: url(../img/product-card/check-mark.svg);
+         //content: url(../img/product-card/check-mark.svg);
          display: block;
       }
    }

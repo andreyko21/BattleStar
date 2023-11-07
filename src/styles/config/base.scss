@@ -1,6 +1,7 @@
 body{
   font-family: 'Roboto';
-  background: #000;
+  background: $dark400;
+
 }
 
 [class*='__container'] {
@@ -10,7 +11,7 @@ body{
 }
 
 // Стили отзывчивых картинок (IBG) ============================================
-[class*='-ibg'] {
+[class*="-ibg"] {
   position: relative;
 
   img {
@@ -23,7 +24,7 @@ body{
   }
 }
 
-[class*='-ibg_contain'] {
+[class*="-ibg_contain"] {
   img {
     object-fit: contain;
   }
@@ -31,15 +32,16 @@ body{
 
 // Оболочка ===================================================================
 .wrapper {
-  display: flex;
+  display: grid;
+  grid-template:
+    "sidebar header"
+    "sidebar main" auto/min-content auto;
   flex-direction: column;
   min-height: 100%;
 
-  /** Поменять на clip - если используется в проекте position: sticky */
-  overflow: hidden;
+  overflow: clip;
 }
 
 .page {
   flex: 1 1 auto;
-
 }

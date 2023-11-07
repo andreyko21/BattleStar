@@ -1,0 +1,112 @@
+$focusBackground: $MidnightBlue;
+$focusColor: $Goldenrod;
+
+$hoverBackground: $OliveDrab;
+$hoverColor: $MidnightBlue;
+
+$activeBackground: $Goldenrod;
+$activeColor: $MidnightBlue;
+
+.sidebar {
+  padding: 5px 0;
+  width: 100%;
+  width: 100px;
+  grid-area: sidebar;
+  background: $MidnightBlue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  &__logo {
+    max-width: 65px;
+    max-height: 69px;
+    fill: $Goldenrod;
+    transition: fill 0.3s ease;
+
+    &:hover {
+      fill: $OliveDrab;
+    }
+
+    &:focus {
+      fill: rgb(47, 0, 255);
+    }
+
+    &:active {
+      fill: #04fa29;
+    }
+  }
+
+  &__nav {
+    margin-top: 20px;
+    width: 100%;
+
+    &-item {
+      transition: fill 1s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 17px 10px;
+
+      &-icon {
+        max-width: 36px;
+        max-height: 36px;
+        fill: $DimGray;
+      }
+
+      &-text {
+        margin-top: 3px;
+        color: $DimGray;
+        text-align: center;
+        font-family: "Roboto";
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      &_active {
+        background: $Goldenrod;
+        .sidebar__nav-item-icon {
+          fill: $MidnightBlue;
+        }
+
+        .sidebar__nav-item-text {
+          color: $MidnightBlue;
+        }
+      }
+      &:not(.sidebar__nav-item_active) {
+        &:hover {
+          background-color: $hoverBackground;
+          .sidebar__nav-item-icon {
+            fill: $hoverColor;
+          }
+
+          .sidebar__nav-item-text {
+            color: $hoverColor;
+          }
+        }
+
+        &:focus {
+          background-color: $focusBackground;
+          .sidebar__nav-item-icon {
+            fill: $focusColor;
+          }
+
+          .sidebar__nav-item-text {
+            color: $focusColor;
+          }
+        }
+
+        &:active {
+          background-color: $activeBackground;
+          .sidebar__nav-item-icon {
+            fill: $activeColor;
+          }
+
+          .sidebar__nav-item-text {
+            color: $activeColor;
+          }
+        }
+      }
+    }
+  }
+}

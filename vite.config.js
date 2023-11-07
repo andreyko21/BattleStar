@@ -28,23 +28,17 @@ export default defineConfig({
       host: "0.0.0.0",
       hmr: true,
    },
-
    plugins: [
+      injectHTML(),
       handlebars({
          reloadOnPartialChange: true,
          partialDirectory: resolve(__dirname, "src/pages/partials"),
       }),
-      plugins: [
-         injectHTML(),
-         handlebars({
-            reloadOnPartialChange: true,
-            partialDirectory: resolve(__dirname, "src/pages/partials"),
-         }),
 
-         FullReload("src/pages/partials/**/*", { delay: 0 }),
+      FullReload("src/pages/partials/**/*", { delay: 0 }),
 
-         viteStaticCopy({
-            targets: [],
-         }),
-      ],
+      viteStaticCopy({
+         targets: [],
+      }),
+   ],
 });

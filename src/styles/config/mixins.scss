@@ -190,38 +190,38 @@
 @mixin tabs {
   position: relative;
   transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+  transition: transform 0.5s ease-out;
   &::after {
     content: "";
     position: absolute;
     width: 100%;
     transform: scaleX(0);
     height: 3px;
-    bottom: -15px;
+    bottom: -12px;
     left: 0;
     transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-    background-color: #337d5a;
+    transition: transform 0.5s ease-out;
+    background-color: $yellow300;
   }
 
   &:hover::after {
     transform-origin: bottom left;
     transform: scaleX(1);
   }
-  &.act::after {
+  &_act::after {
     transform-origin: bottom left;
     transform: scaleX(1);
-    color: #337d5a;
+    color: $yellow300;
   }
 
   &:hover {
     transform-origin: bottom left;
-    color: #337d5a;
+    color: $yellow300;
   }
 
-  &.act {
+  &_act {
     transform-origin: bottom left;
     transform: scaleX(1);
-    color: #337d5a;
+    color: $yellow300;
   }
 }

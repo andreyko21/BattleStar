@@ -9,15 +9,18 @@
 
 <body>
    <div class="wrapper">
-      <main class="page">
+      <load="src/html/header.html" />
+      <main class="main">
          <section class="sign">
             <div class="sign__container">
                <div class="sign__content">
                   <div class="sign__logo">
-                     <img src="src/svg/signLogo.svg" alt="logo">
+                     <svg>
+                        <use xlink:href="src/images/sprite.svg#sign-logo"></use>
+                     </svg>
                   </div>
                   <div class="sign__tabs">
-                     <p class="sign__tabs-enter">ВОЙТИ</p>
+                     <p class="sign__tabs-enter sign__tabs-enter_act">ВОЙТИ</p>
                      <p class="sign__tabs-create">СОЗДАТЬ АККАУНТ</p>
                   </div>
                   <div class="sign__form form">
@@ -32,29 +35,93 @@
 
                         </div>
                         <div class="form__signin-forgot">
-                           <p>Забыли пароль?</p>
-                           <a href="#">Восстановить</a>
+                           <p class="form__signin-text">Забыли пароль?</p>
+                           <a class="form__signin-link" href="#">Восстановить</a>
                         </div>
                         <div class="form__signin-btn">
-                           <button class="btn btn_sign" type="submit">Войти</button>
+                           <button class="btn btn_sign" type="submit">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#sign-btn"></use>
+                              </svg>
+                              <span> Войти</span>
+                           </button>
                         </div>
                         <div class="form__signin-social">
-                           <p>Или войдите через</p>
+                           <div class="form__signin-social-row">
+                              <hr>
+                              <p>Или войдите через</p>
+                              <hr>
+                           </div>
+
                            <div class="form__signin-social-icons">
-                              <a href="#"><img src="src/svg/vk.svg" alt="vk"></a>
-                              <a href="#"><img src="src/svg/inst.svg" alt="inst"></a>
-                              <a href="#"><img src="src/svg/fb.svg" alt="fb"></a>
+                              <a href="#">
+                                 <svg>
+                                    <use xlink:href="src/images/sprite.svg#steam"></use>
+                                 </svg>
+                              </a>
+                              <a href="#">
+                                 <svg>
+                                    <use xlink:href="src/images/sprite.svg#apple"></use>
+                                 </svg>
+                              </a>
+                              <a href="#">
+                                 <svg>
+                                    <use xlink:href="src/images/sprite.svg#google"></use>
+                                 </svg>
+                              </a>
+                              <a href="#">
+                                 <svg>
+                                    <use xlink:href="src/images/sprite.svg#facebook"></use>
+                                 </svg>
+                              </a>
                            </div>
                         </div>
                         <div class="form__signin-agreement">
-                           <p>
+                           <p class="form__signin-text">
                               Создавая аккаунт в “Название” вы соглашаетесь с
                            </p>
-                           <a href="#">пользовательским соглашением</a>
+                           <a  class="form__signin-link" href="#">пользовательским соглашением</a>
                         </div>
                      </form>
-                     <form class="form__sign-up">
+                     <form class="form__signup hide">
+                        <div class="form__signin-nickname">
+                           <input class="form__signin-inp" type="text" id="nickname" name="nickname" required>
+                           <label class="form__signin-label" for="nickname">Введите никнейм</label>
+                        </div>
+                        <div class="form__signin-email">
+                           <input class="form__signin-inp" type="text" id="email" name="email" required>
+                           <label class="form__signin-label" for="email">Электронная почта</label>
+                        </div>
+                        <div class="form__signin-password">
+                           <input class="form__signin-inp" type="password" id="password" name="password" required>
+                           <label class="form__signin-label" for="password">Придумайте пароль</label>
+                        </div>
+                        <div class="form__signin-forgot">
+                           <p class="form__signin-text">Забыли пароль?</p>
+                           <a class="form__signin-link" href="#">Восстановить</a>
+                        </div>
+                        <div class="form__signin-btn">
+                           <button class="btn btn_sign" type="submit">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#sign-btn"></use>
+                              </svg>
+                              <span> Войти</span>
+                           </button>
+                        </div>
+                        <div class="form__signin-social">
+                           <div class="form__signin-social-row">
+                              <hr>
+                              <p>Или войдите через</p>
+                              <hr>
+                           </div>
 
+                        </div>
+                        <div class="form__signin-agreement">
+                           <p class="form__signin-text">
+                              Создавая аккаунт в “Название” вы соглашаетесь с
+                           </p>
+                           <a  class="form__signin-link" href="#">пользовательским соглашением</a>
+                        </div>
                      </form>
                   </div>
 

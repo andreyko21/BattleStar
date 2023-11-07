@@ -1,6 +1,8 @@
 .button {
-   width: 278px;
-   height: 60px;
+   width: 249px;
+   height: 44px;
+   // background: $yellow300;
+   // clip-path: polygon(evenodd, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%, 2% 50%, 10% 10%, 90% 10%, 98% 50%, 90% 90%, 10% 90%, 2% 50%, 0% 50%);
 }
 
 .btn {
@@ -12,11 +14,12 @@
       font-size: 22px;
       font-weight: 700;
       line-height: normal;
-      color: $gray50;
+      color: $gray25;
       border-radius: 2px;
-      border: 2px solid $gray50;
+      border: 2px solid $gray25;
    }
 
+   // Войти в комнату
    &_yellow {
       font-size: 20px;
       font-weight: 500;
@@ -34,6 +37,46 @@
    }
 }
 
+// .button {
+//    position: relative;
+//    background: $yellow800;
+//    display: inline-block;
+//    min-width: 250px;
+//    min-height: 44px;
+//    line-height: 60px;
+//    text-align: center;
+//    font-size: 15px;
+//    text-decoration: none;
+//    // text-transform: uppercase;
+//    margin: 0 0 0 0;
+// }
+
+// .button:before,
+// .button:after {
+//    min-width: 235px;
+//    left: 6px;
+//    height: 22px;
+//    z-index: -1;
+// }
+// .button:before {
+//    position: absolute;
+//    content: "";
+//    border-bottom: none;
+//    -webkit-transform: perspective(15px) rotateX(5deg);
+//    -moz-transform: perspective(15px) rotateX(5deg);
+//    transform: perspective(15px) rotateX(5deg);
+// }
+// .button:after {
+//    position: absolute;
+//    left: 6px;
+//    top: 22px;
+//    content: "";
+//    border-top: none;
+//    -webkit-transform: perspective(15px) rotateX(-5deg);
+//    -moz-transform: perspective(15px) rotateX(-5deg);
+//    transform: perspective(15px) rotateX(-5deg);
+// }
+
 // .link {
 //    --clip-path: polygon(10% 0%, calc(100% - 0.8em) 0%, 100% 0.8em, 100% 100%, 0.8em 100%, 0% calc(100% - 0.8em));
 //    font-size: 2rem;
@@ -42,4 +85,4 @@
 //    background-color: $yellow300;
 //    clip-path: var(--clip-path);
 //    font-family: sans-serif;
-//  }
+// //  }

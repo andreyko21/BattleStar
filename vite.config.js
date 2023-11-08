@@ -9,37 +9,36 @@ import pages from "./pages.config.js";
 const pagesInput = {};
 
 pages.forEach((page) => {
-  pagesInput[page.name] = page.path;
+   pagesInput[page.name] = page.path;
 });
 
 export default defineConfig({
-  build: {
-    target: "es2017",
-    outDir: "build",
-    rollupOptions: {
-      input: {
-        ...pagesInput,
+   build: {
+      target: "es2022", //Змінив Максим з es2017
+      outDir: "build",
+      rollupOptions: {
+         input: {
+            ...pagesInput,
+         },
       },
-    },
-  },
+   },
 
-  server: {
-    port: 3025,
-    host: "0.0.0.0",
-    hmr: true,
-  },
+   server: {
+      port: 3025,
+      host: "0.0.0.0",
+      hmr: true,
+   },
+   plugins: [
+      injectHTML(),
+      handlebars({
+         reloadOnPartialChange: true,
+         partialDirectory: resolve(__dirname, "src/pages/partials"),
+      }),
 
-  plugins: [
-    injectHTML(),
-    handlebars({
-      reloadOnPartialChange: true,
-      partialDirectory: resolve(__dirname, "src/pages/partials"),
-    }),
+      FullReload("src/pages/partials/**/*", { delay: 0 }),
 
-    FullReload("src/pages/partials/**/*", { delay: 0 }),
-
-    viteStaticCopy({
-      targets: [],
-    }),
-  ],
+      viteStaticCopy({
+         targets: [],
+      }),
+   ],
 });

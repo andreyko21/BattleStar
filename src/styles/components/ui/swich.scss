@@ -1,11 +1,6 @@
 .checkbox-swich {
-   //width: 38px;
-   //height: 19px;
-
    &__label {
       display: flex;
-      //width: 100%;
-      //height: 100%;
    }
 
    &__input {
@@ -24,6 +19,7 @@
 
          &__label-text {
             color: $gray25; // #f8f8f8
+            transition: $standartTrans;
          }
       }
    }
@@ -54,6 +50,7 @@
    &__label-text {
       margin: 0px 0px 0px 40px;
       align-self: center;
-      color: $gray350; // #989898
+      color: $gray200; // #989898
+      transition: $standartTrans;
    }
 }

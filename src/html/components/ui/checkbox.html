@@ -1,11 +1,16 @@
-<div class="checkbox">
-  <label for="{=$name}" class="checkbox__label">
-    <input
-      type="checkbox"
-      name="{=$name}"
-      id="{=$name}"
-      class="checkbox__input"
-    />
-    <div class="checkbox__label-text">{=$label-text}</div>
+<div class="custom-checkbox">
+  <input
+    type="checkbox"
+    name="{=$name}"
+    id="{=$name}"
+    class="custom-checkbox__input"
+  />
+  <label for="{=$name}" class="custom-checkbox__label">
+    <svg>
+      <use xlink:href="src/images/sprite.svg#check-mark"></use>
+    </svg>
+  </label>
+  <label for="{=$name}" class="custom-checkbox__label-text">
+    {=$label-text}
   </label>
 </div>

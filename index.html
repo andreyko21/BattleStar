@@ -1,25 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <title>Battle - Main</title>
-  </head>
 
-  <body class="page">
-    <div class="wrapper">
-      <main>
-        <div class="button">
-        <!-- <button class="btn btn_sign">Войти</button> -->
-        <a href="##" class="link redefined">
-          <span>Contact us!</span>
-        </a>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="node_modules/air-datepicker/air-datepicker.css">
+  <link rel="stylesheet" href="src/styles/index.scss" />
+  <title>Battle - Main</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <load="src/html/header.html" />
+    <load="src/html/sidebar.html" />
+
+    <main class="page">
+      <section class="banner">
+        <div class="banner__container">
+          <h1 class="banner__title"><span>BattleStar</span> Новости</h1>
+          <div class="swiper banner__swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <!-- <div class="swiper-slide">
+                <load="src/html/components/ui/card.html" />
+              </div>
+              <div class="swiper-slide">
+                <load="src/html/components/ui/card.html" />
+              </div>
+              <div class="swiper-slide">
+                <load="src/html/components/ui/card.html" />
+              </div> -->
+            </div>
+
+            <!-- If we need navigation buttons -->
+            <!-- <div class="banner__button-prev">
+            </div>
+            <div class="banner__button-next">
+              <svg>
+                <use xlink:href="src/images/sprite.svg#swiper-arrow"></use>
+              </svg>
+            </div> -->
+
+          </div>
+            <load="src/html/components/ui/table.html"/>
+            <load="src/html/components/ui/calendar.html"/>
         </div>
-        
-      </main>
-    </div>
-  </body>
-  <script type="module" src="src/main.ts"></script>
+      </section>
+    </main>
+  </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script type="module" src="src/main.ts"></script>
+
 </html>

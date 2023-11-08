@@ -1,7 +1,55 @@
 @import "./style.scss";
 @import "./components/sidebar.scss";
 @import "./components/header.scss";
+@import "./components/ui/card.scss";
+@import "./components/ui/table.scss";
+@import "./components/ui/calendar.scss";
+// @import "./libs/swiper.scss";
 
 .main {
+  flex: 1 1 auto;
+  // width: 100vw;
   grid-area: main;
+}
+.banner {
+  background:
+    $gradient50,
+    url(../images/banner.webp) no-repeat center center/cover;
+  height: 984px;
+  width: 100%;
+  position: relative;
+
+  &__container {
+    padding: 409px 0 0 105px;
+    max-width: 1620px;
+    width: 100%;
+  }
+
+  &__title {
+    font-size: 64px;
+    font-weight: 500;
+    line-height: normal;
+    color: $gray25;
+    text-align: center;
+    margin-bottom: 74px;
+    span {
+      color: $yellow300;
+    }
+  }
+
+  &__swiper {
+    width: 1556px;
+    // margin-left: 110px;
+  }
+  &__button-next {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 10;
+    svg {
+      width: 68px;
+      height: 68px;
+    }
+  }
 }

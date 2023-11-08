@@ -1,0 +1,109 @@
+.air-datepicker {
+   width: 382px;
+   height: 304px;
+   overflow: auto;
+   background: $gray600;
+   border-radius: 4px;
+   box-shadow:
+      0px 0px 4px 0px rgba(0, 0, 0, 0.12),
+      0px 0px 1px 0px rgba(0, 0, 0, 0.48);
+
+   &.-inline- {
+      border: none;
+   }
+
+   &-nav {
+      width: 220px;
+      height: 28px;
+      border: none;
+      margin: 20px auto;
+      &--title {
+         color: $gray25;
+         text-align: center;
+         font-family: Roboto;
+         font-size: 20px;
+         font-style: normal;
+         font-weight: 500;
+         line-height: 24px;
+         i {
+            color: $gray25;
+         }
+
+         &:hover {
+            border: 2px solid $yellow300;
+            background: #816c23;
+            border-radius: 2px;
+         }
+      }
+      &--action {
+         width: 28px;
+         height: 28px;
+         svg {
+            path {
+               stroke: $gray500;
+            }
+         }
+
+         &:hover {
+            border: 2px solid $yellow300;
+            background: #816c23;
+            border-radius: 2px;
+         }
+      }
+   }
+   &-body {
+      &--cells {
+         &.-days- {
+            grid-row-gap: 10px;
+         }
+      }
+      &--day {
+         &-names {
+            display: none;
+         }
+      }
+   }
+   &-cell {
+      padding: 6.42px 11.693px 5.35px 12.862px;
+      color: $gray500;
+
+      &.-selected-.-current- {
+         color: $gray25;
+         background: #816c23;
+      }
+      &.-selected- {
+         color: $gray25;
+         border-radius: 2px;
+         border: 2px solid $yellow300;
+         background: #816c23;
+      }
+      &.-range-to- {
+         border: 2px solid $yellow300;
+         background: #816c23;
+         border-radius: 2px;
+      }
+      &.-selected-.-focus- {
+         background: #816c23;
+         // border-radius: 2px;
+      }
+      &.-in-range- {
+         background: #816c23;
+         // border-radius: 2px;
+      }
+      &.-year-.-other-decade-,
+      &.-day-.-other-month- {
+         color: $gray500;
+      }
+      &.-focus- {
+         border: 2px solid $yellow300;
+         background: #816c23;
+         border-radius: 2px;
+      }
+      &.-current- {
+         color: $yellow300;
+      }
+   }
+   &--content {
+      padding: 0 32px;
+   }
+}

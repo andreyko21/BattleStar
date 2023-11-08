@@ -1,0 +1,135 @@
+.table {
+   display: flex;
+   height: 760px;
+
+   &__column {
+      height: 728px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      &_one-eigth {
+         height: 637px;
+         // margin-top: 27px;
+      }
+   }
+   &__content {
+      margin-top: 45px;
+      &_one-two {
+         margin-top: 140px;
+      }
+      &_final {
+         margin-top: 330px;
+      }
+   }
+   &__text {
+      color: $gray100;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: normal;
+      text-align: center;
+      margin-bottom: 8px;
+   }
+
+   &__teams {
+      display: flex;
+      flex-direction: column;
+      height: 157px;
+      justify-content: space-between;
+      &_one-eigth {
+         height: 258px;
+      }
+      &_one-two {
+         height: 448px;
+      }
+
+      &-item {
+         backdrop-filter: blur(40px);
+         background: $gray600;
+         width: 243px;
+      }
+      &-block {
+         display: flex;
+         align-items: center;
+         height: 34px;
+         &:first-child {
+            border-bottom: 1px solid $gray500;
+         }
+      }
+      &-number {
+         font-size: 15px;
+         font-style: normal;
+         font-weight: 500;
+         color: $gray500;
+         padding: 7px 13px;
+         height: 100%;
+         border-right: 1px solid $gray500;
+         &_double {
+            padding: 7px 9px;
+         }
+      }
+
+      &-logo {
+         width: 29px;
+         height: 29px;
+         border-radius: 4px;
+         background: $gray300;
+         margin: 0 9px 0 7px;
+      }
+      &-name,
+      &-score {
+         font-size: 15px;
+         font-weight: 500;
+         line-height: normal;
+         color: $gray25;
+
+         &_green {
+            color: $green50;
+         }
+      }
+
+      &-score {
+         margin: 0 15px 0 auto;
+      }
+   }
+
+   &__line {
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 659px;
+      &_one-eigth {
+         margin-top: 104px;
+         height: 570px;
+      }
+      &_one-two {
+         margin-top: 200px;
+      }
+      &-row {
+         display: flex;
+         align-items: center;
+         margin: 0 13px;
+      }
+      &-one {
+         width: 38px;
+         height: 89px;
+         border-top: 1px solid $gray500;
+         border-bottom: 1px solid $gray500;
+         border-right: 1px solid $gray500;
+         &_one-eigth {
+            height: 191px;
+         }
+         &_one-two {
+            height: 380px;
+         }
+      }
+      &-two {
+         width: 60px;
+         height: 1px;
+         background: $gray500;
+
+         &_one-eigth {
+         }
+      }
+   }
+}

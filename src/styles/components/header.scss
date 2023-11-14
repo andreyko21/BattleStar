@@ -5,7 +5,12 @@
   background-color: #101011;
   max-height: 78px;
   display: flex;
-  align-items: center;
+  // align-items: center;
+  // position: sticky;
+  // top: 0;
+  // left: 0;
+  // width: 100%;
+  // z-index: 50;
 
   &__search-block {
     padding: 9px 13px 10px;

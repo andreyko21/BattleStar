@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "build-gql-declarations && tsc && vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "preview": "vite preview"
@@ -13,12 +13,19 @@
   "devDependencies": {
     "@types/node": "^20.8.10",
     "gh-pages": "^6.0.0",
+    "graphql-request": "^6.1.0",
     "sass": "^1.69.5",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
     "vite-plugin-full-reload": "^1.0.5",
     "vite-plugin-handlebars": "^1.6.0",
     "vite-plugin-html-inject": "^1.0.4",
-    "vite-plugin-static-copy": "^0.17.0"
+    "vite-plugin-static-copy": "^0.17.0",
+    "vite-plugin-typed-graphql": "^2.1.0"
+  },
+  "dependencies": {
+    "air-datepicker": "^3.4.0",
+    "jquery": "^3.7.1",
+    "swiper": "^11.0.3"
   }
 }

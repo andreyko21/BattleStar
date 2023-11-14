@@ -1,10 +1,9 @@
-body{
-  font-family: 'Roboto';
+body {
+  font-family: "Roboto";
   background: $dark400;
-
 }
 
-[class*='__container'] {
+[class*="__container"] {
   max-width: rem($containerWidth + $mainOffset * 2);
   margin: 0 auto;
   padding: 0 rem($mainOffset);
@@ -31,17 +30,22 @@ body{
 }
 
 // Оболочка ===================================================================
+// .wrapper {
+//   display: flex;
+//   flex-direction: column;
+//   min-height: 100%;
+// }
+
 .wrapper {
-  // display: grid;
-  // grid-template:
-  //   "sidebar header" auto/min-content auto;
-  // flex-direction: column;
-  // min-height: 100%;
-  // overflow: clip;
+  display: grid;
+  grid-template:
+    "sidebar header"
+    "sidebar main" auto/min-content auto;
+  min-height: 100%;
+  overflow: clip;
+
 }
 
-.main {
-  flex: 1 1 auto;
-  // width: 100vw;
-  // grid-area: main;
+.page {
+  // flex: 1 1 auto;
 }

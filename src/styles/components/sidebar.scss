@@ -17,6 +17,10 @@ $activeColor: $MidnightBlue;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // z-index: 60;
 
   &__logo {
     max-width: 65px;

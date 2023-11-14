@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+*.gql.d.ts
+*.graphql.d.ts

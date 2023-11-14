@@ -1,0 +1,39 @@
+type Team {
+    data: TeamData
+}
+
+type TeamData {
+   id: ID!
+  attributes: TeamAttributes
+}
+
+type TeamAttributes {
+  name: String!
+  rating: Int!
+  earned: Int!
+  matches_played: Int!
+  victories_in_tournaments: Int!
+  createdAt: String!
+  updatedAt: String!
+  publishedAt: String!
+  logo: Logo
+}
+
+type Logo {
+  data: LogoData
+}
+
+type LogoData {
+  id: ID!
+  attributes: LogoAttributes
+}
+
+type LogoAttributes {
+  name: String!
+  alternativeText: String!
+  url: String!
+}
+
+type Query {
+  teams: [Team]!
+}

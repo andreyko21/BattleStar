@@ -1,10 +1,9 @@
-body{
-  font-family: 'Roboto';
+body {
+  font-family: "Roboto";
   background: $dark400;
-
 }
 
-[class*='__container'] {
+[class*="__container"] {
   max-width: rem($containerWidth + $mainOffset * 2);
   margin: 0 auto;
   padding: 0 rem($mainOffset);
@@ -40,11 +39,13 @@ body{
 .wrapper {
   display: grid;
   grid-template:
-    "sidebar header" auto/min-content auto;
+    "sidebar header"
+    "sidebar main" auto/min-content auto;
   min-height: 100%;
   overflow: clip;
+
 }
 
 .page {
-  flex: 1 1 auto;
+  // flex: 1 1 auto;
 }

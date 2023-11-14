@@ -7,10 +7,10 @@ export function initDropDown() {
   );
   const headerMessBtn = document.querySelector<HTMLButtonElement>('.header__messages-button')
 
-  if (headerUserInfoBtn || headerNotionBtn ||  headerMessBtn) {
+  if (headerUserInfoBtn && headerNotionBtn &&  headerMessBtn) {
     headerUserInfoBtn.addEventListener("click", showDropDown);
-   //  headerNotionBtn.addEventListener("click", showDropDown);
-   //  headerMessBtn.addEventListener("click", showDropDown);
+    headerNotionBtn.addEventListener("click", showDropDown);
+    headerMessBtn.addEventListener("click", showDropDown);
   }
 
   function showDropDown() {

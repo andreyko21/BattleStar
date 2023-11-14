@@ -13,8 +13,8 @@ let datepicker = new AirDatepicker<HTMLDivElement>("#calendar", {
 
 console.log(datepicker);
 
-new Swiper(".banner__swiper", {
-loop: true,
-})
+// new Swiper(".banner__swiper", {
+// loop: true,
+// })
 
 

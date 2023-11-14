@@ -31,20 +31,19 @@ body{
 }
 
 // Оболочка ===================================================================
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
-
 // .wrapper {
-//   display: grid;
-//   grid-template:
-//     "sidebar header" auto/min-content auto;
+//   display: flex;
 //   flex-direction: column;
 //   min-height: 100%;
-//   overflow: clip;
 // }
+
+.wrapper {
+  display: grid;
+  grid-template:
+    "sidebar header" auto/min-content auto;
+  min-height: 100%;
+  overflow: clip;
+}
 
 .page {
   flex: 1 1 auto;

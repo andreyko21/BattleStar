@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Battle Star - Match</title>
-    <script type="module" crossorigin src="/assets/modulepreload-polyfill-3cfb730f.js"></script>
-    <link rel="stylesheet" href="/assets/match-9c56c02b.css">
-  </head>
-  <body>
-    <div class="wrapper">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Команди</title>
+    
+  <script type="module" crossorigin src="/assets/teams-08766a06.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
+  <link rel="modulepreload" crossorigin href="/assets/_commonjsHelpers-725317a4.js">
+  <link rel="stylesheet" href="/assets/teams-05ec57e9.css">
+</head>
+<body>
+     <div class="wrapper">
       <header class="header">
   <div class="header__select-game">
     <select class="header__select-game__select dropdown" name="game" id="game">
@@ -126,32 +128,23 @@
   </nav>
 </div>
 
-      <main class="main" id="app">
-        <div class="pop-up"> </div>
-
-<h1 style="font-size: 50; color: beige">TEST1</h1>
-<h1 style="font-size: 50; color: beige">TEST2</h1>
-
-
-        <div class="main__filters"> </div>
-        <div class="main__content content">
-          <img
-            src="/assets/cs-bg-ddc48684.png"
-            class="content__bg-img"
-          />
-          <div class="content__tabs tabs">
-            <div class="tabs__tab tab__search"> НАЙТИ ИГРУ</div>
-            <div class="tabs__tab tab__create">СОЗДАТЬ ЛОББИ</div>
-          </div>
-          <div class="content__tabs-content">
-            <div
-              class="content__tab-content tab-content search-tab"
-              data-name="search"
-            ></div>
-          </div>
+      <main class="page">
+        <div class="invitation-team-section">
+            <h2 class="invitation-team-section__title team-page__title">Приглашения в команды</h2>
+            <ul class="invitation-team-section__teams-list teams-list">
+                <li class="teams-list__item">
+                    <div class="teams-list__item-img-block">
+                        
+                    </div>
+                    <p class="teams-list__item-name">PlayFair Display$$$</p>
+                    <p class="teams-list__item-rate">2674</p>
+                    <p class="teams-list__item-tournaments">43</p>
+                    <p class="teams-list__item-earned">200 029 BS</p>
+                    <p class="teams-list__item-participants">9/15</p>
+                </li>
+            </ul>
         </div>
       </main>
-    </div>
-  </body>
-  
+       
+</body>
 </html>

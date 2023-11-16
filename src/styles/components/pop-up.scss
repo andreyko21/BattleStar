@@ -1,0 +1,35 @@
+.pop-up {
+  display: none;
+  position: absolute;
+  top: 77px;
+  left: calc(50% - 100px);
+  transform: translateX(-50%) scale(0);
+  max-width: 824px;
+  width: 100%;
+  padding: 15px 16px 0px 16px;
+  border-radius: 4px;
+  background: $gray600; // rgba(248 248 248 0.1)
+  backdrop-filter: blur(110px);
+  opacity: 0;
+  transition: $standartTrans;
+  &__criss-cross {
+    width: 14px;
+    height: 14px;
+    margin: 0px 0px 0px auto;
+    cursor: pointer;
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: $gray25; // #f8f8f8;
+    }
+  }
+  &__criss-cross-icon {
+  }
+  &_display_block {
+    display: block;
+  }
+  &_open {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}

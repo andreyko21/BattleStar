@@ -11,18 +11,31 @@
   <title>Battle - Main</title>
   <script type="module" crossorigin src="/assets/modulepreload-polyfill-3cfb730f.js"></script>
   <script type="module" crossorigin src="/assets/_commonjsHelpers-725317a4.js"></script>
-  <script type="module" crossorigin src="/assets/main-03b78d2d.js"></script>
-  <link rel="stylesheet" href="/assets/index-47172087.css">
+  <script type="module" crossorigin src="/assets/main-0d58828e.js"></script>
+  <link rel="stylesheet" href="/assets/index-65369bbd.css">
 </head>
 
 <body>
   <div class="wrapper">
     <header class="header">
   <div class="header__select-game">
-    <select class="header__select-game__select dropdown" name="game" id="game">
-      <option value="battle">CS:GO</option>
-      <option value="tictactoe">DOTA2</option>
-    </select>
+    <div class="dropdown__game">
+   <div class="dropdown__game-select">
+      <div class="dropdown__game-current">
+         <img class="dropdown__game-img" src="../src/images/csGo.webp" alt="">
+         <p class="dropdown__game-name">CS:GO</p>
+      </div>
+      <div class="dropdown__game-arrow">
+         <svg>
+            <use xlink:href="/assets/sprite-284aedaa.svg#arrow-game"></use>
+         </svg>
+      </div>
+      <ul class="dropdown__game-list">
+         <li class="dropdown__game-item"><img class="dropdown__game-icon" src="../src/images/csGo.webp" alt="">Counter Strike: Global Offensive</li>
+         <li class="dropdown__game-item"><img class="dropdown__game-icon" src="../src/images/dota.webp" alt="">DOTA 2</li>
+      </ul>
+   </div>
+</div>
   </div>
   <div class="dropdown">
   <button
@@ -42,7 +55,7 @@
 
   <label for="headerSearch" class="header__search-block">
     <svg class="header__search-block-icon">
-      <use xlink:href="/assets/sprite-aca7ad33.svg#search"></use>
+      <use xlink:href="/assets/sprite-284aedaa.svg#search"></use>
     </svg>
     <input
       class="header__search-block-input"
@@ -55,7 +68,7 @@
     <h2 class="header__balance-title">Баланс</h2>
     <button class="header__balance-button">
       <svg class="header__balance-button-icon">
-        <use xlink:href="/assets/sprite-aca7ad33.svg#plus-box"></use>
+        <use xlink:href="/assets/sprite-284aedaa.svg#plus-box"></use>
       </svg>
     </button>
     <div class="header__balance-value">15600 BS</span></div>
@@ -63,14 +76,14 @@
   <div class="header__messages">
     <button class="header__messages-button">
       <svg class="header__messages-button-icon">
-        <use xlink:href="/assets/sprite-aca7ad33.svg#message"></use>
+        <use xlink:href="/assets/sprite-284aedaa.svg#message"></use>
       </svg>
     </button>
   </div>
   <div class="header__notification">
     <button class="header__notification-button">
       <svg class="header__notification-button-icon">
-        <use xlink:href="/assets/sprite-aca7ad33.svg#bell"></use>
+        <use xlink:href="/assets/sprite-284aedaa.svg#bell"></use>
       </svg>
     </button>
   </div>
@@ -86,9 +99,10 @@
     </div>
     <button class="header__user-info-button">
       <svg>
-        <use xlink:href="/assets/sprite-aca7ad33.svg#arrow-down"></use>
+        <use xlink:href="/assets/sprite-284aedaa.svg#arrow-down"></use>
       </svg>
     </button>
+
     </div>
   </div>
 </header>
@@ -96,37 +110,37 @@
     <div class="sidebar">
   <a class="sidebar__logo" href="/index">
     <svg class="sidebar__logo">
-      <use xlink:href="/assets/sprite-aca7ad33.svg#logo"></use>
+      <use xlink:href="/assets/sprite-284aedaa.svg#logo"></use>
     </svg>
   </a>
   <nav class="sidebar__nav">
     <a href="" class="sidebar__nav-item sidebar__nav-item_active">
       <svg class="sidebar__nav-item-icon">
-        <use xlink:href="/assets/sprite-aca7ad33.svg#newspaper"></use>
+        <use xlink:href="/assets/sprite-284aedaa.svg#newspaper"></use>
       </svg>
       <span class="sidebar__nav-item-text">ГЛАВНАЯ</span>
     </a>
     <a href="" class="sidebar__nav-item">
       <svg class="sidebar__nav-item-icon">
-        <use xlink:href="/assets/sprite-aca7ad33.svg#controller"></use>
+        <use xlink:href="/assets/sprite-284aedaa.svg#controller"></use>
       </svg>
       <span class="sidebar__nav-item-text">МАТЧИ</span>
     </a>
     <a href="" class="sidebar__nav-item">
       <svg class="sidebar__nav-item-icon">
-        <use xlink:href="/assets/sprite-aca7ad33.svg#cup"></use>
+        <use xlink:href="/assets/sprite-284aedaa.svg#cup"></use>
       </svg>
       <span class="sidebar__nav-item-text">ТУРНИРЫ</span>
     </a>
     <a href="" class="sidebar__nav-item">
       <svg class="sidebar__nav-item-icon">
-        <use xlink:href="/assets/sprite-aca7ad33.svg#people"></use>
+        <use xlink:href="/assets/sprite-284aedaa.svg#people"></use>
       </svg>
       <span class="sidebar__nav-item-text">КОМАНДЫ</span>
     </a>
     <a href="" class="sidebar__nav-item">
       <svg class="sidebar__nav-item-icon">
-        <use xlink:href="/assets/sprite-aca7ad33.svg#person"></use>
+        <use xlink:href="/assets/sprite-284aedaa.svg#person"></use>
       </svg>
       <span class="sidebar__nav-item-text">ДРУЗЬЯ</span>
     </a>
@@ -137,7 +151,7 @@
    <div class="dropdown__account-static">
       <a href="#" class="dropdown__account-link">
          <svg>
-            <use xlink:href="/assets/sprite-aca7ad33.svg#static"></use>
+            <use xlink:href="/assets/sprite-284aedaa.svg#static"></use>
          </svg>
          Статистика
       </a>
@@ -146,7 +160,7 @@
    <div class="dropdown__account-matches">
       <a href="#" class="dropdown__account-link">
          <svg>
-            <use xlink:href="/assets/sprite-aca7ad33.svg#history-matches"></use>
+            <use xlink:href="/assets/sprite-284aedaa.svg#history-matches"></use>
          </svg>
          История матчей
       </a>
@@ -155,7 +169,7 @@
    <div class="dropdown__account-account">
       <a href="#" class="dropdown__account-link">
          <svg>
-            <use xlink:href="/assets/sprite-aca7ad33.svg#account"></use>
+            <use xlink:href="/assets/sprite-284aedaa.svg#account"></use>
          </svg>
          Профиль
       </a>
@@ -165,7 +179,7 @@
 
       <a href="#" class="dropdown__account-link">
          <svg>
-            <use xlink:href="/assets/sprite-aca7ad33.svg#wallet"></use>
+            <use xlink:href="/assets/sprite-284aedaa.svg#wallet"></use>
          </svg>
          Кошелёк
       </a>
@@ -174,7 +188,7 @@
    <div class="dropdown__account-setting">
       <a href="#" class="dropdown__account-link">
          <svg>
-            <use xlink:href="/assets/sprite-aca7ad33.svg#setting"></use>
+            <use xlink:href="/assets/sprite-284aedaa.svg#setting"></use>
          </svg>
          Параметры
       </a>
@@ -183,7 +197,7 @@
    <div class="dropdown__account-blacklist">
       <a href="#" class="dropdown__account-link">
          <svg>
-            <use xlink:href="/assets/sprite-aca7ad33.svg#blacklist"></use>
+            <use xlink:href="/assets/sprite-284aedaa.svg#blacklist"></use>
          </svg>
          Черный список</a>
    </div>
@@ -191,7 +205,7 @@
    <div class="dropdown__account-exit">
       <button class="dropdown__account-link dropdown__account-link_btn">
          <svg>
-            <use xlink:href="/assets/sprite-aca7ad33.svg#exit"></use>
+            <use xlink:href="/assets/sprite-284aedaa.svg#exit"></use>
          </svg>
          Выйти из аккаунта
       </button>
@@ -267,6 +281,8 @@
 
 
 </div>
+
+
     <main class="page">
       <section class="banner">
         <div class="banner__container">
@@ -275,7 +291,7 @@
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
               <!-- Slides -->
-              <!-- <div class="swiper-slide">
+              <div class="swiper-slide">
                 <div class="card">
    <div class="card__news">
       <div class="card__news-img"></div>
@@ -291,7 +307,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -312,7 +328,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -333,7 +349,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -354,7 +370,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -375,7 +391,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -396,7 +412,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -421,7 +437,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -442,7 +458,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -463,7 +479,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -484,7 +500,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -505,7 +521,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -526,7 +542,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -551,7 +567,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -572,7 +588,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -593,7 +609,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -614,7 +630,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -635,7 +651,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -656,7 +672,7 @@
          <div class="card__news-view">
             <div class="card__news-svg">
                <svg>
-                  <use xlink:href="src/images/sprite.svg#view"></use>      
+                  <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
                </svg>
             </div>
             <p class="card__news-number">123</p>   
@@ -665,21 +681,161 @@
    </div>
 </div>
               </div>
-            </div> -->
+            </div>
 
             <!-- If we need navigation buttons -->
-            <!-- <div class="banner__button-prev">
+            <div class="banner__button-prev">
             </div>
             <div class="banner__button-next">
               <svg>
-                <use xlink:href="src/images/sprite.svg#swiper-arrow"></use>
+                <use xlink:href="/assets/sprite-284aedaa.svg#swiper-arrow"></use>
               </svg>
-            </div> -->
+            </div>
 
           </div>
 
         </div>
       </section>
+      <section class="bonus">
+        <div class="bonus__container">
+          <div class="bonus__content">
+            <div class="bonus__content-logo">
+              <img src="/assets/bonusStar-0e651a52.png" alt="img">
+            </div>
+            <div class="bonus__content-info">
+              <h3 class="bonus__content-title">Акции и бонусы</h3>
+              <p class="bonus__content-text">Пополни баланс сегодня и полчи +200 <span>BS</span> в качестве бонуса</p>
+              <div class="bonus__content-link">
+                <a class="btn btn_transparent" href="#">Перейти в кошелёк</a>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </section>
+      <section class="news">
+        <div class="news__container">
+          <div class="news__content">
+            <div class="news__rating">
+
+            </div>
+            <div class="news__info">
+              <div class="news__info-row">
+                <div class="news__info-item">
+                  <div class="news__info-img"></div>
+                  <div class="news__info-column">
+                    <h2 class="news__info-title">С другой стороны дальнейшее развитие различных форм</h2>
+                    <p class="news__info-text">Повседневная практика показывает, что постоянный количественный рост и сфера нашей активности способствует подготовки и реализации существенных финансовых и административных условий.</p>
+                    <div class="news__info-sub-row">
+                      <p class="news__info-date">17 Окт 2020</p>
+                      <div class="news__info-views">
+                        <div class="news__info-like">
+                          <svg>
+                            <use xlink:href="/assets/sprite-284aedaa.svg#like"></use>      
+                         </svg>
+                          345
+                        </div>
+                        <p class="news__info-view">
+                          <svg>
+                            <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>      
+                         </svg>
+                         1380
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="news__info-row">
+                <div class="news__info-item">
+                  <div class="news__info-img"></div>
+                  <div class="news__info-column">
+                    <h2 class="news__info-title">С другой стороны дальнейшее развитие различных форм</h2>
+                    <p class="news__info-text">Повседневная практика показывает, что постоянный количественный рост и сфера нашей активности способствует подготовки и реализации существенных финансовых и административных условий.</p>
+                    <div class="news__info-sub-row">
+                      <p class="news__info-date">17 Окт 2020</p>
+                      <div class="news__info-views">
+                        <div class="news__info-like"></div>
+                        <div class="news__info-view"></div>
+                      </div>
+                    </div>
+                    
+                    
+                    
+                  </div>
+                </div>
+                
+              </div>
+              <div class="news__info-row">
+                <div class="news__info-item">
+                  <div class="news__info-img"></div>
+                  <div class="news__info-column">
+                    <h2 class="news__info-title">С другой стороны дальнейшее развитие различных форм</h2>
+                    <p class="news__info-text">Повседневная практика показывает, что постоянный количественный рост и сфера нашей активности способствует подготовки и реализации существенных финансовых и административных условий.</p>
+                    <div class="news__info-sub-row">
+                      <p class="news__info-date">17 Окт 2020</p>
+                      <div class="news__info-views">
+                        <div class="news__info-like"></div>
+                        <div class="news__info-view"></div>
+                      </div>
+                    </div>
+                    
+                    
+                    
+                  </div>
+                </div>
+                
+              </div>
+              <div class="news__info-row">
+                <div class="news__info-item">
+                  <div class="news__info-img"></div>
+                  <div class="news__info-column">
+                    <h2 class="news__info-title">С другой стороны дальнейшее развитие различных форм</h2>
+                    <p class="news__info-text">Повседневная практика показывает, что постоянный количественный рост и сфера нашей активности способствует подготовки и реализации существенных финансовых и административных условий.</p>
+                    <div class="news__info-sub-row">
+                      <p class="news__info-date">17 Окт 2020</p>
+                      <div class="news__info-views">
+                        <div class="news__info-like"></div>
+                        <div class="news__info-view"></div>
+                      </div>
+                    </div>
+                    
+                    
+                    
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+      <section class="bonus bonus_blue">
+        <div class="bonus__container">
+          <div class="bonus__content bonus__content_blue">
+            <div class="bonus__content-logo bonus__content-logo_blue">
+              <svg>
+                <use xlink:href="/assets/sprite-284aedaa.svg#star"></use>
+              </svg>
+            </div>
+            <div class="bonus__content-info bonus__content-info_blue">
+              <h3 class="bonus__content-title">Акции и бонусы</h3>
+              <p class="bonus__content-text bonus__content-text_blue">Пополни баланс сегодня и полчи +200
+                <span>BS</span> в качестве бонуса</p>
+              <div class="bonus__content-link">
+                <a class="btn btn_transparent" href="#">Перейти в кошелёк</a>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 </body>

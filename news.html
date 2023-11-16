@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Battle Star - Match</title>
-    <script type="module" crossorigin src="/assets/match-ae8d1541.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
-    <link rel="stylesheet" href="/assets/match-47f556fa.css">
-  </head>
-  <body>
-    <div class="wrapper">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+   <title>News</title>
+  <link rel="stylesheet" href="/assets/news-3288fc76.css">
+</head>
+
+<body>
+   <div class="wrapper">
       <header class="header">
   <div class="header__select-game">
     <div class="dropdown__game">
@@ -141,62 +141,40 @@
   </nav>
 </div>
 
-      <main class="main" id="app">
-        <!-- overlay -- прикриває контент при відкритті модального вікна -->
-        <div class="overlay"></div>
-        <div class="pop-up main__calibration-pop-up calibration-pop-up">
-  <div class="pop-up__criss-cross">
-    <svg class="pop-up__criss-cross-icon">
-      <use xlink:href="/assets/sprite-284aedaa.svg#criss-cross"></use>
-    </svg>
-  </div>
-  <div class="calibration-pop-up__content">
-  <h2 class="calibration-pop-up__title"> Калибровка </h2>
-  <div class="calibration-pop-up__text">
-    <p
-      >Повседневная практика показывает, что сложившаяся структура организации
-      способствует подготовки и реализации соответствующий условий
-      активизации.</p
-    >
-    <p
-      >Повседневная практика показывает, что постоянное
-      информационно-пропагандистское обеспечение нашей деятельности представляет
-      собой интересный эксперимент проверки соответствующий условий активизации.
-      Товарищи! начало повседневной работы по формированию позиции обеспечивает
-      широкому кругу (специалистов) участие в формировании позиций.</p
-    >
-  </div>
-  <div class="calibration-pop-up__btn-block">
-    <button class="calibration-pop-up__btn btn btn_skip" id="not-now"
-      >Не сейчас</button
-    >
-    <button class="calibration-pop-up__btn btn btn_skip" id="start-calibration"
-      >Начать калибровку</button
-    >
-  </div>
-</div>
+      <main class="page">
+         <section class="banner">
+            <div class="banner__container">
+               <div class="banner__img">
+                  <img src="/assets/bannerNews-b9e4e32c.webp" alt="banner">
+               </div>
+               <h1 class="banner__title">BattleStar: Apache Team против Green Dragon - главный матч октября</h1>
+               <div class="banner__row">
+                  <div class="banner__row-info">
+                     <div class="banner__row-author">
+                        <div class="banner__row-avatar"></div>
+                        <div class="banner__row-name"></div>
 
-</div>
 
-        <div class="main__filters"> </div>
-        <div class="main__content content">
-          <img
-            src="/assets/cs-bg-ddc48684.png"
-            class="content__bg-img"
-          />
-          <div class="content__tabs tabs">
-            <div class="tabs__tab tab__search"> НАЙТИ ИГРУ</div>
-            <div class="tabs__tab tab__create">СОЗДАТЬ ЛОББИ</div>
-          </div>
-          <div class="content__tabs-content">
-            <div
-              class="content__tab-content tab-content search-tab"
-              data-name="search"
-            ></div>
-          </div>
-        </div>
+                     </div>
+                     <div class="banner__row-view">
+                        <svg>
+                           <use xlink:href="/assets/sprite-284aedaa.svg#view"></use>
+                        </svg>
+                        <p class="banner__row-number">354</p>
+                     </div>
+                     <p class="banner__row-data">17 Апр, 2021</p>
+                  </div>
+                  <div class="banner__row-social"></div>
+
+               </div>
+
+
+
+            </div>
+
+         </section>
       </main>
-    </div>
-  </body>
-  
+   </div>
+</body>
+
 </html>

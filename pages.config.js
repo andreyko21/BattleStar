@@ -17,6 +17,13 @@ const pages = [
     name: "teams",
     path: resolve(__dirname, "teams.html"),
   },
+  {
+    name: "sign",
+    path: resolve(__dirname, "sign.html"),
+  }, {
+    name: "news",
+    path: resolve(__dirname, "news.html")
+  },
 ];
 
 export default pages;

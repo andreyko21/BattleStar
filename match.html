@@ -7,19 +7,36 @@
     <title>Battle Star - Match</title>
   </head>
   <body>
-    <div id="app">
-      <h1>MATCH</h1>
-      <load
-        ="src/html/components/ui/swich.html"
-        name="test"
-        label-text="Test text"
-      />
-      <load
-        ="src/html/components/ui/checkbox.html"
-        name="castom-checbox"
-        label-text="Test text"
-      />
+    <div class="wrapper">
+      <load ="src/html/header.html" />
+      <load ="src/html/sidebar.html" />
+      <main class="main" id="app">
+        <!-- overlay -- прикриває контент при відкритті модального вікна -->
+        <div class="overlay"></div>
+        <load
+          ="src/html/components/pop-up.html"
+          file="calibration-pop-up"
+          class="main__calibration-pop-up calibration-pop-up"
+        />
+        <div class="main__filters"> </div>
+        <div class="main__content content">
+          <img
+            src="./src/images/calibration-lobby/cs-bg.png"
+            class="content__bg-img"
+          />
+          <div class="content__tabs tabs">
+            <div class="tabs__tab tab__search"> НАЙТИ ИГРУ</div>
+            <div class="tabs__tab tab__create">СОЗДАТЬ ЛОББИ</div>
+          </div>
+          <div class="content__tabs-content">
+            <div
+              class="content__tab-content tab-content search-tab"
+              data-name="search"
+            ></div>
+          </div>
+        </div>
+      </main>
     </div>
   </body>
-  <script type="module" src="src/match.ts"></script>
+  <script type="module" src="src/ts/match/match.ts"></script>
 </html>

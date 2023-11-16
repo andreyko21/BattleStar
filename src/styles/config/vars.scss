@@ -45,6 +45,7 @@ $dark200: #18181b;
 $dark300: #101011;
 $dark400: #0c0c0e;
 $dark500: rgba(24, 24, 27, 0.9);
+$dark600: #1D1D21;
 
 //# ----- yellow -----
 $yellow300: #fac704;
@@ -62,6 +63,8 @@ $red800: rgba(241, 57, 57, 0.1);
 // 22222222
 //# ----- gradient -----
 $gradient50: linear-gradient(180deg, rgba(78, 78, 116, 0) 0%, #0c0c0e 100%);
+$gradient100: linear-gradient(262deg, #fac704 0%, #4b1613 100%);
+$gradient200: linear-gradient(262deg, #7D70D1 0%, #134B48 100%);
 
 $firstAccentColor: $blackColor;
 $secondAccentColor: $redColor;

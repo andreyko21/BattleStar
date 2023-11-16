@@ -9,6 +9,7 @@
 
 .page {
   // flex: 1 1 auto;
+
   width: 100%;
   grid-area: main;
 }
@@ -16,16 +17,10 @@
   background:
     $gradient50,
     url(../images/banner.webp) no-repeat center center/cover;
-  height: 984px;
   width: 100%;
-  position: absolute;
-  top: 0;
-  overflow: hidden;
-  
-  z-index: -1;
 
   &__container {
-    padding: 409px 0 0 105px;
+    padding: 409px 0 0 0px;
     max-width: 1620px;
     width: 100%;
   }
@@ -57,4 +52,75 @@
   //     height: 68px;
   //   }
   // }
+}
+.bonus {
+  &__content {
+    width: 1526px;
+    height: 451px;
+    border-radius: 25px;
+    background: $gradient100;
+    display: flex;
+    justify-content: flex-end;
+    padding: 46px 142px 46px 0;
+
+    &_blue {
+      display: flex;
+      flex-direction: row-reverse;
+      background: $gradient200;
+      padding: 46px 0px 46px 126px;
+    }
+
+
+    &-logo {
+      &_blue {
+        svg {
+          width: 350px;
+          height: 397px;
+        }
+      }
+    }
+    &-info {
+      margin: 34px 0 0 111px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      &_blue {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 34px 261px 0 0px;
+      }
+    }
+    &-title {
+      color: $gray25;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: normal;
+      margin-bottom: 26px;
+    }
+    &-text {
+      color: $white50;
+      text-align: right;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: normal;
+      width: 611px;
+      margin-bottom: 40px;
+      span {
+        text-decoration: line-through;
+        color: $white50;
+      }
+      &_blue{
+        text-align: left;
+      }
+    }
+    &-link {
+      width: 300px;
+      // margin-left: auto;
+      a {
+        display: inline-block;
+        padding: 13px 43px;
+      }
+    }
+  }
 }

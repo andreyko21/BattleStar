@@ -11,7 +11,13 @@
       <load ="src/html/header.html" />
       <load ="src/html/sidebar.html" />
       <main class="main" id="app">
-        <load ="src/html/components/pop-up.html" file="test2" class="pop-up" />
+        <!-- overlay -- прикриває контент при відкритті модального вікна -->
+        <div class="overlay"></div>
+        <load
+          ="src/html/components/pop-up.html"
+          file="calibration-pop-up"
+          class="main__calibration-pop-up calibration-pop-up"
+        />
         <div class="main__filters"> </div>
         <div class="main__content content">
           <img
@@ -32,5 +38,5 @@
       </main>
     </div>
   </body>
-  <script type="module" src="src/match.ts"></script>
+  <script type="module" src="src/ts/match/match.ts"></script>
 </html>

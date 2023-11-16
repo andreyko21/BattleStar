@@ -4,7 +4,7 @@ $maxWidthContainer: 1556; // ширина контейнера с учетом p
 $containerWidth: 1526; // ширина контейнера из макета
 
 $mainOffset: 15; // отступы безопасности для контейнера
-$mainFont: "Roboto"; // !указать здесь основное семейство шрифта
+$mainFont: 'Roboto'; // !указать здесь основное семейство шрифта
 $mainWeight: 400; // !указать здесь основное начертание шрифта
 
 $headerHeight: 100;
@@ -13,6 +13,7 @@ $footerHeight: 100;
 // $mainRadius: rem(10);
 $whiteColor: #fff;
 $blackColor: #131313;
+$blackColor04: rgba(0, 0, 0, 0.4);
 $grayColor: #6f6f6f;
 $redColor: #ff4040;
 
@@ -30,7 +31,7 @@ $gray100: #bfbfbf;
 $gray200: #989898;
 $gray300: rgba(248, 248, 248, 0.6);
 $gray450: #7c7c7c;
-$gray475: #6F6F6F;
+$gray475: #6f6f6f;
 $gray400: #787878;
 $gray500: #606060;
 $gray550: rgba(248, 248, 248, 0.15);
@@ -51,7 +52,6 @@ $yellow300: #fac704;
 $yellow400: #685422;
 $yellow700: rgba(250, 199, 4, 0.2);
 $yellow800: rgba(250, 199, 4, 0.1);
-
 
 //# ----- green -----
 $green50: #6fff57;

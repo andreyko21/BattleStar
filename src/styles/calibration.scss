@@ -1,0 +1,21 @@
+@import './style.scss';
+@import './components/header';
+@import './components/sidebar';
+@import './components/pop-up';
+@import './components/overlay';
+@import './components/btns';
+@import './components/calibration-pop-up';
+
+.main {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  grid-area: main;
+}
+
+//.overflow_hidden {
+//  overflow: hidden;
+//}
+img {
+  width: 100%;
+}

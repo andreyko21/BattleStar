@@ -10,21 +10,29 @@
      <div class="wrapper">
       <load="src/html/header.html" />
       <load="src/html/sidebar.html" />
-      <main class="page">
-        <div class="invitation-team-section">
-            <h2 class="invitation-team-section__title team-page__title">Приглашения в команды</h2>
-            <ul class="invitation-team-section__teams-list teams-list">
-                <li class="teams-list__item">
-                    <div class="teams-list__item-img-block">
-                        
-                    </div>
-                    <p class="teams-list__item-name">PlayFair Display$$$</p>
-                    <p class="teams-list__item-rate">2674</p>
-                    <p class="teams-list__item-tournaments">43</p>
-                    <p class="teams-list__item-earned">200 029 BS</p>
-                    <p class="teams-list__item-participants">9/15</p>
-                </li>
-            </ul>
+      <main class="teams-page">
+        <div class="teams-page__container">
+        <section class="invitation-teams-section teams-list-section">
+          <div class="teams-list-section__header">
+              <h2 class="teams-list-section__title">Приглашения в команды</h2>
+          </div>
+            <ul class="invitation-team-section__teams-list teams-list-section__teams-list"></ul>
+        </section>
+        <section class="my-teams-section teams-list-section">
+            <div class="teams-list-section__header">
+              <h2 class="teams-list-section__title">Мои команды</h2>
+              <label class="teams-list-section__sorting" for="sorting-my-teams">
+              <select class="teams-list-section__sorting-select" name="sort" id="sorting-my-teams">
+                <option value="rating">По рейтингу</option>
+                <option value="name">По названию</option>
+              </select>
+              </label>
+              <label class="teams-list-section__search">
+                <input class="teams-list-section__search-input" type="text" placeholder="Поиск по командам">
+              </label>
+            </div>
+            <ul class="my-teams-section__teams-list teams-list-section__teams-list"></ul>
+        </section>
         </div>
       </main>
        <script type="module" src="src/teams.ts"></script>

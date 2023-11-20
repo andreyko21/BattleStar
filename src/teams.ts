@@ -1,12 +1,29 @@
+import $ from 'jquery';
 import { request } from 'graphql-request';
 import { GetTeams } from './../queries.graphql.d';
+import { AllTeamsRequest, Team, TeamType,  } from './ts/types';
 
 const ENDPOINT = 'https://battle-star-app.onrender.com/graphql';
 
-request(ENDPOINT, GetTeams);
 
-const { teams } = await request(ENDPOINT, GetTeams);
+async function getDataBaseTeams(sorting: String = "name") {
+  const { teams: { data } } = await request<AllTeamsRequest>(ENDPOINT, GetTeams, { sorting: sorting }); 
+  $('.my-teams-section__teams-list').empty();
+  data.forEach((team) => {
+    createItemList(team);
+  })
+  console.log();
+}
 
-console.log(teams);
+$('.teams-list-section__sorting-select').change(function () {
+  const selectedValue = $(this).val() as string;
+  getDataBaseTeams(selectedValue);
+});
 
-console.log(teams);
+function createItemList(team: TeamType){
+  const item = new Team(team);
+  
+  $('.my-teams-section__teams-list').append(item.getTemplate());
+}
+
+getDataBaseTeams();

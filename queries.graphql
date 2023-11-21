@@ -1,5 +1,5 @@
-query GetTeams($sorting: [String]) {
-  teams(sort: $sorting) {
+query GetTeams($filtering: String, $sorting: [String]) {
+  teams(filters: { name: { startsWith: $filtering } }, sort: $sorting) {
     data {
       id
 

@@ -6,8 +6,8 @@ import { AllTeamsRequest, Team, TeamType,  } from './ts/types';
 const ENDPOINT = 'https://battle-star-app.onrender.com/graphql';
 
 
-async function getDataBaseTeams(sorting: String = "name") {
-  const { teams: { data } } = await request<AllTeamsRequest>(ENDPOINT, GetTeams, { sorting: sorting }); 
+async function getDataBaseTeams(filtering: String = "", sorting: String = "name") {
+  const { teams: { data } } = await request<AllTeamsRequest>(ENDPOINT, GetTeams, { "filtering": filtering ,"sorting": sorting}); 
   $('.my-teams-section__teams-list').empty();
   data.forEach((team) => {
     createItemList(team);
@@ -17,7 +17,7 @@ async function getDataBaseTeams(sorting: String = "name") {
 
 $('.teams-list-section__sorting-select').change(function () {
   const selectedValue = $(this).val() as string;
-  getDataBaseTeams(selectedValue);
+  getDataBaseTeams("" ,selectedValue);
 });
 
 function createItemList(team: TeamType){
@@ -27,3 +27,16 @@ function createItemList(team: TeamType){
 }
 
 getDataBaseTeams();
+$('.teams-list-section__search-input').on('input', function() {
+  $(this).css('width', 'auto');
+    $(this).css('width', $(this).prop('scrollWidth') + 2 + 'px');
+});
+
+$('.teams-list-section__search-input').on('input', function() {
+    let currentValue = $(this).val();
+
+    // Ensure currentValue is a string before passing it to getDataBaseTeams
+    if (typeof currentValue === 'string') {
+        getDataBaseTeams(currentValue, "name");
+    }
+});

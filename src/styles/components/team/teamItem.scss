@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  padding-right: 20px;
 
   &__img-block {
     max-width: 108px;
@@ -24,7 +25,7 @@
   }
 
   &__name {
-    width: 10%;
+    width: 20%;
     color: #f8f8f8;
     font-family: Roboto;
     font-size: 22px;
@@ -83,13 +84,17 @@
   }
 
   &__awards {
+    margin-left: auto;
+    display: flex;
     width: 10%;
+    justify-content: end;
   }
 
   &__award-img {
+    margin-left: auto;
     max-width: 30px;
     max-height: 30px;
-    width: 100%;
+    width: fit-content;
     height: 100%;
     object-fit: contain;
   }

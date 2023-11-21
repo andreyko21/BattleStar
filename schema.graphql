@@ -67,7 +67,18 @@ type LogoAttributesRequest {
   url: String
 }
 
+input NameFilterInput {
+  startsWith: String
+  endsWith: String
+  contains: String
+}
+
+input TeamFilterInput {
+  name: NameFilterInput
+  # You can add other filtering fields here if needed
+}
+
 type Query {
-  teams(sort: [String]): TeamsRequest
+  teams(filters: TeamFilterInput, sort: [String]): TeamsRequest
   awards: [AwardsRequest]
 }

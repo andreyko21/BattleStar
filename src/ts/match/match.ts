@@ -19,6 +19,6 @@ const filtersTabsBlock = document.querySelector(
 ) as HTMLDivElement;
 
 if (filtersTabsBlock) {
-  new MethodsTabs(filtersTabsBlock);
+  //  new MethodsTabs(filtersTabsBlock);
   new ContentTabs(filtersTabsBlock);
 }

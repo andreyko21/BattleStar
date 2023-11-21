@@ -9,6 +9,13 @@ export interface IBaseTabs {
 }
 
 class BaseTabs implements IBaseTabs {
+  // Константи для селекторів
+  public readonly TABS_CLASS = 'tabs'; //Клас блоку з табами
+  public readonly TAB_CLASS = 'tab'; //Клас для табів
+  public readonly TAB_ACTIVE_CLASS = 'tab_active'; // Клас для активного табу
+  public readonly TABS_BLOCK_CONTENT_CLASS = 'tabs-block__content'; //Клас для блоку з контентом, що перемикається табами
+  public readonly CONTENT_CONTAINER_CLASS = 'content-container'; //Клас для контенту окремого класу
+
   readonly tabsBlock: HTMLDivElement;
   readonly tabs: HTMLDivElement | null;
   readonly allTabs: NodeListOf<Element>;
@@ -17,13 +24,14 @@ class BaseTabs implements IBaseTabs {
 
   constructor(tabsBlock: HTMLDivElement) {
     this.tabsBlock = tabsBlock;
-    this.tabs = this.tabsBlock.querySelector('.tabs');
-    this.allTabs = this.tabsBlock.querySelectorAll('.tab');
+    this.tabs = this.tabsBlock.querySelector(`.${this.TABS_CLASS}`);
+    this.allTabs = this.tabsBlock.querySelectorAll(`.${this.TAB_CLASS}`);
     this.tabsBlockContent = this.tabsBlock.querySelector(
-      '.tabs-block__content'
+      `.${this.TABS_BLOCK_CONTENT_CLASS}`
     );
-    this.contentContainers =
-      this.tabsBlock.querySelectorAll('.content-container');
+    this.contentContainers = this.tabsBlock.querySelectorAll(
+      `.${this.CONTENT_CONTAINER_CLASS}`
+    );
     this.addListenerToTabs();
   }
 
@@ -32,45 +40,40 @@ class BaseTabs implements IBaseTabs {
       this.tabs.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
         if (
-          target.classList.contains('tab') &&
-          !target.classList.contains('tab_active')
+          target.classList.contains(this.TAB_CLASS) &&
+          !target.classList.contains(this.TAB_ACTIVE_CLASS)
         ) {
           this.changeActiveTab(target);
-          // this.selectMethod(targetId);
-          // if (this.contentContainers.length) {
-          //   this.selectContentContainer(targetId);
-          // }
         }
       });
     }
   }
-
+  /**
+   * Перевіряєчи подія відбулася на табі і повертає Id елемента, якщо він таб
+   * @param target Елемент наякому відбуласьподія
+   * @returns Id елемента на якому відбулась подія, якщо він являється табом
+   */
   public changeActiveTab(target: HTMLElement): string {
     this.allTabs.forEach((item) => {
-      item.classList.remove('tab_active');
+      item.classList.remove(this.TAB_ACTIVE_CLASS);
     });
-    target.classList.add('tab_active');
+    target.classList.add(this.TAB_ACTIVE_CLASS);
     return target.id;
   }
 }
-
 class MethodsTabs extends BaseTabs {
   readonly renderMethods: IRenderMethod | null;
 
   constructor(tabsBlock: HTMLDivElement) {
     super(tabsBlock);
-    // if (new RenderMethod()) {
-    //   this.renderMethods = new RenderMethod();
-    // } else {
-    //   this.renderMethods = null
-    // }
+
     try {
-      //const renderMethodInstance = new RenderMethod();
-      this.renderMethods = new RenderMethod(); //renderMethodInstance;
+      this.renderMethods = new RenderMethod();
     } catch (error) {
       console.error('RenderMethod not found:', error);
       this.renderMethods = null;
     }
+
     this.addListenerToTabs();
   }
 
@@ -79,27 +82,19 @@ class MethodsTabs extends BaseTabs {
       this.tabs.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
         if (
-          target.classList.contains('tab') &&
-          !target.classList.contains('tab_active')
+          target.classList.contains(this.TAB_CLASS) &&
+          !target.classList.contains(this.TAB_ACTIVE_CLASS)
         ) {
           const targetId: string = super.changeActiveTab(target);
           this.selectMethod(targetId);
-          //  if (this.contentContainers.length) {
-          //    this.selectContentContainer(targetId);
-          //  }
         }
       });
     }
   }
-
-  //private changeActiveTab(target: HTMLElement): string {
-  //  this.allTabs.forEach((item) => {
-  //    item.classList.remove('tab_active');
-  //  });
-  //  target.classList.add('tab_active');
-  //  return target.id;
-  //}
-
+  /**
+   * Викликає метод, що відповідає назві Id табу, якщо такий існує
+   * @param targetId Id табу, на якому відбулася подія
+   */
   private selectMethod(targetId: string): void {
     let method: (() => void) | undefined;
     if (this.renderMethods) {
@@ -109,23 +104,11 @@ class MethodsTabs extends BaseTabs {
       method();
     }
   }
-
-  //private selectContentContainer(targetId: string): void {
-  //  this.contentContainers.forEach((item) => {
-  //    if (
-  //      item.id === `${targetId}-content` &&
-  //      !item.classList.contains('content-container_active')
-  //    ) {
-  //      this.contentContainers.forEach((item) => {
-  //        item.classList.remove('content-container_active');
-  //      });
-  //      item.classList.add('content-container_active');
-  //    }
-  //  });
-  //}
 }
 
 class ContentTabs extends BaseTabs {
+  public readonly CONTENT_CONTAINER_ACTIVE_CLASS = 'content-container_active';
+
   constructor(tabsBlock: HTMLDivElement) {
     super(tabsBlock);
   }
@@ -135,8 +118,8 @@ class ContentTabs extends BaseTabs {
       this.tabs.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
         if (
-          target.classList.contains('tab') &&
-          !target.classList.contains('tabs_active')
+          target.classList.contains(this.TAB_CLASS) &&
+          !target.classList.contains(this.TAB_ACTIVE_CLASS)
         ) {
           const targetId: string = super.changeActiveTab(target);
           if (this.contentContainers.length) {
@@ -147,16 +130,20 @@ class ContentTabs extends BaseTabs {
     }
   }
 
+  /**
+   * Додає клас "CONTENT_CONTAINER_ACTIVE_CLASS" до блоку з контентом, Id якого відповідає назві Id табу, якщо такий існує, по такій схемі ${targetId}-content
+   * @param targetId Id табу, на якому відбулася подія
+   */
   private selectContentContainer(targetId: string): void {
     this.contentContainers.forEach((item) => {
       if (
         item.id === `${targetId}-content` &&
-        !item.classList.contains('content-container_active')
+        !item.classList.contains(this.CONTENT_CONTAINER_ACTIVE_CLASS)
       ) {
         this.contentContainers.forEach((item) => {
-          item.classList.remove('content-container_active');
+          item.classList.remove(this.CONTENT_CONTAINER_ACTIVE_CLASS);
         });
-        item.classList.add('content-container_active');
+        item.classList.add(this.CONTENT_CONTAINER_ACTIVE_CLASS);
       }
     });
   }

@@ -7,21 +7,29 @@
 @import './components/btns';
 @import './components/calibration-pop-up';
 
-//.wrapper {
-//  display: grid;
-//  grid-template:
-//    'sidebar header' min-content
-//    'sidebar main' auto/min-content auto;
-//  flex-direction: column;
-//  min-height: 100%;
-//  overflow: clip;
-//}
-
 .main {
   position: relative;
   flex: 1 1 auto;
   width: 100%;
   grid-area: main;
+  display: flex;
+  &__bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &__filters {
+    width: 311px;
+    height: 100%;
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    margin: 5px 5px 5px 5px;
+  }
 }
 
 .overflow_hidden {
@@ -30,13 +38,6 @@
 img {
   width: 100%;
 }
-.content__bg-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-}
 .tab_active {
   color: chartreuse;
   font-size: 24px;
@@ -44,4 +45,117 @@ img {
 
 .content-container_active {
   background: #6709eb;
+}
+
+.content {
+  &__container {
+  }
+
+  &__party {
+  }
+
+  &__filters-block {
+  }
+
+  &__filters-title-block {
+  }
+
+  &__filters-title {
+  }
+
+  &__rate-filter {
+  }
+
+  &__maps-filter {
+  }
+
+  &__game-mode-filter {
+  }
+
+  &__region-filter {
+  }
+
+  &__anticheat {
+  }
+
+  &__tabs-content {
+  }
+
+  &__tab-content {
+  }
+}
+.filters {
+  &__tabs {
+  }
+
+  &__content {
+  }
+}
+.tabs-block {
+  &__tabs {
+  }
+
+  &__content {
+  }
+
+  &__content-container {
+  }
+}
+.tabs {
+  &__tab {
+  }
+}
+.tab {
+  &_active {
+  }
+
+  &__ {
+  }
+}
+.content-container {
+  &_active {
+  }
+}
+.party {
+  &__title-block {
+  }
+
+  &__help-block {
+  }
+
+  &__help-block-icon {
+  }
+
+  &__help-block-text {
+  }
+
+  &__users {
+  }
+
+  &__user-block {
+  }
+
+  &__create-user {
+  }
+}
+.user-block {
+  &__avatar {
+  }
+
+  &__avatar-img {
+  }
+
+  &__avatar-online {
+  }
+
+  &__info {
+  }
+}
+.tabs-content {
+  &__tab {
+  }
+}
+.tab-content {
+}
+.search-tab {
 }

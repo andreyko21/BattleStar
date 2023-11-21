@@ -5,9 +5,9 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Battle Star - Match</title>
-    <script type="module" crossorigin src="/assets/match-adc04571.js"></script>
+    <script type="module" crossorigin src="/assets/match-19e360a9.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
-    <link rel="stylesheet" href="/assets/match-e0634a7a.css">
+    <link rel="stylesheet" href="/assets/match-5304ba86.css">
   </head>
   <body>
     <div class="wrapper">
@@ -144,10 +144,10 @@
       <main class="main" id="app">
         <!-- overlay -- прикриває контент при відкритті модального вікна -->
         <div class="overlay"></div>
-        <div class="pop-up main__calibration-pop-up calibration-pop-up">
+        <!--<div class="pop-up main__calibration-pop-up calibration-pop-up">
   <div class="pop-up__criss-cross">
     <svg class="pop-up__criss-cross-icon">
-      <use xlink:href="/assets/sprite-682299bc.svg#criss-cross"></use>
+      <use xlink:href="src/images/sprite.svg#criss-cross"></use>
     </svg>
   </div>
   <div class="calibration-pop-up__content">
@@ -179,16 +179,92 @@
 </div>
 
 </div>
-
-        <div class="main__filters"> </div>
-        <div class="main__content content">
-          <img
-            src="/assets/cs-bg-ddc48684.png"
-            class="content__bg-img"
-          />
-          <div class="content__tabs tabs">
-            <div class="tabs__tab tab__search"> НАЙТИ ИГРУ</div>
-            <div class="tabs__tab tab__create">СОЗДАТЬ ЛОББИ</div>
+-->
+        <img
+          src="/assets/cs-bg-ddc48684.png"
+          class="content__bg-img"
+        />
+        <section class="main__filters filters tabs-block">
+          <div class="filters__tabs tabs-block__tabs tabs">
+            <div class="tabs__tab tab tab_active" id="find">НАЙТИ ИГРУ</div>
+            <div class="tabs__tab tab" id="create">СОЗДАТЬ ЛОББИ</div>
+          </div>
+          <div class="filters__content content tabs-block__content">
+            <div
+              class="content__container tabs-block__content-container content-container content-container_active"
+              id="find-content"
+            >
+              <div class="content__party party">
+                <div class="party__title-block">
+                  <div class="party__title-block">Пати</div>
+                  <div class="party__help-block">
+                    <div class="party__help-block-icon"> ? </div>
+                    <div class="party__help-block-text">
+                      Дуже корисна підказка!
+                    </div>
+                  </div>
+                </div>
+                <div class="party__users">
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar">
+                      <img
+                        src="/assets/avatar-4365172b.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                      <div class="user-block__info">User Userenco</div>
+                    </div>
+                  </div>
+                  <div class="party__create-user">
+                    <svg>
+                      <use
+                        xlink:href="/assets/sprite-682299bc.svg#plus-in-circle"
+                      ></use>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="content__filters-block">
+                <div class="content__filters-title-block">
+                  <svg>
+                    <use xlink:href="/assets/sprite-682299bc.svg#filters"></use>
+                  </svg>
+                </div>
+                <div class="content__filters-title"></div>
+                <div class="content__rate-filter"> </div>
+                <div class="content__maps-filter"> </div>
+                <div class="content__game-mode-filter"> </div>
+                <div class="content__region-filter"> </div>
+                <div class="content__anticheat"> </div>
+              </div>
+            </div>
+            <div
+              class="content__container tabs-block__content-container content-container"
+              id="create-content"
+            >
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
+              molestias consectetur impedit molestiae reiciendis obcaecati magni
+              enim non et ad vero officia delectus voluptates facere debitis
+              exercitationem, cumque nisi modi placeat eos voluptate, blanditiis
+              reprehenderit. Voluptatum consequuntur, nostrum sit unde ipsam ab?
+              Facilis nobis porro dolores ea, accusantium atque sequi!
+              Accusantium atque dolorum dicta minus voluptates nulla
+              exercitationem soluta odit excepturi totam omnis eos deleniti,
+              asperiores corporis eius harum autem in deserunt at nobis. Natus
+              sint itaque totam officia nam quis ratione illo quod harum,
+              necessitatibus cum sed animi tempore eum consectetur? Ea
+              aspernatur laudantium doloremque, excepturi reiciendis nemo
+              dignissimos!
+            </div>
+          </div>
+        </section>
+        <section class="main__content content tabs-block">
+          <div class="content__tabs-content tabs">
+            <div class="tabs-content__tab tab__" id="open-match">
+              ОТКРЫТЫЕ МАТЧИ</div
+            >
+            <div class="tabs-content__tab tab" id="translation">ТРАНСЛЯЦИИ</div>
+            <div class="tabs-content__tab tab" id="completed">ЗАВЕРШЁННЫЕ</div>
           </div>
           <div class="content__tabs-content">
             <div
@@ -196,7 +272,7 @@
               data-name="search"
             ></div>
           </div>
-        </div>
+        </section>
       </main>
     </div>
   </body>

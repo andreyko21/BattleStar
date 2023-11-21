@@ -1,7 +1,8 @@
-query GetTeams {
-  teams {
+query GetTeams($sorting: [String]) {
+  teams(sort: $sorting) {
     data {
       id
+
       attributes {
         name
         rating
@@ -11,6 +12,55 @@ query GetTeams {
         createdAt
         updatedAt
         publishedAt
+        participants {
+          data {
+            id
+          }
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+        logo {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+        awards {
+          data {
+            id
+            attributes {
+              name
+              logo {
+                data {
+                  id
+                  attributes {
+                    name
+                    alternativeText
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetAwards {
+  awards {
+    data {
+      id
+      attributes {
+        name
         logo {
           data {
             id

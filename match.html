@@ -5,9 +5,9 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Battle Star - Match</title>
-    <script type="module" crossorigin src="/assets/match-19e360a9.js"></script>
+    <script type="module" crossorigin src="/assets/match-6d7e8795.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
-    <link rel="stylesheet" href="/assets/match-5304ba86.css">
+    <link rel="stylesheet" href="/assets/match-1ff2e037.css">
   </head>
   <body>
     <div class="wrapper">
@@ -141,10 +141,10 @@
   </nav>
 </div>
 
-      <main class="main" id="app">
+      <main class="match-page" id="app">
         <!-- overlay -- прикриває контент при відкритті модального вікна -->
         <div class="overlay"></div>
-        <!--<div class="pop-up main__calibration-pop-up calibration-pop-up">
+        <!--<div class="pop-up match-page__calibration-pop-up calibration-pop-up">
   <div class="pop-up__criss-cross">
     <svg class="pop-up__criss-cross-icon">
       <use xlink:href="src/images/sprite.svg#criss-cross"></use>
@@ -182,19 +182,25 @@
 -->
         <img
           src="/assets/cs-bg-ddc48684.png"
-          class="content__bg-img"
+          class="match-page__bg-img"
         />
-        <section class="main__filters filters tabs-block">
-          <div class="filters__tabs tabs-block__tabs tabs">
-            <div class="tabs__tab tab tab_active" id="find">НАЙТИ ИГРУ</div>
-            <div class="tabs__tab tab" id="create">СОЗДАТЬ ЛОББИ</div>
-          </div>
-          <div class="filters__content content tabs-block__content">
+        <section class="match-page__filters filters tabs-block">
+          <div class="filters__tabs tabs-block__tabs">
             <div
-              class="content__container tabs-block__content-container content-container content-container_active"
+              class="filters__tab tabs-block__tab tabs-block__tab_active"
+              id="find"
+              >НАЙТИ ИГРУ</div
+            >
+            <div class="filters__tab tabs-block__tab" id="create"
+              >СОЗДАТЬ ЛОББИ</div
+            >
+          </div>
+          <div class="filters__content tabs-block__content">
+            <div
+              class="filters__find-lobby find-lobby tabs-block__content-container tabs-block__content-container_active"
               id="find-content"
             >
-              <div class="content__party party">
+              <div class="find-lobby__party party">
                 <div class="party__title-block">
                   <div class="party__title-block">Пати</div>
                   <div class="party__help-block">
@@ -224,22 +230,22 @@
                   </div>
                 </div>
               </div>
-              <div class="content__filters-block">
-                <div class="content__filters-title-block">
+              <div class="find-lobby__filters-block">
+                <div class="find-lobby__filters-title-block">
                   <svg>
                     <use xlink:href="/assets/sprite-682299bc.svg#filters"></use>
                   </svg>
                 </div>
-                <div class="content__filters-title"></div>
-                <div class="content__rate-filter"> </div>
-                <div class="content__maps-filter"> </div>
-                <div class="content__game-mode-filter"> </div>
-                <div class="content__region-filter"> </div>
-                <div class="content__anticheat"> </div>
+                <div class="find-lobby__filters-title"></div>
+                <div class="find-lobby__rate-filter"> </div>
+                <div class="find-lobby__maps-filter"> </div>
+                <div class="find-lobby__game-mode-filter"> </div>
+                <div class="find-lobby__region-filter"> </div>
+                <div class="find-lobby__anticheat"> </div>
               </div>
             </div>
             <div
-              class="content__container tabs-block__content-container content-container"
+              class="filters__create-lobby create-lobby tabs-block__content-container"
               id="create-content"
             >
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
@@ -258,7 +264,7 @@
             </div>
           </div>
         </section>
-        <section class="main__content content tabs-block">
+        <section class="match-page__content content tabs-block">
           <div class="content__tabs-content tabs">
             <div class="tabs-content__tab tab__" id="open-match">
               ОТКРЫТЫЕ МАТЧИ</div

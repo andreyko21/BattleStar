@@ -17,15 +17,16 @@ export class Team implements TeamType{
     attributes: TeamAttributes;
 
     constructor(teamData: Team) {
-        this.id = teamData.id;
-        this.attributes = teamData.attributes;
+        this.id = teamData.id ?? '';
+        this.attributes = teamData.attributes ?? '';
     }
 
     getTemplate(): string {
-    let awardsList = '';
-    this.attributes.awards.data.forEach((award) => {awardsList += `<img class="team-item__award-img" src="${award.attributes.logo.data[0].attributes.url}" alt="award">`})
+        if (this.id != undefined && this.attributes != undefined) {
+            let awardsList = '';
+            this.attributes.awards.data.forEach((award) => { awardsList += `<img class="team-item__award-img" src="${award.attributes.logo.data[0].attributes.url}" alt="award">` })
 
-    return `<li class="teams-list__team-item team-item">
+            return `<li class="teams-list__team-item team-item">
         <div class="team-item__img-block">
         <img class="team-item__img" src="${this.attributes.logo.data.attributes.url}" alt="logo">
         </div>
@@ -35,8 +36,11 @@ export class Team implements TeamType{
         <p class="team-item__info team-item__earned">${this.attributes.earned}</p>
         <p class="team-item__info team-item__participants">${this.attributes.participants.data.length}/15</p>
         <div class="team-item__awards">${awardsList}</div>
-    </li>`; 
-}
+    </li>`;
+        } else {
+            return `Не знайдено нічого`
+        }
+    }
 }
 
 export type TeamAttributes = {

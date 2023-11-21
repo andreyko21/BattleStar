@@ -15,10 +15,10 @@ if (popUp && overlay) {
 }
 
 const filtersTabsBlock = document.querySelector(
-  '.main__filters'
+  '.match-page__filters'
 ) as HTMLDivElement;
 
 if (filtersTabsBlock) {
-  //  new MethodsTabs(filtersTabsBlock);
   new ContentTabs(filtersTabsBlock);
+  new MethodsTabs(filtersTabsBlock);
 }

@@ -2,15 +2,23 @@
 @import './components/header';
 @import './components/sidebar';
 @import './components/ui/chackbox.scss';
+@import './components/ui/dropDownMenu.scss';
 @import './components/pop-up';
 @import './components/overlay';
 @import './components/btns';
 @import './components/calibration-pop-up';
 
-.main {
+.wrapper {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.match-page {
   position: relative;
-  flex: 1 1 auto;
   width: 100%;
+  height: 100%;
+  overflow: auto;
+  //  flex: 1 1 auto;
   grid-area: main;
   display: flex;
   &__bg-img {
@@ -24,96 +32,61 @@
   &__filters {
     width: 311px;
     height: 100%;
+    padding: 15px 5px 5px 5px;
   }
 
   &__content {
     flex: 1 1 auto;
-    margin: 5px 5px 5px 5px;
   }
 }
 
 .overflow_hidden {
   overflow: hidden;
 }
-img {
-  width: 100%;
-}
-.tab_active {
-  color: chartreuse;
-  font-size: 24px;
-}
 
-.content-container_active {
-  background: #6709eb;
-}
-
-.content {
-  &__container {
-  }
-
-  &__party {
-  }
-
-  &__filters-block {
-  }
-
-  &__filters-title-block {
-  }
-
-  &__filters-title {
-  }
-
-  &__rate-filter {
-  }
-
-  &__maps-filter {
-  }
-
-  &__game-mode-filter {
-  }
-
-  &__region-filter {
-  }
-
-  &__anticheat {
-  }
-
-  &__tabs-content {
-  }
-
-  &__tab-content {
-  }
-}
 .filters {
+  background: rgba(248, 248, 248, 0.05);
+  backdrop-filter: blur(10px);
   &__tabs {
+    width: 100%;
+    height: 42px;
+    margin: 0px 0px 33px 0px;
+    padding: 0px 17px 0px 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__content {
   }
+  &__find-lobby {
+  }
 }
 .tabs-block {
   &__tabs {
+  }
+  &__tab {
+    flex: 1 1 50%;
+    color: $gray300; // rgba(248 248 248 0.6)
+    text-align: center;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    &_active {
+      color: $Goldenrod; // #fac704;
+    }
   }
 
   &__content {
   }
 
   &__content-container {
-  }
-}
-.tabs {
-  &__tab {
-  }
-}
-.tab {
-  &_active {
-  }
-
-  &__ {
-  }
-}
-.content-container {
-  &_active {
+    display: none;
+    &_active {
+      display: block;
+    }
   }
 }
 .party {
@@ -151,11 +124,34 @@ img {
   &__info {
   }
 }
-.tabs-content {
-  &__tab {
+
+.find-lobby {
+  &__party {
+  }
+
+  &__filters-block {
+  }
+
+  &__filters-title-block {
+  }
+
+  &__filters-title {
+  }
+
+  &__rate-filter {
+  }
+
+  &__maps-filter {
+  }
+
+  &__game-mode-filter {
+  }
+
+  &__region-filter {
+  }
+
+  &__anticheat {
   }
 }
-.tab-content {
-}
-.search-tab {
+.create-lobby {
 }

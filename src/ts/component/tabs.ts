@@ -10,11 +10,11 @@ export interface IBaseTabs {
 
 class BaseTabs implements IBaseTabs {
   // Константи для селекторів
-  public readonly TABS_CLASS = 'tabs'; //Клас блоку з табами
-  public readonly TAB_CLASS = 'tab'; //Клас для табів
-  public readonly TAB_ACTIVE_CLASS = 'tab_active'; // Клас для активного табу
+  public readonly TABS_CLASS = 'tabs-block__tabs'; //Клас блоку з табами
+  public readonly TAB_CLASS = 'tabs-block__tab'; //Клас для табів
+  public readonly TAB_ACTIVE_CLASS = 'tabs-block__tab_active'; // Клас для активного табу
   public readonly TABS_BLOCK_CONTENT_CLASS = 'tabs-block__content'; //Клас для блоку з контентом, що перемикається табами
-  public readonly CONTENT_CONTAINER_CLASS = 'content-container'; //Клас для контенту окремого класу
+  public readonly CONTENT_CONTAINER_CLASS = 'tabs-block__content-container'; //Клас для контенту окремого класу
 
   readonly tabsBlock: HTMLDivElement;
   readonly tabs: HTMLDivElement | null;
@@ -107,7 +107,8 @@ class MethodsTabs extends BaseTabs {
 }
 
 class ContentTabs extends BaseTabs {
-  public readonly CONTENT_CONTAINER_ACTIVE_CLASS = 'content-container_active';
+  public readonly CONTENT_CONTAINER_ACTIVE_CLASS =
+    'tabs-block__content-container_active';
 
   constructor(tabsBlock: HTMLDivElement) {
     super(tabsBlock);

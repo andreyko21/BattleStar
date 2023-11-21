@@ -10,29 +10,35 @@
     <div class="wrapper">
       <load ="src/html/header.html" />
       <load ="src/html/sidebar.html" />
-      <main class="main" id="app">
+      <main class="match-page" id="app">
         <!-- overlay -- прикриває контент при відкритті модального вікна -->
         <div class="overlay"></div>
         <!--<load
           ="src/html/components/pop-up.html"
           file="calibration-pop-up"
-          class="main__calibration-pop-up calibration-pop-up"
+          class="match-page__calibration-pop-up calibration-pop-up"
         />-->
         <img
           src="./src/images/calibration-lobby/cs-bg.png"
-          class="main__bg-img"
+          class="match-page__bg-img"
         />
-        <section class="main__filters filters tabs-block">
-          <div class="filters__tabs tabs-block__tabs tabs">
-            <div class="tabs__tab tab tab_active" id="find">НАЙТИ ИГРУ</div>
-            <div class="tabs__tab tab" id="create">СОЗДАТЬ ЛОББИ</div>
-          </div>
-          <div class="filters__content content tabs-block__content">
+        <section class="match-page__filters filters tabs-block">
+          <div class="filters__tabs tabs-block__tabs">
             <div
-              class="content__container tabs-block__content-container content-container content-container_active"
+              class="filters__tab tabs-block__tab tabs-block__tab_active"
+              id="find"
+              >НАЙТИ ИГРУ</div
+            >
+            <div class="filters__tab tabs-block__tab" id="create"
+              >СОЗДАТЬ ЛОББИ</div
+            >
+          </div>
+          <div class="filters__content tabs-block__content">
+            <div
+              class="filters__find-lobby find-lobby tabs-block__content-container tabs-block__content-container_active"
               id="find-content"
             >
-              <div class="content__party party">
+              <div class="find-lobby__party party">
                 <div class="party__title-block">
                   <div class="party__title-block">Пати</div>
                   <div class="party__help-block">
@@ -62,22 +68,22 @@
                   </div>
                 </div>
               </div>
-              <div class="content__filters-block">
-                <div class="content__filters-title-block">
+              <div class="find-lobby__filters-block">
+                <div class="find-lobby__filters-title-block">
                   <svg>
                     <use xlink:href="src/images/sprite.svg#filters"></use>
                   </svg>
                 </div>
-                <div class="content__filters-title"></div>
-                <div class="content__rate-filter"> </div>
-                <div class="content__maps-filter"> </div>
-                <div class="content__game-mode-filter"> </div>
-                <div class="content__region-filter"> </div>
-                <div class="content__anticheat"> </div>
+                <div class="find-lobby__filters-title"></div>
+                <div class="find-lobby__rate-filter"> </div>
+                <div class="find-lobby__maps-filter"> </div>
+                <div class="find-lobby__game-mode-filter"> </div>
+                <div class="find-lobby__region-filter"> </div>
+                <div class="find-lobby__anticheat"> </div>
               </div>
             </div>
             <div
-              class="content__container tabs-block__content-container content-container"
+              class="filters__create-lobby create-lobby tabs-block__content-container"
               id="create-content"
             >
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
@@ -96,7 +102,7 @@
             </div>
           </div>
         </section>
-        <section class="main__content content tabs-block">
+        <section class="match-page__content content tabs-block">
           <div class="content__tabs-content tabs">
             <div class="tabs-content__tab tab__" id="open-match">
               ОТКРЫТЫЕ МАТЧИ</div

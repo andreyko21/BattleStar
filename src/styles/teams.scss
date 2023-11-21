@@ -87,6 +87,10 @@
     }
   }
 
+  .error-request {
+    color: rgb(230, 139, 139);
+  }
+
   .team-item {
     &:not(:first-child) {
       margin-top: 20px;

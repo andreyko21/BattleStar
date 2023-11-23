@@ -5,9 +5,9 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Battle Star - Match</title>
-    <script type="module" crossorigin src="/assets/match-6d7e8795.js"></script>
+    <script type="module" crossorigin src="/assets/match-1970a668.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
-    <link rel="stylesheet" href="/assets/match-1ff2e037.css">
+    <link rel="stylesheet" href="/assets/match-1ce6f879.css">
   </head>
   <body>
     <div class="wrapper">
@@ -188,10 +188,10 @@
           <div class="filters__tabs tabs-block__tabs">
             <div
               class="filters__tab tabs-block__tab tabs-block__tab_active"
-              id="find"
+              data-tab-name="find"
               >НАЙТИ ИГРУ</div
             >
-            <div class="filters__tab tabs-block__tab" id="create"
+            <div class="filters__tab tabs-block__tab" data-tab-name="create"
               >СОЗДАТЬ ЛОББИ</div
             >
           </div>
@@ -202,25 +202,87 @@
             >
               <div class="find-lobby__party party">
                 <div class="party__title-block">
-                  <div class="party__title-block">Пати</div>
+                  <div class="party__title">Пати</div>
                   <div class="party__help-block">
                     <div class="party__help-block-icon"> ? </div>
                     <div class="party__help-block-text">
-                      Дуже корисна підказка!
+                      Дуже корисна підказка! Дуже корисна підказка!
                     </div>
                   </div>
                 </div>
                 <div class="party__users">
+                  <!--<div class="party__users-block">-->
                   <div class="party__user-block user-block">
-                    <div class="user-block__avatar">
+                    <div class="user-block__avatar-img-block">
                       <img
                         src="/assets/avatar-4365172b.svg"
                         class="user-block__avatar-img"
                       />
                       <div class="user-block__avatar-online"></div>
-                      <div class="user-block__info">User Userenco</div>
                     </div>
+                    <div class="user-block__info">User Userenco</div>
                   </div>
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="/assets/avatar-4365172b.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="/assets/avatar-4365172b.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="/assets/avatar-4365172b.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="/assets/avatar-4365172b.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="/assets/avatar-4365172b.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="/assets/avatar-4365172b.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <!--</div>-->
                   <div class="party__create-user">
                     <svg>
                       <use
@@ -228,6 +290,13 @@
                       ></use>
                     </svg>
                   </div>
+                </div>
+                <div class="party__rating-block">
+                  <div class="party__empty-block party__empty-block_left"></div>
+                  <div class="party__rating">Ранг: 1320</div>
+                  <div
+                    class="party__empty-block party__empty-block_right"
+                  ></div>
                 </div>
               </div>
               <div class="find-lobby__filters-block">

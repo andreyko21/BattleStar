@@ -1,0 +1,60 @@
+.tabs-block {
+  &__tabs {
+    // & > *:not(.tabs-block__tab:hover) {
+    //   //
+    //   color: $gray300 !important; // rgba(248 248 248 0.6);
+    // }
+  }
+  &__tab {
+    position: relative;
+    transform-origin: bottom right;
+    transition: transform 0.5s ease-out;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 3px;
+      bottom: -12px;
+      left: 0;
+      transform-origin: bottom right;
+      transition: transform 0.5s ease-out;
+      background-color: $yellow300;
+    }
+
+    &:hover & > *:not(.tabs-block__tab:hover) {
+      //
+      color: $gray300 !important; // rgba(248 248 248 0.6);
+    }
+
+    &:hover {
+      transform-origin: bottom left;
+      color: $yellow300;
+    }
+    &:hover::after {
+      transform-origin: bottom left;
+      transform: scaleX(1);
+    }
+
+    &_active {
+      transform-origin: bottom left;
+      transform: scaleX(1);
+      color: $yellow300;
+      &::after {
+        transform-origin: bottom left;
+        transform: scaleX(1);
+        color: $yellow300;
+      }
+    }
+  }
+
+  &__content {
+  }
+
+  &__content-container {
+    display: none;
+    &_active {
+      display: block;
+    }
+  }
+}

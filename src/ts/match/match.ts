@@ -1,6 +1,6 @@
 import '../../styles/match.scss';
 import { BasePopUp, IBasePopUp } from '../component/pop-up.ts';
-import { MethodsTabs, ContentTabs } from '../component/tabs.ts';
+import { BaseTabs, RenderMethod, IRenderMethod } from '../component/tabs.ts';
 
 const popUp = document.querySelector('.calibration-pop-up') as HTMLDivElement;
 const overlay = document.querySelector('.overlay') as HTMLDivElement;
@@ -18,7 +18,18 @@ const filtersTabsBlock = document.querySelector(
   '.match-page__filters'
 ) as HTMLDivElement;
 
+//! ----- Для прикладу----
+
+const mayMethods: IRenderMethod = {
+  find: () => {
+    console.log('find');
+  },
+  create: () => {
+    console.log('create');
+  },
+};
+
 if (filtersTabsBlock) {
-  new ContentTabs(filtersTabsBlock);
-  new MethodsTabs(filtersTabsBlock);
+  //  new ContentTabs(filtersTabsBlock);
+  new BaseTabs(filtersTabsBlock, mayMethods);
 }

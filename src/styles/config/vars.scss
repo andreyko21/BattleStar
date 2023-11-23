@@ -14,6 +14,7 @@ $footerHeight: 100;
 $whiteColor: #fff;
 $blackColor: #131313;
 $blackColor04: rgba(0, 0, 0, 0.4);
+$blackColor025: rgba(0, 0, 0, 0.25);
 $grayColor: #6f6f6f;
 $redColor: #ff4040;
 
@@ -37,6 +38,7 @@ $gray500: #606060;
 $gray550: rgba(248, 248, 248, 0.15);
 $gray600: rgba(248, 248, 248, 0.1);
 $gray700: rgba(196, 196, 196, 0.1);
+$gray750: rgba(196, 196, 196, 0.2);
 $gray800: rgba(248, 248, 248, 0.05);
 $gray900: rgba(248, 248, 248, 0.02);
 
@@ -46,7 +48,7 @@ $dark200: #18181b;
 $dark300: #101011;
 $dark400: #0c0c0e;
 $dark500: rgba(24, 24, 27, 0.9);
-$dark600: #1D1D21;
+$dark600: #1d1d21;
 
 //# ----- yellow -----
 $yellow300: #fac704;
@@ -60,11 +62,14 @@ $green50: #6fff57;
 $red500: #f13939;
 $red800: rgba(241, 57, 57, 0.1);
 
+//# ----- blue -----
+$darckBlue: rgba(26, 26, 28, 0.1);
+
 // 22222222
 //# ----- gradient -----
 $gradient50: linear-gradient(180deg, rgba(78, 78, 116, 0) 0%, #0c0c0e 100%);
 $gradient100: linear-gradient(262deg, #fac704 0%, #4b1613 100%);
-$gradient200: linear-gradient(262deg, #7D70D1 0%, #134B48 100%);
+$gradient200: linear-gradient(262deg, #7d70d1 0%, #134b48 100%);
 
 $firstAccentColor: $blackColor;
 $secondAccentColor: $redColor;

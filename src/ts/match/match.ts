@@ -1,6 +1,6 @@
 import '../../styles/match.scss';
 import { BasePopUp, IBasePopUp } from '../component/pop-up.ts';
-import { BaseTabs, RenderMethod, IRenderMethod } from '../component/tabs.ts';
+import { BaseTabs, IRenderMethod } from '../component/tabs.ts';
 
 const popUp = document.querySelector('.calibration-pop-up') as HTMLDivElement;
 const overlay = document.querySelector('.overlay') as HTMLDivElement;

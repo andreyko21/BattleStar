@@ -252,9 +252,6 @@
 @mixin hover-block {
   visibility: hidden;
   opacity: 0;
-  //position: absolute;
-  //bottom: 50%;
-  //left: calc(100% + 10px);
   max-width: 278px;
   width: max-content;
   padding: 15px 15px 15px 15px;

@@ -1,5 +1,6 @@
 type TeamsRequest {
   data: [TeamRequest]
+  meta: Meta
 }
 
 type TeamRequest {
@@ -67,6 +68,14 @@ type LogoAttributesRequest {
   url: String
 }
 
+type Meta {
+  pagination: Pagination
+}
+
+type Pagination {
+  pageCount: Int
+}
+
 input NameFilterInput {
   startsWith: String
   endsWith: String
@@ -75,10 +84,18 @@ input NameFilterInput {
 
 input TeamFilterInput {
   name: NameFilterInput
-  # You can add other filtering fields here if needed
+}
+
+input PaginationInput {
+  page: Int
+  pageSize: Int
 }
 
 type Query {
-  teams(filters: TeamFilterInput, sort: [String]): TeamsRequest
+  teams(
+    filters: TeamFilterInput
+    sort: [String]
+    pagination: PaginationInput
+  ): TeamsRequest
   awards: [AwardsRequest]
 }

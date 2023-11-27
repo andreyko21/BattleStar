@@ -1,32 +1,35 @@
 export type AllTeamsRequest = {
-    teams: TeamsWrapper
-}
+  teams: TeamsWrapper;
+};
 
 export type TeamsWrapper = {
-    data: [TeamType]
-}
+  data: [TeamType];
+  meta: Meta;
+};
 
 export type TeamType = {
-    id: string;
-    attributes: TeamAttributes;
-    getTemplate(): string;
-}
+  id: string;
+  attributes: TeamAttributes;
+  getTemplate(): string;
+};
 
-export class Team implements TeamType{
-    id: string;
-    attributes: TeamAttributes;
+export class Team implements TeamType {
+  id: string;
+  attributes: TeamAttributes;
 
-    constructor(teamData: Team) {
-        this.id = teamData.id ?? '';
-        this.attributes = teamData.attributes ?? '';
-    }
+  constructor(teamData: Team) {
+    this.id = teamData.id ?? "";
+    this.attributes = teamData.attributes ?? "";
+  }
 
-    getTemplate(): string {
-        if (this.id != undefined && this.attributes != undefined) {
-            let awardsList = '';
-            this.attributes.awards.data.forEach((award) => { awardsList += `<img class="team-item__award-img" src="${award.attributes.logo.data[0].attributes.url}" alt="award">` })
+  getTemplate(): string {
+    if (this.id != undefined && this.attributes != undefined) {
+      let awardsList = "";
+      this.attributes.awards.data.forEach((award) => {
+        awardsList += `<img class="team-item__award-img" src="${award.attributes.logo.data[0].attributes.url}" alt="award">`;
+      });
 
-            return `<li class="teams-list__team-item team-item">
+      return `<li class="teams-list__team-item team-item">
         <div class="team-item__img-block">
         <img class="team-item__img" src="${this.attributes.logo.data.attributes.url}" alt="logo">
         </div>
@@ -37,91 +40,99 @@ export class Team implements TeamType{
         <p class="team-item__info team-item__participants">${this.attributes.participants.data.length}/15</p>
         <div class="team-item__awards">${awardsList}</div>
     </li>`;
-        } else {
-            return `Не знайдено нічого`
-        }
+    } else {
+      return `Не знайдено нічого`;
     }
+  }
 }
 
 export type TeamAttributes = {
-    name: string;
-    rating: number;
-    earned: number;
-    matches_played: number;
-    victories_in_tournaments: number;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    logo: TeamLogoWrapper;
-    awards: AwardsWrapper;
-    participants: ParticipantsWrapper;
-    tournaments: TournamentsWrapper;
-}
+  name: string;
+  rating: number;
+  earned: number;
+  matches_played: number;
+  victories_in_tournaments: number;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  logo: TeamLogoWrapper;
+  awards: AwardsWrapper;
+  participants: ParticipantsWrapper;
+  tournaments: TournamentsWrapper;
+};
 
 export type TournamentsWrapper = {
-    data: [TournamentData];
-}
+  data: [TournamentData];
+};
 
 export type TournamentData = {
-    id: string;
-}
+  id: string;
+};
 
 export type ParticipantsWrapper = {
-    data: [ParticipantData];
-}
+  data: [ParticipantData];
+};
 
 export type ParticipantData = {
-    id: String;
-}
+  id: String;
+};
 
 export type AwardLogoWrapper = {
-    data: [AwardLogo];
-}
+  data: [AwardLogo];
+};
 
 export type AwardLogo = {
-    id: string,
-    attributes: LogoAttributes;
-}
+  id: string;
+  attributes: LogoAttributes;
+};
 
 export type TeamLogoWrapper = {
-    data: TeamLogo;
-}
+  data: TeamLogo;
+};
 
 export type TeamLogo = {
-    id: string,
-    attributes: LogoAttributes;
-}
+  id: string;
+  attributes: LogoAttributes;
+};
 
 export type LogoAttributes = {
-    url: string;
-    name: string;
-    alternativeText: string;
-}
+  url: string;
+  name: string;
+  alternativeText: string;
+};
 
 export type AwardsWrapper = {
-    data: Award[] | [];
-}
+  data: Award[] | [];
+};
 
 export type AwardType = {
-    id: string;
-    attributes: AwardAttributes;
-}
+  id: string;
+  attributes: AwardAttributes;
+};
 
-export class Award implements AwardType{
-    id: string;
-    attributes: AwardAttributes;
+export class Award implements AwardType {
+  id: string;
+  attributes: AwardAttributes;
 
-    constructor(awardData: AwardType) {
-        this.id = awardData.id;
-        this.attributes = awardData.attributes;
-    }
+  constructor(awardData: AwardType) {
+    this.id = awardData.id;
+    this.attributes = awardData.attributes;
+  }
 
-     getTemplate(): string {
-        return `<img class="team-item__award-img" src="${this.attributes.logo.data[0].attributes.url}" alt="award">`;
-    }
+  getTemplate(): string {
+    return `<img class="team-item__award-img" src="${this.attributes.logo.data[0].attributes.url}" alt="award">`;
+  }
 }
 
 export type AwardAttributes = {
-    name: string;
-    logo: AwardLogoWrapper;
-}
+  name: string;
+  logo: AwardLogoWrapper;
+};
+
+export type Meta = {
+  pagination: Pagination;
+};
+
+export type Pagination = {
+  pageCount: number;
+};

@@ -1,5 +1,14 @@
-query GetTeams($filtering: String, $sorting: [String]) {
-  teams(filters: { name: { startsWith: $filtering } }, sort: $sorting) {
+query GetTeams(
+  $filtering: String
+  $sorting: [String]
+  $page: Int
+  $pageSize: Int
+) {
+  teams(
+    filters: { name: { startsWith: $filtering } }
+    sort: $sorting
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
     data {
       id
 
@@ -50,6 +59,11 @@ query GetTeams($filtering: String, $sorting: [String]) {
             }
           }
         }
+      }
+    }
+    meta {
+      pagination {
+        pageCount
       }
     }
   }

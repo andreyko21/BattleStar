@@ -10,34 +10,12 @@
      <div class="wrapper">
       <load="src/html/header.html" />
       <load="src/html/sidebar.html" />
-      <main class="teams-page">
+      <main class="page teams-page">
         <div class="teams-page__container">
-        <section class="invitation-teams-section teams-list-section">
-          <div class="teams-list-section__header">
-              <h2 class="teams-list-section__title">Приглашения в команды</h2>
-          </div>
-            <ul class="invitation-team-section__teams-list teams-list-section__teams-list"></ul>
-        </section>
-        <section class="my-teams-section teams-list-section">
-            <div class="teams-list-section__header">
-              <h2 class="teams-list-section__title">Мои команды</h2>
-              <label class="teams-list-section__sorting" for="sorting-my-teams">
-              <select class="teams-list-section__sorting-select" name="sort" id="sorting-my-teams">
-                <option value="rating">По рейтингу</option>
-                <option value="name">По названию</option>
-              </select>
-              </label>
-              <label class="teams-list-section__search">
-                <button class="teams-list-section__search-button">
-                  <svg class="teams-list-section__search-icon">
-                     <use xlink:href="src/images/sprite.svg#search"></use>
-                  </svg>
-                </button>
-                <input class="teams-list-section__search-input" type="text" placeholder="Поиск по командам">
-              </label>
-            </div>
-            <ul class="my-teams-section__teams-list teams-list-section__teams-list"></ul>
-        </section>
+          <load="src/html/components/teams/teams-invite.html"/>
+          <load="src/html/components/teams/my-teams.html"/>
+          <load="src/html/components/teams/open-teams.html"/>
+          <load="src/html/components/teams/top-teams.html"/>
         </div>
       </main>
        <script type="module" src="src/teams.ts"></script>

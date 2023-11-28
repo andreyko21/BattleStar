@@ -3,6 +3,8 @@ import { BasePopUp } from '../component/pop-up.ts';
 import type { IBasePopUp } from '../component/pop-up.ts';
 import { BaseTabs } from '../component/tabs.ts';
 import type { IRenderMethod } from '../component/tabs.ts';
+import { LavaLamp } from '../component/lava-lamp.ts';
+import type { ILavaLamp } from '../component/lava-lamp.ts';
 
 const popUp = document.querySelector('.calibration-pop-up') as HTMLDivElement;
 const overlay = document.querySelector('.overlay') as HTMLDivElement;
@@ -19,6 +21,9 @@ if (popUp && overlay) {
 const filtersTabsBlock = document.querySelector(
   '.match-page__filters'
 ) as HTMLDivElement;
+const contentTabsBlock = document.querySelector(
+  '.match-page__content'
+) as HTMLDivElement;
 
 //! ----- Для прикладу----
 
@@ -34,4 +39,10 @@ const mayMethods: IRenderMethod = {
 if (filtersTabsBlock) {
   //  new ContentTabs(filtersTabsBlock);
   new BaseTabs(filtersTabsBlock, mayMethods);
+  new LavaLamp('match-page__filters');
+}
+if (contentTabsBlock) {
+  //  new ContentTabs(filtersTabsBlock);
+  new BaseTabs(contentTabsBlock, mayMethods);
+  new LavaLamp('match-page__content');
 }

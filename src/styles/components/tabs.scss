@@ -1,5 +1,13 @@
 .tabs-block {
   &__tabs {
+    position: relative;
+    width: 100%;
+    height: 42px;
+    margin: 0px 0px 33px 0px;
+    padding: 0px 17px 0px 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     // & > *:not(.tabs-block__tab:hover) {
     //   //
     //   color: $gray300 !important; // rgba(248 248 248 0.6);
@@ -7,44 +15,56 @@
   }
   &__tab {
     position: relative;
-    transform-origin: bottom right;
-    transition: transform 0.5s ease-out;
-    &::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      transform: scaleX(0);
-      height: 3px;
-      bottom: -12px;
-      left: 0;
-      transform-origin: bottom right;
-      transition: transform 0.5s ease-out;
-      background-color: $yellow300;
-    }
+    // transform-origin: bottom right;
+    transition: color 0.5s ease-out;
+    cursor: pointer;
+    // &::after {
+    //   content: '';
+    //   position: absolute;
+    //   width: 100%;
+    //   transform: scaleX(0);
+    //   height: 3px;
+    //   bottom: -12px;
+    //   left: 0;
+    //   transform-origin: bottom right;
+    //   transition: transform 0.5s ease-out;
+    //   background-color: $yellow300;
+    // }
 
-    &:hover & > *:not(.tabs-block__tab:hover) {
-      //
-      color: $gray300 !important; // rgba(248 248 248 0.6);
-    }
+    // &:hover & > *:not(.tabs-block__tab:hover) {
+    //   //
+    //   color: $gray300 !important; // rgba(248 248 248 0.6);
+    // }
 
     &:hover {
-      transform-origin: bottom left;
+      //transform-origin: bottom left;
       color: $yellow300;
     }
-    &:hover::after {
-      transform-origin: bottom left;
-      transform: scaleX(1);
-    }
+    // &:hover::after {
+    //   transform-origin: bottom left;
+    //   transform: scaleX(1);
+    // }
 
     &_active {
-      transform-origin: bottom left;
-      transform: scaleX(1);
+      //transform-origin: bottom left;
+      //transform: scaleX(1);
       color: $yellow300;
-      &::after {
-        transform-origin: bottom left;
-        transform: scaleX(1);
-        color: $yellow300;
-      }
+      //&::after {
+      //  transform-origin: bottom left;
+      //  transform: scaleX(1);
+      //  color: $yellow300;
+      //}
+    }
+
+    &_hovered {
+      //transform-origin: bottom left;
+      //transform: scaleX(1);
+      color: $yellow300;
+    }
+    &_no-hovered {
+      //transform-origin: bottom left;
+      //transform: scaleX(1);
+      color: $gray300 !important;
     }
   }
 
@@ -56,5 +76,14 @@
     &_active {
       display: block;
     }
+  }
+
+  &__lamp {
+    position: absolute !important;
+    // top: 66px;
+    bottom: 0;
+    height: 3px;
+    background: $yellow300;
+    transition: all 0.3s linear;
   }
 }

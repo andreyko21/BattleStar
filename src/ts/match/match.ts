@@ -4,7 +4,6 @@ import type { IBasePopUp } from '../component/pop-up.ts';
 import { BaseTabs } from '../component/tabs.ts';
 import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
-import type { ILavaLamp } from '../component/lava-lamp.ts';
 
 const popUp = document.querySelector('.calibration-pop-up') as HTMLDivElement;
 const overlay = document.querySelector('.overlay') as HTMLDivElement;

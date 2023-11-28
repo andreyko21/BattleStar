@@ -24,14 +24,13 @@ class ListTeams implements ListTeamsType {
   constructor(
     listBlock: string,
     requestObject: RequestDocument,
-    currentPage: number = 1,
     pageSize: number = 10
   ) {
     this.listBlock = $(listBlock) as JQuery<HTMLElement>;
     this.pageSize = pageSize;
-    this.currentPage = currentPage;
+    const queryParams = new URLSearchParams(window.location.search);
+    this.currentPage = Number(queryParams.get("page")) ?? 1;
     this.requestObject = requestObject;
-    this.getRequest();
   }
 
   createItem(team: TeamType) {
@@ -62,12 +61,15 @@ class ListTeamsSorting extends ListTeams {
     filter: string = "",
     sort: string = "rating",
     requestObject: RequestDocument,
-    currentPage: number = 1,
     pageSize: number = 10
   ) {
-    super(listBlock, requestObject, currentPage, pageSize);
+    super(listBlock, requestObject, pageSize);
+    const queryParams = new URLSearchParams(window.location.search);
+    this.currentPage =
+      Number(queryParams.get("page")) > 0 ? Number(queryParams.get("page")) : 1;
     this.sorting = new Sorting(sort);
     this.filtering = new Filtering(filter);
+    this.getRequest();
   }
 
   async getRequest(): Promise<void> {
@@ -75,8 +77,8 @@ class ListTeamsSorting extends ListTeams {
       "https://battle-star-app.onrender.com/graphql",
       this.requestObject,
       {
-        filtering: "",
-        sorting: "rating",
+        filtering: this.filtering.filter,
+        sorting: this.sorting.sort,
         page: this.currentPage,
         pageSize: this.pageSize,
       }
@@ -85,12 +87,18 @@ class ListTeamsSorting extends ListTeams {
       this.teamsList.teams.meta,
       this.currentPage
     );
-
+    console.log(this.currentPage);
     this.teamsList.teams.data.forEach((element) => {
       this.createItem(element);
     });
     this.listBlock.append(this.pagination.render());
+    this.listBlock.prepend(`<div class="teams-list-section__header">
+      <h2 class="teams-list-section__title">Мої команди</h2>
+      ${this.sorting.render()}${this.filtering.render()}
+</div>`);
     this.pagination.bindEvents(this.listBlock);
+    this.filtering.bindEvents(this.listBlock);
+    this.sorting.bindEvents(this.listBlock);
   }
 }
 

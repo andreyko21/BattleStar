@@ -1,3 +1,4 @@
+import Sprite from "./../../images/sprite.svg";
 import { Meta } from "../types";
 
 type PaginationType = {
@@ -37,6 +38,7 @@ class Pagination implements PaginationType {
     });
   }
   render(): string {
+    let template = "";
     let buttonsTemplate = "";
     for (let i = 1; i <= this.pageCount; i++) {
       if (i == this.currentPage) {
@@ -54,22 +56,37 @@ class Pagination implements PaginationType {
     }
 
     if (this.pageCount > 0) {
-      return `<div class="teams-list-section__teams-list-pagination page-pagination">
-  <button id="prev" class="page-pagination__button-nav page-pagination__button-prev">
+      template += `<div class="teams-list-section__teams-list-pagination page-pagination">`;
+      if (this.currentPage > 1) {
+        template += `<button id="prev" class="page-pagination__button-nav page-pagination__button-prev">
     <svg class="page-pagination__button-prev-icon">
-      <use xlink:href="src/images/sprite.svg#arrow-left"></use>
+      <use xlink:href="${Sprite}#arrow-left"></use>
     </svg>
-  </button>
-  ${buttonsTemplate}
-  <button id="next" class="page-pagination__button-nav page-pagination__button-next">
+  </button>`;
+      } else {
+        template += `<button id="prev" disabled class="page-pagination__button-nav page-pagination__button-prev">
+    <svg class="page-pagination__button-prev-icon">
+      <use xlink:href="${Sprite}#arrow-left"></use>
+    </svg>
+  </button>`;
+      }
+      template += buttonsTemplate;
+      if (this.currentPage < this.pageCount) {
+        template += `<button id="next" class="page-pagination__button-nav page-pagination__button-next">
     <svg class="page-pagination__button-next-icon">
-      <use xlink:href="src/images/sprite.svg#arrow-right"></use>
+      <use xlink:href="${Sprite}#arrow-right"></use>
     </svg>
-  </button>
-</div>`;
-    } else {
-      return "";
+  </button>`;
+      } else {
+        template += `<button id="next" disabled class="page-pagination__button-nav page-pagination__button-next">
+    <svg class="page-pagination__button-next-icon">
+      <use xlink:href="${Sprite}#arrow-right"></use>
+    </svg>
+  </button>`;
+      }
+      template += `</div>`;
     }
+    return template;
   }
 }
 

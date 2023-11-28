@@ -88,6 +88,7 @@ class LavaLamp implements ILavaLamp {
 
   private handleHoverOut(): void {
     this.allTabs.removeClass(this.TAB_NO_HOVERED_CLASS);
+    this.allTabs.removeClass(this.TAB_HOVERED_CLASS);
     if (this.allTabs.filter(`.${this.TAB_ACTIVE_CLASS}`).length > 0) {
       this.activateSelected();
     } else {

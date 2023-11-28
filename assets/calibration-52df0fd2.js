@@ -1,0 +1,1 @@
+import"./modulepreload-polyfill-3cfb730f.js";import{B as e}from"./pop-up-e0e17d1a.js";const o=document.querySelector(".calibration-pop-up"),c=document.querySelector(".overlay"),t=new e(o,c);t.open();const r=o.querySelector("#start-calibration");r?.addEventListener("click",()=>t.close());

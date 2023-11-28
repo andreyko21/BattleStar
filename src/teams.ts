@@ -11,4 +11,6 @@ if (window.location.search.includes("page=")) {
     page,
     2
   );
+} else {
+  window.location.search = `?page=1`;
 }

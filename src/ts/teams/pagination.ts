@@ -1,4 +1,3 @@
-import { event } from "jquery";
 import { Meta } from "../types";
 
 type PaginationType = {

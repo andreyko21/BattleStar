@@ -248,6 +248,58 @@
     color: $yellow300;
   }
 }
+<<<<<<< HEAD
+@mixin tabs-menu {
+  position: relative;
+  transform-origin: bottom right;
+  transition: transform 0.5s ease-out;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    transform: scaleX(0);
+    height: 100%;
+    right: -3.3px;
+    // left: 0;
+    transform-origin: bottom right;
+    transition: transform 0.5s ease-out;
+    background-color: $yellow300;
+    &:last-child {
+      background-color: $red500;
+   }
+
+  }
+
+  &:hover::after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
+  }
+  &_act::after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
+    color: $yellow300;
+    &:last-child {
+      color: $red500;
+   }
+  }
+
+  &:hover {
+    transform-origin: bottom left;
+    color: $yellow300;
+    &:last-child {
+      color: $red500;
+   }
+  }
+
+  &_act {
+    transform-origin: bottom left;
+    transform: scaleX(1);
+    color: $yellow300;
+    &:last-child {
+      color: $red500;
+   }
+  }
+=======
 
 @mixin hover-block {
   visibility: hidden;
@@ -265,4 +317,5 @@
   line-height: normal;
   transition: $standartTrans;
   z-index: 1;
+>>>>>>> cec30d1b0bd33d4b2f80a5ad5f1d1201457d2991
 }

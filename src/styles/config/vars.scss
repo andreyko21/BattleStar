@@ -48,7 +48,13 @@ $dark200: #18181b;
 $dark300: #101011;
 $dark400: #0c0c0e;
 $dark500: rgba(24, 24, 27, 0.9);
+<<<<<<< HEAD
+$dark600: #1D1D21;
+$dark700: #242426;
+
+=======
 $dark600: #1d1d21;
+>>>>>>> cec30d1b0bd33d4b2f80a5ad5f1d1201457d2991
 
 //# ----- yellow -----
 $yellow300: #fac704;
@@ -69,7 +75,13 @@ $darckBlue: rgba(26, 26, 28, 0.1);
 //# ----- gradient -----
 $gradient50: linear-gradient(180deg, rgba(78, 78, 116, 0) 0%, #0c0c0e 100%);
 $gradient100: linear-gradient(262deg, #fac704 0%, #4b1613 100%);
+<<<<<<< HEAD
+$gradient200: linear-gradient(262deg, #7D70D1 0%, #134B48 100%);
+$gradient300: linear-gradient(180deg, #fff 0%, #ffe06b 42.71%, #d2d2d2 100%);
+$gradient400: linear-gradient(180deg, #FAC704 0%, rgba(196, 196, 196, 0.00) 100%);
+=======
 $gradient200: linear-gradient(262deg, #7d70d1 0%, #134b48 100%);
+>>>>>>> cec30d1b0bd33d4b2f80a5ad5f1d1201457d2991
 
 $firstAccentColor: $blackColor;
 $secondAccentColor: $redColor;

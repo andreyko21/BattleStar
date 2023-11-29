@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="src/styles/cabinet.scss">
+   <title>Cabinet</title>
+</head>
+
+<body>
+   <div class="wrapper">
+      <load="src/html/header.html" />
+      <load="src/html/sidebar.html" />
+      <main class="page">
+         <section class="cabinet">
+            <div class="cabinet__container">
+               <aside class="cabinet__aside">
+                  <load="src/html/components/ui/asideMenu.html" />
+               </aside>
+               <article id="statistics" class="cabinet__statistics statistics">
+<div class="statistics__cs">
+   <canvas id="myChart"></canvas>
+</div>
+<div class="statistics__dota">
+   <canvas id="dota"></canvas>
+</div>
+
+                  
+               </article>
+               <article id="history" class="cabinet__history history hide"></article>
+               <article id="personal" class="cabinet__personal personal hide"></article>
+               <article id="wallet" class="cabinet__wallet wallet hide"></article>
+               <article id="setting" class="cabinet__setting setting hide">
+                  <h2 class="setting__title title">Уведомления</h2>
+                  <div class="setting__news">
+                     <load="src/html/components/ui/swich.html" />
+                  </div>
+               </article>
+               <article id="blacklist" class="cabinet__blacklist blacklist hide">
+                  <h2 class="setting__title title">Черный список</h2>
+                  <div class="blacklist__content">                 
+                  <div class="blacklist__item">
+                     <div class="blacklist__row">
+                        <div class="blacklist__row-avatar"></div>
+                        <div class="blacklist__row-column">
+                           <p class="blacklist__row-name">SergioRicht</p>
+                           <p class="blacklist__row-info">Играет в CS:GO</p>
+                        </div>
+                        <div class="blacklist__row-rang"></div>
+                        <div class="blacklist__row-more">
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#more"></use>
+                           </svg>
+                        </div>
+                     </div>
+                     <hr class="blacklist__line">
+                     <div class="blacklist__row">
+                        <div class="blacklist__row-avatar"></div>
+                        <div class="blacklist__row-column">
+                           <p class="blacklist__row-name">SergioRicht</p>
+                           <p class="blacklist__row-info">Играет в CS:GO</p>
+                        </div>
+                        <div class="blacklist__row-rang"></div>
+                        <div class="blacklist__row-more">
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#more"></use>
+                           </svg>
+                        </div>
+                     </div>
+                     <hr class="blacklist__line">
+                     <div class="blacklist__row">
+                        <div class="blacklist__row-avatar"></div>
+                        <div class="blacklist__row-column">
+                           <p class="blacklist__row-name">SergioRicht</p>
+                           <p class="blacklist__row-info">Играет в CS:GO</p>
+                        </div>
+                        <div class="blacklist__row-rang"></div>
+                        <div class="blacklist__row-more">
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#more"></use>
+                           </svg>
+                        </div>
+                     </div>
+                     <hr class="blacklist__line">
+                     <div class="blacklist__row">
+                        <div class="blacklist__row-avatar"></div>
+                        <div class="blacklist__row-column">
+                           <p class="blacklist__row-name">SergioRicht</p>
+                           <p class="blacklist__row-info">Играет в CS:GO</p>
+                        </div>
+                        <div class="blacklist__row-rang"></div>
+                        <div class="blacklist__row-more">
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#more"></use>
+                           </svg>
+                        </div>
+                     </div>
+                     <hr class="blacklist__line">
+                     <div class="blacklist__row">
+                        <div class="blacklist__row-avatar"></div>
+                        <div class="blacklist__row-column">
+                           <p class="blacklist__row-name">SergioRicht</p>
+                           <p class="blacklist__row-info">Играет в CS:GO</p>
+                        </div>
+                        <div class="blacklist__row-rang"></div>
+                        <div class="blacklist__row-more">
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#more"></use>
+                           </svg>
+                        </div>
+                     </div>
+                     <hr class="blacklist__line">
+                     <div class="blacklist__row">
+                        <div class="blacklist__row-avatar"></div>
+                        <div class="blacklist__row-column">
+                           <p class="blacklist__row-name">SergioRicht</p>
+                           <p class="blacklist__row-info">Играет в CS:GO</p>
+                        </div>
+                        <div class="blacklist__row-rang"></div>
+                        <div class="blacklist__row-more">
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#more"></use>
+                           </svg>
+                        </div>
+                     </div>
+                     <hr class="blacklist__line">
+                     <div class="blacklist__row">
+                        <div class="blacklist__row-avatar"></div>
+                        <div class="blacklist__row-column">
+                           <p class="blacklist__row-name">SergioRicht</p>
+                           <p class="blacklist__row-info">Играет в CS:GO</p>
+                        </div>
+                        <div class="blacklist__row-rang"></div>
+                        <div class="blacklist__row-more">
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#more"></use>
+                           </svg>
+                        </div>
+                     </div>
+                     <hr class="blacklist__line">                     
+                  </div>
+                  <div class="blacklist__info">
+                     <svg>
+                        <use xlink:href="src/images/sprite.svg#alert-circle"></use>
+                        <p class="blacklist__text"> 
+                           Люди из черного списка не могут приглашать вас в команды, отправлять сообщения или добавлять в пати
+                        </p>
+                     </svg>
+                  </div>
+               </div>
+
+
+
+               </article>
+            </div>
+         </section>
+      </main>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./src/ts/cabinet/cabinet.ts"></script>
+</body>
+
+</html>

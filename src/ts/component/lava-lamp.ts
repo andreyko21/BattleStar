@@ -95,6 +95,20 @@ class LavaLamp implements ILavaLamp {
       this.activateFirst();
     }
   }
+
+  setLocateParam(param: string, value: any) {
+    const queryString = window.location.search;
+    const queryParams = new URLSearchParams(queryString);
+    queryParams.set(param, value);
+    const newUrl =
+      window.location.protocol +
+      '//' +
+      window.location.host +
+      window.location.pathname +
+      '?' +
+      queryParams;
+    window.history.replaceState({ path: newUrl }, '', newUrl);
+  }
 }
 
 export { LavaLamp };

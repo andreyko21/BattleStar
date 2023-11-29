@@ -46,7 +46,7 @@ class LavaLamp implements ILavaLamp {
     const currentwidth = this.allTabs
       .filter(`.${this.TAB_ACTIVE_CLASS}`)
       .css('width');
-    $('.tabs-block__lamp', `.${this.classTabsBlock}`).css({
+    $('.tabs-block__lamp span', `.${this.classTabsBlock}`).css({
       left: currentleft,
       width: currentwidth,
     });
@@ -56,7 +56,7 @@ class LavaLamp implements ILavaLamp {
     this.allTabs.first().addClass(this.TAB_HOVERED_CLASS);
     const currentleft = this.allTabs.first().position()?.left + 'px' || '0px';
     const currentwidth = this.allTabs.first().css('width');
-    $('.tabs-block__lamp', `.${this.classTabsBlock}`).css({
+    $('.tabs-block__lamp span', `.${this.classTabsBlock}`).css({
       left: currentleft,
       width: currentwidth,
     });
@@ -80,7 +80,7 @@ class LavaLamp implements ILavaLamp {
     const currentwidth = this.allTabs
       .filter(`.${this.TAB_HOVERED_CLASS}`)
       .css('width');
-    $('.tabs-block__lamp', `.${this.classTabsBlock}`).css({
+    $('.tabs-block__lamp span', `.${this.classTabsBlock}`).css({
       left: currentleft,
       width: currentwidth,
     });

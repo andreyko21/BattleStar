@@ -8,12 +8,16 @@ function setLocateParam(param: string, value: any) {
   queryParams.set(param, value);
   const newUrl =
     window.location.protocol +
-    "//" +
+    '//' +
     window.location.host +
     window.location.pathname +
-    "?" +
+    '?' +
     queryParams;
-  window.history.pushState({ path: newUrl }, "", newUrl);
+  window.history.pushState({ path: newUrl }, '', newUrl);
+}
+
+function setLocateParamReload(param: string, value: any) {
+  setLocateParam(param, value);
   window.location.reload();
 }
 
@@ -25,11 +29,16 @@ function getLocateParam(param: string) {
 function removeAllParams() {
   const urlWithoutParams =
     window.location.protocol +
-    "//" +
+    '//' +
     window.location.host +
     window.location.pathname;
 
   window.history.replaceState({}, document.title, urlWithoutParams);
 }
 
-export { setLocateParam, getLocateParam, removeAllParams };
+export {
+  setLocateParam,
+  getLocateParam,
+  removeAllParams,
+  setLocateParamReload,
+};

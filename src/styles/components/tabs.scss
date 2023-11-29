@@ -3,8 +3,9 @@
     position: relative;
     width: 100%;
     height: 42px;
-    margin: 0px 0px 33px 0px;
-    padding: 12.5px 17px 0px 17px;
+    margin: 0px auto 33px auto;
+    padding: 12.5px 0 0px 0;
+    // border-bottom: 3px solid $gray300; // rgba(248 248 248 0.6);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,9 +47,20 @@
 
   &__lamp {
     position: absolute !important;
-    bottom: 0;
-    height: 3px;
-    background: $yellow300;
-    transition: all 0.3s linear;
+    bottom: 0px;
+    width: 100%;
+    height: 4px;
+    border-radius: 1.5px;
+    background: $gray300;
+    pointer-events: none;
+    span {
+      position: absolute !important;
+      bottom: 0px;
+      height: 4px;
+      border-radius: 1.5px;
+      background: $yellow300;
+      transition: all 0.3s linear;
+      pointer-events: none;
+    }
   }
 }

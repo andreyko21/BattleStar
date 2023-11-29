@@ -29,7 +29,7 @@ export class Team implements TeamType {
         awardsList += `<img class="team-item__award-img" src="${award.attributes.logo.data[0].attributes.url}" alt="award">`;
       });
 
-      return `<li class="teams-list__team-item team-item">
+      return `<a href="/team.html?id=${this.id}" class="teams-list__team-item team-item">
         <div class="team-item__img-block">
         <img class="team-item__img" src="${this.attributes.logo.data.attributes.url}" alt="logo">
         </div>

@@ -35,6 +35,9 @@
     display: flex;
     align-items: center;
   }
+  &__not-now-link {
+    display: block;
+  }
 
   &__btn {
     width: 220px;
@@ -42,9 +45,5 @@
     &:first-child {
       margin: 0px 14px 0px 0px;
     }
-  }
-}
-.btn {
-  &_skip {
   }
 }

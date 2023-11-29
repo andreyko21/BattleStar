@@ -1,7 +1,105 @@
 @import "./style.scss";
 @import "./components/sidebar.scss";
 @import "./components/header.scss";
+@import "./components/team/teamItem.scss";
+@import "./components/ui/pagination.scss";
+@import "./components/tabs.scss";
 
-.invitation-team-section{
-    background-color: aliceblue;
+.wrapper {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.teams-page {
+  height: 100%;
+  overflow: auto;
+  &__container {
+    padding: 13px 189px 169px 189px;
+    max-width: none;
+  }
+}
+
+.teams-list-section {
+  &__header {
+    display: grid;
+    grid-template:
+      "title sorting"
+      "search search";
+    row-gap: 22px;
+  }
+
+  &__title {
+    grid-area: title;
+    color: $gray25;
+    font-family: "Roboto";
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &__sorting {
+    text-align: right;
+    grid-area: sorting;
+    &::before {
+      content: "Сортировать";
+      color: $DimGray;
+      font-family: "Roboto";
+      font-size: 18px;
+      font-weight: 500;
+      margin-right: 13px;
+    }
+    background: none;
+    &-select {
+      background: none;
+      color: white;
+      width: fit-content;
+    }
+  }
+
+  &__search {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 9px 10px 10px;
+    grid-area: search;
+    width: 100%;
+    background: rgba(248, 248, 248, 0.1);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    &-input {
+      background: none;
+      color: white;
+    }
+
+    &-button {
+      margin-right: 10px;
+      background: none;
+    }
+
+    &-icon {
+      width: 22px;
+      height: 22px;
+      margin-top: 3px;
+      fill: #787878;
+
+      &:hover {
+        fill: #afafaf;
+      }
+    }
+  }
+
+  .error-request {
+    color: rgb(230, 139, 139);
+  }
+
+  .team-item {
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  }
+
+  &:not(:first-child) {
+    margin-top: 78px;
+  }
 }

@@ -1,0 +1,57 @@
+.page-pagination {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 74px;
+  max-width: 843px;
+  margin-left: auto;
+  margin-right: auto;
+  &__button,
+  &__elips {
+    background: none;
+    color: white;
+    border-radius: 2px;
+    padding: 8px 30px;
+    &_active {
+      background: #fac704;
+      color: black;
+    }
+    &-prev,
+    &-next {
+      background: none;
+      max-width: 36px;
+      max-height: 36px;
+    }
+    &-prev {
+      margin-left: 110px;
+      &-icon {
+        width: 100%;
+        height: 100%;
+        fill: white;
+      }
+      &:disabled {
+        cursor: auto;
+        .page-pagination__button-prev-icon {
+          fill: rgb(51, 51, 51);
+        }
+      }
+    }
+    &-next {
+      margin-right: 110px;
+      &-icon {
+        width: 100%;
+        height: 100%;
+        fill: white;
+      }
+
+      &:disabled {
+        cursor: auto;
+        .page-pagination__button-next-icon {
+          fill: rgb(51, 51, 51);
+        }
+      }
+    }
+  }
+  &__elips {
+    padding-top: 12px;
+  }
+}

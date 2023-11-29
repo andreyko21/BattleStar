@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Battle Star - Match</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <load ="src/html/header.html" />
+      <load ="src/html/sidebar.html" />
+      <main class="main" id="app">
+        <!-- overlay -- прикриває контент при відкритті модального вікна -->
+        <div class="overlay"></div>
+        <load
+          ="src/html/components/pop-up.html"
+          file="calibration-pop-up"
+          class="main__calibration-pop-up calibration-pop-up"
+        />
+        <div class="main__content content">
+          <img
+            src="./src/images/calibration-lobby/cs-bg.png"
+            class="content__bg-img"
+          />
+        </div>
+      </main>
+    </div>
+  </body>
+  <script type="module" src="src/ts/calibration/calibration.ts"></script>
+</html>

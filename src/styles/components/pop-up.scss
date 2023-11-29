@@ -2,7 +2,7 @@
   display: none;
   position: absolute;
   top: 77px;
-  left: calc(50% - 100px);
+  left: calc(50% - 50px);
   transform: translateX(-50%) scale(0);
   max-width: 824px;
   width: 100%;
@@ -22,8 +22,6 @@
       height: 100%;
       fill: $gray25; // #f8f8f8;
     }
-  }
-  &__criss-cross-icon {
   }
   &_display_block {
     display: block;

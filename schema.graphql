@@ -1,39 +1,101 @@
-type Team {
-    data: TeamData
+type TeamsRequest {
+  data: [TeamRequest]
+  meta: Meta
 }
 
-type TeamData {
-   id: ID!
-  attributes: TeamAttributes
+type TeamRequest {
+  id: ID
+  attributes: TeamAttributesRequest
 }
 
-type TeamAttributes {
-  name: String!
-  rating: Int!
-  earned: Int!
-  matches_played: Int!
-  victories_in_tournaments: Int!
-  createdAt: String!
-  updatedAt: String!
-  publishedAt: String!
-  logo: Logo
+type TeamAttributesRequest {
+  name: String
+  rating: Int
+  earned: Int
+  matches_played: Int
+  victories_in_tournaments: Int
+  createdAt: String
+  updatedAt: String
+  publishedAt: String
+  logo: LogoRequest
+  awards: AwardsRequest
+  participants: ParticipantsWrapper
+  tournaments: TournamentsWrapper
 }
 
-type Logo {
-  data: LogoData
+type ParticipantsWrapper {
+  data: [ParticipantData]
 }
 
-type LogoData {
-  id: ID!
-  attributes: LogoAttributes
+type ParticipantData {
+  id: String
 }
 
-type LogoAttributes {
-  name: String!
-  alternativeText: String!
-  url: String!
+type TournamentsWrapper {
+  data: [TournamentData]
+}
+
+type TournamentData {
+  id: String
+}
+
+type AwardsRequest {
+  data: [AwardRequest]
+}
+
+type AwardRequest {
+  id: ID
+  attributes: AwardAttributesRequest
+}
+
+type AwardAttributesRequest {
+  name: String
+  logo: LogoRequest
+}
+
+type LogoRequest {
+  data: [LogoDataRequest]
+}
+
+type LogoDataRequest {
+  id: ID
+  attributes: LogoAttributesRequest
+}
+
+type LogoAttributesRequest {
+  name: String
+  alternativeText: String
+  url: String
+}
+
+type Meta {
+  pagination: Pagination
+}
+
+type Pagination {
+  pageCount: Int
+}
+
+input NameFilterInput {
+  startsWith: String
+  endsWith: String
+  contains: String
+}
+
+input TeamFilterInput {
+  name: NameFilterInput
+}
+
+input PaginationInput {
+  page: Int
+  pageSize: Int
 }
 
 type Query {
-  teams: [Team]!
+  teams(
+    filters: TeamFilterInput
+    sort: [String]
+    pagination: PaginationInput
+  ): TeamsRequest
+  awards: [AwardsRequest]
 }

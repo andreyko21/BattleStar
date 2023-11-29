@@ -1,0 +1,54 @@
+.tabs-block {
+  &__tabs {
+    position: relative;
+    width: 100%;
+    height: 42px;
+    margin: 0px 0px 33px 0px;
+    padding: 12.5px 17px 0px 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__tab {
+    position: relative;
+    height: 100%;
+    color: $gray300; // rgba(248 248 248 0.6)
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    transition: color 0.5s ease-out;
+    cursor: pointer;
+
+    &:hover {
+      color: $yellow300;
+    }
+
+    &_active {
+      color: $yellow300;
+    }
+
+    &_hovered {
+      color: $yellow300;
+    }
+    &_no-hovered {
+      color: $gray300 !important;
+    }
+  }
+
+  &__content-container {
+    display: none;
+    &_active {
+      display: block;
+    }
+  }
+
+  &__lamp {
+    position: absolute !important;
+    bottom: 0;
+    height: 3px;
+    background: $yellow300;
+    transition: all 0.3s linear;
+  }
+}

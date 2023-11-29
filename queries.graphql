@@ -1,7 +1,17 @@
-query GetTeams {
-  teams {
+query GetTeams(
+  $filtering: String
+  $sorting: [String]
+  $page: Int
+  $pageSize: Int
+) {
+  teams(
+    filters: { name: { startsWith: $filtering } }
+    sort: $sorting
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
     data {
       id
+
       attributes {
         name
         rating
@@ -11,6 +21,60 @@ query GetTeams {
         createdAt
         updatedAt
         publishedAt
+        participants {
+          data {
+            id
+          }
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+        logo {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+        awards {
+          data {
+            id
+            attributes {
+              name
+              logo {
+                data {
+                  id
+                  attributes {
+                    name
+                    alternativeText
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageCount
+      }
+    }
+  }
+}
+
+query GetAwards {
+  awards {
+    data {
+      id
+      attributes {
+        name
         logo {
           data {
             id

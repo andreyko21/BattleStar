@@ -2,31 +2,343 @@
 @import './components/header';
 @import './components/sidebar';
 @import './components/ui/chackbox.scss';
+@import './components/ui/dropDownMenu.scss';
 @import './components/pop-up';
 @import './components/overlay';
 @import './components/btns';
 @import './components/calibration-pop-up';
+@import './components/tabs';
 
-//.wrapper {
-//  display: grid;
-//  grid-template:
-//    'sidebar header' min-content
-//    'sidebar main' auto/min-content auto;
-//  flex-direction: column;
-//  min-height: 100%;
-//  overflow: clip;
-//}
+.wrapper {
+  overflow: hidden;
+  height: 100vh;
+}
 
-.main {
+.match-page {
   position: relative;
-  flex: 1 1 auto;
   width: 100%;
+  height: 100%;
+  overflow: auto;
+  //  flex: 1 1 auto;
   grid-area: main;
+  display: flex;
+  &__bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &__filters {
+    width: 311px;
+    height: 100%;
+    padding: 15px 5px 5px 5px;
+  }
+
+  &__content {
+    flex: 1 1 auto;
+  }
 }
 
 .overflow_hidden {
   overflow: hidden;
 }
-img {
-  width: 100%;
+
+.filters {
+  background: rgba(248, 248, 248, 0.05);
+  backdrop-filter: blur(10px);
+  &__tabs {
+    // width: 100%;
+    // height: 42px;
+    // margin: 0px 0px 33px 0px;
+    // padding: 0px 17px 0px 17px;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+  }
+
+  &__content {
+  }
+  &__find-lobby {
+  }
+}
+.tabs-block {
+  &__tabs {
+  }
+  &__tab {
+    flex: 1 1 50%;
+    color: $gray300; // rgba(248 248 248 0.6)
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    &_active {
+      color: $Goldenrod; // #fac704;
+    }
+  }
+
+  &__content {
+  }
+
+  &__content-container {
+    display: none;
+    &_active {
+      display: block;
+    }
+  }
+}
+
+.party {
+  padding: 8px 17px 19px 17px;
+  &__title-block {
+    width: 100%;
+    margin: 0px 0px 10px 0px;
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    margin: 0px 7px 0px 0px;
+    color: $gray100; // #bfbfbf
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__help-block {
+    position: relative;
+  }
+
+  &__help-block-icon {
+    width: 16px;
+    height: 16px;
+    border: 1px solid $gray100;
+    border-radius: 50%;
+    color: #bfbfbf;
+    background: $gray750; // rgba(196, 196, 196, 0.2);
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+
+    &:hover + * {
+      transform: scale(1);
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__help-block-text {
+    position: absolute;
+    bottom: 50%;
+    left: calc(100% + 10px);
+    transform: scale(0);
+    transform-origin: bottom left;
+    @include hover-block;
+  }
+
+  &__users {
+    margin: 0px 0px 2px 0px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__user-block {
+    margin: 0px 8px 8px 0px;
+  }
+
+  &__add-user {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > svg {
+      width: 100%;
+      height: 100%;
+      stroke: $gray25;
+      fill: inherit;
+      cursor: pointer;
+    }
+    &:hover > .users-list-block {
+      transform: scale(1);
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__users-list-block {
+  }
+
+  &__rating-block {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  &__empty-block {
+    height: 7px;
+    width: 100%;
+    border-bottom: 1px solid $dark100;
+    align-self: start;
+    &_left {
+      border-left: 1px solid $dark100;
+    }
+    &_right {
+      border-right: 1px solid $dark100;
+    }
+  }
+
+  &__rating {
+    margin: 0px 6px 0px 6px;
+    color: $gray100;
+    text-align: center;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}
+.user-block {
+  position: relative;
+  &__avatar {
+  }
+
+  &__avatar-img-block {
+    position: relative;
+    width: 48px;
+    height: 46px;
+    &:hover + * {
+      transform: scale(1);
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__avatar-img {
+    height: 100%;
+  }
+
+  &__avatar-online {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: $green50; // #6fff57;
+  }
+
+  &__info {
+    position: absolute;
+    bottom: calc(100% + 5px);
+    left: 0;
+    transform: scale(0);
+    transform-origin: bottom left;
+    @include hover-block;
+  }
+}
+.users-list-block {
+  @include hover-block;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 15px;
+  width: 278px;
+  max-height: 353px;
+  height: max-content;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+
+  &__search-input {
+    width: 100%;
+    padding: 2px 0px 7px 29px;
+    margin: 0px 0px 22px 0px;
+    background: inherit;
+    border-bottom: 1px solid $DimGray; // #606060;
+    color: $gray25; //#BFBFBF;
+    @include hidePlaceholder;
+    @include styledPlaceholder($gray25);
+  }
+
+  &__icon-search {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 24px;
+    height: 24px;
+    fill: $gray25; // #f8f8f8;
+    // stroke: $gray25;
+    & > svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  //  &__list-wrapper {
+  //    flex: 1 1 auto;
+  //    overflow: auto;
+  //  }
+
+  &__users-list {
+    height: 100%;
+    flex: 1 1 auto;
+    overflow-y: auto;
+  }
+
+  &__user-item {
+    margin: 0px 0px 19px 45px;
+    cursor: pointer;
+  }
+
+  &__user-name {
+    color: $gray25; // #f8f8f8
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}
+
+.find-lobby {
+  &__party {
+  }
+
+  &__filters-block {
+  }
+
+  &__filters-title-block {
+  }
+
+  &__filters-title {
+  }
+
+  &__rate-filter {
+  }
+
+  &__maps-filter {
+  }
+
+  &__game-mode-filter {
+  }
+
+  &__region-filter {
+  }
+
+  &__anticheat {
+  }
+}
+.create-lobby {
+}
+
+.tabs-content__tab {
+  width: max-content;
 }

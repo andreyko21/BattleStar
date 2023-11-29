@@ -10,22 +10,244 @@
     <div class="wrapper">
       <load ="src/html/header.html" />
       <load ="src/html/sidebar.html" />
-      <main class="main" id="app">
+      <main class="match-page" id="app">
         <!-- overlay -- прикриває контент при відкритті модального вікна -->
         <div class="overlay"></div>
-        <load ="src/html/components/pop-up.html"
+        <!--<load
+          ="src/html/components/pop-up.html"
           file="calibration-pop-up"
-          class="main__calibration-pop-up calibration-pop-up"
+          class="match-page__calibration-pop-up calibration-pop-up"
+        />-->
+        <img
+          src="./src/images/calibration-lobby/cs-bg.png"
+          class="match-page__bg-img"
         />
-        <div class="main__filters"> </div>
-        <div class="main__content content">
-          <img
-            src="./src/images/calibration-lobby/cs-bg.png"
-            class="content__bg-img"
-          />
-          <div class="content__tabs tabs">
-            <div class="tabs__tab tab__search"> НАЙТИ ИГРУ</div>
-            <div class="tabs__tab tab__create">СОЗДАТЬ ЛОББИ</div>
+        <section class="match-page__filters filters tabs-block">
+          <div class="filters__tabs tabs-block__tabs">
+            <div
+              class="filters__tab tabs-block__tab tabs-block__tab_active"
+              data-tab-name="find"
+              >НАЙТИ ИГРУ</div
+            >
+            <div class="filters__tab tabs-block__tab" data-tab-name="create"
+              >СОЗДАТЬ ЛОББИ</div
+            >
+            <div class="tabs-block__lamp"></div>
+          </div>
+          <div class="filters__content tabs-block__content">
+            <div
+              class="filters__find-lobby find-lobby tabs-block__content-container tabs-block__content-container_active"
+              id="find-content"
+            >
+              <div class="find-lobby__party party">
+                <div class="party__title-block">
+                  <div class="party__title">Пати</div>
+                  <div class="party__help-block">
+                    <div class="party__help-block-icon"> ? </div>
+                    <div class="party__help-block-text">
+                      Дуже корисна підказка! Дуже корисна підказка!
+                    </div>
+                  </div>
+                </div>
+                <div class="party__users">
+                  <!--<div class="party__users-block">-->
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="./src/images/temporary/avatar.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="./src/images/temporary/avatar.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="./src/images/temporary/avatar.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="./src/images/temporary/avatar.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="./src/images/temporary/avatar.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="./src/images/temporary/avatar.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <div class="party__user-block user-block">
+                    <div class="user-block__avatar-img-block">
+                      <img
+                        src="./src/images/temporary/avatar.svg"
+                        class="user-block__avatar-img"
+                      />
+                      <div class="user-block__avatar-online"></div>
+                    </div>
+                    <div class="user-block__info">User Userenco</div>
+                  </div>
+                  <!--</div>-->
+                  <div class="party__add-user">
+                    <svg>
+                      <use
+                        xlink:href="src/images/sprite.svg#plus-in-dashcircle"
+                      ></use>
+                    </svg>
+                    <div class="party__users-list-block users-list-block">
+                      <input
+                        type="text"
+                        class="users-list-block__search-input"
+                        placeholder="Поиск"
+                      />
+                      <div class="users-list-block__icon-search">
+                        <svg>
+                          <use xlink:href="src/images/sprite.svg#search"></use>
+                        </svg>
+                      </div>
+                      <!--<div class="users-list-block__list-wrapper">-->
+                      <ul class="users-list-block__users-list">
+                        <li class="users-list-block__user-item">
+                          <div class="users-list-block__user-name">
+                            Lutes_Deas
+                          </div>
+                        </li>
+                        <li class="users-list-block__user-item">
+                          <div class="users-list-block__user-name">
+                            Lutes_Deas
+                          </div>
+                        </li>
+                        <li class="users-list-block__user-item">
+                          <div class="users-list-block__user-name">
+                            Lutes_Deas
+                          </div>
+                        </li>
+                        <li class="users-list-block__user-item">
+                          <div class="users-list-block__user-name">
+                            Lutes_Deas
+                          </div>
+                        </li>
+                        <li class="users-list-block__user-item">
+                          <div class="users-list-block__user-name">
+                            Lutes_Deas
+                          </div>
+                        </li>
+                        <li class="users-list-block__user-item">
+                          <div class="users-list-block__user-name">
+                            Lutes_Deas
+                          </div>
+                        </li>
+                        <li class="users-list-block__user-item">
+                          <div class="users-list-block__user-name">
+                            Lutes_Deas
+                          </div>
+                        </li>
+                        <li class="users-list-block__user-item">
+                          <div class="users-list-block__user-name">
+                            Lutes_Deas
+                          </div>
+                        </li>
+                        <li class="users-list-block__user-item">
+                          <div class="users-list-block__user-name">
+                            Lutes_Deas
+                          </div>
+                        </li>
+                      </ul>
+                      <!--</div>-->
+                    </div>
+                  </div>
+                </div>
+                <div class="party__rating-block">
+                  <div class="party__empty-block party__empty-block_left"></div>
+                  <div class="party__rating">Ранг: 1320</div>
+                  <div
+                    class="party__empty-block party__empty-block_right"
+                  ></div>
+                </div>
+              </div>
+              <div class="find-lobby__filters-block">
+                <div class="find-lobby__filters-title-block">
+                  <svg>
+                    <use xlink:href="src/images/sprite.svg#filters"></use>
+                  </svg>
+                </div>
+                <div class="find-lobby__filters-title"></div>
+                <div class="find-lobby__rate-filter"> </div>
+                <div class="find-lobby__maps-filter"> </div>
+                <div class="find-lobby__game-mode-filter"> </div>
+                <div class="find-lobby__region-filter"> </div>
+                <div class="find-lobby__anticheat"> </div>
+              </div>
+            </div>
+            <div
+              class="filters__create-lobby create-lobby tabs-block__content-container"
+              id="create-content"
+            >
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
+              molestias consectetur impedit molestiae reiciendis obcaecati magni
+              enim non et ad vero officia delectus voluptates facere debitis
+              exercitationem, cumque nisi modi placeat eos voluptate, blanditiis
+              reprehenderit. Voluptatum consequuntur, nostrum sit unde ipsam ab?
+              Facilis nobis porro dolores ea, accusantium atque sequi!
+              Accusantium atque dolorum dicta minus voluptates nulla
+              exercitationem soluta odit excepturi totam omnis eos deleniti,
+              asperiores corporis eius harum autem in deserunt at nobis. Natus
+              sint itaque totam officia nam quis ratione illo quod harum,
+              necessitatibus cum sed animi tempore eum consectetur? Ea
+              aspernatur laudantium doloremque, excepturi reiciendis nemo
+              dignissimos!
+            </div>
+          </div>
+        </section>
+        <section class="match-page__content content tabs-block">
+          <div class="content__tabs-content tabs-block__tabs">
+            <div
+              class="tabs-content__tab tabs-block__tab tabs-block__tab_active"
+              id="open-match"
+            >
+              ОТКРЫТЫЕ МАТЧИ</div
+            >
+            <div class="tabs-content__tab tabs-block__tab" id="translation"
+              >ТРАНСЛЯЦИИ</div
+            >
+            <div class="tabs-content__tab tabs-block__tab" id="completed"
+              >ЗАВЕРШЁННЫЕ</div
+            >
+            <div class="tabs-block__lamp"></div>
           </div>
           <div class="content__tabs-content">
             <div
@@ -33,7 +255,7 @@
               data-name="search"
             ></div>
           </div>
-        </div>
+        </section>
       </main>
     </div>
   </body>

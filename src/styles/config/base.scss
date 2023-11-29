@@ -38,11 +38,11 @@ body {
 .wrapper {
   display: grid;
   grid-template:
-    "sidebar header"
-    "sidebar main" auto/min-content auto;
-  min-height: 100%;
-  overflow: clip;
-
+    "sidebar header" min-content /* Row 1: sidebar and header with min-content height */
+    "sidebar main" 1fr; /* Row 2: sidebar and main with flexible height */
+  grid-template-columns: min-content auto; /* Two columns with automatic width */
+  min-height: 100%; /* Minimum height of the wrapper */
+  overflow: clip; /* Prevents overflowing content from being displayed */
 }
 
 .page {

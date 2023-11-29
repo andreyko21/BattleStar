@@ -1,5 +1,12 @@
 // !Адаптивное свойство (clamp)
-@mixin adaptiveClamp($property, $startSize, $minSize, $widthFrom: $containerWidth, $widthTo: $minWidth, $keepSize: 0) {
+@mixin adaptiveClamp(
+  $property,
+  $startSize,
+  $minSize,
+  $widthFrom: $containerWidth,
+  $widthTo: $minWidth,
+  $keepSize: 0
+) {
   // Для calc();
   $addSize: math.div($startSize - $minSize, 16);
 
@@ -21,16 +28,30 @@
   // Источник: https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
   $slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
   $yIntersection: -$widthTo * $slope + $minSize;
-  $flyValue: #{rem($yIntersection)}" + " #{$slope * 100}vw;
+  $flyValue: #{rem($yIntersection)}' + ' #{$slope * 100}vw;
 
   // Получение значения свойства
-  $propertyValue: #{"clamp(" rem($minSize) "," $flyValue "," rem($startSize) ")"};
+  $propertyValue: #{'clamp(' rem($minSize) ',' $flyValue ',' rem($startSize) ')'};
   // Если отрицательные значения
   @if ($minSize > $startSize) {
-    $propertyValue: #{"clamp(" rem($startSize) "," $flyValue "," rem($minSize) ")"};
+    $propertyValue: #{'clamp('
+      rem($startSize)
+      ','
+      $flyValue
+      ','
+      rem($minSize)
+      ')'};
   }
 
-  @if $widthFrom == $containerWidth or $widthFrom == $maxWidth or $keepSize == 1 or $keepSize == 2 {
+  @if $widthFrom ==
+    $containerWidth or
+    $widthFrom ==
+    $maxWidth or
+    $keepSize ==
+    1 or
+    $keepSize ==
+    2
+  {
     @media (min-width: $widthFromMedia) {
       #{$property}: rem($startSize);
     }
@@ -43,8 +64,10 @@
     // Если не поддерживается clamp();
     @supports not (#{$property}: $propertyValue) {
       #{$property}: calc(
-        #{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) / #{math.div($widthFrom, 16) -
-          math.div($widthTo, 16)}
+        #{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) / #{math.div(
+            $widthFrom,
+            16
+          ) - math.div($widthTo, 16)}
       );
     }
   }
@@ -180,7 +203,7 @@
 // !after-before
 @mixin pseudocell($type, $pos: absolute) {
   &::#{$type} {
-    content: "";
+    content: '';
     position: $pos;
     @content;
   }
@@ -192,7 +215,7 @@
   transform-origin: bottom right;
   transition: transform 0.5s ease-out;
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     transform: scaleX(0);
@@ -225,6 +248,7 @@
     color: $yellow300;
   }
 }
+<<<<<<< HEAD
 @mixin tabs-menu {
   position: relative;
   transform-origin: bottom right;
@@ -275,4 +299,23 @@
       color: $red500;
    }
   }
+=======
+
+@mixin hover-block {
+  visibility: hidden;
+  opacity: 0;
+  max-width: 278px;
+  width: max-content;
+  padding: 15px 15px 15px 15px;
+  border-radius: 4px;
+  background: $darckBlue; //rgba(26 26 28 0.10);
+  box-shadow: 0px 4px 18px 0px $blackColor025; //rgba(0 0 0 0.25)
+  backdrop-filter: blur(60px);
+  color: $gray25; // #f8f8f8
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  transition: $standartTrans;
+  z-index: 1;
+>>>>>>> cec30d1b0bd33d4b2f80a5ad5f1d1201457d2991
 }

@@ -248,13 +248,12 @@
     color: $yellow300;
   }
 }
-<<<<<<< HEAD
 @mixin tabs-menu {
   position: relative;
   transform-origin: bottom right;
   transition: transform 0.5s ease-out;
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     width: 4px;
     transform: scaleX(0);
@@ -266,8 +265,7 @@
     background-color: $yellow300;
     &:last-child {
       background-color: $red500;
-   }
-
+    }
   }
 
   &:hover::after {
@@ -280,7 +278,7 @@
     color: $yellow300;
     &:last-child {
       color: $red500;
-   }
+    }
   }
 
   &:hover {
@@ -288,7 +286,7 @@
     color: $yellow300;
     &:last-child {
       color: $red500;
-   }
+    }
   }
 
   &_act {
@@ -297,9 +295,9 @@
     color: $yellow300;
     &:last-child {
       color: $red500;
-   }
+    }
   }
-=======
+}
 
 @mixin hover-block {
   visibility: hidden;
@@ -317,5 +315,4 @@
   line-height: normal;
   transition: $standartTrans;
   z-index: 1;
->>>>>>> cec30d1b0bd33d4b2f80a5ad5f1d1201457d2991
 }

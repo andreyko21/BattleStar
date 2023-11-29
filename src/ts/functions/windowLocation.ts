@@ -1,0 +1,35 @@
+function getQueryParams() {
+  const queryString = window.location.search;
+  return new URLSearchParams(queryString);
+}
+
+function setLocateParam(param: string, value: any) {
+  const queryParams = getQueryParams();
+  queryParams.set(param, value);
+  const newUrl =
+    window.location.protocol +
+    "//" +
+    window.location.host +
+    window.location.pathname +
+    "?" +
+    queryParams;
+  window.history.pushState({ path: newUrl }, "", newUrl);
+  window.location.reload();
+}
+
+function getLocateParam(param: string) {
+  const queryParams = getQueryParams();
+  return queryParams.get(param);
+}
+
+function removeAllParams() {
+  const urlWithoutParams =
+    window.location.protocol +
+    "//" +
+    window.location.host +
+    window.location.pathname;
+
+  window.history.replaceState({}, document.title, urlWithoutParams);
+}
+
+export { setLocateParam, getLocateParam, removeAllParams };

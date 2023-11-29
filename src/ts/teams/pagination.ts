@@ -1,5 +1,6 @@
 import Sprite from "./../../images/sprite.svg";
 import { Meta } from "../types";
+import { setLocateParam } from "../functions/windowLocation";
 
 type PaginationType = {
   currentPage: number;
@@ -15,7 +16,7 @@ class Pagination implements PaginationType {
   }
   bindEvents(listBlock: JQuery<HTMLElement>) {
     listBlock.on("click", ".page-pagination__button", (event) => {
-      SetLocateParam("page", event.currentTarget.id);
+      setLocateParam("page", event.currentTarget.id);
     });
     listBlock.on("click", ".page-pagination__button-nav", (event) => {
       if (event.currentTarget.id == "next") {
@@ -28,7 +29,7 @@ class Pagination implements PaginationType {
       } else if (this.currentPage < 1) {
         this.currentPage = 1;
       }
-      SetLocateParam("page", this.currentPage);
+      setLocateParam("page", this.currentPage);
     });
   }
   render(): string {
@@ -85,17 +86,3 @@ class Pagination implements PaginationType {
 }
 
 export { Pagination };
-
-function SetLocateParam(param: string, value: any) {
-  const queryString = window.location.search;
-  const queryParams = new URLSearchParams(queryString);
-  queryParams.set(param, value);
-  const newUrl =
-    window.location.protocol +
-    "//" +
-    window.location.host +
-    window.location.pathname +
-    "?" +
-    queryParams;
-  window.history.replaceState({ path: newUrl }, "", newUrl);
-}

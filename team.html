@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Команди</title>
+    <link rel="stylesheet" href="src/styles/team.scss" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <load ="src/html/header.html" />
+      <load ="src/html/sidebar.html" />
+      <main class="page team-page">
+        <div class="team-page__container">
+          <div class="team-page__avatar">
+            <img src="./src/images/team.png" alt="" />
+          </div>
+          <h1 class="team-page__name">GREEN Dragon</h1>
+          <div class="team-page__awards"></div>
+          <p class="team-page__description">
+            Значимость этих проблем настолько очевидна, что консультация с
+            широким активом способствует подготовки и реализации позиций,
+            занимаемых участниками в отношении поставленных задач
+          </p>
+          <div class="team-page__stats">
+            <div class="team-page__stats-info-item stats-info-item">
+              <svg class="stats-info-item__icon">
+                <use class="cup" xlink:href="src/images/sprite.svg#cup"></use>
+              </svg>
+              <h2 class="stats-info-item__title">2 победы</h2>
+              <p class="stats-info-item__description">в турнирах</p>
+            </div>
+
+            <div class="team-page__stats-info-item stats-info-item">
+              <svg class="stats-info-item__icon">
+                <use
+                  class="money"
+                  xlink:href="src/images/sprite.svg#money"
+                ></use>
+              </svg>
+              <h2 class="stats-info-item__title">238 900 BS</h2>
+              <p class="stats-info-item__description">Заработано</p>
+            </div>
+            <div class="team-page__stats-info-item stats-info-item">
+              <svg class="stats-info-item__icon">
+                <use
+                  class="controller"
+                  xlink:href="src/images/sprite.svg#controller"
+                ></use>
+              </svg>
+              <h2 class="stats-info-item__title">245 матчей</h2>
+              <p class="stats-info-item__description">Сыграно</p>
+            </div>
+            <div class="team-page__stats-info-item stats-info-item">
+              <svg class="stats-info-item__icon">
+                <use
+                  class="people"
+                  xlink:href="src/images/sprite.svg#people"
+                ></use>
+              </svg>
+              <h2 class="stats-info-item__title">13/15</h2>
+              <p class="stats-info-item__description">учасников</p>
+            </div>
+          </div>
+          <div class="team-page__participants">
+            <div class="team-page__participants-list">
+              <div class="team-page__participants-user-avatar">
+                <img src="./src/images/user.svg" alt="" />
+              </div>
+              <div class="team-page__participants-user-avatar">
+                <img src="./src/images/user.svg" alt="" />
+              </div>
+              <div class="team-page__participants-user-avatar">
+                <img src="./src/images/user.svg" alt="" />
+              </div>
+              <div class="team-page__participants-user-avatar">
+                <img src="./src/images/user.svg" alt="" />
+              </div>
+              <div class="team-page__participants-user-avatar">
+                <img src="./src/images/user.svg" alt="" />
+              </div>
+              <div class="team-page__participants-user-avatar">
+                <img src="./src/images/user.svg" alt="" />
+              </div>
+              <div class="team-page__participants-user-avatar">
+                <img src="./src/images/user.svg" alt="" />
+              </div>
+              <div class="team-page__participants-user-avatar">
+                <img src="./src/images/user.svg" alt="" />
+              </div>
+              <div class="team-page__participants-user-avatar">
+                <img src="./src/images/user.svg" alt="" />
+              </div>
+              <div class="team-page__participants-user-avatar">
+                <img src="./src/images/user.svg" alt="" />
+              </div>
+            </div>
+            <button class="team-page__participants-button">
+              <svg class="stats-info-item__icon">
+                <use xlink:href="src/images/sprite.svg#arrow-left"></use>
+              </svg>
+            </button>
+            <p class="team-page__participants-rank">Ранг: 1320</p>
+          </div>
+
+          <div class="team-page__nav">
+            <button class="team-page__nav-button">
+              <svg class="stats-info-item__icon">
+                <use xlink:href="src/images/sprite.svg#share"></use></svg
+              >Поделиться
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="src/teams.ts"></script>
+  </body>
+</html>

@@ -1,11 +1,234 @@
 @import "./style.scss";
 @import "./components/sidebar.scss";
 @import "./components/header.scss";
+@import "./components/ui/dropDownMenu.scss";
+@import "./components/ui/tour.scss";
+@import "./components/ui/table.scss";
+@import "./components/ui/card.scss";
+.wrapper {
+   display: grid;
+   grid-template:
+      "sidebar header"
+      "sidebar main" auto/min-content auto;
+   min-height: 0%;
+   overflow: clip;
+}
+.page {
+   width: 100%;
+   grid-area: main;
+}
 
-.banner{
-//    background:
-//    $gradient50,
-//    url(../images/bannerNews.webp) no-repeat center center/cover;
-//  height: 984px;
-//  width: 100%;
+.banner {
+   &__container {
+      padding-left: 85px;
+   }
+
+   &__img {
+      margin: 63px 0 27px;
+   }
+
+   &__title {
+      color: $gray25;
+      font-size: 36px;
+      font-weight: 500;
+      line-height: normal;
+   }
+
+   &__row {
+      width: 1303px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 17px;
+      &-info {
+         display: flex;
+      }
+      &-author {
+         width: 221px;
+         height: 55px;
+         border-radius: 20px;
+         background: $gray600;
+         display: flex;
+         align-items: center;
+      }
+      &-avatar {
+         width: 40px;
+         height: 40px;
+         background: $gray500;
+         border-radius: 50%;
+         margin: 0 10px 0 12px;
+      }
+      &-name,
+      &-number,
+      &-data {
+         color: $gray25;
+         font-size: 18px;
+         font-weight: 400;
+      }
+      &-view {
+         display: flex;
+         align-items: center;
+         margin-left: 30px;
+         svg {
+            width: 24px;
+            height: 24px;
+         }
+
+         &_tour {
+            width: fit-content;
+            margin: 28px auto 0 0;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row-reverse;
+            div {
+               display: flex;
+               align-items: center;
+            }
+         }
+      }
+
+      &-number {
+         margin: 0 28px 0 7px;
+      }
+      &-social {
+         display: flex;
+         justify-content: space-between;
+         width: 184px;
+         a {
+            display: inline-block;
+            width: 40px;
+            height: 37px;
+            border-radius: 4px;
+            background: $gray600;
+            padding: 7px 9px;
+            svg {
+               width: 23px;
+               height: 23px;
+            }
+            &:last-child {
+               padding: 7px 14.5px;
+            }
+         }
+      }
+   }
+}
+
+.info {
+   margin-top: 65px;
+   &__container {
+      padding-left: 85px;
+   }
+   &__hash {
+      display: flex;
+      justify-content: space-between;
+      width: 542px;
+      margin-bottom: 25px;
+      a {
+         color: $yellow300;
+         font-size: 18px;
+         font-weight: 400;
+      }
+      &_tour {
+         margin: 37px 0 0;
+      }
+   }
+   &__text {
+      width: 1302px;
+      color: $gray50;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: normal;
+      &:nth-child(2) {
+         margin-bottom: 22px;
+      }
+      &:nth-child(7) {
+         margin-bottom: 19px;
+      }
+      &:nth-child(8) {
+         margin-bottom: 22px;
+      }
+   }
+   &__img {
+      display: inline-block;
+      width: 782px;
+      height: 327px;
+      background: $gray600;
+      margin: 50px 0 40px;
+   }
+   &__title {
+      width: 1302px;
+      color: $gray50;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: normal;
+      margin: 65px 0 20px;
+   }
+}
+.tour {
+   margin-top: 75px;
+   &__container {
+      width: 1412px;
+   }
+   &__column {
+      margin-top: 90px;
+      p {
+         &:first-child {
+            margin-bottom: 22px;
+         }
+      }
+   }
+
+   &__likes {
+      width: 274px;
+      height: 86px;
+      background: $gray600;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 39px;
+      margin: 75px auto 0;
+
+      &-btn {
+         background: transparent;
+         color: $red500;
+         text-align: center;
+         font-size: 16px;
+         font-weight: 500;
+         line-height: normal;
+         svg {
+            width: 40px;
+            height: 40px;
+         }
+         span {
+            display: flex;
+            justify-content: center;
+            color: $red500;
+         }
+         &:last-child {
+            span {
+               color: $green50;
+            }
+         }
+      }
+      &-line {
+         width: 1px;
+         height: 100%;
+         background: $gray500;
+      }
+   }
+}
+.article {
+   margin-top: 111px;
+   &__title {
+      color: $gray25;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: normal;
+   }
+
+   &__card{
+      margin: 49px 0 150px;
+   }
 }

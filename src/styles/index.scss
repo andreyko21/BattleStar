@@ -5,11 +5,11 @@
 @import "./components/ui/table.scss";
 @import "./components/ui/calendar.scss";
 @import "./components/ui/dropDownMenu.scss";
+@import "./components/ui/tour.scss";
 // @import "./libs/swiper.scss";
 
 .page {
   // flex: 1 1 auto;
-
   width: 100%;
   grid-area: main;
 }
@@ -20,8 +20,8 @@
   width: 100%;
 
   &__container {
-    padding: 409px 0 0 0px;
-    max-width: 1620px;
+    // padding: 333px 0 0 0px;
+    max-width: 100%;
     width: 100%;
   }
 
@@ -31,6 +31,8 @@
     line-height: normal;
     color: $gray25;
     text-align: center;
+    // margin-top: 333px;
+    padding-top: 333px;
     margin-bottom: 74px;
     span {
       color: $yellow300;
@@ -38,22 +40,20 @@
   }
 
   &__swiper {
-    width: 1556px;
-    // margin-left: 110px;
+    width: 1690px;
+    margin: 0 auto;
   }
-  // &__button-next {
-  //   position: absolute;
-  //   top: 50%;
-  //   right: 0;
-  //   transform: translateY(-50%);
-  //   z-index: 10;
-  //   svg {
-  //     width: 68px;
-  //     height: 68px;
-  //   }
-  // }
+  &__wrapper {
+    width: 1556px;
+    margin: 0 auto;
+    padding-left: 35px;
+  }
 }
 .bonus {
+  margin-top: 119px;
+  &_blue {
+    margin-top: 155px;
+  }
   &__content {
     width: 1526px;
     height: 451px;
@@ -114,21 +114,115 @@
       }
     }
     &-link {
-      width: 300px;
+      width: 281px;
       // margin-left: auto;
       a {
         display: inline-block;
-        padding: 13px 43px;
+        padding: 15px 36px;
       }
     }
   }
 }
 
 .news {
+  margin-top: 127px;
   &__rating {
     width: 445px;
     height: 653px;
     background: $gray800;
+    padding: 22px 24px 21px 51px;
+    &-tabs {
+      display: flex;
+      justify-content: center;
+      width: 370px;
+      padding-bottom: 9px;
+      border-bottom: 4px solid $dark100;
+    }
+
+    &-btn {
+      color: $gray300;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: normal;
+      @include tabs;
+    }
+    &-title {
+      color: $gray100;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: normal;
+      margin: 15px 0 17px;
+    }
+    &-list {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 500;
+      height: 530px;
+      overflow: auto;
+      &::-webkit-scrollbar {
+        width: rem(3);
+        background-color: $gray500;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: rem(3);
+        background: $gray500;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: rem(3);
+        border: 0 none $gray500;
+        background-color: $yellow300;
+        transition: all 280ms ease-in-out;
+      }
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+    &-row {
+      display: flex;
+      align-items: center;
+    }
+    &-number {
+      background: $gradient300;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-right: 15px;
+      text-align: center;
+      width: 21px;
+    }
+    &-avatar {
+      width: 40px;
+      height: 40px;
+      background: $gray300;
+      border-radius: 50%;
+    }
+    &-country {
+      width: 21px;
+      height: 14px;
+      background: $gray300;
+      margin: 0 11px;
+    }
+    &-name {
+      color: $gray25;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    &-res {
+      color: $yellow300;
+      font-size: 16px;
+      font-weight: 400;
+      margin-right: 24px;
+    }
   }
 
   &__content {
@@ -176,12 +270,11 @@
       display: flex;
       justify-content: space-between;
     }
-    &-views{
+    &-views {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 135px;
-
     }
     &-date,
     &-view,
@@ -194,15 +287,201 @@
     }
 
     &-view,
-    &-like{
+    &-like {
       display: flex;
       align-items: center;
-      svg{
+      svg {
         width: 20px;
         height: 20px;
         margin-right: 3px;
       }
-
     }
   }
+}
+.tourney {
+  margin-top: 119px;
+  position: relative;
+  // height: 476px;
+  &__container {
+    max-width: 100%;
+  }
+  &__swiper {
+    width: 1690px;
+    height: 496px;
+  }
+
+  &__wrapper {
+    width: 1525px;
+    margin: 0 auto;
+    height: 446px;
+  }
+}
+.game {
+  margin-top: 167px;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__column {
+    display: grid;
+    grid-row-gap: 29px;
+    &-item {
+      width: 693px;
+      background: $gray800;
+    }
+    &-img {
+      width: 100%;
+      height: 292px;
+      background: $gray400;
+    }
+    &-line {
+      width: 100%;
+      height: 1px;
+      background: $yellow300;
+    }
+    &-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 11px 0 17px;
+      height: 56px;
+    }
+    &-teams {
+      display: flex;
+    }
+    &-logo {
+      width: 27px;
+      height: 21px;
+      background: $gray400;
+    }
+    &-name,
+    &-vs {
+      color: $gray25;
+      font-size: 20px;
+      font-weight: 500;
+      margin-left: 9px;
+    }
+    &-vs {
+      margin: 0 14px 0 16px;
+    }
+    &-round {
+      color: $gray500;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+  &__info {
+    padding: 36px 53px;
+    background: $gray800;
+    width: 791px;
+    height: 966px;
+    overflow: auto;
+    &-title {
+      color: $gray100;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 32px;
+      &-sub {
+        text-align: right;
+        font-weight: 500;
+        color: $yellow300;
+        margin-bottom: 6px;
+      }
+    }
+    &-teams {
+      display: flex;
+      justify-content: space-between;
+    }
+    &-row {
+      display: flex;
+      align-items: center;
+      &_center {
+        flex-direction: column;
+        width: 47px;
+      }
+      &_sub {
+        flex-direction: row-reverse;
+      }
+    }
+
+    &-logo {
+      width: 58px;
+      height: 52px;
+      background: $gray800;
+    }
+
+    &-name {
+      color: $green50;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: normal;
+      margin: 0 18px 0 8px;
+    }
+
+    &-rank {
+      color: $gray500;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    &-time {
+      color: $gray100;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    &-score {
+      color: $gray25;
+      width: 47px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 900;
+      span {
+        color: $gray25;
+      }
+      &_online {
+        color: $red500;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 500;
+        width: 97px;
+        padding: 3.5px 0;
+        border-radius: 25px;
+        background:$red800;
+      }
+    }
+    &-line {
+      width: 100%;
+      height: 1px;
+      background: $gray500;
+      margin: 16px 0;
+    }
+  }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  &::after {
+    color: $gray25;
+    opacity: 0.6;
+    font-size: 30px;
+  }
+}
+.swiper-pagination {
+  display: flex;
+  justify-content: space-between;
+  inset: 0;
+  margin: 0 auto;
+  text-align: center;
+  width: 305px !important;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  width: 13px;
+  height: 13px;
+  background: $yellow300;
+}
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: $gray500;
 }

@@ -1,0 +1,52 @@
+.tour {
+   &__item {
+      display: flex;
+      &-info {
+         width: 430px;
+         padding: 36px 35px 17px;
+         background: $dark700;
+      }
+      &-title {
+         color: $gray25;
+         font-size: 30px;
+         font-weight: 500;
+         margin-bottom: 20px;
+      }
+      &-data,
+      &-teams {
+         color: $gray100;
+         font-size: 16px;
+         font-weight: 500;
+         margin-bottom: 40px;
+      }
+      &-teams {
+         margin-bottom: 15px;
+      }
+      &-row {
+         display: flex;
+         align-items: center;
+         padding-bottom: 7px;
+      }
+      &-ava {
+         width: 42px;
+         height: 42px;
+         margin-right: 16px;
+      }
+      &-name {
+         color: $gray25;
+         font-size: 16px;
+         font-weight: 500;
+         margin-right: 34px;
+      }
+      &-rank {
+         color: $yellow300;
+         font-size: 16px;
+         font-weight: 500;
+      }
+      &-btn{
+         width: 294px;
+         height: 48px;
+         margin: 11px auto 0 ;
+      }
+   }
+}

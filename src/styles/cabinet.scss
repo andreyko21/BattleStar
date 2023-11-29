@@ -1,0 +1,126 @@
+@import "./style.scss";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+@import "./components/ui/dropDownMenu.scss";
+@import "./components/ui/asideMenu.scss";
+@import "./components/ui/swich.scss";
+.wrapper {
+   display: grid;
+   grid-template:
+      "sidebar header"
+      "sidebar main" auto/min-content auto;
+   min-height: 0%;
+   overflow: clip;
+}
+.page {
+   width: 100%;
+   grid-area: main;
+}
+.cabinet {
+   &__container {
+      display: flex;
+   }
+
+   &__blacklist,
+   &__setting,
+   &__wallet,
+   &__personal,
+   &__histiry,
+   &__statistics {
+      width: 1227px;
+      backdrop-filter: blur(60px);
+      background: $gray800;
+      margin-left: 44px;
+      padding: 30px 84px 37px 59px;
+   }
+}
+.setting {
+}
+.blacklist {
+&__content{
+   display: flex;
+   justify-content: space-between;
+   margin-top: 38px;
+}
+&__item{
+   width: 544px;
+   overflow: auto;
+}
+
+   &__row {
+      display: flex;
+      align-items: center;
+      &-avatar {
+         width: 46px;
+         height: 46px;
+         border-radius: 46px;
+         background: $gray200;
+      }
+      &-column {
+         margin-left: 11px;
+      }
+      &-name {
+         color: $gray100;
+         font-size: 18px;
+         font-weight: 500;
+         line-height: normal;
+      }
+      &-info {
+         color: $gray500;
+         font-size: 15px;
+         font-weight: 700;
+         line-height: normal;
+      }
+      &-rang {
+         width: 66px;
+         height: 29px;
+         background: $gray200;
+         margin-left: 60px;
+      }
+      &-more {
+         margin-left: auto;
+
+         svg {
+            width: 24px;
+            height: 24px;
+         }
+      }
+   }
+   &__line{
+      width: 100%;
+      height: 1px;
+      background:$gray500;
+      margin: 16px 0;
+   }
+   &__info {
+      display: flex;
+      width: 482px;
+      height: 104px;
+      border-radius: 4px;
+      background:$gray600;
+      padding: 22px 24px 22px 29px;
+      svg {
+         width: 40px;
+         height: 40px;
+         fill: $gray100;
+      }
+   }
+   &__text {
+      color: $gray100;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      margin-left: 16px;
+   }
+}
+.title {
+   color: $gray25;
+   font-size: 24px;
+   font-weight: 400;
+   line-height: normal;
+}
+
+.hide {
+   display: none;
+}
+

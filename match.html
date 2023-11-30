@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/styles/match.scss" />
     <title>Battle Star - Match</title>
   </head>
   <body>
@@ -24,9 +25,7 @@
         />
         <section class="match-page__filters filters tabs-block">
           <div class="filters__tabs tabs-block__tabs">
-            <div
-              class="filters__tab tabs-block__tab tabs-block__tab_active"
-              data-tab-name="find"
+            <div class="filters__tab tabs-block__tab" data-tab-name="find"
               >НАЙТИ ИГРУ</div
             >
             <div class="filters__tab tabs-block__tab" data-tab-name="create"
@@ -51,36 +50,6 @@
                 </div>
                 <div class="party__users">
                   <!--<div class="party__users-block">-->
-                  <div class="party__user-block user-block">
-                    <div class="user-block__avatar-img-block">
-                      <img
-                        src="./src/images/temporary/avatar.svg"
-                        class="user-block__avatar-img"
-                      />
-                      <div class="user-block__avatar-online"></div>
-                    </div>
-                    <div class="user-block__info">User Userenco</div>
-                  </div>
-                  <div class="party__user-block user-block">
-                    <div class="user-block__avatar-img-block">
-                      <img
-                        src="./src/images/temporary/avatar.svg"
-                        class="user-block__avatar-img"
-                      />
-                      <div class="user-block__avatar-online"></div>
-                    </div>
-                    <div class="user-block__info">User Userenco</div>
-                  </div>
-                  <div class="party__user-block user-block">
-                    <div class="user-block__avatar-img-block">
-                      <img
-                        src="./src/images/temporary/avatar.svg"
-                        class="user-block__avatar-img"
-                      />
-                      <div class="user-block__avatar-online"></div>
-                    </div>
-                    <div class="user-block__info">User Userenco</div>
-                  </div>
                   <div class="party__user-block user-block">
                     <div class="user-block__avatar-img-block">
                       <img
@@ -204,9 +173,42 @@
                   <svg>
                     <use xlink:href="src/images/sprite.svg#filters"></use>
                   </svg>
+                  <h2 class="find-lobby__filters-title">Фильтры</h2>
                 </div>
-                <div class="find-lobby__filters-title"></div>
-                <div class="find-lobby__rate-filter"> </div>
+                <div class="find-lobby__rate-filter rate-filter accordion">
+                  <div class="rate-filter__title-block accordion__header">
+                    <div class="rate-filter__title accordion__title"
+                      >Ставка</div
+                    >
+                    <svg class="accordion__arrow">
+                      <use xlink:href="src/images/sprite.svg#arrow-down"></use>
+                    </svg>
+                  </div>
+                  <div class="accordion__content rate-filter__content">
+                    <div class="rate-filter__range" id="slider-round"></div>
+                  </div>
+                </div>
+                <div class="find-lobby__rate-filter rate-filter accordion">
+                  <div class="rate-filter__title-block accordion__header">
+                    <div class="rate-filter__title accordion__title"
+                      >Ставка</div
+                    >
+                    <svg class="accordion__arrow">
+                      <use xlink:href="src/images/sprite.svg#arrow-down"></use>
+                    </svg>
+                  </div>
+                  <div class="accordion__content"
+                    ><p>
+                      > Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Soluta rem dignissimos aliquam officia laborum culpa
+                      architecto, sit a incidunt. Magni hic doloremque, minima a
+                      harum ipsum natus aperiam cupiditate, minus impedit
+                      tempora sapiente? Ex, dolor, nihil hic veritatis
+                      aspernatur iste nemo accusamus nisi, facilis molestiae
+                      adipisci et reprehenderit. In, voluptas! ></p
+                    >
+                  </div>
+                </div>
                 <div class="find-lobby__maps-filter"> </div>
                 <div class="find-lobby__game-mode-filter"> </div>
                 <div class="find-lobby__region-filter"> </div>
@@ -236,7 +238,7 @@
         <section class="match-page__content content tabs-block">
           <div class="content__tabs-content tabs-block__tabs">
             <div
-              class="tabs-content__tab tabs-block__tab tabs-block__tab_active"
+              class="tabs-content__tab tabs-block__tab"
               data-tab-name="open-match"
             >
               ОТКРЫТЫЕ МАТЧИ</div

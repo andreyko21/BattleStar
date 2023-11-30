@@ -1,0 +1,46 @@
+.accordion {
+  width: 100%;
+  padding: 8px 12px 19px 16px;
+  border-radius: 4px;
+  background: inherit;
+  transition: $standartTrans;
+
+  &_active {
+    background: $gray800; // rgba(248 248 248 0.05)
+  }
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    color: $gray100; // #bfbfbf
+    font-size: 18px;
+    font-style: normal;
+    line-height: normal;
+  }
+
+  &__arrow {
+    width: 24px;
+    height: 24px;
+    margin-right: 4.12px;
+    transform: rotate(0deg);
+    transition: transform 0.2s ease-out;
+    fill: $gray25; // #f8f8f8;
+
+    &_active {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__content {
+    max-height: 0px;
+    overflow: hidden;
+    transition: $standartTrans;
+    p {
+      padding: 16px 0px 0px 0px;
+    }
+  }
+}

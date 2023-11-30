@@ -8,6 +8,7 @@
 @import './components/btns';
 @import './components/calibration-pop-up';
 @import './components/tabs';
+@import './components/accordion';
 
 .wrapper {
   overflow: hidden;
@@ -52,7 +53,7 @@
     max-width: 272px;
     // width: 100%;
     // height: 42px;
-    // margin: 0px 0px 33px 0px;
+    margin-bottom: 25px;
     // padding: 0px 17px 0px 17px;
     // display: flex;
     // justify-content: space-between;
@@ -93,10 +94,10 @@
 }
 
 .party {
-  padding: 8px 17px 19px 17px;
+  padding: 8px 17px 19px 12px;
   &__title-block {
     width: 100%;
-    margin: 0px 0px 10px 0px;
+    margin: 0px 0px 9px 0px;
     display: flex;
     align-items: center;
   }
@@ -158,6 +159,7 @@
     position: relative;
     width: 46px;
     height: 46px;
+    // margin: 0px 0px 0px -3px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -337,6 +339,54 @@
   &__anticheat {
   }
 }
+.rate-filter {
+  &__title-block {
+  }
+
+  &__title {
+  }
+
+  &__range#slider-round {
+    margin: 10px 0px 20px 0px;
+    height: 2px;
+    background: $gray100; // #bfbfbf;
+    border: unset;
+    .noUi-connect {
+      height: 4px;
+      background: $Goldenrod; // #fac704;
+    }
+
+    .noUi-handle {
+      width: 16px;
+      height: 16px;
+      top: -8px;
+      right: 0px; /* half the width */
+      background: $Goldenrod;
+      border-radius: 8px;
+      border: 3px solid $gray100;
+      box-shadow: unset;
+      &::after,
+      &::before {
+        display: none;
+      }
+
+      &-lower {
+        right: -8px;
+      }
+    }
+  }
+}
+.accordion {
+  &__header {
+  }
+
+  &__arrow {
+  }
+
+  &__content {
+  }
+}
+
 .create-lobby {
 }
 

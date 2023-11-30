@@ -1,4 +1,4 @@
-import { setLocateParam, getLocateParam } from '../functions/windowLocation';
+import { setLocateParam, getLocateParam } from '../functions/windowLocation.ts';
 export interface IBaseTabs {
   classTabsBlock: string;
   tabsBlock: HTMLDivElement;

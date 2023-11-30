@@ -19,6 +19,7 @@ export type TeamType = {
   id: string;
   attributes: TeamAttributes;
   getTemplate(): string;
+  getItemTemplate(): string;
 };
 
 export class Team implements TeamType {

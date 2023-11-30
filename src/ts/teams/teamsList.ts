@@ -5,7 +5,6 @@ import prelouder from "./../../images/prelouder.gif";
 import { Filtering } from "./filtering";
 import { Sorting } from "./sorting";
 import { Pagination } from "./pagination";
-import { removeAllParams, setLocateParam } from "../functions/windowLocation";
 
 type ListTeamsType = {
   listBlock: JQuery<HTMLElement>;
@@ -71,11 +70,6 @@ class ListTeamsSorting extends ListTeams {
     this.sorting = new Sorting(sort);
     this.filtering = new Filtering(filter);
     this.getRequest();
-    this.bindEvents();
-  }
-
-  bindEvents() {
-    this.listBlock.on("click", ".teams-list__team-item", (event) => {});
   }
 
   async getRequest(): Promise<void> {

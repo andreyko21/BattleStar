@@ -14,10 +14,6 @@ if (getLocateParam("id")) {
     GetTeams,
     2
   );
-  console.log("Нема id");
-  const filtersTabsBlock = document.querySelector(
-    ".match-page__filters"
-  ) as HTMLDivElement;
-  new BaseTabs(filtersTabsBlock);
-  new LavaLamp("match-page__filters");
+  new BaseTabs("tabs");
+  new LavaLamp("tabs");
 }

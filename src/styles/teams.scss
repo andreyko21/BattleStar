@@ -103,3 +103,21 @@
     margin-top: 78px;
   }
 }
+
+.filters {
+  &__tabs {
+    max-width: fit-content;
+    gap: 50px;
+  }
+  &__tab {
+    padding-left: 63px;
+    padding-right: 63px;
+  }
+}
+
+.prelouder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}

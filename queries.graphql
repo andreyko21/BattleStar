@@ -69,6 +69,62 @@ query GetTeams(
   }
 }
 
+query GetTeamById($teamId: ID!) {
+  team(id: $teamId) {
+    data {
+      id
+      attributes {
+        name
+        rating
+        earned
+        matches_played
+        victories_in_tournaments
+        createdAt
+        updatedAt
+        publishedAt
+        participants {
+          data {
+            id
+          }
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+        logo {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+        awards {
+          data {
+            id
+            attributes {
+              name
+              logo {
+                data {
+                  id
+                  attributes {
+                    name
+                    alternativeText
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 query GetAwards {
   awards {
     data {

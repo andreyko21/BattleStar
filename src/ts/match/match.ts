@@ -21,12 +21,12 @@ if (popUp && overlay) {
   calibrationBtn?.addEventListener('click', () => calibrationPopUp.close());
 }
 
-const filtersTabsBlock = document.querySelector(
-  '.match-page__filters'
-) as HTMLDivElement;
-const contentTabsBlock = document.querySelector(
-  '.match-page__content'
-) as HTMLDivElement;
+//const filtersTabsBlock = document.querySelector(
+//  '.match-page__filters'
+//) as HTMLDivElement;
+//const contentTabsBlock = document.querySelector(
+//  '.match-page__content'
+//) as HTMLDivElement;
 
 //! ----- Для прикладу----
 
@@ -39,26 +39,38 @@ const mayMethods: IRenderMethod = {
   },
 };
 
-if (filtersTabsBlock) {
-  //  new ContentTabs(filtersTabsBlock);
-  new BaseTabs('match-page__filters', mayMethods);
-  new LavaLamp('match-page__filters');
-}
-if (contentTabsBlock) {
-  //  new ContentTabs(filtersTabsBlock);
-  new BaseTabs('match-page__content', mayMethods);
-  new LavaLamp('match-page__content');
-}
+new BaseTabs('match-page__filters', mayMethods);
+new LavaLamp('match-page__filters');
+
+new BaseTabs('match-page__content', mayMethods);
+new LavaLamp('match-page__content');
 
 new Accordion('find-lobby__rate-filter');
+new Accordion('find-lobby__maps-filter');
 
-let range = document.querySelector('.rate-filter__range') as target;
+let rateFilterSlider = document.querySelector('.rate-filter__slider') as target;
 
-noUiSlider.create(range, {
+noUiSlider.create(rateFilterSlider, {
   start: [20, 80],
   connect: true,
   range: {
     min: 0,
     max: 100,
   },
+});
+
+const rateMin = document.querySelector(
+  '.rate-filter__lower-slider-output'
+) as HTMLDivElement;
+const rateMax = document.querySelector(
+  '.rate-filter__upper-slider-output'
+) as HTMLDivElement;
+
+rateFilterSlider.noUiSlider?.on('update', function (values, handle) {
+  //  rateValues[handle].innerHTML = `${values[handle]}`;
+  if (handle) {
+    rateMax.innerHTML = `$ ${values[handle]}`;
+  } else {
+    rateMin.innerHTML = `$ ${values[handle]}`;
+  }
 });

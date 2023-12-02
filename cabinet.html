@@ -19,16 +19,99 @@
                   <load="src/html/components/ui/asideMenu.html" />
                </aside>
                <article id="statistics" class="cabinet__statistics statistics">
-<div class="statistics__cs">
-   <canvas id="myChart"></canvas>
-</div>
-<div class="statistics__dota">
-   <canvas id="dota"></canvas>
-</div>
+                  <section class="match-page__filters filters tabs-block">
+                     <div class="filters__tabs tabs-block__tabs">
+                        <div class="filters__tab tabs-block__tab tabs-block__tab_active" data-tab-name="find">CS:GO</div>
+                        <div class="filters__tab tabs-block__tab" data-tab-name="create">DOTA 2</div>
+                        <div class="tabs-block__lamp"></div>
+                     </div>
+                     <div class="filters__content tabs-block__content">
+                        <div class="filters__find-lobby 
+                        find-lobby tabs-block__content-container 
+                        tabs-block__content-container_active"
+                        id="find-content">
+                        <div class="statistics__header">
+                           <div class="statistics__header-rating">
+                              <p class="statistics__header-text">Ранг: <span>1682</span></p>
+                              <div class="statistics__header-rank">
+                                 <img src="" alt="">
+                              </div>
+                              
+                           </div>
+                           <div class="statistics__header-info">
+                              <div class="statistics__header-tourney">
+                                 <svg>
+                                    <use xlink:href="src/images/sprite.svg#tourney"></use>
+                                 </svg>
+                                 <p class="statistics__header-subtext">4<span>Турнира</span></p>
+                              </div>
+                              <div class="statistics__header-winrate">
+                                 <svg>
+                                    <use xlink:href="src/images/sprite.svg#winrate"></use>
+                                 </svg>
+                                 <p class="statistics__header-subtext">76%<span>Винрейт</span></p>
+                              </div>
+                              <div class="statistics__header-time">
+                                 <svg>
+                                    <use xlink:href="src/images/sprite.svg#time"></use>
+                                 </svg>
+                                 <p class="statistics__header-subtext">214<span>Часов в игре</span></p>
+                              </div>
+                           </div>
 
+                           
+                        </div>
+                           <div class="statistics__cs">
+                              <div class="statistics__cs-info">
+                                 <h2 class="statistics__cs-title">Статистика</h2>
+                                 <p class="statistics__cs-text">Матчей сыграно: <span>1023</span></p>
+                                 <p class="statistics__cs-text">Карт сыграно: <span>23</span></p>
+                                 <p class="statistics__cs-text">Побед: <span>798</span></p>
+                                 <p class="statistics__cs-text">Поражений: <span>225</span></p>
+                                 <p class="statistics__cs-text">Убийств: <span>2304</span></p>
+                                 <p class="statistics__cs-text">Смертей: <span>1389</span></p>
+                              </div>
+                              <div class="statistics__cs-schedule">
+                                 <h2 class="statistics__cs-title">Статистика</h2>
+                                 <canvas class="statistics__cs-chart"  id="myChart"></canvas>
+                              </div>
+                              
+                             
+                           </div>
+                        </div>
+                        <div class="filters__create-lobby create-lobby tabs-block__content-container"
+                           id="create-content">
+                           <div class="statistics__dota">
+                              <canvas id="dota"></canvas>
+                           </div>
+                        </div>
+                     </div>
+                  </section>
+
+
+
+
+               </article>
+               <article id="history" class="cabinet__history history hide">
+                  <div class="history__content">
+                     <div class="history__content-row">
+                        <h2 class="history__content-title">История матчей</h2>
+                        <div class="history__content-filter">
+
+                        </div>
+                     </div>
+           
+                     <div class="history__content"></div>
+                     <div class="history__content"></div>
+                     <div class="history__content"></div>
+                     <div class="history__content"></div>
+                     <div class="history__content"></div>
+                     <div class="history__content"></div>
+                     <div class="history__content"></div>
+                     <div class="history__content"></div>
+                  </div>
                   
                </article>
-               <article id="history" class="cabinet__history history hide"></article>
                <article id="personal" class="cabinet__personal personal hide"></article>
                <article id="wallet" class="cabinet__wallet wallet hide"></article>
                <article id="setting" class="cabinet__setting setting hide">
@@ -39,116 +122,117 @@
                </article>
                <article id="blacklist" class="cabinet__blacklist blacklist hide">
                   <h2 class="setting__title title">Черный список</h2>
-                  <div class="blacklist__content">                 
-                  <div class="blacklist__item">
-                     <div class="blacklist__row">
-                        <div class="blacklist__row-avatar"></div>
-                        <div class="blacklist__row-column">
-                           <p class="blacklist__row-name">SergioRicht</p>
-                           <p class="blacklist__row-info">Играет в CS:GO</p>
+                  <div class="blacklist__content">
+                     <div class="blacklist__item">
+                        <div class="blacklist__row">
+                           <div class="blacklist__row-avatar"></div>
+                           <div class="blacklist__row-column">
+                              <p class="blacklist__row-name">SergioRicht</p>
+                              <p class="blacklist__row-info">Играет в CS:GO</p>
+                           </div>
+                           <div class="blacklist__row-rang"></div>
+                           <div class="blacklist__row-more">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#more"></use>
+                              </svg>
+                           </div>
                         </div>
-                        <div class="blacklist__row-rang"></div>
-                        <div class="blacklist__row-more">
-                           <svg>
-                              <use xlink:href="src/images/sprite.svg#more"></use>
-                           </svg>
+                        <hr class="blacklist__line">
+                        <div class="blacklist__row">
+                           <div class="blacklist__row-avatar"></div>
+                           <div class="blacklist__row-column">
+                              <p class="blacklist__row-name">SergioRicht</p>
+                              <p class="blacklist__row-info">Играет в CS:GO</p>
+                           </div>
+                           <div class="blacklist__row-rang"></div>
+                           <div class="blacklist__row-more">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#more"></use>
+                              </svg>
+                           </div>
                         </div>
+                        <hr class="blacklist__line">
+                        <div class="blacklist__row">
+                           <div class="blacklist__row-avatar"></div>
+                           <div class="blacklist__row-column">
+                              <p class="blacklist__row-name">SergioRicht</p>
+                              <p class="blacklist__row-info">Играет в CS:GO</p>
+                           </div>
+                           <div class="blacklist__row-rang"></div>
+                           <div class="blacklist__row-more">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#more"></use>
+                              </svg>
+                           </div>
+                        </div>
+                        <hr class="blacklist__line">
+                        <div class="blacklist__row">
+                           <div class="blacklist__row-avatar"></div>
+                           <div class="blacklist__row-column">
+                              <p class="blacklist__row-name">SergioRicht</p>
+                              <p class="blacklist__row-info">Играет в CS:GO</p>
+                           </div>
+                           <div class="blacklist__row-rang"></div>
+                           <div class="blacklist__row-more">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#more"></use>
+                              </svg>
+                           </div>
+                        </div>
+                        <hr class="blacklist__line">
+                        <div class="blacklist__row">
+                           <div class="blacklist__row-avatar"></div>
+                           <div class="blacklist__row-column">
+                              <p class="blacklist__row-name">SergioRicht</p>
+                              <p class="blacklist__row-info">Играет в CS:GO</p>
+                           </div>
+                           <div class="blacklist__row-rang"></div>
+                           <div class="blacklist__row-more">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#more"></use>
+                              </svg>
+                           </div>
+                        </div>
+                        <hr class="blacklist__line">
+                        <div class="blacklist__row">
+                           <div class="blacklist__row-avatar"></div>
+                           <div class="blacklist__row-column">
+                              <p class="blacklist__row-name">SergioRicht</p>
+                              <p class="blacklist__row-info">Играет в CS:GO</p>
+                           </div>
+                           <div class="blacklist__row-rang"></div>
+                           <div class="blacklist__row-more">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#more"></use>
+                              </svg>
+                           </div>
+                        </div>
+                        <hr class="blacklist__line">
+                        <div class="blacklist__row">
+                           <div class="blacklist__row-avatar"></div>
+                           <div class="blacklist__row-column">
+                              <p class="blacklist__row-name">SergioRicht</p>
+                              <p class="blacklist__row-info">Играет в CS:GO</p>
+                           </div>
+                           <div class="blacklist__row-rang"></div>
+                           <div class="blacklist__row-more">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#more"></use>
+                              </svg>
+                           </div>
+                        </div>
+                        <hr class="blacklist__line">
                      </div>
-                     <hr class="blacklist__line">
-                     <div class="blacklist__row">
-                        <div class="blacklist__row-avatar"></div>
-                        <div class="blacklist__row-column">
-                           <p class="blacklist__row-name">SergioRicht</p>
-                           <p class="blacklist__row-info">Играет в CS:GO</p>
-                        </div>
-                        <div class="blacklist__row-rang"></div>
-                        <div class="blacklist__row-more">
-                           <svg>
-                              <use xlink:href="src/images/sprite.svg#more"></use>
-                           </svg>
-                        </div>
+                     <div class="blacklist__info">
+                        <svg>
+                           <use xlink:href="src/images/sprite.svg#alert-circle"></use>
+                           <p class="blacklist__text">
+                              Люди из черного списка не могут приглашать вас в команды, отправлять сообщения или
+                              добавлять в пати
+                           </p>
+                        </svg>
                      </div>
-                     <hr class="blacklist__line">
-                     <div class="blacklist__row">
-                        <div class="blacklist__row-avatar"></div>
-                        <div class="blacklist__row-column">
-                           <p class="blacklist__row-name">SergioRicht</p>
-                           <p class="blacklist__row-info">Играет в CS:GO</p>
-                        </div>
-                        <div class="blacklist__row-rang"></div>
-                        <div class="blacklist__row-more">
-                           <svg>
-                              <use xlink:href="src/images/sprite.svg#more"></use>
-                           </svg>
-                        </div>
-                     </div>
-                     <hr class="blacklist__line">
-                     <div class="blacklist__row">
-                        <div class="blacklist__row-avatar"></div>
-                        <div class="blacklist__row-column">
-                           <p class="blacklist__row-name">SergioRicht</p>
-                           <p class="blacklist__row-info">Играет в CS:GO</p>
-                        </div>
-                        <div class="blacklist__row-rang"></div>
-                        <div class="blacklist__row-more">
-                           <svg>
-                              <use xlink:href="src/images/sprite.svg#more"></use>
-                           </svg>
-                        </div>
-                     </div>
-                     <hr class="blacklist__line">
-                     <div class="blacklist__row">
-                        <div class="blacklist__row-avatar"></div>
-                        <div class="blacklist__row-column">
-                           <p class="blacklist__row-name">SergioRicht</p>
-                           <p class="blacklist__row-info">Играет в CS:GO</p>
-                        </div>
-                        <div class="blacklist__row-rang"></div>
-                        <div class="blacklist__row-more">
-                           <svg>
-                              <use xlink:href="src/images/sprite.svg#more"></use>
-                           </svg>
-                        </div>
-                     </div>
-                     <hr class="blacklist__line">
-                     <div class="blacklist__row">
-                        <div class="blacklist__row-avatar"></div>
-                        <div class="blacklist__row-column">
-                           <p class="blacklist__row-name">SergioRicht</p>
-                           <p class="blacklist__row-info">Играет в CS:GO</p>
-                        </div>
-                        <div class="blacklist__row-rang"></div>
-                        <div class="blacklist__row-more">
-                           <svg>
-                              <use xlink:href="src/images/sprite.svg#more"></use>
-                           </svg>
-                        </div>
-                     </div>
-                     <hr class="blacklist__line">
-                     <div class="blacklist__row">
-                        <div class="blacklist__row-avatar"></div>
-                        <div class="blacklist__row-column">
-                           <p class="blacklist__row-name">SergioRicht</p>
-                           <p class="blacklist__row-info">Играет в CS:GO</p>
-                        </div>
-                        <div class="blacklist__row-rang"></div>
-                        <div class="blacklist__row-more">
-                           <svg>
-                              <use xlink:href="src/images/sprite.svg#more"></use>
-                           </svg>
-                        </div>
-                     </div>
-                     <hr class="blacklist__line">                     
                   </div>
-                  <div class="blacklist__info">
-                     <svg>
-                        <use xlink:href="src/images/sprite.svg#alert-circle"></use>
-                        <p class="blacklist__text"> 
-                           Люди из черного списка не могут приглашать вас в команды, отправлять сообщения или добавлять в пати
-                        </p>
-                     </svg>
-                  </div>
-               </div>
 
 
 
@@ -158,7 +242,7 @@
       </main>
    </div>
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="./src/ts/cabinet/cabinet.ts"></script>
+   <script type="module" src="./src/ts/cabinet/cabinet.ts"></script>
 </body>
 
 </html>

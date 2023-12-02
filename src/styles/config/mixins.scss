@@ -248,7 +248,6 @@
     color: $yellow300;
   }
 }
-<<<<<<< HEAD
 @mixin tabs-menu {
   position: relative;
   transform-origin: bottom right;
@@ -299,8 +298,7 @@
       color: $red500;
    }
   }
-=======
-
+}
 @mixin hover-block {
   visibility: hidden;
   opacity: 0;
@@ -317,5 +315,4 @@
   line-height: normal;
   transition: $standartTrans;
   z-index: 1;
->>>>>>> cec30d1b0bd33d4b2f80a5ad5f1d1201457d2991
 }

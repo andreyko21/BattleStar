@@ -1,6 +1,4 @@
 import $ from "jquery";
-import AirDatepicker from "air-datepicker";
-
 import { initDropDown } from "../../dropDownMenu";
 import Swiper from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
@@ -22,7 +20,6 @@ class Main implements MainType {
 
   init() {
     this.numberPlayers();
-    // this.initDatepicker();
     this.bannerSwiper();
     this.tourneySwiper()
     initDropDown();
@@ -34,8 +31,6 @@ class Main implements MainType {
       $(element).text(`${index + 1}`);
     });
   }
-
-
 
   bannerSwiper() {
     new Swiper(".banner__swiper", {

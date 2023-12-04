@@ -24,27 +24,27 @@ class Cabinet implements CabinetType {
     console.log(this.menuTabts);
     //  this.ctx = document.querySelector("#myChart") as HTMLCanvasElement;
     //  this.dota = document.querySelector("#dota") as HTMLCanvasElement;
-    this.checkMenu();
+   //  this.checkMenu();
     getCalendar();
     //  this.cs();
     //   this.dotas();
   }
 
-  checkMenu() {
-    this.menuTabts.each((index, tab) => {
-      $(tab).on("click", () => {
-        this.menuTabts.removeClass("menu__link_act");
-        $(tab).addClass("menu__link_act");
-        const tabData = $(tab).data("hash");
+//   checkMenu() {
+//     this.menuTabts.each((index: number, tab) => {
+//       $(tab).on("click", () => {
+//         this.menuTabts.removeClass("menu__link_act");
+//         $(tab).addClass("menu__link_act");
+//         const tabData = $(tab).data("hash");
 
-        // console.log(tabHash);
-        // const tabHash = $(`#${tabData}`);
-        // console.log(tabHash);
-        window.location.hash = tabData;
-      });
-    });
+//         // console.log(tabHash);
+//         // const tabHash = $(`#${tabData}`);
+//         // console.log(tabHash);
+//         window.location.hash = tabData;
+//       });
+//     });
     
-  }
+//   }
 
 
 

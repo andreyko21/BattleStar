@@ -1,4 +1,6 @@
+import { setLocateParam, getLocateParam } from '../functions/windowLocation';
 export interface IBaseTabs {
+  classTabsBlock: string;
   tabsBlock: HTMLDivElement;
   objectWithMethod: IRenderMethod | undefined;
   tabs: HTMLDivElement | null;
@@ -17,6 +19,7 @@ class BaseTabs implements IBaseTabs {
   public readonly CONTENT_CONTAINER_ACTIVE_CLASS =
     'tabs-block__content-container_active'; //Клас активного контейнера для контенту вибраного табом
 
+  readonly classTabsBlock: string;
   readonly tabsBlock: HTMLDivElement;
   readonly objectWithMethod: IRenderMethod | undefined;
   readonly tabs: HTMLDivElement | null;
@@ -24,8 +27,11 @@ class BaseTabs implements IBaseTabs {
   readonly tabsBlockContent: HTMLDivElement | null;
   readonly contentContainers: NodeListOf<Element>;
 
-  constructor(tabsBlock: HTMLDivElement, objectWithMethod?: IRenderMethod) {
-    this.tabsBlock = tabsBlock;
+  constructor(classTabsBlock: string, objectWithMethod?: IRenderMethod) {
+    this.classTabsBlock = classTabsBlock;
+    this.tabsBlock = document.querySelector(
+      `.${classTabsBlock}`
+    ) as HTMLDivElement; // tabsBlock;
     if (objectWithMethod != undefined) {
       this.objectWithMethod = objectWithMethod;
     }
@@ -42,9 +48,7 @@ class BaseTabs implements IBaseTabs {
   }
 
   private changeTabForHash() {
-    const hash = window.location.hash.startsWith('#')
-      ? window.location.hash.slice(1)
-      : null;
+    const hash = getLocateParam(this.classTabsBlock);
     if (hash) {
       this.allTabs.forEach((item) => {
         if (item.dataset.tabName == hash) {
@@ -73,7 +77,7 @@ class BaseTabs implements IBaseTabs {
               this.selectMethod(targetTabName);
             }
             this.selectContentContainer(targetTabName);
-            window.location.hash = targetTabName;
+            setLocateParam(this.classTabsBlock, targetTabName);
           }
         }
       });
@@ -81,7 +85,7 @@ class BaseTabs implements IBaseTabs {
   }
 
   /**
-   * Перевіряєчи подія відбулася на табі і повертає Id елемента, якщо він таб
+   * Перевіряє чи подія відбулася на табі і повертає Id елемента, якщо він таб
    * @param target Елемент на якому відбулась подія
    * @returns Id елемента на якому відбулась подія, якщо він являється табом
    */

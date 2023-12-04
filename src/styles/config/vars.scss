@@ -4,7 +4,7 @@ $maxWidthContainer: 1556; // ширина контейнера с учетом p
 $containerWidth: 1526; // ширина контейнера из макета
 
 $mainOffset: 15; // отступы безопасности для контейнера
-$mainFont: 'Roboto'; // !указать здесь основное семейство шрифта
+$mainFont: "Roboto"; // !указать здесь основное семейство шрифта
 $mainWeight: 400; // !указать здесь основное начертание шрифта
 
 $headerHeight: 100;
@@ -52,6 +52,8 @@ $dark600: #1D1D21;
 $dark700: #242426;
 
 // $dark600: #1d1d21;
+$dark600: #1d1d21;
+$dark700: #242426;
 
 //# ----- yellow -----
 $yellow300: #fac704;
@@ -76,6 +78,9 @@ $gradient200: linear-gradient(262deg, #7D70D1 0%, #134B48 100%);
 $gradient300: linear-gradient(180deg, #fff 0%, #ffe06b 42.71%, #d2d2d2 100%);
 $gradient400: linear-gradient(180deg, #FAC704 0%, rgba(196, 196, 196, 0.00) 100%);
 $gradient200: linear-gradient(262deg, #7d70d1 0%, #134b48 100%);
+$gradient200: linear-gradient(262deg, #7d70d1 0%, #134b48 100%);
+$gradient300: linear-gradient(180deg, #fff 0%, #ffe06b 42.71%, #d2d2d2 100%);
+$gradient400: linear-gradient(180deg, #fac704 0%, rgba(196, 196, 196, 0) 100%);
 
 $firstAccentColor: $blackColor;
 $secondAccentColor: $redColor;

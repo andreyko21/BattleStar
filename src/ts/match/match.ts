@@ -37,11 +37,11 @@ const mayMethods: IRenderMethod = {
 
 if (filtersTabsBlock) {
   //  new ContentTabs(filtersTabsBlock);
-  new BaseTabs(filtersTabsBlock, mayMethods);
+  new BaseTabs('match-page__filters', mayMethods);
   new LavaLamp('match-page__filters');
 }
 if (contentTabsBlock) {
   //  new ContentTabs(filtersTabsBlock);
-  new BaseTabs(contentTabsBlock, mayMethods);
+  new BaseTabs('match-page__content', mayMethods);
   new LavaLamp('match-page__content');
 }

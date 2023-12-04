@@ -1,61 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Команди</title>
-    <link rel="stylesheet" href="src/styles/teams.scss">
-</head>
-<body>
-     <div class="wrapper">
-      <load="src/html/header.html" />
-      <load="src/html/sidebar.html" />
+    <link rel="stylesheet" href="src/styles/teams.scss" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <load ="src/html/header.html" />
+      <load ="src/html/sidebar.html" />
       <main class="page teams-page">
         <div class="teams-page__container">
-           <section class="match-page__filters filters tabs-block">
-          <div class="filters__tabs tabs-block__tabs">
-            <div
-              class="filters__tab tabs-block__tab tabs-block__tab_active"
-              data-tab-name="find"
-              >НАЙТИ ИГРУ</div
-            >
-            <div class="filters__tab tabs-block__tab" data-tab-name="create"
-              >СОЗДАТЬ ЛОББИ</div
-            >
-            <div class="tabs-block__lamp"></div>
-          </div>
-          <div class="filters__content tabs-block__content">
-            <div
-              class="filters__find-lobby find-lobby tabs-block__content-container tabs-block__content-container_active"
-              id="find-content"
-            >
+          <section class="tabs filters tabs-block">
+            <div class="filters__tabs tabs-block__tabs">
+              <div
+                class="filters__tab tabs-block__tab"
+                data-tab-name="my-teams"
+              >
+                МОИ КОМАНДЫ
+              </div>
+              <div
+                class="filters__tab tabs-block__tab"
+                data-tab-name="open-teams"
+              >
+                ОТКРЫТЫЕ КОМАНДЫ
+              </div>
+              <div
+                class="filters__tab tabs-block__tab"
+                data-tab-name="top-teams"
+              >
+                ТОП КОМАНД
+              </div>
+              <div class="tabs-block__lamp"><span></span></div>
             </div>
-            <div
-              class="filters__create-lobby create-lobby tabs-block__content-container"
-              id="create-content"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
-              molestias consectetur impedit molestiae reiciendis obcaecati magni
-              enim non et ad vero officia delectus voluptates facere debitis
-              exercitationem, cumque nisi modi placeat eos voluptate, blanditiis
-              reprehenderit. Voluptatum consequuntur, nostrum sit unde ipsam ab?
-              Facilis nobis porro dolores ea, accusantium atque sequi!
-              Accusantium atque dolorum dicta minus voluptates nulla
-              exercitationem soluta odit excepturi totam omnis eos deleniti,
-              asperiores corporis eius harum autem in deserunt at nobis. Natus
-              sint itaque totam officia nam quis ratione illo quod harum,
-              necessitatibus cum sed animi tempore eum consectetur? Ea
-              aspernatur laudantium doloremque, excepturi reiciendis nemo
-              dignissimos!
+            <div class="filters__content tabs-block__content">
+              <div
+                class="filters__find-lobby find-lobby tabs-block__content-container tabs-block__content-container_active"
+                id="my-teams-content"
+              >
+                <load ="src/html/components/teams/my-teams.html" />
+              </div>
+              <div
+                class="filters__find-lobby find-lobby tabs-block__content-container"
+                id="open-teams-content"
+              >
+                <load ="src/html/components/teams/open-teams.html" />
+              </div>
+              <div
+                class="filters__create-lobby create-lobby tabs-block__content-container"
+                id="top-teams-content"
+              >
+                <load ="src/html/components/teams/top-teams.html" />
+              </div>
             </div>
-          </div>
-        </section>
-          <load="src/html/components/teams/teams-invite.html"/>
-          <load="src/html/components/teams/my-teams.html"/>
-          <load="src/html/components/teams/open-teams.html"/>
-          <load="src/html/components/teams/top-teams.html"/>
+          </section>
         </div>
       </main>
-       <script type="module" src="src/teams.ts"></script>
-</body>
+    </div>
+    <script type="module" src="src/teams.ts"></script>
+  </body>
 </html>

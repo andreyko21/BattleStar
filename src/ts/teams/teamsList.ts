@@ -1,7 +1,7 @@
 import $ from "jquery";
 import { RequestDocument, request } from "graphql-request";
 import { AllTeamsRequest, Team, TeamType } from "./../../ts/types";
-
+import prelouder from "./../../images/prelouder.gif";
 import { Filtering } from "./filtering";
 import { Sorting } from "./sorting";
 import { Pagination } from "./pagination";
@@ -73,6 +73,10 @@ class ListTeamsSorting extends ListTeams {
   }
 
   async getRequest(): Promise<void> {
+    this.listBlock.empty();
+    this.listBlock.append(
+      `<div class="prelouder"><img class="prelouder__img" src="${prelouder}" alt="logo"></div>`
+    );
     this.teamsList = await request(
       "https://battle-star-app.onrender.com/graphql",
       this.requestObject,
@@ -83,6 +87,7 @@ class ListTeamsSorting extends ListTeams {
         pageSize: this.pageSize,
       }
     );
+    this.listBlock.empty();
     this.pagination = new Pagination(
       this.teamsList.teams.meta,
       this.currentPage

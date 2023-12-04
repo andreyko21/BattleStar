@@ -1,14 +1,18 @@
 type TeamsRequest {
-  data: [TeamRequest]
+  data: [Team]
   meta: Meta
 }
 
 type TeamRequest {
-  id: ID
-  attributes: TeamAttributesRequest
+  data: [Team]
 }
 
-type TeamAttributesRequest {
+type Team {
+  id: ID
+  attributes: TeamAttributes
+}
+
+type TeamAttributes {
   name: String
   rating: Int
   earned: Int
@@ -98,6 +102,7 @@ type Query {
     pagination: PaginationInput
   ): TeamsRequest
   awards: [AwardsRequest]
+  team(id: ID): TeamRequest
 }
 
 

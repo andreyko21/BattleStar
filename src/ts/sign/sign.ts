@@ -1,7 +1,7 @@
 import axios from "axios";
 import $ from "jquery";
 import "jquery-validation";
-import "./styles/sign.scss";
+// import "./styles/sign.scss";
 
 type SignType = {
   signUp: JQuery<HTMLFormElement>;

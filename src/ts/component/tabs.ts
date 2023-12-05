@@ -1,4 +1,4 @@
-import { setLocateParam, getLocateParam } from '../functions/windowLocation';
+import { setLocateParam, getLocateParam } from '../functions/windowLocation.ts';
 export interface IBaseTabs {
   classTabsBlock: string;
   tabsBlock: HTMLDivElement;
@@ -36,7 +36,7 @@ class BaseTabs implements IBaseTabs {
       this.objectWithMethod = objectWithMethod;
     }
     this.tabs = this.tabsBlock.querySelector(`.${this.TABS_CLASS}`);
-    this.allTabs = this.tabsBlock.querySelectorAll(`.${this.TAB_CLASS}`);
+    this.allTabs = this.tabs!.querySelectorAll(`.${this.TAB_CLASS}`);
     this.tabsBlockContent = this.tabsBlock.querySelector(
       `.${this.TABS_BLOCK_CONTENT_CLASS}`
     );
@@ -63,15 +63,23 @@ class BaseTabs implements IBaseTabs {
   }
 
   private addListenerToTabs() {
-    if (this.tabs) {
+    if (
+      this.tabs &&
+      this.tabs.closest('.tabs-block')?.classList.contains(this.classTabsBlock)
+    ) {
       this.tabs.addEventListener('click', (e) => {
-        if (
-          (e.target as HTMLElement).classList.contains(this.TAB_CLASS) &&
-          !(e.target as HTMLElement).classList.contains(this.TAB_ACTIVE_CLASS)
-        ) {
-          const targetTabName: string | undefined = this.changeActiveTab(
-            e.target as HTMLElement
-          );
+        console.log((e.target as HTMLElement).closest(`.${this.TAB_CLASS}`));
+        console.log(
+          (e.target as HTMLElement).closest(`.${this.TAB_ACTIVE_CLASS}`)
+        );
+
+        const tabTarget: HTMLElement | null = (e.target as HTMLElement).closest(
+          `.${this.TAB_CLASS}`
+        );
+
+        if (tabTarget && !tabTarget.classList.contains(this.TAB_ACTIVE_CLASS)) {
+          const targetTabName: string | undefined =
+            this.changeActiveTab(tabTarget);
           if (targetTabName) {
             if (this.objectWithMethod) {
               this.selectMethod(targetTabName);
@@ -231,5 +239,21 @@ class RenderMethod implements IRenderMethod {
   [key: string]: () => void;
 }
 
-export { BaseTabs, RenderMethod };
+class CreatedObjForIRenderMethod {
+  readonly idArr: string[];
+  readonly func: () => void;
+  constructor(idArr: string[], func: () => void) {
+    this.idArr = idArr;
+    this.func = func;
+  }
+
+  createObj(): IRenderMethod {
+    return this.idArr.reduce((acc: Record<string, () => void>, item) => {
+      acc[item] = this.func;
+      return acc;
+    }, {});
+  }
+}
+
+export { BaseTabs, RenderMethod, CreatedObjForIRenderMethod };
 export type { IRenderMethod };

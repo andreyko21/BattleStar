@@ -1,3 +1,4 @@
+@import 'air-datepicker/air-datepicker.css';
 .air-datepicker {
    width: 382px;
    height: 304px;
@@ -52,12 +53,12 @@
       }
    }
    &-body {
-      &--cells {
-         &.-days- {
+      &.--cells {
+         &-days- {
             grid-row-gap: 10px;
          }
       }
-      &--day {
+      &.--day {
          &-names {
             display: none;
          }

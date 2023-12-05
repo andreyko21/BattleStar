@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/styles/match.scss" />
     <title>Battle Star - Match</title>
   </head>
   <body>
@@ -14,22 +15,19 @@
         <!-- overlay -- прикриває контент при відкритті модального вікна -->
         <div class="overlay"></div>
         <!--<load
-          ="src/html/components/pop-up.html"
-          file="calibration-pop-up"
-          class="match-page__calibration-pop-up calibration-pop-up"
-        />-->
+             ="src/html/components/pop-up.html"
+             file="calibration-pop-up"
+             class="match-page__calibration-pop-up calibration-pop-up"
+           />-->
         <img
           src="./src/images/calibration-lobby/cs-bg.png"
           class="match-page__bg-img"
         />
         <section class="match-page__filters filters tabs-block">
           <div class="filters__tabs tabs-block__tabs">
-            <div
-              class="filters__tab tabs-block__tab tabs-block__tab_active"
-              data-tab-name="find"
+            <div class="filters__tab tabs-block__tab" data-tab-name="find"
+              >НАЙТИ ИГРУ</div
             >
-              НАЙТИ ИГРУ
-            </div>
             <div class="filters__tab tabs-block__tab" data-tab-name="create">
               СОЗДАТЬ ЛОББИ
             </div>
@@ -52,36 +50,6 @@
                 </div>
                 <div class="party__users">
                   <!--<div class="party__users-block">-->
-                  <div class="party__user-block user-block">
-                    <div class="user-block__avatar-img-block">
-                      <img
-                        src="./src/images/temporary/avatar.svg"
-                        class="user-block__avatar-img"
-                      />
-                      <div class="user-block__avatar-online"></div>
-                    </div>
-                    <div class="user-block__info">User Userenco</div>
-                  </div>
-                  <div class="party__user-block user-block">
-                    <div class="user-block__avatar-img-block">
-                      <img
-                        src="./src/images/temporary/avatar.svg"
-                        class="user-block__avatar-img"
-                      />
-                      <div class="user-block__avatar-online"></div>
-                    </div>
-                    <div class="user-block__info">User Userenco</div>
-                  </div>
-                  <div class="party__user-block user-block">
-                    <div class="user-block__avatar-img-block">
-                      <img
-                        src="./src/images/temporary/avatar.svg"
-                        class="user-block__avatar-img"
-                      />
-                      <div class="user-block__avatar-online"></div>
-                    </div>
-                    <div class="user-block__info">User Userenco</div>
-                  </div>
                   <div class="party__user-block user-block">
                     <div class="user-block__avatar-img-block">
                       <img
@@ -205,61 +173,312 @@
                   <svg>
                     <use xlink:href="src/images/sprite.svg#filters"></use>
                   </svg>
+                  <h2 class="find-lobby__filters-title">Фильтры</h2>
                 </div>
-                <div class="find-lobby__filters-title"></div>
-                <div class="find-lobby__rate-filter"></div>
-                <div class="find-lobby__maps-filter"></div>
-                <div class="find-lobby__game-mode-filter"></div>
-                <div class="find-lobby__region-filter"></div>
-                <div class="find-lobby__anticheat"></div>
+                <div class="find-lobby__rate-filter rate-filter accordion">
+                  <div class="rate-filter__title-block accordion__header">
+                    <div class="rate-filter__title accordion__title"
+                      >Ставка</div
+                    >
+                    <svg class="rate-filter__accordion-arrow accordion__arrow">
+                      <use xlink:href="src/images/sprite.svg#arrow-down"></use>
+                    </svg>
+                  </div>
+                  <div class="accordion__content rate-filter__content">
+                    <div class="rate-filter__slider-output-block">
+                      <div class="rate-filter__lower-slider-output"></div>
+                      <div class="rate-filter__upper-slider-output"></div>
+                    </div>
+                    <div class="rate-filter__slider" id="slider-round"></div>
+                    <div class="rate-filter__checkboxes">
+                      <load
+                        ="src/html/components/ui/checkbox.html"
+                        name="100$"
+                        label-text="100$"
+                      />
+                      <load
+                        ="src/html/components/ui/checkbox.html"
+                        name="200$"
+                        label-text="200$"
+                      />
+                      <load
+                        ="src/html/components/ui/checkbox.html"
+                        name="500$"
+                        label-text="500$"
+                      />
+                      <load
+                        ="src/html/components/ui/checkbox.html"
+                        name="200$"
+                        label-text="200$"
+                      />
+                      <load
+                        ="src/html/components/ui/checkbox.html"
+                        name="500$"
+                        label-text="500$"
+                      />
+                      <load
+                        ="src/html/components/ui/checkbox.html"
+                        name="1000$"
+                        label-text="1000$"
+                      />
+                      <load
+                        ="src/html/components/ui/checkbox.html"
+                        name="10000$"
+                        label-text="10000$"
+                      />
+                    </div>
+                    <button class="rate-filter__button btn_yellow">
+                      <svg class="rate-filter__button-icon">
+                        <use
+                          xlink:href="src/images/sprite.svg#auto-selction"
+                        ></use>
+                      </svg>
+                      <div class="rate-filter__button-text">
+                        Автоподбор матча
+                      </div>
+                    </button>
+                  </div>
+                </div>
+                <div class="find-lobby__maps-filter maps-filter accordion">
+                  <div class="maps-filter__title-block accordion__header">
+                    <div class="maps-filter__title accordion__title">Карты</div>
+                    <svg class="accordion__arrow">
+                      <use xlink:href="src/images/sprite.svg#arrow-down"></use>
+                    </svg>
+                  </div>
+                  <div class="maps-filter__content accordion__content">
+                    <load
+                      ="src/html/components/ui/checkbox.html"
+                      name="Dust II"
+                      label-text="Dust II"
+                    />
+                    <load
+                      ="src/html/components/ui/checkbox.html"
+                      name="Mirage"
+                      label-text="Mirage"
+                    />
+                    <load
+                      ="src/html/components/ui/checkbox.html"
+                      name="Ancient"
+                      label-text="Ancient"
+                    />
+                    <load
+                      ="src/html/components/ui/checkbox.html"
+                      name="Lake"
+                      label-text="Lake"
+                    />
+                    <load
+                      ="src/html/components/ui/checkbox.html"
+                      name="Inferno"
+                      label-text="Inferno"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="find-lobby__game-mode-filter game-mode-filter accordion"
+                >
+                  <div class="game-mode-filter__title-block accordion__header">
+                    <div class="game-mode-filter__title accordion__title"
+                      >Режим игры</div
+                    >
+                    <svg class="accordion__arrow">
+                      <use xlink:href="src/images/sprite.svg#arrow-down"></use>
+                    </svg>
+                  </div>
+                  <div class="game-mode-filter__content accordion__content">
+                    <load
+                      ="src/html/components/ui/checkbox.html"
+                      name="1x1"
+                      label-text="1x1"
+                    />
+                    <load
+                      ="src/html/components/ui/checkbox.html"
+                      name="2x2"
+                      label-text="2x2"
+                    />
+                    <load
+                      ="src/html/components/ui/checkbox.html"
+                      name="3x3"
+                      label-text="3x3"
+                    />
+                    <load
+                      ="src/html/components/ui/checkbox.html"
+                      name="5x5"
+                      label-text="5x5"
+                    />
+                  </div>
+                </div>
+                <div class="find-lobby__region-filter region-filter accordion">
+                  <div class="region-filter__title-block accordion__header">
+                    <div class="region-filter__title accordion__title"
+                      >Регион</div
+                    >
+                    <svg class="accordion__arrow">
+                      <use xlink:href="src/images/sprite.svg#arrow-down"></use>
+                    </svg>
+                  </div>
+                  <div class="region-filter__content accordion__content">
+                    <div class="custom-checkbox">
+                      <input
+                        type="checkbox"
+                        name="Afganistan"
+                        id="Afganistan"
+                        class="custom-checkbox__input"
+                      />
+                      <label for="Afganistan" class="custom-checkbox__label">
+                        <svg>
+                          <use
+                            xlink:href="src/images/sprite.svg#check-mark"
+                          ></use>
+                        </svg>
+                      </label>
+                      <label
+                        for="Afganistan"
+                        class="custom-checkbox__label-text"
+                      >
+                        <img
+                          src="./src/images/auganistan-flag.jpg"
+                          alt="flag"
+                        />
+                        <span>Afganistan</span>
+                      </label>
+                    </div>
+                    <div class="custom-checkbox">
+                      <input
+                        type="checkbox"
+                        name="Afganistan"
+                        id="Afganistan"
+                        class="custom-checkbox__input"
+                      />
+                      <label for="Afganistan" class="custom-checkbox__label">
+                        <svg>
+                          <use
+                            xlink:href="src/images/sprite.svg#check-mark"
+                          ></use>
+                        </svg>
+                      </label>
+                      <label
+                        for="Afganistan"
+                        class="custom-checkbox__label-text"
+                      >
+                        <img
+                          src="./src/images/auganistan-flag.jpg"
+                          alt="flag"
+                        />
+                        <span>Afganistan</span>
+                      </label>
+                    </div>
+                    <div class="custom-checkbox">
+                      <input
+                        type="checkbox"
+                        name="Afganistan"
+                        id="Afganistan"
+                        class="custom-checkbox__input"
+                      />
+                      <label for="Afganistan" class="custom-checkbox__label">
+                        <svg>
+                          <use
+                            xlink:href="src/images/sprite.svg#check-mark"
+                          ></use>
+                        </svg>
+                      </label>
+                      <label
+                        for="Afganistan"
+                        class="custom-checkbox__label-text"
+                      >
+                        <img
+                          src="./src/images/auganistan-flag.jpg"
+                          alt="flag"
+                        />
+                        <span>Afganistan</span>
+                      </label>
+                    </div>
+                    <div class="custom-checkbox">
+                      <input
+                        type="checkbox"
+                        name="Afganistan"
+                        id="Afganistan"
+                        class="custom-checkbox__input"
+                      />
+                      <label for="Afganistan" class="custom-checkbox__label">
+                        <svg>
+                          <use
+                            xlink:href="src/images/sprite.svg#check-mark"
+                          ></use>
+                        </svg>
+                      </label>
+                      <label
+                        for="Afganistan"
+                        class="custom-checkbox__label-text"
+                      >
+                        <img
+                          src="./src/images/auganistan-flag.jpg"
+                          alt="flag"
+                        />
+                        <span>Afganistan</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="find-lobby__anticheat"> </div>
               </div>
             </div>
-            <div
-              class="filters__create-lobby create-lobby tabs-block__content-container"
-              id="create-content"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
-              molestias consectetur impedit molestiae reiciendis obcaecati magni
-              enim non et ad vero officia delectus voluptates facere debitis
-              exercitationem, cumque nisi modi placeat eos voluptate, blanditiis
-              reprehenderit. Voluptatum consequuntur, nostrum sit unde ipsam ab?
-              Facilis nobis porro dolores ea, accusantium atque sequi!
-              Accusantium atque dolorum dicta minus voluptates nulla
-              exercitationem soluta odit excepturi totam omnis eos deleniti,
-              asperiores corporis eius harum autem in deserunt at nobis. Natus
-              sint itaque totam officia nam quis ratione illo quod harum,
-              necessitatibus cum sed animi tempore eum consectetur? Ea
-              aspernatur laudantium doloremque, excepturi reiciendis nemo
-              dignissimos!
-            </div>
           </div>
+          <div
+            class="filters__create-lobby create-lobby tabs-block__content-container"
+            id="create-content"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
+            molestias consectetur impedit molestiae reiciendis obcaecati magni
+            enim non et ad vero officia delectus voluptates facere debitis
+            exercitationem, cumque nisi modi placeat eos voluptate, blanditiis
+            reprehenderit. Voluptatum consequuntur, nostrum sit unde ipsam ab?
+            Facilis nobis porro dolores ea, accusantium atque sequi! Accusantium
+            atque dolorum dicta minus voluptates nulla exercitationem soluta
+            odit excepturi totam omnis eos deleniti, asperiores corporis eius
+            harum autem in deserunt at nobis. Natus sint itaque totam officia
+            nam quis ratione illo quod harum, necessitatibus cum sed animi
+            tempore eum consectetur? Ea aspernatur laudantium doloremque,
+            excepturi reiciendis nemo dignissimos!
+          </div>
+          <!--</div>-->
         </section>
         <section class="match-page__content content tabs-block">
-          <div class="content__tabs-content tabs-block__tabs">
-            <div
-              class="tabs-content__tab tabs-block__tab tabs-block__tab_active"
-              data-tab-name="open-match"
-            >
-              ОТКРЫТЫЕ МАТЧИ
+          <div class="content__container">
+            <div class="content__tabs-content tabs-block__tabs">
+              <div
+                class="tabs-content__tab tabs-block__tab"
+                data-tab-name="open-match"
+              >
+                ОТКРЫТЫЕ МАТЧИ
+              </div>
+              <div
+                class="tabs-content__tab tabs-block__tab"
+                data-tab-name="translation"
+              >
+                ТРАНСЛЯЦИИ
+              </div>
+              <div
+                class="tabs-content__tab tabs-block__tab"
+                data-tab-name="completed"
+              >
+                ЗАВЕРШЁННЫЕ
+              </div>
+              <div class="tabs-block__lamp"><span></span></div>
             </div>
-            <div
-              class="tabs-content__tab tabs-block__tab"
-              data-tab-name="translation"
-            >
-              ТРАНСЛЯЦИИ
-            </div>
-            <div
-              class="tabs-content__tab tabs-block__tab"
-              data-tab-name="completed"
-            >
-              ЗАВЕРШЁННЫЕ
-            </div>
-            <div class="tabs-block__lamp"><span></span></div>
+            <load
+              ="src/html/components/match/statistics.html"
+              class="content__statistics"
+            />
           </div>
           <div class="content__tabs-content">
+            <load
+              ="src/html/components/match/sorting-block.html"
+              class="content__sorting-block"
+            />
             <div
               class="content__tab-content tab-content search-tab"
-              data-name="search"
+              id="open-match-content"
             ></div>
           </div>
         </section>

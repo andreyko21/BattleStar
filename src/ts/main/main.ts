@@ -1,6 +1,5 @@
 import $ from "jquery";
-import AirDatepicker from "air-datepicker";
-import { initDropDown } from "./dropDownMenu";
+import { initDropDown } from "../../dropDownMenu";
 import Swiper from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 
@@ -21,10 +20,10 @@ class Main implements MainType {
 
   init() {
     this.numberPlayers();
-    this.initDatepicker();
     this.bannerSwiper();
     this.tourneySwiper()
     initDropDown();
+
   }
 
   numberPlayers() {
@@ -33,17 +32,10 @@ class Main implements MainType {
     });
   }
 
-  initDatepicker() {
-    new AirDatepicker<HTMLDivElement>("#calendar", {
-      startDate: "2023-11-08",
-      dateFormat: "MMMM",
-      range: true,
-    });
-  }
-
   bannerSwiper() {
     new Swiper(".banner__swiper", {
       loop: true,
+      spaceBetween: 10,
       modules: [Navigation],
       navigation: {
         nextEl: ".swiper-button-next",

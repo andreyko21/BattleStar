@@ -276,26 +276,21 @@
     transform-origin: bottom left;
     transform: scaleX(1);
     color: $yellow300;
-    &:last-child {
-      color: $red500;
-    }
   }
 
   &:hover {
     transform-origin: bottom left;
     color: $yellow300;
-    &:last-child {
-      color: $red500;
-    }
+    // &:last-child {
+    //   color: $red500;
+    // }
   }
 
   &_act {
     transform-origin: bottom left;
     transform: scaleX(1);
     color: $yellow300;
-    &:last-child {
-      color: $red500;
-    }
+
   }
 }
 @mixin hover-block {

@@ -12,6 +12,7 @@
   backdrop-filter: blur(110px);
   opacity: 0;
   transition: $standartTrans;
+  z-index: 1;
   &__criss-cross {
     width: 14px;
     height: 14px;

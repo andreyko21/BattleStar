@@ -208,6 +208,16 @@
                       />
                       <load
                         ="src/html/components/ui/checkbox.html"
+                        name="200$"
+                        label-text="200$"
+                      />
+                      <load
+                        ="src/html/components/ui/checkbox.html"
+                        name="500$"
+                        label-text="500$"
+                      />
+                      <load
+                        ="src/html/components/ui/checkbox.html"
                         name="1000$"
                         label-text="1000$"
                       />
@@ -298,7 +308,118 @@
                     />
                   </div>
                 </div>
-                <div class="find-lobby__region-filter"> </div>
+                <div class="find-lobby__region-filter region-filter accordion">
+                  <div class="region-filter__title-block accordion__header">
+                    <div class="region-filter__title accordion__title"
+                      >Регион</div
+                    >
+                    <svg class="accordion__arrow">
+                      <use xlink:href="src/images/sprite.svg#arrow-down"></use>
+                    </svg>
+                  </div>
+                  <div class="region-filter__content accordion__content">
+                    <div class="custom-checkbox">
+                      <input
+                        type="checkbox"
+                        name="Afganistan"
+                        id="Afganistan"
+                        class="custom-checkbox__input"
+                      />
+                      <label for="Afganistan" class="custom-checkbox__label">
+                        <svg>
+                          <use
+                            xlink:href="src/images/sprite.svg#check-mark"
+                          ></use>
+                        </svg>
+                      </label>
+                      <label
+                        for="Afganistan"
+                        class="custom-checkbox__label-text"
+                      >
+                        <img
+                          src="./src/images/auganistan-flag.jpg"
+                          alt="flag"
+                        />
+                        <span>Afganistan</span>
+                      </label>
+                    </div>
+                    <div class="custom-checkbox">
+                      <input
+                        type="checkbox"
+                        name="Afganistan"
+                        id="Afganistan"
+                        class="custom-checkbox__input"
+                      />
+                      <label for="Afganistan" class="custom-checkbox__label">
+                        <svg>
+                          <use
+                            xlink:href="src/images/sprite.svg#check-mark"
+                          ></use>
+                        </svg>
+                      </label>
+                      <label
+                        for="Afganistan"
+                        class="custom-checkbox__label-text"
+                      >
+                        <img
+                          src="./src/images/auganistan-flag.jpg"
+                          alt="flag"
+                        />
+                        <span>Afganistan</span>
+                      </label>
+                    </div>
+                    <div class="custom-checkbox">
+                      <input
+                        type="checkbox"
+                        name="Afganistan"
+                        id="Afganistan"
+                        class="custom-checkbox__input"
+                      />
+                      <label for="Afganistan" class="custom-checkbox__label">
+                        <svg>
+                          <use
+                            xlink:href="src/images/sprite.svg#check-mark"
+                          ></use>
+                        </svg>
+                      </label>
+                      <label
+                        for="Afganistan"
+                        class="custom-checkbox__label-text"
+                      >
+                        <img
+                          src="./src/images/auganistan-flag.jpg"
+                          alt="flag"
+                        />
+                        <span>Afganistan</span>
+                      </label>
+                    </div>
+                    <div class="custom-checkbox">
+                      <input
+                        type="checkbox"
+                        name="Afganistan"
+                        id="Afganistan"
+                        class="custom-checkbox__input"
+                      />
+                      <label for="Afganistan" class="custom-checkbox__label">
+                        <svg>
+                          <use
+                            xlink:href="src/images/sprite.svg#check-mark"
+                          ></use>
+                        </svg>
+                      </label>
+                      <label
+                        for="Afganistan"
+                        class="custom-checkbox__label-text"
+                      >
+                        <img
+                          src="./src/images/auganistan-flag.jpg"
+                          alt="flag"
+                        />
+                        <span>Afganistan</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
                 <div class="find-lobby__anticheat"> </div>
               </div>
             </div>
@@ -323,31 +444,41 @@
           <!--</div>-->
         </section>
         <section class="match-page__content content tabs-block">
-          <div class="content__tabs-content tabs-block__tabs">
-            <div
-              class="tabs-content__tab tabs-block__tab"
-              data-tab-name="open-match"
-            >
-              ОТКРЫТЫЕ МАТЧИ
+          <div class="content__container">
+            <div class="content__tabs-content tabs-block__tabs">
+              <div
+                class="tabs-content__tab tabs-block__tab"
+                data-tab-name="open-match"
+              >
+                ОТКРЫТЫЕ МАТЧИ
+              </div>
+              <div
+                class="tabs-content__tab tabs-block__tab"
+                data-tab-name="translation"
+              >
+                ТРАНСЛЯЦИИ
+              </div>
+              <div
+                class="tabs-content__tab tabs-block__tab"
+                data-tab-name="completed"
+              >
+                ЗАВЕРШЁННЫЕ
+              </div>
+              <div class="tabs-block__lamp"><span></span></div>
             </div>
-            <div
-              class="tabs-content__tab tabs-block__tab"
-              data-tab-name="translation"
-            >
-              ТРАНСЛЯЦИИ
-            </div>
-            <div
-              class="tabs-content__tab tabs-block__tab"
-              data-tab-name="completed"
-            >
-              ЗАВЕРШЁННЫЕ
-            </div>
-            <div class="tabs-block__lamp"><span></span></div>
+            <load
+              ="src/html/components/match/statistics.html"
+              class="content__statistics"
+            />
           </div>
           <div class="content__tabs-content">
+            <load
+              ="src/html/components/match/sorting-block.html"
+              class="content__sorting-block"
+            />
             <div
               class="content__tab-content tab-content search-tab"
-              data-name="search"
+              id="open-match-content"
             ></div>
           </div>
         </section>

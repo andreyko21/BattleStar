@@ -224,7 +224,7 @@
       <path id="Vector" d="M1 21H21V1" />
     </g>
   </symbol>
-  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.250668 23.750666" id="grid-view">
+  <symbol xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" id="grid-view">
     <g id="ic:baseline-view-module">
       <path
         id="Vector"
@@ -278,7 +278,7 @@
       />
     </g>
   </symbol>
-  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.250668 23.750666" id="table-view">
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" id="table-view">
     <g id="ic:baseline-view-list">
       <path
         id="Vector"

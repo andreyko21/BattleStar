@@ -1,0 +1,47 @@
+.sorting-block {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__title {
+    color: $gray25; // #f8f8f8
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__sorting-box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      //display: block;
+      fill: $gray525; // #6A6C7D
+    }
+    // use {
+    //   position: relative;
+    //   z-index: -1;
+    // }
+    .tabs-block__tab {
+      max-width: 30px;
+      height: 30px;
+
+      &_active {
+        svg {
+          fill: $yellow300;
+        } // #fac704;
+      }
+    }
+  }
+  &__text {
+    color: $gray25; // #f8f8f8
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}

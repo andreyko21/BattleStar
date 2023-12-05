@@ -70,20 +70,24 @@ class LavaLamp implements ILavaLamp {
       HTMLDivElement
     >
   ): void {
-    this.allTabs.removeClass(this.TAB_HOVERED_CLASS);
-    this.allTabs.addClass(this.TAB_NO_HOVERED_CLASS);
-    $(e.target as HTMLElement).removeClass(this.TAB_NO_HOVERED_CLASS);
-    $(e.target as HTMLElement).addClass(this.TAB_HOVERED_CLASS);
-    const currentleft =
-      this.allTabs.filter(`.${this.TAB_HOVERED_CLASS}`).position()?.left +
-        'px' || '0px';
-    const currentwidth = this.allTabs
-      .filter(`.${this.TAB_HOVERED_CLASS}`)
-      .css('width');
-    $('.tabs-block__lamp span', `.${this.classTabsBlock}`).css({
-      left: currentleft,
-      width: currentwidth,
-    });
+    if (
+      e.target.closest(`.tabs-block`)?.classList.contains(this.classTabsBlock)
+    ) {
+      this.allTabs.removeClass(this.TAB_HOVERED_CLASS);
+      this.allTabs.addClass(this.TAB_NO_HOVERED_CLASS);
+      $(e.target as HTMLElement).removeClass(this.TAB_NO_HOVERED_CLASS);
+      $(e.target as HTMLElement).addClass(this.TAB_HOVERED_CLASS);
+      const currentleft =
+        this.allTabs.filter(`.${this.TAB_HOVERED_CLASS}`).position()?.left +
+          'px' || '0px';
+      const currentwidth = this.allTabs
+        .filter(`.${this.TAB_HOVERED_CLASS}`)
+        .css('width');
+      $('.tabs-block__lamp span', `.${this.classTabsBlock}`).css({
+        left: currentleft,
+        width: currentwidth,
+      });
+    }
   }
 
   private handleHoverOut(): void {
@@ -94,20 +98,6 @@ class LavaLamp implements ILavaLamp {
     } else {
       this.activateFirst();
     }
-  }
-
-  setLocateParam(param: string, value: any) {
-    const queryString = window.location.search;
-    const queryParams = new URLSearchParams(queryString);
-    queryParams.set(param, value);
-    const newUrl =
-      window.location.protocol +
-      '//' +
-      window.location.host +
-      window.location.pathname +
-      '?' +
-      queryParams;
-    window.history.replaceState({ path: newUrl }, '', newUrl);
   }
 }
 

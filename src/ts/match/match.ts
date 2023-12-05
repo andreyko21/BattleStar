@@ -4,7 +4,7 @@ import { target } from 'nouislider';
 
 import { BasePopUp } from '../component/pop-up.ts';
 import type { IBasePopUp } from '../component/pop-up.ts';
-import { BaseTabs } from '../component/tabs.ts';
+import { BaseTabs, CreatedObjForIRenderMethod } from '../component/tabs.ts';
 import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
 import { Accordion } from '../component/accordeon.ts';
@@ -38,6 +38,7 @@ const mayMethods: IRenderMethod = {
     console.log('create');
   },
 };
+//!-----------------------------
 
 new BaseTabs('match-page__filters', mayMethods);
 new LavaLamp('match-page__filters');
@@ -45,8 +46,24 @@ new LavaLamp('match-page__filters');
 new BaseTabs('match-page__content', mayMethods);
 new LavaLamp('match-page__content');
 
+const sortingBlockIdArr = ['grid', 'table'];
+const addClassForSort = () => {
+  //id:string
+  console.log('Hello!');
+};
+
+const forSorting = new CreatedObjForIRenderMethod(
+  sortingBlockIdArr,
+  addClassForSort
+);
+
+new BaseTabs('content__sorting-block', forSorting.createObj());
+new LavaLamp('content__sorting-block');
+
 new Accordion('find-lobby__rate-filter');
 new Accordion('find-lobby__maps-filter');
+new Accordion('find-lobby__game-mode-filter');
+new Accordion('find-lobby__region-filter');
 
 let rateFilterSlider = document.querySelector('.rate-filter__slider') as target;
 

@@ -1,0 +1,103 @@
+.tournament-rank-slider {
+  position: relative;
+  padding-right: 24px;
+  &__inputs {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transform: scale(-1);
+    padding-left: 8px;
+    padding-right: 20px;
+    &::before {
+    }
+
+    input {
+      width: 0px;
+      height: 0px;
+      border: 5px solid red;
+      position: relative;
+
+      &:first-child {
+        position: relative;
+        &::before {
+          content: "";
+          pointer-events: none;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          width: 100vw;
+          height: 2px;
+          background-color: #c4c4c4;
+          transform: translate(0, -50%);
+          z-index: -22;
+        }
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 9px;
+        height: 9px;
+        transform: translate(-50%, -50%);
+        background-color: #c4c4c4;
+        border-radius: 50%;
+      }
+
+      &:checked {
+        background: #fac704;
+        position: relative;
+        &::before {
+          content: "";
+          pointer-events: none;
+          position: absolute;
+          top: 50%;
+          left: 5px;
+          width: 100vw;
+          height: 2px;
+          transform: translate(0, -50%);
+          background: var(--Main, #fac704);
+          z-index: -1;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #fac704;
+        }
+
+        & ~ input {
+          border: 0;
+          position: relative;
+          &::after {
+            background-color: #fac704;
+          }
+        }
+      }
+    }
+  }
+  &__labels {
+    padding-left: 24px;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 16px;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    label {
+      color: #f8f8f8;
+    }
+  }
+}

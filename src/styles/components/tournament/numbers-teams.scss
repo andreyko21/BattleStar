@@ -1,0 +1,138 @@
+.tournament-numbers-teams {
+  margin-top: 42px;
+  height: max-content;
+
+  &__buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 18px;
+  }
+
+  input {
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    &:checked + label {
+      border-radius: 4px;
+      border: 1px solid var(--Main, #fac704);
+      background: rgba(250, 199, 4, 0.1);
+      backdrop-filter: blur(40px);
+    }
+  }
+}
+
+.tournament-radio-label {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  border-radius: 4px;
+  border: 1px solid #606060;
+  background: rgba(248, 248, 248, 0.1);
+  backdrop-filter: blur(40px);
+  color: #606060;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 15px 31px;
+}
+
+.tournament-entry-rate {
+  input {
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    &:checked + label {
+      border-radius: 4px;
+      border: 1px solid var(--Main, #fac704);
+      background: rgba(250, 199, 4, 0.1);
+      backdrop-filter: blur(40px);
+    }
+  }
+}
+
+.tournament-entry-rate {
+  margin-top: 42px;
+  &__buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 18px;
+  }
+}
+
+.tournament-title-h2 {
+  color: #bfbfbf;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.tournament-description {
+  max-width: 579px;
+  margin-top: 8px;
+  color: #606060;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.tournament-regime {
+  margin-top: 42px;
+  &__buttons {
+    margin-top: 12px;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .tournament-radio-label {
+    padding: 27px 31px;
+    color: #606060;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  input {
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    &:checked + label {
+      border-radius: 4px;
+      border: 1px solid var(--Main, #fac704);
+      background: rgba(250, 199, 4, 0.1);
+      backdrop-filter: blur(40px);
+    }
+  }
+}
+
+.tournament-entry-rate {
+  margin-top: 42px;
+}
+
+.tournament-select-time {
+  margin-top: 42px;
+}
+
+.tournament-region-limit {
+  margin-top: 42px;
+  &__switch {
+    width: fit-content;
+  }
+  .checkbox-swich__label-text {
+    color: #bfbfbf;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .checkbox-swich__label {
+    align-items: center;
+  }
+}

@@ -68,11 +68,6 @@ class BaseTabs implements IBaseTabs {
       this.tabs.closest('.tabs-block')?.classList.contains(this.classTabsBlock)
     ) {
       this.tabs.addEventListener('click', (e) => {
-        console.log((e.target as HTMLElement).closest(`.${this.TAB_CLASS}`));
-        console.log(
-          (e.target as HTMLElement).closest(`.${this.TAB_ACTIVE_CLASS}`)
-        );
-
         const tabTarget: HTMLElement | null = (e.target as HTMLElement).closest(
           `.${this.TAB_CLASS}`
         );

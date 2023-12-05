@@ -11,6 +11,7 @@
 @import './components/accordion';
 @import './components/match/statistics';
 @import './components/match/sorting-block';
+@import './components/match/cs-card';
 
 .wrapper {
   overflow: hidden;
@@ -530,11 +531,26 @@
 }
 .content {
   &__container {
-    max-width: 1013px;
+    max-width: 1061px;
+    padding: 0px 37px 0px 38px;
+  }
+  &__tabs {
+    width: 100%;
+    margin: 31px 0px 70px 0px;
   }
   &__tabs-content {
     width: 100%;
-    // padding: 0px 40px 0px 40px;
-    margin: 28px 0px 70px 0px;
+    padding: 0px 37px 0px 38px;
+    margin: 58px 0px 0px 0px;
+  }
+  &__sorting-block {
+    margin: 0px 0px 18px 0px;
+  }
+  &__tab-content {
+    width: 100%;
+    padding: 0px 0px 70px 0px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px 45px;
   }
 }

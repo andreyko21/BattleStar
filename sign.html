@@ -4,6 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="src/styles/sign.scss" />
    <title>Вход</title>
 </head>
 
@@ -26,11 +27,11 @@
                   <div class="sign__form form">
                      <form class="form__signin">
                         <div class="form__signin-nickname">
-                           <input class="form__signin-inp" type="text" id="nickname" name="nickname" required>
+                           <input class="form__signin-inp " type="text" id="nickname" name="nickname" required>
                            <label class="form__signin-label" for="nickname">Никнейм или электронная почта</label>
                         </div>
                         <div class="form__signin-password">
-                           <input class="form__signin-inp" type="password" id="password" name="password" required>
+                           <input class="form__signin-inp " type="password" id="password" name="password" required>
                            <label class="form__signin-label" for="password">Пароль</label>
 
                         </div>
@@ -85,16 +86,16 @@
                      </form>
                      <form class="form__signup hide">
                         <div class="form__signin-nickname">
-                           <input class="form__signin-inp" type="text" id="nickname" name="nickname" required>
-                           <label class="form__signin-label" for="nickname">Введите никнейм</label>
+                           <input class="form__signin-inp" type="text" id="name" name="nickname" required>
+                           <label class="form__signin-label" for="name">Введите никнейм</label>
                         </div>
                         <div class="form__signin-email">
                            <input class="form__signin-inp" type="text" id="email" name="email" required>
                            <label class="form__signin-label" for="email">Электронная почта</label>
                         </div>
                         <div class="form__signin-password">
-                           <input class="form__signin-inp" type="password" id="password" name="password" required>
-                           <label class="form__signin-label" for="password">Придумайте пароль</label>
+                           <input class="form__signin-inp" type="password" id="pswd" name="password" required>
+                           <label class="form__signin-label" for="pswd">Придумайте пароль</label>
                         </div>
                         <div class="form__signin-forgot">
                            <p class="form__signin-text">Забыли пароль?</p>
@@ -107,14 +108,6 @@
                               </svg>
                               <span> Войти</span>
                            </button>
-                        </div>
-                        <div class="form__signin-social">
-                           <div class="form__signin-social-row">
-                              <hr>
-                              <p>Или войдите через</p>
-                              <hr>
-                           </div>
-
                         </div>
                         <div class="form__signin-agreement">
                            <p class="form__signin-text">
@@ -131,7 +124,7 @@
          </section>
       </main>
    </div>
-   <script type="module" src="src/sign.ts"></script>
+   <script type="module" src="src/ts/sign/sign.ts"></script>
 </body>
 
 </html>

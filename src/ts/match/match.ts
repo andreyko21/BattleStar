@@ -46,6 +46,7 @@ new LavaLamp('match-page__filters');
 new BaseTabs('match-page__content', mayMethods);
 new LavaLamp('match-page__content');
 
+//!!!!!!!!!!!!!!!!!!----------------------------???????????
 const sortingBlockIdArr = ['grid', 'table'];
 const addClassForSort = () => {
   //id:string
@@ -56,8 +57,9 @@ const forSorting = new CreatedObjForIRenderMethod(
   sortingBlockIdArr,
   addClassForSort
 );
+//!_________________________________________
 
-new BaseTabs('content__sorting-block', forSorting.createObj());
+new BaseTabs('content__view-block', forSorting.createObj());
 //new LavaLamp('content__sorting-block');
 
 new Accordion('find-lobby__rate-filter');

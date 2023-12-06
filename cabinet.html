@@ -18,50 +18,48 @@
                <aside class="cabinet__aside">
                   <load="src/html/components/ui/asideMenu.html" />
                </aside>
-               <!-- <div class="cabinet__content">
-                  <div data-hash="statistics" class="cabinet__statistics statistics">
+               <div class="cabinet__content">
+                  <div data-hash="statistics" class="cabinet__statistics statistics hide ">
                      <div class="match-page__filters filters tabs-block">
                         <div class="filters__tabs tabs-block__tabs">
-                           <div class="filters__tab tabs-block__tab tabs-block__tab_active" data-tab-name="find">CS:GO</div>
+                           <div class="filters__tab tabs-block__tab tabs-block__tab_active" data-tab-name="find">CS:GO
+                           </div>
                            <div class="filters__tab tabs-block__tab" data-tab-name="create">DOTA 2</div>
                            <div class="tabs-block__lamp"></div>
                         </div>
                         <div class="filters__content tabs-block__content">
                            <div class="filters__find-lobby 
                            find-lobby tabs-block__content-container 
-                           tabs-block__content-container_active"
-                           id="find-content">
-                           <div class="statistics__header">
-                              <div class="statistics__header-rating">
-                                 <p class="statistics__header-text">Ранг: <span>1682</span></p>
-                                 <div class="statistics__header-rank">
-                                    <img src="" alt="">
+                           tabs-block__content-container_active" id="find-content">
+                              <div class="statistics__header">
+                                 <div class="statistics__header-rating">
+                                    <p class="statistics__header-text">Ранг: <span>1682</span></p>
+                                    <div class="statistics__header-rank">
+                                       <img src="" alt="">
+                                    </div>
                                  </div>
-                                 
+                                 <div class="statistics__header-info">
+                                    <div class="statistics__header-tourney">
+                                       <svg>
+                                          <use xlink:href="src/images/sprite.svg#tourney"></use>
+                                       </svg>
+                                       <p class="statistics__header-subtext">4<span>Турнира</span></p>
+                                    </div>
+                                    <div class="statistics__header-winrate">
+                                       <svg>
+                                          <use xlink:href="src/images/sprite.svg#winrate"></use>
+                                       </svg>
+                                       <p class="statistics__header-subtext">76%<span>Винрейт</span></p>
+                                    </div>
+                                    <div class="statistics__header-time">
+                                       <svg>
+                                          <use xlink:href="src/images/sprite.svg#time"></use>
+                                       </svg>
+                                       <p class="statistics__header-subtext">214<span>Часов в игре</span></p>
+                                    </div>
+                                 </div>
+
                               </div>
-                              <div class="statistics__header-info">
-                                 <div class="statistics__header-tourney">
-                                    <svg>
-                                       <use xlink:href="src/images/sprite.svg#tourney"></use>
-                                    </svg>
-                                    <p class="statistics__header-subtext">4<span>Турнира</span></p>
-                                 </div>
-                                 <div class="statistics__header-winrate">
-                                    <svg>
-                                       <use xlink:href="src/images/sprite.svg#winrate"></use>
-                                    </svg>
-                                    <p class="statistics__header-subtext">76%<span>Винрейт</span></p>
-                                 </div>
-                                 <div class="statistics__header-time">
-                                    <svg>
-                                       <use xlink:href="src/images/sprite.svg#time"></use>
-                                    </svg>
-                                    <p class="statistics__header-subtext">214<span>Часов в игре</span></p>
-                                 </div>
-                              </div>
-   
-                              
-                           </div>
                               <div class="statistics__cs">
                                  <div class="statistics__cs-info">
                                     <h2 class="statistics__cs-title">Статистика</h2>
@@ -74,10 +72,10 @@
                                  </div>
                                  <div class="statistics__cs-schedule">
                                     <h2 class="statistics__cs-title">Статистика</h2>
-                                    <canvas class="statistics__cs-chart"  id="myChart"></canvas>
+                                    <canvas class="statistics__cs-chart" id="myChart"></canvas>
                                  </div>
-                                 
-                                
+
+
                               </div>
                            </div>
                            <div class="filters__create-lobby create-lobby tabs-block__content-container"
@@ -88,40 +86,203 @@
                            </div>
                         </div>
                      </div>
-   
-   
-   
-   
                   </div>
-                  <div data-hash="history" class="cabinet__history history">
+                  <div data-hash="history" class="cabinet__history history hide">
                      <div class="history__content">
                         <div class="history__content-row">
                            <h2 class="history__content-title">История матчей</h2>
                            <div class="history__content-filter">
-   
+                              <p class="history__content-text">Показать:</p>
+                              <select class="history__content-select" id="filter">
+                                 <option value="All">Все матчи</option>
+                                 <option value="win">Победа</option>
+                                 <option value="defeat">Поражение</option>
+                              </select>
                            </div>
                         </div>
-              
-                        <div class="history__content"></div>
-                        <div class="history__content"></div>
-                        <div class="history__content"></div>
-                        <div class="history__content"></div>
-                        <div class="history__content"></div>
-                        <div class="history__content"></div>
-                        <div class="history__content"></div>
-                        <div class="history__content"></div>
+
+                        <div class="history__content-table table">
+                           <table class="table__tab">
+                           <tr class="table__tr">
+                              <td class="table__name">CS:GO</td>
+                              <td class="table__data">07.06.2021</td>
+                              <td class="table__time">19:20</td>
+                              <td class="table__regime">Режим <span>5v5</span></td>
+                              <td class="table__id">ID <span>37589023</span></td>
+                              <td class="table__win">Победа</td>
+                              <td class="table__money">+ 1200 <span>BS</span></td>
+                           </tr> 
+                           <tr class="table__tr">
+                              <td class="table__name">DOTA 2</td>
+                              <td class="table__data">07.06.2021</td>
+                              <td class="table__time">19:20</td>
+                              <td class="table__regime">Режим <span>1v1</span></td>
+                              <td class="table__id">ID <span>37589023</span></td>
+                              <td class="table__win table__win_defeat">Поражение</td>
+                              <td class="table__money">- 500 <span>BS</span></td>
+                           </tr> 
+                           <tr class="table__tr">
+                              <td class="table__name">CS:GO</td>
+                              <td class="table__data">07.06.2021</td>
+                              <td class="table__time">19:20</td>
+                              <td class="table__regime">Режим <span>5v5</span></td>
+                              <td class="table__id">ID <span>37589023</span></td>
+                              <td class="table__win">Победа</td>
+                              <td class="table__money">+ 1200 <span>BS</span></td>
+                           </tr> 
+                           <tr class="table__tr">
+                              <td class="table__name">DOTA 2</td>
+                              <td class="table__data">07.06.2021</td>
+                              <td class="table__time">19:20</td>
+                              <td class="table__regime">Режим <span>1v1</span></td>
+                              <td class="table__id">ID <span>37589023</span></td>
+                              <td class="table__win table__win_defeat">Поражение</td>
+                              <td class="table__money">- 500 <span>BS</span></td>
+                           </tr> 
+                           <tr class="table__tr">
+                              <td class="table__name">CS:GO</td>
+                              <td class="table__data">07.06.2021</td>
+                              <td class="table__time">19:20</td>
+                              <td class="table__regime">Режим <span>5v5</span></td>
+                              <td class="table__id">ID <span>37589023</span></td>
+                              <td class="table__win">Победа</td>
+                              <td class="table__money">+ 1200 <span>BS</span></td>
+                           </tr> 
+                           <tr class="table__tr">
+                              <td class="table__name">DOTA 2</td>
+                              <td class="table__data">07.06.2021</td>
+                              <td class="table__time">19:20</td>
+                              <td class="table__regime">Режим <span>1v1</span></td>
+                              <td class="table__id">ID <span>37589023</span></td>
+                              <td class="table__win table__win_defeat">Поражение</td>
+                              <td class="table__money">- 500 <span>BS</span></td>
+                           </tr> 
+                           <tr class="table__tr">
+                              <td class="table__name">CS:GO</td>
+                              <td class="table__data">07.06.2021</td>
+                              <td class="table__time">19:20</td>
+                              <td class="table__regime">Режим <span>5v5</span></td>
+                              <td class="table__id">ID <span>37589023</span></td>
+                              <td class="table__win">Победа</td>
+                              <td class="table__money">+ 1200 <span>BS</span></td>
+                           </tr> 
+                           <tr class="table__tr">
+                              <td class="table__name">DOTA 2</td>
+                              <td class="table__data">07.06.2021</td>
+                              <td class="table__time">19:20</td>
+                              <td class="table__regime">Режим <span>1v1</span></td>
+                              <td class="table__id">ID <span>37589023</span></td>
+                              <td class="table__win">Поражение</td>
+                              <td class="table__money">- 500 <span>BS</span></td>
+                           </tr> 
+                           <tr class="table__tr">
+                              <td class="table__name">CS:GO</td>
+                              <td class="table__data">07.06.2021</td>
+                              <td class="table__time">19:20</td>
+                              <td class="table__regime">Режим <span>5v5</span></td>
+                              <td class="table__id">ID <span>37589023</span></td>
+                              <td class="table__win">Победа</td>
+                              <td class="table__money">+ 1200 <span>BS</span></td>
+                           </tr> 
+                           <tr class="table__tr">
+                              <td class="table__name">DOTA 2</td>
+                              <td class="table__data">07.06.2021</td>
+                              <td class="table__time">19:20</td>
+                              <td class="table__regime">Режим <span>1v1</span></td>
+                              <td class="table__id">ID <span>37589023</span></td>
+                              <td class="table__win table__win_defeat">Поражение</td>
+                              <td class="table__money">- 500 <span>BS</span></td>
+                           </tr> 
+                           <tr class="table__tr">
+                              <td class="table__name">CS:GO</td>
+                              <td class="table__data">07.06.2021</td>
+                              <td class="table__time">19:20</td>
+                              <td class="table__regime">Режим <span>5v5</span></td>
+                              <td class="table__id">ID <span>37589023</span></td>
+                              <td class="table__win">Победа</td>
+                              <td class="table__money">+ 1200 <span>BS</span></td>
+                           </tr> 
+
+     
+                           </table>
+                        </div>
+
+                     </div>
+
+                  </div>
+                  <div data-hash="personal" class=" cabinet__personal personal">
+                     <div class="personal__content">
+                        <div class="personal__content-colunm">
+                        <div class="personal__content-row">
+                           <h2 class="personal__content-title">Основная информация</h2>
+                           <p class="personal__content-edit">Редактировать</p>
+                           
+                        </div>
+                        <div class="personal__content-info">
+                           <p class="personal__content-id">
+                              ID: <span>37589023</span>
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#copy"></use>
+                              </svg>
+                           </p>
+                           <p class="personal__content-nickname">
+                              Никнейм: <span>MAX Richter</span>
+                           </p>
+                           <p class="personal__content-biography">
+                              Био <span>Значимость этих проблем настолько очевидна, что консультация с широким активом способствует подготовки и реализации позиций, занимаемых участниками в отношении поставленных задач</span>
+                           </p>
+                           <p class="personal__content-data">
+                              Дата регистрации: <span>07.06.2021</span>
+                           </p>
+                        </div>
+                        <hr class="personal__content-line">
+                        <div class="personal__content-row">
+                           <h2 class="personal__content-title">Адрес электронной почты</h2>
+                           <p class="personal__content-edit">Редактировать</p>
+                           
+                        </div>
+                        <p class="personal__content-email">
+                           Электронная почта <span>Example@mail.com</span>
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#check"></use>
+                           </svg>
+                        </p>
+                        <hr class="personal__content-line">
+                        <div class="personal__content-row">
+                           <h2 class="personal__content-title">Аккаунт Steam</h2>
+                           <p class="personal__content-edit">Изменить</p>
+                        </div>
+                        <div class="personal__content-steam">
+                           <p class="personal__content-email">
+                              Электронная почта <span>Example@mail.com</span>
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#check"></use>
+                              </svg>
+                           </p>
+                           <p class="personal__content-account">
+                              Аккаунт <span>VERITA_Luts</span>
+                           </p>
+                        </div>
+                        
+                        
+                        </div>
+                        <div class="personal__content-avatar">
+                           <input class="personal__content-inp"  type=file id=pct>
+                           <label class="personal__content-label" for=pct><span>Изменить</span></label>
+                        </div>
+                        
                      </div>
                      
                   </div>
-                  <div data-hash="personal" class="cabinet__personal personal"></div>
-                  <div data-hash="wallet"  class="cabinet__wallet wallet"></div>
-                  <div data-hash="setting" class="cabinet__setting setting">
+                  <div data-hash="wallet" class=" cabinet__wallet wallet hide"></div>
+                  <div data-hash="setting" class=" cabinet__setting setting hide">
                      <h2 class="setting__title title">Уведомления</h2>
                      <div class="setting__news">
                         <load="src/html/components/ui/swich.html" />
                      </div>
                   </div>
-                  <div data-hash="blacklist" class="cabinet__blacklist blacklist">
+
+                  <div data-hash="blacklist" class=" cabinet__blacklist blacklist hide">
                      <h2 class="setting__title title">Черный список</h2>
                      <div class="blacklist__content">
                         <div class="blacklist__item">
@@ -234,12 +395,12 @@
                            </svg>
                         </div>
                      </div>
-   
-   
-   
+
+
+
                   </div>
-               </div> -->
-               <load="src/html/components/ui/calendar.html" />
+               </div>
+
 
             </div>
          </section>

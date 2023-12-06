@@ -28,11 +28,11 @@
    &__setting,
    &__wallet,
    &__personal,
-   &__histiry,
+   &__history,
    &__statistics {
       width: 1227px;
       // backdrop-filter: blur(60px);
-      // background: $gray800;
+      background: $gray800;
       margin-left: 44px;
       // padding: 30px 84px 37px 59px;
    }
@@ -154,10 +154,275 @@
    }
 }
 .history {
+   height: 742px;
+   overflow: auto;
    &__content {
-      background: rgba(248, 248, 248, 0.05);
-      backdrop-filter: blur(60px);
-      padding: 29px 84px 0 59px;
+      padding: 29px 84px 0px 59px;
+      &-row {
+         width: 100%;
+         display: flex;
+         justify-content: space-between;
+      }
+      &-title {
+         color: $gray25;
+         font-size: 24px;
+         font-weight: 400;
+         line-height: normal;
+      }
+      &-filter {
+         display: flex;
+         align-items: center;
+         select {
+            background: transparent;
+            color: $gray25;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: normal;
+         }
+      }
+      &-text {
+         color: $gray500;
+         font-size: 18px;
+         font-weight: 500;
+         line-height: normal;
+         margin-right: 7px;
+      }
+   }
+
+   .table {
+      &__tab {
+         border-collapse: collapse;
+         width: 100%;
+         margin: 34px 0 0;
+      }
+      &__tr {
+         height: 56px;
+         border-bottom: 1px solid $gray500;
+         &:first-child {
+            border-top: 1px solid $gray500;
+         }
+         &:last-child {
+            border-bottom: none;
+         }
+      }
+      &__name {
+         color: $gray25;
+         font-family: Roboto;
+         font-size: 18px;
+         font-weight: 400;
+         line-height: normal;
+         width: 300px;
+      }
+
+      &__data,
+      &__time {
+         color: $gray25;
+         text-align: right;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+      }
+
+      &__regime,
+      &__id {
+         color: $gray200;
+         text-align: right;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+         span {
+            color: $gray25;
+         }
+      }
+      &__id {
+         span {
+            text-decoration: underline;
+         }
+      }
+      &__win {
+         color: $green50;
+         text-align: right;
+         font-size: 16px;
+         font-style: normal;
+         font-weight: 400;
+         line-height: normal;
+         width: 250px;
+
+         &_defeat {
+            color: $red500;
+         }
+      }
+      &__money {
+         color: $yellow300;
+         text-align: right;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+         span {
+            color: $yellow300;
+            text-decoration: line-through;
+         }
+      }
+   }
+}
+.personal {
+   height: 650px;
+   &__content {
+      padding: 29px 84px 49px 59px;
+      display: flex;
+      justify-content: space-between;
+      &-row {
+         display: flex;
+      }
+      &-title {
+         color: $gray25;
+         font-size: 24px;
+         font-weight: 400;
+         line-height: normal;
+      }
+      &-edit {
+         color: $yellow300;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+         margin: 7px 0 0 20px;
+      }
+      &-info {
+         margin-top: 43px;
+         height: 200px;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+      }
+      &-id,
+      &-nickname,
+      &-biography,
+      &-data,
+      &-email,
+      &-account {
+         color: $gray200;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+      }
+      &-id {
+         width: 275px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         span {
+            color: $gray25;
+            margin-left: auto;
+         }
+         svg {
+            width: 18px;
+            height: 18px;
+            fill: #606060;
+            margin-left: 11px;
+         }
+      }
+      &-nickname {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         width: 307px;
+         span {
+            color: $gray25;
+            margin-left: auto;
+            font-size: 24px;
+         }
+      }
+      &-biography {
+         width: 643px;
+         display: flex;
+         justify-content: space-between;
+         span {
+            color: $gray25;
+            margin-left: auto;
+            font-size: 14px;
+            width: 469px;
+         }
+      }
+      &-data {
+         width: 265px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         span {
+            color: $gray25;
+            margin-left: auto;
+            font-size: 18px;
+         }
+      }
+      &-line {
+         width: 100%;
+         height: 1px;
+         background: $dark100;
+         margin: 30px 0 25px;
+      }
+      &-email {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         width: 370px;
+         margin-top: 24px;
+         span {
+            color: $gray25;
+            margin-left: auto;
+            font-size: 18px;
+         }
+         svg {
+            width: 24px;
+            height: 24px;
+            fill: #6fff57;
+         }
+      }
+      &-account {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         width: 288px;
+         margin-top: 24px;
+         span {
+            color: $gray25;
+            margin-left: auto;
+            font-size: 18px;
+         }
+         svg {
+            width: 24px;
+            height: 24px;
+            fill: #6fff57;
+         }
+      }
+      &-avatar {
+         position: relative;
+         height: 165px;
+
+      }
+      &-inp {
+         display: none;
+      }
+      &-label {
+         display: inline-block;
+         width: 140px;
+         height: 140px;
+         background: silver;
+         border-radius: 50%;
+         background-size: cover;
+         background-repeat: no-repeat;
+         background-position: center;
+         span {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            color: $yellow300;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: normal;
+         }
+      }
    }
 }
 .setting {

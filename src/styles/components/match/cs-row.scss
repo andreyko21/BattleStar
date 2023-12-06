@@ -1,20 +1,23 @@
-.match-card {
-  width: 100%;
-  height: 100%;
-  background: $gray900; // rgba(248 248 248 0.02)
-  backdrop-filter: blur(10px);
-  &__img-block {
-    position: relative;
-    width: 100%;
-    padding-top: 52.47%;
+.match-tr {
+  td {
+    vertical-align: middle;
+    &:not(:first-child) {
+      padding-left: 14px;
+    }
+    &:not(:last-child) {
+      padding-right: 14px;
+    }
+    &:last-child {
+      padding-right: 29px;
+    }
+  }
+  &__img-cell {
+    width: 164px;
   }
 
-  &__wrapper-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  &__img-block {
+    width: 164px;
+    height: 80px;
   }
 
   &__img {
@@ -23,23 +26,22 @@
     object-fit: cover;
   }
 
-  &__content {
-    width: 100%;
-    padding: 12px 20px 12px 15px;
+  &__name-cell {
+    width: 351px;
   }
-
   &__name-block {
-    margin: 0px 0px 3px 0px;
+    height: 100%;
+    // min-width: 250px;
+    // width: 100%;
     display: flex;
     align-items: center;
   }
 
   &__flag {
-    height: 15px;
-    margin: 0px 10px 0px 0px;
   }
 
   &__name {
+    width: 100%;
     color: $gray25; // #f8f8f8;
     font-size: 18px;
     font-style: normal;
@@ -48,35 +50,12 @@
   }
 
   &__map {
-    margin: 0px 0px 6px 0px;
-    color: $gray75; // #afafaf;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-
-  &__other-data {
-    width: 100%;
-    padding: 6px 0px 0px 0px;
-    border-top: 1px solid $dark100; // #3F3D46
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-
-  &__data-block {
-    display: flex;
-    & > div {
-      margin: 0px 32px 0px 0px;
-    }
-  }
-
-  &__rate-block {
+    width: 107px;
   }
 
   &__data-title {
     color: $DimGray; // #606060
-    font-size: 15px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 1;
@@ -84,16 +63,22 @@
 
   &__rate-value {
     color: $gray25; // #f8f8f8
-    font-size: 17px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
   }
 
+  &__rate-block {
+    width: 99px;
+  }
+
   &__mode {
+    width: 94px;
   }
 
   &__participants {
+    width: 100px;
   }
 
   &__ping-block {

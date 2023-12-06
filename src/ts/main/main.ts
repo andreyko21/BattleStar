@@ -2,7 +2,7 @@ import $ from "jquery";
 import { initDropDown } from "../../dropDownMenu";
 import Swiper from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
-
+// import axios from "axios";
 type MainType = {
   playerNumber: JQuery<HTMLParagraphElement>;
 };
@@ -21,9 +21,9 @@ class Main implements MainType {
   init() {
     this.numberPlayers();
     this.bannerSwiper();
-    this.tourneySwiper()
+    this.tourneySwiper();
     initDropDown();
-
+    this.test();
   }
 
   numberPlayers() {
@@ -69,6 +69,35 @@ class Main implements MainType {
       },
     });
   }
+
+  test() {
+    // const axios = require('axios');
+
+  //   axios
+  //     .get("https://battle-star-app.onrender.com/api/teams/team/1")
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       // let teamData = response.data;
+  //       // console.log(teamData.data[0].name);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Помилка при отриманні даних:", error);
+  //     });
+  // }
+
+// fetch("https://battle-star-app.onrender.com/api/teams")
+//   .then((response) => {
+//     return response.json(); 
+//   })
+//   .then((data) => {
+//     console.log(data); 
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+
+
+}
 }
 
 new Main();

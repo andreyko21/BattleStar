@@ -1,0 +1,139 @@
+@import "./style.scss";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+
+.partner-auth-page {
+  &__button {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 192px;
+    max-height: 46px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 15px 29px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border: 1px solid #f8f8f8;
+    background: rgba(248, 248, 248, 0.1);
+    backdrop-filter: blur(40px);
+    color: #f8f8f8;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 700;
+
+    &:hover {
+      background: rgba(248, 248, 248, 0.2);
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    &:focus {
+      border-color: #fac704;
+      color: #fac704;
+    }
+
+    &:active {
+      background: rgba(248, 248, 248, 0.3);
+      color: #ffd700;
+      border-color: #ffd700;
+    }
+  }
+
+  &__main {
+    padding-top: 84px;
+    padding-bottom: 84px;
+  }
+
+  &__auth-block {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1046px;
+    width: 100%;
+    border-radius: 18px;
+    background: rgba(248, 248, 248, 0.1);
+    backdrop-filter: blur(110px);
+    padding: 42px 42px 58px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    color: #fff;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 36px;
+    font-weight: 900;
+  }
+
+  &__info-block {
+    &-subtitle {
+      margin-top: 4px;
+      color: #fff;
+      text-align: center;
+      font-family: Roboto;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &-list {
+      margin-top: 69px;
+      margin-bottom: 58px;
+      color: #fff;
+      font-family: Roboto;
+      font-size: 24px;
+      font-weight: 700;
+
+      &-item {
+        list-style-type: disc;
+        color: #fff;
+      }
+    }
+
+    &-description {
+      margin-left: auto;
+      margin-right: auto;
+      color: #fff;
+      text-align: center;
+      font-family: Roboto;
+      font-size: 16px;
+      font-weight: 400;
+      max-width: 483px;
+    }
+
+    &-button {
+      &-login {
+        margin-top: 34px;
+      }
+      &-registration {
+        margin-top: 24px;
+        margin-bottom: 34px;
+      }
+    }
+  }
+}
+
+.text-with-lines {
+  max-width: 616px;
+  width: 100%;
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background: rgba(248, 248, 248, 0.1);
+    width: 79px;
+    height: 2px;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  &::before {
+    left: 0;
+  }
+  &::after {
+    right: 0;
+  }
+}

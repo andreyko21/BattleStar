@@ -1,0 +1,314 @@
+@import "./style.scss";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+@import "./components/tournament/tournament-button.scss";
+
+.wrapper {
+  max-height: 100vh;
+}
+
+.tournament-page {
+  &__main {
+    overflow: auto;
+    padding-top: 124px;
+    padding-bottom: 118px;
+  }
+
+  &__title-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 34px;
+  }
+
+  &__name {
+    color: #f8f8f8;
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: 500;
+  }
+
+  &__share {
+    margin-left: 8px;
+    background: none;
+
+    &-icon {
+      max-width: 24px;
+      max-height: 24px;
+    }
+  }
+
+  &__current-tournament {
+    display: flex;
+    gap: 33px;
+  }
+}
+
+.current-tournament-information {
+  max-width: 1171px;
+  &__banner {
+    overflow: hidden;
+    max-width: 1171px;
+    max-height: 348px;
+    img {
+      max-width: 1171px;
+      max-height: 348px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__widgets {
+    display: flex;
+    margin-top: 37px;
+  }
+
+  &__about-the-tournament {
+    margin-top: 37px;
+  }
+
+  &__conditions-of-conduct {
+    margin-top: 27px;
+  }
+
+  &__title {
+    color: #f8f8f8;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &__description {
+    margin-top: 9px;
+    color: #bfbfbf;
+    font-family: Roboto;
+    font-size: 17px;
+    font-weight: 400;
+  }
+}
+
+.current-tournament-sidebar {
+  height: fit-content;
+  border-radius: 4px;
+  background: rgba(67, 67, 67, 0.2);
+  backdrop-filter: blur(40px);
+  padding: 27px;
+
+  &__info {
+    &-label {
+      color: #606060;
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    &-text {
+      margin-top: 7px;
+      color: #f8f8f8;
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    &-button {
+      margin-top: 8px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      background: none;
+      color: var(--Main, #fac704);
+      font-family: Roboto;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+
+      &:hover {
+        color: darken(#fac704, 10%);
+      }
+
+      &:focus {
+        color: #fac704;
+      }
+
+      &:active {
+        color: lighten(#fac704, 10%);
+      }
+    }
+
+    &:not(:first-child) {
+      margin-top: 22px;
+    }
+  }
+
+  &__submit-button {
+  }
+}
+
+.info-widget {
+  max-width: 236px;
+  width: 100%;
+  border-radius: 55px;
+  background: rgba(196, 196, 196, 0.1);
+  backdrop-filter: blur(5px);
+  width: fit-content;
+  column-gap: 12px;
+  row-gap: 3px;
+  padding: 13px 30px 14px;
+  display: grid;
+  grid-template:
+    "img title"
+    "img description";
+
+  &:not(:first-child) {
+    margin-left: 15px;
+  }
+
+  &__icon {
+    grid-area: img;
+    max-width: 32px;
+    max-height: 32px;
+    use {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__title {
+    grid-area: title;
+    color: #f8f8f8;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &__description {
+    grid-area: description;
+    color: #f8f8f8;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.list-teams {
+  margin-top: 7px;
+  max-height: 238px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    &-avatar {
+      width: 42px;
+      height: 42px;
+    }
+    &-name {
+      color: #f8f8f8;
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    &-rank {
+      color: #f8f8f8;
+      font-family: Roboto;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    &:not(:first-child) {
+      margin-top: 7px;
+    }
+  }
+}
+
+.icon-calendar {
+  fill: #546fff;
+}
+
+.icon-registration {
+  fill: #f13939;
+}
+
+.icon-cup {
+  fill: #fac704;
+}
+
+.icon-people {
+  fill: #8d00cf;
+}
+
+.main-games {
+  &__title {
+    color: #f8f8f8;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  &__swiper {
+    &-wrapper {
+    }
+    &-slide {
+      background-color: #18181b;
+      &-img-block {
+        width: 100%;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      &-info {
+        border-top: 1px solid #fac704;
+        padding: 7px 17px 10px;
+      }
+      &-status {
+        width: fit-content;
+        padding: 1px 8px 2px;
+        border-radius: 25px;
+        background: rgba(241, 57, 57, 0.1);
+        color: #f13939;
+        text-align: right;
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      &-teams {
+        margin-top: 10px;
+        display: flex;
+        gap: 15px;
+        color: #f8f8f8;
+        font-family: Roboto;
+        font-size: 20px;
+        font-weight: 700;
+      }
+      &-team {
+        display: flex;
+        &-avatar {
+          width: 27px;
+          height: 21px;
+        }
+        &-name {
+          margin-left: 8px;
+          color: #f8f8f8;
+          font-family: Roboto;
+          font-size: 20px;
+          font-weight: 700;
+        }
+      }
+      &-part {
+        margin-top: 5px;
+        color: #606060;
+        font-family: Roboto;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+    }
+  }
+}

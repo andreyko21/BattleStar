@@ -1,0 +1,28 @@
+.tournament-button {
+  border-radius: 4px;
+  background: #fac704;
+  padding: 13px;
+  max-width: 294px;
+  width: 100%;
+  margin: 20px auto 0;
+  color: #18181b;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 500;
+  display: block;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background: darken(#fac704, 10%);
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: 2px solid #fac704;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background: #7c7c7c;
+  }
+}

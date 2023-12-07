@@ -1,0 +1,113 @@
+#tournaments-cards-block {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 38px;
+  row-gap: 40px;
+  margin-top: 22px;
+}
+
+.tournaments-card {
+  display: block;
+  background: #18181b;
+  max-width: 484px;
+  max-height: 359px;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tournaments-card__img-block {
+  max-height: 246px;
+  height: 100%;
+}
+
+.tournaments-card__info {
+  position: relative;
+  padding: 14px 14px 18px;
+  z-index: 1;
+}
+
+.tournaments-card__info-footer {
+  margin-top: 13px;
+  display: flex;
+  gap: 24px;
+}
+
+.tournaments-card__info-footer-icon {
+  max-width: 20px;
+  max-height: 20px;
+}
+
+.tournaments-card__backgound-img-block {
+  border-top: 1px solid gold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  z-index: -1;
+}
+
+.tournaments-card__backgound-img-block::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(12, 12, 14, 0) 0%, #18181b 100%);
+}
+
+.tournaments-card__backgound-img-block img {
+  width: 100%;
+  height: 100%;
+}
+
+.tournaments-card__date,
+.tournaments-card__name,
+.tournaments-card__prize,
+.tournaments-card__min-rating,
+.tournaments-card__region-limit {
+  color: #bfbfbf;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.tournaments-card__name {
+  margin-top: 7px;
+  color: #f8f8f8;
+  font-size: 20px;
+}
+
+.tournaments-card__prize,
+.tournaments-card__min-rating,
+.tournaments-card__region-limit {
+  display: flex;
+  align-items: center;
+  color: #606060;
+}
+
+.tournaments-card__prize-icon {
+  fill: #ae901c;
+}
+
+.tournaments-card__min-rating-icon {
+  fill: #73179e;
+}
+
+.tournaments-card__region-limit-icon {
+  fill: #2f941f;
+}
+
+/* Hover, Active, and Focus Animations */
+.tournaments-card:hover,
+.tournaments-card:focus {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tournaments-card:active {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}

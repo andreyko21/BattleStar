@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Battle Star - Match</title>
-    <script type="module" crossorigin src="/assets/calibration-10bd2875.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
-    <link rel="modulepreload" crossorigin href="/assets/pop-up-e0e17d1a.js">
-    <link rel="stylesheet" href="/assets/calibration-59a3f5a9.css">
-  </head>
-  <body>
-    <div class="wrapper">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+   <title>Lobby</title>
+  <script type="module" crossorigin src="/assets/lobby-18c3690a.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
+  <link rel="stylesheet" href="/assets/lobby-038bb2ca.css">
+</head>
+
+<body>
+   <div class="wrapper">
       <header class="header">
   <div class="header__select-game">
     <div class="dropdown__game">
@@ -121,53 +122,96 @@
   </nav>
 </div>
 
-      <main class="main" id="app">
-        <!-- overlay -- прикриває контент при відкритті модального вікна -->
-        <div class="overlay"></div>
-        <div class="pop-up main__calibration-pop-up calibration-pop-up">
-  <div class="pop-up__criss-cross">
-    <svg class="pop-up__criss-cross-icon">
-      <use xlink:href="/assets/sprite-57d92484.svg#criss-cross"></use>
-    </svg>
-  </div>
-  <div class="calibration-pop-up__content">
-  <h2 class="calibration-pop-up__title"> Калибровка </h2>
-  <div class="calibration-pop-up__text">
-    <p
-      >Повседневная практика показывает, что сложившаяся структура организации
-      способствует подготовки и реализации соответствующий условий
-      активизации.</p
-    >
-    <p
-      >Повседневная практика показывает, что постоянное
-      информационно-пропагандистское обеспечение нашей деятельности представляет
-      собой интересный эксперимент проверки соответствующий условий активизации.
-      Товарищи! начало повседневной работы по формированию позиции обеспечивает
-      широкому кругу (специалистов) участие в формировании позиций.</p
-    >
-  </div>
-  <div class="calibration-pop-up__btn-block">
-    <a href="match.html" class="calibration-pop-up__not-now-link">
-      <button class="calibration-pop-up__btn btn btn_skip" id="not-now"
-        >Не сейчас</button
-      >
-    </a>
-    <button class="calibration-pop-up__btn btn btn_skip" id="start-calibration"
-      >Начать калибровку</button
-    >
-  </div>
-</div>
+      <main class="page">
+         <section class="lobby">
+            <div class="lobby__container">
+               <div class="match-page__filters filters tabs-block">
+                  <div class="filters__tabs tabs-block__tabs">
+                     <div class="filters__tab tabs-block__tab tabs-block__tab_active" data-tab-name="find">КОМАНДЫ
+                     </div>
+                     <div class="filters__tab tabs-block__tab" data-tab-name="create">СТАТИСТИКА</div>
+                     <div class="tabs-block__lamp"></div>
+                  </div>
+                  <div class="filters__content tabs-block__content">
+                     <div class="filters__find-lobby> 
+                     find-lobby tabs-block__content-container 
+                     tabs-block__content-container_active" id="find-content">
+                        <div class="lobby__teams">
+                           <div class="lobby__teams-name">
+                              <div class="lobby__teams-name-flag">
+                                 <div class="lobby__teams-name-flag-top"></div>
+                                 <div class="lobby__teams-name-flag-bottom"></div>
+                              </div>
+                              <p class="lobby__teams-name-names">PlayFair Display$$$</p>
 
-</div>
+                           </div>
+                           <div class="lobby__teams-info">
+                              <div class="lobby__teams-info-map">
+                                 <p class="lobby__teams-info-title">Карта</p>
+                                 <p class="lobby__teams-info-name">Lake</p>
+                              </div>
+                              <div class="lobby__teams-info-bid">
+                                 <p class="lobby__teams-info-title">Ставка</p>
+                                 <p class="lobby__teams-info-name">5000 $ </p>
+                              </div>
+                              <div class="lobby__teams-info-mode">
+                                 <p class="lobby__teams-info-title">Режим</p>
+                                 <p class="lobby__teams-info-name">5x5</p>
+                              </div>
+                              <div class="lobby__teams-info-player">
+                                 <p class="lobby__teams-info-title">Учасников</p>
+                                 <p class="lobby__teams-info-name">8/10</p>
+                              </div>
+                              <div class="lobby__teams-info-id">
+                                 <p class="lobby__teams-info-title">ID</p>
+                                 <p class="lobby__teams-info-name">54692725
+                                    <svg>
+                                       <use xlink:href="/assets/sprite-57d92484.svg#copy"></use>
+                                    </svg>
+                                 </p>
+                              </div>
+                           </div>
+                           <div class="lobby__teams-start">
+                              <div class="lobby__teams-start-teams">
+                                 <div class="lobby__teams-start-side-a">
+                                    <p class="lobby__teams-start-name">Команда А</p>
+                                    <p class="lobby__teams-start-rank">(1320)</p>
 
-        <div class="main__content content">
-          <img
-            src="/assets/cs-bg-ddc48684.png"
-            class="content__bg-img"
-          />
-        </div>
+                                 </div>
+                                 <div class="lobby__teams-start-side-b">
+                                    <p class="lobby__teams-start-name">Команда Б</p>
+                                    <p class="lobby__teams-start-rank">(1256)</p>
+                                 </div>
+                                 
+                              </div>
+                              <div class="lobby__teams-start-timer">
+                              <div class="lobby__teams-start-timer-img">
+                                 <img src="../src/images/timer.png" alt="">
+                              </div>
+                              <div class="lobby__teams-start-time"></div>
+                              <p class="lobby__teams-start-text">до начала</p>
+                              </div>
+                           </div>
+                           <div class="lobby__teams-start"></div>
+
+                           
+                        </div>
+
+                     </div>
+                     <div class="filters__create-lobby create-lobby tabs-block__content-container" id="create-content">
+                        <div class="statistics__dota">
+                           <canvas id="dota"></canvas>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+         </section>
       </main>
-    </div>
-  </body>
-  
+   </div>
+   
+</body>
+
 </html>

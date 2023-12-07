@@ -1,8 +1,32 @@
 @import "./style.scss";
 @import "./components/sidebar.scss";
 @import "./components/header.scss";
+@import "./components/tournament//sidebar.scss";
 @import "./components/tournament/banner.scss";
 @import "./components/tournament/input.scss";
 @import "./components/tournament/range.scss";
 @import "./components/tournament/numbers-teams.scss";
 @import "./components/ui/swich.scss";
+@import "./components/tournament/tournament-button.scss";
+
+.page__container {
+  display: flex;
+  gap: 33px;
+}
+
+.wrapper {
+  max-height: 100vh;
+}
+
+.page__main {
+  overflow: auto;
+  padding-top: 91px;
+  padding-bottom: 106px;
+  background: linear-gradient(180deg, rgba(78, 78, 116, 0) 0%, #0c0c0e 100%);
+
+  backdrop-filter: blur(110px);
+}
+
+.create-tournament__button {
+  margin-top: 81px;
+}

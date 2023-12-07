@@ -1,8 +1,8 @@
 import $ from "jquery";
 
-class Banner {
+export class Banner {
   private $container: JQuery;
-  private $image: JQuery;
+  private $image!: JQuery;
   private imageUrl: string;
   private altText: string;
 
@@ -48,11 +48,12 @@ class Banner {
   }
 
   private handleFileChange(event: JQuery.ChangeEvent): void {
-    const file = (event.target as HTMLInputElement).files[0];
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files ? inputElement.files[0] : null;
     if (file && this.isValidImageType(file)) {
       const reader = new FileReader();
-      reader.onload = (e) => {
-        const newImageUrl = e.target.result as string;
+      reader.onload = () => {
+        const newImageUrl = reader.result as string;
         this.updateImage(newImageUrl);
       };
       reader.readAsDataURL(file);
@@ -71,5 +72,3 @@ class Banner {
     this.$image.attr("src", this.imageUrl);
   }
 }
-
-export { Banner };

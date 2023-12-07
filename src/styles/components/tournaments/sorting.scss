@@ -1,0 +1,20 @@
+.tournaments-cards-sorting {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 46px;
+
+  &__time-sort {
+    color: #f8f8f8;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &__rating-sort {
+    color: #f8f8f8;
+    text-align: right;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}

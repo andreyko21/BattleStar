@@ -1,8 +1,6 @@
 // import { BaseTabs } from "./../component/tabs";
 // import { LavaLamp } from "./../component/lava-lamp";
 import $ from "jquery";
-import getCalendar from "../component/calendar";
-
 
 type CabinetType = {
   menuTabts: JQuery<HTMLLinkElement>;
@@ -20,36 +18,31 @@ class Cabinet implements CabinetType {
   constructor() {
     this.menuTabts = $(".menu__link") as JQuery<HTMLLinkElement>;
     this.menuSvg = $(".menu__link svg") as JQuery<HTMLLinkElement>;
-    this.cabinetContDiv = $('cabinet__content div') as JQuery<HTMLDivElement>;
+    this.cabinetContDiv = $("cabinet__content div") as JQuery<HTMLDivElement>;
     console.log(this.menuTabts);
     //  this.ctx = document.querySelector("#myChart") as HTMLCanvasElement;
     //  this.dota = document.querySelector("#dota") as HTMLCanvasElement;
-   //  this.checkMenu();
-    getCalendar();
+    //  this.checkMenu();
+
     //  this.cs();
     //   this.dotas();
   }
 
-//   checkMenu() {
-//     this.menuTabts.each((index: number, tab) => {
-//       $(tab).on("click", () => {
-//         this.menuTabts.removeClass("menu__link_act");
-//         $(tab).addClass("menu__link_act");
-//         const tabData = $(tab).data("hash");
+  //   checkMenu() {
+  //     this.menuTabts.each((index: number, tab) => {
+  //       $(tab).on("click", () => {
+  //         this.menuTabts.removeClass("menu__link_act");
+  //         $(tab).addClass("menu__link_act");
+  //         const tabData = $(tab).data("hash");
 
-//         // console.log(tabHash);
-//         // const tabHash = $(`#${tabData}`);
-//         // console.log(tabHash);
-//         window.location.hash = tabData;
-//       });
-//     });
-    
-//   }
+  //         // console.log(tabHash);
+  //         // const tabHash = $(`#${tabData}`);
+  //         // console.log(tabHash);
+  //         window.location.hash = tabData;
+  //       });
+  //     });
 
-
-
- 
-
+  //   }
 
   //   cs() {
   //     new Chart(this.ctx, {

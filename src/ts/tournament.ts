@@ -5,6 +5,11 @@ import { TeamCountInput } from "./tournaments/teamCountInput";
 import { EntryRate } from "./tournaments/entryRate";
 import { TournamentRegime } from "./tournaments/regime";
 import { TournamentRegionLimit } from "./tournaments/regionLimit";
+import { Sidebar } from "./tournaments/sidebar";
+import { TournamentSelectTime } from "./tournaments/selectTime";
+import { RangeSlider } from "./tournaments/rangeSlider";
+import { TournamentMaps } from "./tournaments/tournamentMaps";
+import Map from "./../images/tournamentMap.png";
 
 class TournamentCreationPage {
   private $mainContent: JQuery;
@@ -15,7 +20,6 @@ class TournamentCreationPage {
     if (this.$mainContent.length === 0) {
       throw new Error(`Main container with id #${mainContainerId} not found.`);
     }
-
     this.initializePage();
   }
 
@@ -45,10 +49,54 @@ class TournamentCreationPage {
       { value: "Ability Draft", label: "Ability Draft" },
       { value: "Deathmatch", label: "Deathmatch" },
     ]);
+    new TournamentSelectTime("main-content", [
+      { value: "7:00 AM", label: "7:00 AM" },
+      { value: "12:00 AM", label: "12:00 AM" },
+      { value: "5:00 PM", label: "5:00 PM" },
+      { value: "10:00 PM", label: "10:00 PM" },
+      { value: "8:00 AM", label: "8:00 AM" },
+      { value: "1:00 PM", label: "1:00 PM" },
+      { value: "6:00 PM", label: "6:00 PM" },
+      { value: "10:30 PM", label: "10:30 PM" },
+      { value: "9:00 AM", label: "9:00 AM" },
+      { value: "2:00 PM", label: "2:00 PM" },
+      { value: "7:00 PM", label: "7:00 PM" },
+      { value: "11:00 PM", label: "11:00 PM" },
+      { value: "10:00 AM", label: "10:00 AM" },
+      { value: "3:00 PM", label: "3:00 PM" },
+      { value: "8:00 PM", label: "8:00 PM" },
+      { value: "11:30 PM", label: "11:30 PM" },
+      { value: "11:00 AM", label: "11:00 AM" },
+      { value: "4:00 PM", label: "4:00 PM" },
+      { value: "9:00 PM", label: "9:00 PM" },
+      { value: "12:00 AM", label: "12:00 AM" },
+    ]);
     new TournamentRegionLimit("main-content");
+    new TournamentMaps("main-content", [
+      { value: "Inferno", label: "Inferno", imgSrc: Map },
+      { value: "Inferno", label: "Inferno", imgSrc: Map },
+      { value: "Inferno", label: "Inferno", imgSrc: Map },
+      { value: "Inferno", label: "Inferno", imgSrc: Map },
+      { value: "Inferno", label: "Inferno", imgSrc: Map },
+      { value: "Inferno", label: "Inferno", imgSrc: Map },
+      { value: "Inferno", label: "Inferno", imgSrc: Map },
+      { value: "Inferno", label: "Inferno", imgSrc: Map },
+      { value: "Inferno", label: "Inferno", imgSrc: Map },
+      { value: "Inferno", label: "Inferno", imgSrc: Map },
+      { value: "Inferno", label: "Inferno", imgSrc: Map },
+      { value: "Inferno", label: "Inferno", imgSrc: Map },
+    ]);
   }
 }
 
 $(document).ready(() => {
-  new TournamentCreationPage("main-content");
+  new TournamentCreationPage("tournament-page");
+
+  new Sidebar(
+    "tournament-page",
+    "Создание турнира",
+    "Равным образом реали зация нам еченных плановых зад аний спос обствует подгот овки и реали зации соотв етствующий усло вий акт ивизации. Не следу ет, одна ко забыв ать, что консул ьтация с ш ироким ак тивом ",
+    "Узнать больше"
+  );
+  new RangeSlider();
 });

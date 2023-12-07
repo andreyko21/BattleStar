@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Команди</title>
+    <link rel="stylesheet" href="src/styles/partnerLoginpage.scss" />
+  </head>
+  <body class="page partner-auth-page">
+    <div class="partner-auth-page__wrapper wrapper">
+      <load ="src/html/header.html" />
+      <load ="src/html/sidebar.html" />
+      <main class="page__main partner-auth-page__main">
+        <div class="partner-auth-page__container">
+          <div class="partner-auth-page__auth-block">
+            <div class="partner-auth-page__login">
+              <a href="#" class="partner-auth-page__logo">
+                <svg class="partner-auth-page__logo-icon">
+                  <use xlink:href="src/images/sprite.svg#logo"></use>
+                </svg>
+              </a>
+              <h1 class="partner-auth-page__title">
+                Вход в кабинет партнёра BattleStar
+              </h1>
+
+              <label class="partner-auth-page__login-label partner-input-block">
+                <input
+                  class="partner-auth-page__login-input partner-input-block__input"
+                  placeholder="Никнейм или электронная почта"
+                />
+              </label>
+              <label class="partner-auth-page__login-label partner-input-block">
+                <input
+                  class="partner-auth-page__login-input partner-input-block__input"
+                  placeholder="Пароль"
+                />
+                <input
+                  class="partner-input-block__input-checkbox"
+                  id="passwordShowCheckbox"
+                  type="checkbox"
+                />
+                <label
+                  class="partner-input-block__input-label"
+                  for="passwordShowCheckbox"
+                >
+                  <svg class="partner-input-block__input-show-password">
+                    <use xlink:href="src/images/sprite.svg#view"></use>
+                  </svg>
+                  <svg class="partner-input-block__input-hiden-password">
+                    <use xlink:href="src/images/sprite.svg#pass-hiden"></use>
+                  </svg>
+                </label>
+              </label>
+
+              <div class="partner-auth-page__login-reset">
+                <p class="partner-auth-page__login-reset-label">
+                  Забыли пароль?
+                </p>
+                <button class="partner-auth-page__login-reset-button">
+                  Восстановить
+                </button>
+              </div>
+              <button
+                class="partner-auth-page__button partner-auth-page__login-button"
+              >
+                Войти
+              </button>
+              <div class="partner-auth-page__login-description text-with-lines">
+                Или войдите через
+              </div>
+              <div class="partner-auth-page__login-social-auth">
+                <button class="partner-auth-page__login-social-auth-button">
+                  <svg class="partner-auth-page__login-social-auth-button-icon">
+                    <use xlink:href="src/images/sprite.svg#steam"></use>
+                  </svg>
+                </button>
+                <button class="partner-auth-page__login-social-auth-button">
+                  <svg class="partner-auth-page__login-social-auth-button-icon">
+                    <use xlink:href="src/images/sprite.svg#apple"></use>
+                  </svg>
+                </button>
+                <button class="partner-auth-page__login-social-auth-button">
+                  <svg class="partner-auth-page__login-social-auth-button-icon">
+                    <use xlink:href="src/images/sprite.svg#google"></use>
+                  </svg>
+                </button>
+                <button class="partner-auth-page__login-social-auth-button">
+                  <svg class="partner-auth-page__login-social-auth-button-icon">
+                    <use xlink:href="src/images/sprite.svg#facebook"></use>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="src/ts/partnerAuthPage.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+@import "./style.scss";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+@import "./components/tournaments/slider.scss";
+@import "./components/tournaments/tournaments-card.scss";
+@import "./components/tournaments/sorting.scss";
+@import "./components/tabs.scss";
+
+.tournaments-page {
+  padding-bottom: 116px;
+}

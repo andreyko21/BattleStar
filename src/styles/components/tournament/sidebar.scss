@@ -1,0 +1,49 @@
+.tournament-sidebar {
+  max-width: 306px;
+  width: 100%;
+
+  &__info-block {
+    padding: 19px 26px 15px 27px;
+    border-radius: 4px;
+    background: rgba(67, 67, 67, 0.2);
+    backdrop-filter: blur(40px);
+    &-title {
+      color: #f8f8f8;
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    &-description {
+      margin-top: 15px;
+      color: #bfbfbf;
+      font-family: Roboto;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    &-button {
+      border-radius: 4px;
+      background: #fac704;
+      padding: 13px;
+      width: 100%;
+      margin-top: 38px;
+      color: #18181b;
+      font-family: Roboto;
+      font-size: 20px;
+      font-weight: 500;
+
+      &:hover {
+        background: darken(#fac704, 10%);
+        cursor: pointer;
+      }
+
+      &:focus {
+        outline: 2px solid #fac704;
+        outline-offset: 2px;
+      }
+
+      &:active {
+        background: lighten(#fac704, 10%);
+      }
+    }
+  }
+}

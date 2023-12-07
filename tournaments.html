@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Команди</title>
+    <link rel="stylesheet" href="src/styles/tournaments.scss" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <load ="src/html/header.html" />
+      <load ="src/html/sidebar.html" />
+      <main class="page tournaments-page">
+        <div id="tournament-container"></div>
+        <div class="tournaments-page__container">
+          <div class="tournaments-nav">
+            <div class="tournaments-nav__tabs"></div>
+            <div class="tournaments-nav__create-button">СОЗДАТЬ ТУРНИР</div>
+          </div>
+          <div class="tournaments-cards-sorting">
+            <div class="tournaments-cards-sorting__time-sort">
+              Ближайшие турниры
+            </div>
+            <div class="tournaments-cards-sorting__rating-sort">
+              Рейтинг турнира:Любой
+            </div>
+          </div>
+          <div
+            id="tournaments-cards-block"
+            class="tournaments-cards-block"
+          ></div>
+          <div id="page-pagination"></div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="src/ts/tournaments.ts"></script>
+  </body>
+</html>

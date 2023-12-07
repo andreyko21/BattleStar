@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="src/styles/lobby.scss" />
+   <title>Lobby</title>
+</head>
+
+<body>
+   <div class="wrapper">
+      <load="src/html/header.html" />
+      <load="src/html/sidebar.html" />
+      <main class="page">
+         <section class="lobby">
+            <div class="lobby__container">
+               <div class="match-page__filters filters tabs-block">
+                  <div class="filters__tabs tabs-block__tabs">
+                     <div class="filters__tab tabs-block__tab tabs-block__tab_active" data-tab-name="find">КОМАНДЫ
+                     </div>
+                     <div class="filters__tab tabs-block__tab" data-tab-name="create">СТАТИСТИКА</div>
+                     <div class="tabs-block__lamp"></div>
+                  </div>
+                  <div class="filters__content tabs-block__content">
+                     <div class="filters__find-lobby> 
+                     find-lobby tabs-block__content-container 
+                     tabs-block__content-container_active" id="find-content">
+                        <div class="lobby__teams">
+                           <div class="lobby__teams-name">
+                              <div class="lobby__teams-name-flag">
+                                 <div class="lobby__teams-name-flag-top"></div>
+                                 <div class="lobby__teams-name-flag-bottom"></div>
+                              </div>
+                              <p class="lobby__teams-name-names">PlayFair Display$$$</p>
+
+                           </div>
+                           <div class="lobby__teams-info">
+                              <div class="lobby__teams-info-map">
+                                 <p class="lobby__teams-info-title">Карта</p>
+                                 <p class="lobby__teams-info-name">Lake</p>
+                              </div>
+                              <div class="lobby__teams-info-bid">
+                                 <p class="lobby__teams-info-title">Ставка</p>
+                                 <p class="lobby__teams-info-name">5000 $ </p>
+                              </div>
+                              <div class="lobby__teams-info-mode">
+                                 <p class="lobby__teams-info-title">Режим</p>
+                                 <p class="lobby__teams-info-name">5x5</p>
+                              </div>
+                              <div class="lobby__teams-info-player">
+                                 <p class="lobby__teams-info-title">Учасников</p>
+                                 <p class="lobby__teams-info-name">8/10</p>
+                              </div>
+                              <div class="lobby__teams-info-id">
+                                 <p class="lobby__teams-info-title">ID</p>
+                                 <p class="lobby__teams-info-name">54692725
+                                    <svg>
+                                       <use xlink:href="src/images/sprite.svg#copy"></use>
+                                    </svg>
+                                 </p>
+                              </div>
+                           </div>
+                           <div class="lobby__teams-start">
+                              <div class="lobby__teams-start-teams">
+                                 <div class="lobby__teams-start-side-a">
+                                    <p class="lobby__teams-start-name">Команда А</p>
+                                    <p class="lobby__teams-start-rank">(1320)</p>
+
+                                 </div>
+                                 <div class="lobby__teams-start-side-b">
+                                    <p class="lobby__teams-start-name">Команда Б</p>
+                                    <p class="lobby__teams-start-rank">(1256)</p>
+                                 </div>
+                                 
+                              </div>
+                              <div class="lobby__teams-start-timer">
+                              <div class="lobby__teams-start-timer-img">
+                                 <img src="../src/images/timer.png" alt="">
+                              </div>
+                              <div class="lobby__teams-start-time"></div>
+                              <p class="lobby__teams-start-text">до начала</p>
+                              </div>
+                           </div>
+                           <div class="lobby__teams-start"></div>
+
+                           
+                        </div>
+
+                     </div>
+                     <div class="filters__create-lobby create-lobby tabs-block__content-container" id="create-content">
+                        <div class="statistics__dota">
+                           <canvas id="dota"></canvas>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+         </section>
+      </main>
+   </div>
+   <script type="module" src="src/ts/lobby/lobby.ts"></script>
+</body>
+
+</html>

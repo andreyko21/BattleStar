@@ -1,0 +1,59 @@
+.tournament-banner {
+  height: 320px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding-bottom: 26px;
+
+  &__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__button {
+    max-width: 144px;
+    max-height: 46px;
+    padding: 11px 17px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    background: rgba(248, 248, 248, 0.2);
+    backdrop-filter: blur(20px);
+
+    color: #f8f8f8;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 500;
+
+    &:hover {
+      background: rgba(248, 248, 248, 0.3); // Трохи більша прозорість
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: 2px solid #fff; // Біла обводка для фокуса
+      outline-offset: 2px;
+    }
+
+    &:active {
+      background: rgba(248, 248, 248, 0.4); // Ще більша прозорість
+    }
+
+    &-svg {
+      margin-right: 10px;
+      width: 24px;
+      height: 24px;
+
+      use {
+        width: 100%;
+        height: 100%;
+        fill: #f8f8f8;
+      }
+    }
+  }
+}

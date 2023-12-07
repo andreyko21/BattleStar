@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Команди</title>
     
-    <script type="module" crossorigin src="/assets/teams-2becb469.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
-    <link rel="modulepreload" crossorigin href="/assets/jquery-ab814638.js">
-    <link rel="modulepreload" crossorigin href="/assets/lava-lamp-a2551edf.js">
-    <link rel="modulepreload" crossorigin href="/assets/pagination-2dd1d4dc.js">
-    <link rel="stylesheet" href="/assets/teams-821d71da.css">
+    <script type="module" crossorigin src="/assets/modulepreload-polyfill-3cfb730f.js"></script>
+    <script type="module" crossorigin src="/assets/jquery-ab814638.js"></script>
+    <script type="module" crossorigin src="/assets/navigation-2e8e35a7.js"></script>
+    <script type="module" crossorigin src="/assets/tournamentPage-5d3e14eb.js"></script>
+    <link rel="stylesheet" href="/assets/slider-6b65849a.css">
+    <link rel="stylesheet" href="/assets/partnerAuthPage-f1036468.css">
   </head>
-  <body>
-    <div class="wrapper">
+  <body class="page partner-auth-page">
+    <div class="partner-auth-page__wrapper wrapper">
       <header class="header">
   <div class="header__select-game">
     <div class="dropdown__game">
@@ -123,96 +123,48 @@
   </nav>
 </div>
 
-      <main class="page teams-page">
-        <div class="teams-page__container">
-          <section class="tabs filters tabs-block">
-            <div class="filters__tabs tabs-block__tabs">
-              <div
-                class="filters__tab tabs-block__tab"
-                data-tab-name="my-teams"
-              >
-                МОИ КОМАНДЫ
+      <main class="page__main partner-auth-page__main">
+        <div class="partner-auth-page__container">
+          <div class="partner-auth-page__auth-block">
+            <div class="partner-auth-page__info-block">
+              <div class="partner-auth-page__title">
+                Зарабатывай вместе с BattleStar
               </div>
-              <div
-                class="filters__tab tabs-block__tab"
-                data-tab-name="open-teams"
-              >
-                ОТКРЫТЫЕ КОМАНДЫ
+              <div class="partner-auth-page__info-block-subtitle">
+                Ваши подписчики играют - вы зарабатываете
               </div>
-              <div
-                class="filters__tab tabs-block__tab"
-                data-tab-name="top-teams"
+              <ul class="partner-auth-page__info-block-list">
+                <li class="partner-auth-page__info-block-list-item">
+                  Призы от компании BattleStar
+                </li>
+                <li class="partner-auth-page__info-block-list-item">
+                  Процент от выигрыша приведенных подписчиков
+                </li>
+                <li class="partner-auth-page__info-block-list-item">
+                  Подробная аналитика аудитории в личном кабинете
+                </li>
+              </ul>
+              <p class="partner-auth-page__info-block-description">
+                Заполните заявку чтобы присоединиться к реферальной программе
+                для лидеров мнений
+              </p>
+              <button
+                class="partner-auth-page__button partner-auth-page__info-block-button-registration"
               >
-                ТОП КОМАНД
-              </div>
-              <div class="tabs-block__lamp"><span></span></div>
+                Заполнить заявку
+              </button>
+              <p
+                class="partner-auth-page__info-block-description text-with-lines"
+              >
+                Если у вас уже есть аккаунт партнёра - выполните вход
+              </p>
+              <button
+                class="partner-auth-page__button partner-auth-page__info-block-button-login"
+              >
+                Войти
+              </button>
             </div>
-            <div class="filters__content tabs-block__content">
-              <div
-                class="filters__find-lobby find-lobby tabs-block__content-container tabs-block__content-container_active"
-                id="my-teams-content"
-              >
-                <section class="my-teams-section teams-list-section">
-  <ul class="my-teams-section__teams-list teams-list-section__teams-list"></ul>
-</section>
-
-              </div>
-              <div
-                class="filters__find-lobby find-lobby tabs-block__content-container"
-                id="open-teams-content"
-              >
-                <section class="my-teams-section teams-list-section">
-  <div class="teams-list-section__header">
-  <h2 class="teams-list-section__title">Открытые команды</h2>
-
-  <label class="teams-list-section__search">
-    <button class="teams-list-section__search-button">
-      <svg class="teams-list-section__search-icon">
-        <use xlink:href="/assets/sprite-19efb863.svg#search"></use>
-      </svg>
-    </button>
-    <input
-      class="teams-list-section__search-input"
-      type="text"
-      placeholder="Поиск по командам"
-    />
-  </label>
-</div>
-
-  <ul
-    class="open-teams-section__teams-list teams-list-section__teams-list"
-  ></ul>
-</section>
-
-              </div>
-              <div
-                class="filters__create-lobby create-lobby tabs-block__content-container"
-                id="top-teams-content"
-              >
-                <section class="my-teams-section teams-list-section">
-  <div class="teams-list-section__header">
-  <h2 class="teams-list-section__title">Топ команд</h2>
-
-  <label class="teams-list-section__search">
-    <button class="teams-list-section__search-button">
-      <svg class="teams-list-section__search-icon">
-        <use xlink:href="/assets/sprite-19efb863.svg#search"></use>
-      </svg>
-    </button>
-    <input
-      class="teams-list-section__search-input"
-      type="text"
-      placeholder="Поиск по командам"
-    />
-  </label>
-</div>
-
-  <ul class="top-teams-section__teams-list teams-list-section__teams-list"></ul>
-</section>
-
-              </div>
-            </div>
-          </section>
+          </div>
         </div>
       </main>
     </div>

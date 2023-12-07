@@ -1,0 +1,41 @@
+<div
+  class="filters__create-lobby create-lobby tabs-block__content-container"
+  id="create-content"
+>
+  <div class="create-lobby__title-block">
+    <div class="create-lobby__title"> Лобби </div>
+    <label
+      class="create-lobby__name-input-label text-input text-input_name-lobby"
+    >
+      <input
+        type="text"
+        class="create-lobby__name-input"
+        name="name-lobby"
+        placeholder="*Введите название лобби"
+      />
+    </label>
+  </div>
+  <load
+    ="../create-lobby/rate-selected.html"
+    class="create-lobby__rate-selected"
+  />
+  <load
+    ="../create-lobby/map-selected.html"
+    class="create-lobby__map-selected"
+  />
+  <load
+    ="../create-lobby/game-mode-selected.html"
+    class="create-lobby__game-mode-selected"
+  />
+  <load
+    ="../create-lobby/region-selected.html"
+    class="create-lobby__region-selected"
+  />
+  <load ="./anti-cheat.html" class="create-lobby__anti-cheat" />
+  <button class="create-lobby__create-btn btn btn_yellow">
+    <svg>
+      <use xlink:href="src/images/sprite.svg#people"></use>
+    </svg>
+    <div>Создать</div>
+  </button>
+</div>

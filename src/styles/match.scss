@@ -5,7 +5,6 @@
 @import './components/ui/dropDownMenu.scss';
 @import './components/pop-up';
 @import './components/overlay';
-@import './components/btns';
 @import './components/calibration-pop-up';
 @import './components/tabs';
 @import './components/accordion';
@@ -13,6 +12,14 @@
 @import './components/match/sorting-block';
 @import './components/match/cs-card';
 @import './components/match/cs-row';
+@import './components/ui/rate-input';
+@import './components/ui/input';
+@import './components/create-lobby/rate-selected';
+@import './components/create-lobby/map-selected';
+@import './components/create-lobby/game-mode-selected';
+@import './components/create-lobby/region-selected';
+@import './components/match/create-lobby';
+@import './components/match/anti-cheat';
 
 .wrapper {
   overflow: hidden;

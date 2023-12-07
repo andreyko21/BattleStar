@@ -5,17 +5,65 @@
 @import './components/overlay';
 @import './components/btns';
 @import './components/calibration-pop-up';
+@import './components/calibration/calibration-title';
+@import './components/match/cs-row';
+@import './components/match/cs-card';
+@import './components/tabs';
+@import './components/match/sorting-block';
 
-.main {
-  position: relative;
-  flex: 1 1 auto;
-  width: 100%;
-  grid-area: main;
+.wrapper {
+  overflow: hidden;
+  height: 100vh;
 }
-
-//.overflow_hidden {
-//  overflow: hidden;
-//}
-img {
+.calibration-page {
+  position: relative;
   width: 100%;
+  height: 100%;
+  overflow: auto;
+  grid-area: main;
+  &__bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    z-index: -1;
+  }
+  &__calibration-title {
+    margin: 99px auto 53px auto;
+  }
+
+  &__view-tabs {
+    margin: 0px 0px 12px 0px;
+  }
+
+  &__content {
+    margin: 0px 0px 70px 0px;
+  }
+
+  &__grid-block {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px 45px;
+    .match-card {
+      cursor: pointer;
+    }
+  }
+
+  &__table {
+    min-width: 1064px;
+    width: 100%;
+    margin-top: -20px;
+    border-spacing: 0 20px;
+    table-layout: fixed;
+    tr {
+      max-height: 80px;
+      height: 100%;
+      background: rgba(248, 248, 248, 0.02);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+    }
+  }
 }

@@ -1,179 +1,207 @@
 .button {
-   width: 249px;
-   height: 44px;
-   // background: $yellow300;
-   // clip-path: polygon(evenodd, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%, 2% 50%, 10% 10%, 90% 10%, 98% 50%, 90% 90%, 10% 90%, 2% 50%, 0% 50%);
+  width: 249px;
+  height: 44px;
+  // background: $yellow300;
+  // clip-path: polygon(evenodd, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%, 2% 50%, 10% 10%, 90% 10%, 98% 50%, 90% 90%, 10% 90%, 2% 50%, 0% 50%);
 }
 
 .btn {
-   width: 100%;
-   height: 100%;
-   background: transparent;
+  width: 100%;
+  height: 100%;
+  background: transparent;
 
-   &_transparent {
-      font-size: 22px;
-      font-weight: 700;
-      line-height: normal;
-      color: $gray25;
-      border-radius: 2px;
-      border: 2px solid $gray25;
-   }
+  &_transparent {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: normal;
+    color: $gray25;
+    border-radius: 2px;
+    border: 2px solid $gray25;
+  }
 
-   // Войти в комнату
-   &_yellow {
-      font-size: 20px;
-      font-weight: 500;
-      line-height: normal;
-      color: $dark100;
-      border-radius: 4px;
-      background: $yellow300;
-   }
+  // Войти в комнату
+  &_yellow {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: normal;
+    color: $dark100;
+    border-radius: 4px;
+    background: $yellow300;
+  }
 
-   &_dark-yellow {
-      font-size: 20px;
-      font-weight: 500;
-      line-height: normal;
-      background: $yellow700;
-      color: $dark200;
-   }
+  &_dark-yellow {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: normal;
+    background: $yellow700;
+    color: $dark200;
+  }
 
-   // для кнопок з часом та режимом, не потрібно використовувати span.
-   &_money {
-      border-radius: 4px;
-      border: 1px solid $gray500;
-      font-size: 20px;
-      font-weight: 700;
-      line-height: normal;
-      border-radius: 4px;
+  // для кнопок з часом та режимом, не потрібно використовувати span.
+  &_money {
+    border-radius: 4px;
+    border: 1px solid $gray500;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 4px;
+    color: $gray200;
+    background: $gray700;
+    backdrop-filter: blur(40px);
+
+    span {
       color: $gray200;
-      background: $gray700;
-      backdrop-filter: blur(40px);
+      text-decoration: line-through;
+    }
+  }
 
-      span {
-         color: $gray200;
-         text-decoration: line-through;
-      }
-   }
+  // active for money
+  &_money-act {
+    color: $yellow300;
+    border: 1px solid $yellow300;
+    background: $yellow800;
+    backdrop-filter: blur(40px);
 
-   // active for money
-   &_money-act {
+    span {
+      color: $yellow300;
+    }
+  }
+
+  // клас для кнопок - Подать заявку, Войти, Заполнить заявку, Отправить, Закрыть
+  &_close {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: normal;
+    color: $gray25;
+    border: 1px solid $gray25;
+    background: $gray600;
+    backdrop-filter: blur(40px);
+  }
+
+  // Без ограничений
+  &_no-limit {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+    color: $gray25;
+    border-radius: 4px;
+    border: 1px solid $gray500;
+    background: $gray600;
+
+    backdrop-filter: blur(40px);
+  }
+
+  // СОЗДАТЬ ТУРНИР
+  &_creation {
+    color: $gray300;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 4px;
+    background: $gray600;
+  }
+
+  // Подать заявку
+  &_apply {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: normal;
+    color: $dark200;
+    border-radius: 4px;
+    background: $gray450;
+  }
+
+  // Подобрать команду
+  &_find-team {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+    color: $gray25;
+    border-radius: 4px;
+    background: $gray700;
+    backdrop-filter: blur(10px);
+  }
+
+  // Перейти к калибровке
+  &_calibration {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    color: $gray25;
+    border-radius: 2px;
+    border: 1px solid $gray25;
+    background: $gray600;
+  }
+
+  // Турнир уже начался
+  &_turnir {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+    color: $gray25;
+    border-radius: 4px;
+    background: $gray700;
+    backdrop-filter: blur(10px);
+  }
+
+  // Не сейчас
+  &_skip {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    color: $gray100;
+    border-radius: 2px;
+    border: 1px solid $gray100;
+    background: $gray700;
+  }
+
+  &_sign {
+    position: relative;
+    margin: 0 auto;
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $gray25;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &_create-lobby {
+    border-radius: 4px;
+    border: 1px solid $gray500;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: normal;
+    color: $gray500;
+    background: $darckBlue06; // rgba(26 26 28 0.6);
+    backdrop-filter: blur(40px);
+
+    span {
+      color: $gray500;
+      text-decoration: line-through;
+      text-decoration-thickness: 0.8px;
+    }
+
+    // active for money
+    &-act {
       color: $yellow300;
       border: 1px solid $yellow300;
       background: $yellow800;
       backdrop-filter: blur(40px);
 
       span {
-         color: $yellow300;
+        color: $yellow300;
       }
-   }
-
-   // клас для кнопок - Подать заявку, Войти, Заполнить заявку, Отправить, Закрыть
-   &_close {
-      font-size: 15px;
-      font-weight: 700;
-      line-height: normal;
-      color: $gray25;
-      border: 1px solid $gray25;
-      background: $gray600;
-      backdrop-filter: blur(40px);
-   }
-
-   // Без ограничений
-   &_no-limit {
-      font-size: 20px;
-      font-weight: 400;
-      line-height: normal;
-      color: $gray25;
-      border-radius: 4px;
-      border: 1px solid $gray500;
-      background: $gray600;
-
-      backdrop-filter: blur(40px);
-   }
-
-   // СОЗДАТЬ ТУРНИР
-   &_creation {
-      color: $gray300;
-      font-size: 18px;
-      font-weight: 700;
-      line-height: normal;
-      border-radius: 4px;
-      background: $gray600;
-   }
-
-   // Подать заявку
-   &_apply {
-      font-size: 20px;
-      font-weight: 500;
-      line-height: normal;
-      color: $dark200;
-      border-radius: 4px;
-      background: $gray450;
-   }
-
-   // Подобрать команду
-   &_find-team {
-      font-size: 16px;
-      font-weight: 500;
-      line-height: normal;
-      color: $gray25;
-      border-radius: 4px;
-      background: $gray700;
-      backdrop-filter: blur(10px);
-   }
-
-   // Перейти к калибровке
-   &_calibration {
-      font-size: 18px;
-      font-weight: 500;
-      line-height: normal;
-      color: $gray25;
-      border-radius: 2px;
-      border: 1px solid $gray25;
-      background: $gray600;
-   }
-
-   // Турнир уже начался
-   &_turnir {
-      font-size: 16px;
-      font-weight: 500;
-      line-height: normal;
-      color: $gray25;
-      border-radius: 4px;
-      background: $gray700;
-      backdrop-filter: blur(10px);
-   }
-
-   // Не сейчас
-   &_skip {
-      font-size: 18px;
-      font-weight: 500;
-      line-height: normal;
-      color: $gray100;
-      border-radius: 2px;
-      border: 1px solid $gray100;
-      background: $gray700;
-   }
-
-   &_sign {
-      position: relative;
-      margin: 0 auto;
-
-      span {
-         position: absolute;
-         top: 50%;
-         left: 50%;
-         transform: translate(-50%, -50%);
-         color: $gray25;
-         font-size: 18px;
-         font-weight: 700;
-      }
-
-      svg {
-         width: 100%;
-         height: 100%;
-      }
-   }
+    }
+  }
 }
 
 // .button {

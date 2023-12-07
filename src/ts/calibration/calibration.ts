@@ -3,6 +3,8 @@ import type { IBasePopUp } from '../component/pop-up.ts';
 import { BaseTabs } from '../component/tabs.ts';
 import { MatchRow } from '../match/match-row.ts';
 import { MatchTile } from '../match/match-grid.ts';
+import mapImg from '../../images/temporary/map-img.png';
+import flagImg from '../../images/temporary/ukr-flag.png';
 
 const popUp: HTMLDivElement | null = document.querySelector(
   '.calibration-pop-up'
@@ -21,8 +23,30 @@ new BaseTabs('calibration-page__container');
 const matches = [
   {
     id: '1',
-    imgSrc: 'src/images/temporary/map-img.png',
-    flagSrc: 'src/images/temporary/ukr-flag.png',
+    imgSrc: mapImg,
+    flagSrc: flagImg,
+    nameMatch: 'PlayFair Display$$$',
+    map: 'Mirage',
+    rate: '5000',
+    mode: '5x5',
+    participants: '8/10',
+    ping: '23',
+  },
+  {
+    id: '1',
+    imgSrc: mapImg,
+    flagSrc: flagImg,
+    nameMatch: 'PlayFair Display$$$',
+    map: 'Mirage',
+    rate: '5000',
+    mode: '5x5',
+    participants: '8/10',
+    ping: '23',
+  },
+  {
+    id: '1',
+    imgSrc: mapImg,
+    flagSrc: flagImg,
     nameMatch: 'PlayFair Display$$$',
     map: 'Mirage',
     rate: '5000',
@@ -33,29 +57,7 @@ const matches = [
   {
     id: '1',
     imgSrc: 'src/images/temporary/map-img.png',
-    flagSrc: 'src/images/temporary/ukr-flag.png',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Mirage',
-    rate: '5000',
-    mode: '5x5',
-    participants: '8/10',
-    ping: '23',
-  },
-  {
-    id: '1',
-    imgSrc: 'src/images/temporary/map-img.png',
-    flagSrc: 'src/images/temporary/ukr-flag.png',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Mirage',
-    rate: '5000',
-    mode: '5x5',
-    participants: '8/10',
-    ping: '23',
-  },
-  {
-    id: '1',
-    imgSrc: 'src/images/temporary/map-img.png',
-    flagSrc: 'src/images/temporary/ukr-flag.png',
+    flagSrc: flagImg,
     nameMatch: 'PlayFair Display$$$',
     map: 'Mirage',
     rate: '5000',

@@ -1,4 +1,4 @@
-import"./modulepreload-polyfill-3cfb730f.js";import{B as d}from"./pop-up-c470bc0a.js";import{B as m}from"./tabs-83f8d45e.js";class l{container;options;constructor(c,t){this.container=document.querySelector(`#${c}`),this.options=t,this.render()}render(){const c=this.options.reduce((t,a)=>(t+=`<tr class="match-tr content__tr" id="${a.id}">
+import"./modulepreload-polyfill-3cfb730f.js";import{B as m}from"./pop-up-c470bc0a.js";import{B as _}from"./tabs-83f8d45e.js";class n{container;options;constructor(c,t){this.container=document.querySelector(`#${c}`),this.options=t,this.render()}render(){const c=this.options.reduce((t,a)=>(t+=`<tr class="match-tr content__tr" id="${a.id}">
          <td class="match-tr__img-cell">
            <div class="match-tr__img-block">
              <img
@@ -44,7 +44,7 @@ import"./modulepreload-polyfill-3cfb730f.js";import{B as d}from"./pop-up-c470bc0
              </div>
            </div>
          </td>
-       </tr>`,t),"");this.container.innerHTML=c}}class _{container;options;constructor(c,t){this.container=document.querySelector(`#${c}`),this.options=t,this.render()}render(){const c=this.options.reduce((t,a)=>(t+=`<div class="match-card" id="${a.id}">
+       </tr>`,t),"");this.container.innerHTML=c}}class v{container;options;constructor(c,t){this.container=document.querySelector(`#${c}`),this.options=t,this.render()}render(){const c=this.options.reduce((t,a)=>(t+=`<div class="match-card" id="${a.id}">
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
       <img
@@ -89,4 +89,4 @@ import"./modulepreload-polyfill-3cfb730f.js";import{B as d}from"./pop-up-c470bc0
       </div>
     </div>
   </div>
-</div>`,t),"");this.container.innerHTML=c}}const r=document.querySelector(".calibration-pop-up"),n=document.querySelector(".overlay"),i=new d(r,n);i.open();const v=r.querySelector("#start-calibration");v?.addEventListener("click",()=>i.close());new m("calibration-page__container");const s=[{id:"1",imgSrc:"src/images/temporary/map-img.png",flagSrc:"src/images/temporary/ukr-flag.png",nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"},{id:"1",imgSrc:"src/images/temporary/map-img.png",flagSrc:"src/images/temporary/ukr-flag.png",nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"},{id:"1",imgSrc:"src/images/temporary/map-img.png",flagSrc:"src/images/temporary/ukr-flag.png",nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"},{id:"1",imgSrc:"src/images/temporary/map-img.png",flagSrc:"src/images/temporary/ukr-flag.png",nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"}];new l("match-table",s);new _("match-grid",s);
+</div>`,t),"");this.container.innerHTML=c}}const s="/assets/map-img-5a71a888.png",i="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC",r=document.querySelector(".calibration-pop-up"),h=document.querySelector(".overlay"),d=new m(r,h);d.open();const g=r.querySelector("#start-calibration");g?.addEventListener("click",()=>d.close());new _("calibration-page__container");const e=[{id:"1",imgSrc:s,flagSrc:i,nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"},{id:"1",imgSrc:s,flagSrc:i,nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"},{id:"1",imgSrc:s,flagSrc:i,nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"},{id:"1",imgSrc:"src/images/temporary/map-img.png",flagSrc:i,nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"}];new n("match-table",e);new v("match-grid",e);

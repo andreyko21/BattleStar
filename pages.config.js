@@ -57,6 +57,10 @@ const pages = [
    name: "lobby",
    path: resolve(__dirname, "lobby.html"),
  },
+ {
+   name: "cabinet",
+   path: resolve(__dirname, "cabinet.html"),
+ },
 ];
 
 export default pages;

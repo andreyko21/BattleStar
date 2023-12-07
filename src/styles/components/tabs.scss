@@ -4,8 +4,6 @@
     width: 100%;
     height: 42px;
     margin: 0px auto 0px auto;
-    // padding: 12.5px 0 0px 0;
-    // border-bottom: 3px solid $gray300; // rgba(248 248 248 0.6);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,6 +59,16 @@
       background: $yellow300;
       transition: all 0.3s linear;
       pointer-events: none;
+    }
+  }
+  &_size_big {
+    .tabs-block {
+      &__tab {
+        font-size: 16px;
+      }
+      &__tabs {
+        height: 28px;
+      }
     }
   }
 }

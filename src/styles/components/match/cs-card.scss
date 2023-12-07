@@ -1,0 +1,124 @@
+.match-card {
+  width: 100%;
+  height: 100%;
+  background: $gray900; // rgba(248 248 248 0.02)
+  backdrop-filter: blur(10px);
+  &__img-block {
+    position: relative;
+    width: 100%;
+    padding-top: 52.47%;
+  }
+
+  &__wrapper-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__content {
+    width: 100%;
+    padding: 12px 20px 12px 15px;
+  }
+
+  &__name-block {
+    margin: 0px 0px 3px 0px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__flag {
+    height: 15px;
+    margin: 0px 10px 0px 0px;
+  }
+
+  &__name {
+    color: $gray25; // #f8f8f8;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__map {
+    margin: 0px 0px 6px 0px;
+    color: $gray75; // #afafaf;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__other-data {
+    width: 100%;
+    padding: 6px 0px 0px 0px;
+    border-top: 1px solid $dark100; // #3F3D46
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__data-block {
+    display: flex;
+    & > div {
+      margin: 0px 32px 0px 0px;
+    }
+  }
+
+  &__rate-block {
+  }
+
+  &__data-title {
+    color: $DimGray; // #606060
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  &__rate-value {
+    color: $gray25; // #f8f8f8
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__mode {
+  }
+
+  &__participants {
+  }
+
+  &__ping-block {
+    margin: 0px 0px 6px 0px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  &__ping {
+    margin: 0px 2px 0px 0px;
+    color: $green50; // #6fff57
+    text-align: right;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0.75;
+  }
+
+  &__ping-icon {
+    width: 24px;
+    height: 24px;
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: $green50; // #6fff57
+    }
+  }
+}

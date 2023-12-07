@@ -67,125 +67,124 @@ class Sign implements SignType {
     });
   }
 
-/* signInValidation() {
+//  signInValidation() {
+//     $!.validator.addMethod(
+//       "cyrillicEmail",
+//       function (value: string) {
+//         return /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value);
+//       },
+//       "Please enter a valid email address"
+//     );
 
-    $.validator.addMethod(
-      "cyrillicEmail",
-      function (value: string) {
-        return /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value);
-      },
-      "Please enter a valid email address"
-    );
-
-    $.validator.addMethod("cyrillicPassword", 
-    function (value: string) {
-      return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/.test(value);
-    },
-    "Please enter a valid password with at least 8 characters, "
-  );
-    $(this.signIn).validate({
-      rules: {
-        nickname: {
-          required: true,
-          cyrillicEmail: true,
-        },
-        password: {
-          required: true,
-          minlength: 8,
-          cyrillicPassword: true,
-        },
-      },
-      messages: {
-        nickname: {
-          required: "Please enter an email address",
-          cyrillicEmail: "Please enter a valid email address",
-        },
-        password: {
-          required: "Please enter a password",
-          minlength: "Your password must be at least 8 characters long",
+//     $.validator.addMethod("cyrillicPassword", 
+//     function (value: string) {
+//       return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/.test(value);
+//     },
+//     "Please enter a valid password with at least 8 characters, "
+//   );
+//     $(this.signIn).validate({
+//       rules: {
+//         nickname: {
+//           required: true,
+//           cyrillicEmail: true,
+//         },
+//         password: {
+//           required: true,
+//           minlength: 8,
+//           cyrillicPassword: true,
+//         },
+//       },
+//       messages: {
+//         nickname: {
+//           required: "Please enter an email address",
+//           cyrillicEmail: "Please enter a valid email address",
+//         },
+//         password: {
+//           required: "Please enter a password",
+//           minlength: "Your password must be at least 8 characters long",
         
-        },
-      },
-      errorClass: "invalid",
-      errorElement: "span",
-      errorPlacement: (error: string, element: HTMLElement) => {
-        const errorLabel = $(element)
-          .closest(".form__signin")
-          .find(".form__signin-label");
-        errorLabel.html(error);
-      },
-    });
-  }
+//         },
+//       },
+//       errorClass: "invalid",
+//       errorElement: "span",
+//       errorPlacement: (error: string, element: HTMLElement) => {
+//         const errorLabel = $(element)
+//           .closest(".form__signin")
+//           .find(".form__signin-label");
+//         errorLabel.html(error);
+//       },
+//     });
+//   }
 
-  signUpValidation() {
-        // @ts-ignore
-    $.validator.addMethod(
-      "cyrillicEmail",
-      function (value: string) {
-        return /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value);
-      },
-      "Please enter a valid email address"
-    );
-      // @ts-ignore
-    $.validator.addMethod(
-      "cyrillicName", 
-      function (value: string) {
-        return /^[a-zA-Zа-яА-ЯёЁіІїЇєЄ'’` -]+$/u.test(value);
-      },
-      "Please enter a valid name without digits"
-    );
-      // @ts-ignore
-    $.validator.addMethod("cyrillicPswd", 
-      function (value: string) {
-        return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/.test(value);
-      },
-      "Please enter a valid password with at least 8 characters, containing at least one digit, one lowercase and one uppercase letter, and one special character."
-    );
-      // @ts-ignore
-    $(this.signUp).validate({
-      rules: {
-        nickname: {
-          required: true,
-          cyrillicName: true,
-          minlength: 3,
-        },
-        email: {
-          required: true,
-          cyrillicEmail: true,
-        },
-        password: {
-          required: true,
-          minlength: 8,
-          cyrillicPswd: true,
-        },
-      },
-      messages: {
-        nickname: {
-          required: "Please enter a name",
-          cyrillicName: "Please enter a valid name without digits",
-          minlength: "Your name must be at least 3 characters long",
-        },
-        email: {
-          required: "Please enter an email address",
-          cyrillicEmail: "Please enter a valid email address",
-        },
-        password: {
-          required: "Please enter a password",
-          minlength: "Your password must be at least 8 characters long",
-        },
-      },
-      errorClass: "invalid",
-      errorElement: "span",
-      errorPlacement: (error: string, element: HTMLElement) => {
-        const errorLabel = $(element)
-          .closest(".form__signup")
-          .find(".form__signin-label");
-        errorLabel.html(error);
-      },
+//   signUpValidation() {
+     
+//     $.validator.addMethod(
+//       "cyrillicEmail",
+//       function (value: string) {
+//         return /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value);
+//       },
+//       "Please enter a valid email address"
+//     );
+//       // @ts-ignore
+//     $.validator.addMethod(
+//       "cyrillicName", 
+//       function (value: string) {
+//         return /^[a-zA-Zа-яА-ЯёЁіІїЇєЄ'’` -]+$/u.test(value);
+//       },
+//       "Please enter a valid name without digits"
+//     );
+//       // @ts-ignore
+//     $.validator.addMethod("cyrillicPswd", 
+//       function (value: string) {
+//         return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/.test(value);
+//       },
+//       "Please enter a valid password with at least 8 characters, containing at least one digit, one lowercase and one uppercase letter, and one special character."
+//     );
+//       // @ts-ignore
+//     $(this.signUp).validate({
+//       rules: {
+//         nickname: {
+//           required: true,
+//           cyrillicName: true,
+//           minlength: 3,
+//         },
+//         email: {
+//           required: true,
+//           cyrillicEmail: true,
+//         },
+//         password: {
+//           required: true,
+//           minlength: 8,
+//           cyrillicPswd: true,
+//         },
+//       },
+//       messages: {
+//         nickname: {
+//           required: "Please enter a name",
+//           cyrillicName: "Please enter a valid name without digits",
+//           minlength: "Your name must be at least 3 characters long",
+//         },
+//         email: {
+//           required: "Please enter an email address",
+//           cyrillicEmail: "Please enter a valid email address",
+//         },
+//         password: {
+//           required: "Please enter a password",
+//           minlength: "Your password must be at least 8 characters long",
+//         },
+//       },
+//       errorClass: "invalid",
+//       errorElement: "span",
+//       errorPlacement: (error: string, element: HTMLElement) => {
+//         const errorLabel = $(element)
+//           .closest(".form__signup")
+//           .find(".form__signin-label");
+//         errorLabel.html(error);
+//       },
 
-    });
-  }
-  */
+//     });
+//   }
+
 
   getFormVal(): FormVal {
     const formValues: FormVal = {

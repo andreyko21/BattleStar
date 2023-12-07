@@ -58,7 +58,7 @@ const forSorting = new CreatedObjForIRenderMethod(
 );
 
 new BaseTabs('content__sorting-block', forSorting.createObj());
-new LavaLamp('content__sorting-block');
+//new LavaLamp('content__sorting-block');
 
 new Accordion('find-lobby__rate-filter');
 new Accordion('find-lobby__maps-filter');

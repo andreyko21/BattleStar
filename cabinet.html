@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://bossanova.uk/jsuites/v3/jsuites.css" type="text/css" />
+   
+   <title>Cabinet</title>
+  <script type="module" crossorigin src="/assets/cabinet-9bd6a6f7.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
+  <link rel="modulepreload" crossorigin href="/assets/jquery-995cfbaf.js">
+  <link rel="stylesheet" href="/assets/cabinet-e11cc24d.css">
+</head>
+
+<body>
+   <div class="wrapper">
+      <header class="header">
+  <div class="header__select-game">
+    <div class="dropdown__game">
+   <div class="dropdown__game-select">
+      <div class="dropdown__game-current">
+         <img class="dropdown__game-img" src="data:image/webp;base64,UklGRtwCAABXRUJQVlA4INACAAAQDgCdASoyADMAPpE+nUsloyKhqBQJWLASCWgAvZGN1l5MlJYDcETbw7gDeRt5pfhee2enPYGIEDQsw1zAHE0qvQKJhGwB10gnzJHilbOD6J4XLxI+wU5r0742A6oTzn4T//ZTegj6zWG11gbGd82yrEUu/mUvjFfgAP74Vhk+kU0OLM5L4X8STcVfF0aNH1URvyhIlmrdN1bB5kgtZFj48P5Qecli2b8U2+9P3p84yJl2qp+YccbqObeNnFltR1AlPaMovjOZ2Ow5K30RcNQskANmADLj6iWUrWtzlNsDEcW7uuMUEjtz6y1suLc9vHsaDUGRpf9aPvZxFVHi8PXKQd7uXoWKqxvx8vJJ6XVInQoyB/0icxg/x8AAdsFaNqqHfBGpiApsKil320S4cZRzisPEQZLCqeUmAP/qv1QTUrOtfyRJMLlkKgfXADE80dxwbIog2r5MCMN0PtTham9Nba1RvLkgLuQVLL+GUIMJc/y7LVbifUqf2NMAAGn7q/bfh35nL0PiV6Y+S34fX2edhge3XSoqjqyD/3pFBebSA4HG2t8339Vxb1GpxBj6+hsHqh31Pk9IB1gEY9r/n/ijF/fUcwnUcQqrLqj5mEIYp7jy77t/nc8ElMJLkrT/6TLE6s4kVVvTQqu2ZBQWhR19e3o6hBcZbIj/9lL7bE6yqWya1Dh6aDMQhN2uU/Pkf/L8wkXkxJ5Dox0BqccMtsxDLnipglucAdRbz1Ux8LKhB6AY545vnmG1eBBOamP0TgFyqoqZnkNh3KApvAwbBzLxlAYMVfyANsP/IMdeQguGIco+hp40L/Agvq0z7mg1dw9qIkaLpV/bPMPB6PstFAd3GlNzLEYn3LjKRICqlWOa44940dfCTEMADaM1C+sPxwQ5Apt+ehcKMctWMkOO5H0i0Vg2H3gG1IqXXTNUAviQKwrbs0ib6/qKtQwH4AAAAAA=" alt="">
+         <p class="dropdown__game-name">CS:GO</p>
+      </div>
+      <div class="dropdown__game-arrow">
+         <svg>
+            <use xlink:href="/assets/sprite-57d92484.svg#arrow-game"></use>
+         </svg>
+      </div>
+      <ul class="dropdown__game-list">
+         <li class="dropdown__game-item"><img class="dropdown__game-icon" src="data:image/webp;base64,UklGRtwCAABXRUJQVlA4INACAAAQDgCdASoyADMAPpE+nUsloyKhqBQJWLASCWgAvZGN1l5MlJYDcETbw7gDeRt5pfhee2enPYGIEDQsw1zAHE0qvQKJhGwB10gnzJHilbOD6J4XLxI+wU5r0742A6oTzn4T//ZTegj6zWG11gbGd82yrEUu/mUvjFfgAP74Vhk+kU0OLM5L4X8STcVfF0aNH1URvyhIlmrdN1bB5kgtZFj48P5Qecli2b8U2+9P3p84yJl2qp+YccbqObeNnFltR1AlPaMovjOZ2Ow5K30RcNQskANmADLj6iWUrWtzlNsDEcW7uuMUEjtz6y1suLc9vHsaDUGRpf9aPvZxFVHi8PXKQd7uXoWKqxvx8vJJ6XVInQoyB/0icxg/x8AAdsFaNqqHfBGpiApsKil320S4cZRzisPEQZLCqeUmAP/qv1QTUrOtfyRJMLlkKgfXADE80dxwbIog2r5MCMN0PtTham9Nba1RvLkgLuQVLL+GUIMJc/y7LVbifUqf2NMAAGn7q/bfh35nL0PiV6Y+S34fX2edhge3XSoqjqyD/3pFBebSA4HG2t8339Vxb1GpxBj6+hsHqh31Pk9IB1gEY9r/n/ijF/fUcwnUcQqrLqj5mEIYp7jy77t/nc8ElMJLkrT/6TLE6s4kVVvTQqu2ZBQWhR19e3o6hBcZbIj/9lL7bE6yqWya1Dh6aDMQhN2uU/Pkf/L8wkXkxJ5Dox0BqccMtsxDLnipglucAdRbz1Ux8LKhB6AY545vnmG1eBBOamP0TgFyqoqZnkNh3KApvAwbBzLxlAYMVfyANsP/IMdeQguGIco+hp40L/Agvq0z7mg1dw9qIkaLpV/bPMPB6PstFAd3GlNzLEYn3LjKRICqlWOa44940dfCTEMADaM1C+sPxwQ5Apt+ehcKMctWMkOO5H0i0Vg2H3gG1IqXXTNUAviQKwrbs0ib6/qKtQwH4AAAAAA=" alt="">Counter Strike: Global Offensive</li>
+         <li class="dropdown__game-item"><img class="dropdown__game-icon" src="data:image/webp;base64,UklGRnwCAABXRUJQVlA4WAoAAAAQAAAAJwAAKAAAQUxQSFMBAAABkELbtrFt57OVjPvZ9cvstm3b+m2kPxmV2ZXJtm2fDwc3/X+NCEZu2ziSNOU02PqJPYJrDVD9x/YIDgUGzJILQMmPR+g1vUPRB+/wP+Wz8XcilzOIfd8shgFzDyV3AbFULwcAXFdbpXLZGZYt+4iCe2i5arthRXPHYouqc7Ci+2Y91G0AYss7KUvepdPMPSW08K2h+W6XDrMDrwYCtf25sLUDTzqwzE0htHMnA5z16zqNipPA7fyokIGahUJR90TuwT2NL2lC3tv/CtQynkhXbECw5y0ngJEgdTdAytxl7GCAkTriIOWzjX0kHBC328SikSoACXeFzlU4cjJ0lC2u59QxYpGidp6zmXGQEkIfq9DPMMYJ9b8MUbeX/SlXUPP6csphhyk/UC/AYcXEp/xCZlcuIxwtfHeP+E76clbEf7x/ba7EyldzdXf1azFWegOA0TQAVlA4IAIBAADwBwCdASooACkAPpE+nEqloyKhpzgJILASCWwAtRroPHeq8XPQBdnPPhfsB8Ev7a/rl7QAXZl2cfgFepna8rvF+qhx1jOim8AA/hMf/KV0kpJWY5H2RUB//ewX72C/ewX2dH3eARphOv5569NfquY37o8LDS9Am8dhyGwrGeOhmu8umsqcJ2sygVjcmB2v3NwwVYbECMleu1jasVlUsZpUk8G3jFlB8e/HNwfaK1b+8kgA0n/Q4LzFE7voj2/TZ5+8FtAnp5fHhjMz7YZgmbx9oYBCfxsmm9PNCiYYHIiJZ+mvZiVLSOTp7rfNn6KqkWk2XEcUbHt+Pyd/QrDtSOqHAAA=" alt="">DOTA 2</li>
+      </ul>
+   </div>
+</div>
+  </div>
+
+  <label for="headerSearch" class="header__search-block">
+    <svg class="header__search-block-icon">
+      <use xlink:href="/assets/sprite-57d92484.svg#search"></use>
+    </svg>
+    <input
+      class="header__search-block-input"
+      id="headerSearch"
+      type="text"
+      placeholder="Поиск"
+    />
+  </label>
+  <div class="header__balance">
+    <h2 class="header__balance-title">Баланс</h2>
+    <button class="header__balance-button">
+      <svg class="header__balance-button-icon">
+        <use xlink:href="/assets/sprite-57d92484.svg#plus-box"></use>
+      </svg>
+    </button>
+    <div class="header__balance-value">15600 BS</div>
+  </div>
+  <div class="header__messages">
+    <button class="header__messages-button">
+      <svg class="header__messages-button-icon">
+        <use xlink:href="/assets/sprite-57d92484.svg#message"></use>
+      </svg>
+    </button>
+  </div>
+  <div class="header__notification">
+    <button class="header__notification-button">
+      <svg class="header__notification-button-icon">
+        <use xlink:href="/assets/sprite-57d92484.svg#bell"></use>
+      </svg>
+    </button>
+  </div>
+  <div class="header__user-navigation">
+    <div class="header__user">
+      <div class="header__user-info">
+        <p class="header__user-info-name">Sergio Richter</p>
+      </div>
+      <button class="header__user-info-button">
+        <svg>
+          <use xlink:href="/assets/sprite-57d92484.svg#arrow-down"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+      <div class="sidebar">
+  <a class="sidebar__logo" href="/index">
+    <svg class="sidebar__logo">
+      <use xlink:href="/assets/sprite-57d92484.svg#logo"></use>
+    </svg>
+  </a>
+  <nav class="sidebar__nav">
+    <a href="" class="sidebar__nav-item sidebar__nav-item_active">
+      <svg class="sidebar__nav-item-icon">
+        <use xlink:href="/assets/sprite-57d92484.svg#newspaper"></use>
+      </svg>
+      <span class="sidebar__nav-item-text">ГЛАВНАЯ</span>
+    </a>
+    <a href="" class="sidebar__nav-item">
+      <svg class="sidebar__nav-item-icon">
+        <use xlink:href="/assets/sprite-57d92484.svg#controller"></use>
+      </svg>
+      <span class="sidebar__nav-item-text">МАТЧИ</span>
+    </a>
+    <a href="" class="sidebar__nav-item">
+      <svg class="sidebar__nav-item-icon">
+        <use xlink:href="/assets/sprite-57d92484.svg#cup"></use>
+      </svg>
+      <span class="sidebar__nav-item-text">ТУРНИРЫ</span>
+    </a>
+    <a href="" class="sidebar__nav-item">
+      <svg class="sidebar__nav-item-icon">
+        <use xlink:href="/assets/sprite-57d92484.svg#people"></use>
+      </svg>
+      <span class="sidebar__nav-item-text">КОМАНДЫ</span>
+    </a>
+    <a href="" class="sidebar__nav-item">
+      <svg class="sidebar__nav-item-icon">
+        <use xlink:href="/assets/sprite-57d92484.svg#person"></use>
+      </svg>
+      <span class="sidebar__nav-item-text">ДРУЗЬЯ</span>
+    </a>
+  </nav>
+</div>
+
+      <main class="page">
+         <section class="cabinet">
+            <div class="cabinet__container">
+               <aside class="cabinet__aside">
+                  <div class="menu">
+   <nav class="menu__body">
+      <a class="menu__link menu__link_act" href="#statistics">Статистика
+         <svg>
+            <use xlink:href="/assets/sprite-57d92484.svg#static"></use>
+         </svg>
+      </a>
+      <a class="menu__link" href="#history">История матчей
+         <svg>
+            <use xlink:href="/assets/sprite-57d92484.svg#history-matches"></use>
+         </svg>
+      </a>
+      <a class="menu__link" href="#personal">Личные данные
+         <svg>
+            <use xlink:href="/assets/sprite-57d92484.svg#account"></use>
+         </svg>
+      </a>
+      <a class="menu__link" href="#wallet">Кошелёк
+         <svg>
+            <use xlink:href="/assets/sprite-57d92484.svg#wallet"></use>
+         </svg>
+      </a>
+      <a class="menu__link" href="#setting"> Параметры
+         <svg>
+            <use xlink:href="/assets/sprite-57d92484.svg#setting"></use>
+         </svg>
+      </a>
+      <a class="menu__link" href="#blacklist">Черный список
+         <svg>
+            <use xlink:href="/assets/sprite-57d92484.svg#blacklist"></use>
+         </svg>
+      </a>
+   </nav>
+</div>
+               </aside>
+               <div class="cabinet__content">
+                  <div data-hash="statistics" class="cabinet__statistics statistics">
+                     <div class="match-page__filters filters tabs-block">
+                        <div class="filters__tabs tabs-block__tabs">
+                           <div class="filters__tab tabs-block__tab tabs-block__tab_active" data-tab-name="find">CS:GO
+                           </div>
+                           <div class="filters__tab tabs-block__tab" data-tab-name="create">DOTA 2</div>
+                           <div class="tabs-block__lamp"></div>
+                        </div>
+                        <div class="filters__content tabs-block__content">
+                           <div class="filters__find-lobby 
+                           find-lobby tabs-block__content-container 
+                           tabs-block__content-container_active" id="find-content">
+                              <div class="statistics__header">
+                                 <div class="statistics__header-rating">
+                                    <p class="statistics__header-text">Ранг: <span>1682</span></p>
+                                    <div class="statistics__header-rank">
+                                       <img src="" alt="">
+                                    </div>
+                                 </div>
+                                 <div class="statistics__header-info">
+                                    <div class="statistics__header-tourney">
+                                       <svg>
+                                          <use xlink:href="/assets/sprite-57d92484.svg#tourney"></use>
+                                       </svg>
+                                       <p class="statistics__header-subtext">4<span>Турнира</span></p>
+                                    </div>
+                                    <div class="statistics__header-winrate">
+                                       <svg>
+                                          <use xlink:href="/assets/sprite-57d92484.svg#winrate"></use>
+                                       </svg>
+                                       <p class="statistics__header-subtext">76%<span>Винрейт</span></p>
+                                    </div>
+                                    <div class="statistics__header-time">
+                                       <svg>
+                                          <use xlink:href="/assets/sprite-57d92484.svg#time"></use>
+                                       </svg>
+                                       <p class="statistics__header-subtext">214<span>Часов в игре</span></p>
+                                    </div>
+                                 </div>
+
+                              </div>
+                              <div class="statistics__cs">
+                                 <div class="statistics__cs-info">
+                                    <h2 class="statistics__cs-title">Статистика</h2>
+                                    <p class="statistics__cs-text">Матчей сыграно: <span>1023</span></p>
+                                    <p class="statistics__cs-text">Карт сыграно: <span>23</span></p>
+                                    <p class="statistics__cs-text">Побед: <span>798</span></p>
+                                    <p class="statistics__cs-text">Поражений: <span>225</span></p>
+                                    <p class="statistics__cs-text">Убийств: <span>2304</span></p>
+                                    <p class="statistics__cs-text">Смертей: <span>1389</span></p>
+                                 </div>
+                                 <div class="statistics__cs-schedule">
+                                    <h2 class="statistics__cs-title">Статистика</h2>
+                                    <canvas class="statistics__cs-chart" id="myChart"></canvas>
+                                 </div>
+
+
+                              </div>
+                           </div>
+                           <div class="filters__create-lobby create-lobby tabs-block__content-container"
+                              id="create-content">
+                              <div class="statistics__dota">
+                                 <canvas id="dota"></canvas>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-hash="history" class="cabinet__history history hide">
+                     <div class="history__content">
+                        <div class="history__content-row">
+                           <h2 class="history__content-title">История матчей</h2>
+                           <div class="history__content-filter">
+                              <p class="history__content-text">Показать:</p>
+                              <select class="history__content-select" id="filter">
+                                 <option value="All">Все матчи</option>
+                                 <option value="win">Победа</option>
+                                 <option value="defeat">Поражение</option>
+                              </select>
+                           </div>
+                        </div>
+
+                        <div class="history__content-table table">
+                           <table class="table__tab">
+                              <tr class="table__tr">
+                                 <td class="table__name">CS:GO</td>
+                                 <td class="table__data">07.06.2021</td>
+                                 <td class="table__time">19:20</td>
+                                 <td class="table__regime">Режим <span>5v5</span></td>
+                                 <td class="table__id">ID <span>37589023</span></td>
+                                 <td class="table__win">Победа</td>
+                                 <td class="table__money">+ 1200 <span>BS</span></td>
+                              </tr>
+                              <tr class="table__tr">
+                                 <td class="table__name">DOTA 2</td>
+                                 <td class="table__data">07.06.2021</td>
+                                 <td class="table__time">19:20</td>
+                                 <td class="table__regime">Режим <span>1v1</span></td>
+                                 <td class="table__id">ID <span>37589023</span></td>
+                                 <td class="table__win table__win_defeat">Поражение</td>
+                                 <td class="table__money">- 500 <span>BS</span></td>
+                              </tr>
+                              <tr class="table__tr">
+                                 <td class="table__name">CS:GO</td>
+                                 <td class="table__data">07.06.2021</td>
+                                 <td class="table__time">19:20</td>
+                                 <td class="table__regime">Режим <span>5v5</span></td>
+                                 <td class="table__id">ID <span>37589023</span></td>
+                                 <td class="table__win">Победа</td>
+                                 <td class="table__money">+ 1200 <span>BS</span></td>
+                              </tr>
+                              <tr class="table__tr">
+                                 <td class="table__name">DOTA 2</td>
+                                 <td class="table__data">07.06.2021</td>
+                                 <td class="table__time">19:20</td>
+                                 <td class="table__regime">Режим <span>1v1</span></td>
+                                 <td class="table__id">ID <span>37589023</span></td>
+                                 <td class="table__win table__win_defeat">Поражение</td>
+                                 <td class="table__money">- 500 <span>BS</span></td>
+                              </tr>
+                              <tr class="table__tr">
+                                 <td class="table__name">CS:GO</td>
+                                 <td class="table__data">07.06.2021</td>
+                                 <td class="table__time">19:20</td>
+                                 <td class="table__regime">Режим <span>5v5</span></td>
+                                 <td class="table__id">ID <span>37589023</span></td>
+                                 <td class="table__win">Победа</td>
+                                 <td class="table__money">+ 1200 <span>BS</span></td>
+                              </tr>
+                              <tr class="table__tr">
+                                 <td class="table__name">DOTA 2</td>
+                                 <td class="table__data">07.06.2021</td>
+                                 <td class="table__time">19:20</td>
+                                 <td class="table__regime">Режим <span>1v1</span></td>
+                                 <td class="table__id">ID <span>37589023</span></td>
+                                 <td class="table__win table__win_defeat">Поражение</td>
+                                 <td class="table__money">- 500 <span>BS</span></td>
+                              </tr>
+                              <tr class="table__tr">
+                                 <td class="table__name">CS:GO</td>
+                                 <td class="table__data">07.06.2021</td>
+                                 <td class="table__time">19:20</td>
+                                 <td class="table__regime">Режим <span>5v5</span></td>
+                                 <td class="table__id">ID <span>37589023</span></td>
+                                 <td class="table__win">Победа</td>
+                                 <td class="table__money">+ 1200 <span>BS</span></td>
+                              </tr>
+                              <tr class="table__tr">
+                                 <td class="table__name">DOTA 2</td>
+                                 <td class="table__data">07.06.2021</td>
+                                 <td class="table__time">19:20</td>
+                                 <td class="table__regime">Режим <span>1v1</span></td>
+                                 <td class="table__id">ID <span>37589023</span></td>
+                                 <td class="table__win">Поражение</td>
+                                 <td class="table__money">- 500 <span>BS</span></td>
+                              </tr>
+                              <tr class="table__tr">
+                                 <td class="table__name">CS:GO</td>
+                                 <td class="table__data">07.06.2021</td>
+                                 <td class="table__time">19:20</td>
+                                 <td class="table__regime">Режим <span>5v5</span></td>
+                                 <td class="table__id">ID <span>37589023</span></td>
+                                 <td class="table__win">Победа</td>
+                                 <td class="table__money">+ 1200 <span>BS</span></td>
+                              </tr>
+                              <tr class="table__tr">
+                                 <td class="table__name">DOTA 2</td>
+                                 <td class="table__data">07.06.2021</td>
+                                 <td class="table__time">19:20</td>
+                                 <td class="table__regime">Режим <span>1v1</span></td>
+                                 <td class="table__id">ID <span>37589023</span></td>
+                                 <td class="table__win table__win_defeat">Поражение</td>
+                                 <td class="table__money">- 500 <span>BS</span></td>
+                              </tr>
+                              <tr class="table__tr">
+                                 <td class="table__name">CS:GO</td>
+                                 <td class="table__data">07.06.2021</td>
+                                 <td class="table__time">19:20</td>
+                                 <td class="table__regime">Режим <span>5v5</span></td>
+                                 <td class="table__id">ID <span>37589023</span></td>
+                                 <td class="table__win">Победа</td>
+                                 <td class="table__money">+ 1200 <span>BS</span></td>
+                              </tr>
+
+
+                           </table>
+                        </div>
+
+                     </div>
+
+                  </div>
+                  <div data-hash="personal" class=" cabinet__personal personal hide">
+                     <div class="personal__content">
+                        <div class="personal__content-colunm">
+                           <div class="personal__content-row">
+                              <h2 class="personal__content-title">Основная информация</h2>
+                              <p class="personal__content-edit">Редактировать</p>
+
+                           </div>
+                           <div class="personal__content-info">
+                              <p class="personal__content-id">
+                                 ID: <span>37589023</span>
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#copy"></use>
+                                 </svg>
+                              </p>
+                              <p class="personal__content-nickname">
+                                 Никнейм: <span>MAX Richter</span>
+                              </p>
+                              <p class="personal__content-biography">
+                                 Био <span>Значимость этих проблем настолько очевидна, что консультация с широким
+                                    активом способствует подготовки и реализации позиций, занимаемых участниками в
+                                    отношении поставленных задач</span>
+                              </p>
+                              <p class="personal__content-data">
+                                 Дата регистрации: <span>07.06.2021</span>
+                              </p>
+                           </div>
+                           <hr class="personal__content-line">
+                           <div class="personal__content-row">
+                              <h2 class="personal__content-title">Адрес электронной почты</h2>
+                              <p class="personal__content-edit">Редактировать</p>
+
+                           </div>
+                           <p class="personal__content-email">
+                              Электронная почта <span>Example@mail.com</span>
+                              <svg>
+                                 <use xlink:href="/assets/sprite-57d92484.svg#check"></use>
+                              </svg>
+                           </p>
+                           <hr class="personal__content-line">
+                           <div class="personal__content-row">
+                              <h2 class="personal__content-title">Аккаунт Steam</h2>
+                              <p class="personal__content-edit">Изменить</p>
+                           </div>
+                           <div class="personal__content-steam">
+                              <p class="personal__content-email">
+                                 Электронная почта <span>Example@mail.com</span>
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#check"></use>
+                                 </svg>
+                              </p>
+                              <p class="personal__content-account">
+                                 Аккаунт <span>VERITA_Luts</span>
+                              </p>
+                           </div>
+
+
+                        </div>
+                        <div class="personal__content-avatar">
+                           <input class="personal__content-inp" type=file id=pct>
+                           <label class="personal__content-label" for=pct><span>Изменить</span></label>
+                        </div>
+
+                     </div>
+
+                  </div>
+                  <div data-hash="wallet" class=" cabinet__wallet wallet hide">
+                     <div class="wallet__content">
+                        <div class="wallet__content-column">
+                           <div class="wallet__content-card">
+                              <div class="wallet__content-img">
+                                 <img src="/assets/card-f0caeb54.png" alt="credit card">
+                              </div>
+                              <div class="wallet__content-info">
+                                 <p class="wallet__content-id">ID 4758 8745</p>
+                                 <p class="wallet__content-name">Max Richter</p>
+                              </div>
+                           </div>
+                           <div class="wallet__content-item">
+                              <div class="wallet__content-row">
+                                 <p class="wallet__content-subscription ">Подписка:</p>
+                                 <button class="wallet__content-btn">Геймер</button>
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#arrow-right"></use>
+                                 </svg>
+                              </div>
+                              <div class="wallet__content-graph">
+                                 <div class="wallet__content-balance">
+                                    <p class="wallet__content-balance-text">Баланс</p>
+                                    <p class="wallet__content-balance-sum">1200 <span>BS</span></p>
+                                 </div>
+
+                                 <canvas class="wallet__content-balance-canvas" id="graph"></canvas>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="wallet__content-transaction">
+                           <div class="wallet__content-subrow">
+                              <h3 class="wallet__content-subtitle">Перевести монеты</h3>
+                              <div class="wallet__content-btns">
+                                 <div class="wallet__content-btns-card">
+                                    <div class="wallet__content-btns-svg">
+                                       <svg>
+                                          <use xlink:href="/assets/sprite-57d92484.svg#rigth-arrow"></use>
+                                       </svg>
+                                       <svg>
+                                          <use xlink:href="/assets/sprite-57d92484.svg#card"></use>
+                                       </svg>
+                                    </div>
+                                    <p class="wallet__content-btns-text">Вывести на карту</p>
+                                 </div>
+                                 <div class="wallet__content-btns-friend">
+                                    <div class="wallet__content-btns-svg">
+                                       <svg>
+                                          <use xlink:href="/assets/sprite-57d92484.svg#rigth-arrow"></use>
+                                       </svg>
+                                       <svg>
+                                          <use xlink:href="/assets/sprite-57d92484.svg#friend"></use>
+                                       </svg>
+                                    </div>
+                                    <p class="wallet__content-btns-text">Перевести <span>BS</span> другу</p>
+                                 </div>
+
+                              </div>
+                           </div>
+                           <div class="wallet__content-subrow wallet__content-subrow_row">
+                              <h3 class="wallet__content-subtitle">Пополнить баланс</h3>
+                              <div class="wallet__content-btns wallet__content-btns_sub">
+                                 <div class="wallet__content-btns-bank">
+                                    <div class="wallet__content-btns-svg wallet__content-btns-svg_bank">
+                                       <svg>
+                                          <use xlink:href="/assets/sprite-57d92484.svg#bank"></use>
+                                       </svg>
+                                    </div>
+                                    <p class="wallet__content-btns-text wallet__content-btns-text_sub">Superbank</p>
+                                 </div>
+                                 <div class="wallet__content-btns-pay">
+                                    <div class="wallet__content-btns-svg wallet__content-btns-svg_pay">
+                                       <svg>
+                                          <use xlink:href="/assets/sprite-57d92484.svg#apple"></use>
+                                       </svg>
+                                    </div>
+                                    <p class="wallet__content-btns-text wallet__content-btns-text_sub">Pay</p>
+                                 </div>
+                                 <div class="wallet__content-btns-googlepay">
+                                    <div class="wallet__content-btns-svg wallet__content-btns-svg_googlepay">
+                                       <svg>
+                                          <use xlink:href="/assets/sprite-57d92484.svg#google-pay"></use>
+                                       </svg>
+                                    </div>
+                                    <p class="wallet__content-btns-text wallet__content-btns-text_sub">GooglePay</p>
+                                 </div>
+                                 <div class="wallet__content-btns-webmoney">
+                                    <div class="wallet__content-btns-svg wallet__content-btns-svg_webmoney">
+                                       <svg>
+                                          <use xlink:href="/assets/sprite-57d92484.svg#web-money"></use>
+                                       </svg>
+                                    </div>
+                                    <p class="wallet__content-btns-text wallet__content-btns-text_sub">WebMoney</p>
+                                 </div>
+                              </div>
+                           </div>
+
+
+
+                        </div>
+                        <div class="wallet__content-link">
+                           <button class="btn btn_yellow">
+                              Пригласи друзей и заработай до 2000 <span>BS</span>
+                           </button>
+
+                        </div>
+                        <div class="wallet__content-history">
+                           <h3 class="wallet__content-subtitle">История транзакций</h3>
+                           <div class="wallet__content-table table">
+                              <table class="table__tab">
+                                 <tr class="table__tr">
+                                    <td class="table__name">CS:GO</td>
+                                    <td class="table__data">07.06.2021</td>
+                                    <td class="table__time">19:20</td>
+                                    <td class="table__regime">Режим <span>5v5</span></td>
+                                    <td class="table__id">ID <span>37589023</span></td>
+                                    <td class="table__win">Победа</td>
+                                    <td class="table__money">+ 1200 <span>BS</span></td>
+                                 </tr>
+                                 <tr class="table__tr">
+                                    <td class="table__name">DOTA 2</td>
+                                    <td class="table__data">07.06.2021</td>
+                                    <td class="table__time">19:20</td>
+                                    <td class="table__regime">Режим <span>1v1</span></td>
+                                    <td class="table__id">ID <span>37589023</span></td>
+                                    <td class="table__win table__win_defeat">Поражение</td>
+                                    <td class="table__money">- 500 <span>BS</span></td>
+                                 </tr>
+                                 <tr class="table__tr">
+                                    <td class="table__name">
+                                       <div class="table__block">
+                                          <svg>
+                                             <use xlink:href="/assets/sprite-57d92484.svg#rigth-arrow"></use>
+                                          </svg>
+                                          <svg>
+                                             <use xlink:href="/assets/sprite-57d92484.svg#friend"></use>
+                                          </svg>
+                                          <p class="table__text">Перевод средств </p>
+                                       </div>
+
+                                    </td>
+                                    <td class="table__data">07.06.2021</td>
+                                    <td class="table__time">19:20</td>
+                                    <td class="table__regime">Режим <span>5v5</span></td>
+                                    <td class="table__id">
+                                       <div class="table__friend">
+                                          <span></span>
+                                          <p>GLron</p>
+                                       </div>
+                                    </td>
+                                    <td class="table__win"></td>
+                                    <td class="table__money">- 300 <span>BS</span></td>
+                                 </tr>
+                                 <tr class="table__tr">
+                                    <td class="table__name">DOTA 2</td>
+                                    <td class="table__data">07.06.2021</td>
+                                    <td class="table__time">19:20</td>
+                                    <td class="table__regime">Режим <span>1v1</span></td>
+                                    <td class="table__id">ID <span>37589023</span></td>
+                                    <td class="table__win table__win_defeat">Поражение</td>
+                                    <td class="table__money">- 500 <span>BS</span></td>
+                                 </tr>
+                                 <tr class="table__tr">
+                                    <td class="table__name">
+                                       <div class="table__block table__block_sub">
+                                          <svg>
+                                             <use xlink:href="/assets/sprite-57d92484.svg#rigth-arrow"></use>
+                                          </svg>
+                                          <svg>
+                                             <use xlink:href="/assets/sprite-57d92484.svg#card"></use>
+                                          </svg>
+                                          <p class="table__text table__text_sub">Вывод средств </p>
+                                       </div>
+                                    </td>
+                                    <td class="table__data">07.06.2021</td>
+                                    <td class="table__time">19:20</td>
+                                    <td class="table__regime">Режим <span>5v5</span></td>
+                                    <td class="table__id"><span>4141 13** **** **21</span></td>
+                                    <td class="table__win"></td>
+                                    <td class="table__money">+ 1200 <span>BS</span></td>
+                                 </tr>
+                                 <tr class="table__tr">
+                                    <td class="table__name">DOTA 2</td>
+                                    <td class="table__data">07.06.2021</td>
+                                    <td class="table__time">19:20</td>
+                                    <td class="table__regime">Режим <span>1v1</span></td>
+                                    <td class="table__id">ID <span>37589023</span></td>
+                                    <td class="table__win table__win_defeat">Поражение</td>
+                                    <td class="table__money">- 500 <span>BS</span></td>
+                                 </tr>
+                                 <tr class="table__tr">
+                                    <td class="table__name">CS:GO</td>
+                                    <td class="table__data">07.06.2021</td>
+                                    <td class="table__time">19:20</td>
+                                    <td class="table__regime">Режим <span>5v5</span></td>
+                                    <td class="table__id">ID <span>37589023</span></td>
+                                    <td class="table__win">Победа</td>
+                                    <td class="table__money">+ 1200 <span>BS</span></td>
+                                 </tr>
+                                 <tr class="table__tr">
+                                    <td class="table__name">DOTA 2</td>
+                                    <td class="table__data">07.06.2021</td>
+                                    <td class="table__time">19:20</td>
+                                    <td class="table__regime">Режим <span>1v1</span></td>
+                                    <td class="table__id">ID <span>37589023</span></td>
+                                    <td class="table__win">Поражение</td>
+                                    <td class="table__money">- 500 <span>BS</span></td>
+                                 </tr>
+                                 <tr class="table__tr">
+                                    <td class="table__name">CS:GO</td>
+                                    <td class="table__data">07.06.2021</td>
+                                    <td class="table__time">19:20</td>
+                                    <td class="table__regime">Режим <span>5v5</span></td>
+                                    <td class="table__id">ID <span>37589023</span></td>
+                                    <td class="table__win">Победа</td>
+                                    <td class="table__money">+ 1200 <span>BS</span></td>
+                                 </tr>
+                                 <tr class="table__tr">
+                                    <td class="table__name">DOTA 2</td>
+                                    <td class="table__data">07.06.2021</td>
+                                    <td class="table__time">19:20</td>
+                                    <td class="table__regime">Режим <span>1v1</span></td>
+                                    <td class="table__id">ID <span>37589023</span></td>
+                                    <td class="table__win table__win_defeat">Поражение</td>
+                                    <td class="table__money">- 500 <span>BS</span></td>
+                                 </tr>
+                                 <tr class="table__tr">
+                                    <td class="table__name">CS:GO</td>
+                                    <td class="table__data">07.06.2021</td>
+                                    <td class="table__time">19:20</td>
+                                    <td class="table__regime">Режим <span>5v5</span></td>
+                                    <td class="table__id">ID <span>37589023</span></td>
+                                    <td class="table__win">Победа</td>
+                                    <td class="table__money">+ 1200 <span>BS</span></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-hash="setting" class=" cabinet__setting setting hide">
+                     <div class="setting__content">
+                        <h2 class="setting__content-title">Уведомления</h2>
+                        <div class="setting__content-swich">
+                           <div class="checkbox-swich">
+  <label for="Новости платформы" class="checkbox-swich__label">
+    <input
+      type="checkbox"
+      name="Новости платформы"
+      id="Новости платформы"
+      class="checkbox-swich__input"
+    />
+    <div
+      class="checkbox-swich__castom-checkbox checkbox-swich__castom-checkbox--checked"
+    >
+      <div class="checkbox-swich__castom-checkbox-mark"> </div>
+    </div>
+    <div class="checkbox-swich__label-text">Новости платформы</div>
+  </label>
+</div>
+
+                           <div class="checkbox-swich">
+  <label for="Новые турниры" class="checkbox-swich__label">
+    <input
+      type="checkbox"
+      name="Новые турниры"
+      id="Новые турниры"
+      class="checkbox-swich__input"
+    />
+    <div
+      class="checkbox-swich__castom-checkbox checkbox-swich__castom-checkbox--checked"
+    >
+      <div class="checkbox-swich__castom-checkbox-mark"> </div>
+    </div>
+    <div class="checkbox-swich__label-text">Новые турниры</div>
+  </label>
+</div>
+
+                           <div class="checkbox-swich">
+  <label for="Входящие сообщения" class="checkbox-swich__label">
+    <input
+      type="checkbox"
+      name="Входящие сообщения"
+      id="Входящие сообщения"
+      class="checkbox-swich__input"
+    />
+    <div
+      class="checkbox-swich__castom-checkbox checkbox-swich__castom-checkbox--checked"
+    >
+      <div class="checkbox-swich__castom-checkbox-mark"> </div>
+    </div>
+    <div class="checkbox-swich__label-text">Входящие сообщения</div>
+  </label>
+</div>
+
+                           <div class="checkbox-swich">
+  <label for="Приглашения в команду" class="checkbox-swich__label">
+    <input
+      type="checkbox"
+      name="Приглашения в команду"
+      id="Приглашения в команду"
+      class="checkbox-swich__input"
+    />
+    <div
+      class="checkbox-swich__castom-checkbox checkbox-swich__castom-checkbox--checked"
+    >
+      <div class="checkbox-swich__castom-checkbox-mark"> </div>
+    </div>
+    <div class="checkbox-swich__label-text">Приглашения в команду</div>
+  </label>
+</div>
+
+                           <div class="checkbox-swich">
+  <label for="Запросы в друзья" class="checkbox-swich__label">
+    <input
+      type="checkbox"
+      name="Запросы в друзья"
+      id="Запросы в друзья"
+      class="checkbox-swich__input"
+    />
+    <div
+      class="checkbox-swich__castom-checkbox checkbox-swich__castom-checkbox--checked"
+    >
+      <div class="checkbox-swich__castom-checkbox-mark"> </div>
+    </div>
+    <div class="checkbox-swich__label-text">Запросы в друзья</div>
+  </label>
+</div>
+
+                        </div>
+                        <hr class="setting__content-line">
+                        <h2 class="setting__content-title setting__content-title_sub">Приглашения в команду</h2>
+                        <div class="checkbox-swich">
+  <label for="Разрешить только от друзей" class="checkbox-swich__label">
+    <input
+      type="checkbox"
+      name="Разрешить только от друзей"
+      id="Разрешить только от друзей"
+      class="checkbox-swich__input"
+    />
+    <div
+      class="checkbox-swich__castom-checkbox checkbox-swich__castom-checkbox--checked"
+    >
+      <div class="checkbox-swich__castom-checkbox-mark"> </div>
+    </div>
+    <div class="checkbox-swich__label-text">Разрешить только от друзей</div>
+  </label>
+</div>
+
+                        <hr class="setting__content-line setting__content-line_sub">
+                        <h2 class="setting__content-title setting__content-title_sub">Язык интерфейса</h2>
+                        <div class="setting__content-lang">
+                           <p class="setting__content-text">Язык</p>
+                           <div class="setting__content-select">
+                              <span class="setting__content-current">Українська</span>
+                              <div class="setting__content-arrow">
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#arrow-down"></use>
+                                 </svg>
+                              </div>
+                              <ul class="setting__content-list">
+                                 <li class="setting__content-item">Українська</li>
+                                 <li class="setting__content-item">English</li>
+                                 <li class="setting__content-item">Poland</li>
+                                 <li class="setting__content-item">Franch</li>
+                              </ul>
+
+                           </div>
+                        </div>
+                        <hr class="setting__content-line setting__content-line_sub">
+                        <h2 class="setting__content-title setting__content-title_sub">Регион</h2>
+                        <div class="setting__content-lang">
+                           <p class="setting__content-text">Регион</p>
+                           <div id="country" class="setting__content-country "></div>
+
+                        </div>
+                        <hr class="setting__content-line setting__content-line_sub">
+                        <h2 class="setting__content-title setting__content-title_sub">Привязать аккаунт</h2>
+                        <div class="setting__content-account">
+                           <div class="setting__content-item">
+                              <p class="setting__content-text">Steam</p>
+                              <div class="setting__content-column">
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#minus"></use>
+                                 </svg>
+                                 <p class="setting__content-name">VERITA_Luts</p>
+                              </div>
+                           </div>
+                           <div class="setting__content-item">
+                              <p class="setting__content-text">Google</p>
+                              <div class="setting__content-column">
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#minus"></use>
+                                 </svg>
+                                 <p class="setting__content-name">VERITA_Luts</p>
+                              </div>
+                           </div>
+                           <div class="setting__content-item">
+                              <p class="setting__content-text">Facebook</p>
+                              <div class="setting__content-column">
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#minus"></use>
+                                 </svg>
+                                 <p class="setting__content-name">VERITA_Luts</p>
+                              </div>
+                           </div>
+                        </div>
+                        <hr class="setting__content-line setting__content-line_sub">
+                        <h2 class="setting__content-title setting__content-title_sub">Изменить пароль</h2>
+                        <p class="setting__content-text setting__content-text_edit">Изменить</p>
+                        <hr class="setting__content-line setting__content-line_sub">
+                        <button class="setting__content-exit">
+                           <svg>
+                              <use xlink:href="/assets/sprite-57d92484.svg#exit"></use>
+                           </svg>
+                           Выйти из аккаунта
+                        </button>
+                     </div>
+                  </div>
+                  <div data-hash="blacklist" class=" cabinet__blacklist blacklist hide">
+                     <h2 class="blacklist__title">Черный список</h2>
+                     <div class="blacklist__content">
+                        <div class="blacklist__item">
+                           <div class="blacklist__row">
+                              <div class="blacklist__row-avatar"></div>
+                              <div class="blacklist__row-column">
+                                 <p class="blacklist__row-name">SergioRicht</p>
+                                 <p class="blacklist__row-info">Играет в CS:GO</p>
+                              </div>
+                              <div class="blacklist__row-rang"></div>
+                              <div class="blacklist__row-more">
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#more"></use>
+                                 </svg>
+                              </div>
+                           </div>
+                           <hr class="blacklist__line">
+                           <div class="blacklist__row">
+                              <div class="blacklist__row-avatar"></div>
+                              <div class="blacklist__row-column">
+                                 <p class="blacklist__row-name">SergioRicht</p>
+                                 <p class="blacklist__row-info">Играет в CS:GO</p>
+                              </div>
+                              <div class="blacklist__row-rang"></div>
+                              <div class="blacklist__row-more">
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#more"></use>
+                                 </svg>
+                              </div>
+                           </div>
+                           <hr class="blacklist__line">
+                           <div class="blacklist__row">
+                              <div class="blacklist__row-avatar"></div>
+                              <div class="blacklist__row-column">
+                                 <p class="blacklist__row-name">SergioRicht</p>
+                                 <p class="blacklist__row-info">Играет в CS:GO</p>
+                              </div>
+                              <div class="blacklist__row-rang"></div>
+                              <div class="blacklist__row-more">
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#more"></use>
+                                 </svg>
+                              </div>
+                           </div>
+                           <hr class="blacklist__line">
+                           <div class="blacklist__row">
+                              <div class="blacklist__row-avatar"></div>
+                              <div class="blacklist__row-column">
+                                 <p class="blacklist__row-name">SergioRicht</p>
+                                 <p class="blacklist__row-info">Играет в CS:GO</p>
+                              </div>
+                              <div class="blacklist__row-rang"></div>
+                              <div class="blacklist__row-more">
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#more"></use>
+                                 </svg>
+                              </div>
+                           </div>
+                           <hr class="blacklist__line">
+                           <div class="blacklist__row">
+                              <div class="blacklist__row-avatar"></div>
+                              <div class="blacklist__row-column">
+                                 <p class="blacklist__row-name">SergioRicht</p>
+                                 <p class="blacklist__row-info">Играет в CS:GO</p>
+                              </div>
+                              <div class="blacklist__row-rang"></div>
+                              <div class="blacklist__row-more">
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#more"></use>
+                                 </svg>
+                              </div>
+                           </div>
+                           <hr class="blacklist__line">
+                           <div class="blacklist__row">
+                              <div class="blacklist__row-avatar"></div>
+                              <div class="blacklist__row-column">
+                                 <p class="blacklist__row-name">SergioRicht</p>
+                                 <p class="blacklist__row-info">Играет в CS:GO</p>
+                              </div>
+                              <div class="blacklist__row-rang"></div>
+                              <div class="blacklist__row-more">
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#more"></use>
+                                 </svg>
+                              </div>
+                           </div>
+                           <hr class="blacklist__line">
+                           <div class="blacklist__row">
+                              <div class="blacklist__row-avatar"></div>
+                              <div class="blacklist__row-column">
+                                 <p class="blacklist__row-name">SergioRicht</p>
+                                 <p class="blacklist__row-info">Играет в CS:GO</p>
+                              </div>
+                              <div class="blacklist__row-rang"></div>
+                              <div class="blacklist__row-more">
+                                 <svg>
+                                    <use xlink:href="/assets/sprite-57d92484.svg#more"></use>
+                                 </svg>
+                              </div>
+                           </div>
+                           <hr class="blacklist__line">
+                        </div>
+                        <div class="blacklist__info">
+                           <svg>
+                              <use xlink:href="/assets/sprite-57d92484.svg#alert-circle"></use>
+                              <p class="blacklist__text">
+                                 Люди из черного списка не могут приглашать вас в команды, отправлять сообщения или
+                                 добавлять в пати
+                              </p>
+                           </svg>
+                        </div>
+                     </div>
+
+
+
+                  </div>
+               </div>
+            </div>
+         </section>
+      </main>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   
+</body>
+
+</html>

@@ -36,14 +36,6 @@ class Cabinet implements CabinetType {
   constructor() {
     this.menuTabts = $(".menu__link") as JQuery<HTMLLinkElement>;
     this.menuSvg = $(".menu__link svg") as JQuery<HTMLLinkElement>;
-<<<<<<< HEAD
-    this.cabinetContDiv = $("cabinet__content div") as JQuery<HTMLDivElement>;
-    console.log(this.menuTabts);
-    //  this.ctx = document.querySelector("#myChart") as HTMLCanvasElement;
-    //  this.dota = document.querySelector("#dota") as HTMLCanvasElement;
-    //  this.checkMenu();
-
-=======
     this.statistics = $(".statistics") as JQuery<HTMLDivElement>;
     this.history = $(".history") as JQuery<HTMLDivElement>;
     this.personal = $(".personal") as JQuery<HTMLDivElement>;
@@ -60,29 +52,11 @@ class Cabinet implements CabinetType {
     //  this.ctx = document.querySelector("#myChart") as HTMLCanvasElement;
     //  this.dota = document.querySelector("#dota") as HTMLCanvasElement;
     // this.checkMenu();
->>>>>>> 2e9e30d98c877568f0b9702018f0fa36d6e3bd2a
     //  this.cs();
     //   this.dotas();
     this.init();
   }
 
-<<<<<<< HEAD
-  //   checkMenu() {
-  //     this.menuTabts.each((index: number, tab) => {
-  //       $(tab).on("click", () => {
-  //         this.menuTabts.removeClass("menu__link_act");
-  //         $(tab).addClass("menu__link_act");
-  //         const tabData = $(tab).data("hash");
-
-  //         // console.log(tabHash);
-  //         // const tabHash = $(`#${tabData}`);
-  //         // console.log(tabHash);
-  //         window.location.hash = tabData;
-  //       });
-  //     });
-
-  //   }
-=======
   init() {
     this.filterHistory();
     this.chengeImg();
@@ -123,18 +97,19 @@ class Cabinet implements CabinetType {
     this.changeInp.on("change", () => {
       if (this.changeInp[0].files && this.changeInp[0].files[0]) {
         let reader = new FileReader();
-  
+
         reader.onload = (event) => {
           if (event.target) {
-            this.chahgeLabel.css("background-image", `url(${event.target.result})`);
+            this.chahgeLabel.css(
+              "background-image",
+              `url(${event.target.result})`
+            );
           }
         };
         reader.readAsDataURL(this.changeInp[0].files[0]);
       }
     });
   }
-  
-  
 
   // checkMenu() {
   //   this.menuTabts.each((index, tab) => {
@@ -162,7 +137,6 @@ class Cabinet implements CabinetType {
   //     });
   //   });
   // }
->>>>>>> 2e9e30d98c877568f0b9702018f0fa36d6e3bd2a
 
   //   cs() {
   //     new Chart(this.ctx, {

@@ -24,10 +24,20 @@ const pages = [
    {
       name: "sign",
       path: resolve(__dirname, "sign.html"),
-   }, {
+   }, 
+   {
       name: "news",
       path: resolve(__dirname, "news.html")
    },
+   {
+      name: "cabinet",
+      path: resolve(__dirname, "cabinet.html")
+   },
+   {
+      name: "lobby",
+      path: resolve(__dirname, "lobby.html")
+   },
+
 ];
 
 export default pages;

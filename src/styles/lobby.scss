@@ -1,0 +1,192 @@
+@import "./style.scss";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+@import "./components/ui/dropDownMenu.scss";
+@import "./components/tabs.scss";
+
+.wrapper {
+   display: grid;
+   grid-template:
+      "sidebar header"
+      "sidebar main" 1fr;
+   min-height: 0%;
+   grid-template-columns: min-content auto;
+
+   overflow: clip;
+}
+.page {
+   width: 100%;
+   grid-area: main;
+}
+.lobby {
+   background:
+      $gradient50,
+      url(../images/lobiBG.png) no-repeat center center/cover;
+   width: 100%;
+   height: 654px;
+
+   &__teams {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+      &-border {
+         &-line {
+            width: 645px;
+            height: 535px;
+            position: relative;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+            border: 1px solid $yellow300;
+            // background: $yellow300;
+
+            &::before {
+               content: "";
+               position: absolute;
+               display: block;
+               width: 100%;
+               height: 1px;
+               top: 20px;
+               left: 0;
+               // height: 100%;
+               background: $yellow300;
+               transform: rotate(45deg);
+            }
+         }
+
+         // &::before,
+         // &::after {
+         //     content: '';
+         //     position: absolute;
+         //     top: 0;
+
+         //     height: 100%;
+         //     background-color: yellow;
+         // }
+
+         // &::before {
+         //    //  left: 25%;
+         // }
+
+         // &::after {
+         //    //  right: 25%;
+         // }
+      }
+      &-name {
+         display: flex;
+         align-items: center;
+         &-flag {
+            width: 37px;
+            height: 24px;
+            &-top {
+               background: red;
+               height: 50%;
+               width: 100%;
+            }
+            &-bottom {
+               background: black;
+               height: 50%;
+               width: 100%;
+            }
+         }
+         &-names {
+            color: $gray25;
+            font-size: 22px;
+            font-weight: 500;
+            line-height: normal;
+            margin-left: 25px;
+         }
+      }
+      &-info {
+         display: flex;
+         width: 520px;
+         margin-top: 30px;
+         justify-content: space-between;
+         &-title {
+            color: $gray300;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: normal;
+         }
+         &-name {
+            color: $gray25;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: normal;
+         }
+
+         &-id {
+            svg {
+               width: 18px;
+               height: 18px;
+               fill: $gray25;
+            }
+         }
+      }
+      &-start {
+         border-radius: 4px;
+         background: $dark600;
+         width: 1077px;
+         height: 52px;
+         padding: 15px 27px 0 24px;
+         margin-top: 130px;
+         position: relative;
+         &-teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+         }
+         &-side-a {
+            display: flex;
+            align-items: center;
+         }
+         &-side-b {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+         }
+         &-name {
+            color: $gray25;
+            font-size: 20px;
+            font-weight: 900;
+            line-height: normal;
+         }
+         &-rank {
+            color: $gray100;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: normal;
+            margin-left: 16px;
+            &:nth-child(2) {
+               margin-right: 16px;
+            }
+         }
+         &-timer {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+         }
+         &-time {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: $gray25;
+            text-align: center;
+            font-size: 34px;
+            font-weight: 900;
+            line-height: normal;
+         }
+         &-text {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #a2a3a4;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: normal;
+         }
+      }
+   }
+}

@@ -8,7 +8,7 @@ import { BaseTabs, CreatedObjForIRenderMethod } from '../component/tabs.ts';
 import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
 import { Accordion } from '../component/accordeon.ts';
-import { StrimingTab } from './striming/striming.ts';
+//import { StrimingTab } from './striming/striming.ts';
 import { BtnOnRadioOrCheck } from './btnOnRadioOrCheck.ts';
 import { RateSelection } from './rate-selection.ts';
 import { MapSelection } from './map-selection.ts';
@@ -42,7 +42,7 @@ const mayMethods: IRenderMethod = {
     console.log('find');
   },
   translation: () => {
-    const translationTab = StrimingTab.getInstance();
+    // const translationTab = StrimingTab.getInstance();
   },
 };
 //!-----------------------------

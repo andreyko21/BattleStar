@@ -8,6 +8,8 @@ import { BaseTabs, CreatedObjForIRenderMethod } from '../component/tabs.ts';
 import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
 import { Accordion } from '../component/accordeon.ts';
+import { StrimingTab } from './striming/striming.ts';
+import { CreatedRadioBtn } from './radioBtn.ts';
 
 const popUp = document.querySelector('.calibration-pop-up') as HTMLDivElement;
 const overlay = document.querySelector('.overlay') as HTMLDivElement;
@@ -34,8 +36,8 @@ const mayMethods: IRenderMethod = {
   find: () => {
     console.log('find');
   },
-  create: () => {
-    console.log('create');
+  translation: () => {
+    const translationTab = StrimingTab.getInstance();
   },
 };
 //!-----------------------------
@@ -93,3 +95,14 @@ rateFilterSlider.noUiSlider?.on('update', function (values, handle) {
     rateMin.innerHTML = `$ ${values[handle]}`;
   }
 });
+
+const mapOptions = [
+  { value: 'Dust II', label: 'Dust II' },
+  { value: 'Mirage', label: 'Mirage' },
+  { value: 'Inferno', label: 'Inferno' },
+  { value: 'Lake', label: 'Lake' },
+  { value: 'Ancient', label: 'Ancient' },
+  { value: 'Nuke', label: 'Nuke' },
+];
+
+new CreatedRadioBtn('map-selected-wrapper', 'map-selected', mapOptions);

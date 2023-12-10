@@ -5,6 +5,7 @@ import { MatchRow } from '../match/match-row.ts';
 import { MatchTile } from '../match/match-grid.ts';
 import mapImg from '../../images/temporary/map-img.png';
 import flagImg from '../../images/temporary/ukr-flag.png';
+import { TabsCreate } from '../component/tabs-create.ts';
 
 const popUp: HTMLDivElement | null = document.querySelector(
   '.calibration-pop-up'
@@ -69,3 +70,12 @@ const matches = [
 
 new MatchRow('match-table', matches);
 new MatchTile('match-grid', matches);
+
+//! TEST_____________
+new TabsCreate('calibration-page', 'match-page__filters', [
+  ['find', 'НАЙТИ ИГРУ'],
+  ['create', 'СОЗДАТЬ ЛОББИ'],
+]);
+new BaseTabs('match-page__filters');
+import { LavaLamp } from '../component/lava-lamp.ts';
+new LavaLamp('match-page__filters');

@@ -1,10 +1,16 @@
 .text-input {
   width: 100%;
   display: block;
+
   input {
     width: 100%;
     height: 100%;
     padding: 0px 12px 0px 12px;
+    transition: $standartTrans;
+
+    &:focus {
+      border: 1px solid $yellow300;
+    }
     @include hidePlaceholder();
   }
 

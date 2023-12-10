@@ -9,7 +9,12 @@ import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
 import { Accordion } from '../component/accordeon.ts';
 import { StrimingTab } from './striming/striming.ts';
-import { CreatedRadioBtn } from './radioBtn.ts';
+import { BtnOnRadioOrCheck } from './btnOnRadioOrCheck.ts';
+import { RateSelection } from './rate-selection.ts';
+import { MapSelection } from './map-selection.ts';
+import { GameModeSelection } from './game-mode-selection.ts';
+import { RegionSelection } from './region-selection.ts';
+import { TitleCreateLobby } from './title-create-lobby.ts';
 
 const popUp = document.querySelector('.calibration-pop-up') as HTMLDivElement;
 const overlay = document.querySelector('.overlay') as HTMLDivElement;
@@ -105,4 +110,40 @@ const mapOptions = [
   { value: 'Nuke', label: 'Nuke' },
 ];
 
-new CreatedRadioBtn('map-selected-wrapper', 'map-selected', mapOptions);
+new BtnOnRadioOrCheck('map-selected', mapOptions, 'map-selected-wrapper');
+
+const rateOptions = [
+  { value: '100', label: '100' },
+  { value: '200', label: '200' },
+  { value: '500', label: '500' },
+  { value: '1000', label: '1000' },
+  { value: '2000', label: '2000' },
+  { value: '10000', label: '10000' },
+];
+
+new BtnOnRadioOrCheck(
+  'rate-selected',
+  rateOptions,
+  'rate-selected-wrapper',
+  'BS'
+);
+const gameModeOptions = [
+  { value: '1x1', label: '1x1' },
+  { value: '2x2', label: '2x2' },
+  { value: '5x5', label: '5x5' },
+  { value: '10x10', label: '10x10' },
+];
+const regionOptions = [
+  { value: 'Afganistan', label: 'Afganistan' },
+  { value: 'Austria', label: 'Austria' },
+  { value: 'Ukraine', label: 'Ukraine' },
+  { value: 'Poland', label: 'Poland' },
+  { value: 'Lithuania', label: 'Lithuania' },
+  { value: 'Sweden', label: 'Sweden' },
+];
+
+new RegionSelection('create-content', regionOptions);
+new GameModeSelection('create-content', gameModeOptions);
+new MapSelection('create-content', mapOptions);
+new RateSelection('create-content', rateOptions);
+new TitleCreateLobby('create-content');

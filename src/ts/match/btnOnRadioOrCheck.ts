@@ -1,23 +1,22 @@
-class CreatedRadioBtn {
+class BtnOnRadioOrCheck {
   private container: HTMLElement | null;
   private nameGroup: string;
   private span: string;
   private options: { value: string; label: string }[];
+  private type: string;
 
   constructor(
-    containerId: string | null = null,
     nameGroup: string,
     options: { value: string; label: string }[],
-    span: string = ''
+    containerId: string | null = null,
+    span: string = '',
+    type: string = 'radio'
   ) {
     this.container = document.querySelector(`#${containerId}`);
     this.nameGroup = nameGroup;
     this.span = span;
     this.options = options;
-
-    if (!this.container) {
-      throw new Error(`Container with id #${containerId} not found.`);
-    }
+    this.type = type;
 
     this.render();
   }
@@ -30,15 +29,15 @@ class CreatedRadioBtn {
             class="btn-radio__input"
             id="${this.nameGroup}${index + 1}" 
             name="${this.nameGroup}" 
-            type="radio"
+            type=${this.type}
             value="${option.value}" 
          />
          <label 
             class="btn-radio__label" 
             for="${this.nameGroup}${index + 1}"
          >
-            <div>${option.label}</div>
-            <span> ${this.span}</span>
+            <div>${option.label}&nbsp;</div>
+            <span>${this.span}</span>
         </label>
       </div>`;
       return rows;
@@ -53,4 +52,4 @@ class CreatedRadioBtn {
   }
 }
 
-export { CreatedRadioBtn };
+export { BtnOnRadioOrCheck };

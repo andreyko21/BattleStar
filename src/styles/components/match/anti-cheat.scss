@@ -5,8 +5,14 @@
   .custom-checkbox {
     flex-direction: row-reverse;
     justify-content: space-between;
+
     &__label-text {
+      width: 100%;
       font-size: 18px;
+    }
+    label,
+    input {
+      cursor: pointer;
     }
   }
 }

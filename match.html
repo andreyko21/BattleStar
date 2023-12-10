@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <title>Battle Star - Match</title>
-    <script type="module" crossorigin src="/assets/match-27ddb588.js"></script>
+    <script type="module" crossorigin src="/assets/match-31540cd0.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
     <link rel="modulepreload" crossorigin href="/assets/pop-up-c470bc0a.js">
-    <link rel="modulepreload" crossorigin href="/assets/tabs-83f8d45e.js">
     <link rel="modulepreload" crossorigin href="/assets/jquery-ab814638.js">
-    <link rel="modulepreload" crossorigin href="/assets/lava-lamp-b817534a.js">
-    <link rel="stylesheet" href="/assets/match-c1d19025.css">
+    <link rel="modulepreload" crossorigin href="/assets/lava-lamp-a2551edf.js">
+    <link rel="stylesheet" href="/assets/match-056454b3.css">
   </head>
   <body>
     <div class="wrapper">
@@ -170,7 +169,9 @@
         />
         <div class="match-page__content-wrapper">
           <section class="match-page__filters filters tabs-block">
+            <!---->
             <div class="filters__tabs tabs-block__tabs">
+              <!---->
               <div class="filters__tab tabs-block__tab" data-tab-name="find"
                 >НАЙТИ ИГРУ</div
               >
@@ -184,6 +185,7 @@
                 class="filters__find-lobby find-lobby tabs-block__content-container tabs-block__content-container_active"
                 id="find-content"
               >
+                <!---->
                 <div class="find-lobby__party party">
                   <div class="party__title-block">
                     <div class="party__title">Пати</div>
@@ -778,16 +780,16 @@
   <div class="custom-checkbox">
   <input
     type="checkbox"
-    name="anti-cheat"
-    id="anti-cheat"
+    name="{=$id}"
+    id="{=$id}"
     class="custom-checkbox__input"
   />
-  <label for="anti-cheat" class="custom-checkbox__label">
+  <label for="{=$id}" class="custom-checkbox__label">
     <svg>
       <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
     </svg>
   </label>
-  <label for="anti-cheat" class="custom-checkbox__label-text">
+  <label for="{=$id}" class="custom-checkbox__label-text">
     Античит
   </label>
 </div>
@@ -801,133 +803,20 @@
   class="filters__create-lobby create-lobby tabs-block__content-container"
   id="create-content"
 >
-  <div class="create-lobby__title-block">
-    <div class="create-lobby__title"> Лобби </div>
-    <label
-      class="create-lobby__name-input-label text-input text-input_name-lobby"
-    >
-      <input
-        type="text"
-        class="create-lobby__name-input"
-        name="name-lobby"
-        placeholder="*Введите название лобби"
-      />
-    </label>
-  </div>
-  <div class="create-lobby__rate-selected rate-selected">
-  <div class="rate-selected__title create-lobby__title"> Ставка </div>
-  <laberl class="entering-rate rate-selected__rate-input text-input text-input_rate">
-  <input
-    type="text"
-    class="entering-rate__input"
-    name="rate-input"
-    id="rate-input"
-    placeholder="Свое значение"
-  />
-  <span class="entering-rate__label-span">BS</span>
-</laberl>
-
-  <div class="rate-selected__wrapper-btns">
-    <button class="rate-selected__btn btn btn_create-lobby">
-      100
-      <span>BS</span>
-    </button>
-    <button class="rate-selected__btn btn btn_create-lobby">
-      200
-      <span>BS</span>
-    </button>
-    <button class="rate-selected__btn btn btn_create-lobby">
-      500
-      <span>BS</span>
-    </button>
-    <button class="rate-selected__btn btn btn_create-lobby">
-      1000
-      <span>BS</span>
-    </button>
-    <button class="rate-selected__btn btn btn_create-lobby">
-      2000
-      <span>BS</span>
-    </button>
-    <button
-      class="rate-selected__btn btn btn_create-lobby btn_create-lobby-act"
-    >
-      10000
-      <span>BS</span>
-    </button>
-  </div>
-</div>
-
-  <div class="create-lobby__map-selected map-selected">
-  <div class="map-selected__title create-lobby__title"> Карты </div>
-  <div class="map-selected__wrapper-btns">
-    <div class="map-selected__btn-input-wrapper">
-      <input
-        type="radio"
-        value="DustII"
-        name="map"
-        class="map-selected__btn-input"
-        id="dust-ii"
-      />
-      <label for="dust-ii" class="map-selected__btn btn btn_create-lobby">
-        <div>Dust II</div>
-      </label>
-    </div>
-    <button class="map-selected__btn btn btn_create-lobby"> Mirage </button>
-    <button class="map-selected__btn btn btn_create-lobby"> Inferno </button>
-    <button class="map-selected__btn btn btn_create-lobby btn_create-lobby-act">
-      Lake
-    </button>
-    <button class="map-selected__btn btn btn_create-lobby"> Ancient </button>
-    <button class="map-selected__btn btn btn_create-lobby"> Nuke </button>
-  </div>
-</div>
-
-  <div class="create-lobby__game-mode-selected map-selected">
-  <div class="map-selected__title create-lobby__title"> Режим игры </div>
-  <div class="map-selected__wrapper-btns">
-    <button class="map-selected__btn btn btn_create-lobby"> 1x1 </button>
-    <button class="map-selected__btn btn btn_create-lobby"> 2x2 </button>
-    <button class="map-selected__btn btn btn_create-lobby"> 5x5 </button>
-    <button class="map-selected__btn btn btn_create-lobby btn_create-lobby-act">
-      10x10
-    </button>
-  </div>
-</div>
-
-  <div class="create-lobby__region-selected region-selected">
-  <div class="region-selected__title create-lobby__title"> Карты </div>
-  <div class="region-selected__wrapper-btns">
-    <button class="region-selected__btn btn btn_create-lobby">
-      Afganistan
-    </button>
-    <button class="region-selected__btn btn btn_create-lobby"> Austria </button>
-    <button class="region-selected__btn btn btn_create-lobby"> Ukraine </button>
-    <button
-      class="region-selected__btn btn btn_create-lobby btn_create-lobby-act"
-    >
-      Poland
-    </button>
-    <button class="region-selected__btn btn btn_create-lobby">
-      Lithuania
-    </button>
-    <button class="region-selected__btn btn btn_create-lobby"> Sweden </button>
-  </div>
-</div>
-
   <div class="anti-cheat create-lobby__anti-cheat">
   <div class="custom-checkbox">
   <input
     type="checkbox"
-    name="anti-cheat"
-    id="anti-cheat"
+    name="create-anti-cheat"
+    id="create-anti-cheat"
     class="custom-checkbox__input"
   />
-  <label for="anti-cheat" class="custom-checkbox__label">
+  <label for="create-anti-cheat" class="custom-checkbox__label">
     <svg>
       <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
     </svg>
   </label>
-  <label for="anti-cheat" class="custom-checkbox__label-text">
+  <label for="create-anti-cheat" class="custom-checkbox__label-text">
     Античит
   </label>
 </div>
@@ -941,7 +830,7 @@
     <div>Создать</div>
   </button>
 </div>
-
+<!---->
             </div>
           </section>
           <section

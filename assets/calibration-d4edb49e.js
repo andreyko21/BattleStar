@@ -1,4 +1,4 @@
-import"./modulepreload-polyfill-3cfb730f.js";import{B as m}from"./pop-up-c470bc0a.js";import{B as _}from"./tabs-83f8d45e.js";class n{container;options;constructor(c,t){this.container=document.querySelector(`#${c}`),this.options=t,this.render()}render(){const c=this.options.reduce((t,a)=>(t+=`<tr class="match-tr content__tr" id="${a.id}">
+import"./modulepreload-polyfill-3cfb730f.js";import{B as h}from"./pop-up-c470bc0a.js";import{B as n,L as o}from"./lava-lamp-a2551edf.js";import"./jquery-ab814638.js";class g{container;options;constructor(c,t){this.container=document.querySelector(`#${c}`),this.options=t,this.render()}render(){const c=this.options.reduce((t,a)=>(t+=`<tr class="match-tr content__tr" id="${a.id}">
          <td class="match-tr__img-cell">
            <div class="match-tr__img-block">
              <img
@@ -44,7 +44,7 @@ import"./modulepreload-polyfill-3cfb730f.js";import{B as m}from"./pop-up-c470bc0
              </div>
            </div>
          </td>
-       </tr>`,t),"");this.container.innerHTML=c}}class v{container;options;constructor(c,t){this.container=document.querySelector(`#${c}`),this.options=t,this.render()}render(){const c=this.options.reduce((t,a)=>(t+=`<div class="match-card" id="${a.id}">
+       </tr>`,t),"");this.container.innerHTML=c}}class p{container;options;constructor(c,t){this.container=document.querySelector(`#${c}`),this.options=t,this.render()}render(){const c=this.options.reduce((t,a)=>(t+=`<div class="match-card" id="${a.id}">
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
       <img
@@ -89,4 +89,26 @@ import"./modulepreload-polyfill-3cfb730f.js";import{B as m}from"./pop-up-c470bc0
       </div>
     </div>
   </div>
-</div>`,t),"");this.container.innerHTML=c}}const s="/assets/map-img-5a71a888.png",i="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC",r=document.querySelector(".calibration-pop-up"),h=document.querySelector(".overlay"),d=new m(r,h);d.open();const g=r.querySelector("#start-calibration");g?.addEventListener("click",()=>d.close());new _("calibration-page__container");const e=[{id:"1",imgSrc:s,flagSrc:i,nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"},{id:"1",imgSrc:s,flagSrc:i,nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"},{id:"1",imgSrc:s,flagSrc:i,nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"},{id:"1",imgSrc:"src/images/temporary/map-img.png",flagSrc:i,nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"}];new n("match-table",e);new v("match-grid",e);
+</div>`,t),"");this.container.innerHTML=c}}const d="/assets/map-img-5a71a888.png",e="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC";class A{container;tabsClass;tabsParam;constructor(c,t,a){if(this.tabsClass=t,this.tabsParam=a,this.container=document.querySelector(`#${c}`),!this.container)throw new Error(`Container with id #${c} not found.`);this.render()}render(){const c=this.tabsParam.reduce((s,r)=>(s+=`
+      <div
+      class="tabs-block__tab"
+      data-tab-name="${r[0]}"
+    >
+    ${r[1]}
+    </div>
+    `,s),""),t=this.tabsParam.reduce((s,r)=>(s+=`
+      <div
+      class="tab-content"
+      id="${r[0]}-content"
+    >    
+    </div>
+    `,s),""),a=`
+            <div class="tabs-block__tabs">
+        ${c}
+          <div class="tabs-block__lamp"><span></span></div>
+        </div>
+      <div class="content__tabs-content">        
+      ${t}
+      </div>
+      `,i=document.createElement("div");i.classList.add("tabs-block"),i.classList.add(`${this.tabsClass}`),i.innerHTML=a,this.container?.append(i)}}const m=document.querySelector(".calibration-pop-up"),b=document.querySelector(".overlay"),_=new h(m,b);_.open();const $=m.querySelector("#start-calibration");$?.addEventListener("click",()=>_.close());new n("calibration-page__container");const v=[{id:"1",imgSrc:d,flagSrc:e,nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"},{id:"1",imgSrc:d,flagSrc:e,nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"},{id:"1",imgSrc:d,flagSrc:e,nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"},{id:"1",imgSrc:"src/images/temporary/map-img.png",flagSrc:e,nameMatch:"PlayFair Display$$$",map:"Mirage",rate:"5000",mode:"5x5",participants:"8/10",ping:"23"}];new g("match-table",v);new p("match-grid",v);//! TEST_____________
+new A("calibration-page","match-page__filters",[["find","НАЙТИ ИГРУ"],["create","СОЗДАТЬ ЛОББИ"]]);new n("match-page__filters");new o("match-page__filters");

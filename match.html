@@ -172,14 +172,14 @@
                     ></div>
                   </div>
                 </div>
-                <div class="find-lobby__filters-block">
+                <div class="find-lobby__filters-block" id="filters-find-lobby">
                   <div class="find-lobby__filters-title-block">
                     <svg>
                       <use xlink:href="src/images/sprite.svg#filters"></use>
                     </svg>
                     <h2 class="find-lobby__filters-title">Фильтры</h2>
                   </div>
-                  <div class="find-lobby__rate-filter rate-filter accordion">
+                  <!--<div class="find-lobby__rate-filter rate-filter accordion">
                     <div class="rate-filter__title-block accordion__header">
                       <div class="rate-filter__title accordion__title"
                         >Ставка</div
@@ -198,7 +198,10 @@
                         <div class="rate-filter__upper-slider-output"></div>
                       </div>
                       <div class="rate-filter__slider" id="slider-round"></div>
-                      <div class="rate-filter__checkboxes">
+                      <div
+                        class="rate-filter__checkboxes"
+                        id="rate-filter-wrapper"
+                      >
                         <load
                           ="src/html/components/ui/checkbox.html"
                           name="100$"
@@ -246,8 +249,8 @@
                         </div>
                       </button>
                     </div>
-                  </div>
-                  <div class="find-lobby__maps-filter maps-filter accordion">
+                  </div>-->
+                  <!--<div class="find-lobby__maps-filter maps-filter accordion">
                     <div class="maps-filter__title-block accordion__header">
                       <div class="maps-filter__title accordion__title"
                         >Карты</div
@@ -261,32 +264,12 @@
                     <div class="maps-filter__content accordion__content">
                       <load
                         ="src/html/components/ui/checkbox.html"
-                        name="Dust II"
-                        label-text="Dust II"
-                      />
-                      <load
-                        ="src/html/components/ui/checkbox.html"
-                        name="Mirage"
-                        label-text="Mirage"
-                      />
-                      <load
-                        ="src/html/components/ui/checkbox.html"
-                        name="Ancient"
-                        label-text="Ancient"
-                      />
-                      <load
-                        ="src/html/components/ui/checkbox.html"
-                        name="Lake"
-                        label-text="Lake"
-                      />
-                      <load
-                        ="src/html/components/ui/checkbox.html"
                         name="Inferno"
                         label-text="Inferno"
                       />
                     </div>
-                  </div>
-                  <div
+                  </div>-->
+                  <!--<div
                     class="find-lobby__game-mode-filter game-mode-filter accordion"
                   >
                     <div
@@ -304,146 +287,16 @@
                     <div class="game-mode-filter__content accordion__content">
                       <load
                         ="src/html/components/ui/checkbox.html"
-                        name="1x1"
-                        label-text="1x1"
-                      />
-                      <load
-                        ="src/html/components/ui/checkbox.html"
-                        name="2x2"
-                        label-text="2x2"
-                      />
-                      <load
-                        ="src/html/components/ui/checkbox.html"
-                        name="3x3"
-                        label-text="3x3"
-                      />
-                      <load
-                        ="src/html/components/ui/checkbox.html"
                         name="5x5"
                         label-text="5x5"
                       />
                     </div>
-                  </div>
-                  <div
-                    class="find-lobby__region-filter region-filter accordion"
-                  >
-                    <div class="region-filter__title-block accordion__header">
-                      <div class="region-filter__title accordion__title"
-                        >Регион</div
-                      >
-                      <svg class="accordion__arrow">
-                        <use
-                          xlink:href="src/images/sprite.svg#arrow-down"
-                        ></use>
-                      </svg>
-                    </div>
-                    <div class="region-filter__content accordion__content">
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          name="Afganistan"
-                          id="Afganistan"
-                          class="custom-checkbox__input"
-                        />
-                        <label for="Afganistan" class="custom-checkbox__label">
-                          <svg>
-                            <use
-                              xlink:href="src/images/sprite.svg#check-mark"
-                            ></use>
-                          </svg>
-                        </label>
-                        <label
-                          for="Afganistan"
-                          class="custom-checkbox__label-text"
-                        >
-                          <img
-                            src="./src/images/auganistan-flag.jpg"
-                            alt="flag"
-                          />
-                          <span>Afganistan</span>
-                        </label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          name="Afganistan"
-                          id="Afganistan"
-                          class="custom-checkbox__input"
-                        />
-                        <label for="Afganistan" class="custom-checkbox__label">
-                          <svg>
-                            <use
-                              xlink:href="src/images/sprite.svg#check-mark"
-                            ></use>
-                          </svg>
-                        </label>
-                        <label
-                          for="Afganistan"
-                          class="custom-checkbox__label-text"
-                        >
-                          <img
-                            src="./src/images/auganistan-flag.jpg"
-                            alt="flag"
-                          />
-                          <span>Afganistan</span>
-                        </label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          name="Afganistan"
-                          id="Afganistan"
-                          class="custom-checkbox__input"
-                        />
-                        <label for="Afganistan" class="custom-checkbox__label">
-                          <svg>
-                            <use
-                              xlink:href="src/images/sprite.svg#check-mark"
-                            ></use>
-                          </svg>
-                        </label>
-                        <label
-                          for="Afganistan"
-                          class="custom-checkbox__label-text"
-                        >
-                          <img
-                            src="./src/images/auganistan-flag.jpg"
-                            alt="flag"
-                          />
-                          <span>Afganistan</span>
-                        </label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          name="Afganistan"
-                          id="Afganistan"
-                          class="custom-checkbox__input"
-                        />
-                        <label for="Afganistan" class="custom-checkbox__label">
-                          <svg>
-                            <use
-                              xlink:href="src/images/sprite.svg#check-mark"
-                            ></use>
-                          </svg>
-                        </label>
-                        <label
-                          for="Afganistan"
-                          class="custom-checkbox__label-text"
-                        >
-                          <img
-                            src="./src/images/auganistan-flag.jpg"
-                            alt="flag"
-                          />
-                          <span>Afganistan</span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <load
+                  </div>-->
+
+                  <!--<load
                     ="src/html/components/match/anti-cheat.html"
                     class="find-lobby__anti-cheat"
-                  />
+                  />-->
                   <!--<div class="find-lobby__anticheat"> </div>-->
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import"./modulepreload-polyfill-3cfb730f.js";import{$,c as be,g as we}from"./jquery-995cfbaf.js";class $e{$container;$image;imageUrl;altText;constructor(c,p,v=""){if(this.$container=$(`#${c}`),this.imageUrl=p,this.altText=v,this.$container.length===0)throw new Error(`Container with id #${c} not found.`);this.initialize()}initialize(){this.renderBanner(),this.attachEventListeners()}renderBanner(){const c=`
+import"./modulepreload-polyfill-3cfb730f.js";import{$,c as be,g as we}from"./jquery-ab814638.js";class $e{$container;$image;imageUrl;altText;constructor(c,p,v=""){if(this.$container=$(`#${c}`),this.imageUrl=p,this.altText=v,this.$container.length===0)throw new Error(`Container with id #${c} not found.`);this.initialize()}initialize(){this.renderBanner(),this.attachEventListeners()}renderBanner(){const c=`
       <div class="tournament-banner">
         <img class="tournament-banner__img" src="${this.imageUrl}" alt="${this.altText}" />
         <label class="tournament-banner__button" for="loadBanner">

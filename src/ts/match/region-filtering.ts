@@ -1,4 +1,6 @@
 import { CreateingCheckboxWithImg } from '../component/checkbox-with-img';
+import Sprite from './../../images/sprite.svg';
+
 class RegionFiltering {
   private container: HTMLDivElement | null;
   private checkboxHtml: CreateingCheckboxWithImg;
@@ -22,7 +24,7 @@ class RegionFiltering {
       >
       <svg class="accordion__arrow">
         <use
-          xlink:href="src/images/sprite.svg#arrow-down"
+          xlink:href="${Sprite}#arrow-down"
         ></use>
       </svg>
     </div>

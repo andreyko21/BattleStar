@@ -1,3 +1,5 @@
+import Sprite from './../../images/sprite.svg';
+
 class CreateingCheckbox {
   private container: HTMLElement | null;
   private nameGroup: string;
@@ -33,7 +35,7 @@ class CreateingCheckbox {
         index + 1
       }" class="custom-checkbox__label">
             <svg>
-            <use xlink:href="src/images/sprite.svg#check-mark"></use>
+            <use xlink:href="${Sprite}#check-mark"></use>
             </svg>
          </label>
          <label for="${this.nameGroup}${

@@ -1,4 +1,5 @@
 import { CreateingCheckbox } from '../component/checkbox';
+import Sprite from './../../images/sprite.svg';
 
 class MapFiltering {
   private container: HTMLDivElement | null;
@@ -19,7 +20,7 @@ class MapFiltering {
          >
          <svg class="accordion__arrow">
          <use
-            xlink:href="src/images/sprite.svg#arrow-down"
+            xlink:href="${Sprite}#arrow-down"
          ></use>
          </svg>
       </div>

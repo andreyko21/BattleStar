@@ -1,3 +1,5 @@
+//import mapImg from '../../images/temporary/map-img.png';
+import flagImg from '../../images/temporary/ukr-flag.png';
 import { BasePopUp } from '../component/pop-up.ts';
 import type { IBasePopUp } from '../component/pop-up.ts';
 import { BaseTabs, CreatedObjForIRenderMethod } from '../component/tabs.ts';
@@ -113,30 +115,30 @@ const regionOptionsWithImg = [
   {
     value: 'Afganistan',
     label: 'Afganistan',
-    img: './src/images/auganistan-flag.jpg',
+    img: flagImg,
   },
   {
     value: 'Austria',
     label: 'Austria',
-    img: './src/images/auganistan-flag.jpg',
+    img: flagImg,
   },
   {
     value: 'Ukraine',
     label: 'Ukraine',
-    img: './src/images/auganistan-flag.jpg',
+    img: flagImg,
   },
   {
     value: 'Ukraine',
     label: 'Ukraine',
-    img: './src/images/auganistan-flag.jpg',
+    img: flagImg,
   },
-  { value: 'Poland', label: 'Poland', img: './src/images/auganistan-flag.jpg' },
+  { value: 'Poland', label: 'Poland', img: flagImg },
   {
     value: 'Lithuania',
     label: 'Lithuania',
-    img: './src/images/auganistan-flag.jpg',
+    img: flagImg,
   },
-  { value: 'Sweden', label: 'Sweden', img: './src/images/auganistan-flag.jpg' },
+  { value: 'Sweden', label: 'Sweden', img: flagImg },
 ];
 
 new RegionSelection('create-content', regionOptions);

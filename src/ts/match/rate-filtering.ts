@@ -1,4 +1,5 @@
 import { CreateingCheckbox } from '../component/checkbox';
+import Sprite from './../../images/sprite.svg';
 import noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 import { target } from 'nouislider';
@@ -28,7 +29,7 @@ class RateFiltering {
         class="rate-filter__accordion-arrow accordion__arrow"
       >
         <use
-          xlink:href="src/images/sprite.svg#arrow-down"
+          xlink:href="${Sprite}#arrow-down"
         ></use>
       </svg>
     </div>
@@ -47,7 +48,7 @@ class RateFiltering {
       <button class="rate-filter__button btn_yellow">
         <svg class="rate-filter__button-icon">
           <use
-            xlink:href="src/images/sprite.svg#auto-selction"
+            xlink:href="${Sprite}#auto-selction"
           ></use>
         </svg>
         <div class="rate-filter__button-text">
@@ -110,7 +111,7 @@ class RateFiltering {
     });
 
     checkboxes?.forEach((elem) => {
-      elem.addEventListener('change', () => {
+      elem.addEventListener('change', (e) => {
         let sliderValues =
           rateFilterSlider.noUiSlider?.get() as any as number[];
 
@@ -119,6 +120,7 @@ class RateFiltering {
           sliderValues[1] !== this.MAX_RANGE
         ) {
           rateFilterSlider.noUiSlider?.set([this.MIN_RANGE, this.MAX_RANGE]);
+          (e.target as HTMLInputElement).checked = true;
         }
       });
     });

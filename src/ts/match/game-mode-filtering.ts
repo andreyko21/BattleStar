@@ -1,3 +1,4 @@
+import Sprite from './../../images/sprite.svg';
 import { CreateingCheckbox } from '../component/checkbox';
 
 class GameModeFiltering {
@@ -25,7 +26,7 @@ class GameModeFiltering {
       >
       <svg class="accordion__arrow">
         <use
-          xlink:href="src/images/sprite.svg#arrow-down"
+          xlink:href="${Sprite}#arrow-down"
         ></use>
       </svg>
     </div>

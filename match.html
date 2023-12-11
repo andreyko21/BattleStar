@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <title>Battle Star - Match</title>
-    <script type="module" crossorigin src="/assets/match-31540cd0.js"></script>
+    <script type="module" crossorigin src="/assets/match-ec81b978.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
     <link rel="modulepreload" crossorigin href="/assets/pop-up-c470bc0a.js">
-    <link rel="modulepreload" crossorigin href="/assets/jquery-ab814638.js">
-    <link rel="modulepreload" crossorigin href="/assets/lava-lamp-a2551edf.js">
+    <link rel="modulepreload" crossorigin href="/assets/jquery-995cfbaf.js">
+    <link rel="modulepreload" crossorigin href="/assets/lava-lamp-a33f19c8.js">
     <link rel="stylesheet" href="/assets/match-056454b3.css">
   </head>
   <body>
@@ -316,14 +316,14 @@
                     ></div>
                   </div>
                 </div>
-                <div class="find-lobby__filters-block">
+                <div class="find-lobby__filters-block" id="filters-find-lobby">
                   <div class="find-lobby__filters-title-block">
                     <svg>
                       <use xlink:href="/assets/sprite-11cd64cb.svg#filters"></use>
                     </svg>
                     <h2 class="find-lobby__filters-title">Фильтры</h2>
                   </div>
-                  <div class="find-lobby__rate-filter rate-filter accordion">
+                  <!--<div class="find-lobby__rate-filter rate-filter accordion">
                     <div class="rate-filter__title-block accordion__header">
                       <div class="rate-filter__title accordion__title"
                         >Ставка</div
@@ -332,7 +332,7 @@
                         class="rate-filter__accordion-arrow accordion__arrow"
                       >
                         <use
-                          xlink:href="/assets/sprite-11cd64cb.svg#arrow-down"
+                          xlink:href="src/images/sprite.svg#arrow-down"
                         ></use>
                       </svg>
                     </div>
@@ -342,7 +342,10 @@
                         <div class="rate-filter__upper-slider-output"></div>
                       </div>
                       <div class="rate-filter__slider" id="slider-round"></div>
-                      <div class="rate-filter__checkboxes">
+                      <div
+                        class="rate-filter__checkboxes"
+                        id="rate-filter-wrapper"
+                      >
                         <div class="custom-checkbox">
   <input
     type="checkbox"
@@ -352,7 +355,7 @@
   />
   <label for="100$" class="custom-checkbox__label">
     <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
+      <use xlink:href="src/images/sprite.svg#check-mark"></use>
     </svg>
   </label>
   <label for="100$" class="custom-checkbox__label-text">
@@ -369,7 +372,7 @@
   />
   <label for="200$" class="custom-checkbox__label">
     <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
+      <use xlink:href="src/images/sprite.svg#check-mark"></use>
     </svg>
   </label>
   <label for="200$" class="custom-checkbox__label-text">
@@ -386,7 +389,7 @@
   />
   <label for="500$" class="custom-checkbox__label">
     <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
+      <use xlink:href="src/images/sprite.svg#check-mark"></use>
     </svg>
   </label>
   <label for="500$" class="custom-checkbox__label-text">
@@ -403,7 +406,7 @@
   />
   <label for="200$" class="custom-checkbox__label">
     <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
+      <use xlink:href="src/images/sprite.svg#check-mark"></use>
     </svg>
   </label>
   <label for="200$" class="custom-checkbox__label-text">
@@ -420,7 +423,7 @@
   />
   <label for="500$" class="custom-checkbox__label">
     <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
+      <use xlink:href="src/images/sprite.svg#check-mark"></use>
     </svg>
   </label>
   <label for="500$" class="custom-checkbox__label-text">
@@ -437,7 +440,7 @@
   />
   <label for="1000$" class="custom-checkbox__label">
     <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
+      <use xlink:href="src/images/sprite.svg#check-mark"></use>
     </svg>
   </label>
   <label for="1000$" class="custom-checkbox__label-text">
@@ -454,7 +457,7 @@
   />
   <label for="10000$" class="custom-checkbox__label">
     <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
+      <use xlink:href="src/images/sprite.svg#check-mark"></use>
     </svg>
   </label>
   <label for="10000$" class="custom-checkbox__label-text">
@@ -466,7 +469,7 @@
                       <button class="rate-filter__button btn_yellow">
                         <svg class="rate-filter__button-icon">
                           <use
-                            xlink:href="/assets/sprite-11cd64cb.svg#auto-selction"
+                            xlink:href="src/images/sprite.svg#auto-selction"
                           ></use>
                         </svg>
                         <div class="rate-filter__button-text">
@@ -474,87 +477,19 @@
                         </div>
                       </button>
                     </div>
-                  </div>
-                  <div class="find-lobby__maps-filter maps-filter accordion">
+                  </div>-->
+                  <!--<div class="find-lobby__maps-filter maps-filter accordion">
                     <div class="maps-filter__title-block accordion__header">
                       <div class="maps-filter__title accordion__title"
                         >Карты</div
                       >
                       <svg class="accordion__arrow">
                         <use
-                          xlink:href="/assets/sprite-11cd64cb.svg#arrow-down"
+                          xlink:href="src/images/sprite.svg#arrow-down"
                         ></use>
                       </svg>
                     </div>
                     <div class="maps-filter__content accordion__content">
-                      <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="Dust II"
-    id="Dust II"
-    class="custom-checkbox__input"
-  />
-  <label for="Dust II" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="Dust II" class="custom-checkbox__label-text">
-    Dust II
-  </label>
-</div>
-
-                      <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="Mirage"
-    id="Mirage"
-    class="custom-checkbox__input"
-  />
-  <label for="Mirage" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="Mirage" class="custom-checkbox__label-text">
-    Mirage
-  </label>
-</div>
-
-                      <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="Ancient"
-    id="Ancient"
-    class="custom-checkbox__input"
-  />
-  <label for="Ancient" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="Ancient" class="custom-checkbox__label-text">
-    Ancient
-  </label>
-</div>
-
-                      <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="Lake"
-    id="Lake"
-    class="custom-checkbox__input"
-  />
-  <label for="Lake" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="Lake" class="custom-checkbox__label-text">
-    Lake
-  </label>
-</div>
-
                       <div class="custom-checkbox">
   <input
     type="checkbox"
@@ -564,7 +499,7 @@
   />
   <label for="Inferno" class="custom-checkbox__label">
     <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
+      <use xlink:href="src/images/sprite.svg#check-mark"></use>
     </svg>
   </label>
   <label for="Inferno" class="custom-checkbox__label-text">
@@ -573,8 +508,8 @@
 </div>
 
                     </div>
-                  </div>
-                  <div
+                  </div>-->
+                  <!--<div
                     class="find-lobby__game-mode-filter game-mode-filter accordion"
                   >
                     <div
@@ -585,62 +520,11 @@
                       >
                       <svg class="accordion__arrow">
                         <use
-                          xlink:href="/assets/sprite-11cd64cb.svg#arrow-down"
+                          xlink:href="src/images/sprite.svg#arrow-down"
                         ></use>
                       </svg>
                     </div>
                     <div class="game-mode-filter__content accordion__content">
-                      <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="1x1"
-    id="1x1"
-    class="custom-checkbox__input"
-  />
-  <label for="1x1" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="1x1" class="custom-checkbox__label-text">
-    1x1
-  </label>
-</div>
-
-                      <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="2x2"
-    id="2x2"
-    class="custom-checkbox__input"
-  />
-  <label for="2x2" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="2x2" class="custom-checkbox__label-text">
-    2x2
-  </label>
-</div>
-
-                      <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="3x3"
-    id="3x3"
-    class="custom-checkbox__input"
-  />
-  <label for="3x3" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="3x3" class="custom-checkbox__label-text">
-    3x3
-  </label>
-</div>
-
                       <div class="custom-checkbox">
   <input
     type="checkbox"
@@ -650,7 +534,7 @@
   />
   <label for="5x5" class="custom-checkbox__label">
     <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
+      <use xlink:href="src/images/sprite.svg#check-mark"></use>
     </svg>
   </label>
   <label for="5x5" class="custom-checkbox__label-text">
@@ -659,124 +543,9 @@
 </div>
 
                     </div>
-                  </div>
-                  <div
-                    class="find-lobby__region-filter region-filter accordion"
-                  >
-                    <div class="region-filter__title-block accordion__header">
-                      <div class="region-filter__title accordion__title"
-                        >Регион</div
-                      >
-                      <svg class="accordion__arrow">
-                        <use
-                          xlink:href="/assets/sprite-11cd64cb.svg#arrow-down"
-                        ></use>
-                      </svg>
-                    </div>
-                    <div class="region-filter__content accordion__content">
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          name="Afganistan"
-                          id="Afganistan"
-                          class="custom-checkbox__input"
-                        />
-                        <label for="Afganistan" class="custom-checkbox__label">
-                          <svg>
-                            <use
-                              xlink:href="/assets/sprite-11cd64cb.svg#check-mark"
-                            ></use>
-                          </svg>
-                        </label>
-                        <label
-                          for="Afganistan"
-                          class="custom-checkbox__label-text"
-                        >
-                          <img
-                            src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAOABUDAREAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+K39iT4bT/FL9pv4TeH7a2udSuLHxf4c8QW+h2N7b6dqPiG60nxFpD2eh2F7c295DbTX15LbiadrSZYLFLueQ20Ucl5bfP8WU5VuFeJaMacq0qvD+c040oyUJVZTy7ExVOM2moSm3yqTTUW7tNI/TfBXF08B4yeEuOrYqngqOC8TeA8XVxtWjPEUsJTw/FOVVqmKq0KcoVK1PDxg6s6MJRnUjBwjJOSa/rJ8T/sh6tpVve2txrPg7VbXTdO1f+3Nb8J6pdJD4V1Cy0+yu7C88QT6/cw6dc6dJr1xD4S1BtLmezs5Xjv31SK6TVrax/k3hDhutg+KMsm54WvGjHHqvUwlSf+zy/s2uozq+1fLOPtqn1WXseaMZ2m583tYR/wBGP2mfiBlvHH0E/HbJpf2xkc81peG1fLY53QwcIZh9U8XODcdCjh5UOV4RSo5dDM3UzCVCo8I69NUY0vqeIrfntX7Of8bx+Dn7JPjvWPh1+0p8EvEWkPvX/hZvgbTNY06Qn7Jregal4p0i31bRr5ARugvLc5ilUrPY3sVpqdjLb6hZWlzD+l8W1FR4V4mrOKmqXD+c1HB3SmoZbiZOLaaaUrWdmnZ6NH/QV4J4SWP8ZvCTAwrSw8sb4ncBYSNeCjKVCWJ4qyqiq0YzUoSlTc1NKUZRbilJNXR/W14y/a8lvPB/iHR/CvgbS/Cmq6nBqukadrmmuLG50DRNdi0uDV20s6UtjPJrOtiyW11i91ifWBd6fBaRSebcWei3OhfyZwdxJDE8Q5fhqWBpUJVHmEYVI2j7GlLLq05+zVPkbq1pUYxqzqutzQjBO8oUZUP9Dv2onh3mPCX0GPHTiSPFGY4qpg8J4ZU6lJzm5YvE4zxd4Myj99UxEq6pYTBYPOMTPBUcDHAuliK1ZxcKVfHU8f8ABFftB/xzgP/Z"
-                            alt="flag"
-                          />
-                          <span>Afganistan</span>
-                        </label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          name="Afganistan"
-                          id="Afganistan"
-                          class="custom-checkbox__input"
-                        />
-                        <label for="Afganistan" class="custom-checkbox__label">
-                          <svg>
-                            <use
-                              xlink:href="/assets/sprite-11cd64cb.svg#check-mark"
-                            ></use>
-                          </svg>
-                        </label>
-                        <label
-                          for="Afganistan"
-                          class="custom-checkbox__label-text"
-                        >
-                          <img
-                            src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAOABUDAREAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+K39iT4bT/FL9pv4TeH7a2udSuLHxf4c8QW+h2N7b6dqPiG60nxFpD2eh2F7c295DbTX15LbiadrSZYLFLueQ20Ucl5bfP8WU5VuFeJaMacq0qvD+c040oyUJVZTy7ExVOM2moSm3yqTTUW7tNI/TfBXF08B4yeEuOrYqngqOC8TeA8XVxtWjPEUsJTw/FOVVqmKq0KcoVK1PDxg6s6MJRnUjBwjJOSa/rJ8T/sh6tpVve2txrPg7VbXTdO1f+3Nb8J6pdJD4V1Cy0+yu7C88QT6/cw6dc6dJr1xD4S1BtLmezs5Xjv31SK6TVrax/k3hDhutg+KMsm54WvGjHHqvUwlSf+zy/s2uozq+1fLOPtqn1WXseaMZ2m583tYR/wBGP2mfiBlvHH0E/HbJpf2xkc81peG1fLY53QwcIZh9U8XODcdCjh5UOV4RSo5dDM3UzCVCo8I69NUY0vqeIrfntX7Of8bx+Dn7JPjvWPh1+0p8EvEWkPvX/hZvgbTNY06Qn7Jregal4p0i31bRr5ARugvLc5ilUrPY3sVpqdjLb6hZWlzD+l8W1FR4V4mrOKmqXD+c1HB3SmoZbiZOLaaaUrWdmnZ6NH/QV4J4SWP8ZvCTAwrSw8sb4ncBYSNeCjKVCWJ4qyqiq0YzUoSlTc1NKUZRbilJNXR/W14y/a8lvPB/iHR/CvgbS/Cmq6nBqukadrmmuLG50DRNdi0uDV20s6UtjPJrOtiyW11i91ifWBd6fBaRSebcWei3OhfyZwdxJDE8Q5fhqWBpUJVHmEYVI2j7GlLLq05+zVPkbq1pUYxqzqutzQjBO8oUZUP9Dv2onh3mPCX0GPHTiSPFGY4qpg8J4ZU6lJzm5YvE4zxd4Myj99UxEq6pYTBYPOMTPBUcDHAuliK1ZxcKVfHU8f8ABFftB/xzgP/Z"
-                            alt="flag"
-                          />
-                          <span>Afganistan</span>
-                        </label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          name="Afganistan"
-                          id="Afganistan"
-                          class="custom-checkbox__input"
-                        />
-                        <label for="Afganistan" class="custom-checkbox__label">
-                          <svg>
-                            <use
-                              xlink:href="/assets/sprite-11cd64cb.svg#check-mark"
-                            ></use>
-                          </svg>
-                        </label>
-                        <label
-                          for="Afganistan"
-                          class="custom-checkbox__label-text"
-                        >
-                          <img
-                            src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAOABUDAREAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+K39iT4bT/FL9pv4TeH7a2udSuLHxf4c8QW+h2N7b6dqPiG60nxFpD2eh2F7c295DbTX15LbiadrSZYLFLueQ20Ucl5bfP8WU5VuFeJaMacq0qvD+c040oyUJVZTy7ExVOM2moSm3yqTTUW7tNI/TfBXF08B4yeEuOrYqngqOC8TeA8XVxtWjPEUsJTw/FOVVqmKq0KcoVK1PDxg6s6MJRnUjBwjJOSa/rJ8T/sh6tpVve2txrPg7VbXTdO1f+3Nb8J6pdJD4V1Cy0+yu7C88QT6/cw6dc6dJr1xD4S1BtLmezs5Xjv31SK6TVrax/k3hDhutg+KMsm54WvGjHHqvUwlSf+zy/s2uozq+1fLOPtqn1WXseaMZ2m583tYR/wBGP2mfiBlvHH0E/HbJpf2xkc81peG1fLY53QwcIZh9U8XODcdCjh5UOV4RSo5dDM3UzCVCo8I69NUY0vqeIrfntX7Of8bx+Dn7JPjvWPh1+0p8EvEWkPvX/hZvgbTNY06Qn7Jregal4p0i31bRr5ARugvLc5ilUrPY3sVpqdjLb6hZWlzD+l8W1FR4V4mrOKmqXD+c1HB3SmoZbiZOLaaaUrWdmnZ6NH/QV4J4SWP8ZvCTAwrSw8sb4ncBYSNeCjKVCWJ4qyqiq0YzUoSlTc1NKUZRbilJNXR/W14y/a8lvPB/iHR/CvgbS/Cmq6nBqukadrmmuLG50DRNdi0uDV20s6UtjPJrOtiyW11i91ifWBd6fBaRSebcWei3OhfyZwdxJDE8Q5fhqWBpUJVHmEYVI2j7GlLLq05+zVPkbq1pUYxqzqutzQjBO8oUZUP9Dv2onh3mPCX0GPHTiSPFGY4qpg8J4ZU6lJzm5YvE4zxd4Myj99UxEq6pYTBYPOMTPBUcDHAuliK1ZxcKVfHU8f8ABFftB/xzgP/Z"
-                            alt="flag"
-                          />
-                          <span>Afganistan</span>
-                        </label>
-                      </div>
-                      <div class="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          name="Afganistan"
-                          id="Afganistan"
-                          class="custom-checkbox__input"
-                        />
-                        <label for="Afganistan" class="custom-checkbox__label">
-                          <svg>
-                            <use
-                              xlink:href="/assets/sprite-11cd64cb.svg#check-mark"
-                            ></use>
-                          </svg>
-                        </label>
-                        <label
-                          for="Afganistan"
-                          class="custom-checkbox__label-text"
-                        >
-                          <img
-                            src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAOABUDAREAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+K39iT4bT/FL9pv4TeH7a2udSuLHxf4c8QW+h2N7b6dqPiG60nxFpD2eh2F7c295DbTX15LbiadrSZYLFLueQ20Ucl5bfP8WU5VuFeJaMacq0qvD+c040oyUJVZTy7ExVOM2moSm3yqTTUW7tNI/TfBXF08B4yeEuOrYqngqOC8TeA8XVxtWjPEUsJTw/FOVVqmKq0KcoVK1PDxg6s6MJRnUjBwjJOSa/rJ8T/sh6tpVve2txrPg7VbXTdO1f+3Nb8J6pdJD4V1Cy0+yu7C88QT6/cw6dc6dJr1xD4S1BtLmezs5Xjv31SK6TVrax/k3hDhutg+KMsm54WvGjHHqvUwlSf+zy/s2uozq+1fLOPtqn1WXseaMZ2m583tYR/wBGP2mfiBlvHH0E/HbJpf2xkc81peG1fLY53QwcIZh9U8XODcdCjh5UOV4RSo5dDM3UzCVCo8I69NUY0vqeIrfntX7Of8bx+Dn7JPjvWPh1+0p8EvEWkPvX/hZvgbTNY06Qn7Jregal4p0i31bRr5ARugvLc5ilUrPY3sVpqdjLb6hZWlzD+l8W1FR4V4mrOKmqXD+c1HB3SmoZbiZOLaaaUrWdmnZ6NH/QV4J4SWP8ZvCTAwrSw8sb4ncBYSNeCjKVCWJ4qyqiq0YzUoSlTc1NKUZRbilJNXR/W14y/a8lvPB/iHR/CvgbS/Cmq6nBqukadrmmuLG50DRNdi0uDV20s6UtjPJrOtiyW11i91ifWBd6fBaRSebcWei3OhfyZwdxJDE8Q5fhqWBpUJVHmEYVI2j7GlLLq05+zVPkbq1pUYxqzqutzQjBO8oUZUP9Dv2onh3mPCX0GPHTiSPFGY4qpg8J4ZU6lJzm5YvE4zxd4Myj99UxEq6pYTBYPOMTPBUcDHAuliK1ZxcKVfHU8f8ABFftB/xzgP/Z"
-                            alt="flag"
-                          />
-                          <span>Afganistan</span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="anti-cheat find-lobby__anti-cheat">
+                  </div>-->
+
+                  <!--<div class="anti-cheat find-lobby__anti-cheat">
   <div class="custom-checkbox">
   <input
     type="checkbox"
@@ -786,7 +555,7 @@
   />
   <label for="{=$id}" class="custom-checkbox__label">
     <svg>
-      <use xlink:href="/assets/sprite-11cd64cb.svg#check-mark"></use>
+      <use xlink:href="src/images/sprite.svg#check-mark"></use>
     </svg>
   </label>
   <label for="{=$id}" class="custom-checkbox__label-text">
@@ -795,7 +564,7 @@
 </div>
 
 </div>
-
+-->
                   <!--<div class="find-lobby__anticheat"> </div>-->
                 </div>
               </div>

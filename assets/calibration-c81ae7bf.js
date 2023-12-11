@@ -1,4 +1,4 @@
-import"./modulepreload-polyfill-3cfb730f.js";import{B as h}from"./pop-up-c470bc0a.js";import{B as n,L as o}from"./lava-lamp-a2551edf.js";import"./jquery-ab814638.js";class g{container;options;constructor(c,t){this.container=document.querySelector(`#${c}`),this.options=t,this.render()}render(){const c=this.options.reduce((t,a)=>(t+=`<tr class="match-tr content__tr" id="${a.id}">
+import"./modulepreload-polyfill-3cfb730f.js";import{B as h}from"./pop-up-c470bc0a.js";import{B as n,L as o}from"./lava-lamp-a33f19c8.js";import"./jquery-995cfbaf.js";class g{container;options;constructor(c,t){this.container=document.querySelector(`#${c}`),this.options=t,this.render()}render(){const c=this.options.reduce((t,a)=>(t+=`<tr class="match-tr content__tr" id="${a.id}">
          <td class="match-tr__img-cell">
            <div class="match-tr__img-block">
              <img

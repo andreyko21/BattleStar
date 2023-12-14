@@ -107,7 +107,14 @@ class RateFiltering {
       } else {
         rateMin.innerHTML = `$ ${values[handle]}`;
       }
-      checkboxes?.forEach((elem) => (elem.checked = false));
+      checkboxes?.forEach((elem) => {
+        if (elem.checked) {
+          elem.checked = false;
+          const changeEvent = new Event('change', { bubbles: true });
+
+          elem.dispatchEvent(changeEvent);
+        }
+      });
     });
 
     checkboxes?.forEach((elem) => {

@@ -1,3 +1,5 @@
+import Sprite from './../../images/sprite.svg';
+
 class CreateingCheckboxWithImg {
   private container: HTMLElement | null;
   private nameGroup: string;
@@ -34,7 +36,7 @@ class CreateingCheckboxWithImg {
       }" class="custom-checkbox__label">
           <svg>
             <use
-              xlink:href="src/images/sprite.svg#check-mark"
+              xlink:href="${Sprite}#check-mark"
             ></use>
           </svg>
         </label>

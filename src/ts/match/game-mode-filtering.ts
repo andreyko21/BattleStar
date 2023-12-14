@@ -10,7 +10,7 @@ class GameModeFiltering {
   ) {
     this.container = document.querySelector(`#${containerID}`);
     this.checkboxHtml = new CreateingCheckbox(
-      'game-mode-filter',
+      'mode-filter',
       gameModeOptionsOptions,
       null
     );

@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <title>Battle Star - Match</title>
-    <script type="module" crossorigin src="/assets/match-1915602c.js"></script>
+    <script type="module" crossorigin src="/assets/match-1cdb3c00.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
-    <link rel="modulepreload" crossorigin href="/assets/pop-up-052d1b01.js">
+    <link rel="modulepreload" crossorigin href="/assets/match-grid-8f86ef87.js">
     <link rel="modulepreload" crossorigin href="/assets/jquery-ab814638.js">
     <link rel="modulepreload" crossorigin href="/assets/lava-lamp-a2551edf.js">
     <link rel="modulepreload" crossorigin href="/assets/sprite-432a5857.js">
@@ -324,249 +324,6 @@
                     </svg>
                     <h2 class="find-lobby__filters-title">Фильтры</h2>
                   </div>
-                  <!--<div class="find-lobby__rate-filter rate-filter accordion">
-                    <div class="rate-filter__title-block accordion__header">
-                      <div class="rate-filter__title accordion__title"
-                        >Ставка</div
-                      >
-                      <svg
-                        class="rate-filter__accordion-arrow accordion__arrow"
-                      >
-                        <use
-                          xlink:href="src/images/sprite.svg#arrow-down"
-                        ></use>
-                      </svg>
-                    </div>
-                    <div class="accordion__content rate-filter__content">
-                      <div class="rate-filter__slider-output-block">
-                        <div class="rate-filter__lower-slider-output"></div>
-                        <div class="rate-filter__upper-slider-output"></div>
-                      </div>
-                      <div class="rate-filter__slider" id="slider-round"></div>
-                      <div
-                        class="rate-filter__checkboxes"
-                        id="rate-filter-wrapper"
-                      >
-                        <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="100$"
-    id="100$"
-    class="custom-checkbox__input"
-  />
-  <label for="100$" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="src/images/sprite.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="100$" class="custom-checkbox__label-text">
-    100$
-  </label>
-</div>
-
-                        <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="200$"
-    id="200$"
-    class="custom-checkbox__input"
-  />
-  <label for="200$" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="src/images/sprite.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="200$" class="custom-checkbox__label-text">
-    200$
-  </label>
-</div>
-
-                        <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="500$"
-    id="500$"
-    class="custom-checkbox__input"
-  />
-  <label for="500$" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="src/images/sprite.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="500$" class="custom-checkbox__label-text">
-    500$
-  </label>
-</div>
-
-                        <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="200$"
-    id="200$"
-    class="custom-checkbox__input"
-  />
-  <label for="200$" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="src/images/sprite.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="200$" class="custom-checkbox__label-text">
-    200$
-  </label>
-</div>
-
-                        <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="500$"
-    id="500$"
-    class="custom-checkbox__input"
-  />
-  <label for="500$" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="src/images/sprite.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="500$" class="custom-checkbox__label-text">
-    500$
-  </label>
-</div>
-
-                        <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="1000$"
-    id="1000$"
-    class="custom-checkbox__input"
-  />
-  <label for="1000$" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="src/images/sprite.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="1000$" class="custom-checkbox__label-text">
-    1000$
-  </label>
-</div>
-
-                        <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="10000$"
-    id="10000$"
-    class="custom-checkbox__input"
-  />
-  <label for="10000$" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="src/images/sprite.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="10000$" class="custom-checkbox__label-text">
-    10000$
-  </label>
-</div>
-
-                      </div>
-                      <button class="rate-filter__button btn_yellow">
-                        <svg class="rate-filter__button-icon">
-                          <use
-                            xlink:href="src/images/sprite.svg#auto-selction"
-                          ></use>
-                        </svg>
-                        <div class="rate-filter__button-text">
-                          Автоподбор матча
-                        </div>
-                      </button>
-                    </div>
-                  </div>-->
-                  <!--<div class="find-lobby__maps-filter maps-filter accordion">
-                    <div class="maps-filter__title-block accordion__header">
-                      <div class="maps-filter__title accordion__title"
-                        >Карты</div
-                      >
-                      <svg class="accordion__arrow">
-                        <use
-                          xlink:href="src/images/sprite.svg#arrow-down"
-                        ></use>
-                      </svg>
-                    </div>
-                    <div class="maps-filter__content accordion__content">
-                      <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="Inferno"
-    id="Inferno"
-    class="custom-checkbox__input"
-  />
-  <label for="Inferno" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="src/images/sprite.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="Inferno" class="custom-checkbox__label-text">
-    Inferno
-  </label>
-</div>
-
-                    </div>
-                  </div>-->
-                  <!--<div
-                    class="find-lobby__game-mode-filter game-mode-filter accordion"
-                  >
-                    <div
-                      class="game-mode-filter__title-block accordion__header"
-                    >
-                      <div class="game-mode-filter__title accordion__title"
-                        >Режим игры</div
-                      >
-                      <svg class="accordion__arrow">
-                        <use
-                          xlink:href="src/images/sprite.svg#arrow-down"
-                        ></use>
-                      </svg>
-                    </div>
-                    <div class="game-mode-filter__content accordion__content">
-                      <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="5x5"
-    id="5x5"
-    class="custom-checkbox__input"
-  />
-  <label for="5x5" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="src/images/sprite.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="5x5" class="custom-checkbox__label-text">
-    5x5
-  </label>
-</div>
-
-                    </div>
-                  </div>-->
-
-                  <!--<div class="anti-cheat find-lobby__anti-cheat">
-  <div class="custom-checkbox">
-  <input
-    type="checkbox"
-    name="{=$id}"
-    id="{=$id}"
-    class="custom-checkbox__input"
-  />
-  <label for="{=$id}" class="custom-checkbox__label">
-    <svg>
-      <use xlink:href="src/images/sprite.svg#check-mark"></use>
-    </svg>
-  </label>
-  <label for="{=$id}" class="custom-checkbox__label-text">
-    Античит
-  </label>
-</div>
-
-</div>
--->
-                  <!--<div class="find-lobby__anticheat"> </div>-->
                 </div>
               </div>
               <div
@@ -675,12 +432,12 @@
                       class="content__grid-block-wrapper tabs-block__content-container tabs-block__content-container_active"
                       id="grid-content"
                     >
-                      <div class="content__grid-block">
-                        <div class="{='class'} match-card" id="">
+                      <div class="content__grid-block" id="content-grid-block">
+                        <!--<div class="{='class'} match-card" id="">
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-card__img"
       />
@@ -689,7 +446,7 @@
   <div class="match-card__content">
     <div class="match-card__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-card__flag"
       />
@@ -715,7 +472,7 @@
         <div class="match-card__ping">23 </div>
         <div class="match-card__ping-icon">
           <svg>
-            <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+            <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
           </svg>
         </div>
       </div>
@@ -727,7 +484,7 @@
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-card__img"
       />
@@ -736,7 +493,7 @@
   <div class="match-card__content">
     <div class="match-card__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-card__flag"
       />
@@ -762,7 +519,7 @@
         <div class="match-card__ping">23 </div>
         <div class="match-card__ping-icon">
           <svg>
-            <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+            <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
           </svg>
         </div>
       </div>
@@ -774,7 +531,7 @@
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-card__img"
       />
@@ -783,7 +540,7 @@
   <div class="match-card__content">
     <div class="match-card__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-card__flag"
       />
@@ -809,7 +566,7 @@
         <div class="match-card__ping">23 </div>
         <div class="match-card__ping-icon">
           <svg>
-            <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+            <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
           </svg>
         </div>
       </div>
@@ -821,7 +578,7 @@
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-card__img"
       />
@@ -830,7 +587,7 @@
   <div class="match-card__content">
     <div class="match-card__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-card__flag"
       />
@@ -856,7 +613,7 @@
         <div class="match-card__ping">23 </div>
         <div class="match-card__ping-icon">
           <svg>
-            <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+            <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
           </svg>
         </div>
       </div>
@@ -868,7 +625,7 @@
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-card__img"
       />
@@ -877,7 +634,7 @@
   <div class="match-card__content">
     <div class="match-card__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-card__flag"
       />
@@ -903,7 +660,7 @@
         <div class="match-card__ping">23 </div>
         <div class="match-card__ping-icon">
           <svg>
-            <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+            <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
           </svg>
         </div>
       </div>
@@ -915,7 +672,7 @@
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-card__img"
       />
@@ -924,7 +681,7 @@
   <div class="match-card__content">
     <div class="match-card__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-card__flag"
       />
@@ -950,7 +707,7 @@
         <div class="match-card__ping">23 </div>
         <div class="match-card__ping-icon">
           <svg>
-            <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+            <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
           </svg>
         </div>
       </div>
@@ -962,7 +719,7 @@
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-card__img"
       />
@@ -971,7 +728,7 @@
   <div class="match-card__content">
     <div class="match-card__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-card__flag"
       />
@@ -997,7 +754,7 @@
         <div class="match-card__ping">23 </div>
         <div class="match-card__ping-icon">
           <svg>
-            <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+            <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
           </svg>
         </div>
       </div>
@@ -1009,7 +766,7 @@
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-card__img"
       />
@@ -1018,7 +775,7 @@
   <div class="match-card__content">
     <div class="match-card__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-card__flag"
       />
@@ -1044,7 +801,7 @@
         <div class="match-card__ping">23 </div>
         <div class="match-card__ping-icon">
           <svg>
-            <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+            <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
           </svg>
         </div>
       </div>
@@ -1056,7 +813,7 @@
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-card__img"
       />
@@ -1065,7 +822,7 @@
   <div class="match-card__content">
     <div class="match-card__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-card__flag"
       />
@@ -1091,7 +848,7 @@
         <div class="match-card__ping">23 </div>
         <div class="match-card__ping-icon">
           <svg>
-            <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+            <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
           </svg>
         </div>
       </div>
@@ -1103,7 +860,7 @@
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-card__img"
       />
@@ -1112,7 +869,7 @@
   <div class="match-card__content">
     <div class="match-card__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-card__flag"
       />
@@ -1138,25 +895,25 @@
         <div class="match-card__ping">23 </div>
         <div class="match-card__ping-icon">
           <svg>
-            <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+            <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
           </svg>
         </div>
       </div>
     </div>
   </div>
 </div>
-
+-->
                       </div>
                     </div>
                     <table
                       class="content__table tabs-block__content-container"
                       id="table-content"
                     >
-                      <tr class="match-tr content__tr" id="">
+                      <!--<tr class="match-tr content__tr" id="">
   <td class="match-tr__img-cell">
     <div class="match-tr__img-block">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-tr__img"
       />
@@ -1165,7 +922,7 @@
   <td class="match-tr__name-cell">
     <div class="match-tr__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-tr__flag"
       />
@@ -1193,7 +950,7 @@
       <div class="match-tr__ping">23 </div>
       <div class="match-tr__ping-icon">
         <svg>
-          <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+          <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
         </svg>
       </div>
     </div>
@@ -1204,7 +961,7 @@
   <td class="match-tr__img-cell">
     <div class="match-tr__img-block">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-tr__img"
       />
@@ -1213,7 +970,7 @@
   <td class="match-tr__name-cell">
     <div class="match-tr__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-tr__flag"
       />
@@ -1241,7 +998,7 @@
       <div class="match-tr__ping">23 </div>
       <div class="match-tr__ping-icon">
         <svg>
-          <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+          <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
         </svg>
       </div>
     </div>
@@ -1252,7 +1009,7 @@
   <td class="match-tr__img-cell">
     <div class="match-tr__img-block">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-tr__img"
       />
@@ -1261,7 +1018,7 @@
   <td class="match-tr__name-cell">
     <div class="match-tr__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-tr__flag"
       />
@@ -1289,7 +1046,7 @@
       <div class="match-tr__ping">23 </div>
       <div class="match-tr__ping-icon">
         <svg>
-          <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+          <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
         </svg>
       </div>
     </div>
@@ -1300,7 +1057,7 @@
   <td class="match-tr__img-cell">
     <div class="match-tr__img-block">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-tr__img"
       />
@@ -1309,7 +1066,7 @@
   <td class="match-tr__name-cell">
     <div class="match-tr__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-tr__flag"
       />
@@ -1337,7 +1094,7 @@
       <div class="match-tr__ping">23 </div>
       <div class="match-tr__ping-icon">
         <svg>
-          <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+          <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
         </svg>
       </div>
     </div>
@@ -1348,7 +1105,7 @@
   <td class="match-tr__img-cell">
     <div class="match-tr__img-block">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-tr__img"
       />
@@ -1357,7 +1114,7 @@
   <td class="match-tr__name-cell">
     <div class="match-tr__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-tr__flag"
       />
@@ -1385,7 +1142,7 @@
       <div class="match-tr__ping">23 </div>
       <div class="match-tr__ping-icon">
         <svg>
-          <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+          <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
         </svg>
       </div>
     </div>
@@ -1396,7 +1153,7 @@
   <td class="match-tr__img-cell">
     <div class="match-tr__img-block">
       <img
-        src="/assets/map-img-5a71a888.png"
+        src="src/images/temporary/map-img.png"
         alt=""
         class="match-tr__img"
       />
@@ -1405,7 +1162,7 @@
   <td class="match-tr__name-cell">
     <div class="match-tr__name-block">
       <img
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAPCAYAAAD+pA/bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAA3SURBVHgB7dNRDQAgDMTQjiAMF9hBDB6Qgpyh4hKSXQ28rwbzJMIa4gwUAPoaG2WRF39g4HPgAbFEBmVWRA0zAAAAAElFTkSuQmCC"
+        src="src/images/temporary/ukr-flag.png"
         alt="flag"
         class="match-tr__flag"
       />
@@ -1433,13 +1190,13 @@
       <div class="match-tr__ping">23 </div>
       <div class="match-tr__ping-icon">
         <svg>
-          <use xlink:href="/assets/sprite-11cd64cb.svg#haf_network-strength"></use>
+          <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
         </svg>
       </div>
     </div>
   </td>
 </tr>
-
+-->
                     </table>
                   </div>
                 </div>

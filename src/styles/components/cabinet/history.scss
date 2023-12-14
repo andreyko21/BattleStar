@@ -1,0 +1,43 @@
+@import "./../../../styles/style.scss";
+@import"./table.scss";
+.history {
+   max-height: 742px;
+   height: auto;
+   overflow: auto;
+   padding: 29px 84px 53px 59px;
+
+   &__row {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 34px;
+
+      &-title {
+         color: $gray25;
+         font-size: 24px;
+         font-weight: 400;
+         line-height: normal;
+      }
+
+      &-filter {
+         display: flex;
+         align-items: center;
+
+         &-select {
+            background: transparent;
+            color: $gray25;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: normal;
+         }
+
+         &-text {
+            color: $gray500;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: normal;
+            margin-right: 7px;
+         }
+      }
+   }
+}

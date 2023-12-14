@@ -1,0 +1,146 @@
+.personal {
+   display: flex;
+   justify-content: space-between;
+   padding: 29px 84px 49px 59px;
+   &__row {
+      display: flex;
+      margin-bottom: 42px;
+      &-title {
+         color: $gray25;
+         font-size: 24px;
+         font-weight: 400;
+         line-height: normal;
+      }
+      &-edit {
+         color: $yellow300;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+         margin: 7px 0 0 20px;
+      }
+   }
+   &__info {
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      &-id,
+      &-nickname,
+      &-biography,
+      &-data,
+      &-account {
+         color: $gray200;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+      }
+      &-id {
+         width: 275px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         span {
+            color: $gray25;
+            margin-left: auto;
+         }
+         svg {
+            width: 18px;
+            height: 18px;
+            fill: #606060;
+            margin-left: 11px;
+         }
+      }
+      &-nickname {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         width: 307px;
+         span {
+            color: $gray25;
+            margin-left: auto;
+            font-size: 24px;
+         }
+      }
+      &-biography {
+         width: 643px;
+         display: flex;
+         justify-content: space-between;
+         span {
+            color: $gray25;
+            margin-left: auto;
+            font-size: 14px;
+            width: 469px;
+         }
+      }
+      &-data {
+         width: 265px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         span {
+            color: $gray25;
+            margin-left: auto;
+            font-size: 18px;
+         }
+      }
+   }
+   &__line {
+      width: 100%;
+      height: 1px;
+      background: $dark100;
+      margin: 30px 0 25px;
+   }
+
+   &__email {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 370px;
+      margin-top: 24px;
+      color: $gray200;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      span {
+         color: $gray25;
+         margin-left: auto;
+         font-size: 18px;
+      }
+      svg {
+         width: 24px;
+         height: 24px;
+         fill: #6fff57;
+      }
+      &:nth-child(2) {
+         width: 290px;
+      }
+   }
+   &__avatar {
+      position: relative;
+      height: 165px;
+      &-inp {
+         display: none;
+      }
+      &-label {
+         display: inline-block;
+         width: 140px;
+         height: 140px;
+         background: silver;
+         border-radius: 50%;
+         background-size: cover;
+         background-repeat: no-repeat;
+         background-position: center;
+         span {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            color: $yellow300;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: normal;
+         }
+      }
+   }
+}

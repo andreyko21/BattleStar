@@ -117,11 +117,10 @@ class Sign implements SignType {
 //   }
 
 //   signUpValidation() {
-     
 //     $.validator.addMethod(
 //       "cyrillicEmail",
 //       function (value: string) {
-//         return /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value);
+//         // return /^[\wа-яА-ЯёЁ]+(\.[\wа-яА-ЯёЁ]+)*@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(value);
 //       },
 //       "Please enter a valid email address"
 //     );

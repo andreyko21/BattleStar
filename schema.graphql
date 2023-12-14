@@ -1,109 +1,1974 @@
-type TeamsRequest {
-  data: [Team]
-  meta: Meta
-}
+# The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+scalar JSON
 
-type TeamRequest {
-  data: [Team]
-}
+# A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+scalar DateTime
 
-type Team {
-  id: ID
-  attributes: TeamAttributes
-}
+# A time string with format HH:mm:ss.SSS
+scalar Time
 
-type TeamAttributes {
-  name: String
-  rating: Int
-  earned: Int
-  matches_played: Int
-  victories_in_tournaments: Int
-  createdAt: String
-  updatedAt: String
-  publishedAt: String
-  logo: LogoRequest
-  awards: AwardsRequest
-  participants: ParticipantsWrapper
-  tournaments: TournamentsWrapper
-}
+# A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+scalar Date
 
-type ParticipantsWrapper {
-  data: [ParticipantData]
-}
-
-type ParticipantData {
-  id: String
-}
-
-type TournamentsWrapper {
-  data: [TournamentData]
-}
-
-type TournamentData {
-  id: String
-}
-
-type AwardsRequest {
-  data: [AwardRequest]
-}
-
-type AwardRequest {
-  id: ID
-  attributes: AwardAttributesRequest
-}
-
-type AwardAttributesRequest {
-  name: String
-  logo: LogoRequest
-}
-
-type LogoRequest {
-  data: [LogoDataRequest]
-}
-
-type LogoDataRequest {
-  id: ID
-  attributes: LogoAttributesRequest
-}
-
-type LogoAttributesRequest {
-  name: String
-  alternativeText: String
-  url: String
-}
-
-type Meta {
-  pagination: Pagination
-}
+# The `Upload` scalar type represents a file upload.
+scalar Upload
 
 type Pagination {
-  pageCount: Int
+  total: Int!
+  page: Int!
+  pageSize: Int!
+  pageCount: Int!
 }
 
-input NameFilterInput {
+type ResponseCollectionMeta {
+  pagination: Pagination!
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+input IDFilterInput {
+  and: [ID]
+  or: [ID]
+  not: IDFilterInput
+  eq: ID
+  eqi: ID
+  ne: ID
+  nei: ID
+  startsWith: ID
+  endsWith: ID
+  contains: ID
+  notContains: ID
+  containsi: ID
+  notContainsi: ID
+  gt: ID
+  gte: ID
+  lt: ID
+  lte: ID
+  null: Boolean
+  notNull: Boolean
+  in: [ID]
+  notIn: [ID]
+  between: [ID]
+}
+
+input BooleanFilterInput {
+  and: [Boolean]
+  or: [Boolean]
+  not: BooleanFilterInput
+  eq: Boolean
+  eqi: Boolean
+  ne: Boolean
+  nei: Boolean
+  startsWith: Boolean
+  endsWith: Boolean
+  contains: Boolean
+  notContains: Boolean
+  containsi: Boolean
+  notContainsi: Boolean
+  gt: Boolean
+  gte: Boolean
+  lt: Boolean
+  lte: Boolean
+  null: Boolean
+  notNull: Boolean
+  in: [Boolean]
+  notIn: [Boolean]
+  between: [Boolean]
+}
+
+input StringFilterInput {
+  and: [String]
+  or: [String]
+  not: StringFilterInput
+  eq: String
+  eqi: String
+  ne: String
+  nei: String
   startsWith: String
   endsWith: String
   contains: String
+  notContains: String
+  containsi: String
+  notContainsi: String
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  null: Boolean
+  notNull: Boolean
+  in: [String]
+  notIn: [String]
+  between: [String]
 }
 
-input TeamFilterInput {
-  name: NameFilterInput
+input IntFilterInput {
+  and: [Int]
+  or: [Int]
+  not: IntFilterInput
+  eq: Int
+  eqi: Int
+  ne: Int
+  nei: Int
+  startsWith: Int
+  endsWith: Int
+  contains: Int
+  notContains: Int
+  containsi: Int
+  notContainsi: Int
+  gt: Int
+  gte: Int
+  lt: Int
+  lte: Int
+  null: Boolean
+  notNull: Boolean
+  in: [Int]
+  notIn: [Int]
+  between: [Int]
 }
 
-input PaginationInput {
+input FloatFilterInput {
+  and: [Float]
+  or: [Float]
+  not: FloatFilterInput
+  eq: Float
+  eqi: Float
+  ne: Float
+  nei: Float
+  startsWith: Float
+  endsWith: Float
+  contains: Float
+  notContains: Float
+  containsi: Float
+  notContainsi: Float
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  null: Boolean
+  notNull: Boolean
+  in: [Float]
+  notIn: [Float]
+  between: [Float]
+}
+
+input DateFilterInput {
+  and: [Date]
+  or: [Date]
+  not: DateFilterInput
+  eq: Date
+  eqi: Date
+  ne: Date
+  nei: Date
+  startsWith: Date
+  endsWith: Date
+  contains: Date
+  notContains: Date
+  containsi: Date
+  notContainsi: Date
+  gt: Date
+  gte: Date
+  lt: Date
+  lte: Date
+  null: Boolean
+  notNull: Boolean
+  in: [Date]
+  notIn: [Date]
+  between: [Date]
+}
+
+input TimeFilterInput {
+  and: [Time]
+  or: [Time]
+  not: TimeFilterInput
+  eq: Time
+  eqi: Time
+  ne: Time
+  nei: Time
+  startsWith: Time
+  endsWith: Time
+  contains: Time
+  notContains: Time
+  containsi: Time
+  notContainsi: Time
+  gt: Time
+  gte: Time
+  lt: Time
+  lte: Time
+  null: Boolean
+  notNull: Boolean
+  in: [Time]
+  notIn: [Time]
+  between: [Time]
+}
+
+input DateTimeFilterInput {
+  and: [DateTime]
+  or: [DateTime]
+  not: DateTimeFilterInput
+  eq: DateTime
+  eqi: DateTime
+  ne: DateTime
+  nei: DateTime
+  startsWith: DateTime
+  endsWith: DateTime
+  contains: DateTime
+  notContains: DateTime
+  containsi: DateTime
+  notContainsi: DateTime
+  gt: DateTime
+  gte: DateTime
+  lt: DateTime
+  lte: DateTime
+  null: Boolean
+  notNull: Boolean
+  in: [DateTime]
+  notIn: [DateTime]
+  between: [DateTime]
+}
+
+input JSONFilterInput {
+  and: [JSON]
+  or: [JSON]
+  not: JSONFilterInput
+  eq: JSON
+  eqi: JSON
+  ne: JSON
+  nei: JSON
+  startsWith: JSON
+  endsWith: JSON
+  contains: JSON
+  notContains: JSON
+  containsi: JSON
+  notContainsi: JSON
+  gt: JSON
+  gte: JSON
+  lt: JSON
+  lte: JSON
+  null: Boolean
+  notNull: Boolean
+  in: [JSON]
+  notIn: [JSON]
+  between: [JSON]
+}
+
+type ComponentAwardsAwards {
+  id: ID!
+  name: String!
+  logo: UploadFileEntityResponse!
+}
+
+input ComponentDefaultOptionsFiltersInput {
+  platform_news: BooleanFilterInput
+  language: LanguageFiltersInput
+  country: CountryFiltersInput
+  and: [ComponentDefaultOptionsFiltersInput]
+  or: [ComponentDefaultOptionsFiltersInput]
+  not: ComponentDefaultOptionsFiltersInput
+}
+
+input ComponentDefaultOptionsInput {
+  id: ID
+  platform_news: Boolean
+  language: ID
+  country: ID
+}
+
+type ComponentDefaultOptions {
+  id: ID!
+  platform_news: Boolean
+  language: LanguageEntityResponse
+  country: CountryEntityResponse
+}
+
+input ComponentGameListCsgoFiltersInput {
+  maps_played: IntFilterInput
+  persistence: FloatFilterInput
+  head_hits: FloatFilterInput
+  accuracy: FloatFilterInput
+  Default_information: ComponentGameStatisticsGameComponentFiltersInput
+  and: [ComponentGameListCsgoFiltersInput]
+  or: [ComponentGameListCsgoFiltersInput]
+  not: ComponentGameListCsgoFiltersInput
+}
+
+input ComponentGameListCsgoInput {
+  id: ID
+  maps_played: Int
+  persistence: Float
+  head_hits: Float
+  accuracy: Float
+  Default_information: ComponentGameStatisticsGameComponentInput
+}
+
+type ComponentGameListCsgo {
+  id: ID!
+  maps_played: Int
+  persistence: Float
+  head_hits: Float
+  accuracy: Float
+  Default_information: ComponentGameStatisticsGameComponent
+}
+
+input ComponentGameListDota2FiltersInput {
+  farming: FloatFilterInput
+  flexibility: FloatFilterInput
+  fighting: FloatFilterInput
+  support: FloatFilterInput
+  pushing: FloatFilterInput
+  modes_played: IntFilterInput
+  Default_information: ComponentGameStatisticsGameComponentFiltersInput
+  and: [ComponentGameListDota2FiltersInput]
+  or: [ComponentGameListDota2FiltersInput]
+  not: ComponentGameListDota2FiltersInput
+}
+
+input ComponentGameListDota2Input {
+  id: ID
+  farming: Float
+  flexibility: Float
+  fighting: Float
+  support: Float
+  pushing: Float
+  modes_played: Int
+  Default_information: ComponentGameStatisticsGameComponentInput
+}
+
+type ComponentGameListDota2 {
+  id: ID!
+  farming: Float
+  flexibility: Float
+  fighting: Float
+  support: Float
+  pushing: Float
+  modes_played: Int
+  Default_information: ComponentGameStatisticsGameComponent
+}
+
+input ComponentGameStatisticsGameComponentFiltersInput {
+  kills: IntFilterInput
+  deaths: IntFilterInput
+  rank: IntFilterInput
+  matches_played: IntFilterInput
+  losses: IntFilterInput
+  wins: IntFilterInput
+  hours_in_game: FloatFilterInput
+  tournaments: IntFilterInput
+  and: [ComponentGameStatisticsGameComponentFiltersInput]
+  or: [ComponentGameStatisticsGameComponentFiltersInput]
+  not: ComponentGameStatisticsGameComponentFiltersInput
+}
+
+input ComponentGameStatisticsGameComponentInput {
+  id: ID
+  kills: Int
+  deaths: Int
+  rank: Int
+  matches_played: Int
+  losses: Int
+  wins: Int
+  hours_in_game: Float
+  tournaments: Int
+}
+
+type ComponentGameStatisticsGameComponent {
+  id: ID!
+  kills: Int
+  deaths: Int
+  rank: Int
+  matches_played: Int
+  losses: Int
+  wins: Int
+  hours_in_game: Float
+  tournaments: Int
+}
+
+type ComponentHashHashs {
+  id: ID!
+  nameGame: String!
+  tournament: String!
+  battleStar: String!
+  greenDragon: String!
+  tour: String!
+}
+
+type ComponentParticipantsParticipant {
+  id: ID!
+  user: UsersPermissionsUserEntityResponse
+}
+
+input ComponentPartnerOptionsFiltersInput {
+  reaching_a_new_level: BooleanFilterInput
+  follow_the_referral_link: BooleanFilterInput
+  default_options: ComponentDefaultOptionsFiltersInput
+  and: [ComponentPartnerOptionsFiltersInput]
+  or: [ComponentPartnerOptionsFiltersInput]
+  not: ComponentPartnerOptionsFiltersInput
+}
+
+input ComponentPartnerOptionsInput {
+  id: ID
+  reaching_a_new_level: Boolean
+  follow_the_referral_link: Boolean
+  default_options: ComponentDefaultOptionsInput
+}
+
+type ComponentPartnerOptions {
+  id: ID!
+  reaching_a_new_level: Boolean
+  follow_the_referral_link: Boolean
+  default_options: ComponentDefaultOptions
+}
+
+input ComponentPlayerOptionsFiltersInput {
+  news_of_the_platform: BooleanFilterInput
+  new_tournaments: BooleanFilterInput
+  incoming_messages: BooleanFilterInput
+  invitations_to_the_team: BooleanFilterInput
+  friend_requests: BooleanFilterInput
+  allow_only_friends_invit_to_team: BooleanFilterInput
+  selected_language: LanguageFiltersInput
+  selected_country: CountryFiltersInput
+  default_options: ComponentDefaultOptionsFiltersInput
+  calibration: IntFilterInput
+  and: [ComponentPlayerOptionsFiltersInput]
+  or: [ComponentPlayerOptionsFiltersInput]
+  not: ComponentPlayerOptionsFiltersInput
+}
+
+input ComponentPlayerOptionsInput {
+  id: ID
+  news_of_the_platform: Boolean
+  new_tournaments: Boolean
+  incoming_messages: Boolean
+  invitations_to_the_team: Boolean
+  friend_requests: Boolean
+  allow_only_friends_invit_to_team: Boolean
+  selected_language: ID
+  selected_country: ID
+  default_options: ComponentDefaultOptionsInput
+  calibration: Int
+}
+
+type ComponentPlayerOptions {
+  id: ID!
+  news_of_the_platform: Boolean
+  new_tournaments: Boolean
+  incoming_messages: Boolean
+  invitations_to_the_team: Boolean
+  friend_requests: Boolean
+  allow_only_friends_invit_to_team: Boolean
+  selected_language: LanguageEntityResponse
+  selected_country: CountryEntityResponse
+  default_options: ComponentDefaultOptions
+  calibration: Int
+}
+
+input ComponentTeamsTeamFiltersInput {
+  name: StringFilterInput
+  rating: IntFilterInput
+  earned: FloatFilterInput
+  matches_played: IntFilterInput
+  victories_in_tournaments: IntFilterInput
+  and: [ComponentTeamsTeamFiltersInput]
+  or: [ComponentTeamsTeamFiltersInput]
+  not: ComponentTeamsTeamFiltersInput
+}
+
+input ComponentTeamsTeamInput {
+  id: ID
+  name: String
+  rating: Int
+  logo: ID
+  earned: Float
+  matches_played: Int
+  victories_in_tournaments: Int
+}
+
+type ComponentTeamsTeam {
+  id: ID!
+  name: String
+  rating: Int
+  logo: UploadFileEntityResponse
+  earned: Float
+  matches_played: Int
+  victories_in_tournaments: Int
+}
+
+type ComponentTournamentGridTournamentGrid {
+  id: ID!
+  nameTeam: String!
+  score: String!
+}
+
+input ComponentTournamentsTournamentFiltersInput {
+  name: StringFilterInput
+  money_entry_rate: FloatFilterInput
+  max_teams: IntFilterInput
+  description: StringFilterInput
+  minimum_rank: IntFilterInput
+  startDate: DateFilterInput
+  endDate: DateFilterInput
+  time: TimeFilterInput
+  regionLimit: BooleanFilterInput
+  and: [ComponentTournamentsTournamentFiltersInput]
+  or: [ComponentTournamentsTournamentFiltersInput]
+  not: ComponentTournamentsTournamentFiltersInput
+}
+
+input ComponentTournamentsTournamentInput {
+  id: ID
+  name: String
+  money_entry_rate: Float
+  max_teams: Int
+  description: String
+  minimum_rank: Int
+  logo: ID
+  startDate: Date
+  endDate: Date
+  time: Time
+  regionLimit: Boolean
+}
+
+type ComponentTournamentsTournament {
+  id: ID!
+  name: String
+  money_entry_rate: Float
+  max_teams: Int
+  description: String
+  minimum_rank: Int
+  logo: UploadFileEntityResponse
+  startDate: Date
+  endDate: Date
+  time: Time
+  regionLimit: Boolean
+}
+
+input ComponentUiCardFiltersInput {
+  title: StringFilterInput
+  text: StringFilterInput
+  autor: StringFilterInput
+  data: DateFilterInput
+  and: [ComponentUiCardFiltersInput]
+  or: [ComponentUiCardFiltersInput]
+  not: ComponentUiCardFiltersInput
+}
+
+input ComponentUiCardInput {
+  id: ID
+  title: String
+  img: [ID]
+  text: String
+  autor: String
+  avatar: [ID]
+  data: Date
+}
+
+type ComponentUiCard {
+  id: ID!
+  title: String!
+  img(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection!
+  text: String!
+  autor: String!
+  avatar(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
+  data: Date
+}
+
+input UploadFileFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  alternativeText: StringFilterInput
+  caption: StringFilterInput
+  width: IntFilterInput
+  height: IntFilterInput
+  formats: JSONFilterInput
+  hash: StringFilterInput
+  ext: StringFilterInput
+  mime: StringFilterInput
+  size: FloatFilterInput
+  url: StringFilterInput
+  previewUrl: StringFilterInput
+  provider: StringFilterInput
+  provider_metadata: JSONFilterInput
+  folder: UploadFolderFiltersInput
+  folderPath: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [UploadFileFiltersInput]
+  or: [UploadFileFiltersInput]
+  not: UploadFileFiltersInput
+}
+
+input UploadFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  folder: ID
+  folderPath: String
+}
+
+type UploadFile {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [GenericMorph]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type UploadFileEntity {
+  id: ID
+  attributes: UploadFile
+}
+
+type UploadFileEntityResponse {
+  data: UploadFileEntity
+}
+
+type UploadFileEntityResponseCollection {
+  data: [UploadFileEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type UploadFileRelationResponseCollection {
+  data: [UploadFileEntity!]!
+}
+
+input UploadFolderFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  pathId: IntFilterInput
+  parent: UploadFolderFiltersInput
+  children: UploadFolderFiltersInput
+  files: UploadFileFiltersInput
+  path: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [UploadFolderFiltersInput]
+  or: [UploadFolderFiltersInput]
+  not: UploadFolderFiltersInput
+}
+
+input UploadFolderInput {
+  name: String
+  pathId: Int
+  parent: ID
+  children: [ID]
+  files: [ID]
+  path: String
+}
+
+type UploadFolder {
+  name: String!
+  pathId: Int!
+  parent: UploadFolderEntityResponse
+  children(
+    filters: UploadFolderFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFolderRelationResponseCollection
+  files(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
+  path: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type UploadFolderEntity {
+  id: ID
+  attributes: UploadFolder
+}
+
+type UploadFolderEntityResponse {
+  data: UploadFolderEntity
+}
+
+type UploadFolderEntityResponseCollection {
+  data: [UploadFolderEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type UploadFolderRelationResponseCollection {
+  data: [UploadFolderEntity!]!
+}
+
+input I18NLocaleFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  code: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [I18NLocaleFiltersInput]
+  or: [I18NLocaleFiltersInput]
+  not: I18NLocaleFiltersInput
+}
+
+type I18NLocale {
+  name: String
+  code: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type I18NLocaleEntity {
+  id: ID
+  attributes: I18NLocale
+}
+
+type I18NLocaleEntityResponse {
+  data: I18NLocaleEntity
+}
+
+type I18NLocaleEntityResponseCollection {
+  data: [I18NLocaleEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input UsersPermissionsPermissionFiltersInput {
+  id: IDFilterInput
+  action: StringFilterInput
+  role: UsersPermissionsRoleFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [UsersPermissionsPermissionFiltersInput]
+  or: [UsersPermissionsPermissionFiltersInput]
+  not: UsersPermissionsPermissionFiltersInput
+}
+
+type UsersPermissionsPermission {
+  action: String!
+  role: UsersPermissionsRoleEntityResponse
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type UsersPermissionsPermissionEntity {
+  id: ID
+  attributes: UsersPermissionsPermission
+}
+
+type UsersPermissionsPermissionRelationResponseCollection {
+  data: [UsersPermissionsPermissionEntity!]!
+}
+
+input UsersPermissionsRoleFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  description: StringFilterInput
+  type: StringFilterInput
+  permissions: UsersPermissionsPermissionFiltersInput
+  users: UsersPermissionsUserFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [UsersPermissionsRoleFiltersInput]
+  or: [UsersPermissionsRoleFiltersInput]
+  not: UsersPermissionsRoleFiltersInput
+}
+
+input UsersPermissionsRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+type UsersPermissionsRole {
+  name: String!
+  description: String
+  type: String
+  permissions(
+    filters: UsersPermissionsPermissionFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UsersPermissionsPermissionRelationResponseCollection
+  users(
+    filters: UsersPermissionsUserFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UsersPermissionsUserRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type UsersPermissionsRoleEntity {
+  id: ID
+  attributes: UsersPermissionsRole
+}
+
+type UsersPermissionsRoleEntityResponse {
+  data: UsersPermissionsRoleEntity
+}
+
+type UsersPermissionsRoleEntityResponseCollection {
+  data: [UsersPermissionsRoleEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input UsersPermissionsUserFiltersInput {
+  id: IDFilterInput
+  username: StringFilterInput
+  email: StringFilterInput
+  provider: StringFilterInput
+  password: StringFilterInput
+  resetPasswordToken: StringFilterInput
+  confirmationToken: StringFilterInput
+  confirmed: BooleanFilterInput
+  blocked: BooleanFilterInput
+  role: UsersPermissionsRoleFiltersInput
+  online_status: BooleanFilterInput
+  biography: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [UsersPermissionsUserFiltersInput]
+  or: [UsersPermissionsUserFiltersInput]
+  not: UsersPermissionsUserFiltersInput
+}
+
+input UsersPermissionsUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  online_status: Boolean
+  biography: String
+}
+
+type UsersPermissionsUser {
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRoleEntityResponse
+  online_status: Boolean
+  biography: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type UsersPermissionsUserEntity {
+  id: ID
+  attributes: UsersPermissionsUser
+}
+
+type UsersPermissionsUserEntityResponse {
+  data: UsersPermissionsUserEntity
+}
+
+type UsersPermissionsUserEntityResponseCollection {
+  data: [UsersPermissionsUserEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type UsersPermissionsUserRelationResponseCollection {
+  data: [UsersPermissionsUserEntity!]!
+}
+
+input CardNewFiltersInput {
+  id: IDFilterInput
+  card: ComponentUiCardFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [CardNewFiltersInput]
+  or: [CardNewFiltersInput]
+  not: CardNewFiltersInput
+}
+
+input CardNewInput {
+  card: [ComponentUiCardInput]
+  publishedAt: DateTime
+}
+
+type CardNew {
+  card(
+    filters: ComponentUiCardFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): [ComponentUiCard]
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type CardNewEntity {
+  id: ID
+  attributes: CardNew
+}
+
+type CardNewEntityResponse {
+  data: CardNewEntity
+}
+
+type CardNewEntityResponseCollection {
+  data: [CardNewEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input CountryFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [CountryFiltersInput]
+  or: [CountryFiltersInput]
+  not: CountryFiltersInput
+}
+
+input CountryInput {
+  name: String
+  flag: ID
+  publishedAt: DateTime
+}
+
+type Country {
+  name: String!
+  flag: UploadFileEntityResponse!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type CountryEntity {
+  id: ID
+  attributes: Country
+}
+
+type CountryEntityResponse {
+  data: CountryEntity
+}
+
+type CountryEntityResponseCollection {
+  data: [CountryEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input Cs2FiltersInput {
+  id: IDFilterInput
+  Team: ComponentTeamsTeamFiltersInput
+  awards: Cs2AwardFiltersInput
+  players: PlayerFiltersInput
+  captain: PlayerFiltersInput
+  tournaments: Cs2TournamentFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Cs2FiltersInput]
+  or: [Cs2FiltersInput]
+  not: Cs2FiltersInput
+}
+
+input Cs2Input {
+  Team: ComponentTeamsTeamInput
+  awards: [ID]
+  players: [ID]
+  captain: ID
+  tournaments: [ID]
+  publishedAt: DateTime
+}
+
+type Cs2 {
+  Team: ComponentTeamsTeam
+  awards(
+    filters: Cs2AwardFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2AwardRelationResponseCollection
+  players(
+    filters: PlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PlayerRelationResponseCollection
+  captain: PlayerEntityResponse
+  tournaments(
+    filters: Cs2TournamentFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2TournamentRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Cs2Entity {
+  id: ID
+  attributes: Cs2
+}
+
+type Cs2EntityResponse {
+  data: Cs2Entity
+}
+
+type Cs2EntityResponseCollection {
+  data: [Cs2Entity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Cs2RelationResponseCollection {
+  data: [Cs2Entity!]!
+}
+
+input Cs2AwardFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Cs2AwardFiltersInput]
+  or: [Cs2AwardFiltersInput]
+  not: Cs2AwardFiltersInput
+}
+
+input Cs2AwardInput {
+  name: String
+  logo: ID
+  publishedAt: DateTime
+}
+
+type Cs2Award {
+  name: String!
+  logo: UploadFileEntityResponse!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Cs2AwardEntity {
+  id: ID
+  attributes: Cs2Award
+}
+
+type Cs2AwardEntityResponse {
+  data: Cs2AwardEntity
+}
+
+type Cs2AwardEntityResponseCollection {
+  data: [Cs2AwardEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Cs2AwardRelationResponseCollection {
+  data: [Cs2AwardEntity!]!
+}
+
+input Cs2TournamentFiltersInput {
+  id: IDFilterInput
+  Tournament: ComponentTournamentsTournamentFiltersInput
+  teams: Cs2FiltersInput
+  maps: MapFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Cs2TournamentFiltersInput]
+  or: [Cs2TournamentFiltersInput]
+  not: Cs2TournamentFiltersInput
+}
+
+input Cs2TournamentInput {
+  Tournament: ComponentTournamentsTournamentInput
+  teams: [ID]
+  maps: [ID]
+  publishedAt: DateTime
+}
+
+type Cs2Tournament {
+  Tournament: ComponentTournamentsTournament
+  teams(
+    filters: Cs2FiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2RelationResponseCollection
+  maps(
+    filters: MapFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): MapRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Cs2TournamentEntity {
+  id: ID
+  attributes: Cs2Tournament
+}
+
+type Cs2TournamentEntityResponse {
+  data: Cs2TournamentEntity
+}
+
+type Cs2TournamentEntityResponseCollection {
+  data: [Cs2TournamentEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Cs2TournamentRelationResponseCollection {
+  data: [Cs2TournamentEntity!]!
+}
+
+input Dota2TeamFiltersInput {
+  id: IDFilterInput
+  Team: ComponentTeamsTeamFiltersInput
+  tournaments: Dota2TournamentFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Dota2TeamFiltersInput]
+  or: [Dota2TeamFiltersInput]
+  not: Dota2TeamFiltersInput
+}
+
+input Dota2TeamInput {
+  Team: [ComponentTeamsTeamInput]
+  tournaments: [ID]
+  publishedAt: DateTime
+}
+
+type Dota2Team {
+  Team(
+    filters: ComponentTeamsTeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): [ComponentTeamsTeam]
+  tournaments(
+    filters: Dota2TournamentFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2TournamentRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Dota2TeamEntity {
+  id: ID
+  attributes: Dota2Team
+}
+
+type Dota2TeamEntityResponse {
+  data: Dota2TeamEntity
+}
+
+type Dota2TeamEntityResponseCollection {
+  data: [Dota2TeamEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Dota2TeamRelationResponseCollection {
+  data: [Dota2TeamEntity!]!
+}
+
+input Dota2TournamentFiltersInput {
+  id: IDFilterInput
+  teams: Dota2TeamFiltersInput
+  Tournament: ComponentTournamentsTournamentFiltersInput
+  regime: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Dota2TournamentFiltersInput]
+  or: [Dota2TournamentFiltersInput]
+  not: Dota2TournamentFiltersInput
+}
+
+input Dota2TournamentInput {
+  teams: [ID]
+  Tournament: ComponentTournamentsTournamentInput
+  regime: String
+  publishedAt: DateTime
+}
+
+type Dota2Tournament {
+  teams(
+    filters: Dota2TeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2TeamRelationResponseCollection
+  Tournament: ComponentTournamentsTournament
+  regime: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Dota2TournamentEntity {
+  id: ID
+  attributes: Dota2Tournament
+}
+
+type Dota2TournamentEntityResponse {
+  data: Dota2TournamentEntity
+}
+
+type Dota2TournamentEntityResponseCollection {
+  data: [Dota2TournamentEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Dota2TournamentRelationResponseCollection {
+  data: [Dota2TournamentEntity!]!
+}
+
+input LanguageFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [LanguageFiltersInput]
+  or: [LanguageFiltersInput]
+  not: LanguageFiltersInput
+}
+
+input LanguageInput {
+  name: String
+  publishedAt: DateTime
+}
+
+type Language {
+  name: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type LanguageEntity {
+  id: ID
+  attributes: Language
+}
+
+type LanguageEntityResponse {
+  data: LanguageEntity
+}
+
+type LanguageEntityResponseCollection {
+  data: [LanguageEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input MainNewFiltersInput {
+  id: IDFilterInput
+  title: StringFilterInput
+  text: StringFilterInput
+  data: DateFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [MainNewFiltersInput]
+  or: [MainNewFiltersInput]
+  not: MainNewFiltersInput
+}
+
+input MainNewInput {
+  title: String
+  img: [ID]
+  text: String
+  data: Date
+  publishedAt: DateTime
+}
+
+type MainNew {
+  title: String!
+  img(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
+  text: String!
+  data: Date
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type MainNewEntity {
+  id: ID
+  attributes: MainNew
+}
+
+type MainNewEntityResponse {
+  data: MainNewEntity
+}
+
+type MainNewEntityResponseCollection {
+  data: [MainNewEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input MapFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [MapFiltersInput]
+  or: [MapFiltersInput]
+  not: MapFiltersInput
+}
+
+input MapInput {
+  name: String
+  logo: [ID]
+  publishedAt: DateTime
+}
+
+type Map {
+  name: String!
+  logo(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type MapEntity {
+  id: ID
+  attributes: Map
+}
+
+type MapEntityResponse {
+  data: MapEntity
+}
+
+type MapEntityResponseCollection {
+  data: [MapEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type MapRelationResponseCollection {
+  data: [MapEntity!]!
+}
+
+input PartnerFiltersInput {
+  id: IDFilterInput
+  Options: ComponentPartnerOptionsFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [PartnerFiltersInput]
+  or: [PartnerFiltersInput]
+  not: PartnerFiltersInput
+}
+
+input PartnerInput {
+  Options: ComponentPartnerOptionsInput
+  publishedAt: DateTime
+}
+
+type Partner {
+  Options: ComponentPartnerOptions
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type PartnerEntity {
+  id: ID
+  attributes: Partner
+}
+
+type PartnerEntityResponse {
+  data: PartnerEntity
+}
+
+type PartnerEntityResponseCollection {
+  data: [PartnerEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input PlayerFiltersInput {
+  id: IDFilterInput
+  CSGO: ComponentGameListCsgoFiltersInput
+  DOTA2: ComponentGameListDota2FiltersInput
+  Options: ComponentPlayerOptionsFiltersInput
+  my_subscriptions: PlayerFiltersInput
+  my_followers: PlayerFiltersInput
+  my_blocked_users: PlayerFiltersInput
+  users_who_blocked_me: PlayerFiltersInput
+  teams: TeamFiltersInput
+  my_teams: Cs2FiltersInput
+  my_own_teams: Cs2FiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [PlayerFiltersInput]
+  or: [PlayerFiltersInput]
+  not: PlayerFiltersInput
+}
+
+input PlayerInput {
+  CSGO: ComponentGameListCsgoInput
+  DOTA2: ComponentGameListDota2Input
+  Options: ComponentPlayerOptionsInput
+  avatar: ID
+  my_subscriptions: [ID]
+  my_followers: [ID]
+  my_blocked_users: [ID]
+  users_who_blocked_me: [ID]
+  teams: [ID]
+  my_teams: [ID]
+  my_own_teams: [ID]
+  publishedAt: DateTime
+}
+
+type Player {
+  CSGO: ComponentGameListCsgo
+  DOTA2: ComponentGameListDota2
+  Options: ComponentPlayerOptions
+  avatar: UploadFileEntityResponse
+  my_subscriptions(
+    filters: PlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PlayerRelationResponseCollection
+  my_followers(
+    filters: PlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PlayerRelationResponseCollection
+  my_blocked_users(
+    filters: PlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PlayerRelationResponseCollection
+  users_who_blocked_me(
+    filters: PlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PlayerRelationResponseCollection
+  teams(
+    filters: TeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): TeamRelationResponseCollection
+  my_teams(
+    filters: Cs2FiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2RelationResponseCollection
+  my_own_teams(
+    filters: Cs2FiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2RelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type PlayerEntity {
+  id: ID
+  attributes: Player
+}
+
+type PlayerEntityResponse {
+  data: PlayerEntity
+}
+
+type PlayerEntityResponseCollection {
+  data: [PlayerEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type PlayerRelationResponseCollection {
+  data: [PlayerEntity!]!
+}
+
+input TeamFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  rating: IntFilterInput
+  earned: FloatFilterInput
+  matches_played: IntFilterInput
+  victories_in_tournaments: IntFilterInput
+  participants: PlayerFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [TeamFiltersInput]
+  or: [TeamFiltersInput]
+  not: TeamFiltersInput
+}
+
+input TeamInput {
+  name: String
+  rating: Int
+  logo: ID
+  earned: Float
+  matches_played: Int
+  victories_in_tournaments: Int
+  participants: [ID]
+  publishedAt: DateTime
+}
+
+type Team {
+  name: String!
+  rating: Int
+  logo: UploadFileEntityResponse!
+  earned: Float
+  matches_played: Int
+  victories_in_tournaments: Int
+  participants(
+    filters: PlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PlayerRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type TeamEntity {
+  id: ID
+  attributes: Team
+}
+
+type TeamEntityResponse {
+  data: TeamEntity
+}
+
+type TeamEntityResponseCollection {
+  data: [TeamEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type TeamRelationResponseCollection {
+  data: [TeamEntity!]!
+}
+
+input TopTeamInput {
+  teams: [ID]
+  publishedAt: DateTime
+}
+
+type TopTeam {
+  teams(
+    filters: TeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): TeamRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type TopTeamEntity {
+  id: ID
+  attributes: TopTeam
+}
+
+type TopTeamEntityResponse {
+  data: TopTeamEntity
+}
+
+union GenericMorph =
+    ComponentAwardsAwards
+  | ComponentDefaultOptions
+  | ComponentGameListCsgo
+  | ComponentGameListDota2
+  | ComponentGameStatisticsGameComponent
+  | ComponentHashHashs
+  | ComponentParticipantsParticipant
+  | ComponentPartnerOptions
+  | ComponentPlayerOptions
+  | ComponentTeamsTeam
+  | ComponentTournamentGridTournamentGrid
+  | ComponentTournamentsTournament
+  | ComponentUiCard
+  | UploadFile
+  | UploadFolder
+  | I18NLocale
+  | UsersPermissionsPermission
+  | UsersPermissionsRole
+  | UsersPermissionsUser
+  | CardNew
+  | Country
+  | Cs2
+  | Cs2Award
+  | Cs2Tournament
+  | Dota2Team
+  | Dota2Tournament
+  | Language
+  | MainNew
+  | Map
+  | Partner
+  | Player
+  | Team
+  | TopTeam
+
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String! = "local"
+}
+
+type UsersPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UsersPermissionsCreateRolePayload {
+  ok: Boolean!
+}
+
+type UsersPermissionsUpdateRolePayload {
+  ok: Boolean!
+}
+
+type UsersPermissionsDeleteRolePayload {
+  ok: Boolean!
+}
+
+input PaginationArg {
   page: Int
   pageSize: Int
+  start: Int
+  limit: Int
 }
 
 type Query {
+  uploadFile(id: ID): UploadFileEntityResponse
+  uploadFiles(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileEntityResponseCollection
+  uploadFolder(id: ID): UploadFolderEntityResponse
+  uploadFolders(
+    filters: UploadFolderFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFolderEntityResponseCollection
+  i18NLocale(id: ID): I18NLocaleEntityResponse
+  i18NLocales(
+    filters: I18NLocaleFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): I18NLocaleEntityResponseCollection
+  usersPermissionsRole(id: ID): UsersPermissionsRoleEntityResponse
+  usersPermissionsRoles(
+    filters: UsersPermissionsRoleFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UsersPermissionsRoleEntityResponseCollection
+  usersPermissionsUser(id: ID): UsersPermissionsUserEntityResponse
+  usersPermissionsUsers(
+    filters: UsersPermissionsUserFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UsersPermissionsUserEntityResponseCollection
+  cardNew(id: ID): CardNewEntityResponse
+  cardNews(
+    filters: CardNewFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): CardNewEntityResponseCollection
+  country(id: ID): CountryEntityResponse
+  countries(
+    filters: CountryFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): CountryEntityResponseCollection
+  cs2(id: ID): Cs2EntityResponse
+  cs2S(
+    filters: Cs2FiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2EntityResponseCollection
+  cs2Award(id: ID): Cs2AwardEntityResponse
+  cs2Awards(
+    filters: Cs2AwardFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2AwardEntityResponseCollection
+  cs2Tournament(id: ID): Cs2TournamentEntityResponse
+  cs2Tournaments(
+    filters: Cs2TournamentFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2TournamentEntityResponseCollection
+  dota2Team(id: ID): Dota2TeamEntityResponse
+  dota2Teams(
+    filters: Dota2TeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2TeamEntityResponseCollection
+  dota2Tournament(id: ID): Dota2TournamentEntityResponse
+  dota2Tournaments(
+    filters: Dota2TournamentFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2TournamentEntityResponseCollection
+  language(id: ID): LanguageEntityResponse
+  languages(
+    filters: LanguageFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): LanguageEntityResponseCollection
+  mainNew(id: ID): MainNewEntityResponse
+  mainNews(
+    filters: MainNewFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): MainNewEntityResponseCollection
+  map(id: ID): MapEntityResponse
+  maps(
+    filters: MapFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): MapEntityResponseCollection
+  partner(id: ID): PartnerEntityResponse
+  partners(
+    filters: PartnerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PartnerEntityResponseCollection
+  player(id: ID): PlayerEntityResponse
+  players(
+    filters: PlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PlayerEntityResponseCollection
+  team(id: ID): TeamEntityResponse
   teams(
-    filters: TeamFilterInput
-    sort: [String]
-    pagination: PaginationInput
-  ): TeamsRequest
-  awards: [AwardsRequest]
-  team(id: ID): TeamRequest
+    filters: TeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): TeamEntityResponseCollection
+  topTeam(publicationState: PublicationState = LIVE): TopTeamEntityResponse
+  me: UsersPermissionsMe
 }
 
+type Mutation {
+  createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
+  updateUploadFile(id: ID!, data: UploadFileInput!): UploadFileEntityResponse
+  deleteUploadFile(id: ID!): UploadFileEntityResponse
+  createUploadFolder(data: UploadFolderInput!): UploadFolderEntityResponse
+  updateUploadFolder(
+    id: ID!
+    data: UploadFolderInput!
+  ): UploadFolderEntityResponse
+  deleteUploadFolder(id: ID!): UploadFolderEntityResponse
+  createCardNew(data: CardNewInput!): CardNewEntityResponse
+  updateCardNew(id: ID!, data: CardNewInput!): CardNewEntityResponse
+  deleteCardNew(id: ID!): CardNewEntityResponse
+  createCountry(data: CountryInput!): CountryEntityResponse
+  updateCountry(id: ID!, data: CountryInput!): CountryEntityResponse
+  deleteCountry(id: ID!): CountryEntityResponse
+  createCs2(data: Cs2Input!): Cs2EntityResponse
+  updateCs2(id: ID!, data: Cs2Input!): Cs2EntityResponse
+  deleteCs2(id: ID!): Cs2EntityResponse
+  createCs2Award(data: Cs2AwardInput!): Cs2AwardEntityResponse
+  updateCs2Award(id: ID!, data: Cs2AwardInput!): Cs2AwardEntityResponse
+  deleteCs2Award(id: ID!): Cs2AwardEntityResponse
+  createCs2Tournament(data: Cs2TournamentInput!): Cs2TournamentEntityResponse
+  updateCs2Tournament(
+    id: ID!
+    data: Cs2TournamentInput!
+  ): Cs2TournamentEntityResponse
+  deleteCs2Tournament(id: ID!): Cs2TournamentEntityResponse
+  createDota2Team(data: Dota2TeamInput!): Dota2TeamEntityResponse
+  updateDota2Team(id: ID!, data: Dota2TeamInput!): Dota2TeamEntityResponse
+  deleteDota2Team(id: ID!): Dota2TeamEntityResponse
+  createDota2Tournament(
+    data: Dota2TournamentInput!
+  ): Dota2TournamentEntityResponse
+  updateDota2Tournament(
+    id: ID!
+    data: Dota2TournamentInput!
+  ): Dota2TournamentEntityResponse
+  deleteDota2Tournament(id: ID!): Dota2TournamentEntityResponse
+  createLanguage(data: LanguageInput!): LanguageEntityResponse
+  updateLanguage(id: ID!, data: LanguageInput!): LanguageEntityResponse
+  deleteLanguage(id: ID!): LanguageEntityResponse
+  createMainNew(data: MainNewInput!): MainNewEntityResponse
+  updateMainNew(id: ID!, data: MainNewInput!): MainNewEntityResponse
+  deleteMainNew(id: ID!): MainNewEntityResponse
+  createMap(data: MapInput!): MapEntityResponse
+  updateMap(id: ID!, data: MapInput!): MapEntityResponse
+  deleteMap(id: ID!): MapEntityResponse
+  createPartner(data: PartnerInput!): PartnerEntityResponse
+  updatePartner(id: ID!, data: PartnerInput!): PartnerEntityResponse
+  deletePartner(id: ID!): PartnerEntityResponse
+  createPlayer(data: PlayerInput!): PlayerEntityResponse
+  updatePlayer(id: ID!, data: PlayerInput!): PlayerEntityResponse
+  deletePlayer(id: ID!): PlayerEntityResponse
+  createTeam(data: TeamInput!): TeamEntityResponse
+  updateTeam(id: ID!, data: TeamInput!): TeamEntityResponse
+  deleteTeam(id: ID!): TeamEntityResponse
+  updateTopTeam(data: TopTeamInput!): TopTeamEntityResponse
+  deleteTopTeam: TopTeamEntityResponse
+  upload(
+    refId: ID
+    ref: String
+    field: String
+    info: FileInfoInput
+    file: Upload!
+  ): UploadFileEntityResponse!
+  multipleUpload(
+    refId: ID
+    ref: String
+    field: String
+    files: [Upload]!
+  ): [UploadFileEntityResponse]!
+  updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
+  removeFile(id: ID!): UploadFileEntityResponse
 
+  # Create a new role
+  createUsersPermissionsRole(
+    data: UsersPermissionsRoleInput!
+  ): UsersPermissionsCreateRolePayload
 
+  # Update an existing role
+  updateUsersPermissionsRole(
+    id: ID!
+    data: UsersPermissionsRoleInput!
+  ): UsersPermissionsUpdateRolePayload
+
+  # Delete an existing role
+  deleteUsersPermissionsRole(id: ID!): UsersPermissionsDeleteRolePayload
+
+  # Create a new user
+  createUsersPermissionsUser(
+    data: UsersPermissionsUserInput!
+  ): UsersPermissionsUserEntityResponse!
+
+  # Update an existing user
+  updateUsersPermissionsUser(
+    id: ID!
+    data: UsersPermissionsUserInput!
+  ): UsersPermissionsUserEntityResponse!
+
+  # Delete an existing user
+  deleteUsersPermissionsUser(id: ID!): UsersPermissionsUserEntityResponse!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+
+  # Register a user
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+
+  # Request a reset password token
+  forgotPassword(email: String!): UsersPermissionsPasswordPayload
+
+  # Reset user password. Confirm with a code (resetToken from forgotPassword)
+  resetPassword(
+    password: String!
+    passwordConfirmation: String!
+    code: String!
+  ): UsersPermissionsLoginPayload
+
+  # Change user password. Confirm with the current password.
+  changePassword(
+    currentPassword: String!
+    password: String!
+    passwordConfirmation: String!
+  ): UsersPermissionsLoginPayload
+
+  # Confirm an email users email address
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+}

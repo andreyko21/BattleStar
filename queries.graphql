@@ -1,121 +1,23 @@
-query GetTeams(
-  $filtering: String
-  $sorting: [String]
-  $page: Int
-  $pageSize: Int
-) {
-  teams(
-    filters: { name: { startsWith: $filtering } }
-    sort: $sorting
-    pagination: { page: $page, pageSize: $pageSize }
-  ) {
+query GetPageNewsQuery {
+  cardNews {
     data {
-      id
-
       attributes {
-        name
-        rating
-        earned
-        matches_played
-        victories_in_tournaments
-        createdAt
-        updatedAt
-        publishedAt
-        participants {
-          data {
-            id
-          }
-        }
-        tournaments {
-          data {
-            id
-          }
-        }
-        logo {
-          data {
-            id
-            attributes {
-              name
-              alternativeText
-              url
-            }
-          }
-        }
-        awards {
-          data {
-            id
-            attributes {
-              name
-              logo {
-                data {
-                  id
-                  attributes {
-                    name
-                    alternativeText
-                    url
-                  }
-                }
+        card {
+          autor
+          title
+          text
+          data
+          img {
+            data {
+              attributes {
+                url
               }
             }
           }
-        }
-      }
-    }
-    meta {
-      pagination {
-        pageCount
-      }
-    }
-  }
-}
-
-query GetTeamById($teamId: ID!) {
-  team(id: $teamId) {
-    data {
-      id
-      attributes {
-        name
-        rating
-        earned
-        matches_played
-        victories_in_tournaments
-        createdAt
-        updatedAt
-        publishedAt
-        participants {
-          data {
-            id
-          }
-        }
-        tournaments {
-          data {
-            id
-          }
-        }
-        logo {
-          data {
-            id
-            attributes {
-              name
-              alternativeText
-              url
-            }
-          }
-        }
-        awards {
-          data {
-            id
-            attributes {
-              name
-              logo {
-                data {
-                  id
-                  attributes {
-                    name
-                    alternativeText
-                    url
-                  }
-                }
+          avatar {
+            data {
+              attributes {
+                url
               }
             }
           }
@@ -125,18 +27,16 @@ query GetTeamById($teamId: ID!) {
   }
 }
 
-query GetAwards {
-  awards {
-    data {
-      id
-      attributes {
-        name
-        logo {
-          data {
-            id
-            attributes {
-              name
-              alternativeText
+query GetMainNewsQuery {
+  mainNews {
+    data{
+      attributes{
+        title
+        text
+        data
+        img{
+          data{
+            attributes{
               url
             }
           }
@@ -146,4 +46,35 @@ query GetAwards {
   }
 }
 
-
+query GetTeamsQuery {
+  teams{
+    data{
+      attributes{
+        name
+        rating
+        logo{
+          data{
+            attributes{
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+query GetMapsQuery{
+  maps{
+    data{
+      attributes{
+        logo{
+          data{
+            attributes{
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}

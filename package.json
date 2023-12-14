@@ -8,13 +8,17 @@
     "build": "build-gql-declarations && tsc && vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-gql": "graphql-codegen --config ./src/graphql/codegen.yml && prettier --write ./src/graphql/__generated__.ts"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript-graphql-request": "^6.0.1",
     "@types/jquery": "^3.5.29",
     "@types/node": "^20.8.10",
     "gh-pages": "^6.0.0",
     "graphql-request": "^6.1.0",
+    "prettier": "^3.1.1",
     "sass": "^1.69.5",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",

@@ -13,50 +13,6 @@ class MatchesQuery {
     );
     console.log(lobbies);
 
-    const { data } = lobbies;
-    const [{ attributes }] = data;
-    const {
-      creater: {
-        data: {
-          attributes: {
-            Options: {
-              selected_country: {
-                data: {
-                  attributes: {
-                    flag: {
-                      data: {
-                        attributes: { url: flagUrl },
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-      gameMode: { value: gameModeValue },
-      map: {
-        data: [
-          {
-            attributes: {
-              logo: {
-                data: [
-                  {
-                    attributes: { url: logoUrl },
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      title,
-      id,
-    } = attributes;
-
-    console.log(flagUrl, gameModeValue, logoUrl, title, id);
-
     const { awards }: any = await request(
       'http://localhost:1337/graphql',
       GetAwards

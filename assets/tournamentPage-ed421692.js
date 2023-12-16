@@ -1,0 +1,1 @@
+import{$ as e}from"./jquery-995cfbaf.js";import{S as t,N as r}from"./navigation-2e8e35a7.js";/* empty css               */e(document).ready(()=>{new t(".swiper",{modules:[r],spaceBetween:30,slidesPerView:3,loop:!0,navigation:{nextEl:".tournaments-swiper__button-next",prevEl:".tournaments-swiper__button-prev"}})});

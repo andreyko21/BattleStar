@@ -1,4 +1,4 @@
-import"./modulepreload-polyfill-3cfb730f.js";import{S as g,N as p}from"./navigation-2e8e35a7.js";/* empty css               */import{S as i}from"./sprite-432a5857.js";import{s as r,B as c,L as d}from"./lava-lamp-a2551edf.js";import{$ as u}from"./jquery-ab814638.js";import{P as l}from"./pagination-2fe933ed.js";class _{containerId;tournaments;constructor(e,t){this.containerId=e,this.tournaments=t,this.render()}render(){const e=this.tournaments.map(a=>`
+import"./modulepreload-polyfill-3cfb730f.js";import{S as g,N as p}from"./navigation-2e8e35a7.js";/* empty css               */import{S as i}from"./sprite-432a5857.js";import{s as r,B as c,L as d}from"./lava-lamp-a33f19c8.js";import{$ as u}from"./jquery-995cfbaf.js";import{P as l}from"./pagination-2da10b31.js";class _{containerId;tournaments;constructor(e,t){this.containerId=e,this.tournaments=t,this.render()}render(){const e=this.tournaments.map(a=>`
           <a class="tournaments-card" href="#">
             <div class="tournaments-card__img-block">
               <img src="${a.imageUrl}" alt="tournamentCard" />

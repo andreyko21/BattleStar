@@ -1,4 +1,4 @@
-import { BasePopUp } from '../component/pop-up.ts';
+import { BasePopUp, OpenLobbyPopUp } from '../component/pop-up.ts';
 import type { IBasePopUp } from '../component/pop-up.ts';
 import { BaseTabs } from '../component/tabs.ts';
 import { MatchRow } from '../match/match-row.ts';
@@ -156,7 +156,9 @@ const matches = [
   },
 ];
 
-new MatchRow('match-table', matches);
+const lobbyOpenning = new OpenLobbyPopUp('open-lobby-pop-up', overlay);
+
+new MatchRow('table-content', matches, lobbyOpenning);
 new MatchTile('match-grid', matches);
 
 //! TEST_____________

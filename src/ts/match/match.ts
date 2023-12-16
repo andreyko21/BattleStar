@@ -1,7 +1,6 @@
 import mapImg from '../../images/temporary/map-img.png';
 import flagImg from '../../images/temporary/ukr-flag.png';
-import { BasePopUp } from '../component/pop-up.ts';
-import type { IBasePopUp } from '../component/pop-up.ts';
+import { OpenLobbyPopUp } from '../component/pop-up.ts';
 import { BaseTabs, CreatedObjForIRenderMethod } from '../component/tabs.ts';
 import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
@@ -24,18 +23,6 @@ import { Filtration } from './filtration.ts';
 import { MatchesQuery } from './query.ts';
 
 new MatchesQuery();
-
-const popUp = document.querySelector('.calibration-pop-up') as HTMLDivElement;
-const overlay = document.querySelector('.overlay') as HTMLDivElement;
-let calibrationPopUp: IBasePopUp;
-if (popUp && overlay) {
-  calibrationPopUp = new BasePopUp(popUp, overlay);
-
-  calibrationPopUp.open();
-  const calibrationBtn: HTMLElement | null =
-    popUp.querySelector('#start-calibration');
-  calibrationBtn?.addEventListener('click', () => calibrationPopUp.close());
-}
 
 //const filtersTabsBlock = document.querySelector(
 //  '.match-page__filters'
@@ -324,9 +311,23 @@ const matches: Match[] = [
   },
 ];
 
-//const matchFilters =
-new Filtration('filters-find-lobby', matches);
-//const filtrationMatches = matchFilters.filteredMatches;
+//const popUp = document.querySelector('.open-lobby-pop-up') as HTMLDivElement;
+const overlay = document.querySelector('.overlay') as HTMLDivElement;
+//let calibrationPopUp: IBasePopUp;
+//if (popUp && overlay) {
+//  calibrationPopUp = new BasePopUp(popUp, overlay);
 
-new MatchRow('table-content', matches);
+//  calibrationPopUp.open();
+//  const calibrationBtn: HTMLElement | null =
+//    popUp.querySelector('#start-calibration');
+//  calibrationBtn?.addEventListener('click', () => calibrationPopUp.close());
+//}
+
+const lobbyOpenning = new OpenLobbyPopUp('open-lobby-pop-up', overlay);
+
+new MatchRow('table-content', matches, lobbyOpenning);
 new MatchTile('content-grid-block', matches);
+
+//const matchFilters =
+new Filtration('filters-find-lobby', matches, lobbyOpenning);
+//const filtrationMatches = matchFilters.filteredMatches;

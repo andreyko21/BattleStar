@@ -1,6 +1,6 @@
 import { BodyScrollLock, IBodyScrollLock } from './body-scroll-lock.ts';
 
-export interface IBasePopUp {
+interface IBasePopUp {
   popUp: HTMLDivElement;
   crissCross: HTMLDivElement | null;
   overlay: HTMLDivElement;
@@ -16,12 +16,20 @@ class BasePopUp implements IBasePopUp {
   readonly body: HTMLBodyElement;
   private readonly bodyScrollLock: IBodyScrollLock;
 
-  constructor(popUp: HTMLDivElement | null, overlay: HTMLDivElement) {
-    this.popUp = popUp as HTMLDivElement;
-    this.overlay = overlay;
+  constructor(popUp: HTMLDivElement | string | null, overlay: HTMLDivElement) {
+    this.popUp =
+      popUp instanceof HTMLDivElement
+        ? (popUp as HTMLDivElement)
+        : (document.querySelector(`.${popUp}` as string) as HTMLDivElement);
+
+    if (this.popUp === null) {
+      throw new Error(`Container with id #${this.popUp} not found.`);
+    }
+
     this.crissCross = this.popUp.querySelector(
       '.pop-up__criss-cross'
     ) as HTMLDivElement;
+    this.overlay = overlay;
     this.crissCross?.addEventListener('click', () => this.close());
     this.body = document.querySelector('body') as HTMLBodyElement;
     this.overlay.addEventListener('click', () => this.close());
@@ -53,13 +61,45 @@ class BasePopUp implements IBasePopUp {
   }
 }
 
-//!  Цей клас, що під коментарем використовувати не буду, якщо комусь потрібно можете переробляти
+class OpenLobbyPopUp extends BasePopUp {
+  constructor(popUp: HTMLDivElement | string | null, overlay: HTMLDivElement) {
+    super(popUp, overlay);
+  }
 
-//class CalibrationPopUp extends BasePopUp {
-//   constructor(popUp: HTMLDivElement, overlay: HTMLDivElement){
-//super(popUp, overlay);
+  addInnerContent(option: { [key: string]: string }) {
+    const title = this.popUp.querySelector(
+      '.open-lobby-pop-up__title'
+    ) as HTMLElement;
+    const currensy = title?.querySelector(
+      '.open-lobby-pop-up__amount'
+    ) as HTMLElement;
+    currensy.innerHTML = option.rate;
 
-//   }
-//}
+    const img = this.popUp.querySelector(
+      '.open-lobby-pop-up__map-img'
+    ) as HTMLImageElement;
+    img.src = option.imgSrc;
+    img.alt = option.map;
 
-export { BasePopUp };
+    const flag = this.popUp.querySelector(
+      '.open-lobby-pop-up__map-img'
+    ) as HTMLImageElement;
+    flag.src = option.flagSrc;
+
+    const lobbyName = this.popUp.querySelector(
+      '.open-lobby-pop-up__title-lobby'
+    ) as HTMLElement;
+    lobbyName.innerHTML = option.nameMatch;
+
+    const button = this.popUp.querySelector(
+      '.open-lobby-pop-up__btn'
+    ) as HTMLButtonElement;
+    button.addEventListener('click', () => {
+      window.location.assign(`lobby?id=${option.id}`);
+    });
+  }
+}
+
+export { BasePopUp, OpenLobbyPopUp };
+
+export type { IBasePopUp };

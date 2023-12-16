@@ -1,11 +1,20 @@
+import { OpenLobbyPopUp } from '../component/pop-up';
+
 class MatchRow {
   private container: HTMLElement;
   private options: { [key: string]: string }[];
+  private popUp: OpenLobbyPopUp;
 
-  constructor(containerId: String, options: { [key: string]: string }[]) {
+  constructor(
+    containerId: String,
+    options: { [key: string]: string }[],
+    popUp: OpenLobbyPopUp
+  ) {
     this.container = document.querySelector(`#${containerId}`) as HTMLElement;
     this.options = options;
+    this.popUp = popUp;
     this.render();
+    this.addEventHendler();
   }
 
   private render(): void {
@@ -65,6 +74,26 @@ class MatchRow {
 
     this.container.innerHTML = template;
   }
+
+  private addEventHendler(): void {
+    this.container.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const targetRow = target.closest('.match-tr');
+      if (targetRow) {
+        const lobbyId = targetRow.id;
+        //const lobbyId =this.getElementId(target);
+        const option = this.options.find((elem) => elem.id == lobbyId);
+        if (option) {
+          this.popUp.addInnerContent(option);
+          this.popUp.open();
+        }
+      }
+    });
+  }
+
+  //  private getElementId(elem: HTMLElement): string {
+  //   return elem.id
+  //  }
 }
 
 export { MatchRow };

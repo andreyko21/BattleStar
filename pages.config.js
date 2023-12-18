@@ -42,12 +42,12 @@ const pages = [
     path: resolve(__dirname, "partnerRegistrationPage.html"),
   },
   {
-    name: "tournament",
-    path: resolve(__dirname, "tournament.html"),
+    name: "createTournament",
+    path: resolve(__dirname, "createTournament.html"),
   },
   {
-    name: "tournamentPage",
-    path: resolve(__dirname, "tournamentPage.html"),
+    name: "tournament",
+    path: resolve(__dirname, "tournament.html"),
   },
   {
     name: "tournaments",

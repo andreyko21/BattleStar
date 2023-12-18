@@ -1,102 +1,37 @@
 import $ from "jquery";
-import { Banner } from "./tournaments/banner";
-import { TournamentInput } from "./tournaments/input";
-import { TeamCountInput } from "./tournaments/teamCountInput";
-import { EntryRate } from "./tournaments/entryRate";
-import { TournamentRegime } from "./tournaments/regime";
-import { TournamentRegionLimit } from "./tournaments/regionLimit";
-import { Sidebar } from "./tournaments/sidebar";
-import { TournamentSelectTime } from "./tournaments/selectTime";
-import { RangeSlider } from "./tournaments/rangeSlider";
-import { TournamentMaps } from "./tournaments/tournamentMaps";
-import Map from "./../images/tournamentMap.png";
-
-class TournamentCreationPage {
-  private $mainContent: JQuery;
-
-  constructor(mainContainerId: string) {
-    this.$mainContent = $(`#${mainContainerId}`);
-
-    if (this.$mainContent.length === 0) {
-      throw new Error(`Main container with id #${mainContainerId} not found.`);
-    }
-    this.initializePage();
-  }
-
-  private initializePage(): void {
-    const bannerImageUrl = "./src/images/tournament/international.png";
-    console.log("hi");
-    new Banner("main-content", bannerImageUrl);
-    new TournamentInput("main-content", "Введите название турнира*");
-    new TournamentInput("main-content", "Добавьте описание");
-    new TeamCountInput("main-content", [4, 8, 16, 32]);
-    new EntryRate("main-content", [
-      { value: "1000", label: "1000 BS" },
-      { value: "5000", label: "5000 BS" },
-      { value: "10000", label: "10 000 BS" },
-    ]);
-    new TournamentRegime("main-content", [
-      { value: "All Pick", label: "All Pick" },
-      { value: "Single Draft", label: "Single Draft" },
-      { value: "Captains Draft", label: "Captains Draft" },
-      { value: "Captains Draft", label: "Captains Draft" },
-      { value: "Random Draft", label: "Random Draft" },
-      { value: "Turbo", label: "Turbo" },
-      { value: "Least Played", label: "Least Played" },
-      { value: "Limited Heroes", label: "Limited Heroes" },
-      { value: "All Random", label: "All Random" },
-      { value: "Captains Mode", label: "Captains Mode" },
-      { value: "Ability Draft", label: "Ability Draft" },
-      { value: "Deathmatch", label: "Deathmatch" },
-    ]);
-    new TournamentSelectTime("main-content", [
-      { value: "7:00 AM", label: "7:00 AM" },
-      { value: "12:00 AM", label: "12:00 AM" },
-      { value: "5:00 PM", label: "5:00 PM" },
-      { value: "10:00 PM", label: "10:00 PM" },
-      { value: "8:00 AM", label: "8:00 AM" },
-      { value: "1:00 PM", label: "1:00 PM" },
-      { value: "6:00 PM", label: "6:00 PM" },
-      { value: "10:30 PM", label: "10:30 PM" },
-      { value: "9:00 AM", label: "9:00 AM" },
-      { value: "2:00 PM", label: "2:00 PM" },
-      { value: "7:00 PM", label: "7:00 PM" },
-      { value: "11:00 PM", label: "11:00 PM" },
-      { value: "10:00 AM", label: "10:00 AM" },
-      { value: "3:00 PM", label: "3:00 PM" },
-      { value: "8:00 PM", label: "8:00 PM" },
-      { value: "11:30 PM", label: "11:30 PM" },
-      { value: "11:00 AM", label: "11:00 AM" },
-      { value: "4:00 PM", label: "4:00 PM" },
-      { value: "9:00 PM", label: "9:00 PM" },
-      { value: "12:00 AM", label: "12:00 AM" },
-    ]);
-    new TournamentRegionLimit("main-content");
-    new TournamentMaps("main-content", [
-      { value: "Inferno", label: "Inferno", imgSrc: Map },
-      { value: "Inferno", label: "Inferno", imgSrc: Map },
-      { value: "Inferno", label: "Inferno", imgSrc: Map },
-      { value: "Inferno", label: "Inferno", imgSrc: Map },
-      { value: "Inferno", label: "Inferno", imgSrc: Map },
-      { value: "Inferno", label: "Inferno", imgSrc: Map },
-      { value: "Inferno", label: "Inferno", imgSrc: Map },
-      { value: "Inferno", label: "Inferno", imgSrc: Map },
-      { value: "Inferno", label: "Inferno", imgSrc: Map },
-      { value: "Inferno", label: "Inferno", imgSrc: Map },
-      { value: "Inferno", label: "Inferno", imgSrc: Map },
-      { value: "Inferno", label: "Inferno", imgSrc: Map },
-    ]);
-  }
-}
 
 $(document).ready(() => {
-  new TournamentCreationPage("tournament-page");
+  $("#loadBanner").on("click", function () {
+    const fileInput = document.getElementById("loadBanner") as any;
 
-  new Sidebar(
-    "tournament-page",
-    "Создание турнира",
-    "Равным образом реали зация нам еченных плановых зад аний спос обствует подгот овки и реали зации соотв етствующий усло вий акт ивизации. Не следу ет, одна ко забыв ать, что консул ьтация с ш ироким ак тивом ",
-    "Узнать больше"
-  );
-  new RangeSlider();
+    if (fileInput && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+      const formData = new FormData();
+      formData.append("files", file);
+
+      const jwt =
+        "73d285b888be102cfcacdd444be3c7e935608d1c703339d5515ab43355598fbfd837843f7df61c17434553a700ab7db8f41807ec0ffed88f5702bc72d02177f5777461c895620f6f463523a811c2ec57e8ceeb66e332dfeb11fac3362b889c43098de39518b54ac705e95fa2f9834c5d736c18bf234829b8dff48205071c4e1e";
+      const url = "https://battle-star-app.onrender.com/api/upload";
+
+      $.ajax({
+        url: url,
+        type: "POST",
+        data: formData,
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          console.log("File uploaded successfully:", data);
+        },
+        error: function (_jqXHR, textStatus, errorThrown) {
+          console.error("Error uploading file:", textStatus, errorThrown);
+        },
+      });
+    } else {
+      console.error("No file selected or file input element not found");
+    }
+  });
 });

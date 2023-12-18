@@ -30,3 +30,58 @@
 .create-tournament__button {
   margin-top: 81px;
 }
+
+#main-content {
+  display: grid;
+  grid-template:
+    "tournament-banner"
+    "tournament-name-container"
+    "tournament-description-container"
+    "tournament-numbers-teams"
+    "tournament-entry-rate"
+    "tournament-maps"
+    "tournament-regime"
+    "tournament-select-time"
+    "tournament-region-limit"
+    "create-tournament__button";
+}
+
+.tournament-banner {
+  grid-area: tournament-banner;
+}
+
+.tournament-name-container {
+  grid-area: tournament-name-container;
+}
+
+.tournament-description-container {
+  grid-area: tournament-description-container;
+}
+
+.tournament-numbers-teams {
+  grid-area: tournament-numbers-teams;
+}
+
+.tournament-entry-rate {
+  grid-area: tournament-entry-rate;
+}
+
+.tournament-select-time {
+  grid-area: tournament-select-time;
+}
+
+.tournament-region-limit {
+  grid-area: tournament-region-limit;
+}
+
+.tournament-maps {
+  grid-area: tournament-maps;
+}
+
+.create-tournament__button {
+  grid-area: create-tournament__button;
+}
+
+.tournament-regime {
+  grid-area: tournament-regime;
+}

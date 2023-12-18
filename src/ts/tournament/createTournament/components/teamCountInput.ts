@@ -19,13 +19,13 @@ class TeamCountInput {
     const radioButtonsHtml = this.options
       .map(
         (number, index) => `
-      <input id="numbersTeams${
-        index + 1
-      }" name="numbersTeams" type="radio" class="tournament-radio-input" value="${number}" />
-      <label class="tournament-radio-label" for="numbersTeams${index + 1}">
-        ${number}
-      </label>
-    `
+          <input id="numbersTeams${
+            index + 1
+          }" name="numbersTeams" type="radio" class="tournament-radio-input" value="${number}" />
+          <label class="tournament-radio-label" for="numbersTeams${index + 1}">
+            ${number}
+          </label>
+        `
       )
       .join("");
 
@@ -37,13 +37,23 @@ class TeamCountInput {
         <p class="tournament-numbers-teams__description tournament-description">
           Равным образом реализация намеченных плановых заданий способствует подготовки и реализации соответствующий условий активизации.
         </p>
-        <div class="tournament-numbers-teams__buttons">
+        <div class="tournament-numbers-teams__buttons" id="tournament-numbers-teams__buttons">
           ${radioButtonsHtml}
+        </div>
+        <div class="tournament-numbers-teams-error" id="tournament-numbers-teams-error">
         </div>
       </div>
     `;
 
     this.$container.append(template);
+  }
+
+  // New method to get the selected value
+  public getSelectedValue(): number | null {
+    const selectedValue = this.$container
+      .find("input[name='numbersTeams']:checked")
+      .val() as any;
+    return selectedValue ? parseInt(selectedValue, 10) : null;
   }
 }
 

@@ -10,4 +10,12 @@
   font-family: Roboto;
   font-size: 18px;
   font-weight: 400;
+
+  &.just-validate-error-field {
+    border: 1px solid red;
+  }
+}
+
+.just-validate-error-label {
+  margin-top: 5px;
 }

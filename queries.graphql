@@ -14,51 +14,6 @@ query GetTeams(
 
       attributes {
         name
-        rating
-        earned
-        matches_played
-        victories_in_tournaments
-        createdAt
-        updatedAt
-        publishedAt
-        participants {
-          data {
-            id
-          }
-        }
-        tournaments {
-          data {
-            id
-          }
-        }
-        logo {
-          data {
-            id
-            attributes {
-              name
-              alternativeText
-              url
-            }
-          }
-        }
-        awards {
-          data {
-            id
-            attributes {
-              name
-              logo {
-                data {
-                  id
-                  attributes {
-                    name
-                    alternativeText
-                    url
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     }
     meta {
@@ -75,58 +30,13 @@ query GetTeamById($teamId: ID!) {
       id
       attributes {
         name
-        rating
-        earned
-        matches_played
-        victories_in_tournaments
-        createdAt
-        updatedAt
-        publishedAt
-        participants {
-          data {
-            id
-          }
-        }
-        tournaments {
-          data {
-            id
-          }
-        }
-        logo {
-          data {
-            id
-            attributes {
-              name
-              alternativeText
-              url
-            }
-          }
-        }
-        awards {
-          data {
-            id
-            attributes {
-              name
-              logo {
-                data {
-                  id
-                  attributes {
-                    name
-                    alternativeText
-                    url
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
 }
 
 query GetAwards {
-  awards {
+  cs2Awards {
     data {
       id
       attributes {
@@ -147,15 +57,16 @@ query GetAwards {
 }
 
 query GetLobbies {
-  lobbies {
+  csLobbies {
     data {
       id
       attributes {
+        title
         gameMode {
           value
         }
-        title
-        creater {
+        rate
+        creator {
           data {
             attributes {
               Options {
@@ -190,6 +101,18 @@ query GetLobbies {
               }
             }
           }
+        }
+        ping
+        participant {
+          players {
+            data {
+              id
+            }
+          }
+        }
+        ping
+        antyCheat {
+          antyCheat
         }
       }
     }

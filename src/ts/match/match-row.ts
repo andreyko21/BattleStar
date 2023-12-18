@@ -80,9 +80,7 @@ class MatchRow {
       const target = e.target as HTMLElement;
       const targetRow = target.closest('.match-tr');
       if (targetRow) {
-        const lobbyId = targetRow.id;
-        //const lobbyId =this.getElementId(target);
-        const option = this.options.find((elem) => elem.id == lobbyId);
+        const option = this.options.find((elem) => elem.id == targetRow.id);
         if (option) {
           this.popUp.addInnerContent(option);
           this.popUp.open();

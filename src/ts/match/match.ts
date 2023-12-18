@@ -20,9 +20,14 @@ import { AntiCheat } from './anti-cheat.ts';
 import { MatchRow } from '../match/match-row.ts';
 import { MatchTile } from '../match/match-grid.ts';
 import { Filtration } from './filtration.ts';
-import { MatchesQuery } from './query.ts';
+//import { MatchesQuery } from './query.ts';
+import { MatchesQuery } from './newQuery.ts';
 
-new MatchesQuery();
+//newQuery();
+
+//getData();
+
+const matchQuery = new MatchesQuery();
 
 //const filtersTabsBlock = document.querySelector(
 //  '.match-page__filters'
@@ -35,7 +40,7 @@ new MatchesQuery();
 
 const mayMethods: IRenderMethod = {
   find: () => {
-    console.log('find');
+    // console.log('find');
   },
   translation: () => {
     // const translationTab = StrimingTab.getInstance();
@@ -53,7 +58,7 @@ new LavaLamp('match-page__content');
 const sortingBlockIdArr = ['grid', 'table'];
 const addClassForSort = () => {
   //id:string
-  console.log('Hello!');
+  //  console.log('Hello!');
 };
 
 const forSorting = new CreatedObjForIRenderMethod(
@@ -164,155 +169,157 @@ export type Match = {
   //ping: string;
 };
 
-const matches: Match[] = [
-  {
-    id: '1',
-    imgSrc: mapImg,
-    flagSrc: flagImg,
-    region: 'Afganistan',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Mirage',
-    rate: '5000',
-    mode: '5x5',
-    participants: '8/10',
-    ping: '423',
-  },
-  {
-    id: '2',
-    imgSrc: mapImg,
-    flagSrc: flagImg,
-    region: 'Austria',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Dust II',
-    rate: '200',
-    mode: '5x5',
-    participants: '8/10',
-    ping: '23',
-  },
-  {
-    id: '3',
-    imgSrc: mapImg,
-    flagSrc: flagImg,
-    region: 'Ukraine',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Inferno',
-    rate: '500',
-    mode: '1x1',
-    participants: '8/10',
-    ping: '237',
-  },
-  {
-    id: '4',
-    imgSrc: mapImg,
-    flagSrc: flagImg,
-    region: 'Poland',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Dust II',
-    rate: '1000',
-    mode: '1x1',
-    participants: '8/10',
-    ping: '23',
-  },
-  {
-    id: '5',
-    imgSrc: mapImg,
-    flagSrc: flagImg,
-    region: 'Lithuania',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Lake',
-    rate: '100',
-    mode: '2x2',
-    participants: '8/10',
-    ping: '223',
-  },
-  {
-    id: '6',
-    imgSrc: mapImg,
-    flagSrc: flagImg,
-    region: 'Sweden',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Dust II',
-    rate: '2000',
-    mode: '2x2',
-    participants: '8/10',
-    ping: '236',
-  },
-  {
-    id: '7',
-    imgSrc: mapImg,
-    flagSrc: flagImg,
-    region: 'Sweden',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Ancient',
-    rate: '10000',
-    mode: '10x10',
-    participants: '8/10',
-    ping: '213',
-  },
-  {
-    id: '8',
-    imgSrc: mapImg,
-    flagSrc: flagImg,
-    region: 'Ukraine',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Nuke',
-    rate: '100',
-    mode: '10x10',
-    participants: '8/10',
-    ping: '323',
-  },
-  {
-    id: '9',
-    imgSrc: mapImg,
-    flagSrc: flagImg,
-    region: 'Poland',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Dust II',
-    rate: '200',
-    mode: '5x5',
-    participants: '8/10',
-    ping: '123',
-  },
-  {
-    id: '10',
-    imgSrc: mapImg,
-    flagSrc: flagImg,
-    region: 'Lithuania',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Mirage',
-    rate: '500',
-    mode: '10x10',
-    participants: '8/10',
-    ping: '73',
-  },
-  {
-    id: '11',
-    imgSrc: mapImg,
-    flagSrc: flagImg,
-    region: 'Austria',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Inferno',
-    rate: '1000',
-    mode: '2x2',
-    participants: '8/10',
-    ping: '43',
-  },
-  {
-    id: '12',
-    imgSrc: mapImg,
-    flagSrc: flagImg,
-    region: 'Afganistan',
-    nameMatch: 'PlayFair Display$$$',
-    map: 'Lake',
-    rate: '2000',
-    mode: '1x1',
-    participants: '8/10',
-    ping: '213',
-  },
-];
+const matches =
+  //  await matchQuery.getData();
+  [
+    {
+      id: '1',
+      imgSrc: mapImg,
+      flagSrc: flagImg,
+      region: 'Afganistan',
+      nameMatch: 'PlayFair Display$$$',
+      map: 'Mirage',
+      rate: '5000',
+      mode: '5x5',
+      participants: '8/10',
+      ping: '423',
+    },
+    {
+      id: '2',
+      imgSrc: mapImg,
+      flagSrc: flagImg,
+      region: 'Austria',
+      nameMatch: 'PlayFair Display$$$',
+      map: 'Dust II',
+      rate: '200',
+      mode: '5x5',
+      participants: '8/10',
+      ping: '23',
+    },
+    {
+      id: '3',
+      imgSrc: mapImg,
+      flagSrc: flagImg,
+      region: 'Ukraine',
+      nameMatch: 'PlayFair Display$$$',
+      map: 'Inferno',
+      rate: '500',
+      mode: '1x1',
+      participants: '8/10',
+      ping: '237',
+    },
+    {
+      id: '4',
+      imgSrc: mapImg,
+      flagSrc: flagImg,
+      region: 'Poland',
+      nameMatch: 'PlayFair Display$$$',
+      map: 'Dust II',
+      rate: '1000',
+      mode: '1x1',
+      participants: '8/10',
+      ping: '23',
+    },
+    {
+      id: '5',
+      imgSrc: mapImg,
+      flagSrc: flagImg,
+      region: 'Lithuania',
+      nameMatch: 'PlayFair Display$$$',
+      map: 'Lake',
+      rate: '100',
+      mode: '2x2',
+      participants: '8/10',
+      ping: '223',
+    },
+    {
+      id: '6',
+      imgSrc: mapImg,
+      flagSrc: flagImg,
+      region: 'Sweden',
+      nameMatch: 'PlayFair Display$$$',
+      map: 'Dust II',
+      rate: '2000',
+      mode: '2x2',
+      participants: '8/10',
+      ping: '236',
+    },
+    {
+      id: '7',
+      imgSrc: mapImg,
+      flagSrc: flagImg,
+      region: 'Sweden',
+      nameMatch: 'PlayFair Display$$$',
+      map: 'Ancient',
+      rate: '10000',
+      mode: '10x10',
+      participants: '8/10',
+      ping: '213',
+    },
+    {
+      id: '8',
+      imgSrc: mapImg,
+      flagSrc: flagImg,
+      region: 'Ukraine',
+      nameMatch: 'PlayFair Display$$$',
+      map: 'Nuke',
+      rate: '100',
+      mode: '10x10',
+      participants: '8/10',
+      ping: '323',
+    },
+    {
+      id: '9',
+      imgSrc: mapImg,
+      flagSrc: flagImg,
+      region: 'Poland',
+      nameMatch: 'PlayFair Display$$$',
+      map: 'Dust II',
+      rate: '200',
+      mode: '5x5',
+      participants: '8/10',
+      ping: '123',
+    },
+    {
+      id: '10',
+      imgSrc: mapImg,
+      flagSrc: flagImg,
+      region: 'Lithuania',
+      nameMatch: 'PlayFair Display$$$',
+      map: 'Mirage',
+      rate: '500',
+      mode: '10x10',
+      participants: '8/10',
+      ping: '73',
+    },
+    {
+      id: '11',
+      imgSrc: mapImg,
+      flagSrc: flagImg,
+      region: 'Austria',
+      nameMatch: 'PlayFair Display$$$',
+      map: 'Inferno',
+      rate: '1000',
+      mode: '2x2',
+      participants: '8/10',
+      ping: '43',
+    },
+    {
+      id: '12',
+      imgSrc: mapImg,
+      flagSrc: flagImg,
+      region: 'Afganistan',
+      nameMatch: 'PlayFair Display$$$',
+      map: 'Lake',
+      rate: '2000',
+      mode: '1x1',
+      participants: '8/10',
+      ping: '213',
+    },
+  ];
 
 //const popUp = document.querySelector('.open-lobby-pop-up') as HTMLDivElement;
-const overlay = document.querySelector('.overlay') as HTMLDivElement;
+//const overlay = document.querySelector('.overlay') as HTMLDivElement;
 //let calibrationPopUp: IBasePopUp;
 //if (popUp && overlay) {
 //  calibrationPopUp = new BasePopUp(popUp, overlay);
@@ -323,10 +330,14 @@ const overlay = document.querySelector('.overlay') as HTMLDivElement;
 //  calibrationBtn?.addEventListener('click', () => calibrationPopUp.close());
 //}
 
-const lobbyOpenning = new OpenLobbyPopUp('open-lobby-pop-up', overlay);
+const lobbyOpenning = new OpenLobbyPopUp(
+  'open-lobby-pop-up',
+  'overlay',
+  'content-wrapper'
+);
 
 new MatchRow('table-content', matches, lobbyOpenning);
-new MatchTile('content-grid-block', matches);
+new MatchTile('content-grid-block', matches, lobbyOpenning);
 
 //const matchFilters =
 new Filtration('filters-find-lobby', matches, lobbyOpenning);

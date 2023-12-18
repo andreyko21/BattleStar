@@ -10,9 +10,13 @@ import { TabsCreate } from '../component/tabs-create.ts';
 const popUp: HTMLDivElement | null = document.querySelector(
   '.calibration-pop-up'
 ) as HTMLDivElement;
-const overlay = document.querySelector('.overlay') as HTMLDivElement;
+//const overlay = document.querySelector('.overlay') as HTMLDivElement;
 
-const calibrationPopUp: IBasePopUp = new BasePopUp(popUp, overlay);
+const calibrationPopUp: IBasePopUp = new BasePopUp(
+  'calibration-pop-up',
+  'overlay',
+  'main-wrapper'
+);
 
 calibrationPopUp.open();
 const calibrationBtn: HTMLButtonElement | null =
@@ -156,10 +160,14 @@ const matches = [
   },
 ];
 
-const lobbyOpenning = new OpenLobbyPopUp('open-lobby-pop-up', overlay);
+const lobbyOpenning = new OpenLobbyPopUp(
+  'open-lobby-pop-up',
+  'overlay',
+  'main-wrapper'
+);
 
-new MatchRow('table-content', matches, lobbyOpenning);
-new MatchTile('match-grid', matches);
+new MatchRow('calibration-table', matches, lobbyOpenning);
+new MatchTile('calibration-grid', matches, lobbyOpenning);
 
 //! TEST_____________
 new TabsCreate('calibration-page', 'match-page__filters', [

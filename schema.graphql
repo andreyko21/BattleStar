@@ -4,6 +4,15 @@ scalar JSON
 # A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 scalar DateTime
 
+# A time string with format HH:mm:ss.SSS
+scalar Time
+
+# A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+scalar Date
+
+# The `BigInt` scalar type represents non-fractional signed whole numeric values.
+scalar Long
+
 # The `Upload` scalar type represents a file upload.
 scalar Upload
 
@@ -123,6 +132,31 @@ input IntFilterInput {
   between: [Int]
 }
 
+input LongFilterInput {
+  and: [Long]
+  or: [Long]
+  not: LongFilterInput
+  eq: Long
+  eqi: Long
+  ne: Long
+  nei: Long
+  startsWith: Long
+  endsWith: Long
+  contains: Long
+  notContains: Long
+  containsi: Long
+  notContainsi: Long
+  gt: Long
+  gte: Long
+  lt: Long
+  lte: Long
+  null: Boolean
+  notNull: Boolean
+  in: [Long]
+  notIn: [Long]
+  between: [Long]
+}
+
 input FloatFilterInput {
   and: [Float]
   or: [Float]
@@ -146,6 +180,56 @@ input FloatFilterInput {
   in: [Float]
   notIn: [Float]
   between: [Float]
+}
+
+input DateFilterInput {
+  and: [Date]
+  or: [Date]
+  not: DateFilterInput
+  eq: Date
+  eqi: Date
+  ne: Date
+  nei: Date
+  startsWith: Date
+  endsWith: Date
+  contains: Date
+  notContains: Date
+  containsi: Date
+  notContainsi: Date
+  gt: Date
+  gte: Date
+  lt: Date
+  lte: Date
+  null: Boolean
+  notNull: Boolean
+  in: [Date]
+  notIn: [Date]
+  between: [Date]
+}
+
+input TimeFilterInput {
+  and: [Time]
+  or: [Time]
+  not: TimeFilterInput
+  eq: Time
+  eqi: Time
+  ne: Time
+  nei: Time
+  startsWith: Time
+  endsWith: Time
+  contains: Time
+  notContains: Time
+  containsi: Time
+  notContainsi: Time
+  gt: Time
+  gte: Time
+  lt: Time
+  lte: Time
+  null: Boolean
+  notNull: Boolean
+  in: [Time]
+  notIn: [Time]
+  between: [Time]
 }
 
 input DateTimeFilterInput {
@@ -196,6 +280,12 @@ input JSONFilterInput {
   in: [JSON]
   notIn: [JSON]
   between: [JSON]
+}
+
+type ComponentAwardsAwards {
+  id: ID!
+  name: String!
+  logo: UploadFileEntityResponse!
 }
 
 input ComponentDefaultOptionsFiltersInput {
@@ -323,6 +413,15 @@ type ComponentGameStatisticsGameComponent {
   tournaments: Int
 }
 
+type ComponentHashHashs {
+  id: ID!
+  nameGame: String!
+  tournament: String!
+  battleStar: String!
+  greenDragon: String!
+  tour: String!
+}
+
 input ComponentLobbyAntyCheatFiltersInput {
   antyCheat: BooleanFilterInput
   and: [ComponentLobbyAntyCheatFiltersInput]
@@ -364,6 +463,18 @@ type ComponentLobbyCsGameMode {
   value: ENUM_COMPONENTLOBBYCSGAMEMODE_VALUE!
 }
 
+input ComponentLobbyParticipantFiltersInput {
+  players: PlayerFiltersInput
+  and: [ComponentLobbyParticipantFiltersInput]
+  or: [ComponentLobbyParticipantFiltersInput]
+  not: ComponentLobbyParticipantFiltersInput
+}
+
+input ComponentLobbyParticipantInput {
+  id: ID
+  players: [ID]
+}
+
 type ComponentLobbyParticipant {
   id: ID!
   players(
@@ -372,18 +483,6 @@ type ComponentLobbyParticipant {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): PlayerRelationResponseCollection
-}
-
-input ComponentParticipantsParticipantFiltersInput {
-  user: UsersPermissionsUserFiltersInput
-  and: [ComponentParticipantsParticipantFiltersInput]
-  or: [ComponentParticipantsParticipantFiltersInput]
-  not: ComponentParticipantsParticipantFiltersInput
-}
-
-input ComponentParticipantsParticipantInput {
-  id: ID
-  user: ID
 }
 
 type ComponentParticipantsParticipant {
@@ -424,6 +523,7 @@ input ComponentPlayerOptionsFiltersInput {
   selected_language: LanguageFiltersInput
   selected_country: CountryFiltersInput
   default_options: ComponentDefaultOptionsFiltersInput
+  calibration: IntFilterInput
   and: [ComponentPlayerOptionsFiltersInput]
   or: [ComponentPlayerOptionsFiltersInput]
   not: ComponentPlayerOptionsFiltersInput
@@ -440,6 +540,7 @@ input ComponentPlayerOptionsInput {
   selected_language: ID
   selected_country: ID
   default_options: ComponentDefaultOptionsInput
+  calibration: Int
 }
 
 type ComponentPlayerOptions {
@@ -453,10 +554,125 @@ type ComponentPlayerOptions {
   selected_language: LanguageEntityResponse
   selected_country: CountryEntityResponse
   default_options: ComponentDefaultOptions
+  calibration: Int
+}
+
+input ComponentTeamsTeamFiltersInput {
+  name: StringFilterInput
+  rating: IntFilterInput
+  earned: FloatFilterInput
+  matches_played: IntFilterInput
+  victories_in_tournaments: IntFilterInput
+  and: [ComponentTeamsTeamFiltersInput]
+  or: [ComponentTeamsTeamFiltersInput]
+  not: ComponentTeamsTeamFiltersInput
+}
+
+input ComponentTeamsTeamInput {
+  id: ID
+  name: String
+  rating: Int
+  logo: ID
+  earned: Float
+  matches_played: Int
+  victories_in_tournaments: Int
 }
 
 type ComponentTeamsTeam {
   id: ID!
+  name: String
+  rating: Int
+  logo: UploadFileEntityResponse
+  earned: Float
+  matches_played: Int
+  victories_in_tournaments: Int
+}
+
+type ComponentTournamentGridTournamentGrid {
+  id: ID!
+  nameTeam: String!
+  score: String!
+}
+
+input ComponentTournamentsTournamentFiltersInput {
+  name: StringFilterInput
+  money_entry_rate: FloatFilterInput
+  max_teams: IntFilterInput
+  description: StringFilterInput
+  minimum_rank: IntFilterInput
+  startDate: DateFilterInput
+  endDate: DateFilterInput
+  time: TimeFilterInput
+  regionLimit: BooleanFilterInput
+  and: [ComponentTournamentsTournamentFiltersInput]
+  or: [ComponentTournamentsTournamentFiltersInput]
+  not: ComponentTournamentsTournamentFiltersInput
+}
+
+input ComponentTournamentsTournamentInput {
+  id: ID
+  name: String
+  money_entry_rate: Float
+  max_teams: Int
+  description: String
+  minimum_rank: Int
+  logo: ID
+  startDate: Date
+  endDate: Date
+  time: Time
+  regionLimit: Boolean
+}
+
+type ComponentTournamentsTournament {
+  id: ID!
+  name: String!
+  money_entry_rate: Float
+  max_teams: Int
+  description: String
+  minimum_rank: Int
+  logo: UploadFileEntityResponse
+  startDate: Date
+  endDate: Date
+  time: Time
+  regionLimit: Boolean
+}
+
+input ComponentUiCardFiltersInput {
+  title: StringFilterInput
+  text: StringFilterInput
+  autor: StringFilterInput
+  data: DateFilterInput
+  and: [ComponentUiCardFiltersInput]
+  or: [ComponentUiCardFiltersInput]
+  not: ComponentUiCardFiltersInput
+}
+
+input ComponentUiCardInput {
+  id: ID
+  title: String
+  img: [ID]
+  text: String
+  autor: String
+  avatar: [ID]
+  data: Date
+}
+
+type ComponentUiCard {
+  id: ID!
+  title: String!
+  img(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection!
+  text: String!
+  autor: String!
+  avatar(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
+  data: Date
 }
 
 input UploadFileFiltersInput {
@@ -780,51 +996,45 @@ type UsersPermissionsUserRelationResponseCollection {
   data: [UsersPermissionsUserEntity!]!
 }
 
-input AwardFiltersInput {
+input CardNewFiltersInput {
   id: IDFilterInput
-  name: StringFilterInput
+  card: ComponentUiCardFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
-  and: [AwardFiltersInput]
-  or: [AwardFiltersInput]
-  not: AwardFiltersInput
+  and: [CardNewFiltersInput]
+  or: [CardNewFiltersInput]
+  not: CardNewFiltersInput
 }
 
-input AwardInput {
-  name: String
-  logo: [ID]
+input CardNewInput {
+  card: [ComponentUiCardInput]
   publishedAt: DateTime
 }
 
-type Award {
-  name: String!
-  logo(
-    filters: UploadFileFiltersInput
+type CardNew {
+  card(
+    filters: ComponentUiCardFiltersInput
     pagination: PaginationArg = {}
     sort: [String] = []
-  ): UploadFileRelationResponseCollection!
+  ): [ComponentUiCard]
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
 }
 
-type AwardEntity {
+type CardNewEntity {
   id: ID
-  attributes: Award
+  attributes: CardNew
 }
 
-type AwardEntityResponse {
-  data: AwardEntity
+type CardNewEntityResponse {
+  data: CardNewEntity
 }
 
-type AwardEntityResponseCollection {
-  data: [AwardEntity!]!
+type CardNewEntityResponseCollection {
+  data: [CardNewEntity!]!
   meta: ResponseCollectionMeta!
-}
-
-type AwardRelationResponseCollection {
-  data: [AwardEntity!]!
 }
 
 input CountryFiltersInput {
@@ -866,6 +1076,337 @@ type CountryEntityResponseCollection {
   meta: ResponseCollectionMeta!
 }
 
+input Cs2FiltersInput {
+  id: IDFilterInput
+  Team: ComponentTeamsTeamFiltersInput
+  awards: Cs2AwardFiltersInput
+  players: PlayerFiltersInput
+  captain: PlayerFiltersInput
+  tournaments: Cs2TournamentFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Cs2FiltersInput]
+  or: [Cs2FiltersInput]
+  not: Cs2FiltersInput
+}
+
+input Cs2Input {
+  Team: ComponentTeamsTeamInput
+  awards: [ID]
+  players: [ID]
+  captain: ID
+  tournaments: [ID]
+  publishedAt: DateTime
+}
+
+type Cs2 {
+  Team: ComponentTeamsTeam
+  awards(
+    filters: Cs2AwardFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2AwardRelationResponseCollection
+  players(
+    filters: PlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PlayerRelationResponseCollection
+  captain: PlayerEntityResponse
+  tournaments(
+    filters: Cs2TournamentFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2TournamentRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Cs2Entity {
+  id: ID
+  attributes: Cs2
+}
+
+type Cs2EntityResponse {
+  data: Cs2Entity
+}
+
+type Cs2EntityResponseCollection {
+  data: [Cs2Entity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Cs2RelationResponseCollection {
+  data: [Cs2Entity!]!
+}
+
+input Cs2AwardFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Cs2AwardFiltersInput]
+  or: [Cs2AwardFiltersInput]
+  not: Cs2AwardFiltersInput
+}
+
+input Cs2AwardInput {
+  name: String
+  logo: ID
+  publishedAt: DateTime
+}
+
+type Cs2Award {
+  name: String!
+  logo: UploadFileEntityResponse!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Cs2AwardEntity {
+  id: ID
+  attributes: Cs2Award
+}
+
+type Cs2AwardEntityResponse {
+  data: Cs2AwardEntity
+}
+
+type Cs2AwardEntityResponseCollection {
+  data: [Cs2AwardEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Cs2AwardRelationResponseCollection {
+  data: [Cs2AwardEntity!]!
+}
+
+input Cs2TournamentFiltersInput {
+  id: IDFilterInput
+  Tournament: ComponentTournamentsTournamentFiltersInput
+  teams: Cs2FiltersInput
+  maps: MapFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Cs2TournamentFiltersInput]
+  or: [Cs2TournamentFiltersInput]
+  not: Cs2TournamentFiltersInput
+}
+
+input Cs2TournamentInput {
+  Tournament: ComponentTournamentsTournamentInput
+  teams: [ID]
+  maps: [ID]
+  publishedAt: DateTime
+}
+
+type Cs2Tournament {
+  Tournament: ComponentTournamentsTournament
+  teams(
+    filters: Cs2FiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2RelationResponseCollection
+  maps(
+    filters: MapFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): MapRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Cs2TournamentEntity {
+  id: ID
+  attributes: Cs2Tournament
+}
+
+type Cs2TournamentEntityResponse {
+  data: Cs2TournamentEntity
+}
+
+type Cs2TournamentEntityResponseCollection {
+  data: [Cs2TournamentEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Cs2TournamentRelationResponseCollection {
+  data: [Cs2TournamentEntity!]!
+}
+
+input CsLobbyFiltersInput {
+  id: IDFilterInput
+  title: StringFilterInput
+  creator: PlayerFiltersInput
+  map: MapFiltersInput
+  rate: LongFilterInput
+  gameMode: ComponentLobbyCsGameModeFiltersInput
+  participant: ComponentLobbyParticipantFiltersInput
+  ping: LongFilterInput
+  antyCheat: ComponentLobbyAntyCheatFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [CsLobbyFiltersInput]
+  or: [CsLobbyFiltersInput]
+  not: CsLobbyFiltersInput
+}
+
+input CsLobbyInput {
+  title: String
+  creator: ID
+  map: ID
+  rate: Long
+  gameMode: ComponentLobbyCsGameModeInput
+  participant: ComponentLobbyParticipantInput
+  ping: Long
+  antyCheat: ComponentLobbyAntyCheatInput
+  publishedAt: DateTime
+}
+
+type CsLobby {
+  title: String!
+  creator: PlayerEntityResponse
+  map: MapEntityResponse
+  rate: Long!
+  gameMode: ComponentLobbyCsGameMode!
+  participant: ComponentLobbyParticipant
+  ping: Long
+  antyCheat: ComponentLobbyAntyCheat
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type CsLobbyEntity {
+  id: ID
+  attributes: CsLobby
+}
+
+type CsLobbyEntityResponse {
+  data: CsLobbyEntity
+}
+
+type CsLobbyEntityResponseCollection {
+  data: [CsLobbyEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input Dota2TeamFiltersInput {
+  id: IDFilterInput
+  Team: ComponentTeamsTeamFiltersInput
+  tournaments: Dota2TournamentFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Dota2TeamFiltersInput]
+  or: [Dota2TeamFiltersInput]
+  not: Dota2TeamFiltersInput
+}
+
+input Dota2TeamInput {
+  Team: [ComponentTeamsTeamInput]
+  tournaments: [ID]
+  publishedAt: DateTime
+}
+
+type Dota2Team {
+  Team(
+    filters: ComponentTeamsTeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): [ComponentTeamsTeam]
+  tournaments(
+    filters: Dota2TournamentFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2TournamentRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Dota2TeamEntity {
+  id: ID
+  attributes: Dota2Team
+}
+
+type Dota2TeamEntityResponse {
+  data: Dota2TeamEntity
+}
+
+type Dota2TeamEntityResponseCollection {
+  data: [Dota2TeamEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Dota2TeamRelationResponseCollection {
+  data: [Dota2TeamEntity!]!
+}
+
+input Dota2TournamentFiltersInput {
+  id: IDFilterInput
+  teams: Dota2TeamFiltersInput
+  Tournament: ComponentTournamentsTournamentFiltersInput
+  regime: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Dota2TournamentFiltersInput]
+  or: [Dota2TournamentFiltersInput]
+  not: Dota2TournamentFiltersInput
+}
+
+input Dota2TournamentInput {
+  teams: [ID]
+  Tournament: ComponentTournamentsTournamentInput
+  regime: String
+  publishedAt: DateTime
+}
+
+type Dota2Tournament {
+  teams(
+    filters: Dota2TeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2TeamRelationResponseCollection
+  Tournament: ComponentTournamentsTournament
+  regime: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Dota2TournamentEntity {
+  id: ID
+  attributes: Dota2Tournament
+}
+
+type Dota2TournamentEntityResponse {
+  data: Dota2TournamentEntity
+}
+
+type Dota2TournamentEntityResponseCollection {
+  data: [Dota2TournamentEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Dota2TournamentRelationResponseCollection {
+  data: [Dota2TournamentEntity!]!
+}
+
 input LanguageFiltersInput {
   id: IDFilterInput
   name: StringFilterInput
@@ -903,55 +1444,52 @@ type LanguageEntityResponseCollection {
   meta: ResponseCollectionMeta!
 }
 
-input LobbyFiltersInput {
+input MainNewFiltersInput {
   id: IDFilterInput
-  gameMode: ComponentLobbyCsGameModeFiltersInput
   title: StringFilterInput
-  creater: PlayerFiltersInput
-  participants: ComponentParticipantsParticipantFiltersInput
-  map: MapFiltersInput
-  antyCheat: ComponentLobbyAntyCheatFiltersInput
+  text: StringFilterInput
+  data: DateFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
-  and: [LobbyFiltersInput]
-  or: [LobbyFiltersInput]
-  not: LobbyFiltersInput
+  and: [MainNewFiltersInput]
+  or: [MainNewFiltersInput]
+  not: MainNewFiltersInput
 }
 
-input LobbyInput {
-  gameMode: ComponentLobbyCsGameModeInput
+input MainNewInput {
   title: String
-  creater: ID
-  participants: ComponentParticipantsParticipantInput
-  map: ID
-  antyCheat: ComponentLobbyAntyCheatInput
+  img: [ID]
+  text: String
+  data: Date
   publishedAt: DateTime
 }
 
-type Lobby {
-  gameMode: ComponentLobbyCsGameMode
+type MainNew {
   title: String!
-  creater: PlayerEntityResponse
-  participants: ComponentParticipantsParticipant
-  map: MapEntityResponse
-  antyCheat: ComponentLobbyAntyCheat!
+  img(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
+  text: String!
+  data: Date
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
 }
 
-type LobbyEntity {
+type MainNewEntity {
   id: ID
-  attributes: Lobby
+  attributes: MainNew
 }
 
-type LobbyEntityResponse {
-  data: LobbyEntity
+type MainNewEntityResponse {
+  data: MainNewEntity
 }
 
-type LobbyEntityResponseCollection {
-  data: [LobbyEntity!]!
+type MainNewEntityResponseCollection {
+  data: [MainNewEntity!]!
   meta: ResponseCollectionMeta!
 }
 
@@ -996,6 +1534,10 @@ type MapEntityResponse {
 type MapEntityResponseCollection {
   data: [MapEntity!]!
   meta: ResponseCollectionMeta!
+}
+
+type MapRelationResponseCollection {
+  data: [MapEntity!]!
 }
 
 input PartnerFiltersInput {
@@ -1045,7 +1587,8 @@ input PlayerFiltersInput {
   my_blocked_users: PlayerFiltersInput
   users_who_blocked_me: PlayerFiltersInput
   teams: TeamFiltersInput
-  lobby: LobbyFiltersInput
+  my_teams: Cs2FiltersInput
+  my_own_teams: Cs2FiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -1064,7 +1607,8 @@ input PlayerInput {
   my_blocked_users: [ID]
   users_who_blocked_me: [ID]
   teams: [ID]
-  lobby: ID
+  my_teams: [ID]
+  my_own_teams: [ID]
   publishedAt: DateTime
 }
 
@@ -1103,7 +1647,18 @@ type Player {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): TeamRelationResponseCollection
-  lobby: LobbyEntityResponse
+  my_teams(
+    filters: Cs2FiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2RelationResponseCollection
+  my_own_teams(
+    filters: Cs2FiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2RelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1133,10 +1688,8 @@ input TeamFiltersInput {
   rating: IntFilterInput
   earned: FloatFilterInput
   matches_played: IntFilterInput
-  awards: AwardFiltersInput
   victories_in_tournaments: IntFilterInput
   participants: PlayerFiltersInput
-  tournaments: TournamentFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -1151,10 +1704,8 @@ input TeamInput {
   logo: ID
   earned: Float
   matches_played: Int
-  awards: [ID]
   victories_in_tournaments: Int
   participants: [ID]
-  tournaments: [ID]
   publishedAt: DateTime
 }
 
@@ -1164,12 +1715,6 @@ type Team {
   logo: UploadFileEntityResponse!
   earned: Float
   matches_played: Int
-  awards(
-    filters: AwardFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): AwardRelationResponseCollection
   victories_in_tournaments: Int
   participants(
     filters: PlayerFiltersInput
@@ -1177,12 +1722,6 @@ type Team {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): PlayerRelationResponseCollection
-  tournaments(
-    filters: TournamentFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): TournamentRelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1232,72 +1771,13 @@ type TopTeamEntityResponse {
   data: TopTeamEntity
 }
 
-input TournamentFiltersInput {
-  id: IDFilterInput
-  max_teams: IntFilterInput
-  teams: TeamFiltersInput
-  money_entry_rate: FloatFilterInput
-  name: StringFilterInput
-  description: StringFilterInput
-  minimum_rank: IntFilterInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  and: [TournamentFiltersInput]
-  or: [TournamentFiltersInput]
-  not: TournamentFiltersInput
-}
-
-input TournamentInput {
-  max_teams: Int
-  teams: [ID]
-  money_entry_rate: Float
-  name: String
-  description: String
-  minimum_rank: Int
-  publishedAt: DateTime
-}
-
-type Tournament {
-  max_teams: Int
-  teams(
-    filters: TeamFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): TeamRelationResponseCollection
-  money_entry_rate: Float
-  name: String!
-  description: String
-  minimum_rank: Int
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-}
-
-type TournamentEntity {
-  id: ID
-  attributes: Tournament
-}
-
-type TournamentEntityResponse {
-  data: TournamentEntity
-}
-
-type TournamentEntityResponseCollection {
-  data: [TournamentEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-type TournamentRelationResponseCollection {
-  data: [TournamentEntity!]!
-}
-
 union GenericMorph =
-    ComponentDefaultOptions
+    ComponentAwardsAwards
+  | ComponentDefaultOptions
   | ComponentGameListCsgo
   | ComponentGameListDota2
   | ComponentGameStatisticsGameComponent
+  | ComponentHashHashs
   | ComponentLobbyAntyCheat
   | ComponentLobbyCsGameMode
   | ComponentLobbyParticipant
@@ -1305,22 +1785,30 @@ union GenericMorph =
   | ComponentPartnerOptions
   | ComponentPlayerOptions
   | ComponentTeamsTeam
+  | ComponentTournamentGridTournamentGrid
+  | ComponentTournamentsTournament
+  | ComponentUiCard
   | UploadFile
   | UploadFolder
   | I18NLocale
   | UsersPermissionsPermission
   | UsersPermissionsRole
   | UsersPermissionsUser
-  | Award
+  | CardNew
   | Country
+  | Cs2
+  | Cs2Award
+  | Cs2Tournament
+  | CsLobby
+  | Dota2Team
+  | Dota2Tournament
   | Language
-  | Lobby
+  | MainNew
   | Map
   | Partner
   | Player
   | Team
   | TopTeam
-  | Tournament
 
 input FileInfoInput {
   name: String
@@ -1415,13 +1903,13 @@ type Query {
     pagination: PaginationArg = {}
     sort: [String] = []
   ): UsersPermissionsUserEntityResponseCollection
-  award(id: ID): AwardEntityResponse
-  awards(
-    filters: AwardFiltersInput
+  cardNew(id: ID): CardNewEntityResponse
+  cardNews(
+    filters: CardNewFiltersInput
     pagination: PaginationArg = {}
     sort: [String] = []
     publicationState: PublicationState = LIVE
-  ): AwardEntityResponseCollection
+  ): CardNewEntityResponseCollection
   country(id: ID): CountryEntityResponse
   countries(
     filters: CountryFiltersInput
@@ -1429,6 +1917,48 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): CountryEntityResponseCollection
+  cs2(id: ID): Cs2EntityResponse
+  cs2S(
+    filters: Cs2FiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2EntityResponseCollection
+  cs2Award(id: ID): Cs2AwardEntityResponse
+  cs2Awards(
+    filters: Cs2AwardFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2AwardEntityResponseCollection
+  cs2Tournament(id: ID): Cs2TournamentEntityResponse
+  cs2Tournaments(
+    filters: Cs2TournamentFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2TournamentEntityResponseCollection
+  csLobby(id: ID): CsLobbyEntityResponse
+  csLobbies(
+    filters: CsLobbyFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): CsLobbyEntityResponseCollection
+  dota2Team(id: ID): Dota2TeamEntityResponse
+  dota2Teams(
+    filters: Dota2TeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2TeamEntityResponseCollection
+  dota2Tournament(id: ID): Dota2TournamentEntityResponse
+  dota2Tournaments(
+    filters: Dota2TournamentFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2TournamentEntityResponseCollection
   language(id: ID): LanguageEntityResponse
   languages(
     filters: LanguageFiltersInput
@@ -1436,13 +1966,13 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): LanguageEntityResponseCollection
-  lobby(id: ID): LobbyEntityResponse
-  lobbies(
-    filters: LobbyFiltersInput
+  mainNew(id: ID): MainNewEntityResponse
+  mainNews(
+    filters: MainNewFiltersInput
     pagination: PaginationArg = {}
     sort: [String] = []
     publicationState: PublicationState = LIVE
-  ): LobbyEntityResponseCollection
+  ): MainNewEntityResponseCollection
   map(id: ID): MapEntityResponse
   maps(
     filters: MapFiltersInput
@@ -1472,13 +2002,6 @@ type Query {
     publicationState: PublicationState = LIVE
   ): TeamEntityResponseCollection
   topTeam(publicationState: PublicationState = LIVE): TopTeamEntityResponse
-  tournament(id: ID): TournamentEntityResponse
-  tournaments(
-    filters: TournamentFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): TournamentEntityResponseCollection
   me: UsersPermissionsMe
 }
 
@@ -1492,18 +2015,44 @@ type Mutation {
     data: UploadFolderInput!
   ): UploadFolderEntityResponse
   deleteUploadFolder(id: ID!): UploadFolderEntityResponse
-  createAward(data: AwardInput!): AwardEntityResponse
-  updateAward(id: ID!, data: AwardInput!): AwardEntityResponse
-  deleteAward(id: ID!): AwardEntityResponse
+  createCardNew(data: CardNewInput!): CardNewEntityResponse
+  updateCardNew(id: ID!, data: CardNewInput!): CardNewEntityResponse
+  deleteCardNew(id: ID!): CardNewEntityResponse
   createCountry(data: CountryInput!): CountryEntityResponse
   updateCountry(id: ID!, data: CountryInput!): CountryEntityResponse
   deleteCountry(id: ID!): CountryEntityResponse
+  createCs2(data: Cs2Input!): Cs2EntityResponse
+  updateCs2(id: ID!, data: Cs2Input!): Cs2EntityResponse
+  deleteCs2(id: ID!): Cs2EntityResponse
+  createCs2Award(data: Cs2AwardInput!): Cs2AwardEntityResponse
+  updateCs2Award(id: ID!, data: Cs2AwardInput!): Cs2AwardEntityResponse
+  deleteCs2Award(id: ID!): Cs2AwardEntityResponse
+  createCs2Tournament(data: Cs2TournamentInput!): Cs2TournamentEntityResponse
+  updateCs2Tournament(
+    id: ID!
+    data: Cs2TournamentInput!
+  ): Cs2TournamentEntityResponse
+  deleteCs2Tournament(id: ID!): Cs2TournamentEntityResponse
+  createCsLobby(data: CsLobbyInput!): CsLobbyEntityResponse
+  updateCsLobby(id: ID!, data: CsLobbyInput!): CsLobbyEntityResponse
+  deleteCsLobby(id: ID!): CsLobbyEntityResponse
+  createDota2Team(data: Dota2TeamInput!): Dota2TeamEntityResponse
+  updateDota2Team(id: ID!, data: Dota2TeamInput!): Dota2TeamEntityResponse
+  deleteDota2Team(id: ID!): Dota2TeamEntityResponse
+  createDota2Tournament(
+    data: Dota2TournamentInput!
+  ): Dota2TournamentEntityResponse
+  updateDota2Tournament(
+    id: ID!
+    data: Dota2TournamentInput!
+  ): Dota2TournamentEntityResponse
+  deleteDota2Tournament(id: ID!): Dota2TournamentEntityResponse
   createLanguage(data: LanguageInput!): LanguageEntityResponse
   updateLanguage(id: ID!, data: LanguageInput!): LanguageEntityResponse
   deleteLanguage(id: ID!): LanguageEntityResponse
-  createLobby(data: LobbyInput!): LobbyEntityResponse
-  updateLobby(id: ID!, data: LobbyInput!): LobbyEntityResponse
-  deleteLobby(id: ID!): LobbyEntityResponse
+  createMainNew(data: MainNewInput!): MainNewEntityResponse
+  updateMainNew(id: ID!, data: MainNewInput!): MainNewEntityResponse
+  deleteMainNew(id: ID!): MainNewEntityResponse
   createMap(data: MapInput!): MapEntityResponse
   updateMap(id: ID!, data: MapInput!): MapEntityResponse
   deleteMap(id: ID!): MapEntityResponse
@@ -1518,9 +2067,6 @@ type Mutation {
   deleteTeam(id: ID!): TeamEntityResponse
   updateTopTeam(data: TopTeamInput!): TopTeamEntityResponse
   deleteTopTeam: TopTeamEntityResponse
-  createTournament(data: TournamentInput!): TournamentEntityResponse
-  updateTournament(id: ID!, data: TournamentInput!): TournamentEntityResponse
-  deleteTournament(id: ID!): TournamentEntityResponse
   upload(
     refId: ID
     ref: String

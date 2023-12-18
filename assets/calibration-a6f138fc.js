@@ -1,4 +1,4 @@
-import"./modulepreload-polyfill-3cfb730f.js";import{B as g,O as $,M as b,a as y,m as a,f as t}from"./match-grid-40dfb01b.js";import{B as p,L as h}from"./lava-lamp-a33f19c8.js";import"./jquery-995cfbaf.js";class S{container;tabsClass;tabsParam;constructor(e,s,c){if(this.tabsClass=s,this.tabsParam=c,this.container=document.querySelector(`#${e}`),!this.container)throw new Error(`Container with id #${e} not found.`);this.render()}render(){const e=this.tabsParam.reduce((i,n)=>(i+=`
+import"./modulepreload-polyfill-3cfb730f.js";import{B as g,O as $,M as b,a as y,m as a,f as t}from"./match-grid-40dfb01b.js";import{B as p,L as h}from"./lava-lamp-5fe89329.js";import"./jquery-ab814638.js";class S{container;tabsClass;tabsParam;constructor(e,s,c){if(this.tabsClass=s,this.tabsParam=c,this.container=document.querySelector(`#${e}`),!this.container)throw new Error(`Container with id #${e} not found.`);this.render()}render(){const e=this.tabsParam.reduce((i,n)=>(i+=`
       <div
       class="tabs-block__tab"
       data-tab-name="${n[0]}"

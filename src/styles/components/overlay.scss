@@ -9,6 +9,7 @@
   backdrop-filter: blur(10px);
   opacity: 0;
   transition: $standartTrans;
+  z-index: 1;
 
   &_display_block {
     display: block;

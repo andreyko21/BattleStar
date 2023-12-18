@@ -1,13 +1,16 @@
-<div class="{=$class} sorting-block tabs-block">
-  <div class="sorting-block__title"> Открытые лобби </div>
-  <div class="sorting-block__sorting-box tabs-block__tabs">
-    <div class="sorting-block__text">Отобразить</div>
-    <div class="sorting-block__grid tabs-block__tab" data-tab-name="grid">
+<div class="{=$class} view-tabs">
+  <div class="view-tabs__title"> Открытые лобби </div>
+  <div class="view-tabs__view-box tabs-block__tabs">
+    <div class="view-tabs__text">Отобразить</div>
+    <div
+      class="view-tabs__grid tabs-block__tab tabs-block__tab_active"
+      data-tab-name="grid"
+    >
       <svg>
         <use xlink:href="src/images/sprite.svg#grid-view"></use>
       </svg>
     </div>
-    <div class="sorting-block__table tabs-block__tab" data-tab-name="table">
+    <div class="view-tabs__table tabs-block__tab" data-tab-name="table">
       <svg>
         <use xlink:href="src/images/sprite.svg#table-view"></use>
       </svg>

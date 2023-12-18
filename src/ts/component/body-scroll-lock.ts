@@ -4,12 +4,12 @@ export interface IBodyScrollLock {
 }
 
 class BodyScrollLock implements IBodyScrollLock {
-  private readonly body: HTMLBodyElement | null = null;
+  private readonly main: HTMLBodyElement | null = null;
   private static instance: IBodyScrollLock | null = null;
   private readonly scrollbarWidth: number;
 
   constructor() {
-    this.body = document.querySelector('body') as HTMLBodyElement;
+    this.main = document.querySelector('main') as HTMLBodyElement;
     this.scrollbarWidth = this.getScrollbarWidth();
   }
 
@@ -36,15 +36,15 @@ class BodyScrollLock implements IBodyScrollLock {
   }
 
   lock(): void {
-    if (this.body) {
-      this.body.style.overflow = 'hidden';
-      this.body.style.paddingRight = `${this.scrollbarWidth}px`;
+    if (this.main) {
+      this.main.style.overflow = 'hidden';
+      this.main.style.paddingRight = `${this.scrollbarWidth}px`;
     }
   }
   unlock(): void {
-    if (this.body) {
-      this.body.style.overflow = '';
-      this.body.style.paddingRight = ``;
+    if (this.main) {
+      this.main.style.overflow = '';
+      this.main.style.paddingRight = ``;
     }
   }
 }

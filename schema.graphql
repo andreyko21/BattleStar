@@ -10,6 +10,9 @@ scalar Time
 # A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 scalar Date
 
+# The `BigInt` scalar type represents non-fractional signed whole numeric values.
+scalar Long
+
 # The `Upload` scalar type represents a file upload.
 scalar Upload
 
@@ -127,6 +130,31 @@ input IntFilterInput {
   in: [Int]
   notIn: [Int]
   between: [Int]
+}
+
+input LongFilterInput {
+  and: [Long]
+  or: [Long]
+  not: LongFilterInput
+  eq: Long
+  eqi: Long
+  ne: Long
+  nei: Long
+  startsWith: Long
+  endsWith: Long
+  contains: Long
+  notContains: Long
+  containsi: Long
+  notContainsi: Long
+  gt: Long
+  gte: Long
+  lt: Long
+  lte: Long
+  null: Boolean
+  notNull: Boolean
+  in: [Long]
+  notIn: [Long]
+  between: [Long]
 }
 
 input FloatFilterInput {
@@ -385,6 +413,78 @@ type ComponentGameStatisticsGameComponent {
   tournaments: Int
 }
 
+type ComponentHashHashs {
+  id: ID!
+  nameGame: String!
+  tournament: String!
+  battleStar: String!
+  greenDragon: String!
+  tour: String!
+}
+
+input ComponentLobbyAntyCheatFiltersInput {
+  antyCheat: BooleanFilterInput
+  and: [ComponentLobbyAntyCheatFiltersInput]
+  or: [ComponentLobbyAntyCheatFiltersInput]
+  not: ComponentLobbyAntyCheatFiltersInput
+}
+
+input ComponentLobbyAntyCheatInput {
+  id: ID
+  antyCheat: Boolean
+}
+
+type ComponentLobbyAntyCheat {
+  id: ID!
+  antyCheat: Boolean!
+}
+
+enum ENUM_COMPONENTLOBBYCSGAMEMODE_VALUE {
+  v1x1
+  v2x2
+  v5x5
+  v10x10
+}
+
+input ComponentLobbyCsGameModeFiltersInput {
+  value: StringFilterInput
+  and: [ComponentLobbyCsGameModeFiltersInput]
+  or: [ComponentLobbyCsGameModeFiltersInput]
+  not: ComponentLobbyCsGameModeFiltersInput
+}
+
+input ComponentLobbyCsGameModeInput {
+  id: ID
+  value: ENUM_COMPONENTLOBBYCSGAMEMODE_VALUE
+}
+
+type ComponentLobbyCsGameMode {
+  id: ID!
+  value: ENUM_COMPONENTLOBBYCSGAMEMODE_VALUE!
+}
+
+input ComponentLobbyParticipantFiltersInput {
+  players: PlayerFiltersInput
+  and: [ComponentLobbyParticipantFiltersInput]
+  or: [ComponentLobbyParticipantFiltersInput]
+  not: ComponentLobbyParticipantFiltersInput
+}
+
+input ComponentLobbyParticipantInput {
+  id: ID
+  players: [ID]
+}
+
+type ComponentLobbyParticipant {
+  id: ID!
+  players(
+    filters: PlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PlayerRelationResponseCollection
+}
+
 type ComponentParticipantsParticipant {
   id: ID!
   user: UsersPermissionsUserEntityResponse
@@ -488,6 +588,12 @@ type ComponentTeamsTeam {
   victories_in_tournaments: Int
 }
 
+type ComponentTournamentGridTournamentGrid {
+  id: ID!
+  nameTeam: String!
+  score: String!
+}
+
 input ComponentTournamentsTournamentFiltersInput {
   name: StringFilterInput
   money_entry_rate: FloatFilterInput
@@ -529,6 +635,44 @@ type ComponentTournamentsTournament {
   endDate: Date
   time: Time
   regionLimit: Boolean
+}
+
+input ComponentUiCardFiltersInput {
+  title: StringFilterInput
+  text: StringFilterInput
+  autor: StringFilterInput
+  data: DateFilterInput
+  and: [ComponentUiCardFiltersInput]
+  or: [ComponentUiCardFiltersInput]
+  not: ComponentUiCardFiltersInput
+}
+
+input ComponentUiCardInput {
+  id: ID
+  title: String
+  img: [ID]
+  text: String
+  autor: String
+  avatar: [ID]
+  data: Date
+}
+
+type ComponentUiCard {
+  id: ID!
+  title: String!
+  img(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection!
+  text: String!
+  autor: String!
+  avatar(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
+  data: Date
 }
 
 input UploadFileFiltersInput {
@@ -852,6 +996,47 @@ type UsersPermissionsUserRelationResponseCollection {
   data: [UsersPermissionsUserEntity!]!
 }
 
+input CardNewFiltersInput {
+  id: IDFilterInput
+  card: ComponentUiCardFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [CardNewFiltersInput]
+  or: [CardNewFiltersInput]
+  not: CardNewFiltersInput
+}
+
+input CardNewInput {
+  card: [ComponentUiCardInput]
+  publishedAt: DateTime
+}
+
+type CardNew {
+  card(
+    filters: ComponentUiCardFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): [ComponentUiCard]
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type CardNewEntity {
+  id: ID
+  attributes: CardNew
+}
+
+type CardNewEntityResponse {
+  data: CardNewEntity
+}
+
+type CardNewEntityResponseCollection {
+  data: [CardNewEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
 input CountryFiltersInput {
   id: IDFilterInput
   name: StringFilterInput
@@ -1059,6 +1244,64 @@ type Cs2TournamentRelationResponseCollection {
   data: [Cs2TournamentEntity!]!
 }
 
+input CsLobbyFiltersInput {
+  id: IDFilterInput
+  title: StringFilterInput
+  creator: PlayerFiltersInput
+  map: MapFiltersInput
+  rate: LongFilterInput
+  gameMode: ComponentLobbyCsGameModeFiltersInput
+  participant: ComponentLobbyParticipantFiltersInput
+  ping: LongFilterInput
+  antyCheat: ComponentLobbyAntyCheatFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [CsLobbyFiltersInput]
+  or: [CsLobbyFiltersInput]
+  not: CsLobbyFiltersInput
+}
+
+input CsLobbyInput {
+  title: String
+  creator: ID
+  map: ID
+  rate: Long
+  gameMode: ComponentLobbyCsGameModeInput
+  participant: ComponentLobbyParticipantInput
+  ping: Long
+  antyCheat: ComponentLobbyAntyCheatInput
+  publishedAt: DateTime
+}
+
+type CsLobby {
+  title: String!
+  creator: PlayerEntityResponse
+  map: MapEntityResponse
+  rate: Long!
+  gameMode: ComponentLobbyCsGameMode!
+  participant: ComponentLobbyParticipant
+  ping: Long
+  antyCheat: ComponentLobbyAntyCheat
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type CsLobbyEntity {
+  id: ID
+  attributes: CsLobby
+}
+
+type CsLobbyEntityResponse {
+  data: CsLobbyEntity
+}
+
+type CsLobbyEntityResponseCollection {
+  data: [CsLobbyEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
 input Dota2TeamFiltersInput {
   id: IDFilterInput
   Team: ComponentTeamsTeamFiltersInput
@@ -1198,6 +1441,55 @@ type LanguageEntityResponse {
 
 type LanguageEntityResponseCollection {
   data: [LanguageEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input MainNewFiltersInput {
+  id: IDFilterInput
+  title: StringFilterInput
+  text: StringFilterInput
+  data: DateFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [MainNewFiltersInput]
+  or: [MainNewFiltersInput]
+  not: MainNewFiltersInput
+}
+
+input MainNewInput {
+  title: String
+  img: [ID]
+  text: String
+  data: Date
+  publishedAt: DateTime
+}
+
+type MainNew {
+  title: String!
+  img(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
+  text: String!
+  data: Date
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type MainNewEntity {
+  id: ID
+  attributes: MainNew
+}
+
+type MainNewEntityResponse {
+  data: MainNewEntity
+}
+
+type MainNewEntityResponseCollection {
+  data: [MainNewEntity!]!
   meta: ResponseCollectionMeta!
 }
 
@@ -1485,24 +1777,33 @@ union GenericMorph =
   | ComponentGameListCsgo
   | ComponentGameListDota2
   | ComponentGameStatisticsGameComponent
+  | ComponentHashHashs
+  | ComponentLobbyAntyCheat
+  | ComponentLobbyCsGameMode
+  | ComponentLobbyParticipant
   | ComponentParticipantsParticipant
   | ComponentPartnerOptions
   | ComponentPlayerOptions
   | ComponentTeamsTeam
+  | ComponentTournamentGridTournamentGrid
   | ComponentTournamentsTournament
+  | ComponentUiCard
   | UploadFile
   | UploadFolder
   | I18NLocale
   | UsersPermissionsPermission
   | UsersPermissionsRole
   | UsersPermissionsUser
+  | CardNew
   | Country
   | Cs2
   | Cs2Award
   | Cs2Tournament
+  | CsLobby
   | Dota2Team
   | Dota2Tournament
   | Language
+  | MainNew
   | Map
   | Partner
   | Player
@@ -1602,6 +1903,13 @@ type Query {
     pagination: PaginationArg = {}
     sort: [String] = []
   ): UsersPermissionsUserEntityResponseCollection
+  cardNew(id: ID): CardNewEntityResponse
+  cardNews(
+    filters: CardNewFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): CardNewEntityResponseCollection
   country(id: ID): CountryEntityResponse
   countries(
     filters: CountryFiltersInput
@@ -1630,6 +1938,13 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): Cs2TournamentEntityResponseCollection
+  csLobby(id: ID): CsLobbyEntityResponse
+  csLobbies(
+    filters: CsLobbyFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): CsLobbyEntityResponseCollection
   dota2Team(id: ID): Dota2TeamEntityResponse
   dota2Teams(
     filters: Dota2TeamFiltersInput
@@ -1651,6 +1966,13 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): LanguageEntityResponseCollection
+  mainNew(id: ID): MainNewEntityResponse
+  mainNews(
+    filters: MainNewFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): MainNewEntityResponseCollection
   map(id: ID): MapEntityResponse
   maps(
     filters: MapFiltersInput
@@ -1693,6 +2015,9 @@ type Mutation {
     data: UploadFolderInput!
   ): UploadFolderEntityResponse
   deleteUploadFolder(id: ID!): UploadFolderEntityResponse
+  createCardNew(data: CardNewInput!): CardNewEntityResponse
+  updateCardNew(id: ID!, data: CardNewInput!): CardNewEntityResponse
+  deleteCardNew(id: ID!): CardNewEntityResponse
   createCountry(data: CountryInput!): CountryEntityResponse
   updateCountry(id: ID!, data: CountryInput!): CountryEntityResponse
   deleteCountry(id: ID!): CountryEntityResponse
@@ -1708,6 +2033,9 @@ type Mutation {
     data: Cs2TournamentInput!
   ): Cs2TournamentEntityResponse
   deleteCs2Tournament(id: ID!): Cs2TournamentEntityResponse
+  createCsLobby(data: CsLobbyInput!): CsLobbyEntityResponse
+  updateCsLobby(id: ID!, data: CsLobbyInput!): CsLobbyEntityResponse
+  deleteCsLobby(id: ID!): CsLobbyEntityResponse
   createDota2Team(data: Dota2TeamInput!): Dota2TeamEntityResponse
   updateDota2Team(id: ID!, data: Dota2TeamInput!): Dota2TeamEntityResponse
   deleteDota2Team(id: ID!): Dota2TeamEntityResponse
@@ -1722,6 +2050,9 @@ type Mutation {
   createLanguage(data: LanguageInput!): LanguageEntityResponse
   updateLanguage(id: ID!, data: LanguageInput!): LanguageEntityResponse
   deleteLanguage(id: ID!): LanguageEntityResponse
+  createMainNew(data: MainNewInput!): MainNewEntityResponse
+  updateMainNew(id: ID!, data: MainNewInput!): MainNewEntityResponse
+  deleteMainNew(id: ID!): MainNewEntityResponse
   createMap(data: MapInput!): MapEntityResponse
   updateMap(id: ID!, data: MapInput!): MapEntityResponse
   deleteMap(id: ID!): MapEntityResponse

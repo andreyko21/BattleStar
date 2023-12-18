@@ -1,0 +1,54 @@
+.map-selected {
+  &__title {
+    margin: 0px 0px 16px 0px;
+  }
+
+  &__wrapper-btns {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  &__btn {
+    height: 39px;
+  }
+  &__btn-input-wrapper {
+    input {
+      display: none;
+      &:checked + label {
+        color: $yellow300;
+        border: 1px solid $yellow300;
+        background: $yellow800;
+        backdrop-filter: blur(40px);
+
+        span {
+          color: $yellow300;
+        }
+        div {
+          color: $yellow300;
+        }
+      }
+    }
+    label {
+      height: 39px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    div {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: normal;
+      color: $gray500;
+    }
+    span {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: normal;
+      color: $gray500;
+      text-decoration: line-through;
+      text-decoration-thickness: 0.8px;
+    }
+  }
+}

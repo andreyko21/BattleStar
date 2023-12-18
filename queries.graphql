@@ -129,3 +129,66 @@ query GetMaps {
     }
   }
 }
+
+query GetLobbies {
+  csLobbies {
+    data {
+      id
+      attributes {
+        title
+        gameMode {
+          value
+        }
+        rate
+        creator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      name
+                      flag {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        map {
+          data {
+            attributes {
+              name
+              logo {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        ping
+        participant {
+          players {
+            data {
+              id
+            }
+          }
+        }
+        ping
+        antyCheat {
+          antyCheat
+        }
+      }
+    }
+  }
+}

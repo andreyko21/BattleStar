@@ -230,6 +230,7 @@ class Sign implements SignType {
         username: formValues.name,
         email: formValues.email,
         password: formValues.pswd,
+        // role: "user",
       })
       .then((response) => {
         console.log("Well done!");

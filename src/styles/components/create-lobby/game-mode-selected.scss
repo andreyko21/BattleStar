@@ -1,0 +1,16 @@
+.game-mode-selected {
+  &__title {
+    margin: 0px 0px 16px 0px;
+  }
+
+  &__wrapper-btns {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  &__btn {
+    height: 39px;
+  }
+}

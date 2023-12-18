@@ -11,8 +11,10 @@
    display: grid;
    grid-template:
       "sidebar header"
-      "sidebar main" auto/min-content auto;
+      "sidebar main" 1fr ;
    min-height: 0%;
+   grid-template-columns: min-content auto;
+
    overflow: clip;
 }
 .page {
@@ -20,6 +22,7 @@
    grid-area: main;
 }
 .cabinet {
+   margin-top: 90px;
    &__container {
       display: flex;
    }
@@ -188,82 +191,6 @@
          margin-right: 7px;
       }
    }
-
-   .table {
-      &__tab {
-         border-collapse: collapse;
-         width: 100%;
-         margin: 34px 0 0;
-      }
-      &__tr {
-         height: 56px;
-         border-bottom: 1px solid $gray500;
-         &:first-child {
-            border-top: 1px solid $gray500;
-         }
-         &:last-child {
-            border-bottom: none;
-         }
-      }
-      &__name {
-         color: $gray25;
-         font-family: Roboto;
-         font-size: 18px;
-         font-weight: 400;
-         line-height: normal;
-         width: 300px;
-      }
-
-      &__data,
-      &__time {
-         color: $gray25;
-         text-align: right;
-         font-size: 16px;
-         font-weight: 400;
-         line-height: normal;
-      }
-
-      &__regime,
-      &__id {
-         color: $gray200;
-         text-align: right;
-         font-size: 16px;
-         font-weight: 400;
-         line-height: normal;
-         span {
-            color: $gray25;
-         }
-      }
-      &__id {
-         span {
-            text-decoration: underline;
-         }
-      }
-      &__win {
-         color: $green50;
-         text-align: right;
-         font-size: 16px;
-         font-style: normal;
-         font-weight: 400;
-         line-height: normal;
-         width: 250px;
-
-         &_defeat {
-            color: $red500;
-         }
-      }
-      &__money {
-         color: $yellow300;
-         text-align: right;
-         font-size: 16px;
-         font-weight: 400;
-         line-height: normal;
-         span {
-            color: $yellow300;
-            text-decoration: line-through;
-         }
-      }
-   }
 }
 .personal {
    height: 650px;
@@ -397,7 +324,6 @@
       &-avatar {
          position: relative;
          height: 165px;
-
       }
       &-inp {
          display: none;
@@ -425,13 +351,372 @@
       }
    }
 }
+
+.wallet {
+   height: 1006px;
+   &__content {
+      padding: 46px 84px 47px 59px;
+      &-column {
+         display: flex;
+      }
+
+      &-card {
+         height: 223px;
+         position: relative;
+      }
+      &-info {
+         position: absolute;
+         bottom: 18px;
+         left: 24px;
+      }
+      &-id,
+      &-name {
+         color: $gray25;
+         font-size: 24px;
+         font-weight: 400;
+         line-height: normal;
+         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+      }
+      &-item {
+         margin-left: 39px;
+         width: 100%;
+      }
+      &-row {
+         display: flex;
+         align-items: center;
+         svg {
+            width: 24px;
+            height: 24px;
+            fill: $gray25;
+         }
+      }
+      &-subscription,
+      &-btn {
+         color: $gray25;
+         font-size: 28px;
+         font-weight: 500;
+         line-height: normal;
+      }
+      &-btn {
+         background: transparent;
+         color: $yellow300;
+         margin-left: 5px;
+      }
+      &-graph {
+         position: relative;
+      }
+      &-balance {
+         margin-top: 15px;
+         position: absolute;
+         &-text {
+            color: $gray25;
+            font-size: 24px;
+            font-weight: 400;
+            line-height: normal;
+         }
+         &-sum {
+            color: $yellow300;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: normal;
+            span {
+               color: $yellow300;
+               text-decoration: line-through;
+            }
+         }
+         &-canvas {
+            width: 100% !important;
+            height: 179px !important;
+         }
+      }
+      &-subtitle {
+         color: $gray25;
+         font-size: 24px;
+         font-weight: 400;
+         line-height: normal;
+      }
+      &-transaction {
+         margin-top: 55px;
+         display: flex;
+      }
+      &-subrow {
+         margin-top: 14px;
+         &_row {
+            margin-left: 30px;
+         }
+      }
+      &-btns {
+         display: flex;
+         justify-content: space-between;
+         width: 400px;
+         margin-top: 14px;
+
+         &_sub {
+            width: 655px;
+            display: flex;
+            justify-content: space-between;
+         }
+
+         &-svg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+               width: 24px;
+               height: 24px;
+               fill: $gray100;
+            }
+            &_bank,
+            &_webmoney {
+               svg {
+                  width: 32px;
+                  height: 32px;
+               }
+            }
+            &_pay {
+               svg {
+                  width: 36px;
+                  height: 36px;
+               }
+            }
+         }
+         &-card,
+         &-friend {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: $gray550;
+            width: 195px;
+            height: 73px;
+         }
+         &-text {
+            color: $gray100;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: normal;
+            span {
+               color: $gray100;
+               text-decoration: line-through;
+            }
+            &_sub {
+               font-size: 18px;
+            }
+         }
+
+         &-bank,
+         &-pay,
+         &-googlepay,
+         &-webmoney {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 156px;
+            height: 73px;
+            border-radius: 8px;
+            background: $green100;
+         }
+      }
+      &-table {
+         overflow: auto;
+         height: 350px;
+         padding-right: 10px;
+      }
+      &-link {
+         margin: 24px 0 44px;
+         width: 100%;
+         height: 73px;
+         button {
+            color: $gray25;
+            span {
+               color: $gray25;
+               text-decoration: line-through;
+            }
+         }
+      }
+   }
+}
 .setting {
+   height: 1221px;
+   &__content {
+      padding: 30px 84px 37px 59px;
+      &-title {
+         color: $gray25;
+         font-size: 24px;
+         font-weight: 400;
+         line-height: normal;
+         margin-bottom: 38px;
+         &_sub {
+            margin-bottom: 24px;
+         }
+      }
+      &-swich {
+         height: 231px;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         margin-bottom: 30px;
+      }
+      &-line {
+         width: 100%;
+         height: 1px;
+         background: $dark100;
+         margin-bottom: 25px;
+         &_sub {
+            margin: 35px 0 25px;
+         }
+      }
+      &-lang {
+         display: flex;
+      }
+
+      &-text {
+         color: $gray200;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+         &_edit {
+            color: $yellow300;
+         }
+      }
+
+      &-select {
+         position: relative;
+         max-width: 150px;
+         width: 100%;
+         display: flex;
+         align-items: center;
+         padding: 0 50px 0 24px;
+      }
+      &-current {
+         width: 100%;
+      }
+      &-current,
+      &-item {
+         color: $gray25;
+         font-size: 18px;
+         font-weight: 400;
+         line-height: normal;
+      }
+
+      &-item {
+         margin-bottom: 5px;
+         &:last-child {
+            margin: 0;
+         }
+      }
+
+      &-arrow {
+         position: absolute;
+         right: 0px;
+         top: 0%;
+         svg {
+            width: 30px;
+            height: 20px;
+            fill: $gray25;
+         }
+
+         &.rotate {
+            transform: translateY(0%) rotate(180deg);
+            transition: all 0.5s ease;
+         }
+      }
+
+      &-list {
+         position: absolute;
+         width: 100%;
+         top: 100%;
+         left: 0;
+         transition:
+            opacity 0.5s,
+            visibility 0.5s;
+         z-index: 5;
+         background: $dark100;
+         opacity: 0;
+         visibility: hidden;
+         z-index: 30;
+         padding: 10px 24px;
+         border-radius: 12px;
+         &.show {
+            opacity: 1;
+            visibility: visible;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            transition:
+               opacity 0.5s,
+               visibility 0.5s;
+         }
+      }
+      &-country {
+         height: 30px;
+         // border: 1px solid $gray100;
+         // width: 300px;
+      }
+      &-account {
+         height: 120px;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+      }
+      &-item {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         width: 250px;
+         svg {
+            width: 20px;
+            height: 20px;
+            fill: $red500;
+         }
+      }
+      &-column {
+         display: flex;
+      }
+      &-name {
+         color: $gray25;
+         font-size: 18px;
+         font-weight: 400;
+         line-height: normal;
+         margin-left: 9px;
+      }
+      &-exit {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         width: 220px;
+         height: 56px;
+         border-radius: 4px;
+         background: rgba(248, 248, 248, 0.05);
+         color: $red500;
+         font-size: 16px;
+         font-weight: 700;
+         line-height: normal;
+         svg {
+            width: 24px;
+            height: 24px;
+            fill: $red500;
+            margin-right: 15px;
+         }
+      }
+   }
 }
 .blacklist {
+   &__title {
+      color: $gray25;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      padding: 29px 0 0 59px;
+   }
    &__content {
       display: flex;
       justify-content: space-between;
       margin-top: 38px;
+      padding: 0px 84px 0 59px;
    }
    &__item {
       width: 544px;
@@ -505,9 +790,205 @@
    }
 }
 
+.table {
+   &__tab {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 34px 0 0;
+   }
+   &__tr {
+      height: 56px;
+      border-bottom: 1px solid $gray500;
+      &:first-child {
+         border-top: 1px solid $gray500;
+      }
+      &:last-child {
+         border-bottom: none;
+      }
+   }
+   &__name {
+      color: $gray25;
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: normal;
+      width: 300px;
+   }
+
+   &__data,
+   &__time {
+      color: $gray25;
+      text-align: right;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+   }
+
+   &__regime,
+   &__id {
+      color: $gray200;
+      text-align: right;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      span {
+         color: $gray25;
+      }
+   }
+   &__id {
+      span {
+         text-decoration: underline;
+      }
+   }
+   &__win {
+      color: $green50;
+      text-align: right;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      width: 250px;
+
+      &_defeat {
+         color: $red500;
+      }
+   }
+   &__money {
+      color: $yellow300;
+      text-align: right;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      span {
+         color: $yellow300;
+         text-decoration: line-through;
+      }
+   }
+   &__block {
+      display: flex;
+      align-items: center;
+
+      svg {
+         width: 16px;
+         height: 16px;
+         fill: $yellow300;
+
+         &:nth-child(2) {
+            width: 24px;
+            height: 24px;
+         }
+      }
+      &_sub {
+         svg {
+            width: 16px;
+            height: 16px;
+            fill: $green50;
+
+            &:nth-child(2) {
+               width: 24px;
+               height: 24px;
+            }
+         }
+      }
+   }
+   &__text {
+      color: $yellow300;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: normal;
+      margin-left: 13px;
+      &_sub {
+         color: $green50;
+      }
+   }
+   &__friend {
+      margin-left: auto;
+      width: 92px;
+      height: 37px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.25);
+      position: relative;
+      span {
+         display: inline-block;
+         width: 8px;
+         height: 8px;
+         border-radius: 50%;
+         background: $green50;
+         position: absolute;
+         top: 5px;
+         left: 26px;
+      }
+      p {
+         color: $gray25;
+         font-size: 16px;
+         font-weight: 500;
+         line-height: normal;
+         padding: 10px 9px 0 0;
+      }
+   }
+}
+
 .hide {
    display: none;
 }
 .tabs-block__tab {
    font-size: 16px;
+}
+.jss_object {
+   background: transparent;
+   border-radius: 0;
+   width: 200px;
+   padding: 0px 0;
+   box-shadow: none;
+   border: none;
+}
+.jdropdown-container-header {
+   border: none;
+}
+
+.jdropdown-default {
+   background: transparent;
+   border-radius: 0;
+   width: 200px;
+   padding: 0px 0;
+   box-shadow: none;
+   border: none;
+}
+.jdropdown-default .jdropdown-header {
+   border: none;
+}
+.jdropdown-default .jdropdown-content {
+   background: #3f3d46;
+   width: 200px;
+   padding-top: 10px;
+}
+.jdropdown-image-small {
+   width: 100%;
+   height: 100%;
+}
+.jdropdown-image {
+   margin-right: 13px;
+   width: 34px;
+   height: 21px;
+   border-radius: 0px;
+
+   aspect-ratio: 1;
+}
+.jdropdown-description {
+   color: $gray25;
+   text-align: right;
+   font-size: 18px;
+   font-weight: 400;
+   line-height: normal;
+}
+.jdropdown-default.jdropdown-item {
+   padding: 5px 10px;
+}
+.jdropdown-header.jss_object {
+   color: $gray25;
+   text-align: right;
+   font-size: 18px;
+   font-weight: 400;
+   line-height: normal;
+   padding: 3px;
 }

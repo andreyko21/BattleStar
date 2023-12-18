@@ -1,0 +1,72 @@
+.create-lobby {
+  padding: 0px 12px 0px 17px;
+
+  &__title-block {
+    width: 100%;
+    margin: 0px 0px 23px 0px;
+    .create-lobby__title {
+      margin: 0px 0px 10px 0px;
+    }
+  }
+
+  &__title {
+    margin: 0px 0px 23px 0px;
+    color: $gray100;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &__name-input-label {
+    height: 38px;
+  }
+  &__name-input {
+  }
+
+  &__rate-selected,
+  &__map-selected,
+  &__game-mode-selected,
+  &__region-selected {
+    margin: 0px 0px 23px 0px;
+  }
+
+  &__lobby-block {
+  }
+  &__create-btn {
+    height: 38px;
+    margin: 12px 0px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: #000000;
+    }
+    div {
+      color: #101011;
+      text-align: center;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+  }
+}
+.tabs-block {
+  &__content-container {
+  }
+}
+.lobby-block {
+  &__title {
+  }
+
+  &__game-mode {
+  }
+
+  &__btn {
+  }
+
+  &__title-input {
+  }
+}

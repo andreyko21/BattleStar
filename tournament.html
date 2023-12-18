@@ -4,21 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Команди</title>
-    <link rel="stylesheet" href="src/styles/tournament.scss" />
+    <link rel="stylesheet" href="src/styles/tournamentPage.scss" />
   </head>
-  <body class="page create-tournament-page">
-    <div class="wrapper">
+  <body class="page tournament-page">
+    <div class="tournament-page__wrapper wrapper">
       <load ="src/html/header.html" />
       <load ="src/html/sidebar.html" />
-      <main class="page__main create-tournament-page__main">
-        <div id="tournament-page" class="page__container">
-          <div id="main-content"></div>
-        </div>
-        <button class="create-tournament__button tournament-button">
-          Опубликовать
-        </button>
+      <main class="page__main tournament-page__main">
+        <div
+          class="tournament-page__container"
+          id="tournament-page__container"
+        ></div>
       </main>
     </div>
-    <script type="module" src="src/ts/tournament.ts"></script>
+    <script
+      type="module"
+      src="src/ts/tournament/specificTournament/tournamentPage.ts"
+    ></script>
   </body>
 </html>

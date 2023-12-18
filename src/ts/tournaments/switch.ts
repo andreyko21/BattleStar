@@ -36,6 +36,10 @@ class CheckboxSwitch {
 
     this.$container.append(template);
   }
+
+  public isChecked(): boolean {
+    return this.$container.find(`#${this.name}`).prop("checked");
+  }
 }
 
 export { CheckboxSwitch };

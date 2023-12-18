@@ -1,141 +1,125 @@
-query GetTeams(
-  $filtering: String
-  $sorting: [String]
-  $page: Int
-  $pageSize: Int
+mutation CreateCs2Tournament(
+  $name: String
+  $description: String
+  $maxTeams: Int
+  $moneyEntryRate: Float
+  $startDate: Date
+  $time: Time
+  $regionLimit: Boolean
+  $endDate: Date
+  $maps: [ID]
+  $publishedAt: DateTime
+  $logoId: ID
 ) {
-  teams(
-    filters: { name: { startsWith: $filtering } }
-    sort: $sorting
-    pagination: { page: $page, pageSize: $pageSize }
+  createCs2Tournament(
+    data: {
+      Tournament: {
+        name: $name
+        description: $description
+        max_teams: $maxTeams
+        money_entry_rate: $moneyEntryRate
+        regionLimit: $regionLimit
+        startDate: $startDate
+        time: $time
+        endDate: $endDate
+        logo: $logoId
+      }
+      maps: $maps
+      publishedAt: $publishedAt
+    }
   ) {
     data {
-      id
-
       attributes {
-        name
-        rating
-        earned
-        matches_played
-        victories_in_tournaments
-        createdAt
-        updatedAt
-        publishedAt
-        participants {
-          data {
-            id
-          }
-        }
-        tournaments {
-          data {
-            id
-          }
-        }
-        logo {
-          data {
-            id
-            attributes {
-              name
-              alternativeText
-              url
-            }
-          }
-        }
-        awards {
-          data {
-            id
-            attributes {
-              name
-              logo {
-                data {
-                  id
-                  attributes {
-                    name
-                    alternativeText
-                    url
-                  }
-                }
+        Tournament {
+          name
+          description
+          max_teams
+          money_entry_rate
+          startDate
+          time
+          endDate
+          regionLimit
+          logo {
+            data {
+              attributes {
+                url
               }
             }
           }
         }
-      }
-    }
-    meta {
-      pagination {
-        pageCount
+        publishedAt
+        maps {
+          data {
+            id
+          }
+        }
       }
     }
   }
 }
 
-query GetTeamById($teamId: ID!) {
-  team(id: $teamId) {
+mutation CreateDota2Tournament(
+  $name: String
+  $description: String
+  $maxTeams: Int
+  $moneyEntryRate: Float
+  $startDate: Date
+  $time: Time
+  $regionLimit: Boolean
+  $endDate: Date
+  $publishedAt: DateTime
+  $logoId: ID
+) {
+  createDota2Tournament(
+    data: {
+      Tournament: {
+        name: $name
+        description: $description
+        max_teams: $maxTeams
+        money_entry_rate: $moneyEntryRate
+        regionLimit: $regionLimit
+        startDate: $startDate
+        time: $time
+        endDate: $endDate
+        logo: $logoId
+      }
+      publishedAt: $publishedAt
+    }
+  ) {
     data {
-      id
       attributes {
-        name
-        rating
-        earned
-        matches_played
-        victories_in_tournaments
-        createdAt
-        updatedAt
-        publishedAt
-        participants {
-          data {
-            id
-          }
-        }
-        tournaments {
-          data {
-            id
-          }
-        }
-        logo {
-          data {
-            id
-            attributes {
-              name
-              alternativeText
-              url
-            }
-          }
-        }
-        awards {
-          data {
-            id
-            attributes {
-              name
-              logo {
-                data {
-                  id
-                  attributes {
-                    name
-                    alternativeText
-                    url
-                  }
-                }
+        Tournament {
+          name
+          description
+          max_teams
+          money_entry_rate
+          startDate
+          time
+          endDate
+          regionLimit
+          logo {
+            data {
+              attributes {
+                url
               }
             }
           }
         }
+        publishedAt
       }
     }
   }
 }
 
-query GetAwards {
-  awards {
+query GetMaps {
+  maps {
     data {
       id
       attributes {
         name
         logo {
           data {
-            id
             attributes {
-              name
               alternativeText
               url
             }
@@ -145,5 +129,3 @@ query GetAwards {
     }
   }
 }
-
-

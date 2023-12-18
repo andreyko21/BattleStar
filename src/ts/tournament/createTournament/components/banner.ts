@@ -5,11 +5,13 @@ export class Banner {
   private $image!: JQuery;
   private imageUrl: string;
   private altText: string;
+  private formData: FormData;
 
   constructor(containerId: string, imageUrl: string, altText: string = "") {
     this.$container = $(`#${containerId}`);
     this.imageUrl = imageUrl;
     this.altText = altText;
+    this.formData = new FormData();
 
     if (this.$container.length === 0) {
       throw new Error(`Container with id #${containerId} not found.`);
@@ -57,6 +59,9 @@ export class Banner {
         this.updateImage(newImageUrl);
       };
       reader.readAsDataURL(file);
+
+      this.formData.delete("image");
+      this.formData.append("image", file);
     } else {
       alert("Недопустимий формат файлу. Будь ласка, виберіть JPEG або PNG.");
     }
@@ -70,5 +75,9 @@ export class Banner {
   public updateImage(newImageUrl: string): void {
     this.imageUrl = newImageUrl;
     this.$image.attr("src", this.imageUrl);
+  }
+
+  public getFormData(): FormData {
+    return this.formData;
   }
 }

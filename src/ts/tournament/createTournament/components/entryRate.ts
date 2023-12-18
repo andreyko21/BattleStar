@@ -23,15 +23,15 @@ class EntryRate {
     const radioButtonsHtml = this.options
       .map(
         (option, index) => `
-        <input id="entryRate${
-          index + 1
-        }" name="entryRate" type="radio" class="tournament-radio-input" value="${
+          <input id="entryRate${
+            index + 1
+          }" name="entryRate" type="radio" class="tournament-radio-input" value="${
           option.value
         }" />
-        <label class="tournament-radio-label" for="entryRate${index + 1}">
-          ${option.label}
-        </label>
-      `
+          <label class="tournament-radio-label" for="entryRate${index + 1}">
+            ${option.label}
+          </label>
+        `
       )
       .join("");
 
@@ -51,6 +51,8 @@ class EntryRate {
           <input
             class="tournament-entry-rate__input"
             type="text"
+            id="tournamentEntryRateInput"
+            name="tournamentEntryRateInput"
             placeholder="Введите свое значение.."
           />
         </div>
@@ -85,6 +87,17 @@ class EntryRate {
           .prop("checked", false);
       }
     });
+  }
+
+  public getSelectedValue(): string {
+    const selectedRadioValue = this.$container
+      .find("input[name='entryRate']:checked")
+      .val() as string;
+    const inputValue = this.$container
+      .find("#tournamentEntryRateInput")
+      .val() as string;
+
+    return selectedRadioValue || inputValue;
   }
 }
 

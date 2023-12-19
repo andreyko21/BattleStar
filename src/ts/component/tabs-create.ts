@@ -35,7 +35,7 @@ class TabsCreate {
     const tabsContentHtml = this.tabsParam.reduce((acc: string, tabParam) => {
       acc += `
       <div
-      class="tab-content"
+      class="tabs-block__content-container"
       id="${tabParam[0]}-content"
     >    
     </div>

@@ -21,7 +21,7 @@ class MatchesQuery {
     // this.getData();
   }
   async getData() {
-    const ENDPOINT = 'https://battle-star-app.onrender.com/graphql';
+    const ENDPOINT = 'https://localhost:1337/graphql';
 
     request(ENDPOINT, GetCsLobbies);
 

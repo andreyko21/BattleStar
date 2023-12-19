@@ -1,56 +1,56 @@
 import { request } from 'graphql-request';
-import { GetLobbies } from '../../../queries.graphql.d';
+import { GetCsLobbies } from '../../../queries.graphql.d';
 
 interface LobbyData {
-  id: string | null | undefined;
-  nameMatch?: string;
-  mode?: string;
-  rate?: number;
-  flagSrc?: string;
-  region?: string;
-  imgSrc?: string;
-  map?: string;
-  ping?: number;
-  participants?: number;
-  antyCheat?: boolean;
+  [key: string]: string;
+  //  id: string | null | undefined;
+  //  nameMatch?: string;
+  //  mode?: string;
+  //  rate?: string;
+  //  flagSrc?: string;
+  //  region?: string;
+  //  imgSrc?: string;
+  //  map?: string;
+  //  ping?: string;
+  //  participants?: string;
+  //  antyCheat?: boolean;
 }
 
 class MatchesQuery {
   constructor() {
-    this.getData();
+    // this.getData();
   }
   async getData() {
     const ENDPOINT = 'https://battle-star-app.onrender.com/graphql';
 
-    request(ENDPOINT, GetLobbies);
+    request(ENDPOINT, GetCsLobbies);
 
     try {
-      const { csLobbies } = await request(ENDPOINT, GetLobbies);
+      const { csLobbies } = await request(ENDPOINT, GetCsLobbies);
       if (csLobbies?.data) {
         console.log(csLobbies.data);
 
         const destructureCsLobbies = csLobbies.data.reduce(
-          (acc: LobbyData[], item) => {
+          (acc: { [key: string]: string }[], item) => {
             acc.push({
-              id: item.id,
-              nameMatch: item.attributes?.title,
-              mode: item.attributes?.gameMode?.value,
-              rate: item.attributes?.rate,
-              flagSrc:
-                item.attributes?.creator?.data?.attributes?.Options
-                  ?.selected_country?.data?.attributes?.flag?.data?.attributes
-                  ?.url,
-              region:
-                item.attributes?.creator?.data?.attributes?.Options
-                  ?.selected_country?.data?.attributes?.name,
-              imgSrc:
-                item.attributes?.map?.data?.attributes?.logo?.data?.[0]
-                  ?.attributes?.url,
-              map: item.attributes?.map?.data?.attributes?.name,
+              id: item.id as string,
+              nameMatch: item.attributes?.title as string,
+              mode: item.attributes?.gameMode?.data?.attributes
+                ?.title as string,
+              rate: item.attributes?.rate.toString(),
+              flagSrc: item.attributes?.creator?.data?.attributes?.Options
+                ?.selected_country?.data?.attributes?.flag?.data?.attributes
+                ?.url as string,
+              region: item.attributes?.creator?.data?.attributes?.Options
+                ?.selected_country?.data?.attributes?.name as string,
+              imgSrc: item.attributes?.map?.data?.attributes?.logo?.data?.[0]
+                ?.attributes?.url as string,
+              map: item.attributes?.map?.data?.attributes?.name as string,
               ping: item.attributes?.ping,
-              participants:
-                item.attributes?.participant?.players?.data?.length || 0,
-              antyCheat: item.attributes?.antyCheat?.antyCheat,
+              participants: (
+                item.attributes?.participant?.players?.data?.length || 0
+              ).toString(),
+              //  antyCheat: item.attributes?.antyCheat?.antyCheat,
             });
             return acc;
           },

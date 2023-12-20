@@ -105,32 +105,32 @@ const regionOptions = [
   { value: 'Lithuania', label: 'Lithuania' },
   { value: 'Sweden', label: 'Sweden' },
 ];
-const regionOptionsWithImg = [
-  {
-    value: 'Afganistan',
-    label: 'Afganistan',
-    img: flagImg,
-  },
-  {
-    value: 'Austria',
-    label: 'Austria',
-    img: flagImg,
-  },
-  {
-    value: 'Ukraine',
-    label: 'Ukraine',
-    img: flagImg,
-  },
-  { value: 'Poland', label: 'Poland', img: flagImg },
-  {
-    value: 'Lithuania',
-    label: 'Lithuania',
-    img: flagImg,
-  },
-  { value: 'Sweden', label: 'Sweden', img: flagImg },
-];
+//const regionOptionsWithImg = [
+//  {
+//    value: 'Afganistan',
+//    label: 'Afganistan',
+//    img: flagImg,
+//  },
+//  {
+//    value: 'Austria',
+//    label: 'Austria',
+//    img: flagImg,
+//  },
+//  {
+//    value: 'Ukraine',
+//    label: 'Ukraine',
+//    img: flagImg,
+//  },
+//  { value: 'Poland', label: 'Poland', img: flagImg },
+//  {
+//    value: 'Lithuania',
+//    label: 'Lithuania',
+//    img: flagImg,
+//  },
+//  { value: 'Sweden', label: 'Sweden', img: flagImg },
+//];
 
-new RegionSelection('create-content', regionOptions);
+//new RegionSelection('create-content', regionOptions);
 new GameModeSelection('create-content', gameModeOptions);
 new MapSelection('create-content', mapOptions);
 new RateSelection('create-content', rateOptions);
@@ -147,13 +147,17 @@ new Accordion('find-lobby__maps-filter');
 new GameModeFiltering('filters-find-lobby', gameModeOptions);
 new Accordion('find-lobby__game-mode-filter');
 
-new RegionFiltering('filters-find-lobby', regionOptionsWithImg);
-new Accordion('find-lobby__region-filter');
+const regionFiltering = new RegionFiltering(
+  'filters-find-lobby',
+  'create-content'
+);
+
+//new Accordion('find-lobby__region-filter');
 
 new AntiCheat('filters-find-lobby');
 
 export type Match = {
-  [key: string]: string;
+  [key: string]: string | boolean;
   //id: string;
   //imgSrc: string;
   //flagSrc: string;
@@ -169,6 +173,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   console.log('hello');
 
   try {
+    regionFiltering.assembleFilter();
+    regionFiltering.assembleSelected();
+
     const query = await matchQuery.getData();
     console.log(query);
 

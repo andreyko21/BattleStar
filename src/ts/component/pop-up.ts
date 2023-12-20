@@ -71,30 +71,30 @@ class OpenLobbyPopUp extends BasePopUp {
     super(popUp, overlay, containerId);
   }
 
-  addInnerContent(option: { [key: string]: string }) {
+  addInnerContent(option: { [key: string]: string | boolean }) {
     const title = this.popUp.querySelector(
       '.open-lobby-pop-up__title'
     ) as HTMLElement;
     const currensy = title?.querySelector(
       '.open-lobby-pop-up__amount'
     ) as HTMLElement;
-    currensy.innerHTML = option.rate;
+    currensy.innerHTML = option.rate as string;
 
     const img = this.popUp.querySelector(
       '.open-lobby-pop-up__map-img'
     ) as HTMLImageElement;
-    img.src = option.imgSrc;
-    img.alt = option.map;
+    img.src = option.imgSrc as string;
+    img.alt = option.map as string;
 
     const flag = this.popUp.querySelector(
       '.open-lobby-pop-up__flag-img'
     ) as HTMLImageElement;
-    flag.src = option.flagSrc;
+    flag.src = option.flagSrc as string;
 
     const lobbyName = this.popUp.querySelector(
       '.open-lobby-pop-up__title-lobby'
     ) as HTMLElement;
-    lobbyName.innerHTML = option.nameMatch;
+    lobbyName.innerHTML = option.nameMatch as string;
 
     const button = this.popUp.querySelector(
       '.open-lobby-pop-up__btn'

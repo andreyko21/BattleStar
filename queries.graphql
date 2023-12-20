@@ -130,19 +130,34 @@ query GetMaps {
   }
 }
 
-query GetCsLobbies {
-  csLobbies {
+query GetCsLobbies(
+  $country: [String]
+  $rate: LongFilterInput
+  $mapName: [String]
+  $gameMode: [Int]
+  $antyCheat: Boolean
+) {
+  csLobbies(
+    filters: {
+      and: [
+        {
+          creator: { Options: { selected_country: { name: { in: $country } } } }
+        }
+        { rate: $rate }
+        { map: { name: { in: $mapName } } }
+        { gameMode: { value: { in: $gameMode } } }
+        { antyCheat: { value: { eq: $antyCheat } } }
+      ]
+    }
+  ) {
+    meta {
+      pagination {
+        total
+      }
+    }
     data {
       id
       attributes {
-        gameMode {
-          data {
-            attributes {
-              title
-              value
-            }
-          }
-        }
         title
         creator {
           data {
@@ -185,6 +200,14 @@ query GetCsLobbies {
           players {
             data {
               id
+            }
+          }
+        }
+        gameMode {
+          data {
+            attributes {
+              title
+              value
             }
           }
         }
@@ -249,6 +272,35 @@ mutation CreateCsLobbies(
         antyCheat {
           value
         }
+      }
+    }
+  }
+}
+
+query getCountries {
+  countries {
+    data {
+      attributes {
+        name
+        flag {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetGameModes {
+  csGameModes {
+    data {
+      id
+      attributes {
+        title
+        value
       }
     }
   }

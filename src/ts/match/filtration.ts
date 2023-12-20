@@ -63,9 +63,11 @@ class Filtration {
 
   filterMatches() {
     this.filteredMatches = this.filters.reduce((acc, filtrationOptions) => {
-      acc = acc.filter((match) =>
-        filtrationOptions[1].includes(match[filtrationOptions[0]])
-      );
+      acc = acc.filter((match) => {
+        if (typeof match[filtrationOptions[0]]) {
+          filtrationOptions[1].includes(match[filtrationOptions[0]] as string);
+        }
+      });
       return acc;
     }, this.matches);
     // this.filteredMatches =filteringMatches;

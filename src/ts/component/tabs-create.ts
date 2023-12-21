@@ -30,18 +30,18 @@ class TabsCreate {
     </div>
     `;
       return acc;
-    }, '');
+    }, "");
 
     const tabsContentHtml = this.tabsParam.reduce((acc: string, tabParam) => {
       acc += `
       <div
-      class="tab-content"
+      class="tabs-block__content-container"
       id="${tabParam[0]}-content"
     >    
     </div>
     `;
       return acc;
-    }, '');
+    }, "");
 
     const template = `
             <div class="tabs-block__tabs">
@@ -53,7 +53,7 @@ class TabsCreate {
       </div>
       `;
 
-    const tabsBlock = document.createElement('div');
+    const tabsBlock = document.createElement("div");
     tabsBlock.classList.add(`tabs-block`);
     tabsBlock.classList.add(`${this.tabsClass}`);
     tabsBlock.innerHTML = template;

@@ -1,5 +1,6 @@
-import Sprite from "./../../images/sprite.svg";
-import "./../../styles/components/tournaments/tournaments-card.scss";
+import { getLocateParam } from "../../../functions/windowLocation";
+import Sprite from "./../../../../images/sprite.svg";
+import "./../../../../styles/components/tournaments/tournaments-card.scss";
 
 interface TournamentCardData {
   id: string;
@@ -22,10 +23,11 @@ export default class TournamentCard {
   }
 
   private render(): void {
+    const selectGame = getLocateParam("game") ?? "cs2";
     const cardsHtml = this.tournaments
       .map(
         (tournament) => `
-          <a class="tournaments-card" href="#">
+          <a class="tournaments-card" href="/tournament.html?id=${tournament.id}&game=${selectGame}">
             <div class="tournaments-card__img-block">
               <img src="${tournament.imageUrl}" alt="tournamentCard" />
             </div>

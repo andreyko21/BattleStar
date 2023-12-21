@@ -130,16 +130,20 @@ query GetMaps {
   }
 }
 
-query GetLobbies {
+query GetCsLobbies {
   csLobbies {
     data {
       id
       attributes {
-        title
         gameMode {
-          value
+          data {
+            attributes {
+              title
+              value
+            }
+          }
         }
-        rate
+        title
         creator {
           data {
             attributes {
@@ -176,7 +180,7 @@ query GetLobbies {
             }
           }
         }
-        ping
+        rate
         participant {
           players {
             data {
@@ -186,7 +190,64 @@ query GetLobbies {
         }
         ping
         antyCheat {
-          antyCheat
+          value
+        }
+      }
+    }
+  }
+}
+
+mutation CreateCsLobbies(
+  $title: String
+  $creator: ID
+  $map: ID
+  $rate: Long
+  $gameMode: ID
+  $participant: [ID]
+  $ping: Long
+  $antyCheat: Boolean
+) {
+  createCsLobby(
+    data: {
+      title: $title
+      creator: $creator
+      map: $map
+      rate: $rate
+      gameMode: $gameMode
+      participant: { players: $participant }
+      ping: $ping
+      antyCheat: { value: $antyCheat }
+    }
+  ) {
+    data {
+      attributes {
+        title
+        creator {
+          data {
+            id
+          }
+        }
+        map {
+          data {
+            id
+          }
+        }
+        rate
+        gameMode {
+          data {
+            id
+          }
+        }
+        participant {
+          players {
+            data {
+              id
+            }
+          }
+        }
+        ping
+        antyCheat {
+          value
         }
       }
     }

@@ -13,7 +13,12 @@
       <load ="src/html/sidebar.html" />
       <main class="calibration-page" id="calibration-page">
         <!-- overlay -- прикриває контент при відкритті модального вікна -->
-        <div class="overlay"></div>
+        <div id="overlay" class="overlay"></div>
+        <load
+          ="src/html/components/pop-up.html"
+          file="open-lobby-pop-up"
+          class="calibration-page__open-lobby-pop-up open-lobby-pop-up"
+        />
         <load
           ="src/html/components/pop-up.html"
           file="calibration-pop-up"
@@ -23,27 +28,33 @@
           src="./src/images/calibration-lobby/cs-bg.png"
           class="calibration-page__bg-img"
         />
-        <load
-          ="src/html/components/calibration/calibration-title.html"
-          class="calibration-page__calibration-title"
-        />
-        <div class="calibration-page__container tabs-block">
+        <div class="calibration-page__main-wrapper" id="main-wrapper">
           <load
-            ="src/html/components/match/sorting-block.html"
-            class="calibration-page__view-tabs"
+            ="src/html/components/calibration/calibration-title.html"
+            class="calibration-page__calibration-title"
           />
-          <div class="calibration-page__content tabs-block__content">
-            <div
-              class="calibration-page__grid-block-wrapper tabs-block__content-container tabs-block__content-container_active"
-              id="grid-content"
-            >
-              <div class="calibration-page__grid-block" id="match-grid"> </div>
-            </div>
-            <div
-              class="calibration-page__table-wrapper tabs-block__content-container"
-              id="table-content"
-            >
-              <table class="calibration-page__table" id="match-table"></table>
+          <div class="calibration-page__container tabs-block">
+            <load
+              ="src/html/components/match/sorting-block.html"
+              class="calibration-page__view-tabs"
+            />
+            <div class="calibration-page__content tabs-block__content">
+              <div
+                class="calibration-page__grid-block-wrapper tabs-block__content-container tabs-block__content-container_active"
+                id="grid-content"
+              >
+                <div class="calibration-page__grid-block" id="calibration-grid">
+                </div>
+              </div>
+              <div
+                class="calibration-page__table-wrapper tabs-block__content-container"
+                id="table-content"
+              >
+                <table
+                  class="calibration-page__table"
+                  id="calibration-table"
+                ></table>
+              </div>
             </div>
           </div>
         </div>

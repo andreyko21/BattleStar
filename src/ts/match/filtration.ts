@@ -73,7 +73,7 @@ class Filtration {
     // const lobbyOpenning = new OpenLobbyPopUp('open-lobby-pop-up', overlay);
 
     new MatchRow('table-content', this.filteredMatches, this.popUp);
-    new MatchTile('content-grid-block', this.filteredMatches);
+    new MatchTile('content-grid-block', this.filteredMatches, this.popUp);
   }
 
   //  addObserverToSlider() {

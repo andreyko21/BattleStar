@@ -34,7 +34,7 @@ class MatchRow {
            <div class="match-tr__name-block">
              <img
                src="${option.flagSrc}"
-               alt="flag"
+               alt="flag of ${option.region}"
                class="match-tr__flag"
              />
              <div class="match-tr__name"> ${option.nameMatch} </div>
@@ -50,11 +50,15 @@ class MatchRow {
          </td>
          <td class="match-tr__mode">
            <div class="match-tr__data-title"> Режим </div>
-           <div class="match-tr__rate-value"> ${option.mode} </div>
+           <div class="match-tr__rate-value"> ${option.mode.slice(
+             1
+           )}x${option.mode.slice(1)} </div>
          </td>
          <td class="match-tr__participants">
            <div class="match-tr__data-title"> Учасников </div>
-           <div class="match-tr__rate-value"> ${option.participants} </div>
+           <div class="match-tr__rate-value"> ${
+             option.participants
+           }x${option.mode.slice(1)} </div>
          </td>
          <td class="match-tr__ping-cell">
            <div class="match-tr__ping-block">
@@ -80,9 +84,7 @@ class MatchRow {
       const target = e.target as HTMLElement;
       const targetRow = target.closest('.match-tr');
       if (targetRow) {
-        const lobbyId = targetRow.id;
-        //const lobbyId =this.getElementId(target);
-        const option = this.options.find((elem) => elem.id == lobbyId);
+        const option = this.options.find((elem) => elem.id == targetRow.id);
         if (option) {
           this.popUp.addInnerContent(option);
           this.popUp.open();

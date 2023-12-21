@@ -3,6 +3,7 @@
   height: 100%;
   background: $gray900; // rgba(248 248 248 0.02)
   backdrop-filter: blur(10px);
+  cursor: pointer;
   &__img-block {
     position: relative;
     width: 100%;

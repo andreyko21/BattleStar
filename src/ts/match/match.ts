@@ -20,9 +20,10 @@ import { AntiCheat } from './anti-cheat.ts';
 import { MatchRow } from '../match/match-row.ts';
 import { MatchTile } from '../match/match-grid.ts';
 import { Filtration } from './filtration.ts';
-import { MatchesQuery } from './query.ts';
+//import { MatchesQuery } from './query.ts';
+import { MatchesQuery } from './newQuery.ts';
 
-new MatchesQuery();
+const matchQuery = new MatchesQuery();
 
 //const filtersTabsBlock = document.querySelector(
 //  '.match-page__filters'
@@ -35,7 +36,7 @@ new MatchesQuery();
 
 const mayMethods: IRenderMethod = {
   find: () => {
-    console.log('find');
+    // console.log('find');
   },
   translation: () => {
     // const translationTab = StrimingTab.getInstance();
@@ -53,7 +54,7 @@ new LavaLamp('match-page__content');
 const sortingBlockIdArr = ['grid', 'table'];
 const addClassForSort = () => {
   //id:string
-  console.log('Hello!');
+  //  console.log('Hello!');
 };
 
 const forSorting = new CreatedObjForIRenderMethod(
@@ -164,7 +165,25 @@ export type Match = {
   //ping: string;
 };
 
-const matches: Match[] = [
+document.addEventListener('DOMContentLoaded', async () => {
+  console.log('hello');
+
+  try {
+    const query = await matchQuery.getData();
+    console.log(query);
+
+    if (query) {
+      new MatchRow('table-content', query, lobbyOpenning);
+      new MatchTile('content-grid-block', query, lobbyOpenning);
+
+      //const matchFilters =
+      new Filtration('filters-find-lobby', query, lobbyOpenning);
+      //const filtrationMatches = matchFilters.filteredMatches;
+    }
+  } catch (error) {}
+});
+
+[
   {
     id: '1',
     imgSrc: mapImg,
@@ -312,7 +331,7 @@ const matches: Match[] = [
 ];
 
 //const popUp = document.querySelector('.open-lobby-pop-up') as HTMLDivElement;
-const overlay = document.querySelector('.overlay') as HTMLDivElement;
+//const overlay = document.querySelector('.overlay') as HTMLDivElement;
 //let calibrationPopUp: IBasePopUp;
 //if (popUp && overlay) {
 //  calibrationPopUp = new BasePopUp(popUp, overlay);
@@ -323,11 +342,8 @@ const overlay = document.querySelector('.overlay') as HTMLDivElement;
 //  calibrationBtn?.addEventListener('click', () => calibrationPopUp.close());
 //}
 
-const lobbyOpenning = new OpenLobbyPopUp('open-lobby-pop-up', overlay);
-
-new MatchRow('table-content', matches, lobbyOpenning);
-new MatchTile('content-grid-block', matches);
-
-//const matchFilters =
-new Filtration('filters-find-lobby', matches, lobbyOpenning);
-//const filtrationMatches = matchFilters.filteredMatches;
+const lobbyOpenning = new OpenLobbyPopUp(
+  'open-lobby-pop-up',
+  'overlay',
+  'content-wrapper'
+);

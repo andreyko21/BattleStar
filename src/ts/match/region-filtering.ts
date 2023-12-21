@@ -1,5 +1,3 @@
-import { request } from 'graphql-request';
-import { GetCountries } from '../../../queries.graphql.d';
 import { CreateingCheckboxWithImg } from '../component/checkbox-with-img';
 import Sprite from './../../images/sprite.svg';
 import { Accordion } from '../component/accordeon';
@@ -21,46 +19,20 @@ class RegionFiltering {
     if (!this.selectedContainer) {
       throw new Error(`Container with id #${selectedContainerId} not found.`);
     }
+
+    this.renderSelectionContainer();
+    this.renderFilterContainer();
   }
 
-  private async getCheckboxesData(): Promise<
-    { value: string; label: string; img: string }[]
-  > {
-    const ENDPOINT = 'https://battle-star-app.onrender.com/graphql';
-
-    try {
-      const { countries } = await request(
-        ENDPOINT,
-        GetCountries,
-        {},
-        {
-          Authorization:
-            'Bearer 9c9bf4554f3ecfed253aca7329b2c46511bf3c9b58d2b9a865d9998c75062aab17b1ad96c3c5d878b4aac951441353b066b95b7b20fbd4f31c5466fe8d2479b775f1a398d92e53cfa2e89141d61ee1f32b4850a2daaaebbcf75d3a510bc7e2a3e8613f71c4c84bf7e109f00e2629c12aae3a372fc954fe4de327f478d6857912',
-        }
-      );
-      console.log('end');
-      if (countries?.data) {
-        console.log(countries.data);
-
-        return countries.data.map((item) => ({
-          value: item.attributes?.name as string,
-          label: item.attributes?.name as string,
-          img: item.attributes?.flag.data?.attributes?.url as string,
-        }));
-      }
-    } catch (error) {
-      console.error(error);
-    }
-
-    return [];
-  }
-
-  private async renderCheckboxHtml(): Promise<string> {
-    const checkboxData = await this.getCheckboxesData();
-    console.log(checkboxData);
-
+  private async renderCheckboxHtml(
+    checkboxData: {
+      value: string;
+      label: string;
+      img: string;
+    }[]
+  ): Promise<string> {
     const checkboxObj = new CreateingCheckboxWithImg(
-      'region-filter',
+      'country-filter',
       checkboxData,
       'region-filter-checkboxes-container'
     );
@@ -112,27 +84,32 @@ class RegionFiltering {
     this.selectedContainer?.prepend(rateSelectedElem);
   }
 
-  private async renderRadioBtnHtml() {
-    const radioBtnData = await this.getCheckboxesData();
-    console.log(radioBtnData);
-
+  private async renderRadioBtnHtml(
+    radioBtnData: { value: string; label: string; img: string }[]
+  ) {
     const radioBtnHtml = new BtnOnRadioOrCheck(
-      'region-selected',
+      'country-selected',
       radioBtnData,
       'region-selected-btns'
     );
     radioBtnHtml.createBtnRadio();
   }
 
-  async assembleFilter() {
-    this.renderFilterContainer();
-    await this.renderCheckboxHtml();
+  async assembleFilter(
+    checkboxData: {
+      value: string;
+      label: string;
+      img: string;
+    }[]
+  ) {
+    await this.renderCheckboxHtml(checkboxData);
     new Accordion('find-lobby__region-filter');
   }
 
-  async assembleSelected() {
-    this.renderSelectionContainer();
-    this.renderRadioBtnHtml();
+  async assembleSelected(
+    radioBtnData: { value: string; label: string; img: string }[]
+  ) {
+    this.renderRadioBtnHtml(radioBtnData);
   }
 }
 

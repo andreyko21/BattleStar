@@ -1,6 +1,6 @@
 import mapImg from '../../images/temporary/map-img.png';
 import flagImg from '../../images/temporary/ukr-flag.png';
-import { OpenLobbyPopUp } from '../component/pop-up.ts';
+//import { OpenLobbyPopUp } from '../component/pop-up.ts';
 import { BaseTabs, CreatedObjForIRenderMethod } from '../component/tabs.ts';
 import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
@@ -8,22 +8,27 @@ import { Accordion } from '../component/accordeon.ts';
 //import { StrimingTab } from './striming/striming.ts';
 import { BtnOnRadioOrCheck } from './btnOnRadioOrCheck.ts';
 import { RateSelection } from './rate-selection.ts';
-import { MapSelection } from './map-selection.ts';
-import { GameModeSelection } from './game-mode-selection.ts';
-import { RegionSelection } from './region-selection.ts';
 import { TitleCreateLobby } from './title-create-lobby.ts';
 import { RateFiltering } from './rate-filtering.ts';
-import { MapFiltering } from './map-filtering.ts';
-import { GameModeFiltering } from './game-mode-filtering.ts';
+//import { MapFiltering } from './map-filtering.ts';
+//import { GameModeFiltering } from './game-mode-filtering.ts';
 import { RegionFiltering } from './region-filtering.ts';
 import { AntiCheat } from './anti-cheat.ts';
-import { MatchRow } from '../match/match-row.ts';
-import { MatchTile } from '../match/match-grid.ts';
-import { Filtration } from './filtration.ts';
+//import { MatchRow } from '../match/match-row.ts';
+//import { MatchTile } from '../match/match-grid.ts';
+//import { Filtration } from './filtration.ts';
 //import { MatchesQuery } from './query.ts';
-import { MatchesQuery } from './newQuery.ts';
+//import { MatchesQuery } from './newQuery.ts';
+import { GettingMapsData } from './geting-maps-data.ts';
+import { GettingMapsFiltering } from './maps-filtering.ts';
+import { GettingMapsSelected } from './maps-selection.ts';
+import { GettingRegionData } from './geting-region-data.ts';
+import { GettingGameModeData } from './geting-game-mode-data.ts';
+import { GettingGameModeFiltering } from './geme-modes-filtering.ts';
+import { GettingGameModeSelected } from './geme-modes-selection.ts';
+import { config } from '../config.ts';
 
-const matchQuery = new MatchesQuery();
+import { newFiltration } from './filtration-for-query.ts';
 
 //const filtersTabsBlock = document.querySelector(
 //  '.match-page__filters'
@@ -65,16 +70,16 @@ const forSorting = new CreatedObjForIRenderMethod(
 
 new BaseTabs('content__view-block', forSorting.createObj());
 
-const mapOptions = [
-  { value: 'Dust II', label: 'Dust II' },
-  { value: 'Mirage', label: 'Mirage' },
-  { value: 'Inferno', label: 'Inferno' },
-  { value: 'Lake', label: 'Lake' },
-  { value: 'Ancient', label: 'Ancient' },
-  { value: 'Nuke', label: 'Nuke' },
-];
+//const mapOptions = [
+//  { value: 'Dust II', label: 'Dust II' },
+//  { value: 'Mirage', label: 'Mirage' },
+//  { value: 'Inferno', label: 'Inferno' },
+//  { value: 'Lake', label: 'Lake' },
+//  { value: 'Ancient', label: 'Ancient' },
+//  { value: 'Nuke', label: 'Nuke' },
+//];
 
-new BtnOnRadioOrCheck('map-selected', mapOptions, 'map-selected-wrapper');
+//new BtnOnRadioOrCheck('map-selected', mapOptions, 'map-selected-wrapper');
 
 const rateOptions = [
   { value: '100', label: '100' },
@@ -91,20 +96,20 @@ new BtnOnRadioOrCheck(
   'rate-selected-wrapper',
   'BS'
 );
-const gameModeOptions = [
-  { value: '1x1', label: '1x1' },
-  { value: '2x2', label: '2x2' },
-  { value: '5x5', label: '5x5' },
-  { value: '10x10', label: '10x10' },
-];
-const regionOptions = [
-  { value: 'Afganistan', label: 'Afganistan' },
-  { value: 'Austria', label: 'Austria' },
-  { value: 'Ukraine', label: 'Ukraine' },
-  { value: 'Poland', label: 'Poland' },
-  { value: 'Lithuania', label: 'Lithuania' },
-  { value: 'Sweden', label: 'Sweden' },
-];
+//const gameModeOptions = [
+//  { value: '1x1', label: '1x1' },
+//  { value: '2x2', label: '2x2' },
+//  { value: '5x5', label: '5x5' },
+//  { value: '10x10', label: '10x10' },
+//];
+//const regionOptions = [
+//  { value: 'Afganistan', label: 'Afganistan' },
+//  { value: 'Austria', label: 'Austria' },
+//  { value: 'Ukraine', label: 'Ukraine' },
+//  { value: 'Poland', label: 'Poland' },
+//  { value: 'Lithuania', label: 'Lithuania' },
+//  { value: 'Sweden', label: 'Sweden' },
+//];
 //const regionOptionsWithImg = [
 //  {
 //    value: 'Afganistan',
@@ -131,21 +136,24 @@ const regionOptions = [
 //];
 
 //new RegionSelection('create-content', regionOptions);
-new GameModeSelection('create-content', gameModeOptions);
-new MapSelection('create-content', mapOptions);
-new RateSelection('create-content', rateOptions);
-new TitleCreateLobby('create-content');
+//new GameModeSelection('create-content', gameModeOptions);
+//new MapSelection('create-content', mapOptions);
 
 //new CreateingCheckbox('rate-filter', rateOptions, 'rate-filter-wrapper');
 
 new RateFiltering('filters-find-lobby', rateOptions);
 new Accordion('find-lobby__rate-filter');
 
-new MapFiltering('filters-find-lobby', mapOptions);
-new Accordion('find-lobby__maps-filter');
+//new MapFiltering('filters-find-lobby', mapOptions);
+//new Accordion('find-lobby__maps-filter');
 
-new GameModeFiltering('filters-find-lobby', gameModeOptions);
-new Accordion('find-lobby__game-mode-filter');
+const mapsFiltering = new GettingMapsFiltering('filters-find-lobby');
+const mapsSelected = new GettingMapsSelected('create-content');
+
+//new GameModeFiltering('filters-find-lobby', gameModeOptions);
+//new Accordion('find-lobby__game-mode-filter');
+const gameModeFiltering = new GettingGameModeFiltering('filters-find-lobby');
+const gameModeSelected = new GettingGameModeSelected('create-content');
 
 const regionFiltering = new RegionFiltering(
   'filters-find-lobby',
@@ -173,20 +181,45 @@ document.addEventListener('DOMContentLoaded', async () => {
   console.log('hello');
 
   try {
-    regionFiltering.assembleFilter();
-    regionFiltering.assembleSelected();
+    const queryForMapsData = new GettingMapsData(config.ENDPOINT);
 
-    const query = await matchQuery.getData();
-    console.log(query);
+    const queryForGameMode = new GettingGameModeData(config.ENDPOINT);
 
-    if (query) {
-      new MatchRow('table-content', query, lobbyOpenning);
-      new MatchTile('content-grid-block', query, lobbyOpenning);
+    const queryForRegionData = new GettingRegionData(config.ENDPOINT);
 
-      //const matchFilters =
-      new Filtration('filters-find-lobby', query, lobbyOpenning);
-      //const filtrationMatches = matchFilters.filteredMatches;
-    }
+    const mapsData = await queryForMapsData.getCheckboxesData();
+
+    const gameModeData = await queryForGameMode.getCheckboxesData();
+    const regionData = await queryForRegionData.getCheckboxesData();
+    console.log(regionData);
+
+    mapsFiltering.assembleFilter(mapsData);
+    gameModeFiltering.assembleFilter(gameModeData);
+    regionFiltering.assembleFilter(regionData);
+
+    regionFiltering.assembleSelected(regionData);
+    gameModeSelected.assembleFilter(gameModeData);
+    mapsSelected.assembleFilter(mapsData);
+    new RateSelection('create-content', rateOptions);
+    new TitleCreateLobby('create-content');
+
+    new newFiltration('filters-find-lobby');
+
+    // const matchQuery = new MatchesQuery();
+
+    // const query = await matchQuery.getData();
+    // console.log(query);
+
+    // if (query) {
+    //   new MatchRow('table-content', query, lobbyOpenning);
+    //   new MatchTile('content-grid-block', query, lobbyOpenning);
+
+    //   //const matchFilters =
+    //   new Filtration('filters-find-lobby', query, lobbyOpenning);
+    //   //const filtrationMatches = matchFilters.filteredMatches;
+
+    //   new newFiltration('filters-find-lobby', lobbyOpenning);
+    // }
   } catch (error) {}
 });
 
@@ -349,8 +382,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 //  calibrationBtn?.addEventListener('click', () => calibrationPopUp.close());
 //}
 
-const lobbyOpenning = new OpenLobbyPopUp(
-  'open-lobby-pop-up',
-  'overlay',
-  'content-wrapper'
-);
+//const lobbyOpenning = new OpenLobbyPopUp(
+//  'open-lobby-pop-up',
+//  'overlay',
+//  'content-wrapper'
+//);

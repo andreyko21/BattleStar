@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="src/styles/statistics.scss">
+   <title>Statistics</title>
+</head>
+
+<body>
+   <div class="wrapper">
+      <load="src/html/header.html" />
+      <load="src/html/sidebar.html" />
+      <main class="page">
+         <section class="statistics">
+            <div class="statistics__bg"></div>
+            <div class="statistics__container">
+               <aside class="statistics__aside">
+                  <load="src/html/components/ui/asideMenu.html" />
+               </aside>
+               <div class="statistics__content">
+                  <div class="statistics__top"></div>
+                  <div class="statistics__cs"></div>
+                  <div class="statistics__dota"></div>
+
+               </div>
+         </section>
+      </main>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script type="module" src="./src/ts/cabinet/statistics.ts"></script>
+</body>
+
+</html>

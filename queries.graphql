@@ -29,14 +29,14 @@ query GetPageNewsQuery {
 
 query GetMainNewsQuery {
   mainNews {
-    data{
-      attributes{
+    data {
+      attributes {
         title
         text
         data
-        img{
-          data{
-            attributes{
+        img {
+          data {
+            attributes {
               url
             }
           }
@@ -47,14 +47,14 @@ query GetMainNewsQuery {
 }
 
 query GetTeamsQuery {
-  teams{
-    data{
-      attributes{
+  teams {
+    data {
+      attributes {
         name
         rating
-        logo{
-          data{
-            attributes{
+        logo {
+          data {
+            attributes {
               url
             }
           }
@@ -63,17 +63,45 @@ query GetTeamsQuery {
     }
   }
 }
-query GetMapsQuery{
-  maps{
-    data{
-      attributes{
-        logo{
-          data{
-            attributes{
+query GetMapsQuery {
+  maps {
+    data {
+      attributes {
+        logo {
+          data {
+            attributes {
               url
             }
           }
         }
+      }
+    }
+  }
+}
+
+query GetHistoryMatch {
+  historyMatches {
+    data {
+      attributes {
+        options {
+          name
+          data
+          time
+          regime
+          result
+          money
+        }
+      }
+    }
+  }
+}
+
+query GetUser{
+  usersPermissionsUsers{
+    data{
+      id
+      attributes{
+        username
       }
     }
   }

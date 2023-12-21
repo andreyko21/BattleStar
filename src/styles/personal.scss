@@ -1,7 +1,49 @@
+@import "./style.scss";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+@import "./components/ui/asideMenu.scss";
+@import "./components/ui/dropDownMenu.scss";
+.wrapper {
+   display: grid;
+   grid-template:
+      "sidebar header"
+      "sidebar main" 1fr;
+   min-height: 0%;
+   grid-template-columns: min-content auto;
+
+   overflow: clip;
+}
+.page {
+   width: 100%;
+   grid-area: main;
+}
 .personal {
+   margin-top: 90px;
+   &__bg {
+      background: url(../../src/images/newsBg.png) repeat-x;
+      height: 200px;
+      width: 100%;
+      position: absolute;
+      top: 49px;
+      left: 0;
+      z-index: -1;
+   }
+   &__container{
    display: flex;
-   justify-content: space-between;
-   padding: 29px 84px 49px 59px;
+
+   }
+   &__content{
+      width: 1227px;
+      margin-left: 44px;
+      background: $gray800;
+      backdrop-filter: blur(60px);
+      padding: 29px 84px 53px 59px;
+      display: flex;
+      justify-content: space-between;
+   }
+
+   &__item{}
+
    &__row {
       display: flex;
       margin-bottom: 42px;
@@ -17,6 +59,7 @@
          font-weight: 400;
          line-height: normal;
          margin: 7px 0 0 20px;
+         background: transparent;
       }
    }
    &__info {
@@ -59,6 +102,10 @@
             color: $gray25;
             margin-left: auto;
             font-size: 24px;
+            &._act{
+               border: 1px solid $gray200;
+               padding: 4px;
+            }
          }
       }
       &-biography {
@@ -70,6 +117,11 @@
             margin-left: auto;
             font-size: 14px;
             width: 469px;
+
+            &._act{
+               border: 1px solid $gray200;
+               padding: 4px;
+            }
          }
       }
       &-data {

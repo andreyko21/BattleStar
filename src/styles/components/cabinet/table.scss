@@ -1,10 +1,17 @@
 @import "./../../../styles/style.scss";
 
 .table {
+   &_history{
+      max-height: 500px;
+      height: auto;
+      overflow: auto;
+      padding-right: 10px;
+   }
    &__tab {
       border-collapse: collapse;
       width: 100%;
       margin: 34px 0 0;
+  
    }
    &__tr {
       height: 56px;
@@ -69,6 +76,7 @@
       font-size: 16px;
       font-weight: 400;
       line-height: normal;
+
       span {
          color: $yellow300;
          text-decoration: line-through;

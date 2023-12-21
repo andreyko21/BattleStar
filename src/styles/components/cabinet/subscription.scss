@@ -1,0 +1,118 @@
+.subscription {
+   padding: 46px 63px 38px 21px;
+   &__title {
+      display: flex;
+      align-items: center;
+      color: $gray25;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: normal;
+      margin-bottom: 17px;
+      svg {
+         width: 28px;
+         height: 28px;
+         fill: $gray25;
+         margin-right: 10px;
+      }
+
+ 
+   }
+   &__text {
+      color: $gray25;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      width: 814px;
+      margin: 0 0 32px 38px;
+   }
+   &__select {
+      margin-left: 38px;
+      display: flex;
+      justify-content: space-between;
+     
+      &-basic,
+      &-premium,
+      &-pro {
+         width: 352px;
+         height: 462px;
+         background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #241c2a 100%);
+         border: 2px solid transparent;
+         padding-top: 52px;
+         position: relative;
+         &._act {
+            border: 2px solid $yellow300;
+            box-shadow: 0px 0px 20px 0px rgba(250,199,4,1);
+         }
+      }
+
+      &-title {
+         color: $gray25;
+         text-align: center;
+         font-size: 30px;
+         font-weight: 700;
+         line-height: normal;
+         margin-bottom: 14px;
+         &._act {
+            color: $yellow300;
+         }
+      }
+      &-price {
+         color: $gray25;
+         text-align: center;
+         font-size: 24px;
+         font-weight: 500;
+         line-height: normal;
+         margin-bottom: 19px;
+      }
+      &-text {
+         color: $gray25;
+         text-align: center;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+         margin: 0 0 45px 0;
+      }
+      &-list {
+         display: block;
+         width: 230px;
+         margin: 0 auto;
+         li {
+            color: $gray25;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: normal;
+            list-style-type: disc;
+            text-align: left;
+         }
+      }
+      &-btn {
+         position: absolute;
+         bottom: 37px;
+         left: 0;
+         right: 0;
+         background: transparent;
+         color: $yellow300;
+         font-size: 18px;
+         font-weight: 500;
+         line-height: normal;
+         margin: 0 auto;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         width:fit-content;
+         svg {
+            width: 15px;
+            height: 15px;
+            fill: $gray25;
+            margin-right: 8px;
+            display: none;
+         }
+         &_act{
+            color: $gray25;
+            svg{
+               display: block;
+            }
+         }
+      }
+   }
+}

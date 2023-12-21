@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="src/styles/wallet.scss">
+   <title>Personal</title>
+</head>
+
+<body>
+   <div class="wrapper">
+      <load="src/html/header.html" />
+      <load="src/html/sidebar.html" />
+      <main class="page">
+         <section class="wallet">
+            <div class="wallet__bg"></div>
+            <div class="wallet__container">
+               <aside class="wallet__aside">
+                  <load="src/html/components/ui/asideMenu.html" />
+               </aside>
+               <div class="wallet__content">
+                  <div class="wallet__top"></div>
+                  <div class="wallet__table table">
+                     <table class="table__tab"></table>
+                  </div>
+                  
+               </div>
+               <div class="wallet__subscription subscription hide">
+                  <h2 class="subscription__title">
+                     <svg>
+                        <use xlink:href="src/images/sprite.svg#arrow-left"></use>
+                     </svg>
+                     Премиум подписки BattleStar
+                  </h2>
+                  <p class="subscription__text">
+                     Значимость этих проблем настолько очевидна, что консультация с широким активом способствует
+                     подготовки и реализации позиций, занимаемых участниками в отношении поставленных задач
+                  </p>
+                  <div class="subscription__select">
+                     <div class="subscription__select-basic  _act">
+                        <h3 class="subscription__select-title subscription__select-title_basic _act">Базовая</h3>
+                        <p class="subscription__select-price">Басплатно</p>
+                        <p class="subscription__select-text">Значимость этих проблем настолько очевидна, что
+                           консультация</p>
+                        <ul class="subscription__select-list">
+                           <li>10% комиссия платформы</li>
+                           <li>50 матчей в истории</li>
+                           <li>участие в любительских турнирах</li>
+                        </ul>
+                        <button class="subscription__select-btn subscription__select-btn_act btn-basic">
+                           Ваша подписка
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#check"></use>
+                           </svg>
+                        </button>
+
+
+                     </div>
+                     <div class="subscription__select-premium">
+                        <h3 class="subscription__select-title subscription__select-title_premium">Премиум</h3>
+                        <p class="subscription__select-price">500$ / мес</p>
+                        <p class="subscription__select-text">Значимость этих проблем настолько очевидна, что
+                           консультация</p>
+                        <ul class="subscription__select-list">
+                           <li>5% комиссия платформы</li>
+                           <li>200 матчей в истории</li>
+                           <li>участие в любительских турнирах</li>
+                        </ul>
+                        <button class="subscription__select-btn btn-premium">
+                           Выбрать
+                        </button>
+                     </div>
+                     <div class="subscription__select-pro">
+                        <h3 class="subscription__select-title subscription__select-title_pro">BattleStar Pro</h3>
+                        <p class="subscription__select-price">4000$ / год</p>
+                        <p class="subscription__select-text">Значимость этих проблем настолько очевидна, что
+                           консультация</p>
+                        <ul class="subscription__select-list">
+                           <li>1% комиссия платформы</li>
+                           <li>1000 матчей в истории</li>
+                           <li>участие в любительских турнирах</li>
+                        </ul>
+                        <button class="subscription__select-btn btn-pro">
+                           Выбрать
+
+                        </button>
+                     </div>
+
+
+
+                  </div>
+
+
+
+               </div>
+               <div class="wallet__transaction transaction">
+                  <h2 class="transaction__title">
+                     <svg>
+                        <use xlink:href="src/images/sprite.svg#arrow-left"></use>
+                     </svg>
+                     Перевести монеты другу
+                  </h2>
+                  <p class="transaction__text">Значимость этих проблем настолько очевидна, что консультация с широким
+                     активом способствует подготовки и реализации позиций, занимаемых участниками в отношении
+                     поставленных задач</p>
+                  <div class="transaction__select">
+                     <div class="transaction__select-row">
+                        <div class="transaction__select-svg">
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#rigth-arrow"></use>
+                           </svg>
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#friend"></use>
+                           </svg>
+                        </div>
+                        <button class="transaction__select-user">
+                           Выберите получателя
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#arrow-right"></use>
+                           </svg>
+
+                        </button>
+                     </div>
+                     <div class="transaction__dropdown">
+                        <div class="transaction__dropdown-inp">
+                           <svg>
+                              <use xlink:href="src/images/sprite.svg#search"></use>
+                           </svg>
+                           <input type="text" class="transaction__dropdown-search" placeholder="Поиск">
+
+                        </div>
+                        <hr class="transaction__dropdown-line">
+                        <ul class="transaction__dropdown-list">
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Lutes_Deas</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> MaxRichter</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Kiil$hot</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> GIroN</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> FusionJame</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Yepilaye</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> K2-So</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Lutes_Deas</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Lutes_Deas</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Lutes_Deas</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Lutes_Deas</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Lutes_Deas</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Lutes_Deas</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Lutes_Deas</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Lutes_Deas</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Lutes_Deas</li>
+                           <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Alex</li>
+
+                        </ul>
+
+
+                     </div>
+                  </div>
+                  <div class="transaction__sum">
+                     <div class="transaction__sum-inp">
+                        <input id="inp" type="text" placeholder="Введите свою сумму">
+                        <p>BS</p>
+                     </div>
+                     <div class="transaction__sum-coins">
+                        <button class="btn btn_money">100 <span>BS</span></button>
+                        <button class="btn btn_money">300 <span>BS</span></button>
+                        <button class="btn btn_money">500 <span>BS</span></button>
+                        <button class="btn btn_money">1000 <span>BS</span></button>
+                        <button class="btn btn_money">3000 <span>BS</span></button>
+                        <button class="btn btn_money">5000 <span>BS</span></button>
+                     </div>
+                     <div class="transaction__sum-btn">
+                        <button id="transaction" class="btn btn_dark-yellow">Перевести</button>
+                     </div>
+                     
+                  </div>
+
+                  
+
+
+
+               </div>
+         </section>
+         <section>
+            
+         </section>
+      </main>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script type="module" src="./src/ts/cabinet/wallet.ts"></script>
+</body>
+
+</html>

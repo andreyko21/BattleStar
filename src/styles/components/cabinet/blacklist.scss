@@ -1,0 +1,86 @@
+.blacklist {
+   padding: 29px 84px 33px 59px;
+   &__title {
+      color: $gray25;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+   }
+   &__content {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 38px;
+    
+   }
+   &__item {
+      width: 544px;
+      overflow: auto;
+   }
+
+   &__row {
+      display: flex;
+      align-items: center;
+      &-avatar {
+         width: 46px;
+         height: 46px;
+         border-radius: 46px;
+      }
+      &-column {
+         margin-left: 11px;
+         width: 109px;
+      }
+      &-name {
+         color: $gray100;
+         font-size: 18px;
+         font-weight: 500;
+         line-height: normal;
+      }
+      &-info {
+         color: $gray500;
+         font-size: 15px;
+         font-weight: 700;
+         line-height: normal;
+         
+      }
+      &-rang {
+         width: 66px;
+         height: 29px;
+         margin-left: 60px;
+      }
+      &-more {
+         margin-left: auto;
+
+         svg {
+            width: 24px;
+            height: 24px;
+         }
+      }
+   }
+   &__line {
+      width: 100%;
+      height: 1px;
+      background: $gray500;
+      margin: 16px 0;
+   }
+   &__info {
+      display: flex;
+      width: 482px;
+      height: 104px;
+      border-radius: 4px;
+      background: $gray600;
+      padding: 22px 24px 22px 29px;
+      svg {
+         width: 40px;
+         height: 40px;
+         fill: $gray100;
+      }
+   }
+   &__text {
+      color: $gray100;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      margin-left: 16px;
+   }
+}

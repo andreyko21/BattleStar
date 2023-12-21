@@ -1,4 +1,4 @@
-import"./modulepreload-polyfill-3cfb730f.js";import{$ as t}from"./jquery-ab814638.js";import{S as u}from"./sprite-b43800c4.js";class k{content;createHeaderData;constructor(a,e){this.content=a,this.createHeaderData=e,this.renderCreateTeams()}renderCreateTeams(){const a=`
+import"./modulepreload-polyfill-3cfb730f.js";import{$ as t}from"./jquery-995cfbaf.js";import{S as u}from"./sprite-b43800c4.js";class k{content;createHeaderData;constructor(a,e){this.content=a,this.createHeaderData=e,this.renderCreateTeams()}renderCreateTeams(){const a=`
           <div class="details__header">
               <div class="details__header-flag">
                   <img src="${this.createHeaderData[0].flag}" alt="flag">

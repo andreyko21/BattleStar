@@ -5,6 +5,7 @@
 @import './components/overlay';
 @import './components/btns';
 @import './components/calibration-pop-up';
+@import './components/open-lobby-pop-up';
 @import './components/calibration/calibration-title';
 @import './components/match/cs-row';
 @import './components/match/cs-card';
@@ -19,7 +20,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
   grid-area: main;
   &__bg-img {
     position: absolute;
@@ -30,6 +31,13 @@
     object-fit: cover;
     object-position: top;
     z-index: -1;
+  }
+
+  &__main-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: auto;
   }
   &__calibration-title {
     margin: 99px auto 53px auto;

@@ -78,31 +78,264 @@ query GetMapsQuery {
     }
   }
 }
-
-query GetHistoryMatch {
-  historyMatches {
+mutation CreateCs2Tournament(
+  $name: String
+  $description: String
+  $maxTeams: Int
+  $moneyEntryRate: Float
+  $startDate: Date
+  $time: Time
+  $regionLimit: Boolean
+  $endDate: Date
+  $maps: [ID]
+  $publishedAt: DateTime
+  $logoId: ID
+) {
+  createCs2Tournament(
+    data: {
+      Tournament: {
+        name: $name
+        description: $description
+        max_teams: $maxTeams
+        money_entry_rate: $moneyEntryRate
+        regionLimit: $regionLimit
+        startDate: $startDate
+        time: $time
+        endDate: $endDate
+        logo: $logoId
+      }
+      maps: $maps
+      publishedAt: $publishedAt
+    }
+  ) {
     data {
       attributes {
-        options {
+        Tournament {
           name
-          data
+          description
+          max_teams
+          money_entry_rate
+          startDate
           time
-          regime
-          result
-          money
+          endDate
+          regionLimit
+          logo {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+        publishedAt
+        maps {
+          data {
+            id
+          }
         }
       }
     }
   }
 }
 
-query GetUser{
-  usersPermissionsUsers{
-    data{
-      id
-      attributes{
-        username
+mutation CreateDota2Tournament(
+  $name: String
+  $description: String
+  $maxTeams: Int
+  $moneyEntryRate: Float
+  $startDate: Date
+  $time: Time
+  $regionLimit: Boolean
+  $endDate: Date
+  $publishedAt: DateTime
+  $logoId: ID
+) {
+  createDota2Tournament(
+    data: {
+      Tournament: {
+        name: $name
+        description: $description
+        max_teams: $maxTeams
+        money_entry_rate: $moneyEntryRate
+        regionLimit: $regionLimit
+        startDate: $startDate
+        time: $time
+        endDate: $endDate
+        logo: $logoId
+      }
+      publishedAt: $publishedAt
+    }
+  ) {
+    data {
+      attributes {
+        Tournament {
+          name
+          description
+          max_teams
+          money_entry_rate
+          startDate
+          time
+          endDate
+          regionLimit
+          logo {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+        publishedAt
       }
     }
   }
 }
+
+query GetMaps {
+  maps {
+    data {
+      id
+      attributes {
+        name
+        logo {
+          data {
+            attributes {
+              alternativeText
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetCsLobbies {
+  csLobbies {
+    data {
+      id
+      attributes {
+        gameMode {
+          data {
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        title
+        creator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      name
+                      flag {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        map {
+          data {
+            attributes {
+              name
+              logo {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        rate
+        participant {
+          players {
+            data {
+              id
+            }
+          }
+        }
+        ping
+        antyCheat {
+          value
+        }
+      }
+    }
+  }
+}
+
+mutation CreateCsLobbies(
+  $title: String
+  $creator: ID
+  $map: ID
+  $rate: Long
+  $gameMode: ID
+  $participant: [ID]
+  $ping: Long
+  $antyCheat: Boolean
+) {
+  createCsLobby(
+    data: {
+      title: $title
+      creator: $creator
+      map: $map
+      rate: $rate
+      gameMode: $gameMode
+      participant: { players: $participant }
+      ping: $ping
+      antyCheat: { value: $antyCheat }
+    }
+  ) {
+    data {
+      attributes {
+        title
+        creator {
+          data {
+            id
+          }
+        }
+        map {
+          data {
+            id
+          }
+        }
+        rate
+        gameMode {
+          data {
+            id
+          }
+        }
+        participant {
+          players {
+            data {
+              id
+            }
+          }
+        }
+        ping
+        antyCheat {
+          value
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+

@@ -422,36 +422,55 @@ type ComponentHashHashs {
   tour: String!
 }
 
-input ComponentHistoryHistoryMatchFiltersInput {
-  name: StringFilterInput
-  data: DateFilterInput
-  time: TimeFilterInput
-  regime: StringFilterInput
-  result: StringFilterInput
-  money: LongFilterInput
-  and: [ComponentHistoryHistoryMatchFiltersInput]
-  or: [ComponentHistoryHistoryMatchFiltersInput]
-  not: ComponentHistoryHistoryMatchFiltersInput
+input ComponentLobbyAntyCheatFiltersInput {
+  value: BooleanFilterInput
+  and: [ComponentLobbyAntyCheatFiltersInput]
+  or: [ComponentLobbyAntyCheatFiltersInput]
+  not: ComponentLobbyAntyCheatFiltersInput
 }
 
-input ComponentHistoryHistoryMatchInput {
+input ComponentLobbyAntyCheatInput {
   id: ID
-  name: String
-  data: Date
-  time: Time
-  regime: String
-  result: String
-  money: Long
+  value: Boolean
+}
+
+type ComponentLobbyAntyCheat {
+  id: ID!
+  value: Boolean!
+}
+
+enum ENUM_COMPONENTLOBBYCSGAMEMODE_VALUE {
+  v1
+  v2
+  v5
+  v10
+}
+
+type ComponentLobbyCsGameMode {
+  id: ID!
+  value: ENUM_COMPONENTLOBBYCSGAMEMODE_VALUE!
+}
+
+input ComponentLobbyParticipantFiltersInput {
+  players: PlayerFiltersInput
+  and: [ComponentLobbyParticipantFiltersInput]
+  or: [ComponentLobbyParticipantFiltersInput]
+  not: ComponentLobbyParticipantFiltersInput
+}
+
+input ComponentLobbyParticipantInput {
+  id: ID
+  players: [ID]
 }
 
 type ComponentHistoryHistoryMatch {
   id: ID!
-  name: String!
-  data: Date!
-  time: Time
-  regime: String!
-  result: String!
-  money: Long
+  players(
+    filters: PlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PlayerRelationResponseCollection
 }
 
 type ComponentParticipantsParticipant {
@@ -1156,6 +1175,64 @@ type Cs2AwardRelationResponseCollection {
   data: [Cs2AwardEntity!]!
 }
 
+input Cs2BrodcastingFiltersInput {
+  id: IDFilterInput
+  title: StringFilterInput
+  creator: PlayerFiltersInput
+  map: MapFiltersInput
+  rate: LongFilterInput
+  viewers: LongFilterInput
+  cs_game_mode: CsGameModeFiltersInput
+  participants: ComponentLobbyParticipantFiltersInput
+  videoUrl: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Cs2BrodcastingFiltersInput]
+  or: [Cs2BrodcastingFiltersInput]
+  not: Cs2BrodcastingFiltersInput
+}
+
+input Cs2BrodcastingInput {
+  title: String
+  creator: ID
+  map: ID
+  rate: Long
+  viewers: Long
+  cs_game_mode: ID
+  participants: ComponentLobbyParticipantInput
+  videoUrl: String
+  publishedAt: DateTime
+}
+
+type Cs2Brodcasting {
+  title: String!
+  creator: PlayerEntityResponse
+  map: MapEntityResponse
+  rate: Long!
+  viewers: Long!
+  cs_game_mode: CsGameModeEntityResponse
+  participants: ComponentLobbyParticipant!
+  videoUrl: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Cs2BrodcastingEntity {
+  id: ID
+  attributes: Cs2Brodcasting
+}
+
+type Cs2BrodcastingEntityResponse {
+  data: Cs2BrodcastingEntity
+}
+
+type Cs2BrodcastingEntityResponseCollection {
+  data: [Cs2BrodcastingEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
 input Cs2TournamentFiltersInput {
   id: IDFilterInput
   Tournament: ComponentTournamentsTournamentFiltersInput
@@ -1211,6 +1288,327 @@ type Cs2TournamentEntityResponseCollection {
 
 type Cs2TournamentRelationResponseCollection {
   data: [Cs2TournamentEntity!]!
+}
+
+input CsGameModeFiltersInput {
+  id: IDFilterInput
+  value: IntFilterInput
+  title: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [CsGameModeFiltersInput]
+  or: [CsGameModeFiltersInput]
+  not: CsGameModeFiltersInput
+}
+
+input CsGameModeInput {
+  value: Int
+  title: String
+  publishedAt: DateTime
+}
+
+type CsGameMode {
+  value: Int!
+  title: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type CsGameModeEntity {
+  id: ID
+  attributes: CsGameMode
+}
+
+type CsGameModeEntityResponse {
+  data: CsGameModeEntity
+}
+
+type CsGameModeEntityResponseCollection {
+  data: [CsGameModeEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input CsLobbyFiltersInput {
+  id: IDFilterInput
+  title: StringFilterInput
+  creator: PlayerFiltersInput
+  map: MapFiltersInput
+  rate: LongFilterInput
+  participant: ComponentLobbyParticipantFiltersInput
+  ping: LongFilterInput
+  antyCheat: ComponentLobbyAntyCheatFiltersInput
+  gameMode: CsGameModeFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [CsLobbyFiltersInput]
+  or: [CsLobbyFiltersInput]
+  not: CsLobbyFiltersInput
+}
+
+input CsLobbyInput {
+  title: String
+  creator: ID
+  map: ID
+  rate: Long
+  participant: ComponentLobbyParticipantInput
+  ping: Long
+  antyCheat: ComponentLobbyAntyCheatInput
+  gameMode: ID
+  publishedAt: DateTime
+}
+
+type CsLobby {
+  title: String!
+  creator: PlayerEntityResponse
+  map: MapEntityResponse
+  rate: Long!
+  participant: ComponentLobbyParticipant!
+  ping: Long!
+  antyCheat: ComponentLobbyAntyCheat!
+  gameMode: CsGameModeEntityResponse
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type CsLobbyEntity {
+  id: ID
+  attributes: CsLobby
+}
+
+type CsLobbyEntityResponse {
+  data: CsLobbyEntity
+}
+
+type CsLobbyEntityResponseCollection {
+  data: [CsLobbyEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input DotaTypeLobbyFiltersInput {
+  id: IDFilterInput
+  value: IntFilterInput
+  title: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [DotaTypeLobbyFiltersInput]
+  or: [DotaTypeLobbyFiltersInput]
+  not: DotaTypeLobbyFiltersInput
+}
+
+input DotaTypeLobbyInput {
+  value: Int
+  title: String
+  publishedAt: DateTime
+}
+
+type DotaTypeLobby {
+  value: Int!
+  title: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type DotaTypeLobbyEntity {
+  id: ID
+  attributes: DotaTypeLobby
+}
+
+type DotaTypeLobbyEntityResponse {
+  data: DotaTypeLobbyEntity
+}
+
+type DotaTypeLobbyEntityResponseCollection {
+  data: [DotaTypeLobbyEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input Dota2BrodcastingFiltersInput {
+  id: IDFilterInput
+  title: StringFilterInput
+  ctreator: PlayerFiltersInput
+  rate: LongFilterInput
+  gameModes: Dota2GameModeFiltersInput
+  viewers: LongFilterInput
+  videoUrl: StringFilterInput
+  participants: ComponentLobbyParticipantFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Dota2BrodcastingFiltersInput]
+  or: [Dota2BrodcastingFiltersInput]
+  not: Dota2BrodcastingFiltersInput
+}
+
+input Dota2BrodcastingInput {
+  title: String
+  ctreator: ID
+  rate: Long
+  gameModes: [ID]
+  viewers: Long
+  videoUrl: String
+  participants: [ComponentLobbyParticipantInput]
+  publishedAt: DateTime
+}
+
+type Dota2Brodcasting {
+  title: String!
+  ctreator: PlayerEntityResponse
+  rate: Long!
+  gameModes(
+    filters: Dota2GameModeFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2GameModeRelationResponseCollection
+  viewers: Long!
+  videoUrl: String!
+  participants(
+    filters: ComponentLobbyParticipantFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): [ComponentLobbyParticipant]!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Dota2BrodcastingEntity {
+  id: ID
+  attributes: Dota2Brodcasting
+}
+
+type Dota2BrodcastingEntityResponse {
+  data: Dota2BrodcastingEntity
+}
+
+type Dota2BrodcastingEntityResponseCollection {
+  data: [Dota2BrodcastingEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+enum ENUM_DOTA2GAMEMODE_VALUE {
+  All_Pick
+  Single_Draft
+  Random_Draft
+  Turbo
+  All_Random
+  Captains_Mode
+  Captains_Draft
+  Least_Played
+  Limited_Heroes
+  Ability_Draft
+  Deathmatch
+  Solo_Mid
+}
+
+input Dota2GameModeFiltersInput {
+  id: IDFilterInput
+  value: StringFilterInput
+  title: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Dota2GameModeFiltersInput]
+  or: [Dota2GameModeFiltersInput]
+  not: Dota2GameModeFiltersInput
+}
+
+input Dota2GameModeInput {
+  value: ENUM_DOTA2GAMEMODE_VALUE
+  title: String
+  publishedAt: DateTime
+}
+
+type Dota2GameMode {
+  value: ENUM_DOTA2GAMEMODE_VALUE!
+  title: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Dota2GameModeEntity {
+  id: ID
+  attributes: Dota2GameMode
+}
+
+type Dota2GameModeEntityResponse {
+  data: Dota2GameModeEntity
+}
+
+type Dota2GameModeEntityResponseCollection {
+  data: [Dota2GameModeEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Dota2GameModeRelationResponseCollection {
+  data: [Dota2GameModeEntity!]!
+}
+
+input Dota2LobbyFiltersInput {
+  id: IDFilterInput
+  title: StringFilterInput
+  creator: PlayerFiltersInput
+  rate: LongFilterInput
+  ping: LongFilterInput
+  antyCheat: ComponentLobbyAntyCheatFiltersInput
+  dota_2_game_modes: Dota2GameModeFiltersInput
+  participant: ComponentLobbyParticipantFiltersInput
+  typeLobby: DotaTypeLobbyFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [Dota2LobbyFiltersInput]
+  or: [Dota2LobbyFiltersInput]
+  not: Dota2LobbyFiltersInput
+}
+
+input Dota2LobbyInput {
+  title: String
+  creator: ID
+  rate: Long
+  ping: Long
+  antyCheat: ComponentLobbyAntyCheatInput
+  dota_2_game_modes: [ID]
+  participant: ComponentLobbyParticipantInput
+  typeLobby: ID
+}
+
+type Dota2Lobby {
+  title: String!
+  creator: PlayerEntityResponse
+  rate: Long!
+  ping: Long!
+  antyCheat: ComponentLobbyAntyCheat!
+  dota_2_game_modes(
+    filters: Dota2GameModeFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2GameModeRelationResponseCollection
+  participant: ComponentLobbyParticipant!
+  typeLobby: DotaTypeLobbyEntityResponse
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Dota2LobbyEntity {
+  id: ID
+  attributes: Dota2Lobby
+}
+
+type Dota2LobbyEntityResponse {
+  data: Dota2LobbyEntity
+}
+
+type Dota2LobbyEntityResponseCollection {
+  data: [Dota2LobbyEntity!]!
+  meta: ResponseCollectionMeta!
 }
 
 input Dota2TeamFiltersInput {
@@ -1318,44 +1716,46 @@ type Dota2TournamentRelationResponseCollection {
   data: [Dota2TournamentEntity!]!
 }
 
-input HistoryMatchFiltersInput {
+input FeadbackFiltersInput {
   id: IDFilterInput
-  options: ComponentHistoryHistoryMatchFiltersInput
+  userName: StringFilterInput
+  userEmail: StringFilterInput
+  Message: StringFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
-  and: [HistoryMatchFiltersInput]
-  or: [HistoryMatchFiltersInput]
-  not: HistoryMatchFiltersInput
+  and: [FeadbackFiltersInput]
+  or: [FeadbackFiltersInput]
+  not: FeadbackFiltersInput
 }
 
-input HistoryMatchInput {
-  options: [ComponentHistoryHistoryMatchInput]
+input FeadbackInput {
+  userName: String
+  userEmail: String
+  Message: String
   publishedAt: DateTime
 }
 
-type HistoryMatch {
-  options(
-    filters: ComponentHistoryHistoryMatchFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): [ComponentHistoryHistoryMatch]
+type Feadback {
+  userName: String!
+  userEmail: String!
+  Message: String!
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
 }
 
-type HistoryMatchEntity {
+type FeadbackEntity {
   id: ID
-  attributes: HistoryMatch
+  attributes: Feadback
 }
 
-type HistoryMatchEntityResponse {
-  data: HistoryMatchEntity
+type FeadbackEntityResponse {
+  data: FeadbackEntity
 }
 
-type HistoryMatchEntityResponseCollection {
-  data: [HistoryMatchEntity!]!
+type FeadbackEntityResponseCollection {
+  data: [FeadbackEntity!]!
   meta: ResponseCollectionMeta!
 }
 
@@ -1730,7 +2130,9 @@ union GenericMorph =
   | ComponentGameListDota2
   | ComponentGameStatisticsGameComponent
   | ComponentHashHashs
-  | ComponentHistoryHistoryMatch
+  | ComponentLobbyAntyCheat
+  | ComponentLobbyCsGameMode
+  | ComponentLobbyParticipant
   | ComponentParticipantsParticipant
   | ComponentPartnerOptions
   | ComponentPlayerOptions
@@ -1748,10 +2150,17 @@ union GenericMorph =
   | Country
   | Cs2
   | Cs2Award
+  | Cs2Brodcasting
   | Cs2Tournament
+  | CsGameMode
+  | CsLobby
+  | DotaTypeLobby
+  | Dota2Brodcasting
+  | Dota2GameMode
+  | Dota2Lobby
   | Dota2Team
   | Dota2Tournament
-  | HistoryMatch
+  | Feadback
   | Language
   | MainNew
   | Map
@@ -1881,6 +2290,13 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): Cs2AwardEntityResponseCollection
+  cs2Brodcasting(id: ID): Cs2BrodcastingEntityResponse
+  cs2Brodcastings(
+    filters: Cs2BrodcastingFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2BrodcastingEntityResponseCollection
   cs2Tournament(id: ID): Cs2TournamentEntityResponse
   cs2Tournaments(
     filters: Cs2TournamentFiltersInput
@@ -1888,6 +2304,47 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): Cs2TournamentEntityResponseCollection
+  csGameMode(id: ID): CsGameModeEntityResponse
+  csGameModes(
+    filters: CsGameModeFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): CsGameModeEntityResponseCollection
+  csLobby(id: ID): CsLobbyEntityResponse
+  csLobbies(
+    filters: CsLobbyFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): CsLobbyEntityResponseCollection
+  dotaTypeLobby(id: ID): DotaTypeLobbyEntityResponse
+  dotaTypeLobbies(
+    filters: DotaTypeLobbyFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): DotaTypeLobbyEntityResponseCollection
+  dota2Brodcasting(id: ID): Dota2BrodcastingEntityResponse
+  dota2Brodcastings(
+    filters: Dota2BrodcastingFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2BrodcastingEntityResponseCollection
+  dota2GameMode(id: ID): Dota2GameModeEntityResponse
+  dota2GameModes(
+    filters: Dota2GameModeFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2GameModeEntityResponseCollection
+  dota2Lobby(id: ID): Dota2LobbyEntityResponse
+  dota2Lobbies(
+    filters: Dota2LobbyFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): Dota2LobbyEntityResponseCollection
   dota2Team(id: ID): Dota2TeamEntityResponse
   dota2Teams(
     filters: Dota2TeamFiltersInput
@@ -1902,13 +2359,13 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): Dota2TournamentEntityResponseCollection
-  historyMatch(id: ID): HistoryMatchEntityResponse
-  historyMatches(
-    filters: HistoryMatchFiltersInput
+  feadback(id: ID): FeadbackEntityResponse
+  feadbacks(
+    filters: FeadbackFiltersInput
     pagination: PaginationArg = {}
     sort: [String] = []
     publicationState: PublicationState = LIVE
-  ): HistoryMatchEntityResponseCollection
+  ): FeadbackEntityResponseCollection
   language(id: ID): LanguageEntityResponse
   languages(
     filters: LanguageFiltersInput
@@ -1977,15 +2434,47 @@ type Mutation {
   createCs2Award(data: Cs2AwardInput!): Cs2AwardEntityResponse
   updateCs2Award(id: ID!, data: Cs2AwardInput!): Cs2AwardEntityResponse
   deleteCs2Award(id: ID!): Cs2AwardEntityResponse
+  createCs2Brodcasting(data: Cs2BrodcastingInput!): Cs2BrodcastingEntityResponse
+  updateCs2Brodcasting(
+    id: ID!
+    data: Cs2BrodcastingInput!
+  ): Cs2BrodcastingEntityResponse
+  deleteCs2Brodcasting(id: ID!): Cs2BrodcastingEntityResponse
   createCs2Tournament(data: Cs2TournamentInput!): Cs2TournamentEntityResponse
   updateCs2Tournament(
     id: ID!
     data: Cs2TournamentInput!
   ): Cs2TournamentEntityResponse
   deleteCs2Tournament(id: ID!): Cs2TournamentEntityResponse
+  createCsGameMode(data: CsGameModeInput!): CsGameModeEntityResponse
+  createCsLobby(data: CsLobbyInput!): CsLobbyEntityResponse
+  updateCsLobby(id: ID!, data: CsLobbyInput!): CsLobbyEntityResponse
+  deleteCsLobby(id: ID!): CsLobbyEntityResponse
+  createDotaTypeLobby(data: DotaTypeLobbyInput!): DotaTypeLobbyEntityResponse
+  updateDotaTypeLobby(
+    id: ID!
+    data: DotaTypeLobbyInput!
+  ): DotaTypeLobbyEntityResponse
+  deleteDotaTypeLobby(id: ID!): DotaTypeLobbyEntityResponse
+  createDota2Brodcasting(
+    data: Dota2BrodcastingInput!
+  ): Dota2BrodcastingEntityResponse
+  updateDota2Brodcasting(
+    id: ID!
+    data: Dota2BrodcastingInput!
+  ): Dota2BrodcastingEntityResponse
+  deleteDota2Brodcasting(id: ID!): Dota2BrodcastingEntityResponse
+  createDota2GameMode(data: Dota2GameModeInput!): Dota2GameModeEntityResponse
+  updateDota2GameMode(
+    id: ID!
+    data: Dota2GameModeInput!
+  ): Dota2GameModeEntityResponse
+  deleteDota2GameMode(id: ID!): Dota2GameModeEntityResponse
+  createDota2Lobby(data: Dota2LobbyInput!): Dota2LobbyEntityResponse
+  updateDota2Lobby(id: ID!, data: Dota2LobbyInput!): Dota2LobbyEntityResponse
+  deleteDota2Lobby(id: ID!): Dota2LobbyEntityResponse
   createDota2Team(data: Dota2TeamInput!): Dota2TeamEntityResponse
   updateDota2Team(id: ID!, data: Dota2TeamInput!): Dota2TeamEntityResponse
-  deleteDota2Team(id: ID!): Dota2TeamEntityResponse
   createDota2Tournament(
     data: Dota2TournamentInput!
   ): Dota2TournamentEntityResponse
@@ -1994,12 +2483,9 @@ type Mutation {
     data: Dota2TournamentInput!
   ): Dota2TournamentEntityResponse
   deleteDota2Tournament(id: ID!): Dota2TournamentEntityResponse
-  createHistoryMatch(data: HistoryMatchInput!): HistoryMatchEntityResponse
-  updateHistoryMatch(
-    id: ID!
-    data: HistoryMatchInput!
-  ): HistoryMatchEntityResponse
-  deleteHistoryMatch(id: ID!): HistoryMatchEntityResponse
+  createFeadback(data: FeadbackInput!): FeadbackEntityResponse
+  updateFeadback(id: ID!, data: FeadbackInput!): FeadbackEntityResponse
+  deleteFeadback(id: ID!): FeadbackEntityResponse
   createLanguage(data: LanguageInput!): LanguageEntityResponse
   updateLanguage(id: ID!, data: LanguageInput!): LanguageEntityResponse
   deleteLanguage(id: ID!): LanguageEntityResponse

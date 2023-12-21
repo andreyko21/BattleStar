@@ -172,6 +172,12 @@
     border-radius: 2px;
     border: 1px solid $gray100;
     background: $gray700;
+    transition: $standartTrans;
+    &:hover {
+      border: 1px solid var(--1, #fac704);
+      background: rgba(250, 199, 4, 0.1);
+      color: var(--1, #fac704);
+    }
   }
 
   &_sign {

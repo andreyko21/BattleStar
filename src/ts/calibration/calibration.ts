@@ -1,4 +1,4 @@
-import { BasePopUp } from '../component/pop-up.ts';
+import { BasePopUp, OpenLobbyPopUp } from '../component/pop-up.ts';
 import type { IBasePopUp } from '../component/pop-up.ts';
 import { BaseTabs } from '../component/tabs.ts';
 import { MatchRow } from '../match/match-row.ts';
@@ -10,9 +10,13 @@ import { TabsCreate } from '../component/tabs-create.ts';
 const popUp: HTMLDivElement | null = document.querySelector(
   '.calibration-pop-up'
 ) as HTMLDivElement;
-const overlay = document.querySelector('.overlay') as HTMLDivElement;
+//const overlay = document.querySelector('.overlay') as HTMLDivElement;
 
-const calibrationPopUp: IBasePopUp = new BasePopUp(popUp, overlay);
+const calibrationPopUp: IBasePopUp = new BasePopUp(
+  'calibration-pop-up',
+  'overlay',
+  'main-wrapper'
+);
 
 calibrationPopUp.open();
 const calibrationBtn: HTMLButtonElement | null =
@@ -156,14 +160,29 @@ const matches = [
   },
 ];
 
-new MatchRow('match-table', matches);
-new MatchTile('match-grid', matches);
+const lobbyOpenning = new OpenLobbyPopUp(
+  'open-lobby-pop-up',
+  'overlay',
+  'main-wrapper'
+);
+
+new MatchRow('calibration-table', matches, lobbyOpenning);
+new MatchTile('calibration-grid', matches, lobbyOpenning);
 
 //! TEST_____________
-new TabsCreate('calibration-page', 'match-page__filters', [
+new TabsCreate('main-wrapper', 'match-page__filters', [
   ['find', 'НАЙТИ ИГРУ'],
   ['create', 'СОЗДАТЬ ЛОББИ'],
 ]);
 new BaseTabs('match-page__filters');
 import { LavaLamp } from '../component/lava-lamp.ts';
 new LavaLamp('match-page__filters');
+
+const findContent = document.querySelector('#find-content') as HTMLDivElement;
+findContent.innerHTML =
+  'loreafdgdfgsdfg dfg dfg dfg dfg df gsdf gsdf gsdf gsdf gsd fgs dfg sdfg sdfg sdf g dfg df g dfg df g dfg sd fg df gs df gd fg';
+const createContent = document.querySelector(
+  '#create-content'
+) as HTMLDivElement;
+createContent.innerHTML =
+  'loreafdgdfgsdfg ddsfffffffffffffffffffg dfg dfg dfg df gsdf gsdf gsdf gsfffffffffffffffffffffffffffffdf gsfffffffffffffffffffffffffffffd fffffffffffffffffffffffffffff ddffffffffffffffffffffffffg sdfg sdfg sdf g dfg df g dfg df g dfg sd gfsdffffffffffffffffffffffg df gs df gd fg';

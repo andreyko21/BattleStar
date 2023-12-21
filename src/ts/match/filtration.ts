@@ -1,6 +1,7 @@
 import { Match } from './match';
 import { MatchRow } from '../match/match-row.ts';
 import { MatchTile } from '../match/match-grid.ts';
+import { OpenLobbyPopUp } from '../component/pop-up.ts';
 
 //interface SliderOutputs {
 //  rateMin: HTMLDivElement;
@@ -9,17 +10,19 @@ import { MatchTile } from '../match/match-grid.ts';
 
 class Filtration {
   readonly container: HTMLElement | null;
+  readonly popUp: OpenLobbyPopUp;
   allCheckbox: NodeListOf<HTMLInputElement> | null;
   matches: Match[] = [];
   filters: [string, string[]][] = [];
   filteredMatches: Match[] = [];
 
-  constructor(containerId: string, matches: Match[]) {
+  constructor(containerId: string, matches: Match[], popUp: OpenLobbyPopUp) {
     this.container = document.querySelector(`#${containerId}`) as HTMLElement;
     this.allCheckbox = this.container.querySelectorAll(
       'input[type="checkbox"]'
     );
     this.matches = matches;
+    this.popUp = popUp;
     this.addEventHandler();
     // this.addObserverToSlider();
   }
@@ -67,8 +70,10 @@ class Filtration {
     }, this.matches);
     // this.filteredMatches =filteringMatches;
 
-    new MatchRow('table-content', this.filteredMatches);
-    new MatchTile('content-grid-block', this.filteredMatches);
+    // const lobbyOpenning = new OpenLobbyPopUp('open-lobby-pop-up', overlay);
+
+    new MatchRow('table-content', this.filteredMatches, this.popUp);
+    new MatchTile('content-grid-block', this.filteredMatches, this.popUp);
   }
 
   //  addObserverToSlider() {
@@ -101,3 +106,18 @@ class Filtration {
 }
 
 export { Filtration };
+
+//interface IDog {
+//  do(): void;
+//}
+//class Dog implements IDog {
+//  do() {
+//    console.log('Гав');
+//  }
+//}
+//class BigDog extends Dog {
+//  do(): void {
+//    super.do();
+//    console.log('Хожу');
+//  }
+//}

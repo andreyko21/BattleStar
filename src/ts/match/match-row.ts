@@ -1,11 +1,20 @@
+import { OpenLobbyPopUp } from '../component/pop-up';
+
 class MatchRow {
   private container: HTMLElement;
   private options: { [key: string]: string }[];
+  private popUp: OpenLobbyPopUp;
 
-  constructor(containerId: String, options: { [key: string]: string }[]) {
+  constructor(
+    containerId: String,
+    options: { [key: string]: string }[],
+    popUp: OpenLobbyPopUp
+  ) {
     this.container = document.querySelector(`#${containerId}`) as HTMLElement;
     this.options = options;
+    this.popUp = popUp;
     this.render();
+    this.addEventHendler();
   }
 
   private render(): void {
@@ -25,7 +34,7 @@ class MatchRow {
            <div class="match-tr__name-block">
              <img
                src="${option.flagSrc}"
-               alt="flag"
+               alt="flag of ${option.region}"
                class="match-tr__flag"
              />
              <div class="match-tr__name"> ${option.nameMatch} </div>
@@ -41,11 +50,15 @@ class MatchRow {
          </td>
          <td class="match-tr__mode">
            <div class="match-tr__data-title"> Режим </div>
-           <div class="match-tr__rate-value"> ${option.mode} </div>
+           <div class="match-tr__rate-value"> ${option.mode.slice(
+             1
+           )}x${option.mode.slice(1)} </div>
          </td>
          <td class="match-tr__participants">
            <div class="match-tr__data-title"> Учасников </div>
-           <div class="match-tr__rate-value"> ${option.participants} </div>
+           <div class="match-tr__rate-value"> ${
+             option.participants
+           }x${option.mode.slice(1)} </div>
          </td>
          <td class="match-tr__ping-cell">
            <div class="match-tr__ping-block">
@@ -65,6 +78,24 @@ class MatchRow {
 
     this.container.innerHTML = template;
   }
+
+  private addEventHendler(): void {
+    this.container.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const targetRow = target.closest('.match-tr');
+      if (targetRow) {
+        const option = this.options.find((elem) => elem.id == targetRow.id);
+        if (option) {
+          this.popUp.addInnerContent(option);
+          this.popUp.open();
+        }
+      }
+    });
+  }
+
+  //  private getElementId(elem: HTMLElement): string {
+  //   return elem.id
+  //  }
 }
 
 export { MatchRow };

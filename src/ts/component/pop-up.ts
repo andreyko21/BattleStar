@@ -1,6 +1,6 @@
-import { BodyScrollLock, IBodyScrollLock } from './body-scroll-lock.ts';
+import { ScrollLock, IScrollLock } from './scroll-lock.ts';
 
-export interface IBasePopUp {
+interface IBasePopUp {
   popUp: HTMLDivElement;
   crissCross: HTMLDivElement | null;
   overlay: HTMLDivElement;
@@ -14,25 +14,37 @@ class BasePopUp implements IBasePopUp {
   readonly crissCross: HTMLDivElement | null;
   readonly overlay: HTMLDivElement;
   readonly body: HTMLBodyElement;
-  private readonly bodyScrollLock: IBodyScrollLock;
+  private readonly ScrollLock: IScrollLock;
 
-  constructor(popUp: HTMLDivElement | null, overlay: HTMLDivElement) {
-    this.popUp = popUp as HTMLDivElement;
-    this.overlay = overlay;
+  constructor(popUpId: string, overlay: string, containerId: string) {
+    this.popUp = document.querySelector(
+      `.${popUpId}` as string
+    ) as HTMLDivElement;
+    if (this.popUp === null) {
+      throw new Error(`Container with id #${this.popUp} not found.`);
+    }
+
+    this.overlay = document.querySelector(`#${overlay}`) as HTMLDivElement;
+    if (this.popUp === null) {
+      throw new Error(`Container with id #${this.popUp} not found.`);
+    }
+
     this.crissCross = this.popUp.querySelector(
       '.pop-up__criss-cross'
     ) as HTMLDivElement;
     this.crissCross?.addEventListener('click', () => this.close());
     this.body = document.querySelector('body') as HTMLBodyElement;
-    this.overlay.addEventListener('click', () => this.close());
-    this.bodyScrollLock = BodyScrollLock.getInstance();
+    this.ScrollLock = ScrollLock.getInstance(containerId);
   }
   open(): void {
-    this.bodyScrollLock.lock();
+    this.ScrollLock.lock();
     this.overlay.classList.add('overlay_display_block');
-    this.overlay.classList.add('overlay_show');
     this.popUp.classList.add('pop-up_display_block');
-    this.popUp.classList.add('pop-up_open');
+    window.setTimeout(() => {
+      this.overlay.classList.add('overlay_show');
+      this.popUp.classList.add('pop-up_open');
+    }, 0);
+    this.overlay.addEventListener('click', () => this.close());
   }
 
   close(): void {
@@ -46,20 +58,53 @@ class BasePopUp implements IBasePopUp {
         this.overlay.classList.remove('overlay_display_block');
       }
       this.popUp.classList.remove('pop-up_display_block');
-      this.bodyScrollLock.unlock();
+      this.ScrollLock.unlock();
       this.popUp.removeEventListener('transitionend', onTransitionEnd);
     };
     this.popUp.addEventListener('transitionend', onTransitionEnd);
+    this.overlay.removeEventListener('click', () => this.close());
   }
 }
 
-//!  Цей клас, що під коментарем використовувати не буду, якщо комусь потрібно можете переробляти
+class OpenLobbyPopUp extends BasePopUp {
+  constructor(popUp: string, overlay: string, containerId: string) {
+    super(popUp, overlay, containerId);
+  }
 
-//class CalibrationPopUp extends BasePopUp {
-//   constructor(popUp: HTMLDivElement, overlay: HTMLDivElement){
-//super(popUp, overlay);
+  addInnerContent(option: { [key: string]: string }) {
+    const title = this.popUp.querySelector(
+      '.open-lobby-pop-up__title'
+    ) as HTMLElement;
+    const currensy = title?.querySelector(
+      '.open-lobby-pop-up__amount'
+    ) as HTMLElement;
+    currensy.innerHTML = option.rate;
 
-//   }
-//}
+    const img = this.popUp.querySelector(
+      '.open-lobby-pop-up__map-img'
+    ) as HTMLImageElement;
+    img.src = option.imgSrc;
+    img.alt = option.map;
 
-export { BasePopUp };
+    const flag = this.popUp.querySelector(
+      '.open-lobby-pop-up__flag-img'
+    ) as HTMLImageElement;
+    flag.src = option.flagSrc;
+
+    const lobbyName = this.popUp.querySelector(
+      '.open-lobby-pop-up__title-lobby'
+    ) as HTMLElement;
+    lobbyName.innerHTML = option.nameMatch;
+
+    const button = this.popUp.querySelector(
+      '.open-lobby-pop-up__btn'
+    ) as HTMLButtonElement;
+    button.addEventListener('click', () => {
+      window.location.assign(`lobby?id=${option.id}`);
+    });
+  }
+}
+
+export { BasePopUp, OpenLobbyPopUp };
+
+export type { IBasePopUp };

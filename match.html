@@ -13,17 +13,17 @@
       <load ="src/html/sidebar.html" />
       <main class="match-page" id="app">
         <!-- overlay -- прикриває контент при відкритті модального вікна -->
-        <div class="overlay"></div>
-        <!--<load
-             ="src/html/components/pop-up.html"
-             file="calibration-pop-up"
-             class="match-page__calibration-pop-up calibration-pop-up"
-           />-->
+        <div class="overlay" id="overlay"></div>
+        <load
+          ="src/html/components/pop-up.html"
+          file="open-lobby-pop-up"
+          class="match-page__open-lobby-pop-up open-lobby-pop-up"
+        />
         <img
           src="./src/images/calibration-lobby/cs-bg.png"
           class="match-page__bg-img"
         />
-        <div class="match-page__content-wrapper">
+        <div class="match-page__content-wrapper" id="content-wrapper">
           <section class="match-page__filters filters tabs-block">
             <!---->
             <div class="filters__tabs tabs-block__tabs">
@@ -230,28 +230,12 @@
                       id="grid-content"
                     >
                       <div class="content__grid-block" id="content-grid-block">
-                        <!--<load ="src/html/components/match/cs-card.html" />
-                        <load ="src/html/components/match/cs-card.html" />
-                        <load ="src/html/components/match/cs-card.html" />
-                        <load ="src/html/components/match/cs-card.html" />
-                        <load ="src/html/components/match/cs-card.html" />
-                        <load ="src/html/components/match/cs-card.html" />
-                        <load ="src/html/components/match/cs-card.html" />
-                        <load ="src/html/components/match/cs-card.html" />
-                        <load ="src/html/components/match/cs-card.html" />
-                        <load ="src/html/components/match/cs-card.html" />-->
                       </div>
                     </div>
                     <table
                       class="content__table tabs-block__content-container"
                       id="table-content"
                     >
-                      <!--<load ="src/html/components/match/cs-row.html" />
-                      <load ="src/html/components/match/cs-row.html" />
-                      <load ="src/html/components/match/cs-row.html" />
-                      <load ="src/html/components/match/cs-row.html" />
-                      <load ="src/html/components/match/cs-row.html" />
-                      <load ="src/html/components/match/cs-row.html" />-->
                     </table>
                   </div>
                 </div>

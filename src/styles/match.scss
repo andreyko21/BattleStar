@@ -5,7 +5,7 @@
 @import './components/ui/dropDownMenu.scss';
 @import './components/pop-up';
 @import './components/overlay';
-@import './components/calibration-pop-up';
+@import './components/open-lobby-pop-up';
 @import './components/tabs';
 @import './components/accordion';
 @import './components/match/statistics';
@@ -31,7 +31,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
   grid-area: main;
 
   &__bg-img {
@@ -46,8 +46,9 @@
   }
   &__content-wrapper {
     min-height: 100%;
-    height: max-content;
+    height: 100%;
     display: flex;
+    overflow: auto;
   }
 
   &__filters {

@@ -19,6 +19,9 @@
       background: rgba(250, 199, 4, 0.1);
       backdrop-filter: blur(40px);
     }
+    &.just-validate-error-field + label {
+      border: 1px solid var(--Main, red);
+    }
   }
 }
 .tournament-checkbox-label {
@@ -67,6 +70,9 @@
         border: 1px solid var(--Main, #fac704);
         background: rgba(250, 199, 4, 0.1);
         backdrop-filter: blur(40px);
+      }
+      &.just-validate-error-field {
+        border: 1px solid var(--Main, red);
       }
     }
   }

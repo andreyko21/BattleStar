@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Турніри</title>
     
-    <script type="module" crossorigin src="/assets/tournaments-a7c93d32.js"></script>
+    <script type="module" crossorigin src="/assets/tournaments-6e866250.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
     <link rel="modulepreload" crossorigin href="/assets/jquery-ab814638.js">
     <link rel="modulepreload" crossorigin href="/assets/swiper-core-75041738.js">
@@ -18,7 +18,7 @@
     <link rel="modulepreload" crossorigin href="/assets/queries.graphql.d-fd5c7067.js">
     <link rel="modulepreload" crossorigin href="/assets/tabs-create-7a28c516.js">
     <link rel="stylesheet" href="/assets/gameselect-749a959a.css">
-    <link rel="stylesheet" href="/assets/tournaments-9e529044.css">
+    <link rel="stylesheet" href="/assets/tournaments-47a0b5dc.css">
   </head>
   <body>
     <div class="wrapper">
@@ -136,12 +136,17 @@
         <div id="tournament-container"></div>
         <div class="tournaments-page__container">
           <div class="tournaments-nav">
-            <div class="tournaments-nav__tabs"></div>
-            <div class="tournaments-nav__create-button">СОЗДАТЬ ТУРНИР</div>
+            <div class="tournaments-nav__tabs" id="tournaments-nav__tabs"></div>
+            <button class="tournaments-nav__create-button">СОЗДАТЬ ТУРНИР</button>
           </div>
           <div class="tournaments-cards-sorting">
             <div class="tournaments-cards-sorting__time-sort">
-              Ближайшие турниры
+              <select class="tournaments-cards-sorting__time-sort-select">
+                  <option value="any">Ближайшие турниры</option>
+    <option value="local">Місцеві турніри</option>
+    <option value="national">Національні турніри</option>
+    <option value="international">Міжнародні турніри</option>
+                </select>
             </div>
             <div class="tournaments-cards-sorting__rating-sort">
               <label

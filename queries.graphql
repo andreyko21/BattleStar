@@ -78,6 +78,7 @@ query GetMapsQuery {
     }
   }
 }
+
 mutation CreateCs2Tournament(
   $name: String
   $description: String

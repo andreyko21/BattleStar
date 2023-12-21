@@ -78,6 +78,16 @@ query GetMapsQuery {
     }
   }
 }
+query GetUser{
+  usersPermissionsUsers{
+    data{
+      id
+      attributes{
+        username
+      }
+    }
+  }
+}
 
 mutation CreateCs2Tournament(
   $name: String

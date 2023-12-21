@@ -52,7 +52,8 @@ class Sign implements SignType {
   init() {
     this.signsTabs();
     this.getFormVal();
-    this.handleBtn();
+    this.singInBtn()
+    this.singUpBtn()
   }
 
   signsTabs() {
@@ -71,9 +72,6 @@ class Sign implements SignType {
     });
   }
 
-
-
-
   getFormVal(): FormVal {
     const formValues: FormVal = {
       nickname: this.nickname.val() as string,
@@ -87,19 +85,29 @@ class Sign implements SignType {
     return formValues;
   }
 
-  handleBtn() {
-    $(".btn_sign").on("click", (e) => {
+  singUpBtn() {
+    $("#sign-up").on("click", (e) => {
       e.preventDefault();
         // this.signInValidation()
         // this.signUpValidation()
+        this.authenticateUser()
         this.registerUser();
     });
   }
+  singInBtn() {
+    $("#sign-in").on("click", (e) => {
+      e.preventDefault();
+        // this.signInValidation()
+        // this.signUpValidation()
+        this.authenticateUser()
+    });
+  }
+
   authenticateUser() {
     const formValues: FormVal = this.getFormVal();
     axios
       .post("https://battle-star-app.onrender.com/api/auth/local", {
-        identifier: formValues.email,
+        identifier: formValues.nickname,
         password: formValues.password,
       })
       .then((response) => {
@@ -136,6 +144,8 @@ class Sign implements SignType {
 }
 
 new Sign();
+
+
 //  signInValidation() {
 //     $!.validator.addMethod(
 //       "cyrillicEmail",

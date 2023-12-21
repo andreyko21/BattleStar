@@ -1,1 +1,0 @@
-function r(){const t=window.location.search;return new URLSearchParams(t)}function e(t,a){const o=r();o.set(t,a);const n=window.location.protocol+"//"+window.location.host+window.location.pathname+"?"+o;window.history.pushState({path:n},"",n)}function s(t){return r().get(t)}export{s as g,e as s};

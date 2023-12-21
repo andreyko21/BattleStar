@@ -114,6 +114,7 @@ class Sign implements SignType {
         console.log("Well done!");
         console.log("User profile", response.data.user);
         console.log("User token", response.data.jwt);
+        document.cookie = `token=${response.data.jwt}`;
       })
       .catch((error) => {
         console.log("An error occurred:", error.response);
@@ -139,8 +140,6 @@ class Sign implements SignType {
         console.log("An error occurred:", error.response);
       });
   }
-  
-
 }
 
 new Sign();

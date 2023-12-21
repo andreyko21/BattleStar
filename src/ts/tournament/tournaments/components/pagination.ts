@@ -1,7 +1,7 @@
-import Sprite from "./../../images/sprite.svg";
-import { Meta } from "../types";
-import { setLocateParam } from "../functions/windowLocation";
-import "./../../styles/components/ui/pagination.scss";
+import Sprite from "./../../../../images/sprite.svg";
+import { Meta } from "../../../types";
+import { setLocateParam } from "../../../functions/windowLocation";
+import "./../../../../styles/components/ui/pagination.scss";
 import $ from "jquery";
 
 export class PagePagination {

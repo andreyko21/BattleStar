@@ -1,50 +1,138 @@
-// import { BaseTabs } from "../component/tabs";
-// import { LavaLamp } from "../component/lava-lamp";
-// const filtersTabsBlock = document.querySelector(".match-page__filters") as HTMLDivElement;
-// console.log(filtersTabsBlock);
-// new BaseTabs(filtersTabsBlock);
-// new LavaLamp("match-page__filters");
+import $ from "jquery";
+import {
+  CreateHeader,
+  CreateInfo,
+  CreateTeams,
+  CreatePlayersSideA,
+  CreatePlayersSideB,
 
-class Lobby {
-  private countDownDate: number;
+} from "./createTeams";
 
-  constructor() {
-    if (localStorage.getItem("countDownDate")) {
-      this.countDownDate = parseInt(localStorage.getItem("countDownDate")!);
-    } else {
-      this.countDownDate = new Date().getTime() + 3 * 60 * 1000;
-      localStorage.setItem("countDownDate", this.countDownDate.toString());
-    }
+//! ---- Create Header ----
+new CreateHeader(".details__name", [
+  {
+    flag: "../../../src/images/flag.png",
+    name: "Natus Vincere",
+  },
+]);
 
-    this.startTimer();
-  }
+//! ---- Create Teams ----
+const now = new Date().getTime();
+let countDownDate = now + 2 * 60 * 1000;
+new CreateTeams(
+  ".details__teams",
+  [{ rang: [{ sideA: 1320, sideB: 1257 }] }],
+  countDownDate
+);
 
-  private startTimer(): void {
-    let x = setInterval(() => {
-      let now = new Date().getTime();
-      let distance = this.countDownDate - now;
+//! ---- Create Players ----
+export let lengthCreateSides: number | null = null;
+const createSideA = [
+  {
+    avatar: "../../../src/images/avatar7.png",
+    flag: "../../../src/images/flag.png",
+    name: "JohnTrawolta_4",
+    kill: 70,
+    death: 70,
+    assist: 70,
+  },
+  {
+    avatar: "../../../src/images/avatar7.png",
+    flag: "../../../src/images/flag.png",
+    name: "John",
+    kill: 70,
+    death: 70,
+    assist: 70,
+  },
+  {
+    avatar: "../../../src/images/avatar7.png",
+    flag: "../../../src/images/flag.png",
+    name: "JohnTrawolta_4",
+    kill: 70,
+    death: 70,
+    assist: 70,
+  },
+  {
+    avatar: "../../../src/images/avatar7.png",
+    flag: "../../../src/images/flag.png",
+    name: "JohnTrawolta_4",
+    kill: 70,
+    death: 70,
+    assist: 70,
+  },
+  {
+    avatar: "../../../src/images/avatar7.png",
+    flag: "../../../src/images/flag.png",
+    name: "JohnTrawolta_4",
+    kill: 70,
+    death: 70,
+    assist: 70,
+  },
+];
+const createSideB = [
+  {
+    avatar: "../../../src/images/avatar7.png",
+    flag: "../../../src/images/flag.png",
+    name: "JohnTrawolta_4",
+    kill: 70,
+    death: 70,
+    assist: 70,
+  },
+  {
+    avatar: "../../../src/images/avatar7.png",
+    flag: "../../../src/images/flag.png",
+    name: "JohnTrawolta_4",
+    kill: 70,
+    death: 70,
+    assist: 70,
+  },
+  {
+    avatar: "../../../src/images/avatar7.png",
+    flag: "../../../src/images/flag.png",
+    name: "JohnTrawolta_4",
+    kill: 70,
+    death: 70,
+    assist: 70,
+  },
+  {
+    avatar: "../../../src/images/avatar7.png",
+    flag: "../../../src/images/flag.png",
+    name: "JohnTrawolta_4",
+    kill: 70,
+    death: 70,
+    assist: 70,
+  },
+  {
+    avatar: "../../../src/images/avatar7.png",
+    flag: "../../../src/images/flag.png",
+    name: "JohnTrawolta_4",
+    kill: 70,
+    death: 70,
+    assist: 70,
+  },
+];
+const createInfo = [
+  {
+    map: "Lake",
+    rate: 5000,
+    regime: "5x5",
+    participants: 0,
+    id: 54692725,
+  },
+];
 
-      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      const lobbyTeamsStartTime = document.querySelector(
-        ".lobby__teams-start-time"
-      ) as HTMLElement;
-      if (lobbyTeamsStartTime) {
-        lobbyTeamsStartTime.innerHTML = `${minutes
-          .toString()
-          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-      }
-
-      if (distance < 0) {
-        clearInterval(x);
-        if (lobbyTeamsStartTime) {
-          lobbyTeamsStartTime.innerHTML = "EXPIRED";
-        }
-        localStorage.removeItem("countDownDate");
-      }
-    });
-  }
+lengthCreateSides = createSideA.length + createSideB.length;
+createInfo[0].participants = lengthCreateSides;
+if (lengthCreateSides === 10) {
+  setTimeout(() => {
+    $(".details__square").css("display", "block");
+    $(".details__teams-time")
+      .css("display", "none")
+      .replaceWith('<p class="details__teams-time_sub">- : -</p>');
+    $(".details__teams-text").css("display", "none");
+  }, 5000);
 }
-
-let lobby = new Lobby();
+//! ---- Create Info ----
+new CreateInfo(".details__info-row", createInfo);
+new CreatePlayersSideA(".details__players-item", createSideA);
+new CreatePlayersSideB(".details__players-item_sub", createSideB);

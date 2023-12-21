@@ -1,0 +1,172 @@
+@import "./style.scss";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+@import "./components/ui/asideMenu.scss";
+@import "./components/ui/dropDownMenu.scss";
+@import "./components/tabs";
+
+.wrapper {
+   display: grid;
+   grid-template:
+      "sidebar header"
+      "sidebar main" 1fr;
+   min-height: 0%;
+   grid-template-columns: min-content auto;
+
+   overflow: clip;
+}
+.page {
+   width: 100%;
+   grid-area: main;
+}
+
+.statistics {
+   margin-top: 90px;
+   &__bg {
+      background: url(../../src/images/newsBg.png) repeat-x;
+      height: 200px;
+      width: 100%;
+      position: absolute;
+      top: 49px;
+      left: 0;
+      z-index: -1;
+   }
+   &__container {
+      display: flex;
+   }
+   &__content{
+      width: 1227px;
+      margin-left: 44px;
+
+   }
+
+   &__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 120px;
+      background: $gray800;
+      backdrop-filter: blur(60px);
+      padding: 0 51px 0 63px;
+      margin-bottom: 29px;
+
+      &-rating {
+         display: flex;
+
+         &-title {
+            color: $gray25;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: normal;
+            span {
+               color: $gray25;
+            }
+         }
+         &-rang {
+            width: 65px;
+            height: 30px;
+            background: $gray400;
+            margin-left: 17px;
+         }
+      }
+      &-info {
+         display: flex;
+         justify-content: space-between;
+         width: 508px;
+
+         &-text {
+            color: $gray25;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: normal;
+            margin-left: 9px;
+            span {
+               display: block;
+               color: $gray25;
+               font-size: 14px;
+               font-weight: 400;
+            }
+         }
+
+         &-tour,
+         &-winrate,
+         &-time {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            background: $gray600;
+            backdrop-filter: blur(5px);
+            height: 60px;
+            svg {
+               width: 26px;
+               height: 26px;
+            }
+         }
+         &-tour {
+            width: 148px;
+         }
+         &-winrate {
+            width: 151px;
+         }
+         &-time {
+            width: 169px;
+         }
+      }
+   }
+
+   &__cs {
+      background: $gray800;
+      backdrop-filter: blur(60px);
+      padding: 39px 51px 91px 63px;
+      position: relative;
+      z-index: -1;
+      display: flex;
+      justify-content: space-between;
+
+      &-title {
+         color: $gray25;
+         font-size: 24px;
+         font-weight: 500;
+         line-height: normal;
+         margin-bottom: 23px;
+      }
+      &-text {
+         display: flex;
+         justify-content: space-between;
+         width: 175px;
+         color: $gray100;
+         font-size: 15px;
+         font-weight: 500;
+         line-height: normal;
+         margin-bottom: 5px;
+         &:nth-child(3),
+         &:nth-child(5) {
+            margin-bottom: 43px;
+         }
+         span {
+            display: block;
+            color: $yellow300;
+         }
+      }
+      &-schedule {
+         max-width: 856px;
+         width: 100%;
+      }
+      &-chart {
+         width: 100%;
+      }
+   }
+
+   &__dota{
+      display: flex;
+      justify-content: space-between;
+      background: $gray800;
+      backdrop-filter: blur(60px);
+      padding: 39px 51px 91px 63px;
+   }
+}
+#dota{
+   width: 500px !important;
+   height: 500px !important;
+}

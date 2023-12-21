@@ -1,0 +1,198 @@
+@import "./style.scss";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+@import "./components/ui/asideMenu.scss";
+@import "./components/ui/dropDownMenu.scss";
+.wrapper {
+   display: grid;
+   grid-template:
+      "sidebar header"
+      "sidebar main" 1fr;
+   min-height: 0%;
+   grid-template-columns: min-content auto;
+
+   overflow: clip;
+}
+.page {
+   width: 100%;
+   grid-area: main;
+}
+.personal {
+   margin-top: 90px;
+   &__bg {
+      background: url(../../src/images/newsBg.png) repeat-x;
+      height: 200px;
+      width: 100%;
+      position: absolute;
+      top: 49px;
+      left: 0;
+      z-index: -1;
+   }
+   &__container{
+   display: flex;
+
+   }
+   &__content{
+      width: 1227px;
+      margin-left: 44px;
+      background: $gray800;
+      backdrop-filter: blur(60px);
+      padding: 29px 84px 53px 59px;
+      display: flex;
+      justify-content: space-between;
+   }
+
+   &__item{}
+
+   &__row {
+      display: flex;
+      margin-bottom: 42px;
+      &-title {
+         color: $gray25;
+         font-size: 24px;
+         font-weight: 400;
+         line-height: normal;
+      }
+      &-edit {
+         color: $yellow300;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+         margin: 7px 0 0 20px;
+         background: transparent;
+      }
+   }
+   &__info {
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      &-id,
+      &-nickname,
+      &-biography,
+      &-data,
+      &-account {
+         color: $gray200;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+      }
+      &-id {
+         width: 275px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         span {
+            color: $gray25;
+            margin-left: auto;
+         }
+         svg {
+            width: 18px;
+            height: 18px;
+            fill: #606060;
+            margin-left: 11px;
+         }
+      }
+      &-nickname {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         width: 307px;
+         span {
+            color: $gray25;
+            margin-left: auto;
+            font-size: 24px;
+            &._act{
+               border: 1px solid $gray200;
+               padding: 4px;
+            }
+         }
+      }
+      &-biography {
+         width: 643px;
+         display: flex;
+         justify-content: space-between;
+         span {
+            color: $gray25;
+            margin-left: auto;
+            font-size: 14px;
+            width: 469px;
+
+            &._act{
+               border: 1px solid $gray200;
+               padding: 4px;
+            }
+         }
+      }
+      &-data {
+         width: 265px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         span {
+            color: $gray25;
+            margin-left: auto;
+            font-size: 18px;
+         }
+      }
+   }
+   &__line {
+      width: 100%;
+      height: 1px;
+      background: $dark100;
+      margin: 30px 0 25px;
+   }
+
+   &__email {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 370px;
+      margin-top: 24px;
+      color: $gray200;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      span {
+         color: $gray25;
+         margin-left: auto;
+         font-size: 18px;
+      }
+      svg {
+         width: 24px;
+         height: 24px;
+         fill: #6fff57;
+      }
+      &:nth-child(2) {
+         width: 290px;
+      }
+   }
+   &__avatar {
+      position: relative;
+      height: 165px;
+      &-inp {
+         display: none;
+      }
+      &-label {
+         display: inline-block;
+         width: 140px;
+         height: 140px;
+         background: silver;
+         border-radius: 50%;
+         background-size: cover;
+         background-repeat: no-repeat;
+         background-position: center;
+         span {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            color: $yellow300;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: normal;
+         }
+      }
+   }
+}

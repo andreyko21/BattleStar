@@ -1,3 +1,5 @@
+import { setLocateParam } from "./ts/functions/windowLocation";
+
 export function initDropDown() {
   type DropDownType = {
     headerUserBtn: HTMLButtonElement | null;
@@ -57,28 +59,32 @@ export function initDropDown() {
     dropDown.dropDownItem.forEach((item) => {
       item.addEventListener("click", () => {
         let img = item.querySelector<HTMLImageElement>("img");
-        if (img) {
+        let gameParam = item.getAttribute("data-game");
+        if (img && gameParam) {
           let imgSrc = img.src;
           let text = img.nextSibling?.textContent ?? "";
-  
-          let currentGame = document.querySelector<HTMLElement>(".dropdown__game-current");
-          if (currentGame) {
-            let currentGameImg = currentGame.querySelector<HTMLImageElement>("img");
-            if (currentGameImg) {
-              currentGameImg.src = imgSrc;
-            }
-  
-            let currentGameText = currentGame.querySelector<HTMLParagraphElement>("p");
-            if (currentGameText) {
-              if (text === "Counter Strike: Global Offensive") {
-                currentGameText.textContent = "CS:GO";
-              } else {
-                currentGameText.textContent = text;
-              }
-            }
-          }
+          console.log("sss");
+          updateCurrentGame(imgSrc, text);
+          setLocateParam("game", gameParam);
         }
       });
     });
+  }
+}
+
+function updateCurrentGame(imgSrc: string, text: string | null) {
+  let currentGame = document.querySelector<HTMLElement>(
+    ".dropdown__game-current"
+  );
+  if (currentGame) {
+    let currentGameImg = currentGame.querySelector<HTMLImageElement>("img");
+    if (currentGameImg) {
+      currentGameImg.src = imgSrc;
+    }
+
+    let currentGameText = currentGame.querySelector<HTMLParagraphElement>("p");
+    if (currentGameText) {
+      currentGameText.textContent = text;
+    }
   }
 }

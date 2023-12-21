@@ -1,0 +1,147 @@
+@import "./../../../styles/style.scss";
+
+.table {
+   &_history{
+      max-height: 500px;
+      height: auto;
+      overflow: auto;
+      padding-right: 10px;
+   }
+   &__tab {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 34px 0 0;
+  
+   }
+   &__tr {
+      height: 56px;
+      border-bottom: 1px solid $gray500;
+      &:first-child {
+         border-top: 1px solid $gray500;
+      }
+      &:last-child {
+         border-bottom: none;
+      }
+   }
+   &__name {
+      color: $gray25;
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: normal;
+      width: 300px;
+   }
+
+   &__data,
+   &__time {
+      color: $gray25;
+      text-align: right;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+   }
+
+   &__regime,
+   &__id {
+      color: $gray200;
+      text-align: right;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      span {
+         color: $gray25;
+      }
+   }
+   &__id {
+      span {
+         text-decoration: underline;
+      }
+   }
+   &__win {
+      color: $green50;
+      text-align: right;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      width: 250px;
+
+      &_defeat {
+         color: $red500;
+      }
+   }
+   &__money {
+      color: $yellow300;
+      text-align: right;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+
+      span {
+         color: $yellow300;
+         text-decoration: line-through;
+      }
+   }
+   &__block {
+      display: flex;
+      align-items: center;
+
+      svg {
+         width: 16px;
+         height: 16px;
+         fill: $yellow300;
+
+         &:nth-child(2) {
+            width: 24px;
+            height: 24px;
+         }
+      }
+      &_sub {
+         svg {
+            width: 16px;
+            height: 16px;
+            fill: $green50;
+
+            &:nth-child(2) {
+               width: 24px;
+               height: 24px;
+            }
+         }
+      }
+   }
+   &__text {
+      color: $yellow300;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: normal;
+      margin-left: 13px;
+      &_sub {
+         color: $green50;
+      }
+   }
+   &__friend {
+      margin-left: auto;
+      width: 92px;
+      height: 37px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.25);
+      position: relative;
+      span {
+         display: inline-block;
+         width: 8px;
+         height: 8px;
+         border-radius: 50%;
+         background: $green50;
+         position: absolute;
+         top: 5px;
+         left: 26px;
+      }
+      p {
+         color: $gray25;
+         font-size: 16px;
+         font-weight: 500;
+         line-height: normal;
+         padding: 10px 9px 0 0;
+      }
+   }
+}

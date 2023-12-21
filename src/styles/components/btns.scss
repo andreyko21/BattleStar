@@ -35,6 +35,7 @@
     line-height: normal;
     background: $yellow700;
     color: $dark200;
+    pointer-events: none;
   }
 
   // для кнопок з часом та режимом, не потрібно використовувати span.
@@ -52,6 +53,24 @@
     span {
       color: $gray200;
       text-decoration: line-through;
+    }
+    &:active {
+      border: 1px solid $yellow300;
+      color: $yellow300;
+      background: rgba(250, 199, 4, 0.1);
+      backdrop-filter: blur(40px);
+      span {
+        color: $yellow300;
+      }
+    }
+    &:hover {
+      border: 1px solid $yellow300;
+      color: $yellow300;
+      background: $yellow800;
+      backdrop-filter: blur(40px);
+      span {
+        color: $yellow300;
+      }
     }
   }
 

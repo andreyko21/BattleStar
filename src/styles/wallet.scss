@@ -1,0 +1,645 @@
+@import "./style.scss";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+@import "./components/ui/asideMenu.scss";
+@import "./components/ui/dropDownMenu.scss";
+@import "./components/tabs";
+@import "./components/pop-up";
+@import "./components/overlay";
+@import "./components/cabinet/table.scss";
+
+.wrapper {
+   display: grid;
+   grid-template:
+      "sidebar header"
+      "sidebar main" 1fr;
+   min-height: 0%;
+   grid-template-columns: min-content auto;
+
+   overflow: clip;
+}
+.page {
+   width: 100%;
+   grid-area: main;
+}
+
+.wallet {
+  margin-top: 90px;
+   &__bg {
+      background: url(../../src/images/newsBg.png) repeat-x;
+      height: 200px;
+      width: 100%;
+      position: absolute;
+      top: 49px;
+      left: 0;
+      z-index: -1;
+   }
+
+   &__container {
+      display: flex;
+   }
+   &__content {
+      width: 1227px;
+      margin-left: 44px;
+      background: $gray800;
+      backdrop-filter: blur(60px);
+      padding: 29px 84px 53px 59px;
+   }
+
+   &__row {
+      display: flex;
+      margin-bottom: 55px;
+      &-card {
+         height: 223px;
+         position: relative;
+      }
+      &-info {
+         position: absolute;
+         bottom: 18px;
+         left: 24px;
+      }
+      &-id,
+      &-name {
+         color: $gray25;
+         font-size: 24px;
+         font-weight: 400;
+         line-height: normal;
+         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+      }
+      &-item {
+         margin-left: 39px;
+         width: 100%;
+      }
+      &-top {
+         display: flex;
+         align-items: center;
+         svg {
+            width: 24px;
+            height: 24px;
+            fill: $gray25;
+         }
+      }
+      &-subscription,
+      &-btn {
+         color: $gray25;
+         font-size: 28px;
+         font-weight: 500;
+         line-height: normal;
+      }
+      &-btn {
+         background: transparent;
+         color: $yellow300;
+         margin-left: 5px;
+      }
+      &-graph {
+         position: relative;
+      }
+      &-balance {
+         margin-top: 15px;
+         position: absolute;
+         &-text {
+            color: $gray25;
+            font-size: 24px;
+            font-weight: 400;
+            line-height: normal;
+         }
+         &-sum {
+            color: $yellow300;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: normal;
+            span {
+               color: $yellow300;
+               text-decoration: line-through;
+            }
+         }
+         &-canvas {
+            width: 100% !important;
+            height: 179px !important;
+         }
+      }
+   }
+   &__transaction {
+      display: flex;
+      justify-content: space-between;
+
+      &-title {
+         color: $gray25;
+         font-size: 24px;
+         font-weight: 400;
+         line-height: normal;
+         margin-bottom: 14px;
+      }
+      &-btns {
+         display: flex;
+         justify-content: space-between;
+         width: 400px;
+         &_sub {
+            width: 654px;
+         }
+         &-card,
+         &-friend {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: $gray550;
+            width: 195px;
+            height: 73px;
+            cursor: pointer;
+         }
+         &-svg {
+            svg {
+               width: 24px;
+               height: 24px;
+               fill: $gray100;
+            }
+         }
+         &-text {
+            color: $gray100;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: normal;
+            span {
+               color: $gray100;
+               text-decoration: line-through;
+            }
+            &_sub {
+               font-size: 18px;
+            }
+         }
+         &-row {
+            display: flex;
+            justify-content: space-between;
+            width: 400px;
+            margin-top: 14px;
+            &_sub {
+               margin-left: 30px;
+               display: flex;
+               justify-content: space-between;
+               width: 655px;
+            }
+         }
+         &-bank,
+         &-pay,
+         &-googlepay,
+         &-webmoney {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 156px;
+            height: 73px;
+            border-radius: 8px;
+            background: $green100;
+            cursor: pointer;
+         }
+         &-bank,
+         &-webmoney {
+            svg {
+               width: 32px;
+               height: 32px;
+               fill: $gray100;
+            }
+         }
+         &-pay {
+            svg {
+               width: 36px;
+               height: 36px;
+               fill: $gray100;
+            }
+         }
+         &-googlepay {
+            svg {
+               width: 24px;
+               height: 24px;
+               fill: $gray100;
+            }
+         }
+      }
+   }
+   &__link {
+      margin: 24px 0 44px;
+      width: 100%;
+      height: 73px;
+      button {
+         color: $gray25;
+         background: radial-gradient(
+            103.95% 123.29% at 50% 50%,
+            rgba(250, 199, 4, 0.85) 0%,
+            rgba(255, 166, 84, 0.85) 81.77%
+         );
+
+         span {
+            color: $gray25;
+            text-decoration: line-through;
+         }
+      }
+   }
+   &__history {
+      overflow: auto;
+      height: 350px;
+      padding-right: 10px;
+   }
+
+   &__content {
+      &-transaction {
+         margin-top: 55px;
+         display: flex;
+      }
+      &-subrow {
+         margin-top: 14px;
+         &_row {
+         }
+      }
+      &-btns {
+         display: flex;
+         justify-content: space-between;
+         width: 400px;
+         margin-top: 14px;
+
+         &_sub {
+            display: flex;
+            justify-content: space-between;
+         }
+
+         &-svg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+               width: 24px;
+               height: 24px;
+               fill: $gray100;
+            }
+         }
+         &-card,
+         &-friend {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: $gray550;
+            width: 195px;
+            height: 73px;
+         }
+         &-text {
+            color: $gray100;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: normal;
+            span {
+               color: $gray100;
+               text-decoration: line-through;
+            }
+            &_sub {
+               font-size: 18px;
+            }
+         }
+
+         &-bank,
+         &-pay,
+         &-googlepay,
+         &-webmoney {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 156px;
+            height: 73px;
+            border-radius: 8px;
+            background: $green100;
+         }
+      }
+   }
+}
+
+.transaction {
+   display: none;
+   padding: 48px 0 0 25px;
+   height: 901px;
+   width: 1227px;
+   margin-left: 44px;
+   background: $gray800;
+   backdrop-filter: blur(60px);
+   &__title {
+      display: flex;
+      align-items: center;
+      color: $gray25;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: normal;
+      margin-bottom: 17px;
+      svg {
+         width: 28px;
+         height: 28px;
+         fill: $gray25;
+         margin-right: 10px;
+      }
+   }
+   &__text {
+      color: $gray25;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      width: 814px;
+      margin: 0 0 32px 38px;
+   }
+   &__select {
+      margin: 59px 0 0 38px;
+      display: flex;
+      position: relative;
+
+      &-row {
+         display: flex;
+         align-items: center;
+      }
+      &-svg {
+         svg {
+            width: 35px;
+            height: 35px;
+            fill: $yellow300;
+         }
+      }
+      &-user {
+         display: flex;
+         align-items: center;
+         border-radius: 2px;
+         background: #3f3d46;
+         padding: 8px 10px 8px 13px;
+         margin-left: 15px;
+         color: $gray25;
+         font-size: 16px;
+         font-weight: 500;
+         line-height: normal;
+         svg {
+            width: 20px;
+            height: 20px;
+            fill: $gray25;
+         }
+
+         &._act {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            width: 158px;
+            height: 64px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 9px 11px;
+            img {
+               width: 46px;
+               height: 46px;
+               margin-right: 11px;
+            }
+         }
+      }
+   }
+   &__dropdown {
+      position: absolute;
+      left: 307px;
+      top: 11px;
+      border-radius: 4px;
+      background: $dark500;
+      box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(60px);
+      -webkit-backdrop-filter: blur(60px);
+      width: 278px;
+      height: 353px;
+      padding: 0 15px;
+      display: none;
+      z-index: 50;
+     
+      &._show {
+         display: block;
+      }
+
+      &-inp {
+         display: flex;
+         align-items: center;
+         margin-top: 14px;
+         svg {
+            width: 24px;
+            height: 24px;
+            fill: $gray25;
+         }
+      }
+      &-search {
+         background: transparent;
+         height: 24px;
+         color: $gray100;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+         &::placeholder {
+            color: $gray100;
+         }
+      }
+      &-line {
+         width: 100%;
+         height: 1px;
+         background: $gray500;
+         margin-top: 5px;
+      }
+      &-list {
+         margin-top: 22px;
+         overflow: auto;
+         height: 280px;
+         li {
+            color: $gray25;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: normal;
+            padding-bottom: 19px;
+            display: flex;
+            align-items: center;
+            img {
+               width: 26px;
+               height: 26px;
+               margin-right: 19px;
+            }
+         }
+      }
+   }
+
+   &__sum {
+      margin-top: 26px;
+      margin-left: 38px;
+      &-inp {
+         position: relative;
+         width: 460px;
+         height: 47px;
+         margin-bottom: 19px;
+         border-radius: 4px;
+         border: 1px solid $gray500;
+         background: $gray600;
+         input {
+            width: 100%;
+            height: 100%;
+            padding-left: 12px;
+            background: transparent;
+            color: $gray100;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: normal;
+         }
+         p {
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            transform: translateY(-50%);
+            color: $gray100;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: normal;
+            text-decoration: line-through;
+         }
+      }
+      &-coins {
+         width: 460px;
+         height: 150px;
+         display: grid;
+         grid-template-columns: repeat(3, 1fr);
+         grid-template-rows: repeat(2, 1fr);
+         gap: 17px;
+      }
+      &-btn {
+         margin-top: 39px;
+         width: 253px;
+         height: 48px;
+         button{
+
+         }
+      }
+   }
+}
+
+.subscription {
+   display: none;
+   padding: 46px 63px 38px 21px;
+   width: 1227px;
+   margin-left: 44px;
+   background: $gray800;
+   backdrop-filter: blur(60px);
+   &__title {
+      display: flex;
+      align-items: center;
+      color: $gray25;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: normal;
+      margin-bottom: 17px;
+      width: fit-content;
+      cursor: pointer;
+      svg {
+         width: 28px;
+         height: 28px;
+         fill: $gray25;
+         margin-right: 10px;
+      }
+
+
+ 
+   }
+   &__text {
+      color: $gray25;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      width: 814px;
+      margin: 0 0 32px 38px;
+   }
+   &__select {
+      margin-left: 38px;
+      display: flex;
+      justify-content: space-between;
+     
+      &-basic,
+      &-premium,
+      &-pro {
+         width: 352px;
+         height: 462px;
+         background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #241c2a 100%);
+         border: 2px solid transparent;
+         padding-top: 52px;
+         position: relative;
+         &._act {
+            border: 2px solid $yellow300;
+            box-shadow: 0px 0px 20px 0px rgba(250,199,4,1);
+         }
+      }
+
+      &-title {
+         color: $gray25;
+         text-align: center;
+         font-size: 30px;
+         font-weight: 700;
+         line-height: normal;
+         margin-bottom: 14px;
+         &._act {
+            color: $yellow300;
+         }
+      }
+      &-price {
+         color: $gray25;
+         text-align: center;
+         font-size: 24px;
+         font-weight: 500;
+         line-height: normal;
+         margin-bottom: 19px;
+      }
+      &-text {
+         color: $gray25;
+         text-align: center;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+         margin: 0 0 45px 0;
+      }
+      &-list {
+         display: block;
+         width: 230px;
+         margin: 0 auto;
+         li {
+            color: $gray25;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: normal;
+            list-style-type: disc;
+            text-align: left;
+         }
+      }
+      &-btn {
+         position: absolute;
+         bottom: 37px;
+         left: 0;
+         right: 0;
+         background: transparent;
+         color: $yellow300;
+         font-size: 18px;
+         font-weight: 500;
+         line-height: normal;
+         margin: 0 auto;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         width:fit-content;
+         svg {
+            width: 15px;
+            height: 15px;
+            fill: $gray25;
+            margin-right: 8px;
+            display: none;
+         }
+         &._act{
+            color: $gray25;
+            svg{
+               display: block;
+            }
+         }
+      }
+   }
+}
+

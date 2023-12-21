@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="src/styles/setting.scss">
+   <title>Statistics</title>
+</head>
+
+<body>
+   <div class="wrapper">
+      <load="src/html/header.html" />
+      <load="src/html/sidebar.html" />
+      <main class="page">
+         <section class="setting">
+            <div class="setting__bg"></div>
+            <div class="setting__container">
+               <aside class="setting__aside">
+                  <load="src/html/components/ui/asideMenu.html" />
+               </aside>
+               <div class="setting__content">
+                     <h2 class="setting__title">Уведомления</h2>
+                     <div class="setting__swich">
+                        <load="src/html/components/ui/swich.html" name="Новости платформы"
+                           label-text="Новости платформы" />
+                        <load="src/html/components/ui/swich.html" name="Новые турниры" label-text="Новые турниры" />
+                        <load="src/html/components/ui/swich.html" name="Входящие сообщения"
+                           label-text="Входящие сообщения" />
+                        <load="src/html/components/ui/swich.html" name="Приглашения в команду"
+                           label-text="Приглашения в команду" />
+                        <load="src/html/components/ui/swich.html" name="Запросы в друзья"
+                           label-text="Запросы в друзья" />
+                     </div>
+                     <hr class="setting__line">
+                     <h2 class="setting__title setting__title_sub">Приглашения в команду</h2>
+                     <load="src/html/components/ui/swich.html" name="Разрешить только от друзей"
+                        label-text="Разрешить только от друзей" />
+                     <hr class="setting__line setting__line_sub">
+                     <h2 class="setting__title setting__title_sub">Язык интерфейса</h2>
+                     <div class="setting__lang">
+                        <p class="setting__lang-text">Язык</p>
+                        <div class="setting__lang-select">
+                           <span class="setting__lang-current">Українська</span>
+                           <div class="setting__lang-arrow">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#arrow-down"></use>
+                              </svg>
+                           </div>
+                           <ul class="setting__lang-list">
+                              <li class="setting__lang-item">Українська</li>
+                              <li class="setting__lang-item">English</li>
+                              <li class="setting__lang-item">Poland</li>
+                              <li class="setting__lang-item">Franch</li>
+                           </ul>
+
+                        </div>
+                     </div>
+
+                     <hr class="setting__line setting__line_sub">
+                     <h2 class="setting__title setting__title_sub">Регион</h2>
+                     <div class="setting__lang">
+                        <p class="setting__lang-text">Регион</p>
+                        <div id="country" class="setting__country "></div>
+
+                     </div>
+                     <hr class="setting__line setting__line_sub">
+                     <h2 class="setting__title setting__title_sub">Привязать аккаунт</h2>
+                     <div class="setting__account">
+                        <div class="setting__account-item">
+                           <p class="setting__account-text setting__lang-text">Steam</p>
+                           <div class="setting__account-column">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#minus"></use>
+                              </svg>
+                              <p class="setting__account-name">VERITA_Luts</p>
+                           </div>
+                        </div>
+                        <div class="setting__account-item">
+                           <p class="setting__account-text setting__lang-text">Google</p>
+                           <div class="setting__account-column">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#minus"></use>
+                              </svg>
+                              <p class="setting__account-name">VERITA_Luts</p>
+                           </div>
+                        </div>
+                        <div class="setting__account-item">
+                           <p class="setting__account-text setting__lang-text">Facebook</p>
+                           <div class="setting__account-column">
+                              <svg>
+                                 <use xlink:href="src/images/sprite.svg#minus"></use>
+                              </svg>
+                              <p class="setting__account-name">VERITA_Luts</p>
+                           </div>
+                        </div>
+                     </div>
+
+                     <hr class="setting__line setting__line_sub">
+                     <h2 class="setting__title setting__title_sub">Изменить пароль</h2>
+                     <p class="setting__lang-text setting__lang-text_edit">Изменить</p>
+                     <hr class="setting__line setting__line_sub">
+                     <button class="setting__exit">
+                        <svg>
+                           <use xlink:href="src/images/sprite.svg#exit"></use>
+                        </svg>
+                        Выйти из аккаунта
+                     </button>
+               </div>
+         </section>
+      </main>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script type="module" src="./src/ts/cabinet/statistics.ts"></script>
+</body>
+
+</html>

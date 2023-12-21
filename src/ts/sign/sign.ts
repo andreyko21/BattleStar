@@ -1,7 +1,7 @@
 import axios from "axios";
 import $ from "jquery";
 import "jquery-validation";
-// import "./styles/sign.scss";
+
 
 type SignType = {
   signUp: JQuery<HTMLFormElement>;
@@ -12,6 +12,7 @@ type SignType = {
   name: JQuery<HTMLInputElement>;
   email: JQuery<HTMLInputElement>;
   pswd: JQuery<HTMLInputElement>;
+  role: JQuery<HTMLInputElement>;
 };
 
 interface FormVal {
@@ -20,6 +21,7 @@ interface FormVal {
   name: string;
   email: string;
   pswd: string;
+  role:string;
 }
 
 class Sign implements SignType {
@@ -31,6 +33,7 @@ class Sign implements SignType {
   name: JQuery<HTMLInputElement>;
   email: JQuery<HTMLInputElement>;
   pswd: JQuery<HTMLInputElement>;
+  role: JQuery<HTMLInputElement>;
 
   constructor() {
     this.signUp = $(".form__signup") as JQuery<HTMLFormElement>;
@@ -41,6 +44,7 @@ class Sign implements SignType {
     this.name = $("#name") as JQuery<HTMLInputElement>;
     this.email = $("#email") as JQuery<HTMLInputElement>;
     this.pswd = $("#pswd") as JQuery<HTMLInputElement>;
+    this.role = $("#role") as JQuery<HTMLInputElement>;
 
     this.init();
   }
@@ -48,7 +52,8 @@ class Sign implements SignType {
   init() {
     this.signsTabs();
     this.getFormVal();
-    this.handleBtn();
+    this.singInBtn()
+    this.singUpBtn()
   }
 
   signsTabs() {
@@ -66,6 +71,79 @@ class Sign implements SignType {
       });
     });
   }
+
+  getFormVal(): FormVal {
+    const formValues: FormVal = {
+      nickname: this.nickname.val() as string,
+      password: this.password.val() as string,
+      name: this.name.val() as string,
+      email: this.email.val() as string,
+      pswd: this.pswd.val() as string,
+      role: this.role.val() as string,
+    };
+
+    return formValues;
+  }
+
+  singUpBtn() {
+    $("#sign-up").on("click", (e) => {
+      e.preventDefault();
+        // this.signInValidation()
+        // this.signUpValidation()
+        this.authenticateUser()
+        this.registerUser();
+    });
+  }
+  singInBtn() {
+    $("#sign-in").on("click", (e) => {
+      e.preventDefault();
+        // this.signInValidation()
+        // this.signUpValidation()
+        this.authenticateUser()
+    });
+  }
+
+  authenticateUser() {
+    const formValues: FormVal = this.getFormVal();
+    axios
+      .post("https://battle-star-app.onrender.com/api/auth/local", {
+        identifier: formValues.nickname,
+        password: formValues.password,
+      })
+      .then((response) => {
+        console.log("Well done!");
+        console.log("User profile", response.data.user);
+        console.log("User token", response.data.jwt);
+        document.cookie = `token=${response.data.jwt}`;
+      })
+      .catch((error) => {
+        console.log("An error occurred:", error.response);
+      });
+  }
+
+  registerUser() {
+    const formValues: FormVal = this.getFormVal();
+    axios
+      .post("https://battle-star-app.onrender.com/api/auth/local/register", {
+        username: formValues.name,
+        email: formValues.email,
+        password: formValues.pswd,
+      })
+      .then((response) => {
+        console.log("Well done!");
+        console.log("User profile", response.data.user);
+        console.log("User token", response.data.jwt);
+        console.log("User role", response.data.role);
+        document.cookie = `token=${response.data.jwt}`;
+      })
+      .catch((error) => {
+        console.log("An error occurred:", error.response);
+      });
+  }
+}
+
+new Sign();
+
 
 //  signInValidation() {
 //     $!.validator.addMethod(
@@ -117,11 +195,10 @@ class Sign implements SignType {
 //   }
 
 //   signUpValidation() {
-     
 //     $.validator.addMethod(
 //       "cyrillicEmail",
 //       function (value: string) {
-//         return /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value);
+//         // return /^[\wа-яА-ЯёЁ]+(\.[\wа-яА-ЯёЁ]+)*@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(value);
 //       },
 //       "Please enter a valid email address"
 //     );
@@ -184,64 +261,3 @@ class Sign implements SignType {
 
 //     });
 //   }
-
-
-  getFormVal(): FormVal {
-    const formValues: FormVal = {
-      nickname: this.nickname.val() as string,
-      password: this.password.val() as string,
-      name: this.name.val() as string,
-      email: this.email.val() as string,
-      pswd: this.pswd.val() as string,
-    };
-
-    return formValues;
-  }
-
-  handleBtn() {
-    $(".btn_sign").on("click", (e) => {
-      e.preventDefault();
-        // this.signInValidation()
-        // this.signUpValidation()
-        this.registerUser();
-    });
-  }
-  authenticateUser() {
-    const formValues: FormVal = this.getFormVal();
-    axios
-      .post("https://battle-star-app.onrender.com/api/auth/local", {
-        identifier: formValues.nickname,
-        password: formValues.password,
-      })
-      .then((response) => {
-        console.log("Well done!");
-        console.log("User profile", response.data.user);
-        console.log("User token", response.data.jwt);
-      })
-      .catch((error) => {
-        console.log("An error occurred:", error.response);
-      });
-  }
-
-  registerUser() {
-    const formValues: FormVal = this.getFormVal();
-    axios
-      .post("https://battle-star-app.onrender.com/api/auth/local/register", {
-        username: formValues.name,
-        email: formValues.email,
-        password: formValues.pswd,
-        // role: "user",
-      })
-      .then((response) => {
-        console.log("Well done!");
-        console.log("User profile", response.data.user);
-        console.log("User token", response.data.jwt);
-        console.log("User token", response.data.role);
-      })
-      .catch((error) => {
-        console.log("An error occurred:", error.response);
-      });
-  }
-}
-
-new Sign();

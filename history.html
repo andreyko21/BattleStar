@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="src/styles/history.scss">
+   <title>History</title>
+</head>
+<body>
+   <div class="wrapper">
+      <load="src/html/header.html" />
+      <load="src/html/sidebar.html" />
+      <main class="page">
+         <section class="history">
+            <div class="history__bg"></div>      
+            <div class="history__container">
+               <aside class="history__aside">
+                  <load="src/html/components/ui/asideMenu.html" />
+               </aside>
+               <div class="history__content">
+                  <div class="cabinet__history">
+                     <div class="history__row">
+                        <h2 class="history__row-title">История матчей</h2>
+                        <div class="history__row-filter">
+                           <p class="history__row-filter-text">Показать:</p>
+                           <select class="history__row-filter-select" id="filter">
+                              <option value="All">Все матчи</option>
+                              <option value="win">Победа</option>
+                              <option value="defeat">Поражение</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="history__table table table_history">
+                        <table class="table__tab "></table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </main>
+   </div>
+   <script type="module" src="./src/ts/cabinet/history.ts"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { CheckboxSwitch } from "../../../tournaments/switch";
+import { CheckboxSwitch } from "../../tournaments/components/switch";
 
 class TournamentRegionLimit {
   private $container: JQuery;

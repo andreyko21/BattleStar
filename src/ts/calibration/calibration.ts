@@ -7,6 +7,7 @@ import mapImg from '../../images/temporary/map-img.png';
 import flagImg from '../../images/temporary/ukr-flag.png';
 import { TabsCreate } from '../component/tabs-create.ts';
 
+
 const popUp: HTMLDivElement | null = document.querySelector(
   '.calibration-pop-up'
 ) as HTMLDivElement;

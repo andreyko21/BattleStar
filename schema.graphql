@@ -422,6 +422,38 @@ type ComponentHashHashs {
   tour: String!
 }
 
+input ComponentHistoryHistoryMatchFiltersInput {
+  name: StringFilterInput
+  data: DateFilterInput
+  time: TimeFilterInput
+  regime: StringFilterInput
+  result: StringFilterInput
+  money: LongFilterInput
+  and: [ComponentHistoryHistoryMatchFiltersInput]
+  or: [ComponentHistoryHistoryMatchFiltersInput]
+  not: ComponentHistoryHistoryMatchFiltersInput
+}
+
+input ComponentHistoryHistoryMatchInput {
+  id: ID
+  name: String
+  data: Date
+  time: Time
+  regime: String
+  result: String
+  money: Long
+}
+
+type ComponentHistoryHistoryMatch {
+  id: ID!
+  name: String!
+  data: Date!
+  time: Time
+  regime: String!
+  result: String!
+  money: Long
+}
+
 input ComponentLobbyAntyCheatFiltersInput {
   value: BooleanFilterInput
   and: [ComponentLobbyAntyCheatFiltersInput]
@@ -1759,6 +1791,47 @@ type FeadbackEntityResponseCollection {
   meta: ResponseCollectionMeta!
 }
 
+input HistoryMatchFiltersInput {
+  id: IDFilterInput
+  options: ComponentHistoryHistoryMatchFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [HistoryMatchFiltersInput]
+  or: [HistoryMatchFiltersInput]
+  not: HistoryMatchFiltersInput
+}
+
+input HistoryMatchInput {
+  options: [ComponentHistoryHistoryMatchInput]
+  publishedAt: DateTime
+}
+
+type HistoryMatch {
+  options(
+    filters: ComponentHistoryHistoryMatchFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): [ComponentHistoryHistoryMatch]
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type HistoryMatchEntity {
+  id: ID
+  attributes: HistoryMatch
+}
+
+type HistoryMatchEntityResponse {
+  data: HistoryMatchEntity
+}
+
+type HistoryMatchEntityResponseCollection {
+  data: [HistoryMatchEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
 input LanguageFiltersInput {
   id: IDFilterInput
   name: StringFilterInput
@@ -2130,6 +2203,7 @@ union GenericMorph =
   | ComponentGameListDota2
   | ComponentGameStatisticsGameComponent
   | ComponentHashHashs
+  | ComponentHistoryHistoryMatch
   | ComponentLobbyAntyCheat
   | ComponentLobbyCsGameMode
   | ComponentLobbyParticipant
@@ -2161,6 +2235,7 @@ union GenericMorph =
   | Dota2Team
   | Dota2Tournament
   | Feadback
+  | HistoryMatch
   | Language
   | MainNew
   | Map
@@ -2366,6 +2441,13 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): FeadbackEntityResponseCollection
+  historyMatch(id: ID): HistoryMatchEntityResponse
+  historyMatches(
+    filters: HistoryMatchFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): HistoryMatchEntityResponseCollection
   language(id: ID): LanguageEntityResponse
   languages(
     filters: LanguageFiltersInput
@@ -2489,6 +2571,12 @@ type Mutation {
   createFeadback(data: FeadbackInput!): FeadbackEntityResponse
   updateFeadback(id: ID!, data: FeadbackInput!): FeadbackEntityResponse
   deleteFeadback(id: ID!): FeadbackEntityResponse
+  createHistoryMatch(data: HistoryMatchInput!): HistoryMatchEntityResponse
+  updateHistoryMatch(
+    id: ID!
+    data: HistoryMatchInput!
+  ): HistoryMatchEntityResponse
+  deleteHistoryMatch(id: ID!): HistoryMatchEntityResponse
   createLanguage(data: LanguageInput!): LanguageEntityResponse
   updateLanguage(id: ID!, data: LanguageInput!): LanguageEntityResponse
   deleteLanguage(id: ID!): LanguageEntityResponse

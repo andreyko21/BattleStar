@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="src/styles/blacklist.scss">
+   <title>Statistics</title>
+</head>
+
+<body>
+   <div class="wrapper">
+      <load="src/html/header.html" />
+      <load="src/html/sidebar.html" />
+      <main class="page">
+         <section class="blacklist">
+            <div class="blacklist__bg"></div>
+            <div class="blacklist__container">
+               <aside class="blacklist__aside">
+                  <load="src/html/components/ui/asideMenu.html" />
+               </aside>
+               <div class="blacklist__column">
+                  <h2 class="blacklist__title">Черный список</h2>
+                  <div class="blacklist__content">
+                     <div class="blacklist__item"></div>
+                     <div class="blacklist__info">
+                        <svg>
+                           <use xlink:href="src/images/sprite.svg#alert-circle"></use>
+                           <p class="blacklist__text">
+                              Люди из черного списка не могут приглашать вас в команды, отправлять сообщения или
+                              добавлять в пати
+                           </p>
+                        </svg>
+                     </div>
+                  </div>
+               </div>
+         </section>
+      </main>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script type="module" src="./src/ts/cabinet/statistics.ts"></script>
+</body>
+
+</html>

@@ -1,3 +1,94 @@
+query GetPageNewsQuery {
+  cardNews {
+    data {
+      attributes {
+        card {
+          autor
+          title
+          text
+          data
+          img {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          avatar {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetMainNewsQuery {
+  mainNews {
+    data {
+      attributes {
+        title
+        text
+        data
+        img {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetTeamsQuery {
+  teams {
+    data {
+      attributes {
+        name
+        rating
+        logo {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+query GetMapsQuery {
+  maps {
+    data {
+      attributes {
+        logo {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+query GetUser{
+  usersPermissionsUsers{
+    data{
+      id
+      attributes{
+        username
+      }
+    }
+  }
+}
+
 mutation CreateCs2Tournament(
   $name: String
   $description: String
@@ -272,6 +363,183 @@ mutation CreateCsLobbies(
         antyCheat {
           value
         }
+      }
+    }
+  }
+}
+
+query GetCS2Tournament($id: ID) {
+  cs2Tournament(id: $id) {
+    data {
+      id
+      attributes {
+        Tournament {
+          name
+          description
+          max_teams
+          money_entry_rate
+          startDate
+          regionLimit
+          time
+          endDate
+          logo {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+        publishedAt
+        teams {
+          data {
+            attributes {
+              Team {
+                name
+                rating
+                logo {
+                  data {
+                    attributes {
+                      url
+                      alternativeText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetDota2Tournament($id: ID) {
+  dota2Tournament(id: $id) {
+    data {
+      id
+      attributes {
+        Tournament {
+          name
+          description
+          max_teams
+          money_entry_rate
+          startDate
+          regionLimit
+          time
+          endDate
+          logo {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+        publishedAt
+        teams {
+          data {
+            attributes {
+              Team {
+                name
+                rating
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetAllCS2Tournaments($page: Int, $pageSize: Int) {
+  cs2Tournaments(pagination: { page: $page, pageSize: $pageSize }) {
+    data {
+      id
+      attributes {
+        Tournament {
+          name
+          description
+          max_teams
+          money_entry_rate
+          startDate
+          regionLimit
+          time
+          endDate
+          logo {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+        publishedAt
+        teams {
+          data {
+            attributes {
+              Team {
+                name
+                rating
+                logo {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageCount
+      }
+    }
+  }
+}
+
+query GetAllDota2Tournaments($page: Int, $pageSize: Int) {
+  dota2Tournaments(pagination: { page: $page, pageSize: $pageSize }) {
+    data {
+      id
+      attributes {
+        Tournament {
+          name
+          description
+          max_teams
+          money_entry_rate
+          startDate
+          regionLimit
+          time
+          endDate
+          logo {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+        publishedAt
+        teams {
+          data {
+            attributes {
+              Team {
+                name
+                rating
+              }
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageCount
       }
     }
   }

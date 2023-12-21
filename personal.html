@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="src/styles/personal.scss">
+   <title>Personal</title>
+</head>
+
+<body>
+   <div class="wrapper">
+      <load="src/html/header.html" />
+      <load="src/html/sidebar.html" />
+      <main class="page">
+         <section class="personal">
+            <div class="personal__bg"></div>
+            <div class="personal__container">
+               <aside class="personal__aside">
+                  <load="src/html/components/ui/asideMenu.html" />
+               </aside>
+               <div class="personal__content"></div>
+         </section>
+      </main>
+   </div>
+
+   <script type="module" src="./src/ts/cabinet/personal.ts"></script>
+</body>
+
+</html>

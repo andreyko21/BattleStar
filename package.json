@@ -8,16 +8,20 @@
     "build": "build-gql-declarations && tsc && vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-gql": "graphql-codegen --config ./src/graphql/codegen.yml && prettier --write ./src/graphql/__generated__.ts"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript-graphql-request": "^6.0.1",
     "@types/jquery": "^3.5.29",
     "@types/node": "^20.8.10",
     "gh-pages": "^6.0.0",
     "graphql-request": "^6.1.0",
+    "prettier": "^3.1.1",
     "sass": "^1.69.5",
     "typescript": "^5.2.2",
-    "vite": "^4.5.0",
+    "vite": "^4.5.1",
     "vite-plugin-full-reload": "^1.0.5",
     "vite-plugin-handlebars": "^1.6.0",
     "vite-plugin-html-inject": "^1.0.4",
@@ -25,13 +29,14 @@
     "vite-plugin-typed-graphql": "^2.1.0"
   },
   "dependencies": {
+    "@esbuild/darwin-x64": "^0.19.10",
     "air-datepicker": "^3.4.0",
     "axios": "^1.6.2",
     "chart.js": "^4.4.1",
     "jquery": "^3.7.1",
     "jquery-validation": "^1.20.0",
-    "just-validate": "^4.3.0",
     "jsuites": "^5.0.29",
+    "just-validate": "^4.3.0",
     "nouislider": "^15.7.1",
     "socket.io-client": "^4.7.2",
     "swiper": "^11.0.5"

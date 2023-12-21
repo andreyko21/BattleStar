@@ -1,8 +1,6 @@
 import Chart from "chart.js/auto";
 import Sprite from "./../../images/sprite.svg";
 
-
-
 interface IStatisticsCSRating {
   rang: number;
   rangImg: string;
@@ -296,3 +294,7 @@ export class StatisticsDota {
   }
 }
 new StatisticsDota(".statistics__dota", statisticsCs);
+
+
+
+

@@ -1,4 +1,44 @@
+@import "./style.scss";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+@import "./components/ui/asideMenu.scss";
+@import "./components/ui/dropDownMenu.scss";
+@import "./components/ui/swich.scss";
+@import "./components/tabs.scss";
+.wrapper {
+   display: grid;
+   grid-template:
+      "sidebar header"
+      "sidebar main" 1fr;
+   min-height: 0%;
+   grid-template-columns: min-content auto;
+
+   overflow: clip;
+}
+.page {
+   width: 100%;
+   grid-area: main;
+}
 .setting {
+   &__bg {
+      background: url(../../src/images/newsBg.png) repeat-x;
+      height: 200px;
+      width: 100%;
+      position: absolute;
+      top: 49px;
+      left: 0;
+      z-index: -1;
+   }
+   &__container {
+      display: flex;
+   }
+   &__content{
+      width: 1227px;
+      margin-left: 44px;
+      background: $gray800;
+      backdrop-filter: blur(60px);
+      padding: 30px 84px 37px 59px;
+   }
    padding: 30px 84px 37px 59px;
    &__title {
       color: $gray25;

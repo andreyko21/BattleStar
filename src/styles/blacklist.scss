@@ -1,5 +1,33 @@
+@import "./style.scss";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+@import "./components/ui/asideMenu.scss";
+@import "./components/ui/dropDownMenu.scss";
+.wrapper {
+   display: grid;
+   grid-template:
+      "sidebar header"
+      "sidebar main" 1fr;
+   min-height: 0%;
+   grid-template-columns: min-content auto;
+
+   overflow: clip;
+}
+.page {
+   width: 100%;
+   grid-area: main;}
 .blacklist {
    padding: 29px 84px 33px 59px;
+   &__container {
+      display: flex;
+   }
+   &__column{
+      width: 1227px;
+      margin-left: 44px;
+      background: $gray800;
+      backdrop-filter: blur(60px);
+      padding: 30px 84px 37px 59px;
+   }
    &__title {
       color: $gray25;
       font-size: 24px;

@@ -58,9 +58,30 @@ const pages = [
    path: resolve(__dirname, "lobby.html"),
  },
  {
-   name: "cabinet",
-   path: resolve(__dirname, "cabinet.html"),
+   name: "statistics",
+   path: resolve(__dirname, "statistics.html"),
  },
+ {
+  name: "history",
+  path: resolve(__dirname, "history.html"),
+},
+{
+  name: "personal",
+  path: resolve(__dirname, "personal.html"),
+},
+{
+  name: "wallet",
+  path: resolve(__dirname, "wallet.html"),
+},
+{
+  name: "setting",
+  path: resolve(__dirname, "setting.html"),
+},
+{
+  name: "blacklist",
+  path: resolve(__dirname, "blacklist.html"),
+},
+
 ];
 
 export default pages;

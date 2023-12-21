@@ -3,35 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Команди</title>
+    <title>Турнір</title>
     
-    <script type="module" crossorigin src="/assets/tournament-e9a09c4e.js"></script>
+    <script type="module" crossorigin src="/assets/tournament-56245408.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-3cfb730f.js">
     <link rel="modulepreload" crossorigin href="/assets/jquery-ab814638.js">
     <link rel="modulepreload" crossorigin href="/assets/sprite-46903b3d.js">
-    <link rel="stylesheet" href="/assets/tournament-d41ff43d.css">
+    <link rel="modulepreload" crossorigin href="/assets/tabs-create-7a28c516.js">
+    <link rel="modulepreload" crossorigin href="/assets/windowLocation-8fc17d29.js">
+    <link rel="modulepreload" crossorigin href="/assets/lava-lamp-23e0d20d.js">
+    <link rel="modulepreload" crossorigin href="/assets/swiper-core-75041738.js">
+    <link rel="modulepreload" crossorigin href="/assets/dropDownMenu-e31617c8.js">
+    <link rel="modulepreload" crossorigin href="/assets/gameselect-ca50b108.js">
+    <link rel="modulepreload" crossorigin href="/assets/queries.graphql.d-b80ad75d.js">
+    <link rel="stylesheet" href="/assets/gameselect-749a959a.css">
+    <link rel="stylesheet" href="/assets/tournament-6e66dd31.css">
   </head>
   <body class="page tournament-page">
     <div class="tournament-page__wrapper wrapper">
       <header class="header">
   <div class="header__select-game">
     <div class="dropdown__game">
-   <div class="dropdown__game-select">
+  <!-- <div class="dropdown__game-select">
       <div class="dropdown__game-current">
-         <img class="dropdown__game-img" src="data:image/webp;base64,UklGRtwCAABXRUJQVlA4INACAAAQDgCdASoyADMAPpE+nUsloyKhqBQJWLASCWgAvZGN1l5MlJYDcETbw7gDeRt5pfhee2enPYGIEDQsw1zAHE0qvQKJhGwB10gnzJHilbOD6J4XLxI+wU5r0742A6oTzn4T//ZTegj6zWG11gbGd82yrEUu/mUvjFfgAP74Vhk+kU0OLM5L4X8STcVfF0aNH1URvyhIlmrdN1bB5kgtZFj48P5Qecli2b8U2+9P3p84yJl2qp+YccbqObeNnFltR1AlPaMovjOZ2Ow5K30RcNQskANmADLj6iWUrWtzlNsDEcW7uuMUEjtz6y1suLc9vHsaDUGRpf9aPvZxFVHi8PXKQd7uXoWKqxvx8vJJ6XVInQoyB/0icxg/x8AAdsFaNqqHfBGpiApsKil320S4cZRzisPEQZLCqeUmAP/qv1QTUrOtfyRJMLlkKgfXADE80dxwbIog2r5MCMN0PtTham9Nba1RvLkgLuQVLL+GUIMJc/y7LVbifUqf2NMAAGn7q/bfh35nL0PiV6Y+S34fX2edhge3XSoqjqyD/3pFBebSA4HG2t8339Vxb1GpxBj6+hsHqh31Pk9IB1gEY9r/n/ijF/fUcwnUcQqrLqj5mEIYp7jy77t/nc8ElMJLkrT/6TLE6s4kVVvTQqu2ZBQWhR19e3o6hBcZbIj/9lL7bE6yqWya1Dh6aDMQhN2uU/Pkf/L8wkXkxJ5Dox0BqccMtsxDLnipglucAdRbz1Ux8LKhB6AY545vnmG1eBBOamP0TgFyqoqZnkNh3KApvAwbBzLxlAYMVfyANsP/IMdeQguGIco+hp40L/Agvq0z7mg1dw9qIkaLpV/bPMPB6PstFAd3GlNzLEYn3LjKRICqlWOa44940dfCTEMADaM1C+sPxwQ5Apt+ehcKMctWMkOO5H0i0Vg2H3gG1IqXXTNUAviQKwrbs0ib6/qKtQwH4AAAAAA=" alt="">
+         <img class="dropdown__game-img" src="src/images/csGo.webp" alt="">
          <p class="dropdown__game-name">CS:GO</p>
       </div>
       <div class="dropdown__game-arrow">
          <svg>
-            <use xlink:href="/assets/sprite-eed5de14.svg#arrow-game"></use>
+            <use xlink:href="src/images/sprite.svg#arrow-game"></use>
          </svg>
       </div>
       <ul class="dropdown__game-list">
-         <li class="dropdown__game-item"><img class="dropdown__game-icon" src="data:image/webp;base64,UklGRtwCAABXRUJQVlA4INACAAAQDgCdASoyADMAPpE+nUsloyKhqBQJWLASCWgAvZGN1l5MlJYDcETbw7gDeRt5pfhee2enPYGIEDQsw1zAHE0qvQKJhGwB10gnzJHilbOD6J4XLxI+wU5r0742A6oTzn4T//ZTegj6zWG11gbGd82yrEUu/mUvjFfgAP74Vhk+kU0OLM5L4X8STcVfF0aNH1URvyhIlmrdN1bB5kgtZFj48P5Qecli2b8U2+9P3p84yJl2qp+YccbqObeNnFltR1AlPaMovjOZ2Ow5K30RcNQskANmADLj6iWUrWtzlNsDEcW7uuMUEjtz6y1suLc9vHsaDUGRpf9aPvZxFVHi8PXKQd7uXoWKqxvx8vJJ6XVInQoyB/0icxg/x8AAdsFaNqqHfBGpiApsKil320S4cZRzisPEQZLCqeUmAP/qv1QTUrOtfyRJMLlkKgfXADE80dxwbIog2r5MCMN0PtTham9Nba1RvLkgLuQVLL+GUIMJc/y7LVbifUqf2NMAAGn7q/bfh35nL0PiV6Y+S34fX2edhge3XSoqjqyD/3pFBebSA4HG2t8339Vxb1GpxBj6+hsHqh31Pk9IB1gEY9r/n/ijF/fUcwnUcQqrLqj5mEIYp7jy77t/nc8ElMJLkrT/6TLE6s4kVVvTQqu2ZBQWhR19e3o6hBcZbIj/9lL7bE6yqWya1Dh6aDMQhN2uU/Pkf/L8wkXkxJ5Dox0BqccMtsxDLnipglucAdRbz1Ux8LKhB6AY545vnmG1eBBOamP0TgFyqoqZnkNh3KApvAwbBzLxlAYMVfyANsP/IMdeQguGIco+hp40L/Agvq0z7mg1dw9qIkaLpV/bPMPB6PstFAd3GlNzLEYn3LjKRICqlWOa44940dfCTEMADaM1C+sPxwQ5Apt+ehcKMctWMkOO5H0i0Vg2H3gG1IqXXTNUAviQKwrbs0ib6/qKtQwH4AAAAAA=" alt="">Counter Strike: Global Offensive</li>
-         <li class="dropdown__game-item"><img class="dropdown__game-icon" src="data:image/webp;base64,UklGRnwCAABXRUJQVlA4WAoAAAAQAAAAJwAAKAAAQUxQSFMBAAABkELbtrFt57OVjPvZ9cvstm3b+m2kPxmV2ZXJtm2fDwc3/X+NCEZu2ziSNOU02PqJPYJrDVD9x/YIDgUGzJILQMmPR+g1vUPRB+/wP+Wz8XcilzOIfd8shgFzDyV3AbFULwcAXFdbpXLZGZYt+4iCe2i5arthRXPHYouqc7Ci+2Y91G0AYss7KUvepdPMPSW08K2h+W6XDrMDrwYCtf25sLUDTzqwzE0htHMnA5z16zqNipPA7fyokIGahUJR90TuwT2NL2lC3tv/CtQynkhXbECw5y0ngJEgdTdAytxl7GCAkTriIOWzjX0kHBC328SikSoACXeFzlU4cjJ0lC2u59QxYpGidp6zmXGQEkIfq9DPMMYJ9b8MUbeX/SlXUPP6csphhyk/UC/AYcXEp/xCZlcuIxwtfHeP+E76clbEf7x/ba7EyldzdXf1azFWegOA0TQAVlA4IAIBAADwBwCdASooACkAPpE+nEqloyKhpzgJILASCWwAtRroPHeq8XPQBdnPPhfsB8Ev7a/rl7QAXZl2cfgFepna8rvF+qhx1jOim8AA/hMf/KV0kpJWY5H2RUB//ewX72C/ewX2dH3eARphOv5569NfquY37o8LDS9Am8dhyGwrGeOhmu8umsqcJ2sygVjcmB2v3NwwVYbECMleu1jasVlUsZpUk8G3jFlB8e/HNwfaK1b+8kgA0n/Q4LzFE7voj2/TZ5+8FtAnp5fHhjMz7YZgmbx9oYBCfxsmm9PNCiYYHIiJZ+mvZiVLSOTp7rfNn6KqkWk2XEcUbHt+Pyd/QrDtSOqHAAA=" alt="">DOTA 2</li>
+         <li class="dropdown__game-item"><img class="dropdown__game-icon" src="src/images/csGo.webp" alt="">Counter Strike: Global Offensive</li>
+         <li class="dropdown__game-item"><img class="dropdown__game-icon" src="src/images/dota.webp" alt="">DOTA 2</li>
       </ul>
-   </div>
+   </div> -->
 </div>
+
   </div>
 
   <label for="headerSearch" class="header__search-block">
@@ -124,7 +133,7 @@
 
       <main class="page__main tournament-page__main">
         <div
-          class="tournament-page__container"
+          class="tournament-information__container"
           id="tournament-page__container"
         ></div>
       </main>

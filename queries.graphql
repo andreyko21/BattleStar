@@ -335,8 +335,179 @@ mutation CreateCsLobbies(
   }
 }
 
+query GetCS2Tournament($id: ID) {
+  cs2Tournament(id: $id) {
+    data {
+      id
+      attributes {
+        Tournament {
+          name
+          description
+          max_teams
+          money_entry_rate
+          startDate
+          regionLimit
+          time
+          endDate
+          logo {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+        publishedAt
+        teams {
+          data {
+            attributes {
+              Team {
+                name
+                rating
+                logo {
+                  data {
+                    attributes {
+                      url
+                      alternativeText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
+query GetDota2Tournament($id: ID) {
+  dota2Tournament(id: $id) {
+    data {
+      id
+      attributes {
+        Tournament {
+          name
+          description
+          max_teams
+          money_entry_rate
+          startDate
+          regionLimit
+          time
+          endDate
+          logo {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+        publishedAt
+        teams {
+          data {
+            attributes {
+              Team {
+                name
+                rating
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
+query GetAllCS2Tournaments($page: Int, $pageSize: Int) {
+  cs2Tournaments(pagination: { page: $page, pageSize: $pageSize }) {
+    data {
+      id
+      attributes {
+        Tournament {
+          name
+          description
+          max_teams
+          money_entry_rate
+          startDate
+          regionLimit
+          time
+          endDate
+          logo {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+        publishedAt
+        teams {
+          data {
+            attributes {
+              Team {
+                name
+                rating
+                logo {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageCount
+      }
+    }
+  }
+}
 
-
-
+query GetAllDota2Tournaments($page: Int, $pageSize: Int) {
+  dota2Tournaments(pagination: { page: $page, pageSize: $pageSize }) {
+    data {
+      id
+      attributes {
+        Tournament {
+          name
+          description
+          max_teams
+          money_entry_rate
+          startDate
+          regionLimit
+          time
+          endDate
+          logo {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+        publishedAt
+        teams {
+          data {
+            attributes {
+              Team {
+                name
+                rating
+              }
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageCount
+      }
+    }
+  }
+}

@@ -53,7 +53,7 @@ class MatchesQuery {
                 ?.selected_country?.data?.attributes?.name as string,
               imgSrc: item.attributes?.map?.data?.attributes?.logo?.data?.[0]
                 ?.attributes?.url as string,
-              map: item.attributes?.map?.data?.attributes?.name as string,
+              mapName: item.attributes?.map?.data?.attributes?.name as string,
               ping: item.attributes?.ping,
               participants: (
                 item.attributes?.participant?.players?.data?.length || 0

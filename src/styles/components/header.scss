@@ -156,6 +156,40 @@
     align-items: center;
     justify-content: center;
     margin-left: 36px;
+   
+    &-block{
+      display: flex;
+      align-items: center;
+    }
+    &-button-auth{
+       
+    border-radius: 4px;
+    background: #fac704;
+    padding: 8.5px 18.5px;
+    max-width: 294px;
+    width: 100%;
+    color: #18181b;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    display: block;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background: darken(#fac704, 10%);
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: 2px solid #fac704;
+      outline-offset: 2px;
+    }
+
+    &:active {
+      background: lighten(#fac704, 10%);
+    }
+  
+    }
     &-info {
       display: flex;
       align-items: center;

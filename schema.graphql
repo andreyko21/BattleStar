@@ -964,6 +964,8 @@ input UsersPermissionsUserFiltersInput {
   role: UsersPermissionsRoleFiltersInput
   online_status: BooleanFilterInput
   biography: StringFilterInput
+  player: PlayerFiltersInput
+  balance: FloatFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   and: [UsersPermissionsUserFiltersInput]
@@ -983,6 +985,8 @@ input UsersPermissionsUserInput {
   role: ID
   online_status: Boolean
   biography: String
+  player: ID
+  balance: Float
 }
 
 type UsersPermissionsUser {
@@ -994,6 +998,8 @@ type UsersPermissionsUser {
   role: UsersPermissionsRoleEntityResponse
   online_status: Boolean
   biography: String
+  player: PlayerEntityResponse
+  balance: Float
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -2014,6 +2020,7 @@ input PlayerFiltersInput {
   teams: TeamFiltersInput
   my_teams: Cs2FiltersInput
   my_own_teams: Cs2FiltersInput
+  user: UsersPermissionsUserFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -2034,6 +2041,7 @@ input PlayerInput {
   teams: [ID]
   my_teams: [ID]
   my_own_teams: [ID]
+  user: ID
   publishedAt: DateTime
 }
 
@@ -2084,6 +2092,7 @@ type Player {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): Cs2RelationResponseCollection
+  user: UsersPermissionsUserEntityResponse
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime

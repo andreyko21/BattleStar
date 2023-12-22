@@ -8,8 +8,8 @@ import TournamentCard from "./components/card";
 import { PagePagination } from "./components/pagination";
 import { Pagination } from "./../../teams/pagination";
 import { BaseTabs } from "./../../component/tabs";
-import { LavaLamp } from "./../../component/lava-lamp";
-import "./../../component/gameselect";
+import { LavaLamp } from "../../component/lava-lamp";
+import "./../../component/header/header";
 import request from "graphql-request";
 import { getLocateParam } from "../../functions/windowLocation";
 import {
@@ -17,6 +17,7 @@ import {
   GetAllDota2Tournaments,
 } from "../../../../queries.graphql.d";
 import { TabsCreate } from "../../component/tabs-create";
+import { Header } from "../../component/header/header";
 
 interface TournamentData {
   id: string;
@@ -249,12 +250,23 @@ function formatDate(inputDate: string | number | Date) {
   return formattedDate;
 }
 
-new TabsCreate("tournaments-page__container", "match-page__filters", [
-  ["tournamentGrid", "ТУРНИРНАЯ СЕТКА"],
-  ["gamesSchedule", "РАСПИСАНИЕ ИГР"],
-  ["participants", "УЧАСНИКИ"],
+new TabsCreate("tournaments-nav__tabs", "match-page__filters", [
+  ["amateurTournaments", "ЛЮБИТЕЛЬСКИЕ ТУРНИРЫ"],
+  ["profesionalTournaments", "ПРОФЕССИОНАЛЬНЫЕ ТУРНИРЫ"],
 ]);
 $("#tournamentGrid-content").addClass("tabs-block__content-container_active");
 new BaseTabs("match-page__filters");
 
 new LavaLamp("match-page__filters");
+
+$(document).ready(() => {
+  new Header("#wrapper");
+  $('.tournaments-nav__create-button').on('click', () => {
+    const locParam = getLocateParam("game");
+    if (locParam == undefined || locParam == null) {
+      window.location.href = '/createTournament.html?game="cs2"'
+    } else {
+      window.location.href = `/createTournament.html?game="${locParam}"`
+    }
+  })
+})

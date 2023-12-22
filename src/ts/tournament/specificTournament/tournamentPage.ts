@@ -10,7 +10,8 @@ import teamIcon from "./../../../images/teamIcon.png";
 import { TournamentBracket } from "./components/tournamentBracket";
 import { TournamentParticipants } from "./components/participants";
 import { TournamentRenderer } from "./components/gameSchedule";
-import "./../../component/gameselect";
+import TeamAvatar from "./../../../images/teamAvatar.png"
+import "../../component/header/components/gameselect";
 import request from "graphql-request";
 import {
   GetCs2Tournament,
@@ -122,42 +123,42 @@ $(document).ready(async function () {
   const participants: any[] = [
     {
       name: "Stealth Dragons",
-      avatarUrl: "./src/images/teamAvatar.png",
+      avatarUrl: TeamAvatar,
       rank: 1774,
     },
     {
       name: "Mighty Eagles",
-      avatarUrl: "./src/images/teamAvatar.png",
+      avatarUrl: TeamAvatar,
       rank: 1623,
     },
     {
       name: "Stealth Dragons",
-      avatarUrl: "./src/images/teamAvatar.png",
+      avatarUrl: TeamAvatar,
       rank: 1774,
     },
     {
       name: "Mighty Eagles",
-      avatarUrl: "./src/images/teamAvatar.png",
+      avatarUrl: TeamAvatar,
       rank: 1623,
     },
     {
       name: "Stealth Dragons",
-      avatarUrl: "./src/images/teamAvatar.png",
+      avatarUrl: TeamAvatar,
       rank: 1774,
     },
     {
       name: "Mighty Eagles",
-      avatarUrl: "./src/images/teamAvatar.png",
+      avatarUrl: TeamAvatar,
       rank: 1623,
     },
     {
       name: "Stealth Dragons",
-      avatarUrl: "./src/images/teamAvatar.png",
+      avatarUrl: TeamAvatar,
       rank: 1774,
     },
     {
       name: "Mighty Eagles",
-      avatarUrl: "./src/images/teamAvatar.png",
+      avatarUrl: TeamAvatar,
       rank: 1623,
     },
   ];

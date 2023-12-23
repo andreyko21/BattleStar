@@ -15,7 +15,6 @@ class GettingGameModeSelected {
 
   private async renderCheckboxHtml(
     checkboxData: {
-      id: string;
       value: string;
       label: string;
     }[]
@@ -54,7 +53,13 @@ class GettingGameModeSelected {
       label: string;
     }[]
   ) {
-    await this.renderCheckboxHtml(checkboxData);
+    const changingCheckboxData = checkboxData.map((item) => {
+      return {
+        value: item.id,
+        label: item.label,
+      };
+    });
+    await this.renderCheckboxHtml(changingCheckboxData);
   }
 }
 

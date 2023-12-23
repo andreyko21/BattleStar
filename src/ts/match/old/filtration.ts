@@ -8,6 +8,39 @@
 ////  rateMax: HTMLDivElement;
 ////}
 
+//const x = {
+//   "country": ["Ukraine",
+//       "Poland"
+//   ],
+//   "rate": {
+//       "in": [
+//           100,
+//           200,
+//           500,
+//           1000,
+//           2000,
+//           10000
+//       ]
+//   },
+//   "mapName": [
+//       "Dust II",
+//       "Inferno",
+//       "Nuke",
+//       "Ancient",
+//       "Mirage",
+//       "Cache",
+//       "Overpass",
+//       "Cobblestone"
+//   ],
+//   "gameMode": [
+//       1,
+//       5,
+//       2,
+//       10
+//   ],
+//   "antyCheat": false
+//}
+
 //class Filtration {
 //  readonly container: HTMLElement | null;
 //  readonly popUp: OpenLobbyPopUp;

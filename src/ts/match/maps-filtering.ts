@@ -23,7 +23,7 @@ class GettingMapsFiltering {
     }[]
   ): Promise<string> {
     const checkboxObj = new CreateingCheckbox(
-      'map-filter',
+      'mapName-filter',
       checkboxData,
       'map-filter-checkboxes-container'
     );

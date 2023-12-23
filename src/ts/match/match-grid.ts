@@ -1,4 +1,5 @@
 import { OpenLobbyPopUp } from '../component/pop-up';
+import Sprite from './../../images/sprite.svg';
 
 class MatchTile {
   private container: HTMLElement;
@@ -59,7 +60,7 @@ class MatchTile {
         <div class="match-card__ping">${option.ping} </div>
         <div class="match-card__ping-icon">
           <svg>
-            <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
+            <use xlink:href="${Sprite}#haf_network-strength"></use>
           </svg>
         </div>
       </div>

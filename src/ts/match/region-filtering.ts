@@ -20,7 +20,7 @@ class RegionFiltering {
       throw new Error(`Container with id #${selectedContainerId} not found.`);
     }
 
-    this.renderSelectionContainer();
+   // this.renderSelectionContainer();
     this.renderFilterContainer();
   }
 
@@ -67,22 +67,22 @@ class RegionFiltering {
     this.filterContainer?.append(rateSelectedElem);
   }
 
-  private renderSelectionContainer(): void {
-    const template = `
-        <div class="region-selected__title create-lobby__title"> Регион </div>
-        <div class="region-selected__wrapper-btns" id="region-selected-btns">
+//  private renderSelectionContainer(): void {
+//    const template = `
+//        <div class="region-selected__title create-lobby__title"> Регион </div>
+//        <div class="region-selected__wrapper-btns" id="region-selected-btns">
            
-        </div>
-     `;
+//        </div>
+//     `;
 
-    const rateSelectedElem = document.createElement('div');
-    rateSelectedElem.classList.add(
-      'region-selected',
-      'create-lobby__region-selected'
-    );
-    rateSelectedElem.innerHTML = template;
-    this.selectedContainer?.prepend(rateSelectedElem);
-  }
+//    const rateSelectedElem = document.createElement('div');
+//    rateSelectedElem.classList.add(
+//      'region-selected',
+//      'create-lobby__region-selected'
+//    );
+//    rateSelectedElem.innerHTML = template;
+//    this.selectedContainer?.prepend(rateSelectedElem);
+//  }
 
   private async renderRadioBtnHtml(
     radioBtnData: { value: string; label: string; img: string }[]

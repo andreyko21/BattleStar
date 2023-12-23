@@ -31,6 +31,7 @@ class BtnOnRadioOrCheck {
             name="${this.nameGroup}" 
             type=${this.type}
             value="${option.value}" 
+            ${index === 0 && this.type === 'radio' ? 'checked' : ''}
          />
          <label 
             class="btn-radio__label" 

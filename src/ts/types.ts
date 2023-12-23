@@ -269,3 +269,19 @@ export type Meta = {
 export type Pagination = {
   pageCount: number;
 };
+
+export type NewCheckboxData = {
+   id: string,
+   value: string,
+   label: string,
+   checked?: boolean,
+}
+
+export type QueryRate = {
+   in?: number[];
+   between?: [number, number];
+ };
+
+ export type Match = {
+   [key: string]: string | boolean;
+ };

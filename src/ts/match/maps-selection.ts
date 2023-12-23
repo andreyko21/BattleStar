@@ -13,9 +13,8 @@ class GettingMapsSelected {
     this.renderSelectedContainer();
   }
 
-  private async renderCheckboxHtml(
+  private async renderRadioBtnHtml(
     checkboxData: {
-      id: string;
       value: string;
       label: string;
     }[]
@@ -47,7 +46,13 @@ class GettingMapsSelected {
       label: string;
     }[]
   ) {
-    await this.renderCheckboxHtml(checkboxData);
+    const changingCheckboxData = checkboxData.map((item) => {
+      return {
+        value: item.id,
+        label: item.label,
+      };
+    });
+    await this.renderRadioBtnHtml(changingCheckboxData);
   }
 }
 

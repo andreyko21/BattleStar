@@ -3,12 +3,12 @@ import Sprite from './../../images/sprite.svg';
 class CreateingCheckbox {
   private container: HTMLElement | null;
   private nameGroup: string;
-  private options: { value: string; label: string }[];
+  private options: { value: string; label: string, checked?:boolean  }[];
   private type: string;
 
   constructor(
     nameGroup: string,
-    options: { value: string; label: string }[],
+    options: { value: string, label: string, checked?:boolean }[],
     containerId: string | null = null,
     type: string = 'checkbox'
   ) {
@@ -30,6 +30,7 @@ class CreateingCheckbox {
             id="${this.nameGroup}${index + 1}"
             class="custom-checkbox__input"
             value="${option.value}" 
+            ${option.checked? "checked" : ""}
          />
          <label for="${this.nameGroup}${
         index + 1

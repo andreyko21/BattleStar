@@ -1,13 +1,10 @@
-import { Match } from './match';
+import { Match } from '../types.ts';
 import { OpenLobbyPopUp } from '../component/pop-up.ts';
 import { MatchesQuery } from './newQuery.ts';
 import { MatchRow } from '../match/match-row.ts';
 import { MatchTile } from '../match/match-grid.ts';
-
-type QueryRate = {
-  in?: number[];
-  between?: [number, number];
-};
+import { setLocateParam, delLocateParam } from '../functions/windowLocation.ts';
+import { QueryRate } from '../types.ts';
 
 class newFiltration {
   readonly container: HTMLElement | null;
@@ -18,10 +15,10 @@ class newFiltration {
   filtersObj: {
     country: string[] | null;
     rate: string[] | null;
-    map: string[] | null;
+    mapName: string[] | null;
     gameMode: string[] | null;
     antyCheat: string[] | null;
-  } = { country: [], rate: [], map: [], gameMode: [], antyCheat: [] };
+  } = { country: [], rate: [], mapName: [], gameMode: [], antyCheat: [] };
 
   filters: [string, string[]][] = [];
   filteredMatches: Match[] = [];
@@ -33,20 +30,48 @@ class newFiltration {
     );
     this.addEventHandler();
     this.selectAllChaeckboxValue();
-    this.updateContent();
+    // this.updateContent();
+    this.updateFiltersObject();
   }
 
   private addEventHandler() {
     this.allCheckbox?.forEach((elem) => {
       elem.addEventListener('change', (e) => {
         this.changeFilters(e.target as HTMLInputElement);
+        this.addLocationParam();
       });
     });
   }
 
+  private addLocationParam() {
+    for (const key in this.filtersObj) {
+      if (Object.prototype.hasOwnProperty.call(this.filtersObj, key)) {
+        const element = this.filtersObj[key as keyof typeof this.filtersObj];
+
+        if (element?.length !== 0) {
+          setLocateParam(key, element?.join(','));
+        } else {
+          delLocateParam(key);
+        }
+      }
+    }
+  }
+
+  private updateFiltersObject() {
+    this.allCheckbox?.forEach((checkbox) => {
+      const valueFilterObj = checkbox.name.replace('-filter', '');
+
+      if (checkbox.checked) {
+        this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]?.push(
+          checkbox.value
+        );
+      }
+    });
+    this.updateContent();
+  }
+
   private changeFilters(checkbox: HTMLInputElement) {
     const valueFilterObj = checkbox.name.replace('-filter', '');
-    console.log(checkbox.name);
 
     if (checkbox.checked) {
       this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]?.push(
@@ -65,7 +90,6 @@ class newFiltration {
         ).splice(indexValue, 1);
       }
     }
-    console.log(this.filtersObj);
     this.updateContent();
   }
 
@@ -76,7 +100,6 @@ class newFiltration {
       'content-wrapper'
     );
     const params = this.changeFiltersObj();
-    console.log(params);
 
     const matchQuery = new MatchesQuery(params);
 
@@ -96,10 +119,10 @@ class newFiltration {
           ? this.allCheckboxesValues.country
           : this.filtersObj.country,
       rate: {} as QueryRate,
-      map:
-        this.filtersObj.map?.length === 0
-          ? this.allCheckboxesValues.map
-          : this.filtersObj.map,
+      mapName:
+        this.filtersObj.mapName?.length === 0
+          ? this.allCheckboxesValues.mapName
+          : this.filtersObj.mapName,
       gameMode: [] as number[],
       antyCheat: this.filtersObj.antyCheat?.length === 0 ? false : true,
     };

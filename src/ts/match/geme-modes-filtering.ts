@@ -1,6 +1,8 @@
 import { CreateingCheckbox } from '../component/checkbox';
 import Sprite from './../../images/sprite.svg';
 import { Accordion } from '../component/accordeon';
+import { getLocateParam } from '../functions/windowLocation';
+import type { NewCheckboxData } from '../types';
 
 class GettingGameModeFiltering {
   private container: HTMLDivElement | null;
@@ -21,14 +23,34 @@ class GettingGameModeFiltering {
       value: string;
       label: string;
     }[]
-  ): Promise<string> {
+  ): Promise<void> {
+   const newCheckboxData = this.addCheck(checkboxData);
     const checkboxObj = new CreateingCheckbox(
       'gameMode-filter',
-      checkboxData,
+      newCheckboxData,
       'game-mode-filter-checkboxes-container'
     );
-    const checkboxHtml = checkboxObj.createChecboxes();
-    return checkboxHtml;
+    checkboxObj.createChecboxes();
+  }
+
+  private addCheck(checkboxData:{
+   id: string;
+   value: string;
+   label: string;
+ }[]):NewCheckboxData[]{
+
+   console.log(checkboxData[0].value);
+   
+   const locateParam = getLocateParam("gameMode")?.split(",");
+
+   const newCheckboxData: NewCheckboxData[] = []
+   checkboxData.forEach((item, index) => {
+      newCheckboxData.push(item);
+      if (locateParam?.includes(item.value)) {
+         newCheckboxData[index].checked = true
+      } 
+   })
+   return newCheckboxData
   }
 
   private renderFilterContainer() {

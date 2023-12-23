@@ -11,7 +11,7 @@ class MatchesQuery {
   params: {
     country: string[] | null;
     rate: QueryRate;
-    map: string[] | null;
+    mapName: string[] | null;
     gameMode: number[];
     antyCheat: boolean;
   };
@@ -19,7 +19,7 @@ class MatchesQuery {
   constructor(params: {
     country: string[] | null;
     rate: QueryRate;
-    map: string[] | null;
+    mapName: string[] | null;
     gameMode: number[];
     antyCheat: boolean;
   }) {
@@ -37,8 +37,6 @@ class MatchesQuery {
       console.log('end');
 
       if (csLobbies?.data) {
-        console.log(csLobbies.data);
-
         const destructureCsLobbies = csLobbies.data.reduce(
           (acc: { [key: string]: string | boolean }[], item) => {
             acc.push({
@@ -64,7 +62,6 @@ class MatchesQuery {
           },
           []
         );
-        console.log(destructureCsLobbies);
         return destructureCsLobbies;
       }
     } catch (error) {

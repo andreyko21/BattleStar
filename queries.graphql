@@ -594,25 +594,6 @@ query GetGameModes {
   }
 }
 
-query GetMyInfo {
-  me {
-    id
-    username
-  }
-}
-
-query GetCurrentUser($id: ID) {
-  usersPermissionsUser(id: $id) {
-    data {
-      id
-      attributes {
-        username
-        balance
-      }
-    }
-  }
-}
-
 query CreatorLobby($id: ID) {
   usersPermissionsUser(id: $id) {
     data {
@@ -641,6 +622,125 @@ query CreatorLobby($id: ID) {
                   rank
                 }
               }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetDota2TeamById($id: ID) {
+  dota2Team(id: $id) {
+    data {
+      id
+      attributes {
+        Team {
+          name
+          rating
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          earned
+          matches_played
+          victories_in_tournaments
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetDota2Teams {
+  dota2Teams {
+    data {
+      id
+      attributes {
+        Team {
+          name
+          rating
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          earned
+          matches_played
+          victories_in_tournaments
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetTeams(
+  $filtering: String
+  $sorting: [String]
+  $page: Int
+  $pageSize: Int
+) {
+  teams(
+    filters: { name: { startsWith: $filtering } }
+    sort: $sorting
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
+    data {
+      id
+
+      attributes {
+        name
+        rating
+        earned
+        matches_played
+        victories_in_tournaments
+        createdAt
+        updatedAt
+        publishedAt
+        participants {
+          data {
+            id
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageCount
+      }
+    }
+  }
+}
+
+query GetAwards {
+  cs2Awards {
+    data {
+      id
+      attributes {
+        name
+        logo {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
             }
           }
         }

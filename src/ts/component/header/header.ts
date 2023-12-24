@@ -5,6 +5,7 @@ import { initDropDown } from "../../../dropDownMenu";
 import UserNavigation from "./components/userNav";
 import request from "graphql-request";
 import { GetCurrentUser, GetMyInfo } from "../../../../queries.graphql.d";
+import Sprite from "./../../../images/sprite.svg";
 
 export class Header {
   container: JQuery<HTMLElement>;
@@ -60,7 +61,7 @@ export class Header {
 
   <label for="headerSearch" class="header__search-block">
     <svg class="header__search-block-icon">
-      <use xlink:href="src/images/sprite.svg#search"></use>
+      <use xlink:href="${Sprite}#search"></use>
     </svg>
     <input
       class="header__search-block-input"

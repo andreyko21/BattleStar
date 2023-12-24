@@ -1,32 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Турніри</title>
+    <title>ТУРНИРЫ</title>
     <link rel="icon" type="image/svg+xml" href="/Fav.ico" />
     <link rel="stylesheet" href="src/styles/tournaments.scss" />
   </head>
   <body>
     <div class="wrapper" id="wrapper">
- <load="src/html/components/ui/dropDownMenu.html" />
-      <load ="src/html/sidebar.html" />
+      <div class="sidebar" id="sidebar"></div>
       <main class="page tournaments-page">
         <div id="tournament-container"></div>
         <div class="tournaments-page__container">
           <div class="tournaments-nav">
             <div class="tournaments-nav__tabs" id="tournaments-nav__tabs"></div>
-            <button class="tournaments-nav__create-button">СОЗДАТЬ ТУРНИР</button>
+            <button class="tournaments-nav__create-button">
+              СОЗДАТЬ ТУРНИР
+            </button>
           </div>
           <div class="tournaments-cards-sorting">
             <div class="tournaments-cards-sorting__time-sort">
               <select class="tournaments-cards-sorting__time-sort-select">
-                  <option value="any">Ближайшие турниры</option>
-    <option value="local">Місцеві турніри</option>
-    <option value="national">Національні турніри</option>
-    <option value="international">Міжнародні турніри</option>
-                </select>
+                <option value="any">Ближайшие турниры</option>
+                <option value="local">Місцеві турніри</option>
+                <option value="national">Національні турніри</option>
+                <option value="international">Міжнародні турніри</option>
+              </select>
             </div>
             <div class="tournaments-cards-sorting__rating-sort">
               <label

@@ -18,6 +18,7 @@ import {
 } from "../../../../queries.graphql.d";
 import { TabsCreate } from "../../component/tabs-create";
 import { Header } from "../../component/header/header";
+import { AppSidebar } from "../../component/sidebar/sidebar";
 
 interface TournamentData {
   id: string;
@@ -47,8 +48,8 @@ class TournamentSwiper {
           `<div class="tournaments-swiper__swiper-slide swiper-slide tournaments-slide">
                 <div class="tournaments-slide__img">
                     <img src="${tournament.imageUrl}" alt="${
-            tournament.title
-          }" />
+                      tournament.title
+                    }" />
                 </div>
                 <div class="tournaments-slide__sidebar">
                     <h2 class="tournaments-slide__title">${
@@ -261,12 +262,14 @@ new LavaLamp("match-page__filters");
 
 $(document).ready(() => {
   new Header("#wrapper");
-  $('.tournaments-nav__create-button').on('click', () => {
+
+  new AppSidebar("wrapper", "ТУРНИРЫ");
+  $(".tournaments-nav__create-button").on("click", () => {
     const locParam = getLocateParam("game");
     if (locParam == undefined || locParam == null) {
-      window.location.href = '/createTournament.html?game="cs2"'
+      window.location.href = "/createTournament.html?game=cs2";
     } else {
-      window.location.href = `/createTournament.html?game="${locParam}"`
+      window.location.href = `/createTournament.html?game=${locParam}`;
     }
-  })
-})
+  });
+});

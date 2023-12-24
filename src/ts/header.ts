@@ -1,3 +1,6 @@
+import $ from "jquery";
+import "./../ts/component/";
+
 export class Header {
   private containerId: string;
 
@@ -7,144 +10,82 @@ export class Header {
   }
 
   private render(): void {
-    const container = document.getElementById(this.containerId);
-    if (!container) {
+    const container = $(`#${this.containerId}`);
+    if (container.length === 0) {
       throw new Error(`Container with id #${this.containerId} not found.`);
     }
 
-    container.innerHTML = "";
-    container.appendChild(this.createSelectGame());
-    container.appendChild(this.createSearchBlock());
-    container.appendChild(this.createBalance());
-    container.appendChild(this.createMessagesButton());
-    container.appendChild(this.createNotificationButton());
-    container.appendChild(this.createUserNavigation());
+    const header = $("<header>", { class: "header" }).appendTo(container);
+
+    header
+      .append(this.createSelectGame())
+      .append(this.createSearchBlock())
+      .append(this.createUserBlock());
   }
 
-  private createSelectGame(): HTMLElement {
-    const div = document.createElement("div");
-    div.className = "header__select-game";
-    div.textContent = "Select Game Dropdown";
-    return div;
-  }
-
-  private createSearchBlock(): HTMLElement {
-    const label = document.createElement("label");
-    label.htmlFor = "headerSearch";
-    label.className = "header__search-block";
-
-    const svg = this.createSvgElement(
-      "src/images/sprite.svg#search",
-      "header__search-block-icon"
+  private createSelectGame(): JQuery {
+    const div = $("<div>", { class: "header__select-game" });
+    const dropdown = $("<div>", { class: "dropdown__game-select" }).appendTo(
+      div
+    );
+    const currentGame = $("<div>", {
+      class: "dropdown__game-current",
+    }).appendTo(dropdown);
+    $("<img>", {
+      class: "dropdown__game-img",
+      src: "/src/images/csGo.webp",
+      alt: "",
+    }).appendTo(currentGame);
+    $("<p>", { class: "dropdown__game-name", text: "CS:GO" }).appendTo(
+      currentGame
     );
 
-    const input = document.createElement("input");
-    input.className = "header__search-block-input";
-    input.id = "headerSearch";
-    input.type = "text";
-    input.placeholder = "Поиск";
+    $("<div>", { class: "dropdown__game-arrow" })
+      .append(
+        '<svg><use xlink:href="/src/images/sprite.svg#arrow-game"></use></svg>'
+      )
+      .appendTo(dropdown);
 
-    label.appendChild(svg);
-    label.appendChild(input);
-
-    return label;
-  }
-
-  private createBalance(): HTMLElement {
-    const div = document.createElement("div");
-    div.className = "header__balance";
-
-    const h2 = document.createElement("h2");
-    h2.className = "header__balance-title";
-    h2.textContent = "Баланс";
-
-    const button = document.createElement("button");
-    button.className = "header__balance-button";
-
-    const svg = this.createSvgElement(
-      "src/images/sprite.svg#plus-box",
-      "header__balance-button-icon"
+    const gameList = $("<ul>", { class: "dropdown__game-list" }).appendTo(
+      dropdown
     );
-
-    button.appendChild(svg);
-
-    const balanceValue = document.createElement("div");
-    balanceValue.className = "header__balance-value";
-    balanceValue.textContent = "15600 BS";
-
-    div.appendChild(h2);
-    div.appendChild(button);
-    div.appendChild(balanceValue);
+    gameList
+      .append(this.createGameItem("cs2", "/src/images/csGo.webp", "CS:GO"))
+      .append(this.createGameItem("dota2", "/src/images/dota.webp", "DOTA 2"));
 
     return div;
   }
 
-  private createMessagesButton(): HTMLElement {
-    const button = document.createElement("button");
-    button.className = "header__messages-button";
-
-    const svg = this.createSvgElement(
-      "src/images/sprite.svg#message",
-      "header__messages-button-icon"
-    );
-
-    button.appendChild(svg);
-
-    return button;
+  private createGameItem(gameId, imgSrc, gameName): JQuery {
+    return $("<li>", { class: "dropdown__game-item", "data-game": gameId })
+      .append(
+        $("<img>", { class: "dropdown__game-icon", src: imgSrc, alt: "" })
+      )
+      .append(gameName);
   }
 
-  private createNotificationButton(): HTMLElement {
-    const button = document.createElement("button");
-    button.className = "header__notification-button";
-
-    const svg = this.createSvgElement(
-      "src/images/sprite.svg#bell",
-      "header__notification-button-icon"
-    );
-
-    button.appendChild(svg);
-
-    return button;
+  private createSearchBlock(): JQuery {
+    return $("<label>", { for: "headerSearch", class: "header__search-block" })
+      .append(
+        '<svg class="header__search-block-icon"><use xlink:href="src/images/sprite.svg#search"></use></svg>'
+      )
+      .append(
+        $("<input>", {
+          class: "header__search-block-input",
+          id: "headerSearch",
+          type: "text",
+          placeholder: "Поиск",
+        })
+      );
   }
 
-  private createUserNavigation(): HTMLElement {
-    const userNav = document.createElement("div");
-    userNav.className = "header__user-navigation";
-
-    const userDiv = document.createElement("div");
-    userDiv.className = "header__user";
-
-    const userInfo = document.createElement("div");
-    userInfo.className = "header__user-info";
-
-    const userName = document.createElement("p");
-    userName.className = "header__user-info-name";
-    userName.textContent = "Sergio Richter";
-
-    const button = document.createElement("button");
-    button.className = "header__user-info-button";
-
-    const svg = this.createSvgElement("src/images/sprite.svg#arrow-down");
-
-    button.appendChild(svg);
-    userInfo.appendChild(userName);
-    userDiv.appendChild(userInfo);
-    userDiv.appendChild(button);
-    userNav.appendChild(userDiv);
-
-    return userNav;
-  }
-
-  private createSvgElement(href: string, className?: string): SVGElement {
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    if (className) {
-      svg.setAttribute("class", className);
-    }
-
-    const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-    use.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", href);
-    svg.appendChild(use);
-
-    return svg;
+  private createUserBlock(): JQuery {
+    const userBlock = $("<div>", { class: "header__user-block" });
+    const userDiv = $("<div>", { class: "header__user" }).appendTo(userBlock);
+    $("<button>", {
+      class: "header__user-button-auth",
+      text: "Войти в аккаунт",
+    }).appendTo(userDiv);
+    return userBlock;
   }
 }

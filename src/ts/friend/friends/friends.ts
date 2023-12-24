@@ -7,6 +7,7 @@ import { TabsCreate } from "./../../component/tabs-create";
 import { AllUsers } from "./components/all";
 import { RequestUsers } from "./components/request";
 import { SearchUsers } from "./components/search";
+import { AppSidebar } from "../../component/sidebar/sidebar";
 
 class FriendsPage {
   constructor() {
@@ -105,3 +106,4 @@ class FriendsPage {
 }
 
 new FriendsPage();
+new AppSidebar("wrapper", "ДРУЗЬЯ");

@@ -7,6 +7,8 @@ import { LavaLamp } from "../../component/lava-lamp";
 import UserAvatar from "./../../../images/user-page/avatar.png";
 import TeamAvatar from "./../../../images/user-page/team-avatar.png";
 import AwardImg from "./../../../images/user-page/award.svg";
+import { Header } from "../../component/header/header";
+import { AppSidebar } from "../../component/sidebar/sidebar";
 
 interface IStatisticsCSRating {
   rang: number;
@@ -708,7 +710,8 @@ $(document).ready(() => {
       award: AwardImg,
     },
   ];
-
+  new Header("#wrapper");
+  new AppSidebar("wrapper", "ДРУЗЬЯ");
   new FriendPage(".page__container", user, friendsData, teams);
   new TabsCreate("main-statistics", "user-page__filters", [
     ["cs2", "CS2"],

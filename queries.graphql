@@ -79,36 +79,35 @@ query GetMapsQuery {
   }
 }
 
-query GetMyInfo{
-me{
-id
-username
-}
+query GetMyInfo {
+  me {
+    id
+    username
+  }
 }
 
-query GetUser{
-  usersPermissionsUsers{
-    data{
+query GetUser {
+  usersPermissionsUsers {
+    data {
       id
-      attributes{
+      attributes {
         username
       }
     }
   }
 }
 
-query GetCurrentUser($id: ID){
-  usersPermissionsUser(id: $id){
-    data{
+query GetCurrentUser($id: ID) {
+  usersPermissionsUser(id: $id) {
+    data {
       id
-      attributes{
+      attributes {
         username
         balance
       }
     }
   }
 }
-
 
 mutation CreateCs2Tournament(
   $name: String
@@ -590,6 +589,125 @@ query GetGameModes {
       attributes {
         title
         value
+      }
+    }
+  }
+}
+
+query GetDota2TeamById($id: ID) {
+  dota2Team(id: $id) {
+    data {
+      id
+      attributes {
+        Team {
+          name
+          rating
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          earned
+          matches_played
+          victories_in_tournaments
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetDota2Teams {
+  dota2Teams {
+    data {
+      id
+      attributes {
+        Team {
+          name
+          rating
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          earned
+          matches_played
+          victories_in_tournaments
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetTeams(
+  $filtering: String
+  $sorting: [String]
+  $page: Int
+  $pageSize: Int
+) {
+  teams(
+    filters: { name: { startsWith: $filtering } }
+    sort: $sorting
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
+    data {
+      id
+
+      attributes {
+        name
+        rating
+        earned
+        matches_played
+        victories_in_tournaments
+        createdAt
+        updatedAt
+        publishedAt
+        participants {
+          data {
+            id
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageCount
+      }
+    }
+  }
+}
+
+query GetAwards {
+  cs2Awards {
+    data {
+      id
+      attributes {
+        name
+        logo {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
       }
     }
   }

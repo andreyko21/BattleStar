@@ -5,8 +5,9 @@ import { Sidebar } from "./components/sidebar";
 import { CS2TournamentCreationPage } from "./cs2Tournament";
 import { Dota2TournamentCreationPage } from "./dota2Tournament";
 import { TournamentCreation } from "./tournament";
-import "../../component/header/components/gameselect";
-import { getLocateParam } from "../../functions/windowLocation";
+
+import { Header } from "./../../component/header/header";
+import { AppSidebar } from "../../component/sidebar/sidebar";
 
 class TournamentPageFactory {
   static createPage(
@@ -36,15 +37,8 @@ $(document).ready(() => {
     "Равным образом реали зация нам еченных плановых зад аний спос обствует подгот овки и реали зации соотв етствующий усло вий акт ивизации. Не следу ет, одна ко забыв ать, что консул ьтация с ш ироким ак тивом ",
     "Узнать больше"
   );
-
-  const selectGame = getLocateParam("game");
-
-    if (selectGame == "dota2") {
-      page = TournamentPageFactory.createPage("Dota2", "tournament-page");
-    } else {  
-      page = TournamentPageFactory.createPage("CS2", "tournament-page");
-  }
-
+  new Header("#wrapper");
+  new AppSidebar("wrapper", "ТУРНИРЫ");
 
   $("#main-content").on("submit", () => {
     if (page.validation.isValid) {

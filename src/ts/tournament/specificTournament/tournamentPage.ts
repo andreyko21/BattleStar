@@ -10,7 +10,7 @@ import teamIcon from "./../../../images/teamIcon.png";
 import { TournamentBracket } from "./components/tournamentBracket";
 import { TournamentParticipants } from "./components/participants";
 import { TournamentRenderer } from "./components/gameSchedule";
-import TeamAvatar from "./../../../images/teamAvatar.png"
+import TeamAvatar from "./../../../images/teamAvatar.png";
 import "../../component/header/components/gameselect";
 import request from "graphql-request";
 import {
@@ -18,8 +18,12 @@ import {
   GetDota2Tournament,
 } from "../../../../queries.graphql.d";
 import { getLocateParam } from "../../functions/windowLocation";
+import { Header } from "../../component/header/header";
+import { AppSidebar } from "../../component/sidebar/sidebar";
 
 $(document).ready(async function () {
+  new Header("#wrapper");
+  new AppSidebar("wrapper", "ТУРНИРЫ");
   let tournament: any, tournamentData: any, queryParam;
   if (getLocateParam("game") == "dota2") {
     queryParam = GetDota2Tournament;

@@ -1,4 +1,4 @@
-import{$ as e}from"./jquery-ab814638.js";class o{content;history;constructor(a,s){this.content=a,this.history=s,this.renderHistory()}renderHistory(){const a=this.history.map(t=>`
+import{$ as e}from"./jquery-995cfbaf.js";class o{content;history;constructor(a,s){this.content=a,this.history=s,this.renderHistory()}renderHistory(){const a=this.history.map(t=>`
             <tr class="table__tr">
               <td class="table__name">${t.name}</td>
               <td class="table__data">${t.data}</td>

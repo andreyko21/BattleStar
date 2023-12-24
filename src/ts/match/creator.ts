@@ -1,91 +1,70 @@
-mport $ from "jquery"
-import "./components/gameselect";
-import { GameDropdown } from "./components/gameselect";
-import UserNavigation from "./components/userNav";
-import request from "graphql-request";
-import { GetCurrentUser, GetMyInfo } from "../../../../queries.graphql.d";
+import { getRequest } from '../functions/request';
+import { CreatorLobby, GetMyInfo } from '../../../queries.graphql.d';
+import type { CreatorDataForLobby } from '../types';
 
 export class Creator {
-  container: JQuery<HTMLElement>;
-  selectGame: GameDropdown;
-  userNav: UserNavigation;
-  constructor(containerId: string) {
-    this.container = $(containerId);
-    this.render();
-    this.selectGame = new GameDropdown(".header__select-game");
-    this.userNav = new UserNavigation('.header__user-block')
-    this.init();
-  }
-  
-  async init() {
+  transformedCreatorData: CreatorDataForLobby = {
+    userId: null,
+    username: null,
+    playerId: null,
+    avatarUrl: null,
+    avatarAltText: null,
+    csGoRank: null,
+    dota2Rank: null,
+  };
+
+  private async getCreatorData() {
     try {
-        const token: string | null = await getCookie('token');
-        if (token) {
-          const userInfo = await getRequest(GetMyInfo, {}, token);
-          const userInfo2 = await getRequest(GetCurrentUser, {id:userInfo.me.id}, token);
-            
-        } else {
-            console.error('Token is null or undefined');
-        }
-    } catch (error) {
-        console.error('Error in init:', error);
-    }
-}
-
-    render() {
-        this.container.append(`
-        <header class="header">
-  <div class="header__select-game">
-  </div>
-
-  <label for="headerSearch" class="header__search-block">
-    <svg class="header__search-block-icon">
-      <use xlink:href="src/images/sprite.svg#search"></use>
-    </svg>
-    <input
-      class="header__search-block-input"
-      id="headerSearch"
-      type="text"
-      placeholder="Поиск"
-    />
-  </label>
-      <div class="header__user-block">
-          
-      </div>
-  </div>
-</header>
-        `)
-    }
-}
-
-function getCookie(name) {
-    const value = ; ${document.cookie};
-    const parts = value.split(; ${name}=);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return null;
-}
-
-async function getRequest(query: any, paramsObject: any = {}, token: string, endpoint: string = "https://battle-star-app.onrender.com/graphql") {
-  try {
-    const response = await request(
-      endpoint,
-      query,
-      paramsObject,
-      {
-        Authorization: Bearer ${token},
+      const token: string | null | undefined = getCookie('token');
+      if (token) {
+        const userInfo: { me: { id: string; username: string } } =
+          (await getRequest(GetMyInfo, {}, token)) as {
+            me: { id: string; username: string };
+          };
+        const userInfo2: any = await getRequest(
+          CreatorLobby,
+          { id: userInfo.me.id },
+          token
+        );
+        return userInfo2;
+      } else {
+        console.error('Token is null or undefined');
       }
-    );
-
-  
-    if (response) {
-      console.log('Response:', response);
-      return response;
-    } else {
-      throw new Error('No response data received');
+    } catch (error) {
+      console.error('Error in init:', error);
     }
-  } catch (error) {
- 
-    console.error('Error in getRequest:', error);
-    throw error; 
   }
+
+  async transformCreatorData() {
+    const creatorData = await this.getCreatorData();
+
+    this.transformedCreatorData = {
+      userId: creatorData.usersPermissionsUser.data.id || null,
+      username:
+        creatorData.usersPermissionsUser.data.attributes.username || null,
+      playerId:
+        creatorData.usersPermissionsUser.data.attributes.player?.data?.id ||
+        null,
+      avatarUrl:
+        creatorData.usersPermissionsUser.data.attributes.player?.data
+          ?.attributes.avatar?.data?.attributes.url || null,
+      avatarAltText:
+        creatorData.usersPermissionsUser.data.attributes.player?.data
+          ?.attributes.avatar?.data?.attributes.alternativeText || null,
+      csGoRank:
+        creatorData.usersPermissionsUser.data.attributes.player?.data
+          ?.attributes.CSGO?.Default_information?.rank || null,
+      dota2Rank:
+        creatorData.usersPermissionsUser.data.attributes.player?.data
+          ?.attributes.DOTA2?.Default_information?.rank || null,
+    };
+    console.log(this.transformedCreatorData);
+  }
+}
+
+function getCookie(name: string) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+  return null;
 }

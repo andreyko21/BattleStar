@@ -28,6 +28,7 @@ class RateSelection {
                name="rate-input"
                id="rate-input"
                placeholder="Свое значение"
+               min="100" max="99900"
             />
             <span class="entering-rate__label-span">BS</span>
          </laberl>

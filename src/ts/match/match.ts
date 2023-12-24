@@ -2,7 +2,7 @@ import { BaseTabs, CreatedObjForIRenderMethod } from '../component/tabs.ts';
 import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
 import { Accordion } from '../component/accordeon.ts';
-//import { StrimingTab } from './striming/striming.ts';
+import { StrimingTab } from './striming/striming.ts';
 import { BtnOnRadioOrCheck } from './btnOnRadioOrCheck.ts';
 import { RateSelection } from './rate-selection.ts';
 import { TitleCreateLobby } from './title-create-lobby.ts';
@@ -20,8 +20,7 @@ import { config } from '../config.ts';
 
 import { newFiltration } from './filtration-for-query.ts';
 import { CreatingCsLobby } from './creating-cs-lobby.ts';
-
-new CreatingCsLobby('create-content');
+import { Creator } from './creator.ts';
 
 //! ----- Для прикладу----
 
@@ -30,7 +29,7 @@ const mayMethods: IRenderMethod = {
     // console.log('find');
   },
   translation: () => {
-    // const translationTab = StrimingTab.getInstance();
+    const translationTab = StrimingTab.getInstance();
   },
 };
 //!-----------------------------
@@ -89,9 +88,10 @@ const regionFiltering = new RegionFiltering(
 new AntiCheat('filters-find-lobby');
 
 document.addEventListener('DOMContentLoaded', async () => {
-  console.log('hello');
-
   try {
+    const creatorLobby = new Creator();
+    creatorLobby.transformCreatorData();
+
     const queryForMapsData = new GettingMapsData(config.ENDPOINT);
 
     const queryForGameMode = new GettingGameModeData(config.ENDPOINT);
@@ -115,6 +115,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     new TitleCreateLobby('create-content');
 
     new newFiltration('filters-find-lobby');
+
+    new CreatingCsLobby('create-content', creatorLobby.transformedCreatorData);
   } catch (error) {}
 });
 

@@ -78,11 +78,11 @@ query GetMapsQuery {
     }
   }
 }
-query GetUser{
-  usersPermissionsUsers{
-    data{
+query GetUser {
+  usersPermissionsUsers {
+    data {
       id
-      attributes{
+      attributes {
         username
       }
     }
@@ -569,6 +569,61 @@ query GetGameModes {
       attributes {
         title
         value
+      }
+    }
+  }
+}
+
+query GetMyInfo {
+  me {
+    id
+    username
+  }
+}
+
+query GetCurrentUser($id: ID) {
+  usersPermissionsUser(id: $id) {
+    data {
+      id
+      attributes {
+        username
+        balance
+      }
+    }
+  }
+}
+
+query CreatorLobby($id: ID) {
+  usersPermissionsUser(id: $id) {
+    data {
+      id
+      attributes {
+        username
+        player {
+          data {
+            id
+            attributes {
+              avatar {
+                data {
+                  attributes {
+                    url
+                    alternativeText
+                  }
+                }
+              }
+              CSGO {
+                Default_information {
+                  rank
+                }
+              }
+              DOTA2 {
+                Default_information {
+                  rank
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -964,6 +964,8 @@ input UsersPermissionsUserFiltersInput {
   role: UsersPermissionsRoleFiltersInput
   online_status: BooleanFilterInput
   biography: StringFilterInput
+  player: PlayerFiltersInput
+  balance: FloatFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   and: [UsersPermissionsUserFiltersInput]
@@ -983,6 +985,8 @@ input UsersPermissionsUserInput {
   role: ID
   online_status: Boolean
   biography: String
+  player: ID
+  balance: Float
 }
 
 type UsersPermissionsUser {
@@ -994,6 +998,8 @@ type UsersPermissionsUser {
   role: UsersPermissionsRoleEntityResponse
   online_status: Boolean
   biography: String
+  player: PlayerEntityResponse
+  balance: Float
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -1021,7 +1027,6 @@ input CardNewFiltersInput {
   card: ComponentUiCardFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
   and: [CardNewFiltersInput]
   or: [CardNewFiltersInput]
   not: CardNewFiltersInput
@@ -1029,7 +1034,6 @@ input CardNewFiltersInput {
 
 input CardNewInput {
   card: [ComponentUiCardInput]
-  publishedAt: DateTime
 }
 
 type CardNew {
@@ -1040,7 +1044,6 @@ type CardNew {
   ): [ComponentUiCard]
   createdAt: DateTime
   updatedAt: DateTime
-  publishedAt: DateTime
 }
 
 type CardNewEntity {
@@ -1374,7 +1377,6 @@ input CsLobbyFiltersInput {
   gameMode: CsGameModeFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
   and: [CsLobbyFiltersInput]
   or: [CsLobbyFiltersInput]
   not: CsLobbyFiltersInput
@@ -1389,7 +1391,6 @@ input CsLobbyInput {
   ping: Long
   antyCheat: ComponentLobbyAntyCheatInput
   gameMode: ID
-  publishedAt: DateTime
 }
 
 type CsLobby {
@@ -1403,7 +1404,6 @@ type CsLobby {
   gameMode: CsGameModeEntityResponse
   createdAt: DateTime
   updatedAt: DateTime
-  publishedAt: DateTime
 }
 
 type CsLobbyEntity {
@@ -2014,6 +2014,7 @@ input PlayerFiltersInput {
   teams: TeamFiltersInput
   my_teams: Cs2FiltersInput
   my_own_teams: Cs2FiltersInput
+  user: UsersPermissionsUserFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -2034,6 +2035,7 @@ input PlayerInput {
   teams: [ID]
   my_teams: [ID]
   my_own_teams: [ID]
+  user: ID
   publishedAt: DateTime
 }
 
@@ -2084,6 +2086,7 @@ type Player {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): Cs2RelationResponseCollection
+  user: UsersPermissionsUserEntityResponse
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -2342,7 +2345,6 @@ type Query {
     filters: CardNewFiltersInput
     pagination: PaginationArg = {}
     sort: [String] = []
-    publicationState: PublicationState = LIVE
   ): CardNewEntityResponseCollection
   country(id: ID): CountryEntityResponse
   countries(
@@ -2391,7 +2393,6 @@ type Query {
     filters: CsLobbyFiltersInput
     pagination: PaginationArg = {}
     sort: [String] = []
-    publicationState: PublicationState = LIVE
   ): CsLobbyEntityResponseCollection
   dotaTypeLobby(id: ID): DotaTypeLobbyEntityResponse
   dotaTypeLobbies(

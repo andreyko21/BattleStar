@@ -1,4 +1,5 @@
 import $ from "jquery";
+import Sprite from "./../../../../images/sprite.svg";
 
 export class TitleBlock {
   private container: JQuery;
@@ -17,7 +18,7 @@ export class TitleBlock {
                 <p class="tournament-page__name">${this.title}</p>
                 <button class="tournament-page__share">
                     <svg class="tournament-page__share-icon">
-                        <use xlink:href="src/images/sprite.svg#share"></use>
+                        <use xlink:href="${Sprite}#share"></use>
                     </svg>
                 </button>
             </div>

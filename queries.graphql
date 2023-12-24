@@ -78,12 +78,32 @@ query GetMapsQuery {
     }
   }
 }
+
+query GetMyInfo {
+  me {
+    id
+    username
+  }
+}
+
 query GetUser {
   usersPermissionsUsers {
     data {
       id
       attributes {
         username
+      }
+    }
+  }
+}
+
+query GetCurrentUser($id: ID) {
+  usersPermissionsUser(id: $id) {
+    data {
+      id
+      attributes {
+        username
+        balance
       }
     }
   }
@@ -224,7 +244,7 @@ query GetMaps {
 query GetCsLobbies(
   $country: [String]
   $rate: LongFilterInput
-  $mapName: [String]
+  $map: [String]
   $gameMode: [Int]
   $antyCheat: Boolean
 ) {
@@ -235,7 +255,7 @@ query GetCsLobbies(
           creator: { Options: { selected_country: { name: { in: $country } } } }
         }
         { rate: $rate }
-        { map: { name: { in: $mapName } } }
+        { map: { name: { in: $map } } }
         { gameMode: { value: { in: $gameMode } } }
         { antyCheat: { value: { eq: $antyCheat } } }
       ]

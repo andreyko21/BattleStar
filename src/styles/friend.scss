@@ -4,6 +4,7 @@
 @import "./components/tabs.scss";
 
 .friends-page {
+  padding-top: 55px;
   &__container {
   }
 
@@ -17,6 +18,7 @@
   }
 
   &__sidebar-friend {
+     position: relative;
     max-height: 76px;
     width: 384px;
     padding: 15px 15px 15px 17px;
@@ -25,7 +27,23 @@
       "avatar name setting"
       "avatar status setting" auto/min-content auto min-content;
     &:hover {
+      
       background: rgba(248, 248, 248, 0.1);
+      z-index: 5;
+     
+    }
+
+    &-menu{
+      bottom: -30px;
+      right: 0;
+      position: absolute;
+      background: #bfbfbf;
+      border-radius: 4px;
+background: rgba(26, 26, 28, 0.10);
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+backdrop-filter: blur(60px);
+width: 248px;
+height: 209px;
     }
 
     &-avatar {
@@ -131,4 +149,17 @@
 
 .all-friends {
   display: flex;
+}
+
+.filters__tabs{
+  margin-bottom: 39px;
+}
+
+.page{
+  overflow: auto;
+}
+
+.wrapper{
+  overflow: hidden;
+  max-height: 100vh;
 }

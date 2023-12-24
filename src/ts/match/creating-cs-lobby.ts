@@ -78,8 +78,6 @@ class CreatingCsLobby {
     }
   }
 
-  getLobbyData() {} //!!!!!!!!!!!
-
   private getMapData(): void {
     const allMapsInputs = this.form?.querySelectorAll(
       "input[name='map-selected']"

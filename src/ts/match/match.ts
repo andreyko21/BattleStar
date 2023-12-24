@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { BaseTabs, CreatedObjForIRenderMethod } from '../component/tabs.ts';
 import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
@@ -21,6 +22,8 @@ import { config } from '../config.ts';
 import { newFiltration } from './filtration-for-query.ts';
 import { CreatingCsLobby } from './creating-cs-lobby.ts';
 import { Creator } from './creator.ts';
+import { Header } from '../header.ts';
+import { getLocateParam } from '../functions/windowLocation.ts';
 
 //! ----- Для прикладу----
 
@@ -118,6 +121,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     new CreatingCsLobby('create-content', creatorLobby.transformedCreatorData);
   } catch (error) {}
+});
+
+$(document).ready(() => {
+  new Header('#wrapper');
+  $('.tournaments-nav__create-button').on('click', () => {
+    const locParam = getLocateParam('game');
+    if (locParam == undefined || locParam == null) {
+      window.location.href = '/createTournament.html?game="cs2"';
+    } else {
+      window.location.href = `/createTournament.html?game="${locParam}"`;
+    }
+  });
 });
 
 //const popUp = document.querySelector('.open-lobby-pop-up') as HTMLDivElement;

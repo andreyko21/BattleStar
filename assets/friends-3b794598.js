@@ -237,7 +237,7 @@ import"./modulepreload-polyfill-3cfb730f.js";import{$ as i}from"./jquery-995cfba
             <label class="input__search">
   <button class="input__search-button">
     <svg class="input__search-icon">
-      <use xlink:href="src/images/sprite.svg#search"></use>
+      <use xlink:href="${e}#search"></use>
     </svg>
   </button>
   <input

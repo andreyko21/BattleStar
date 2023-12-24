@@ -16,8 +16,8 @@ class GameDropdown {
   constructor(containerSelector: string) {
     this.container = $(containerSelector);
     this.games = [
-      { name: 'CS:GO', image: CSGOImage, dataGame: 'cs2' },
-      { name: 'DOTA 2', image: DotaImage, dataGame: 'dota2' },
+      { name: "CS:GO", image: CSGOImage, dataGame: "cs2" },
+      { name: "DOTA 2", image: DotaImage, dataGame: "dota2" },
     ];
 
     this.init();
@@ -42,12 +42,16 @@ class GameDropdown {
           </svg>
         </div>
         <ul class="dropdown__game-list">
-          ${this.games.map(game => `
+          ${this.games
+            .map(
+              (game) => `
             <li class="dropdown__game-item" data-game="${game.dataGame}">
               <img class="dropdown__game-icon" src="${game.image}" alt="">
               ${game.name}
             </li>
-          `).join('')}
+          `
+            )
+            .join("")}
         </ul>
       </div>
     `;
@@ -69,12 +73,13 @@ class GameDropdown {
 
   private updateGameSelection(item: JQuery) {
     const gameName = item.text().trim();
-    const gameIconSrc = item.find("img").attr('src');
+    const gameIconSrc = item.find("img").attr("src");
 
     const currentGameImg = this.container.find(".dropdown__game-img");
     const currentGameName = this.container.find(".dropdown__game-name");
 
-    currentGameImg.attr('src', gameIconSrc);
+    //@ts-ignore
+    currentGameImg.attr("src", gameIconSrc);
     currentGameName.text(gameName);
 
     this.setLocateParam("game", item.data("game"));
@@ -89,7 +94,9 @@ class GameDropdown {
   private setInitialGameSelection() {
     const gameParam = this.getLocateParam("game");
     if (gameParam) {
-      const selectedGameItem = this.container.find(`.dropdown__game-item[data-game="${gameParam}"]`);
+      const selectedGameItem = this.container.find(
+        `.dropdown__game-item[data-game="${gameParam}"]`
+      );
       if (selectedGameItem.length) {
         this.updateGameSelection(selectedGameItem);
       }

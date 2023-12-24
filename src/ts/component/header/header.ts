@@ -1,4 +1,4 @@
-import $ from "jquery"
+import $ from "jquery";
 import "./components/gameselect";
 import { GameDropdown } from "./components/gameselect";
 import { initDropDown } from "../../../dropDownMenu";
@@ -14,33 +14,46 @@ export class Header {
     this.container = $(containerId);
     this.render();
     this.selectGame = new GameDropdown(".header__select-game");
-    this.userNav = new UserNavigation('.header__user-block')
+    //@ts-ignore
+    this.userNav = new UserNavigation(".header__user-block");
     this.init();
   }
-  
+
   async init() {
     initDropDown();
 
     try {
-        const token: string | null = await getCookie('token');
-        if (token) {
-          const userInfo = await getRequest(GetMyInfo, {}, token);
-          const userInfo2 = await getRequest(GetCurrentUser, {id:userInfo.me.id}, token);
-            if (userInfo && userInfo.me) {
-                this.userNav = new UserNavigation('.header__user-block', userInfo.me.username, 22222);
-            } else {
-                console.error('User info is undefined');
-            }
+      //@ts-ignore
+      const token: string | null = await getCookie("token");
+      if (token) {
+        const userInfo = await getRequest(GetMyInfo, {}, token);
+        const userInfo2 = (await getRequest(
+          GetCurrentUser,
+          //@ts-ignore
+          { id: userInfo.me.id },
+          token
+        )) as any;
+        //@ts-ignore
+        if (userInfo && userInfo.me) {
+          this.userNav = new UserNavigation(
+            ".header__user-block",
+            //@ts-ignore
+            userInfo.me.username,
+            userInfo2.usersPermissionsUser.data.attributes.balance ?? 0
+          );
         } else {
-            console.error('Token is null or undefined');
+          console.error("User info is undefined");
         }
+      } else {
+        console.error("Token is null or undefined");
+      }
     } catch (error) {
-        console.error('Error in init:', error);
+      console.error("Error in init:", error);
     }
-}
+  }
 
-    render() {
-        this.container.append(`
+  render() {
+    this.container.append(`
         <header class="header">
   <div class="header__select-game">
   </div>
@@ -61,38 +74,37 @@ export class Header {
       </div>
   </div>
 </header>
-        `)
-    }
+        `);
+  }
 }
 
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return null;
+function getCookie(name: string) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  //@ts-ignore
+  if (parts.length === 2) return parts.pop().split(";").shift();
+  return null;
 }
 
-async function getRequest(query: any, paramsObject: any = {}, token: string, endpoint: string = "https://battle-star-app.onrender.com/graphql") {
+async function getRequest(
+  query: any,
+  paramsObject: any = {},
+  token: string,
+  endpoint: string = "https://battle-star-app.onrender.com/graphql"
+) {
   try {
-    const response = await request(
-      endpoint,
-      query,
-      paramsObject,
-      {
-        Authorization: `Bearer ${token}`,
-      }
-    );
+    const response = await request(endpoint, query, paramsObject, {
+      Authorization: `Bearer ${token}`,
+    });
 
-  
     if (response) {
-      console.log('Response:', response);
+      console.log("Response:", response);
       return response;
     } else {
-      throw new Error('No response data received');
+      throw new Error("No response data received");
     }
   } catch (error) {
- 
-    console.error('Error in getRequest:', error);
-    throw error; 
+    console.error("Error in getRequest:", error);
+    throw error;
   }
 }

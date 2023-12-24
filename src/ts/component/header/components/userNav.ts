@@ -61,7 +61,8 @@ class UserHeader {
     <button class="header__user-button-auth">
               Войти в аккаунт
             </button>
-    </div>`;
+    </div>
+    `;
 
     this.container.html(headerHTML);
   }

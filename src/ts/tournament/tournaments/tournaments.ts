@@ -262,7 +262,6 @@ new LavaLamp("match-page__filters");
 
 $(document).ready(() => {
   new Header("#wrapper");
-
   new AppSidebar("wrapper", "ТУРНИРЫ");
   $(".tournaments-nav__create-button").on("click", () => {
     const locParam = getLocateParam("game");

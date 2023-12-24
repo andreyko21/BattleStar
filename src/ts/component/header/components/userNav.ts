@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import $ from "jquery";
 
 class UserHeader {
   private container: JQuery;
@@ -6,7 +6,12 @@ class UserHeader {
   private balance: number;
   private spritePath: string;
 
-  constructor(containerSelector: string, userName: string, balance: number, spritePath: string = 'src/images/sprite.svg') {
+  constructor(
+    containerSelector: string,
+    userName: string,
+    balance: number,
+    spritePath: string = "src/images/sprite.svg"
+  ) {
     this.container = $(containerSelector);
     this.userName = userName;
     this.balance = balance;
@@ -14,13 +19,15 @@ class UserHeader {
 
     if (this.container.length) {
       this.render();
+      this.attachEventHandlers();
     } else {
-      console.error('Container not found');
+      console.error("Container not found");
     }
   }
 
   private render(): void {
-    const headerHTML = this.userName ? `
+    const headerHTML = this.userName
+      ? `
 
         <div class="header__balance">
           <h2 class="header__balance-title">Баланс</h2>
@@ -57,7 +64,8 @@ class UserHeader {
             </button>
           </div>
         </div>
-    `:`<div class="header__user">
+    `
+      : `<div class="header__user">
     <button class="header__user-button-auth">
               Войти в аккаунт
             </button>
@@ -65,6 +73,11 @@ class UserHeader {
     `;
 
     this.container.html(headerHTML);
+  }
+  private attachEventHandlers(): void {
+    this.container.find(".header__user-button-auth").on("click", () => {
+      window.location.href = "/sign.html";
+    });
   }
 }
 

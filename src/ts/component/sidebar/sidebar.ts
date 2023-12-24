@@ -1,3 +1,5 @@
+import Sprite from "./../../../images/sprite.svg";
+
 export type SidebarItem = {
   title: string;
   icon: string;
@@ -15,27 +17,27 @@ export class AppSidebar {
     this.items = [
       {
         title: "ГЛАВНАЯ",
-        icon: "src/images/sprite.svg#newspaper",
+        icon: `${Sprite}#newspaper`,
         link: "/index.html",
       },
       {
         title: "МАТЧИ",
-        icon: "src/images/sprite.svg#controller",
-        link: "/matches.html",
+        icon: `${Sprite}#controller`,
+        link: "/match.html",
       },
       {
         title: "ТУРНИРЫ",
-        icon: "src/images/sprite.svg#cup",
+        icon: `${Sprite}#cup`,
         link: "/tournaments.html",
       },
       {
         title: "КОМАНДЫ",
-        icon: "src/images/sprite.svg#people",
+        icon: `${Sprite}#people`,
         link: "/teams.html",
       },
       {
         title: "ДРУЗЬЯ",
-        icon: "src/images/sprite.svg#person",
+        icon: `${Sprite}#person`,
         link: "/friends.html",
       },
     ];
@@ -48,21 +50,16 @@ export class AppSidebar {
       throw new Error(`Container with id #${this.containerId} not found.`);
     }
 
-    // Create the main sidebar block
     const sidebar = document.createElement("div");
     sidebar.className = "sidebar";
 
-    // Create logo anchor
     const logoAnchor = this.createLogoAnchor();
 
-    // Create navigation
     const nav = this.createNav();
 
-    // Append elements to sidebar
     sidebar.appendChild(logoAnchor);
     sidebar.appendChild(nav);
 
-    // Append sidebar to container
     container.appendChild(sidebar);
   }
 
@@ -83,7 +80,7 @@ export class AppSidebar {
     logoUse.setAttributeNS(
       "http://www.w3.org/1999/xlink",
       "xlink:href",
-      "src/images/sprite.svg#logo"
+      `${Sprite}#logo`
     );
     logoSvg.appendChild(logoUse);
     logoAnchor.appendChild(logoSvg);

@@ -32,7 +32,7 @@ export class RequestUsers {
             <label class="input__search">
   <button class="input__search-button">
     <svg class="input__search-icon">
-      <use xlink:href="src/images/sprite.svg#search"></use>
+      <use xlink:href="${Sprite}#search"></use>
     </svg>
   </button>
   <input

@@ -1,5 +1,6 @@
 import $ from "jquery";
 import Sprite from "./../../../../images/sprite.svg";
+import CompanionImg from "./../../../../images/chat/companion-avatar.png";
 
 type User = {
   name: string;
@@ -31,7 +32,7 @@ export class AllUsers {
             <label class="input__search">
   <button class="input__search-button">
     <svg class="input__search-icon">
-      <use xlink:href="src/images/sprite.svg#search"></use>
+      <use xlink:href="${Sprite}#search"></use>
     </svg>
   </button>
   <input
@@ -49,7 +50,7 @@ export class AllUsers {
           <div class="chat__messages-container">
                 <div class="chat__message">
                   <div class="chat__message-user-avatar">
-                    <img src="./src/images/chat/companion-avatar.png" alt="" />
+                    <img src="${CompanionImg}" alt="" />
                   </div>
                   <div class="chat__message-block">
                     <p class="chat__message-block-user-name">JohnTrawolta_4</p>
@@ -62,7 +63,7 @@ export class AllUsers {
                 </div>
                 <div class="chat__message chat__message_my">
                   <div class="chat__message-user-avatar">
-                    <img src="./src/images/chat/companion-avatar.png" alt="" />
+                    <img src="${CompanionImg}" alt="" />
                   </div>
                   <div class="chat__message-block">
                     <p class="chat__message-block-user-name">JohnTrawolta_4</p>
@@ -75,7 +76,7 @@ export class AllUsers {
                 </div>
                 <div class="chat__message chat__message_my">
                   <div class="chat__message-user-avatar">
-                    <img src="./src/images/chat/companion-avatar.png" alt="" />
+                    <img src="${CompanionImg}" alt="" />
                   </div>
                   <div class="chat__message-block">
                     <p class="chat__message-block-user-name">JohnTrawolta_4</p>

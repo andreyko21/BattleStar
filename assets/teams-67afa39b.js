@@ -1,1 +1,0 @@
-import"./modulepreload-polyfill-3cfb730f.js";import{$ as r}from"./jquery-995cfbaf.js";import{H as m,A as o}from"./sidebar-f3222882.js";import"./sprite-3002caef.js";import"./dropDownMenu-8d97c7ef.js";import"./windowLocation-a7eb2864.js";import"./queries.graphql.d-f9acd4bb.js";r(document).ready(()=>{new m("#wrapper"),new o("sidebar","КОМАНДЫ")});

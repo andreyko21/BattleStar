@@ -69,7 +69,14 @@ class BasePopUp implements IBasePopUp {
 class OpenLobbyPopUp extends BasePopUp {
   constructor(popUp: string, overlay: string, containerId: string) {
     super(popUp, overlay, containerId);
+    // this.addBtnListner();
   }
+
+  //  private addBtnListner() {
+  //    const notNowBtn = this.popUp.querySelector('#not-now');
+
+  //    notNowBtn?.addEventListener('click', () => location.replace('match.html'));
+  //  }
 
   addInnerContent(option: { [key: string]: string | boolean }) {
     const title = this.popUp.querySelector(
@@ -100,7 +107,7 @@ class OpenLobbyPopUp extends BasePopUp {
       '.open-lobby-pop-up__btn'
     ) as HTMLButtonElement;
     button.addEventListener('click', () => {
-      window.location.assign(`lobby?id=${option.id}`);
+      window.location.assign(`lobby.html?id=${option.id}`);
     });
   }
 }

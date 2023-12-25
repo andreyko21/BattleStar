@@ -119,7 +119,7 @@ class newFiltration {
           ? this.allCheckboxesValues.country
           : this.filtersObj.country,
       rate: {} as QueryRate,
-      mapName:
+      map:
         this.filtersObj.mapName?.length === 0
           ? this.allCheckboxesValues.mapName
           : this.filtersObj.mapName,

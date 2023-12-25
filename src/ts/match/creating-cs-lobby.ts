@@ -1,4 +1,5 @@
 import { request } from 'graphql-request';
+//@ts-ignore напишіть
 import JustValidate from 'just-validate';
 import { CreateCsLobbies } from '../../../queries.graphql.d';
 import type { CreatorDataForLobby, QueryParamsOfCreateCsLobby } from '../types';
@@ -156,7 +157,9 @@ class CreatingCsLobby {
   private getParticipanstData(): void {
     console.log(this.creatorData.playerId);
 
-    this.params.participant?.push(this.creatorData.playerId);
+    if (this.params.participant) {
+      this.params.participant?.push(this.creatorData.playerId);
+    }
   }
 
   private initValidation(): void {

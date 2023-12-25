@@ -1,4 +1,4 @@
-import { setLocateParam, getLocateParam } from "../functions/windowLocation.ts";
+import { setLocateParam, getLocateParam } from '../functions/windowLocation.ts';
 export interface IBaseTabs {
   classTabsBlock: string;
   tabsBlock: HTMLDivElement;
@@ -10,13 +10,13 @@ export interface IBaseTabs {
 }
 
 class BaseTabs implements IBaseTabs {
-  public readonly TABS_CLASS = "tabs-block__tabs"; //Клас блоку з табами
-  public readonly TAB_CLASS = "tabs-block__tab"; //Клас для табів
-  public readonly TAB_ACTIVE_CLASS = "tabs-block__tab_active"; // Клас для активного табу
-  public readonly TABS_BLOCK_CONTENT_CLASS = "tabs-block__content"; //Клас для блоку з контентом, що перемикається табами
-  public readonly CONTENT_CONTAINER_CLASS = "tabs-block__content-container"; //Клас для контенту окремого класу
+  public readonly TABS_CLASS = 'tabs-block__tabs'; //Клас блоку з табами
+  public readonly TAB_CLASS = 'tabs-block__tab'; //Клас для табів
+  public readonly TAB_ACTIVE_CLASS = 'tabs-block__tab_active'; // Клас для активного табу
+  public readonly TABS_BLOCK_CONTENT_CLASS = 'tabs-block__content'; //Клас для блоку з контентом, що перемикається табами
+  public readonly CONTENT_CONTAINER_CLASS = 'tabs-block__content-container'; //Клас для контенту окремого класу
   public readonly CONTENT_CONTAINER_ACTIVE_CLASS =
-    "tabs-block__content-container_active"; //Клас активного контейнера для контенту вибраного табом
+    'tabs-block__content-container_active'; //Клас активного контейнера для контенту вибраного табом
 
   readonly classTabsBlock: string;
   readonly tabsBlock: HTMLDivElement;
@@ -64,9 +64,9 @@ class BaseTabs implements IBaseTabs {
   private addListenerToTabs() {
     if (
       this.tabs &&
-      this.tabs.closest(".tabs-block")?.classList.contains(this.classTabsBlock)
+      this.tabs.closest('.tabs-block')?.classList.contains(this.classTabsBlock)
     ) {
-      this.tabs.addEventListener("click", (e) => {
+      this.tabs.addEventListener('click', (e) => {
         const tabTarget: HTMLElement | null = (e.target as HTMLElement).closest(
           `.${this.TAB_CLASS}`
         );
@@ -225,10 +225,10 @@ interface IRenderMethod {
 }
 class RenderMethod implements IRenderMethod {
   find = () => {
-    console.log("find");
+    console.log('find');
   };
   create = () => {
-    console.log("create");
+    console.log('create');
   };
   [key: string]: () => void;
 }

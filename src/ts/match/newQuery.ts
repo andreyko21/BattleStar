@@ -11,7 +11,7 @@ class MatchesQuery {
   params: {
     country: string[] | null;
     rate: QueryRate;
-    mapName: string[] | null;
+    map: string[] | null;
     gameMode: number[];
     antyCheat: boolean;
   };
@@ -19,11 +19,13 @@ class MatchesQuery {
   constructor(params: {
     country: string[] | null;
     rate: QueryRate;
-    mapName: string[] | null;
+    map: string[] | null;
     gameMode: number[];
     antyCheat: boolean;
   }) {
     this.params = params;
+    console.log('params', this.params);
+
     // this.getData();
   }
   async getData() {

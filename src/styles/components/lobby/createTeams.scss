@@ -1,7 +1,9 @@
 .details {
-   &__header {
+   margin-top: 50px;
+   &__name-teams {
       display: flex;
       align-items: center;
+      justify-content: center;
       &-flag {
          width: 37px;
          height: 24px;
@@ -19,9 +21,11 @@
       }
    }
    &__info {
-      margin-top: 30px;
-      position: relative;
+      margin: 30px auto 0;
 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       &-row {
          display: flex;
          justify-content: space-between;
@@ -53,11 +57,7 @@
          width: 425px;
          display: flex;
          justify-content: space-between;
-         position: absolute;
-         z-index: 50;
-         left: 0;
-         right: 0;
-         margin: 24px auto 0 ;
+         margin: 24px auto 0;
 
          button {
             width: 200px;
@@ -127,40 +127,63 @@
          bottom: 0;
          left: 50%;
          transform: translateX(-50%);
-      }
-      &-time {
-         position: absolute;
-         top: 50%;
-         left: 50%;
-         transform: translate(-50%, -50%);
-         color: $gray25;
-         text-align: center;
-         font-size: 34px;
-         font-weight: 900;
-         line-height: normal;
-         &_sub {
-            width: 58px;
-            height: 40px;
+         &-shodow {
+            filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+         }
+         &-outer {
+            background: #fac704;
+            position: relative;
+            width: 149px;
+            height: 94px;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            &_score {
+               width: 180px;
+            }
+         }
+         &-inner {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: calc(100% - 8px);
+            height: calc(100% - 8px);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            background-color: #3f3f45;
+         }
+
+         &-time {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 35px;
-            font-weight: 700;
-            line-height: normal;
             color: $gray25;
             text-align: center;
+            font-size: 34px;
+            font-weight: 900;
+            line-height: normal;
+            &_sub {
+               width: 58px;
+               height: 40px;
+               position: absolute;
+               top: 50%;
+               left: 50%;
+               transform: translate(-50%, -50%);
+               font-size: 35px;
+               font-weight: 700;
+               line-height: normal;
+               color: $gray25;
+               text-align: center;
+            }
          }
-      }
-      &-text {
-         position: absolute;
-         bottom: 10px;
-         left: 50%;
-         transform: translateX(-50%);
-         color: #a2a3a4;
-         font-size: 14px;
-         font-weight: 500;
-         line-height: normal;
+         &-text {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #a2a3a4;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: normal;
+         }
       }
    }
    &__players {
@@ -169,6 +192,35 @@
       width: 1077px;
       margin-top: 17px;
       position: relative;
+      &-square {
+         display: none;
+         width: 642px;
+         position: absolute;
+         left: 0;
+         right: 0;
+         top: -93px;
+         margin: 0 auto;
+         // z-index: ;
+
+         &-btn {
+            width: 166px;
+            height: 48px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -20px;
+            // z-index: 9990;
+            button {
+               color: $yellow300;
+               font-size: 18px;
+               font-weight: 500;
+               line-height: normal;
+               border-radius: 2px;
+               border: 1px solid var(--1, $yellow300);
+               background: rgba(250, 199, 4, 0.1);
+            }
+         }
+      }
 
       &-side {
          &_a {
@@ -313,36 +365,6 @@
          }
       }
    }
-
-   &__square {
-      display: none;
-      width: 642px;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: -93px;
-      margin: 0 auto;
-      // z-index: ;
-
-      &-btn {
-         width: 166px;
-         height: 48px;
-         position: absolute;
-         left: 50%;
-         transform: translateX(-50%);
-         bottom: -20px;
-         // z-index: 9990;
-         button {
-            color: $yellow300;
-            font-size: 18px;
-            font-weight: 500;
-            line-height: normal;
-            border-radius: 2px;
-            border: 1px solid var(--1, $yellow300);
-            background: rgba(250, 199, 4, 0.1);
-         }
-      }
-   }
 }
 
 .dropdown {
@@ -366,5 +388,181 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 10px;
+   }
+}
+
+.statictic {
+   display: flex;
+
+   &__score {
+      position: relative;
+      transform: rotate(90deg);
+      left: 0;
+      width: 149px;
+      height: 94px;
+      &-txt {
+         position: absolute;
+         top: -14%;
+         left: 55%;
+         z-index: 50;
+         color: $gray25;
+         font-size: 34px;
+         font-style: normal;
+         font-weight: 900;
+         line-height: normal;
+         transform: rotate(-90deg);
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         span {
+            color: $gray25;
+         }
+      }
+   }
+   &__description {
+      border-radius: 4px;
+      background: rgba(248, 248, 248, 0.1);
+      backdrop-filter: blur(5px);
+      width: 678px;
+      height: 186px;
+      margin: 72px auto 0;
+
+      &-text {
+         color: #bfbfbf;
+         font-size: 20px;
+         font-weight: 500;
+         line-height: normal;
+         display: flex;
+         padding: 81px 85px;
+      }
+   }
+
+   &__side {
+      padding: 16px 27px 3px 14px;
+      backdrop-filter: blur(5px);
+      border-radius: 4px;
+      &_a {
+         background: rgba(37, 37, 56, 0.4);
+      }
+      &_b {
+         background: rgba(70, 41, 41, 0.4);
+         width: 1162px;
+      }
+   }
+   &__row {
+      display: flex;
+      align-items: center;
+      &-title {
+         color: $gray25;
+         font-size: 20px;
+         font-weight: 900;
+         line-height: normal;
+      }
+      &-rang {
+         color: $gray100;
+         font-size: 18px;
+         font-weight: 500;
+         line-height: normal;
+         margin-left: 16px;
+      }
+   }
+   &__info {
+      &-row {
+         display: flex;
+         align-items: center;
+      }
+
+      &-name {
+         width: 340px;
+      }
+
+      &-txt {
+         color: #7b7b7b;
+         font-size: 14px;
+         font-weight: 500;
+         line-height: normal;
+         &_color {
+            color: $gray500;
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+         }
+      }
+      &-experience {
+         display: flex;
+         justify-content: space-between;
+         width: 70px;
+         position: relative;
+         margin-left: 20px;
+      }
+      &-line {
+         position: absolute;
+         top: -10px;
+         width: 100%;
+         height: 5px;
+         border-top: 1px solid $dark100;
+         border-left: 1px solid $dark100;
+         border-right: 1px solid $dark100;
+      }
+      &-damage {
+         display: flex;
+         justify-content: space-between;
+         width: 200px;
+         position: relative;
+         margin: 0 70px 0 53px;
+      }
+      &-murders {
+         display: flex;
+         justify-content: space-between;
+         width: 200px;
+         position: relative;
+      }
+      &-subline {
+         background: $dark100;
+         width: 100%;
+         height: 1px;
+         margin: 9px 0 12px;
+      }
+   }
+   &__table {
+      &-td {
+         display: flex;
+         align-items: center;
+         width: 340px;
+         margin-bottom: 14px;
+      }
+
+      &-flag {
+         margin: 0 11px 0 16px;
+      }
+      &-name {
+         color: $gray25;
+         font-size: 20px;
+         font-weight: 500;
+         line-height: normal;
+      }
+      &-res {
+         display: flex;
+         justify-content: space-between;
+         width: 107px;
+         &_experience {
+            width: 70px;
+            margin-left: 45px;
+         }
+         &_damage {
+            width: 200px;
+            margin: 0 70px 0 53px;
+         }
+         &_murders {
+            width: 200px;
+         }
+      }
+      &-txt {
+         color: $gray25;
+         font-size: 16px;
+         font-weight: 500;
+         line-height: normal;
+      }
    }
 }

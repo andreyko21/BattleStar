@@ -16,8 +16,7 @@ export class Team {
   }
 
   renderTeam(): void {
-    const teamHtml = this.team
-      .map(
+    const teamHtml = this.team.map(
         (team) => `
         <div class="game__info-item">
           <h4 class="game__info-title-sub">Полуфинал Major 2021 Stockholm</h4>
@@ -42,40 +41,14 @@ export class Team {
             </div>
           </div>
           <hr class="game__info-line">
-        </div>
-        <div class="game__info-item">
-          <h4 class="game__info-title-sub">Полуфинал Major 2021 Stockholm</h4>
-          <div class="game__info-teams">
-            <div class="game__info-row">
-              <div>
-                <img class="game__info-logo" src="${team.logo}" alt="${team.name}">
-              </div>
-              <p class="game__info-name game__info-name_win">${team.name}</p>
-              <p class="game__info-rank">${team.rating}</p>
-            </div>
-            <div class="game__info-row game__info-row_center">
-              <p class="game__info-time">15:00</p>
-              <p class="game__info-score"><span>3</span> : <span>2</span></p>
-            </div>
-            <div class="game__info-row  game__info-row_sub">
-              <div class="game__info-logo">
-                <img class="game__info-logo" src="${team.logo}" alt="${team.name}">
-              </div>
-              <p class="game__info-name game__info-name_win">${team.name}</p>
-              <p class="game__info-rank">${team.rating}</p>
-            </div>
-          </div>
-          <hr class="game__info-line">
-        </div>
-      `
-      )
-      .join("");
+        </div>`
+    ).join("");
 
     const content = document.querySelector(this.content);
     if (content) {
-      content.innerHTML = teamHtml;
+        content.innerHTML = teamHtml;
     }
-  }
+}
 }
 interface IMapData {
   logo: string;

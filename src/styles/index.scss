@@ -6,6 +6,7 @@
 @import "./components/ui/calendar.scss";
 @import "./components/ui/dropDownMenu.scss";
 @import "./components/ui/tour.scss";
+@import "./components/tabs.scss";
 // @import "./libs/swiper.scss";
 
 .page {
@@ -126,17 +127,19 @@
 
 .news {
   margin-top: 127px;
+
   &__rating {
     width: 445px;
     height: 653px;
     background: $gray800;
     padding: 22px 24px 21px 51px;
-    &-tabs {
-      display: flex;
-      justify-content: center;
-      width: 370px;
-      padding-bottom: 9px;
-      border-bottom: 4px solid $dark100;
+    &-tabs .tabs-block__tab {
+      width: 100%;
+    }
+    &-tabs .tabs-block__lamp {
+      bottom: 15px;
+      background: rgba(196, 196, 196, 0.1);
+      backdrop-filter: blur(5px);
     }
 
     &-btn {
@@ -205,6 +208,9 @@
       height: 40px;
       background: $gray300;
       border-radius: 50%;
+      img {
+        object-fit: cover;
+      }
     }
     &-country {
       width: 21px;
@@ -325,7 +331,7 @@
     grid-row-gap: 29px;
     overflow: auto;
     height: 1105px;
-  padding-right: 5px;
+    padding-right: 5px;
     &-item {
       width: 693px;
       background: $gray800;
@@ -447,7 +453,7 @@
         width: 97px;
         padding: 3.5px 0;
         border-radius: 25px;
-        background:$red800;
+        background: $red800;
       }
     }
     &-line {

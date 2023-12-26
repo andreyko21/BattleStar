@@ -608,6 +608,64 @@ type ComponentTeamsTeam {
   victories_in_tournaments: Int
 }
 
+input ComponentTopPlayersCsFiltersInput {
+  flag: StringFilterInput
+  nikcname: StringFilterInput
+  rating: IntFilterInput
+  and: [ComponentTopPlayersCsFiltersInput]
+  or: [ComponentTopPlayersCsFiltersInput]
+  not: ComponentTopPlayersCsFiltersInput
+}
+
+input ComponentTopPlayersCsInput {
+  id: ID
+  avatar: [ID]
+  flag: String
+  nikcname: String
+  rating: Int
+}
+
+type ComponentTopPlayersCs {
+  id: ID!
+  avatar(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
+  flag: String
+  nikcname: String
+  rating: Int
+}
+
+input ComponentTopPlayersDotaFiltersInput {
+  nikcname: StringFilterInput
+  flag: StringFilterInput
+  reting: IntFilterInput
+  and: [ComponentTopPlayersDotaFiltersInput]
+  or: [ComponentTopPlayersDotaFiltersInput]
+  not: ComponentTopPlayersDotaFiltersInput
+}
+
+input ComponentTopPlayersDotaInput {
+  id: ID
+  avatar: [ID]
+  nikcname: String
+  flag: String
+  reting: Int
+}
+
+type ComponentTopPlayersDota {
+  id: ID!
+  avatar(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
+  nikcname: String
+  flag: String
+  reting: Int
+}
+
 type ComponentTournamentGridTournamentGrid {
   id: ID!
   nameTeam: String!
@@ -964,6 +1022,8 @@ input UsersPermissionsUserFiltersInput {
   role: UsersPermissionsRoleFiltersInput
   online_status: BooleanFilterInput
   biography: StringFilterInput
+  player: PlayerFiltersInput
+  balance: FloatFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   and: [UsersPermissionsUserFiltersInput]
@@ -983,6 +1043,8 @@ input UsersPermissionsUserInput {
   role: ID
   online_status: Boolean
   biography: String
+  player: ID
+  balance: Float
 }
 
 type UsersPermissionsUser {
@@ -994,6 +1056,8 @@ type UsersPermissionsUser {
   role: UsersPermissionsRoleEntityResponse
   online_status: Boolean
   biography: String
+  player: PlayerEntityResponse
+  balance: Float
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -2014,6 +2078,7 @@ input PlayerFiltersInput {
   teams: TeamFiltersInput
   my_teams: Cs2FiltersInput
   my_own_teams: Cs2FiltersInput
+  user: UsersPermissionsUserFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -2034,6 +2099,7 @@ input PlayerInput {
   teams: [ID]
   my_teams: [ID]
   my_own_teams: [ID]
+  user: ID
   publishedAt: DateTime
 }
 
@@ -2084,6 +2150,7 @@ type Player {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): Cs2RelationResponseCollection
+  user: UsersPermissionsUserEntityResponse
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -2170,6 +2237,54 @@ type TeamRelationResponseCollection {
   data: [TeamEntity!]!
 }
 
+input TopPlayerFiltersInput {
+  id: IDFilterInput
+  cs: ComponentTopPlayersCsFiltersInput
+  dota: ComponentTopPlayersDotaFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [TopPlayerFiltersInput]
+  or: [TopPlayerFiltersInput]
+  not: TopPlayerFiltersInput
+}
+
+input TopPlayerInput {
+  cs: [ComponentTopPlayersCsInput]
+  dota: [ComponentTopPlayersDotaInput]
+  publishedAt: DateTime
+}
+
+type TopPlayer {
+  cs(
+    filters: ComponentTopPlayersCsFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): [ComponentTopPlayersCs]
+  dota(
+    filters: ComponentTopPlayersDotaFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): [ComponentTopPlayersDota]
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type TopPlayerEntity {
+  id: ID
+  attributes: TopPlayer
+}
+
+type TopPlayerEntityResponse {
+  data: TopPlayerEntity
+}
+
+type TopPlayerEntityResponseCollection {
+  data: [TopPlayerEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
 input TopTeamInput {
   teams: [ID]
   publishedAt: DateTime
@@ -2211,6 +2326,8 @@ union GenericMorph =
   | ComponentPartnerOptions
   | ComponentPlayerOptions
   | ComponentTeamsTeam
+  | ComponentTopPlayersCs
+  | ComponentTopPlayersDota
   | ComponentTournamentGridTournamentGrid
   | ComponentTournamentsTournament
   | ComponentUiCard
@@ -2242,6 +2359,7 @@ union GenericMorph =
   | Partner
   | Player
   | Team
+  | TopPlayer
   | TopTeam
 
 input FileInfoInput {
@@ -2490,6 +2608,13 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): TeamEntityResponseCollection
+  topPlayer(id: ID): TopPlayerEntityResponse
+  topPlayers(
+    filters: TopPlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): TopPlayerEntityResponseCollection
   topTeam(publicationState: PublicationState = LIVE): TopTeamEntityResponse
   me: UsersPermissionsMe
 }
@@ -2595,6 +2720,9 @@ type Mutation {
   createTeam(data: TeamInput!): TeamEntityResponse
   updateTeam(id: ID!, data: TeamInput!): TeamEntityResponse
   deleteTeam(id: ID!): TeamEntityResponse
+  createTopPlayer(data: TopPlayerInput!): TopPlayerEntityResponse
+  updateTopPlayer(id: ID!, data: TopPlayerInput!): TopPlayerEntityResponse
+  deleteTopPlayer(id: ID!): TopPlayerEntityResponse
   updateTopTeam(data: TopTeamInput!): TopTeamEntityResponse
   deleteTopTeam: TopTeamEntityResponse
   upload(

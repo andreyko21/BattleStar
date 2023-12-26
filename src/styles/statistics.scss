@@ -21,6 +21,9 @@
 }
 
 .statistics {
+   &__aside {
+      margin-top: 18px;
+   }
    margin-top: 90px;
    &__bg {
       background: url(../../src/images/newsBg.png) repeat-x;
@@ -33,11 +36,11 @@
    }
    &__container {
       display: flex;
+      max-width: 1652px;
    }
-   &__content{
+   &__content {
       width: 1227px;
-      margin-left: 44px;
-
+      margin: 19px 0 0 44px;
    }
 
    &__top {
@@ -49,6 +52,7 @@
       backdrop-filter: blur(60px);
       padding: 0 51px 0 63px;
       margin-bottom: 29px;
+      margin-top: 15px;
 
       &-rating {
          display: flex;
@@ -116,14 +120,15 @@
    }
 
    &__cs {
-      background: $gray800;
-      backdrop-filter: blur(60px);
-      padding: 39px 51px 91px 63px;
-      position: relative;
-      z-index: -1;
-      display: flex;
-      justify-content: space-between;
-
+      &-row {
+         display: flex;
+         justify-content: space-between;
+         background: $gray800;
+         backdrop-filter: blur(60px);
+         padding: 39px 51px 91px 63px;
+         position: relative;
+         z-index: -1;
+      }
       &-title {
          color: $gray25;
          font-size: 24px;
@@ -139,7 +144,7 @@
          font-size: 15px;
          font-weight: 500;
          line-height: normal;
-         margin-bottom: 5px;
+         margin-bottom: 8px;
          &:nth-child(3),
          &:nth-child(5) {
             margin-bottom: 43px;
@@ -158,15 +163,21 @@
       }
    }
 
-   &__dota{
-      display: flex;
-      justify-content: space-between;
-      background: $gray800;
-      backdrop-filter: blur(60px);
-      padding: 39px 51px 91px 63px;
+   &__dota {
+
+   }
+
+   &__tab .tabs-block__tab {
+      width: 100%;
+      font-size: 16px;
+   }
+   &__tab .tabs-block__lamp {
+      bottom: 13px;
+      background: rgba(196, 196, 196, 0.1);
    }
 }
-#dota{
+#dota {
    width: 500px !important;
    height: 500px !important;
+   margin: 0 auto !important;
 }

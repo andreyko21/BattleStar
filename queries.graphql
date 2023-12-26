@@ -521,3 +521,23 @@ query GetAllDota2Tournaments($page: Int, $pageSize: Int) {
     }
   }
 }
+
+query GetTopPlayersCS {
+  topPlayers{
+    data{
+      attributes{
+        cs{
+          nikcname
+          rating
+          avatar{
+            data{
+              attributes{
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

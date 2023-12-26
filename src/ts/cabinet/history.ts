@@ -13,15 +13,19 @@ export interface IHistoryData {
 export class History   {
   private content: string;
   private history: IHistoryData[];
+    filterSelect: JQuery<HTMLSelectElement>;
+  tableRows: JQuery<HTMLTableRowElement>;
 
   constructor(content: string, history: IHistoryData[]) {
     this.content = content;
     this.history = history;
+        this.filterSelect = $("#filter") as JQuery<HTMLSelectElement>;
+    this.tableRows = $(".table__tr") as JQuery<HTMLTableRowElement>;
     this.renderHistory();
     
   }
 
-  private renderHistory(): void {
+  renderHistory(): void {
     const HistoryHtml = this.history
       .map(
         (history) => `
@@ -69,9 +73,38 @@ export class History   {
       const formattedData = fullData.slice(0, 10).replace(/-/g, '.'); // Заміна всіх тире на крапку
       $(this).text(formattedData);
     });
-    
-    
 
+    $('#filter').on('change', function() {
+      const filterValue = $(this).val() as string;
+      console.log(filterValue);
+    
+      $(".table__tr").each(function(_index, row) {
+        const winCell = $(row).find(".table__win");
+        const defeatCell = $(row).find(".table__win_defeat");
+    
+        if (filterValue === "All") {
+          $(row).show();
+        } else if (
+          filterValue === "win" &&
+          (winCell.text().trim() === "Победа" || winCell.text().trim() === "")
+        ) {
+          $(row).show();
+        } else if (
+          filterValue === "defeat" &&
+          defeatCell.text().trim() === "Поражение"
+        ) {
+          $(row).show();
+        } else {
+          $(row).hide();
+        }
+      });
+    
+      const tableUrl = new URL(window.location.href);
+      const params = new URLSearchParams(tableUrl.search);
+      params.set("filter", filterValue as string);
+      tableUrl.search = params.toString();
+      window.history.replaceState({ path: tableUrl.href }, "", tableUrl.href);
+    });
   }
   
 }

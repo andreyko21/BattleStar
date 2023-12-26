@@ -1,71 +1,31 @@
 import Chart from "chart.js/auto";
 import Sprite from "./../../images/sprite.svg";
+import { TabsCreate } from '../component/tabs-create.ts';
+import { BaseTabs } from '../component/tabs.ts';
+import { LavaLamp } from '../component/lava-lamp.ts';
 
-interface IStatisticsCSRating {
+
+new TabsCreate('statistics', 'statistics__tab', [
+  ['cs', 'CS:GO'],
+  ['dota', 'DOTA 2'],
+]);
+new BaseTabs('statistics__tab');
+new LavaLamp('statistics__tab');
+
+const findContent = document.querySelector('#cs-content') as HTMLDivElement;
+findContent.innerHTML =` <div class="statistics__cs"></div> `;
+const createContent = document.querySelector(
+  '#dota-content'
+) as HTMLDivElement;
+createContent.innerHTML = ` <div class="statistics__dota"></div>`;
+
+
+interface IStatistics{
   rang: number;
   rangImg: string;
   tour: number;
   winrate: number;
   time: number;
-}
-
-export class StatisticsCsRating {
-  private content: string;
-  private statistics: IStatisticsCSRating[];
-
-  constructor(content: string, statistics: IStatisticsCSRating[]) {
-    this.content = content;
-    this.statistics = statistics;
-    this.renderStatisticsCsRating();
-  }
-  renderStatisticsCsRating() {
-    const StatisticsCsTopHtml = `
-   <div class="statistics__top-rating">
-   <h1 class="statistics__top-rating-title">Ранг: <span>${this.statistics[0].rang}</span></h1>
-   <div class="statistics__top-rating-rang">
-      <img src="${this.statistics[0].rangImg}" alt="rang">
-   </div>
-</div>
-<div class="statistics__top-info">
-   <div class="statistics__top-info-tour">
-      <svg>
-         <use xlink:href="${Sprite}#tourney"></use>
-      </svg>
-      <p class="statistics__top-info-text">${this.statistics[0].tour}<span>Турнира</span></p>
-   </div>
-   <div class="statistics__top-info-winrate">
-      <svg>
-         <use xlink:href="${Sprite}#winrate"></use>
-      </svg>
-      <p class="statistics__top-info-text">${this.statistics[0].winrate} %<span>Винрейт</span></p>
-   </div>
-   <div class="statistics__top-info-time">
-      <svg>
-         <use xlink:href="${Sprite}#time"></use>
-      </svg>
-      <p class="statistics__top-info-text">${this.statistics[0].time}<span>Часов в игре</span></p>
-   </div>
-</div>
-   `;
-
-    const content = document.querySelector(this.content);
-    if (content) {
-      content.innerHTML = StatisticsCsTopHtml;
-    }
-  }
-}
-const statisticsRating = [
-  {
-    rang: 1682,
-    rangImg: "../../../src/images/rank.png",
-    tour: 2,
-    winrate: 60,
-    time: 200,
-  },
-];
-new StatisticsCsRating(".statistics__top", statisticsRating);
-
-interface IStatisticsCs {
   matchesPlayed: number;
   mapsPlayed: number;
   win: number;
@@ -73,12 +33,11 @@ interface IStatisticsCs {
   kill: number;
   death: number;
 }
-
 export class StatisticsCs {
   private content: string;
-  private statistics: IStatisticsCs[];
+  private statistics: IStatistics[];
 
-  constructor(content: string, statistics: IStatisticsCs[]) {
+  constructor(content: string, statistics: IStatistics[]) {
     this.content = content;
     this.statistics = statistics;
     this.renderStatisticsCs();
@@ -86,6 +45,37 @@ export class StatisticsCs {
 
   renderStatisticsCs() {
     const StatisticsCsHtml = `
+     <div class="statistics__top">
+     <div class="statistics__top-rating">
+         <h1 class="statistics__top-rating-title">Ранг: <span>${this.statistics[0].rang}</span></h1>
+         <div class="statistics__top-rating-rang">
+            <img src="${this.statistics[0].rangImg}" alt="rang">
+         </div>
+      </div>
+      <div class="statistics__top-info">
+         <div class="statistics__top-info-tour">
+            <svg>
+               <use xlink:href="${Sprite}#tourney"></use>
+            </svg>
+            <p class="statistics__top-info-text">${this.statistics[0].tour}<span>Турнира</span></p>
+         </div>
+         <div class="statistics__top-info-winrate">
+            <svg>
+               <use xlink:href="${Sprite}#winrate"></use>
+            </svg>
+            <p class="statistics__top-info-text">${this.statistics[0].winrate} %<span>Винрейт</span></p>
+         </div>
+         <div class="statistics__top-info-time">
+            <svg>
+               <use xlink:href="${Sprite}#time"></use>
+            </svg>
+            <p class="statistics__top-info-text">${this.statistics[0].time}<span>Часов в игре</span></p>
+         </div>
+      </div>
+     </div>
+
+
+     <div class="statistics__cs-row">
        <div class="statistics__cs-info">
        <h2 class="statistics__cs-title">Статистика</h2>
        <p class="statistics__cs-text">Матчей сыграно: <span>${this.statistics[0].matchesPlayed}</span></p>
@@ -96,9 +86,11 @@ export class StatisticsCs {
        <p class="statistics__cs-text">Смертей: <span>${this.statistics[0].death}</span></p>
     </div>
     <div class="statistics__cs-schedule">
-       <h2 class="statistics__cs-title">Статистика</h2>
+       <h2 class="statistics__cs-title">Стиль игры</h2>
        <canvas class="statistics__cs-chart" id="cs"></canvas>
-    </div>`;
+    </div>
+    </div>
+    `;
 
     const content = document.querySelector(this.content);
     if (content) {
@@ -175,8 +167,9 @@ export class StatisticsCs {
       },
     });}
 
-    console.log(canvas);
+
   }
+  
 }
 
 const statisticsCs = [
@@ -187,24 +180,21 @@ const statisticsCs = [
     defeated: 225,
     kill: 2304,
     death: 1389,
+    rang: 1682,
+    rangImg: "../../../src/images/rank.png",
+    tour: 2,
+    winrate: 60,
+    time: 200,
+
   },
 ];
 new StatisticsCs(".statistics__cs", statisticsCs);
 
-interface IStatisticsDota {
-  matchesPlayed: number;
-  mapsPlayed: number;
-  win: number;
-  defeated: number;
-  kill: number;
-  death: number;
-}
-
 export class StatisticsDota {
   private content: string;
-  private statistics: IStatisticsDota[];
+  private statistics: IStatistics[];
 
-  constructor(content: string, statistics: IStatisticsDota[]) {
+  constructor(content: string, statistics: IStatistics[]) {
     this.content = content;
     this.statistics = statistics;
     this.renderStatisticsDota();
@@ -212,6 +202,40 @@ export class StatisticsDota {
 
   renderStatisticsDota() {
     const StatisticsCsHtml = `
+    <div class="statistics__top">
+    <div class="statistics__top-rating">
+        <h1 class="statistics__top-rating-title">Ранг: <span>${this.statistics[0].rang}</span></h1>
+        <div class="statistics__top-rating-rang">
+           <img src="${this.statistics[0].rangImg}" alt="rang">
+        </div>
+     </div>
+     <div class="statistics__top-info">
+        <div class="statistics__top-info-tour">
+           <svg>
+              <use xlink:href="${Sprite}#tourney"></use>
+           </svg>
+           <p class="statistics__top-info-text">${this.statistics[0].tour}<span>Турнира</span></p>
+        </div>
+        <div class="statistics__top-info-winrate">
+           <svg>
+              <use xlink:href="${Sprite}#winrate"></use>
+           </svg>
+           <p class="statistics__top-info-text">${this.statistics[0].winrate} %<span>Винрейт</span></p>
+        </div>
+        <div class="statistics__top-info-time">
+           <svg>
+              <use xlink:href="${Sprite}#time"></use>
+           </svg>
+           <p class="statistics__top-info-text">${this.statistics[0].time}<span>Часов в игре</span></p>
+        </div>
+     </div>
+    </div>
+
+
+
+
+
+    <div class="statistics__cs-row">
         <div class="statistics__cs-info">
         <h2 class="statistics__cs-title">Статистика</h2>
         <p class="statistics__cs-text">Матчей сыграно: <span>${this.statistics[0].matchesPlayed}</span></p>
@@ -223,6 +247,7 @@ export class StatisticsDota {
      </div>
      <div class="statistics__cs-schedule">
         <canvas class="statistics__cs-chart" id="dota" width="400" height="400"></canvas>
+     </div>
      </div>`;
 
     const content = document.querySelector(this.content);
@@ -294,7 +319,3 @@ export class StatisticsDota {
   }
 }
 new StatisticsDota(".statistics__dota", statisticsCs);
-
-
-
-

@@ -340,6 +340,7 @@ mutation CreateCsLobbies(
   $participant: [ID]
   $ping: Long
   $antyCheat: Boolean
+  $public: DateTime
 ) {
   createCsLobby(
     data: {
@@ -351,6 +352,7 @@ mutation CreateCsLobbies(
       participant: { players: $participant }
       ping: $ping
       antyCheat: { value: $antyCheat }
+      publishedAt: $public
     }
   ) {
     data {

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="Fav.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/styles/calibration.scss" />
     <title>Battle Star - Calibration</title>
@@ -31,29 +31,33 @@
             ="src/html/components/calibration/calibration-title.html"
             class="calibration-page__calibration-title"
           />
-          <div class="calibration-page__container tabs-block">
-            <load
-              ="src/html/components/match/sorting-block.html"
-              class="calibration-page__view-tabs"
-            />
-            <div class="calibration-page__content tabs-block__content">
-              <div
-                class="calibration-page__grid-block-wrapper tabs-block__content-container tabs-block__content-container_active"
-                id="grid-content"
-              >
-                <div class="calibration-page__grid-block" id="calibration-grid">
+          <div class="calibration-page__container" id="sorting-block-container">
+            <!--<div class="sorting-block tabs-block">
+              <load
+                ="src/html/components/match/sorting-block.html"
+                class="sorting-block__view-tabs"
+              />
+              <div class="sorting-block__content tabs-block__content">
+                <div
+                  class="sorting-block__grid-block-wrapper tabs-block__content-container tabs-block__content-container_active"
+                  id="grid-content"
+                >
+                  <div class="sorting-block__grid-block" id="calibration-grid">
+                  </div>
+                </div>
+                <div
+                  class="sorting-block__table-wrapper tabs-block__content-container"
+                  id="table-content"
+                >
+                  <table class="sorting-block__table" id="calibration-table">
+                    <load
+                      ="src/html/components/match/dota2-row.html"
+                      class="sorting-block__view-tabs"
+                    />
+                  </table>
                 </div>
               </div>
-              <div
-                class="calibration-page__table-wrapper tabs-block__content-container"
-                id="table-content"
-              >
-                <table
-                  class="calibration-page__table"
-                  id="calibration-table"
-                ></table>
-              </div>
-            </div>
+            </div>-->
           </div>
         </div>
       </main>

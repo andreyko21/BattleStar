@@ -516,16 +516,13 @@ class FriendPage {
   }
 
   private createUserFooter(): string {
-    // Check if teams exist and handle the case where there are no teams
     if (!this.teams || this.teams.length === 0) {
-      return ""; // Return an empty string or a default message
+      return "";
     }
 
-    // Slice the first three teams for initial display
     const initialTeams = this.teams.slice(0, 3);
     const teamsHtml = this.createTeamsListHtml(initialTeams);
 
-    // Include the 'Load More' button only if there are more than three teams
     const loadMoreButton =
       this.teams.length > 3 ? this.createMoreTeamsButton() : "";
 

@@ -180,18 +180,18 @@ class Main implements MainType {
       "https://battle-star-app.onrender.com/graphql",
       GetMapsQuery
     );
-    
-     const newMap = map.maps?.data ?? "Error";
+
+    const newMap = map.maps?.data ?? "Error";
     //  console.log(newMap);
-     let mapArr: any[] = [];
-      if (Array.isArray(newMap)) {
-        mapArr = newMap.map((card: any) => {
-          return {
-            logo: card.attributes.logo.data[0].attributes.url
-          };
-        });
-        new Map(".game__column", mapArr);
-      }
+    let mapArr: any[] = [];
+    if (Array.isArray(newMap)) {
+      mapArr = newMap.map((card: any) => {
+        return {
+          logo: card.attributes.logo.data[0].attributes.url,
+        };
+      });
+      new Map(".game__column", mapArr);
+    }
   }
 }
 

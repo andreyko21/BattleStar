@@ -41,9 +41,12 @@
   }
 
   &__share {
+    margin-top: 4px;
     margin-left: 8px;
     background: none;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &-icon {
       max-width: 24px;
       max-height: 24px;
@@ -366,6 +369,7 @@
 }
 
 .tournament-page__participants {
+  margin-top: 50px;
   counter-reset: itemCounter;
   display: grid;
   grid-template-columns: repeat(5, 1fr);

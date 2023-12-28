@@ -1,136 +1,103 @@
-import Sprite from "./../../images/sprite.svg";
-import $ from "jquery";
 
-interface ICreateNameTeamsData {
-  flagTeam: string;
-  nameTeam: string;
-}
 
-export class NameTeams {
-  private content: string;
-  private nameTeams: ICreateNameTeamsData[];
+// export class staticticNameTeams extends NameTeams {
+//   constructor(content: string, nameTeams: ICreateNameTeamsData[]) {
+//     super(content, nameTeams);
+//   }
+// }
 
-  constructor(content: string, nameTeams: ICreateNameTeamsData[]) {
-    this.content = content;
-    this.nameTeams = nameTeams;
-    this.renderCreateTeams();
-  }
+// interface ICreateInfoData {
+//   map: string;
+//   rate: number;
+//   regime: string;
+//   participants: number;
+//   id: number;
+// }
 
-  renderCreateTeams(): void {
-    const createHeaderHtml = `
-    <div class="details__name-teams ">
-      <div class="details__name-teams-flag">
-        <img src="${this.nameTeams[0].flagTeam}" alt="flag">
-      </div>
-        <p class="details__name-teams-name">${this.nameTeams[0].nameTeam}</p>
-    </div> `;
+// export class CreateInfo {
+//   private content: string;
+//   private createInfoData: ICreateInfoData[];
 
-    const content = document.querySelector(this.content);
-    if (content) {
-      content.innerHTML = createHeaderHtml;
-    }
-  }
-}
+//   constructor(content: string, createInfoData: ICreateInfoData[]) {
+//     this.content = content;
+//     this.createInfoData = createInfoData;
+//     this.renderCreateInfo();
+//   }
 
-export class staticticNameTeams extends NameTeams {
-  constructor(content: string, nameTeams: ICreateNameTeamsData[]) {
-    super(content, nameTeams);
-  }
-}
+//   renderCreateInfo(): void {
+//     const createInfoHtml = `
+//       <div class="details__info">
+//        <div class="details__info-row">
+//           <div class="details__info-map">
+//              <p class="details__info-title">Карта</p>
+//              <p class="details__info-name">${this.createInfoData[0].map}</p>
+//           </div>
+//           <div class="details__info-bid">
+//              <p class="details__info-title">Ставка</p>
+//              <p class="details__info-name">${this.createInfoData[0].rate}$</p>
+//           </div>
+//           <div class="details__info-mode">
+//              <p class="details__info-title">Режим</p>
+//              <p class="details__info-name">${this.createInfoData[0].regime}</p>
+//           </div>
+//           <div class="details__info-player">
+//              <p class="details__info-title">Учасников</p>
+//              <p class="details__info-name">${this.createInfoData[0].participants}</p>
+//           </div>
+//           <div class="details__info-id">
+//              <p class="details__info-title">ID</p>
+//              <p class="details__info-name">${this.createInfoData[0].id}
+//                 <svg>
+//                    <use xlink:href="${Sprite}#copy"></use>
+//                 </svg>
+//              </p>
+//           </div>
+//        </div>`;
+//     const content = document.querySelector(this.content);
+//     if (content) {
+//       content.innerHTML += createInfoHtml;
+//     }
+//   }
+// }
 
-interface ICreateInfoData {
-  map: string;
-  rate: number;
-  regime: string;
-  participants: number;
-  id: number;
-}
+// class BtnRenderer {
+//   private btn: HTMLElement;
 
-export class CreateInfo {
-  private content: string;
-  private createInfoData: ICreateInfoData[];
+//   constructor() {
+//     this.btn = document.querySelector(".details__info-btn") as HTMLElement;
+//     this.handleBtnClick();
+//     this.renderBtn();
+//   }
 
-  constructor(content: string, createInfoData: ICreateInfoData[]) {
-    this.content = content;
-    this.createInfoData = createInfoData;
-    this.renderCreateInfo();
-  }
+//   renderBtn() {
+//     const btnHtml = `
+//       <button class="btn">
+//         <svg>
+//           <use xlink:href="./src/images/sprite.svg#tv"></use>
+//         </svg>Скачать Демо</button>
+//       <button class="btn">
+//         <svg>
+//           <use xlink:href="./src/images/sprite.svg#download"></use>
+//         </svg>
+//         Смотреть</button>
+//     `;
 
-  renderCreateInfo(): void {
-    const createInfoHtml = `
-      <div class="details__info">
-       <div class="details__info-row">
-          <div class="details__info-map">
-             <p class="details__info-title">Карта</p>
-             <p class="details__info-name">${this.createInfoData[0].map}</p>
-          </div>
-          <div class="details__info-bid">
-             <p class="details__info-title">Ставка</p>
-             <p class="details__info-name">${this.createInfoData[0].rate}$</p>
-          </div>
-          <div class="details__info-mode">
-             <p class="details__info-title">Режим</p>
-             <p class="details__info-name">${this.createInfoData[0].regime}</p>
-          </div>
-          <div class="details__info-player">
-             <p class="details__info-title">Учасников</p>
-             <p class="details__info-name">${this.createInfoData[0].participants}</p>
-          </div>
-          <div class="details__info-id">
-             <p class="details__info-title">ID</p>
-             <p class="details__info-name">${this.createInfoData[0].id}
-                <svg>
-                   <use xlink:href="${Sprite}#copy"></use>
-                </svg>
-             </p>
-          </div>
-       </div>`;
-    const content = document.querySelector(this.content);
-    if (content) {
-      content.innerHTML += createInfoHtml;
-    }
-  }
-}
+//     if (this.btn) {
+//       this.btn.innerHTML += btnHtml;
+//     }
+//   }
 
-class BtnRenderer {
-  private btn: HTMLElement;
+//   handleBtnClick() {
+//     const context = this;
+//     $(".details__square-btn").on("click", function () {
+//       $(".details__square").css("display", "none");
+//       $(".details__teams-time_sub").text("3:1");
+//       context.renderBtn();
+//     });
+//   }
+// }
 
-  constructor() {
-    this.btn = document.querySelector(".details__info-btn") as HTMLElement;
-    this.handleBtnClick();
-    this.renderBtn();
-  }
-
-  renderBtn() {
-    const btnHtml = `
-      <button class="btn">
-        <svg>
-          <use xlink:href="./src/images/sprite.svg#tv"></use>
-        </svg>Скачать Демо</button>
-      <button class="btn">
-        <svg>
-          <use xlink:href="./src/images/sprite.svg#download"></use>
-        </svg>
-        Смотреть</button>
-    `;
-
-    if (this.btn) {
-      this.btn.innerHTML += btnHtml;
-    }
-  }
-
-  handleBtnClick() {
-    const context = this;
-    $(".details__square-btn").on("click", function () {
-      $(".details__square").css("display", "none");
-      $(".details__teams-time_sub").text("3:1");
-      context.renderBtn();
-    });
-  }
-}
-
-new BtnRenderer();
-
+// new BtnRenderer();
 
 // interface ICreatePlayersData {
 //   flagTeam: string;

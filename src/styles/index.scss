@@ -298,6 +298,7 @@
         width: 20px;
         height: 20px;
         margin-right: 3px;
+        fill: $gray25;
       }
     }
   }
@@ -329,7 +330,7 @@
   &__column {
     display: grid;
     grid-row-gap: 29px;
-    overflow: auto;
+    overflow: hidden;
     height: 1105px;
     padding-right: 5px;
     &-item {
@@ -490,4 +491,8 @@
   width: 8px;
   height: 8px;
   background: $gray500;
+}
+
+.rating__cs{
+overflow: auto;
 }

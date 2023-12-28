@@ -78,12 +78,32 @@ query GetMapsQuery {
     }
   }
 }
-query GetUser{
-  usersPermissionsUsers{
-    data{
+
+query GetMyInfo {
+  me {
+    id
+    username
+  }
+}
+
+query GetUser {
+  usersPermissionsUsers {
+    data {
       id
-      attributes{
+      attributes {
         username
+      }
+    }
+  }
+}
+
+query GetCurrentUser($id: ID) {
+  usersPermissionsUser(id: $id) {
+    data {
+      id
+      attributes {
+        username
+        balance
       }
     }
   }
@@ -221,19 +241,34 @@ query GetMaps {
   }
 }
 
-query GetCsLobbies {
-  csLobbies {
+query GetCsLobbies(
+  $country: [String]
+  $rate: LongFilterInput
+  $map: [String]
+  $gameMode: [Int]
+  $antyCheat: Boolean
+) {
+  csLobbies(
+    filters: {
+      and: [
+        {
+          creator: { Options: { selected_country: { name: { in: $country } } } }
+        }
+        { rate: $rate }
+        { map: { name: { in: $map } } }
+        { gameMode: { value: { in: $gameMode } } }
+        { antyCheat: { value: { eq: $antyCheat } } }
+      ]
+    }
+  ) {
+    meta {
+      pagination {
+        total
+      }
+    }
     data {
       id
       attributes {
-        gameMode {
-          data {
-            attributes {
-              title
-              value
-            }
-          }
-        }
         title
         creator {
           data {
@@ -276,6 +311,14 @@ query GetCsLobbies {
           players {
             data {
               id
+            }
+          }
+        }
+        gameMode {
+          data {
+            attributes {
+              title
+              value
             }
           }
         }
@@ -522,16 +565,213 @@ query GetAllDota2Tournaments($page: Int, $pageSize: Int) {
   }
 }
 
-query GetTopPlayersCS {
-  topPlayers{
-    data{
-      attributes{
-        cs{
-          nikcname
+query getCountries {
+  countries {
+    data {
+      attributes {
+        name
+        flag {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetGameModes {
+  csGameModes {
+    data {
+      id
+      attributes {
+        title
+        value
+      }
+    }
+  }
+}
+
+query CreatorLobby($id: ID) {
+  usersPermissionsUser(id: $id) {
+    data {
+      id
+      attributes {
+        username
+        player {
+          data {
+            id
+            attributes {
+              avatar {
+                data {
+                  attributes {
+                    url
+                    alternativeText
+                  }
+                }
+              }
+              CSGO {
+                Default_information {
+                  rank
+                }
+              }
+              DOTA2 {
+                Default_information {
+                  rank
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetDota2TeamById($id: ID) {
+  dota2Team(id: $id) {
+    data {
+      id
+      attributes {
+        Team {
+          name
           rating
-          avatar{
-            data{
-              attributes{
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          earned
+          matches_played
+          victories_in_tournaments
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetDota2Teams {
+  dota2Teams {
+    data {
+      id
+      attributes {
+        Team {
+          name
+          rating
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          earned
+          matches_played
+          victories_in_tournaments
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetTeams(
+  $filtering: String
+  $sorting: [String]
+  $page: Int
+  $pageSize: Int
+) {
+  teams(
+    filters: { name: { startsWith: $filtering } }
+    sort: $sorting
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
+    data {
+      id
+
+      attributes {
+        name
+        rating
+        earned
+        matches_played
+        victories_in_tournaments
+        createdAt
+        updatedAt
+        publishedAt
+        participants {
+          data {
+            id
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageCount
+      }
+    }
+  }
+}
+
+query GetAwards {
+  cs2Awards {
+    data {
+      id
+      attributes {
+        name
+        logo {
+          data {
+            id
+            attributes {
+              name
+              alternativeText
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+mutation CreatePlayer($id: ID) {
+  createPlayer(data: { user: $id }) {
+    data {
+      attributes {
+        user {
+          data {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+query GetTopPlayer {
+  topPlayers {
+    data {
+      attributes {
+        cs {
+          nikcname
+          flag
+          rating
+          avatar {
+            data {
+              attributes {
                 url
               }
             }
@@ -541,3 +781,72 @@ query GetTopPlayersCS {
     }
   }
 }
+query GetTopPlayerDota {
+  topPlayers {
+    data {
+      attributes {
+        dota {
+          nikcname
+          flag
+          reting
+          avatar {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetLobbyInfoId($id: ID) {
+  csLobby(id: $id) {
+    data {
+      id
+      attributes {
+        title
+        creator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      flag {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        map {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+        rate
+        gameMode {
+          data {
+            attributes {
+              title
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

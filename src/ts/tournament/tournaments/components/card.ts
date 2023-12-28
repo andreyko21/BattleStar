@@ -1,7 +1,7 @@
 import { getLocateParam } from "../../../functions/windowLocation";
 import Sprite from "./../../../../images/sprite.svg";
 import "./../../../../styles/components/tournaments/tournaments-card.scss";
-
+import Combs from "./../../../../images/honeycombs.png"
 interface TournamentCardData {
   id: string;
   imageUrl: string;
@@ -33,7 +33,7 @@ export default class TournamentCard {
             </div>
             <div class="tournaments-card__info">
               <div class="tournaments-card__backgound-img-block">
-                <img src="./src/images/honeycombs.png" alt="" />
+                <img src="${Combs}" alt="" />
               </div>
               <p class="tournaments-card__date">${tournament.date}</p>
               <p class="tournaments-card__name">${tournament.name}</p>

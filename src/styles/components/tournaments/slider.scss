@@ -67,7 +67,7 @@
   flex-grow: 1;
   border-radius: 4px;
   overflow: hidden;
-  display: flex;
+  display: flex!important;
 
   &__img {
     width: 100%;

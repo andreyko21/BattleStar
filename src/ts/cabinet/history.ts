@@ -1,6 +1,10 @@
 // import { request } from 'graphql-request';
 // import { GetHistoryMatch } from "../../../queries.graphql.d";
 import $ from "jquery";
+import { Header } from "../component/header/header";
+import { AppSidebar } from "../component/sidebar/sidebar";
+new Header("#wrapper");
+new AppSidebar("wrapper", "");
 export interface IHistoryData {
   name: string;
   data: string;

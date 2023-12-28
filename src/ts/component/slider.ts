@@ -20,7 +20,7 @@ export class Slider {
       <div class="tour__item">
  
       <div class="tour__item-img">
-         <img src="${this.slider[0].img}" alt="img">
+         <img src="${this.slider[1].img}" alt="img">
       </div>
       
       <div class="tour__item-info">
@@ -45,7 +45,7 @@ export class Slider {
       const content = document.querySelectorAll(this.content);
       if (content) {
          content.forEach((element) => {
-            element.innerHTML = sliderHtml;
+            element.innerHTML += sliderHtml;
          });
          
       }

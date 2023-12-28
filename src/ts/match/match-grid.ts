@@ -1,13 +1,14 @@
 import { OpenLobbyPopUp } from '../component/pop-up';
+import Sprite from './../../images/sprite.svg';
 
 class MatchTile {
   private container: HTMLElement;
-  private options: { [key: string]: string }[];
+  private options: { [key: string]: string | boolean }[];
   private popUp: OpenLobbyPopUp;
 
   constructor(
     containerId: String,
-    options: { [key: string]: string }[],
+    options: { [key: string]: string | boolean }[],
     popUp: OpenLobbyPopUp
   ) {
     this.container = document.querySelector(`#${containerId}`) as HTMLElement;
@@ -19,7 +20,7 @@ class MatchTile {
 
   private render(): void {
     const template = this.options.reduce(
-      (tiles: string, option: { [key: string]: string }): string => {
+      (tiles: string, option: { [key: string]: string | boolean }): string => {
         tiles += `<div class="match-card" id="${option.id}">
   <div class="match-card__img-block">
     <div class="match-card__wrapper-img">
@@ -48,18 +49,18 @@ class MatchTile {
         </div>
         <div class="match-card__mode">
           <div class="match-card__data-title"> Режим </div>
-          <div class="match-card__rate-value"> ${option.mode} </div>
+          <div class="match-card__rate-value"> ${option.mode}x${option.mode} </div>
         </div>
         <div class="match-card__participants">
           <div class="match-card__data-title"> Учасников </div>
-          <div class="match-card__rate-value"> ${option.participants} </div>
+          <div class="match-card__rate-value"> ${option.participants}/${option.mode} </div>
         </div>
       </div>
       <div class="match-card__ping-block">
         <div class="match-card__ping">${option.ping} </div>
         <div class="match-card__ping-icon">
           <svg>
-            <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
+            <use xlink:href="${Sprite}#haf_network-strength"></use>
           </svg>
         </div>
       </div>

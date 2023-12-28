@@ -9,12 +9,58 @@
 </head>
 
 <body>
-   <div class="wrapper">
-      <load="src/html/header.html" />
-      <load="src/html/sidebar.html" />
+   <div id="wrapper" class="wrapper">
       <main class="page">
          <section class="lobby">
             <div id="lobby" class="lobby__container">
+               <div class="lobby__tab filters tabs-block">
+                  <!-- tabs -->
+                  <div class="lobby__tab tabs-block__tabs">
+                     <!-- tabs -->
+                     <div class="filters__tab tabs-block__tab" data-tab-name="teams">КОМАНДЫ</div>
+                     <div class="filters__tab tabs-block__tab" data-tab-name="statictic">СТАТИСТИКА</div>
+                     <div class="tabs-block__lamp"><span></span></div>
+                  </div>
+                  <div class="teams tabs-block__content">
+
+                     <div
+                        class="filters__find-lobby find-lobby tabs-block__content-container tabs-block__content-container_active"
+                        id="teams-content">
+                        <div class="details__info">
+                           <div class="details__info-btn">
+                              <button class="btn">
+                                 <svg>
+                                    <use xlink:href="./src/images/sprite.svg#download"></use>
+                                 </svg>Скачать Демо</button>
+                              <button class="btn">
+                                 <svg>
+                                    <use xlink:href="./src/images/sprite.svg#tv"></use>
+                                 </svg>
+                                 Смотреть</button>
+                           </div>
+                        </div>
+                        <div class="details__teams"></div>
+                        <div class="details__players">
+                           <div class="details__players-square">
+                              <div class="details__players-square-img">
+                                 <img src="./src/images/square.png" alt="">
+                              </div>
+                              <div class="details__players-square-btn">
+                                 <button id="start" class="btn">Начать матч</button>
+                              </div>
+                           </div>
+                           <div class="details__players-row"></div>
+
+                        </div>
+                     </div>
+                     <div class="filters__find-lobby find-lobby tabs-block__content-container" id="statictic-content">
+                        <div class="statictic"></div>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+
          </section>
       </main>
    </div>

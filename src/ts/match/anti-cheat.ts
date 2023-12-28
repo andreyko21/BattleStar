@@ -6,7 +6,7 @@ class AntiCheat {
   constructor(containerID: string) {
     this.container = document.querySelector(`#${containerID}`);
     this.checkboxHtml = new CreateingCheckbox(
-      'anti-cheat',
+      'antyCheat',
       [{ value: 'antiCheat', label: 'Античит' }],
       null
     );

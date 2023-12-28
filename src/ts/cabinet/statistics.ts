@@ -3,6 +3,10 @@ import Sprite from "./../../images/sprite.svg";
 import { TabsCreate } from '../component/tabs-create.ts';
 import { BaseTabs } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
+import { Header } from "../component/header/header";
+import { AppSidebar } from "../component/sidebar/sidebar";
+new Header("#wrapper");
+new AppSidebar("wrapper", "");
 
 
 new TabsCreate('statistics', 'statistics__tab', [

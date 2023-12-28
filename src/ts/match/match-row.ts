@@ -1,13 +1,14 @@
 import { OpenLobbyPopUp } from '../component/pop-up';
+import Sprite from './../../images/sprite.svg';
 
 class MatchRow {
   private container: HTMLElement;
-  private options: { [key: string]: string }[];
+  private options: { [key: string]: string | boolean }[];
   private popUp: OpenLobbyPopUp;
 
   constructor(
     containerId: String,
-    options: { [key: string]: string }[],
+    options: { [key: string]: string | boolean }[],
     popUp: OpenLobbyPopUp
   ) {
     this.container = document.querySelector(`#${containerId}`) as HTMLElement;
@@ -19,7 +20,7 @@ class MatchRow {
 
   private render(): void {
     const template = this.options.reduce(
-      (rows: string, option: { [key: string]: string }): string => {
+      (rows: string, option: { [key: string]: string | boolean }): string => {
         rows += `<tr class="match-tr content__tr" id="${option.id}">
          <td class="match-tr__img-cell">
            <div class="match-tr__img-block">
@@ -50,22 +51,18 @@ class MatchRow {
          </td>
          <td class="match-tr__mode">
            <div class="match-tr__data-title"> Режим </div>
-           <div class="match-tr__rate-value"> ${option.mode.slice(
-             1
-           )}x${option.mode.slice(1)} </div>
+           <div class="match-tr__rate-value"> ${option.mode}x${option.mode} </div>
          </td>
          <td class="match-tr__participants">
            <div class="match-tr__data-title"> Учасников </div>
-           <div class="match-tr__rate-value"> ${
-             option.participants
-           }x${option.mode.slice(1)} </div>
+           <div class="match-tr__rate-value"> ${option.mode}/${option.participants} </div>
          </td>
          <td class="match-tr__ping-cell">
            <div class="match-tr__ping-block">
              <div class="match-tr__ping">${option.ping} </div>
              <div class="match-tr__ping-icon">
                <svg>
-                 <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
+                 <use xlink:href="${Sprite}#haf_network-strength"></use>
                </svg>
              </div>
            </div>

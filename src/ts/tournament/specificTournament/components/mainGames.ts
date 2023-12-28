@@ -1,6 +1,7 @@
 import $ from "jquery";
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
+import MainGame from "./../../../../images/main-games.png";
 
 export class MainGames {
   private container: JQuery;
@@ -30,7 +31,7 @@ export class MainGames {
         (game) => `
                     <div class="main-games__swiper-slide swiper-slide">
                         <div class="main-games__swiper-slide-img-block">
-                            <img src="./src/images/main-games.png" alt="" />
+                            <img src="${MainGame}" alt="" />
                         </div>
                         <div class="main-games__swiper-slide-info">
                             <div class="main-games__swiper-slide-status">${

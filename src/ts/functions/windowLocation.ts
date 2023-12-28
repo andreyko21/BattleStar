@@ -26,6 +26,18 @@ function getLocateParam(param: string) {
   return queryParams.get(param);
 }
 
+function delLocateParam(param: string) {
+   const queryParams = getQueryParams();
+   queryParams.delete(param);const newUrl =
+   window.location.protocol +
+   '//' +
+   window.location.host +
+   window.location.pathname +
+   '?' +
+   queryParams;
+ window.history.pushState({ path: newUrl }, '', newUrl);
+ }
+
 function removeAllParams() {
   const urlWithoutParams =
     window.location.protocol +
@@ -39,6 +51,7 @@ function removeAllParams() {
 export {
   setLocateParam,
   getLocateParam,
+  delLocateParam,
   removeAllParams,
   setLocateParamReload,
 };

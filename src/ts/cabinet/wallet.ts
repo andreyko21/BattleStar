@@ -1,12 +1,10 @@
 import Sprite from "./../../images/sprite.svg";
 import $ from "jquery";
 import { sumHistory } from "./history";
-import { request } from "graphql-request";
-import { GetUser } from "../../../queries.graphql.d";
 import { setLocateParam } from "../functions/windowLocation";
 import { removeAllParams } from "../functions/windowLocation";
-import { Chart } from "chart.js";
-import axios from "axios";
+// import { Chart } from "chart.js";
+// import axios from "axios";
 interface IWalletData {
   id: number;
   nickname: string;
@@ -42,7 +40,7 @@ class Wallet {
     this.dropdown();
     this.findUser();
     this.transaction();
-    this.balance()
+    // this.balance()
   }
 
   renderWallet(): void {
@@ -389,129 +387,129 @@ class Wallet {
     });
   }
 
-  balance() {
-    let charts: { config: { data: { labels: any[]; datasets: { data: any[]; }[]; }; options: { scales: { x: { min: number; max: number; }; }; }; }; update: () => void; };
-    let pauseMode = false;
-    const createLineChatr = (xData: any[], yData: any[]) => {
-      let gradient = this.context.createLinearGradient(
-        0,
-        0,
-        0,
-        window.screen.width / 2
-      );
-      gradient.addColorStop(0, "rgba(250, 199, 4, 0.30)");
-      gradient.addColorStop(1, "rgba(250, 199, 4, 0.00)");
-      let data = {
-        labels: xData,
-        datasets: [
-          {
-            data: yData,
-            pointStyle: false,
-            fill: true,
-            backgroundColor: gradient,
-            borderWidth: 1,
-            // backgroundColor: "#fac704",
-            label: "Balance",
-            tension: 0.2,
-          },
-        ],
-      };
-      let xScaleConfig = {
-        min: 0,
-        max: 10,
-        display: false,
-      };
-      let yScaleConfig = {
-        display: false,
-      };
-      let config: object = {
-        type: "line",
-        data: data,
-        options: {
-          scales: {
-            x: xScaleConfig,
-            y: yScaleConfig,
-          },
-        },
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        animation: {
-          duration: 400,
-          easing: "linear",
-        },
-      };
+  // balance() {
+  //   let charts: { config: { data: { labels: any[]; datasets: { data: any[]; }[]; }; options: { scales: { x: { min: number; max: number; }; }; }; }; update: () => void; };
+  //   let pauseMode = false;
+  //   const createLineChatr = (xData: any[], yData: any[]) => {
+  //     let gradient = this.context.createLinearGradient(
+  //       0,
+  //       0,
+  //       0,
+  //       window.screen.width / 2
+  //     );
+  //     gradient.addColorStop(0, "rgba(250, 199, 4, 0.30)");
+  //     gradient.addColorStop(1, "rgba(250, 199, 4, 0.00)");
+  //     let data = {
+  //       labels: xData,
+  //       datasets: [
+  //         {
+  //           data: yData,
+  //           pointStyle: false,
+  //           fill: true,
+  //           backgroundColor: gradient,
+  //           borderWidth: 1,
+  //           // backgroundColor: "#fac704",
+  //           label: "Balance",
+  //           tension: 0.2,
+  //         },
+  //       ],
+  //     };
+  //     let xScaleConfig = {
+  //       min: 0,
+  //       max: 10,
+  //       display: false,
+  //     };
+  //     let yScaleConfig = {
+  //       display: false,
+  //     };
+  //     let config: object = {
+  //       type: "line",
+  //       data: data,
+  //       options: {
+  //         scales: {
+  //           x: xScaleConfig,
+  //           y: yScaleConfig,
+  //         },
+  //       },
+  //       plugins: {
+  //         legend: {
+  //           display: false,
+  //         },
+  //       },
+  //       animation: {
+  //         duration: 400,
+  //         easing: "linear",
+  //       },
+  //     };
 
-     new Chart(this.context, config);
-    };
-    const realTimeChart = (
-      xData: any[],
-      yData: any[],
-      data: string | any[]
-    ) => {
-      let i = 50;
-      let interval = setInterval(() => {
-        if (i > data.length) {
-          clearInterval(interval);
-        } else if (!pauseMode) {
-          charts.config.data.labels.push(xData[i]);
-          charts.config.data.datasets[0].data.push(yData[i]);
-          charts.config.options.scales.x.min++;
-          charts.config.options.scales.x.max++;
-          charts.update();
-          i++;
-        }
-      }, 400);
-    };
-    axios
-      .get(
-        "https://www.alphavantage.co/query?function=ALUMINUM&interval=monthly&apikey=demo"
-      )
-      .then((response) => {
-        let data = response.data.data;
-        let xData = [];
-        let yData = [];
-        for (let i = data.length - 1; i > 0; i--) {
-          if (data[i].value !== ".") {
-            xData.push(data[i].date);
-            yData.push(data[i].value);
-          }
-        }
-        let xStartData = [];
-        let yStartData = [];
-        let xParseData = [];
-        let yParseData = [];
-        for (let i = 0; i < data.length; i++) {
-          if (i < 10) {
-            xStartData.push(xData[i]);
-            yStartData.push(yData[i]);
-          } else {
-            xParseData.push(xData[i]);
-            yParseData.push(yData[i]);
-          }
-        }
-        createLineChatr(xStartData, yStartData);
-        realTimeChart(xParseData, yParseData, data);
-      });
+  //    new Chart(this.context, config);
+  //   };
+  //   const realTimeChart = (
+  //     xData: any[],
+  //     yData: any[],
+  //     data: string | any[]
+  //   ) => {
+  //     let i = 50;
+  //     let interval = setInterval(() => {
+  //       if (i > data.length) {
+  //         clearInterval(interval);
+  //       } else if (!pauseMode) {
+  //         charts.config.data.labels.push(xData[i]);
+  //         charts.config.data.datasets[0].data.push(yData[i]);
+  //         charts.config.options.scales.x.min++;
+  //         charts.config.options.scales.x.max++;
+  //         charts.update();
+  //         i++;
+  //       }
+  //     }, 400);
+  //   };
+  //   axios
+  //     .get(
+  //       "https://www.alphavantage.co/query?function=ALUMINUM&interval=monthly&apikey=demo"
+  //     )
+  //     .then((response) => {
+  //       let data = response.data.data;
+  //       let xData = [];
+  //       let yData = [];
+  //       for (let i = data.length - 1; i > 0; i--) {
+  //         if (data[i].value !== ".") {
+  //           xData.push(data[i].date);
+  //           yData.push(data[i].value);
+  //         }
+  //       }
+  //       let xStartData = [];
+  //       let yStartData = [];
+  //       let xParseData = [];
+  //       let yParseData = [];
+  //       for (let i = 0; i < data.length; i++) {
+  //         if (i < 10) {
+  //           xStartData.push(xData[i]);
+  //           yStartData.push(yData[i]);
+  //         } else {
+  //           xParseData.push(xData[i]);
+  //           yParseData.push(yData[i]);
+  //         }
+  //       }
+  //       createLineChatr(xStartData, yStartData);
+  //       realTimeChart(xParseData, yParseData, data);
+  //     });
 
-    window.addEventListener("click", () => {
-      pauseMode = !pauseMode;
-    });
-  }
+  //   window.addEventListener("click", () => {
+  //     pauseMode = !pauseMode;
+  //   });
+  // }
 
   
 }
-interface IWalletHistoryData {
-  name: string;
-  data: string;
-  time: string;
-  regime: string;
-  id: number;
-  result: { win: string; defeat: string }[];
-  money: number;
-}
+// interface IWalletHistoryData {
+//   name: string;
+//   data: string;
+//   time: string;
+//   regime: string;
+//   id: number;
+//   result: { win: string; defeat: string }[];
+//   money: number;
+// }
 
 // class WalletHistory {
 //   private content: string;
@@ -550,23 +548,37 @@ interface IWalletHistoryData {
 //   }
 // }
 
-const users = await request(
-  "https://battle-star-app.onrender.com/graphql",
-  GetUser
-);
 
 
-const userData = users.usersPermissionsUsers?.data.at(-1);
+
+
+function getCookie(cname:any) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+let name = getCookie("name");
+let id = getCookie("id");
+let token = getCookie("token");
+console.log(name, id, token);
 
 
 let infoWallet: any = {
-  id: userData?.id,
-  nickname: userData?.attributes?.username,
+  id: id,
+  nickname: name,
   balance: sumHistory,
 };
-
-
-
 new Wallet(".wallet__top", infoWallet);
 // new WalletHistory(".table__tab", infoWallet);
 

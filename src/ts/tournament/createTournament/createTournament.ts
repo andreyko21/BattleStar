@@ -5,7 +5,9 @@ import { Sidebar } from "./components/sidebar";
 import { CS2TournamentCreationPage } from "./cs2Tournament";
 import { Dota2TournamentCreationPage } from "./dota2Tournament";
 import { TournamentCreation } from "./tournament";
-import { initDropDown } from "./../../../dropDownMenu";
+
+import { Header } from "./../../component/header/header";
+import { AppSidebar } from "../../component/sidebar/sidebar";
 
 class TournamentPageFactory {
   static createPage(
@@ -35,17 +37,8 @@ $(document).ready(() => {
     "Равным образом реали зация нам еченных плановых зад аний спос обствует подгот овки и реали зации соотв етствующий усло вий акт ивизации. Не следу ет, одна ко забыв ать, что консул ьтация с ш ироким ак тивом ",
     "Узнать больше"
   );
-
-  initDropDown();
-
-  $(".dropdown__game-item").on("click", () => {
-    const selectGame = $(".dropdown__game-name").text();
-    if (selectGame == "CS:GO") {
-      page = TournamentPageFactory.createPage("CS2", "tournament-page");
-    } else {
-      page = TournamentPageFactory.createPage("Dota2", "tournament-page");
-    }
-  });
+  new Header("#wrapper");
+  new AppSidebar("wrapper", "ТУРНИРЫ");
 
   $("#main-content").on("submit", () => {
     if (page.validation.isValid) {
@@ -57,7 +50,7 @@ $(document).ready(() => {
         formData.append("files", file);
 
         const jwt =
-          "73d285b888be102cfcacdd444be3c7e935608d1c703339d5515ab43355598fbfd837843f7df61c17434553a700ab7db8f41807ec0ffed88f5702bc72d02177f5777461c895620f6f463523a811c2ec57e8ceeb66e332dfeb11fac3362b889c43098de39518b54ac705e95fa2f9834c5d736c18bf234829b8dff48205071c4e1e";
+          "f106222a0ebe66d3536b11a256411ce8688915767a986531a8119b7144733224cdb1dfdea426d492697a738b62fda5af3043a9a546bf6d015a55a3086bce0dbe32468dd8476b9d83754bbb3698f95e987e06053f91ceffc6655406c9ff3bc4c180331b03f83ab7c53c99354f8010b5497645ac3be6af33b25a0fe7a094aab9f9";
         const url = "https://battle-star-app.onrender.com/api/upload";
 
         $.ajax({
@@ -108,7 +101,7 @@ async function CreateCs2TournamentFunc(page: any, Imgdata?: any) {
       },
       {
         Authorization:
-          "Bearer 7e95cef237a1770604036797bbfb3a1c527ea86b029b42ca2d6c68b0cddcef3279794798426e85c5039aae3e2167be46596d8ee393d019f0abb77c1af9bd8c0e03e0fbec45d08ebb2e9549a3b7aa81245af8a059d8385c9122dd3b850341c2dd82297f88eb29591d213d9b74db07e2649156151cdf649fab982091ac1cef7c10",
+          "Bearer f106222a0ebe66d3536b11a256411ce8688915767a986531a8119b7144733224cdb1dfdea426d492697a738b62fda5af3043a9a546bf6d015a55a3086bce0dbe32468dd8476b9d83754bbb3698f95e987e06053f91ceffc6655406c9ff3bc4c180331b03f83ab7c53c99354f8010b5497645ac3be6af33b25a0fe7a094aab9f9",
       }
     )) as any;
 

@@ -16,11 +16,19 @@ class LavaLamp implements ILavaLamp {
   public readonly TAB_NO_HOVERED_CLASS = 'tabs-block__tab_no-hovered'; // Клас, що прибирає стилі надані TAB_ACTIVE_CLASS при наведенні на будь який таб
 
   private classTabsBlock: string;
+  private tabs: JQuery<HTMLDivElement>;
   private allTabs: JQuery<HTMLDivElement>;
 
   constructor(classTabsBlock: string) {
     this.classTabsBlock = classTabsBlock;
-    this.allTabs = $(`.${this.TAB_CLASS}`, `.${this.classTabsBlock}`);
+    this.tabs = $(
+      `.${this.TABS_CLASS}`,
+      `.${this.classTabsBlock}`
+    )!.first() as JQuery<HTMLDivElement>;
+    this.allTabs = this.tabs.find(
+      `.${this.TAB_CLASS}`
+    ) as JQuery<HTMLDivElement>;
+    // this.allTabs = $(`.${this.TAB_CLASS}`, `.${this.classTabsBlock}`);
     this.initNavigation();
   }
 

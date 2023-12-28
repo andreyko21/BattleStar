@@ -27,13 +27,13 @@ export class Team implements TeamType {
   attributes: TeamAttributes;
 
   constructor(teamData: Team) {
-    this.id = teamData.id ?? "";
-    this.attributes = teamData.attributes ?? "";
+    this.id = teamData.id ?? '';
+    this.attributes = teamData.attributes ?? '';
   }
 
   getTemplate(): string {
     if (this.id != undefined && this.attributes != undefined) {
-      let awardsList = "";
+      let awardsList = '';
       this.attributes.awards.data.forEach((award) => {
         awardsList += `<img class="team-item__award-img" src="${award.attributes.logo.data[0].attributes.url}" alt="award">`;
       });
@@ -56,7 +56,7 @@ export class Team implements TeamType {
 
   getItemTemplate(): string {
     if (this.id != undefined && this.attributes != undefined) {
-      let awardsList = "";
+      let awardsList = '';
       this.attributes.awards.data.forEach((award) => {
         awardsList += `<img class="team-item__award-img" src="${award.attributes.logo.data[0].attributes.url}" alt="award">`;
       });
@@ -268,4 +268,41 @@ export type Meta = {
 
 export type Pagination = {
   pageCount: number;
+};
+
+export type NewCheckboxData = {
+  id: string;
+  value: string;
+  label: string;
+  checked?: boolean;
+};
+
+export type QueryRate = {
+  in?: number[];
+  between?: [number, number];
+};
+
+export type Match = {
+  [key: string]: string | boolean;
+};
+
+export type CreatorDataForLobby = {
+  userId: string | null;
+  username: string | null;
+  playerId: string | null;
+  avatarUrl: string | null;
+  avatarAltText: string | null;
+  csGoRank: number | null;
+  dota2Rank: number | null;
+};
+
+export type QueryParamsOfCreateCsLobby = {
+  title: string | null;
+  creator: string | null;
+  map: string | null;
+  rate: number | null;
+  gameMode: string | null;
+  participant: (string | null)[] | null;
+  ping: number;
+  antyCheat: Boolean;
 };

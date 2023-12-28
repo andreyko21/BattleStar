@@ -127,8 +127,8 @@ class newFiltration {
     console.log(query);
 
     if (query) {
-      new MatchRow('table-content', query, lobbyOpenning);
-      new MatchTile('content-grid-block', query, lobbyOpenning);
+      new MatchRow('calibration-table', query, lobbyOpenning);
+      new MatchTile('calibration-grid', query, lobbyOpenning);
     }
   }
 

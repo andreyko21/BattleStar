@@ -6,6 +6,7 @@ import { BaseTabs } from '../component/tabs.ts'; //CreatedObjForIRenderMethod
 //import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
 import { SelectedCsMatchPagesTab } from './selected-cs-matches-page-tab.ts';
+import { SelectedDota2MatchPagesTab } from './dota/selected-dota2-matches-page-tab.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
   new Header('#wrapper');
@@ -23,13 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function selectGameForRender() {
   if (getLocateParam('game') == 'dota2') {
+    new SelectedDota2MatchPagesTab();
     // const csMathesPage = new CsMatchesPage();
 
-    new BaseTabs('match-page__filters');
-    new LavaLamp('match-page__filters');
+    // new BaseTabs('match-page__filters');
+    // new LavaLamp('match-page__filters');
 
-    // new BaseTabs('match-page__content', mayMethods);
-    new LavaLamp('match-page__content');
+    // // new BaseTabs('match-page__content', mayMethods);
+    // new LavaLamp('match-page__content');
   } else {
     new SelectedCsMatchPagesTab();
     // new BaseTabs('match-page__filters');

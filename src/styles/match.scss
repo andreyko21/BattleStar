@@ -241,46 +241,46 @@
     line-height: normal;
   }
 }
-#find-content {
-  .find-lobby {
-    &__filters-title-block {
-      display: flex;
-      margin: 0px 0px 12px 17px;
-      align-items: center;
-      svg {
-        width: 20px;
-        height: 20px;
-        fill: $gray25; // #f8f8f8;
-      }
-    }
-    &__filters-title {
-      margin: 0px 0px 0px 8px;
-      color: $gray25;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-    }
-
-    &__filters-block {
-    }
-
-    &__rate-filter {
-    }
-
-    &__maps-filter {
-    }
-
-    &__game-mode-filter {
-    }
-
-    &__region-filter {
-    }
-
-    &__anticheat {
+//#find-content {
+.find-lobby {
+  &__filters-title-block {
+    display: flex;
+    margin: 0px 0px 12px 17px;
+    align-items: center;
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: $gray25; // #f8f8f8;
     }
   }
+  &__filters-title {
+    margin: 0px 0px 0px 8px;
+    color: $gray25;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__filters-block {
+  }
+
+  &__rate-filter {
+  }
+
+  &__maps-filter {
+  }
+
+  &__game-mode-filter {
+  }
+
+  &__region-filter {
+  }
+
+  &__anticheat {
+  }
 }
+//}
 .patty {
   padding: 8px 17px 31px 12px;
   &__title-block {

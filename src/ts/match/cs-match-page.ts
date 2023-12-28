@@ -25,11 +25,15 @@ import { Creator } from './creator.ts';
 import { AllPlayerList } from './filtration/selected-player.ts';
 import { Patty } from './filtration/patty.ts';
 import { FiltersBlock } from './filtration/filters-block.ts';
+import { SortingBlock } from '../calibration/sorting-block.ts';
+import { ContentFilteringSectionForMatch } from './filtration/conten-filters-section-for-match.ts';
 
 class CsMatchesPage {
   private static instance: CsMatchesPage;
 
-  constructor() {}
+  constructor() {
+    this.renderCsPage();
+  }
 
   public static async getInstance(): Promise<CsMatchesPage> {
     if (!CsMatchesPage.instance) {
@@ -52,24 +56,28 @@ class CsMatchesPage {
     //   ['find', 'НАЙТИ ИГРУ'],
     //   ['create', 'СОЗДАТЬ ЛОББИ'],
     // ]);
+
+    new ContentFilteringSectionForMatch('filters');
+
     new BaseTabs('match-page__filters');
     new LavaLamp('match-page__filters');
 
     // new BaseTabs('match-page__content', mayMethods);
     // new LavaLamp('match-page__content');
 
-    const sortingBlockIdArr = ['grid', 'table'];
-    const addClassForSort = () => {
-      //id:string
-      //  console.log('Hello!');
-    };
+    // const sortingBlockIdArr = ['grid', 'table'];
+    // const addClassForSort = () => {
+    //   //id:string
+    //   //  console.log('Hello!');
+    // };
 
-    const forSorting = new CreatedObjForIRenderMethod(
-      sortingBlockIdArr,
-      addClassForSort
-    );
+    // const forSorting = new CreatedObjForIRenderMethod(
+    //   sortingBlockIdArr,
+    //   addClassForSort
+    // );
 
-    new BaseTabs('content__view-block', forSorting.createObj());
+    new SortingBlock('sorting-block-container', true);
+    new BaseTabs('sorting-block'); //, forSorting.createObj()
 
     const selectedPlayers = new AllPlayerList(); //'patty-users'
 

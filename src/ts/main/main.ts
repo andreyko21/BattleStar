@@ -1,18 +1,44 @@
 import $ from "jquery";
-import { initDropDown } from "../../dropDownMenu";
+import { TabsCreate } from "./../component/tabs-create.ts";
+import { BaseTabs } from "./../component/tabs.ts";
+import { LavaLamp } from "./../component/lava-lamp.ts";
+import { Header } from "../component/header/header";
+import { AppSidebar } from "../component/sidebar/sidebar";
 import Swiper from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
-import { Card } from "./../component/card";
-import { MainNews } from "./mainNews";
-import { Team } from "./team";
-import { Map } from "./team";
 import { request } from "graphql-request";
-import { GetPageNewsQuery } from "../../../queries.graphql.d";
-import { GetMainNewsQuery } from "../../../queries.graphql.d";
-import { GetTeamsQuery } from "../../../queries.graphql.d";
-import { GetMapsQuery } from "../../../queries.graphql.d";
+import {
+  GetPageNewsQuery,
+  GetTopPlayer,
+  GetTopPlayerDota,
+  GetMainNewsQuery,
+  GetMapsQuery,
+} from "../../../queries.graphql.d";
+import { Card } from "./../component/card";
+import { cardNews } from "./components/card";
+import { playersCs } from "./components/playersCs";
+import { playersDota } from "./components/playersDota";
+import { TopPlayersCs, TopPlayersDota } from "./topPlayers";
+import { MainNews } from "./mainNews";
+import { mainNews } from "./components/mainNews";
+import { sliderTeams } from "./components/sliderTeam";
+import { Slider } from "./../component/slider";
+import { Map } from "./team";
 
-// const token =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzAyNDY4Mzk1LCJleHAiOjE3MDUwNjAzOTV9.2mj6mfZ6yYzo0lAJCACAKorLQfJFx2SlptsqFrAk428"
+new Header("#wrapper");
+new AppSidebar("wrapper", "ГЛАВНАЯ");
+
+new TabsCreate("rating", "news__rating-tabs", [
+  ["cs", "CS:GO"],
+  ["dota", "DOTA 2"],
+]);
+new BaseTabs("news__rating-tabs");
+new LavaLamp("news__rating-tabs");
+
+const findContent = document.querySelector("#cs-content") as HTMLDivElement;
+findContent.innerHTML = ` <div class="rating__cs"></div> `;
+const createContent = document.querySelector("#dota-content") as HTMLDivElement;
+createContent.innerHTML = ` <div class="rating__dota"></div>`;
 
 type MainType = {
   playerNumber: JQuery<HTMLParagraphElement>;
@@ -33,19 +59,15 @@ class Main implements MainType {
     this.numberPlayers();
     this.bannerSwiper();
     this.tourneySwiper();
-    initDropDown();
-    this.test();
     this.renderCard();
     this.renderMainNews();
-    this.renderTeam();
     this.renderMap();
+    this.renderTopPlayersCs();
+    this.renderTopPlayersDota();
+    this.renderSliderTeams();
   }
 
-  numberPlayers() {
-    this.playerNumber.each((index, element) => {
-      $(element).text(`${index + 1}`);
-    });
-  }
+  numberPlayers() {}
 
   bannerSwiper() {
     new Swiper(".banner__swiper", {
@@ -85,95 +107,114 @@ class Main implements MainType {
     });
   }
 
-  test() {
-    // const axios = require('axios');
-    //   axios
-    //     .get("https://battle-star-app.onrender.com/api/teams/team/1")
-    //     .then((response) => {
-    //       console.log(response.data);
-    //       // let teamData = response.data;
-    //       // console.log(teamData.data[0].name);
-    //     })
-    //     .catch((error) => {
-    //       console.error("Помилка при отриманні даних:", error);
-    //     });
-    // }
-    // fetch("https://battle-star-app.onrender.com/api/teams")
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-  }
-
   async renderCard() {
-    const news = await request(
-      "https://battle-star-app.onrender.com/graphql",
-      GetPageNewsQuery
-    );
+    try {
+      const news = await request(
+        "https://battle-star-app.onrender.com/graphql",
+        GetPageNewsQuery
+      );
+      const newsArr = news.cardNews?.data[0]?.attributes?.card ?? "Error";
 
-    const newsArr = news.cardNews?.data[0]?.attributes?.card ?? "Error";
-    let cardArr: any[] = [];
+      if (Array.isArray(newsArr)) {
+        const cardArr: any = newsArr.map((card) => ({
+          img: card?.img?.data[0].attributes?.url,
+          title: card?.title,
+          text: card?.text,
+          author: card?.autor,
+          date: card?.data,
+          avatar: card?.avatar?.data[0].attributes?.url,
+        }));
+        new Card(".card", cardArr);
+      } else {
+        throw new Error("newsArr is not an array");
+      }
+    } catch (error) {
+      console.error(error);
+      new Card(".card", cardNews);
+    }
+  }
+  async renderTopPlayersCs() {
+    try {
+      const getTopPlayers = await request(
+        "https://battle-star-app.onrender.com/graphql",
+        GetTopPlayer
+      );
 
-    if (Array.isArray(newsArr)) {
-      cardArr = newsArr.map((card: any) => {
-        return {
-          img: card.img?.data[0].attributes?.url,
-          title: card.title,
-          text: card.text,
-          author: card.autor,
-          date: card.data,
-          avatar: card.avatar?.data[0].attributes?.url,
-        };
-      });
-      new Card(".card", cardArr);
-    } else {
-      console.log("error");
+      const newsTopPlayers =
+        getTopPlayers.topPlayers?.data[0]?.attributes?.cs ?? "Error";
+      if (Array.isArray(newsTopPlayers)) {
+        const cardArr: any = newsTopPlayers.map((card) => ({
+          avatar: card?.avatar?.data[0].attributes?.url,
+          nickname: card?.nikcname,
+          rating: card?.rating,
+          flag: card?.flag,
+        }));
+
+        cardArr.sort((a: any, b: any) => b.rating - a.rating);
+
+        new TopPlayersCs(".rating__cs", cardArr);
+      } else {
+        throw new Error("newsTopPlayers is not an array");
+      }
+    } catch (error) {
+      console.error(error);
+      new TopPlayersCs(".rating__cs", playersCs);
+    }
+  }
+  async renderTopPlayersDota() {
+    try {
+      const getTopPlayers = await request(
+        "https://battle-star-app.onrender.com/graphql",
+        GetTopPlayerDota
+      );
+
+      const newsTopPlayers =
+        getTopPlayers.topPlayers?.data[1]?.attributes?.dota ?? "Error";
+      if (Array.isArray(newsTopPlayers)) {
+        const cardArr: any = newsTopPlayers.map((card) => ({
+          avatar: card?.avatar?.data[0].attributes?.url,
+          nickname: card?.nikcname,
+          rating: card?.reting,
+          flag: card?.flag,
+        }));
+
+        cardArr.sort((a: any, b: any) => b.rating - a.rating);
+        new TopPlayersDota(".rating__dota", cardArr);
+      } else {
+        throw new Error("newsTopPlayers is not an array");
+      }
+    } catch (error) {
+      console.error(error);
+      new TopPlayersDota(".rating__dota", playersDota);
     }
   }
   async renderMainNews() {
-    const mainNewsQuery = await request(
-      "https://battle-star-app.onrender.com/graphql",
-      GetMainNewsQuery
-    );
+    try {
+      const GetMainNews = await request(
+        "https://battle-star-app.onrender.com/graphql",
+        GetMainNewsQuery
+      );
+      const newsGetMainNews = GetMainNews.mainNews?.data ?? "Error";
 
-    const mainNewsArr = mainNewsQuery.mainNews?.data ?? "Error";
-    let mainNewsArrTwo: any = [];
-    if (Array.isArray(mainNewsArr)) {
-      mainNewsArrTwo = mainNewsArr.map((elem: any) => {
-        return {
-          img: elem.attributes.img?.data[0].attributes?.url,
-          title: elem.attributes.title,
-          text: elem.attributes.text,
-          data: elem.attributes.data,
-        };
-      });
-      new MainNews(".news__info", mainNewsArrTwo);
-    } else {
-      console.log("error");
+      if (Array.isArray(newsGetMainNews)) {
+        const cardArr: any = newsGetMainNews.map((elem) => ({
+          img: elem?.attributes?.img?.data[0]?.attributes?.url,
+          title: elem?.attributes?.title,
+          text: elem?.attributes?.text,
+          data: elem?.attributes?.data,
+        }));
+
+        new MainNews(".news__info", cardArr);
+      } else {
+        throw new Error("newsGetMainNews is not an array");
+      }
+    } catch (error) {
+      console.error(error);
+      new MainNews(".news__info", mainNews);
     }
   }
-  async renderTeam() {
-    const team = await request(
-      "https://battle-star-app.onrender.com/graphql",
-      GetTeamsQuery
-    );
-    const newTeam = team.teams?.data ?? "Error";
-    let cardArr: any[] = [];
-    if (Array.isArray(newTeam)) {
-      cardArr = newTeam.map((card: any) => {
-        return {
-          logo: card.attributes.logo.data.attributes.url,
-          name: card.attributes.name,
-          rating: card.attributes.rating,
-        };
-      });
-      new Team(".game__info", cardArr);
-    }
+  renderSliderTeams() {
+    new Slider(".tour", sliderTeams);
   }
   async renderMap() {
     const map = await request(
@@ -181,11 +222,13 @@ class Main implements MainType {
       GetMapsQuery
     );
 
+    console.log(map);
+
     const newMap = map.maps?.data ?? "Error";
-    //  console.log(newMap);
-    let mapArr: any[] = [];
+
     if (Array.isArray(newMap)) {
-      mapArr = newMap.map((card: any) => {
+      const mapArr = newMap.map((card: any) => {
+        console.log(card.attributes.logo.data[0].attributes.url);
         return {
           logo: card.attributes.logo.data[0].attributes.url,
         };
@@ -194,5 +237,4 @@ class Main implements MainType {
     }
   }
 }
-
 new Main();

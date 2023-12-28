@@ -5,6 +5,17 @@
          width: 430px;
          padding: 36px 35px 17px;
          background: $dark700;
+         position: relative;
+         &::after{
+            content: "";
+            pointer-events: none;
+            position: absolute;
+            bottom: 78px;
+            left: 0;
+            height: 119px;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(36, 36, 37, 0.00) 0%, #242425 99.99%, #2F3236 100%);
+         }
       }
       &-title {
          color: $gray25;
@@ -26,6 +37,8 @@
          display: flex;
          align-items: center;
          padding-bottom: 7px;
+         width: 246px;
+
       }
       &-ava {
          width: 42px;
@@ -37,11 +50,15 @@
          font-size: 16px;
          font-weight: 500;
          margin-right: 34px;
+         text-align: left;
       }
       &-rank {
          color: $yellow300;
          font-size: 16px;
          font-weight: 500;
+         text-align: right;
+         margin-right: 0;
+         margin-left: auto;
       }
       &-btn{
          width: 294px;

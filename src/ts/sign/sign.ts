@@ -1,7 +1,14 @@
 import axios from "axios";
 import $ from "jquery";
-import "jquery-validation";
+import { BaseTabs } from "../component/tabs.ts";
+import { LavaLamp } from "../component/lava-lamp.ts";
+import { Header } from "../component/header/header";
+import { request } from "graphql-request";
 
+
+new Header("#wrapper");
+new BaseTabs('sign__form');
+new LavaLamp('sign__form');
 
 type SignType = {
   signUp: JQuery<HTMLFormElement>;
@@ -12,16 +19,14 @@ type SignType = {
   name: JQuery<HTMLInputElement>;
   email: JQuery<HTMLInputElement>;
   pswd: JQuery<HTMLInputElement>;
-  role: JQuery<HTMLInputElement>;
 };
 
-interface FormVal {
+interface IFormVal {
   nickname: string;
   password: string;
   name: string;
   email: string;
   pswd: string;
-  role:string;
 }
 
 class Sign implements SignType {
@@ -33,7 +38,6 @@ class Sign implements SignType {
   name: JQuery<HTMLInputElement>;
   email: JQuery<HTMLInputElement>;
   pswd: JQuery<HTMLInputElement>;
-  role: JQuery<HTMLInputElement>;
 
   constructor() {
     this.signUp = $(".form__signup") as JQuery<HTMLFormElement>;
@@ -43,43 +47,24 @@ class Sign implements SignType {
     this.password = $("#password") as JQuery<HTMLInputElement>;
     this.name = $("#name") as JQuery<HTMLInputElement>;
     this.email = $("#email") as JQuery<HTMLInputElement>;
-    this.pswd = $("#pswd") as JQuery<HTMLInputElement>;
-    this.role = $("#role") as JQuery<HTMLInputElement>;
-
+    this.pswd = $("#psw") as JQuery<HTMLInputElement>;
     this.init();
   }
 
   init() {
-    this.signsTabs();
     this.getFormVal();
-    this.singInBtn()
-    this.singUpBtn()
+    this.singInBtn();
+    this.singUpBtn();
+    this.showPassword()
   }
 
-  signsTabs() {
-    this.signTabs.each((index, tab) => {
-      $(tab).on("click", () => {
-        this.signTabs.removeClass("sign__tabs-enter_act");
-        $(tab).addClass("sign__tabs-enter_act");
-        if (index === 0) {
-          this.signUp.addClass("hide");
-          this.signIn.removeClass("hide");
-        } else {
-          this.signUp.removeClass("hide");
-          this.signIn.addClass("hide");
-        }
-      });
-    });
-  }
-
-  getFormVal(): FormVal {
-    const formValues: FormVal = {
+  getFormVal(): IFormVal {
+    const formValues: IFormVal = {
       nickname: this.nickname.val() as string,
       password: this.password.val() as string,
       name: this.name.val() as string,
       email: this.email.val() as string,
       pswd: this.pswd.val() as string,
-      role: this.role.val() as string,
     };
 
     return formValues;
@@ -88,23 +73,19 @@ class Sign implements SignType {
   singUpBtn() {
     $("#sign-up").on("click", (e) => {
       e.preventDefault();
-        // this.signInValidation()
-        // this.signUpValidation()
-        this.authenticateUser()
-        this.registerUser();
+      this.registerUser();
     });
   }
+
   singInBtn() {
     $("#sign-in").on("click", (e) => {
       e.preventDefault();
-        // this.signInValidation()
-        // this.signUpValidation()
-        this.authenticateUser()
+      this.authenticateUser();
     });
   }
 
   authenticateUser() {
-    const formValues: FormVal = this.getFormVal();
+    const formValues: IFormVal = this.getFormVal();
     axios
       .post("https://battle-star-app.onrender.com/api/auth/local", {
         identifier: formValues.nickname,
@@ -118,146 +99,102 @@ class Sign implements SignType {
       })
       .catch((error) => {
         console.log("An error occurred:", error.response);
+        $("#nickname").addClass("form__signin-inp_error ");
+        $("#password").addClass("form__signin-inp_error ");
+        $(".form__signin-label_nickname").css("color", "#f13939")
+          .text(error.response.data.error.details.errors[0].message);
+        $(".form__signin-label_password").css("color", "#f13939").text(error.response.data.error.details.errors[1].message);
+        
       });
   }
 
   registerUser() {
-    const formValues: FormVal = this.getFormVal();
+    const formValues: IFormVal = this.getFormVal();
     axios
       .post("https://battle-star-app.onrender.com/api/auth/local/register", {
         username: formValues.name,
         email: formValues.email,
         password: formValues.pswd,
       })
-      .then((response) => {
+      .then(async (response) => {
         console.log("Well done!");
         console.log("User profile", response.data.user);
         console.log("User token", response.data.jwt);
-        console.log("User role", response.data.role);
         document.cookie = `token=${response.data.jwt}`;
+        document.cookie = `id=${response.data.user.id}`;
+        document.cookie = `name=${response.data.user.username}`;
+
+        const userId = response.data.user.id;
+
+        const mutation = `
+          mutation CreatePlayer($id: ID) {
+            createPlayer(data: { user: $id }) {
+              data {
+                attributes {
+                  user {
+                    data {
+                      id
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `;
+  
+        try {
+          const data = await request(
+            "https://battle-star-app.onrender.com/graphql",
+            mutation,
+            { id: userId }
+          );
+          console.log("GraphQL Mutation Response:", data);
+        } catch (error) {
+          console.error("GraphQL Mutation Error:", error);
+         
+        }
+
+
       })
       .catch((error) => {
         console.log("An error occurred:", error.response);
+        $("#name").addClass("form__signin-inp_error ");
+        $("#email").addClass("form__signin-inp_error ");
+        $("#psw").addClass("form__signin-inp_error ");
+        $(".form__signup-label_name")
+          .css("color", "#f13939")
+          .text(error.response.data.error.details.errors[1].message);
+        $(".form__signup-label_email")
+          .css("color", "#f13939")
+          .text(error.response.data.error.details.errors[0].message);
+        $(".form__signup-label_psw")
+          .css("color", "#f13939")
+          .text(error.response.data.error.details.errors[2].message);
       });
+  }
+
+  showPassword() {
+    $(".form__signin-password svg").each(function () {
+      $(this).on("click", function () {
+        $(".form__signin-password-line").toggleClass(
+          "form__signin-password-line_act"
+        );
+        let passwordField = $("#password");
+        let pswField = $("#psw");
+        
+        let passwordType = passwordField.attr("type");
+        let pswType = pswField.attr("type");
+        
+        if (passwordType === "password" || pswType === "password") {
+          passwordField.attr("type", "text");
+          pswField.attr("type", "text");
+        } else {
+          passwordField.attr("type", "password");
+          pswField.attr("type", "password");
+        }
+      });
+    });
   }
 }
 
 new Sign();
-
-
-//  signInValidation() {
-//     $!.validator.addMethod(
-//       "cyrillicEmail",
-//       function (value: string) {
-//         return /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value);
-//       },
-//       "Please enter a valid email address"
-//     );
-
-//     $.validator.addMethod("cyrillicPassword", 
-//     function (value: string) {
-//       return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/.test(value);
-//     },
-//     "Please enter a valid password with at least 8 characters, "
-//   );
-//     $(this.signIn).validate({
-//       rules: {
-//         nickname: {
-//           required: true,
-//           cyrillicEmail: true,
-//         },
-//         password: {
-//           required: true,
-//           minlength: 8,
-//           cyrillicPassword: true,
-//         },
-//       },
-//       messages: {
-//         nickname: {
-//           required: "Please enter an email address",
-//           cyrillicEmail: "Please enter a valid email address",
-//         },
-//         password: {
-//           required: "Please enter a password",
-//           minlength: "Your password must be at least 8 characters long",
-        
-//         },
-//       },
-//       errorClass: "invalid",
-//       errorElement: "span",
-//       errorPlacement: (error: string, element: HTMLElement) => {
-//         const errorLabel = $(element)
-//           .closest(".form__signin")
-//           .find(".form__signin-label");
-//         errorLabel.html(error);
-//       },
-//     });
-//   }
-
-//   signUpValidation() {
-//     $.validator.addMethod(
-//       "cyrillicEmail",
-//       function (value: string) {
-//         // return /^[\wа-яА-ЯёЁ]+(\.[\wа-яА-ЯёЁ]+)*@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(value);
-//       },
-//       "Please enter a valid email address"
-//     );
-//       // @ts-ignore
-//     $.validator.addMethod(
-//       "cyrillicName", 
-//       function (value: string) {
-//         return /^[a-zA-Zа-яА-ЯёЁіІїЇєЄ'’` -]+$/u.test(value);
-//       },
-//       "Please enter a valid name without digits"
-//     );
-//       // @ts-ignore
-//     $.validator.addMethod("cyrillicPswd", 
-//       function (value: string) {
-//         return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/.test(value);
-//       },
-//       "Please enter a valid password with at least 8 characters, containing at least one digit, one lowercase and one uppercase letter, and one special character."
-//     );
-//       // @ts-ignore
-//     $(this.signUp).validate({
-//       rules: {
-//         nickname: {
-//           required: true,
-//           cyrillicName: true,
-//           minlength: 3,
-//         },
-//         email: {
-//           required: true,
-//           cyrillicEmail: true,
-//         },
-//         password: {
-//           required: true,
-//           minlength: 8,
-//           cyrillicPswd: true,
-//         },
-//       },
-//       messages: {
-//         nickname: {
-//           required: "Please enter a name",
-//           cyrillicName: "Please enter a valid name without digits",
-//           minlength: "Your name must be at least 3 characters long",
-//         },
-//         email: {
-//           required: "Please enter an email address",
-//           cyrillicEmail: "Please enter a valid email address",
-//         },
-//         password: {
-//           required: "Please enter a password",
-//           minlength: "Your password must be at least 8 characters long",
-//         },
-//       },
-//       errorClass: "invalid",
-//       errorElement: "span",
-//       errorPlacement: (error: string, element: HTMLElement) => {
-//         const errorLabel = $(element)
-//           .closest(".form__signup")
-//           .find(".form__signin-label");
-//         errorLabel.html(error);
-//       },
-
-//     });
-//   }

@@ -9,89 +9,57 @@
 </head>
 
 <body>
-   <div class="wrapper">
-      <load="src/html/header.html" />
-      <load="src/html/sidebar.html" />
+   <div id="wrapper" class="wrapper">
       <main class="page">
          <section class="lobby">
-            <div class="lobby__container">
-               <div class="match-page__filters filters tabs-block">
-                  <div class="filters__tabs tabs-block__tabs">
-                     <div class="filters__tab tabs-block__tab tabs-block__tab_active" data-tab-name="find">КОМАНДЫ
-                     </div>
-                     <div class="filters__tab tabs-block__tab" data-tab-name="create">СТАТИСТИКА</div>
-                     <div class="tabs-block__lamp"></div>
+            <div id="lobby" class="lobby__container">
+               <div class="lobby__tab filters tabs-block">
+                  <!-- tabs -->
+                  <div class="lobby__tab tabs-block__tabs">
+                     <!-- tabs -->
+                     <div class="filters__tab tabs-block__tab" data-tab-name="teams">КОМАНДЫ</div>
+                     <div class="filters__tab tabs-block__tab" data-tab-name="statictic">СТАТИСТИКА</div>
+                     <div class="tabs-block__lamp"><span></span></div>
                   </div>
-                  <div class="filters__content tabs-block__content">
-                     <div class="filters__find-lobby> 
-                     find-lobby tabs-block__content-container 
-                     tabs-block__content-container_active" id="find-content">
-                        <div class="lobby__details details ">
-                           <div class="details__name"></div>
-                           <div class="details__info">
-                            <div class="details__info-row"></div>
-                            <div class="details__info-btn"></div>
-                            
-                              
-                           </div>
-                           <div class="details__teams"></div>
-                           <div class="details__players">
-                              <div class="details__square">
-                                 <div class="details__square-img">
-                                    <img src="./src/images/square.png" alt="">
-                                 </div>
-                                 <div class="details__square-btn">
-                                    <button class="btn">Начать матч</button>
-                                 </div>
-                                 
-                                    
+                  <div class="teams tabs-block__content">
 
-                                 </div>
-
-                              <div class="details__players-side details__players-side_a">
-                                 <div class="details__players-top">
-                                    <p class="details__players-text">Игрок</p>
-                                    <div class="details__players-info">
-                                       <p class="details__players-text">Уб</p>
-                                       <p class="details__players-text">См</p>
-                                       <p class="details__players-text">Ас</p>
-                                    </div>
-                                 </div>
-                                 <hr class="details__players-line">
-                                 <div class="details__players-item">
-                          
-                                 
-                                 </div>
-
-
-
-                              </div>
-                              <div class="details__players-side details__players-side_b">
-                                 <div class="details__players-top">
-                                    <p class="details__players-text">Игрок</p>
-                                    <div class="details__players-info">
-                                       <p class="details__players-text">Уб</p>
-                                       <p class="details__players-text">См</p>
-                                       <p class="details__players-text">Ас</p>
-                                    </div>
-                                 </div>
-                                 <hr class="details__players-line">
-                                 <div class="details__players-item details__players-item_sub"></div>
-
-                              </div>
+                     <div
+                        class="filters__find-lobby find-lobby tabs-block__content-container tabs-block__content-container_active"
+                        id="teams-content">
+                        <div class="details__info">
+                           <div class="details__info-btn">
+                              <button class="btn">
+                                 <svg>
+                                    <use xlink:href="./src/images/sprite.svg#download"></use>
+                                 </svg>Скачать Демо</button>
+                              <button class="btn">
+                                 <svg>
+                                    <use xlink:href="./src/images/sprite.svg#tv"></use>
+                                 </svg>
+                                 Смотреть</button>
                            </div>
                         </div>
+                        <div class="details__teams"></div>
+                        <div class="details__players">
+                           <div class="details__players-square">
+                              <div class="details__players-square-img">
+                                 <img src="./src/images/square.png" alt="">
+                              </div>
+                              <div class="details__players-square-btn">
+                                 <button id="start" class="btn">Начать матч</button>
+                              </div>
+                           </div>
+                           <div class="details__players-row"></div>
 
+                        </div>
                      </div>
-                     <div class="filters__create-lobby create-lobby tabs-block__content-container" id="create-content">
-                        <div class="statistics__dota">
-                           <canvas id="dota"></canvas>
-                        </div>
+                     <div class="filters__find-lobby find-lobby tabs-block__content-container" id="statictic-content">
+                        <div class="statictic"></div>
+
                      </div>
                   </div>
                </div>
             </div>
-
 
          </section>
       </main>

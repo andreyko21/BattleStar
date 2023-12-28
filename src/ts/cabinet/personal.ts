@@ -1,6 +1,10 @@
 
 import Sprite from "./../../images/sprite.svg";
 import $ from "jquery";
+import { Header } from "../component/header/header";
+import { AppSidebar } from "../component/sidebar/sidebar";
+new Header("#wrapper");
+new AppSidebar("wrapper", "ГЛАВНАЯ");
 interface IPersonalData {
    id: number;
    nickname: string;

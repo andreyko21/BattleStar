@@ -10,6 +10,7 @@ export class CS2TournamentCreationPage extends TournamentCreation {
   public queryCreate = CreateCs2Tournament;
 
   public tournamentMaps: TournamentMaps | undefined;
+  mapsInput: any;
   protected async initializeSpecificElements(): Promise<void> {
     this.banner?.updateImage(BannerImg);
     this.mapsData = await request(

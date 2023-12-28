@@ -1,11 +1,11 @@
 class TabsCreate {
   container: HTMLDivElement | null;
-  tabsClass: string;
+  tabsClass: string | string[];
   tabsParam: [string, string][];
 
   constructor(
     containerId: string,
-    tbsClass: string,
+    tbsClass: string | string[],
     tabsParam: [string, string][]
   ) {
     this.tabsClass = tbsClass;
@@ -30,7 +30,7 @@ class TabsCreate {
       </div>
       `;
       return acc;
-    }, "");
+    }, '');
 
     const tabsContentHtml = this.tabsParam.reduce((acc: string, tabParam) => {
       acc += `
@@ -41,7 +41,7 @@ class TabsCreate {
          </div>
       `;
       return acc;
-    }, "");
+    }, '');
 
     const template = `
       <div class="tabs-block__tabs">
@@ -53,7 +53,7 @@ class TabsCreate {
       </div>
    `;
 
-    const tabsBlock = document.createElement("div");
+    const tabsBlock = document.createElement('div');
     tabsBlock.classList.add(`tabs-block`);
     tabsBlock.classList.add(`${this.tabsClass}`);
     tabsBlock.innerHTML = template;

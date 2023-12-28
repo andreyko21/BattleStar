@@ -11,6 +11,7 @@ class newFiltration {
   allCheckbox: NodeListOf<HTMLInputElement> | null;
 
   private allCheckboxesValues: { [key: string]: string[] } = {};
+  private rateSliderHendles: HTMLDivElement[];
 
   filtersObj: {
     country: string[] | null;
@@ -28,10 +29,21 @@ class newFiltration {
     this.allCheckbox = this.container.querySelectorAll(
       'input[type="checkbox"]'
     );
+    this.rateSliderHendles = this.selectRateSliderHendles();
     this.addEventHandler();
     this.selectAllChaeckboxValue();
     // this.updateContent();
     this.updateFiltersObject();
+  }
+
+  private selectRateSliderHendles() {
+    const rateMin = document.querySelector(
+      '.rate-filter__lower-slider-output'
+    ) as HTMLDivElement;
+    const rateMax = document.querySelector(
+      '.rate-filter__upper-slider-output'
+    ) as HTMLDivElement;
+    return [rateMin, rateMax];
   }
 
   private addEventHandler() {
@@ -39,6 +51,13 @@ class newFiltration {
       elem.addEventListener('change', (e) => {
         this.changeFilters(e.target as HTMLInputElement);
         this.addLocationParam();
+      });
+    });
+
+    this.rateSliderHendles.forEach((elem) => {
+      elem.addEventListener('changeRateSlider', () => {
+        this.filtersObj.rate = [];
+        this.updateContent();
       });
     });
   }
@@ -70,6 +89,7 @@ class newFiltration {
     this.updateContent();
   }
 
+  //  !---------Чи потрібно
   private changeFilters(checkbox: HTMLInputElement) {
     const valueFilterObj = checkbox.name.replace('-filter', '');
 
@@ -127,10 +147,14 @@ class newFiltration {
       antyCheat: this.filtersObj.antyCheat?.length === 0 ? false : true,
     };
 
+    console.info(this.filtersObj.rate);
+
     if (this.filtersObj.rate?.length === 0) {
-      objForQuery.rate.in = this.allCheckboxesValues.rate.map((item): number =>
-        Number(item)
-      );
+      //!!------------------------Замінити
+      objForQuery.rate.between = [
+        +this.rateSliderHendles[0].innerHTML.slice(1),
+        +this.rateSliderHendles[1].innerHTML.slice(1),
+      ];
     } else if (this.filtersObj.rate) {
       objForQuery.rate.in = this.filtersObj.rate?.map((item): number =>
         Number(item)

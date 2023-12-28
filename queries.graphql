@@ -750,3 +750,38 @@ query GetAwards {
     }
   }
 }
+
+query GetAllPlayers {
+  players {
+    data {
+      id
+      attributes {
+        avatar {
+          data {
+            attributes {
+              url
+              alternativeText
+            }
+          }
+        }
+        user {
+          data {
+            attributes {
+              username
+            }
+          }
+        }
+        CSGO {
+          Default_information {
+            rank
+          }
+        }
+        DOTA2 {
+          Default_information {
+            rank
+          }
+        }
+      }
+    }
+  }
+}

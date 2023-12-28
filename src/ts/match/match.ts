@@ -1,10 +1,11 @@
 import { getLocateParam } from '../functions/windowLocation.ts';
 import { Header } from '../component/header/header.ts';
 import { AppSidebar } from '../component/sidebar/sidebar.ts';
-import { CsMatchesPage } from './cs-match-page.ts';
+//import { CsMatchesPage } from './cs-match-page.ts';
 import { BaseTabs } from '../component/tabs.ts'; //CreatedObjForIRenderMethod
 //import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
+import { SelectedCsMatchPagesTab } from './selected-cs-matches-page-tab.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
   new Header('#wrapper');
@@ -30,12 +31,13 @@ async function selectGameForRender() {
     // new BaseTabs('match-page__content', mayMethods);
     new LavaLamp('match-page__content');
   } else {
-    new BaseTabs('match-page__filters');
-    new LavaLamp('match-page__filters');
+    new SelectedCsMatchPagesTab();
+    // new BaseTabs('match-page__filters');
+    // new LavaLamp('match-page__filters');
 
     // new BaseTabs('match-page__content', mayMethods);
-    new LavaLamp('match-page__content');
-    const csMathesPage = new CsMatchesPage();
-    await csMathesPage.renderCsPage();
+    // new LavaLamp('match-page__content');
+    // const csMathesPage = new CsMatchesPage();
+    // await csMathesPage.renderCsPage();
   }
 }

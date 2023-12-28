@@ -46,23 +46,6 @@ query GetMainNewsQuery {
   }
 }
 
-query GetTeamsQuery {
-  teams {
-    data {
-      attributes {
-        name
-        rating
-        logo {
-          data {
-            attributes {
-              url
-            }
-          }
-        }
-      }
-    }
-  }
-}
 query GetMapsQuery {
   maps {
     data {
@@ -660,14 +643,25 @@ query GetDota2TeamById($id: ID) {
   }
 }
 
-query GetDota2Teams {
-  dota2Teams {
+query GetCS2Teams(
+  $filtering: String
+  $sorting: [String]
+  $page: Int
+  $pageSize: Int
+) {
+  cs2Teams(
+    filters: { Team: { name: { startsWith: $filtering } } }
+    sort: $sorting
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
     data {
       id
       attributes {
         Team {
           name
           rating
+          earned
+          top_team
           logo {
             data {
               attributes {
@@ -676,74 +670,372 @@ query GetDota2Teams {
               }
             }
           }
-          earned
-          matches_played
-          victories_in_tournaments
+        }
+        players {
+          data {
+            id
+          }
         }
         tournaments {
           data {
             id
           }
         }
-      }
-    }
-  }
-}
-
-query GetTeams(
-  $filtering: String
-  $sorting: [String]
-  $page: Int
-  $pageSize: Int
-) {
-  teams(
-    filters: { name: { startsWith: $filtering } }
-    sort: $sorting
-    pagination: { page: $page, pageSize: $pageSize }
-  ) {
-    data {
-      id
-
-      attributes {
-        name
-        rating
-        earned
-        matches_played
-        victories_in_tournaments
-        createdAt
-        updatedAt
-        publishedAt
-        participants {
+        awards {
           data {
-            id
+            attributes {
+              logo {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
     meta {
       pagination {
-        pageCount
+        pageSize
+        page
       }
     }
   }
 }
 
-query GetAwards {
-  cs2Awards {
+query GetCS2TopTeams(
+  $filtering: String
+  $sorting: [String]
+  $page: Int
+  $pageSize: Int
+) {
+  cs2Teams(
+    filters: {
+      Team: { name: { startsWith: $filtering }, top_team: { eq: true } }
+    }
+    sort: $sorting
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
     data {
       id
       attributes {
-        name
-        logo {
-          data {
-            id
-            attributes {
-              name
-              alternativeText
-              url
+        Team {
+          name
+          rating
+          earned
+          top_team
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
             }
           }
         }
+        players {
+          data {
+            id
+          }
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+        awards {
+          data {
+            attributes {
+              logo {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageSize
+        page
+      }
+    }
+  }
+}
+
+query GetDota2Teams(
+  $filtering: String
+  $sorting: [String]
+  $page: Int
+  $pageSize: Int
+) {
+  dota2Teams(
+    filters: { Team: { name: { startsWith: $filtering } } }
+    sort: $sorting
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
+    data {
+      id
+      attributes {
+        Team {
+          name
+          rating
+          earned
+          top_team
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+        }
+        players {
+          data {
+            id
+          }
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+        awards {
+          data {
+            attributes {
+              logo {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageSize
+        page
+      }
+    }
+  }
+}
+
+query GetDota2TopTeams(
+  $filtering: String
+  $sorting: [String]
+  $page: Int
+  $pageSize: Int
+) {
+  dota2Teams(
+    filters: {
+      Team: { name: { startsWith: $filtering }, top_team: { eq: true } }
+    }
+    sort: $sorting
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
+    data {
+      id
+      attributes {
+        Team {
+          name
+          rating
+          earned
+          top_team
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+        }
+        players {
+          data {
+            id
+          }
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+        awards {
+          data {
+            attributes {
+              logo {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageSize
+        page
+      }
+    }
+  }
+}
+
+query GetMyDota2Teams(
+  $filtering: String
+  $sorting: [String]
+  $page: Int
+  $pageSize: Int
+  $id: ID
+) {
+  dota2Teams(
+    filters: {
+      Team: { name: { startsWith: $filtering } }
+      players: { user: { id: { eq: $id } } }
+    }
+    sort: $sorting
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
+    data {
+      id
+      attributes {
+        Team {
+          name
+          rating
+          earned
+          top_team
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+        }
+        players {
+          data {
+            id
+            attributes {
+              user {
+                data {
+                  id
+                }
+              }
+            }
+          }
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+        awards {
+          data {
+            attributes {
+              logo {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageSize
+        page
+      }
+    }
+  }
+}
+
+query GetMyCs2Teams(
+  $filtering: String
+  $sorting: [String]
+  $page: Int
+  $pageSize: Int
+  $id: ID
+) {
+  cs2Teams(
+    filters: {
+      Team: { name: { startsWith: $filtering } }
+      players: { user: { id: { eq: $id } } }
+    }
+    sort: $sorting
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
+    data {
+      id
+      attributes {
+        Team {
+          name
+          rating
+          earned
+          top_team
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+        }
+        players {
+          data {
+            id
+            attributes {
+              user {
+                data {
+                  id
+                }
+              }
+            }
+          }
+        }
+        tournaments {
+          data {
+            id
+          }
+        }
+        awards {
+          data {
+            attributes {
+              logo {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        pageSize
+        page
       }
     }
   }

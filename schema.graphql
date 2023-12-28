@@ -583,6 +583,7 @@ input ComponentTeamsTeamFiltersInput {
   earned: FloatFilterInput
   matches_played: IntFilterInput
   victories_in_tournaments: IntFilterInput
+  top_team: BooleanFilterInput
   and: [ComponentTeamsTeamFiltersInput]
   or: [ComponentTeamsTeamFiltersInput]
   not: ComponentTeamsTeamFiltersInput
@@ -596,6 +597,7 @@ input ComponentTeamsTeamInput {
   earned: Float
   matches_played: Int
   victories_in_tournaments: Int
+  top_team: Boolean
 }
 
 type ComponentTeamsTeam {
@@ -606,6 +608,7 @@ type ComponentTeamsTeam {
   earned: Float
   matches_played: Int
   victories_in_tournaments: Int
+  top_team: Boolean
 }
 
 input ComponentTopPlayersCsFiltersInput {
@@ -1160,74 +1163,6 @@ type CountryEntityResponseCollection {
   meta: ResponseCollectionMeta!
 }
 
-input Cs2FiltersInput {
-  id: IDFilterInput
-  Team: ComponentTeamsTeamFiltersInput
-  awards: Cs2AwardFiltersInput
-  players: PlayerFiltersInput
-  captain: PlayerFiltersInput
-  tournaments: Cs2TournamentFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  and: [Cs2FiltersInput]
-  or: [Cs2FiltersInput]
-  not: Cs2FiltersInput
-}
-
-input Cs2Input {
-  Team: ComponentTeamsTeamInput
-  awards: [ID]
-  players: [ID]
-  captain: ID
-  tournaments: [ID]
-  publishedAt: DateTime
-}
-
-type Cs2 {
-  Team: ComponentTeamsTeam
-  awards(
-    filters: Cs2AwardFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): Cs2AwardRelationResponseCollection
-  players(
-    filters: PlayerFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): PlayerRelationResponseCollection
-  captain: PlayerEntityResponse
-  tournaments(
-    filters: Cs2TournamentFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): Cs2TournamentRelationResponseCollection
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-}
-
-type Cs2Entity {
-  id: ID
-  attributes: Cs2
-}
-
-type Cs2EntityResponse {
-  data: Cs2Entity
-}
-
-type Cs2EntityResponseCollection {
-  data: [Cs2Entity!]!
-  meta: ResponseCollectionMeta!
-}
-
-type Cs2RelationResponseCollection {
-  data: [Cs2Entity!]!
-}
-
 input Cs2AwardFiltersInput {
   id: IDFilterInput
   name: StringFilterInput
@@ -1329,11 +1264,80 @@ type Cs2BrodcastingEntityResponseCollection {
   meta: ResponseCollectionMeta!
 }
 
+input Cs2TeamFiltersInput {
+  id: IDFilterInput
+  Team: ComponentTeamsTeamFiltersInput
+  tournaments: Cs2TournamentFiltersInput
+  players: PlayerFiltersInput
+  awards: Cs2AwardFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Cs2TeamFiltersInput]
+  or: [Cs2TeamFiltersInput]
+  not: Cs2TeamFiltersInput
+}
+
+input Cs2TeamInput {
+  Team: [ComponentTeamsTeamInput]
+  tournaments: [ID]
+  players: [ID]
+  awards: [ID]
+  publishedAt: DateTime
+}
+
+type Cs2Team {
+  Team(
+    filters: ComponentTeamsTeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): [ComponentTeamsTeam]
+  tournaments(
+    filters: Cs2TournamentFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2TournamentRelationResponseCollection
+  players(
+    filters: PlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PlayerRelationResponseCollection
+  awards(
+    filters: Cs2AwardFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2AwardRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Cs2TeamEntity {
+  id: ID
+  attributes: Cs2Team
+}
+
+type Cs2TeamEntityResponse {
+  data: Cs2TeamEntity
+}
+
+type Cs2TeamEntityResponseCollection {
+  data: [Cs2TeamEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Cs2TeamRelationResponseCollection {
+  data: [Cs2TeamEntity!]!
+}
+
 input Cs2TournamentFiltersInput {
   id: IDFilterInput
   Tournament: ComponentTournamentsTournamentFiltersInput
-  teams: Cs2FiltersInput
   maps: MapFiltersInput
+  teams: Cs2TeamFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -1344,25 +1348,25 @@ input Cs2TournamentFiltersInput {
 
 input Cs2TournamentInput {
   Tournament: ComponentTournamentsTournamentInput
-  teams: [ID]
   maps: [ID]
+  teams: [ID]
   publishedAt: DateTime
 }
 
 type Cs2Tournament {
   Tournament: ComponentTournamentsTournament
-  teams(
-    filters: Cs2FiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): Cs2RelationResponseCollection
   maps(
     filters: MapFiltersInput
     pagination: PaginationArg = {}
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): MapRelationResponseCollection
+  teams(
+    filters: Cs2TeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2TeamRelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -1457,7 +1461,7 @@ input CsLobbyInput {
 }
 
 type CsLobby {
-  title: String!
+  title: String
   creator: PlayerEntityResponse
   map: MapEntityResponse
   rate: Long!
@@ -1522,6 +1526,49 @@ type DotaTypeLobbyEntityResponse {
 type DotaTypeLobbyEntityResponseCollection {
   data: [DotaTypeLobbyEntity!]!
   meta: ResponseCollectionMeta!
+}
+
+input Dota2AwardFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Dota2AwardFiltersInput]
+  or: [Dota2AwardFiltersInput]
+  not: Dota2AwardFiltersInput
+}
+
+input Dota2AwardInput {
+  name: String
+  logo: ID
+  publishedAt: DateTime
+}
+
+type Dota2Award {
+  name: String!
+  logo: UploadFileEntityResponse!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Dota2AwardEntity {
+  id: ID
+  attributes: Dota2Award
+}
+
+type Dota2AwardEntityResponse {
+  data: Dota2AwardEntity
+}
+
+type Dota2AwardEntityResponseCollection {
+  data: [Dota2AwardEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Dota2AwardRelationResponseCollection {
+  data: [Dota2AwardEntity!]!
 }
 
 input Dota2BrodcastingFiltersInput {
@@ -1678,7 +1725,7 @@ input Dota2LobbyInput {
 type Dota2Lobby {
   title: String!
   creator: PlayerEntityResponse
-  rate: Long!
+  rate: Long
   ping: Long!
   antyCheat: ComponentLobbyAntyCheat!
   dota_2_game_modes(
@@ -1711,6 +1758,8 @@ input Dota2TeamFiltersInput {
   id: IDFilterInput
   Team: ComponentTeamsTeamFiltersInput
   tournaments: Dota2TournamentFiltersInput
+  players: PlayerFiltersInput
+  awards: Dota2AwardFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -1722,6 +1771,8 @@ input Dota2TeamFiltersInput {
 input Dota2TeamInput {
   Team: [ComponentTeamsTeamInput]
   tournaments: [ID]
+  players: [ID]
+  awards: [ID]
   publishedAt: DateTime
 }
 
@@ -1737,6 +1788,18 @@ type Dota2Team {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): Dota2TournamentRelationResponseCollection
+  players(
+    filters: PlayerFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): PlayerRelationResponseCollection
+  awards(
+    filters: Dota2AwardFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2AwardRelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -2075,10 +2138,9 @@ input PlayerFiltersInput {
   my_followers: PlayerFiltersInput
   my_blocked_users: PlayerFiltersInput
   users_who_blocked_me: PlayerFiltersInput
-  teams: TeamFiltersInput
-  my_teams: Cs2FiltersInput
-  my_own_teams: Cs2FiltersInput
   user: UsersPermissionsUserFiltersInput
+  cs_2_teams: Cs2TeamFiltersInput
+  dota_2_teams: Dota2TeamFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -2096,10 +2158,9 @@ input PlayerInput {
   my_followers: [ID]
   my_blocked_users: [ID]
   users_who_blocked_me: [ID]
-  teams: [ID]
-  my_teams: [ID]
-  my_own_teams: [ID]
   user: ID
+  cs_2_teams: [ID]
+  dota_2_teams: [ID]
   publishedAt: DateTime
 }
 
@@ -2132,25 +2193,19 @@ type Player {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): PlayerRelationResponseCollection
-  teams(
-    filters: TeamFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): TeamRelationResponseCollection
-  my_teams(
-    filters: Cs2FiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): Cs2RelationResponseCollection
-  my_own_teams(
-    filters: Cs2FiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): Cs2RelationResponseCollection
   user: UsersPermissionsUserEntityResponse
+  cs_2_teams(
+    filters: Cs2TeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2TeamRelationResponseCollection
+  dota_2_teams(
+    filters: Dota2TeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2TeamRelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -2172,69 +2227,6 @@ type PlayerEntityResponseCollection {
 
 type PlayerRelationResponseCollection {
   data: [PlayerEntity!]!
-}
-
-input TeamFiltersInput {
-  id: IDFilterInput
-  name: StringFilterInput
-  rating: IntFilterInput
-  earned: FloatFilterInput
-  matches_played: IntFilterInput
-  victories_in_tournaments: IntFilterInput
-  participants: PlayerFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  and: [TeamFiltersInput]
-  or: [TeamFiltersInput]
-  not: TeamFiltersInput
-}
-
-input TeamInput {
-  name: String
-  rating: Int
-  logo: ID
-  earned: Float
-  matches_played: Int
-  victories_in_tournaments: Int
-  participants: [ID]
-  publishedAt: DateTime
-}
-
-type Team {
-  name: String!
-  rating: Int
-  logo: UploadFileEntityResponse!
-  earned: Float
-  matches_played: Int
-  victories_in_tournaments: Int
-  participants(
-    filters: PlayerFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): PlayerRelationResponseCollection
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-}
-
-type TeamEntity {
-  id: ID
-  attributes: Team
-}
-
-type TeamEntityResponse {
-  data: TeamEntity
-}
-
-type TeamEntityResponseCollection {
-  data: [TeamEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-type TeamRelationResponseCollection {
-  data: [TeamEntity!]!
 }
 
 input TopPlayerFiltersInput {
@@ -2286,17 +2278,10 @@ type TopPlayerEntityResponseCollection {
 }
 
 input TopTeamInput {
-  teams: [ID]
   publishedAt: DateTime
 }
 
 type TopTeam {
-  teams(
-    filters: TeamFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): TeamRelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -2339,13 +2324,14 @@ union GenericMorph =
   | UsersPermissionsUser
   | CardNew
   | Country
-  | Cs2
   | Cs2Award
   | Cs2Brodcasting
+  | Cs2Team
   | Cs2Tournament
   | CsGameMode
   | CsLobby
   | DotaTypeLobby
+  | Dota2Award
   | Dota2Brodcasting
   | Dota2GameMode
   | Dota2Lobby
@@ -2358,7 +2344,6 @@ union GenericMorph =
   | Map
   | Partner
   | Player
-  | Team
   | TopPlayer
   | TopTeam
 
@@ -2469,13 +2454,6 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): CountryEntityResponseCollection
-  cs2(id: ID): Cs2EntityResponse
-  cs2S(
-    filters: Cs2FiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): Cs2EntityResponseCollection
   cs2Award(id: ID): Cs2AwardEntityResponse
   cs2Awards(
     filters: Cs2AwardFiltersInput
@@ -2490,6 +2468,13 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): Cs2BrodcastingEntityResponseCollection
+  cs2Team(id: ID): Cs2TeamEntityResponse
+  cs2Teams(
+    filters: Cs2TeamFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Cs2TeamEntityResponseCollection
   cs2Tournament(id: ID): Cs2TournamentEntityResponse
   cs2Tournaments(
     filters: Cs2TournamentFiltersInput
@@ -2518,6 +2503,13 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): DotaTypeLobbyEntityResponseCollection
+  dota2Award(id: ID): Dota2AwardEntityResponse
+  dota2Awards(
+    filters: Dota2AwardFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Dota2AwardEntityResponseCollection
   dota2Brodcasting(id: ID): Dota2BrodcastingEntityResponse
   dota2Brodcastings(
     filters: Dota2BrodcastingFiltersInput
@@ -2601,13 +2593,6 @@ type Query {
     sort: [String] = []
     publicationState: PublicationState = LIVE
   ): PlayerEntityResponseCollection
-  team(id: ID): TeamEntityResponse
-  teams(
-    filters: TeamFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): TeamEntityResponseCollection
   topPlayer(id: ID): TopPlayerEntityResponse
   topPlayers(
     filters: TopPlayerFiltersInput
@@ -2635,9 +2620,6 @@ type Mutation {
   createCountry(data: CountryInput!): CountryEntityResponse
   updateCountry(id: ID!, data: CountryInput!): CountryEntityResponse
   deleteCountry(id: ID!): CountryEntityResponse
-  createCs2(data: Cs2Input!): Cs2EntityResponse
-  updateCs2(id: ID!, data: Cs2Input!): Cs2EntityResponse
-  deleteCs2(id: ID!): Cs2EntityResponse
   createCs2Award(data: Cs2AwardInput!): Cs2AwardEntityResponse
   updateCs2Award(id: ID!, data: Cs2AwardInput!): Cs2AwardEntityResponse
   deleteCs2Award(id: ID!): Cs2AwardEntityResponse
@@ -2647,6 +2629,9 @@ type Mutation {
     data: Cs2BrodcastingInput!
   ): Cs2BrodcastingEntityResponse
   deleteCs2Brodcasting(id: ID!): Cs2BrodcastingEntityResponse
+  createCs2Team(data: Cs2TeamInput!): Cs2TeamEntityResponse
+  updateCs2Team(id: ID!, data: Cs2TeamInput!): Cs2TeamEntityResponse
+  deleteCs2Team(id: ID!): Cs2TeamEntityResponse
   createCs2Tournament(data: Cs2TournamentInput!): Cs2TournamentEntityResponse
   updateCs2Tournament(
     id: ID!
@@ -2665,6 +2650,9 @@ type Mutation {
     data: DotaTypeLobbyInput!
   ): DotaTypeLobbyEntityResponse
   deleteDotaTypeLobby(id: ID!): DotaTypeLobbyEntityResponse
+  createDota2Award(data: Dota2AwardInput!): Dota2AwardEntityResponse
+  updateDota2Award(id: ID!, data: Dota2AwardInput!): Dota2AwardEntityResponse
+  deleteDota2Award(id: ID!): Dota2AwardEntityResponse
   createDota2Brodcasting(
     data: Dota2BrodcastingInput!
   ): Dota2BrodcastingEntityResponse
@@ -2717,9 +2705,6 @@ type Mutation {
   createPlayer(data: PlayerInput!): PlayerEntityResponse
   updatePlayer(id: ID!, data: PlayerInput!): PlayerEntityResponse
   deletePlayer(id: ID!): PlayerEntityResponse
-  createTeam(data: TeamInput!): TeamEntityResponse
-  updateTeam(id: ID!, data: TeamInput!): TeamEntityResponse
-  deleteTeam(id: ID!): TeamEntityResponse
   createTopPlayer(data: TopPlayerInput!): TopPlayerEntityResponse
   updateTopPlayer(id: ID!, data: TopPlayerInput!): TopPlayerEntityResponse
   deleteTopPlayer(id: ID!): TopPlayerEntityResponse

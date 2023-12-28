@@ -7,7 +7,7 @@
     backdrop-filter: blur(10px);
 
     &-avatar {
-      width: 108px;
+      width: 8%;
       height: 80px;
       display: flex;
       justify-content: center;
@@ -20,6 +20,7 @@
     }
 
     &-name {
+      width: 5%;
       margin-left: 45px;
       color: #f8f8f8;
       font-family: Roboto;
@@ -28,6 +29,7 @@
     }
 
     &-info {
+      width: 4%;
       margin-left: 95px;
       display: flex;
       flex-direction: column;

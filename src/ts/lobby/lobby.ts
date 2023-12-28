@@ -1,138 +1,87 @@
+
+import {LobbyStatisticSideA,LobbyStatisticSideB} from "./lobbyStatistic";
+
+
 import $ from "jquery";
-import {
-  CreateHeader,
-  CreateInfo,
-  CreateTeams,
-  CreatePlayersSideA,
-  CreatePlayersSideB,
+import { BaseTabs } from "../component/tabs.ts";
+import { LavaLamp } from "../component/lava-lamp.ts";
+import { LobbyInfo } from "./components/lobbyInfo";
+import { request } from "graphql-request";
+import { GetLobbyInfoId } from "../../../queries.graphql.d";
+import { CreateTeams } from "./components/lobbyTeams";
+import { LobbySide, LobbySideB } from "./components/lobbySide";
+import { playersCs } from "../main/components/playersCs.ts";
+import { Header } from "../component/header/header";
+import { AppSidebar } from "../component/sidebar/sidebar";
+new Header("#wrapper");
+new AppSidebar("wrapper", "");
 
-} from "./createTeams";
+new BaseTabs("lobby__tab");
+new LavaLamp("lobby__tab");
 
-//! ---- Create Header ----
-new CreateHeader(".details__name", [
-  {
-    flag: "../../../src/images/flag.png",
-    name: "Natus Vincere",
-  },
-]);
+class Lobby {
+  searchParams: URLSearchParams;
+  lobbyId: string | null;
+  details: JQuery<HTMLDivElement>;
 
-//! ---- Create Teams ----
-const now = new Date().getTime();
-let countDownDate = now + 2 * 60 * 1000;
-new CreateTeams(
-  ".details__teams",
-  [{ rang: [{ sideA: 1320, sideB: 1257 }] }],
-  countDownDate
-);
+  constructor() {
+    this.searchParams = new URLSearchParams(window.location.search);
+    this.lobbyId = this.searchParams.get("id");
+    this.details = $(".details__teams");
 
-//! ---- Create Players ----
-export let lengthCreateSides: number | null = null;
-const createSideA = [
-  {
-    avatar: "../../../src/images/avatar7.png",
-    flag: "../../../src/images/flag.png",
-    name: "JohnTrawolta_4",
-    kill: 70,
-    death: 70,
-    assist: 70,
-  },
-  {
-    avatar: "../../../src/images/avatar7.png",
-    flag: "../../../src/images/flag.png",
-    name: "John",
-    kill: 70,
-    death: 70,
-    assist: 70,
-  },
-  {
-    avatar: "../../../src/images/avatar7.png",
-    flag: "../../../src/images/flag.png",
-    name: "JohnTrawolta_4",
-    kill: 70,
-    death: 70,
-    assist: 70,
-  },
-  {
-    avatar: "../../../src/images/avatar7.png",
-    flag: "../../../src/images/flag.png",
-    name: "JohnTrawolta_4",
-    kill: 70,
-    death: 70,
-    assist: 70,
-  },
-  {
-    avatar: "../../../src/images/avatar7.png",
-    flag: "../../../src/images/flag.png",
-    name: "JohnTrawolta_4",
-    kill: 70,
-    death: 70,
-    assist: 70,
-  },
-];
-const createSideB = [
-  {
-    avatar: "../../../src/images/avatar7.png",
-    flag: "../../../src/images/flag.png",
-    name: "JohnTrawolta_4",
-    kill: 70,
-    death: 70,
-    assist: 70,
-  },
-  {
-    avatar: "../../../src/images/avatar7.png",
-    flag: "../../../src/images/flag.png",
-    name: "JohnTrawolta_4",
-    kill: 70,
-    death: 70,
-    assist: 70,
-  },
-  {
-    avatar: "../../../src/images/avatar7.png",
-    flag: "../../../src/images/flag.png",
-    name: "JohnTrawolta_4",
-    kill: 70,
-    death: 70,
-    assist: 70,
-  },
-  {
-    avatar: "../../../src/images/avatar7.png",
-    flag: "../../../src/images/flag.png",
-    name: "JohnTrawolta_4",
-    kill: 70,
-    death: 70,
-    assist: 70,
-  },
-  {
-    avatar: "../../../src/images/avatar7.png",
-    flag: "../../../src/images/flag.png",
-    name: "JohnTrawolta_4",
-    kill: 70,
-    death: 70,
-    assist: 70,
-  },
-];
-const createInfo = [
-  {
-    map: "Lake",
-    rate: 5000,
-    regime: "5x5",
-    participants: 0,
-    id: 54692725,
-  },
-];
+    console.log(this.details);
+    this.init();
+  }
 
-lengthCreateSides = createSideA.length + createSideB.length;
-createInfo[0].participants = lengthCreateSides;
-if (lengthCreateSides === 10) {
-  setTimeout(() => {
-    $(".details__square").css("display", "block");
-    $(".details__teams-time")
-      .css("display", "none")
-      .replaceWith('<p class="details__teams-time_sub">- : -</p>');
-    $(".details__teams-text").css("display", "none");
-  }, 5000);
+  init() {
+    this.renderLobbyInfo();
+    this.renderLobbyTeams();
+    this.renderLobbySide();
+    this.renderPlayersStatictic();
+  }
+
+  async renderLobbyInfo() {
+    const getLobby = await request(
+      "https://battle-star-app.onrender.com/graphql",
+      GetLobbyInfoId,
+      { id: this.lobbyId }
+    );
+
+    const lobbyInfoArray = getLobby?.csLobby?.data ?? {};
+    const creatorUrl =
+      lobbyInfoArray?.attributes?.creator?.data?.attributes?.Options
+        ?.selected_country?.data?.attributes?.flag?.data?.attributes?.url;
+
+    const lobbyInfoData: any = [
+      {
+        flagTeam: creatorUrl,
+        nameTeam: lobbyInfoArray?.attributes?.title,
+        maps: lobbyInfoArray?.attributes?.map?.data?.attributes?.name,
+        rate: lobbyInfoArray?.attributes?.rate,
+        regime: lobbyInfoArray?.attributes?.gameMode?.data?.attributes?.title,
+        participants:
+          lobbyInfoArray?.attributes?.gameMode?.data?.attributes?.value,
+        id: lobbyInfoArray?.id,
+      },
+    ];
+    console.log(lobbyInfoData);
+    new LobbyInfo(".details__info", lobbyInfoData);
+  }
+  renderLobbyTeams() {
+    const now = new Date().getTime();
+    let countDownDate = now + 0.3 * 60 * 1000;
+    new CreateTeams(".details__teams", countDownDate);
+  }
+
+  renderLobbySide() {
+    new LobbySide(".details__players-row", playersCs);
+    new LobbySideB(".details__players-row", playersCs);
+  }
+
+  renderPlayersStatictic(){
+        new LobbyStatisticSideA('.statictic', playersCs);
+    new LobbyStatisticSideB('.statictic', playersCs);
+  }
 }
-//! ---- Create Info ----
-new CreateInfo(".details__info-row", createInfo);
-new CreatePlayersSideA(".details__players-item", createSideA);
-new CreatePlayersSideB(".details__players-item_sub", createSideB);
+
+new Lobby();

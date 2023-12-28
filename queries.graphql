@@ -1106,3 +1106,105 @@ query GetMyCs2Teams(
     }
   }
 }
+mutation CreatePlayer($id: ID) {
+  createPlayer(data: { user: $id }) {
+    data {
+      attributes {
+        user {
+          data {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+query GetTopPlayer {
+  topPlayers {
+    data {
+      attributes {
+        cs {
+          nikcname
+          flag
+          rating
+          avatar {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+query GetTopPlayerDota {
+  topPlayers {
+    data {
+      attributes {
+        dota {
+          nikcname
+          flag
+          reting
+          avatar {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetLobbyInfoId($id: ID) {
+  csLobby(id: $id) {
+    data {
+      id
+      attributes {
+        title
+        creator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      flag {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        map {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+        rate
+        gameMode {
+          data {
+            attributes {
+              title
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

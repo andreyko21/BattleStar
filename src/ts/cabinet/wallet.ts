@@ -1,8 +1,6 @@
 import Sprite from "./../../images/sprite.svg";
 import $ from "jquery";
 import { sumHistory } from "./history";
-import { request } from "graphql-request";
-import { GetUser } from "../../../queries.graphql.d";
 import { setLocateParam } from "../functions/windowLocation";
 import { removeAllParams } from "../functions/windowLocation";
 // import { Chart } from "chart.js";
@@ -197,116 +195,8 @@ class Wallet {
       $(".wallet__content").css("display", "block");
       removeAllParams();
     });
-    
-   //  let charts: { config: { data: { labels: any[]; datasets: { data: any[]; }[]; }; options: { scales: { x: { min: number; max: number; }; }; }; }; update: () => void; };
-   //  let pauseMode = false;
-   //  const createLineChatr = (xData: any[], yData: any[]) => {
-   //    let gradient = this.context.createLinearGradient(
-   //      0,
-   //      0,
-   //      0,
-   //      window.screen.width / 2
-   //    );
-   //    gradient.addColorStop(0, "rgba(250, 199, 4, 0.30)");
-   //    gradient.addColorStop(1, "rgba(250, 199, 4, 0.00)");
-   //    let data = {
-   //      labels: xData,
-   //      datasets: [
-   //        {
-   //          data: yData,
-   //          pointStyle: false,
-   //          fill: true,
-   //          backgroundColor: gradient,
-   //          borderWidth: 1,
-   //          // backgroundColor: "#fac704",
-   //          label: "Balance",
-   //          tension: 0.2,
-   //        },
-   //      ],
-   //    };
-   //    let xScaleConfig = {
-   //      min: 0,
-   //      max: 10,
-   //      display: false,
-   //    };
-   //    let yScaleConfig = {
-   //      display: false,
-   //    };
-   //    let config: object = {
-   //      type: "line",
-   //      data: data,
-   //      options: {
-   //        scales: {
-   //          x: xScaleConfig,
-   //          y: yScaleConfig,
-   //        },
-   //      },
-   //      plugins: {
-   //        legend: {
-   //          display: false,
-   //        },
-   //      },
-   //      animation: {
-   //        duration: 400,
-   //        easing: "linear",
-   //      },
-   //    };
 
-   //   charts = new Chart(this.context, config);
-   //  };
-   //  const realTimeChart = (
-   //    xData: any[],
-   //    yData: any[],
-   //    data: string | any[]
-   //  ) => {
-   //    let i = 50;
-   //    let interval = setInterval(() => {
-   //      if (i > data.length) {
-   //        clearInterval(interval);
-   //      } else if (!pauseMode) {
-   //        charts.config.data.labels.push(xData[i]);
-   //        charts.config.data.datasets[0].data.push(yData[i]);
-   //        charts.config.options.scales.x.min++;
-   //        charts.config.options.scales.x.max++;
-   //        charts.update();
-   //        i++;
-   //      }
-   //    }, 400);
-   //  };
-   //  axios
-   //    .get(
-   //      "https://www.alphavantage.co/query?function=ALUMINUM&interval=monthly&apikey=demo"
-   //    )
-   //    .then((response) => {
-   //      let data = response.data.data;
-   //      let xData = [];
-   //      let yData = [];
-   //      for (let i = data.length - 1; i > 0; i--) {
-   //        if (data[i].value !== ".") {
-   //          xData.push(data[i].date);
-   //          yData.push(data[i].value);
-   //        }
-   //      }
-   //      let xStartData = [];
-   //      let yStartData = [];
-   //      let xParseData = [];
-   //      let yParseData = [];
-   //      for (let i = 0; i < data.length; i++) {
-   //        if (i < 10) {
-   //          xStartData.push(xData[i]);
-   //          yStartData.push(yData[i]);
-   //        } else {
-   //          xParseData.push(xData[i]);
-   //          yParseData.push(yData[i]);
-   //        }
-   //      }
-   //      createLineChatr(xStartData, yStartData);
-   //      realTimeChart(xParseData, yParseData, data);
-   //    });
 
-    // window.addEventListener("click", () => {
-    //   pauseMode = !pauseMode;
-    // });
 
   }
 
@@ -611,71 +501,85 @@ class Wallet {
 
   
 }
-interface IWalletHistoryData {
-  name: string;
-  data: string;
-  time: string;
-  regime: string;
-  id: number;
-  result: { win: string; defeat: string }[];
-  money: number;
-}
+// interface IWalletHistoryData {
+//   name: string;
+//   data: string;
+//   time: string;
+//   regime: string;
+//   id: number;
+//   result: { win: string; defeat: string }[];
+//   money: number;
+// }
 
-export class WalletHistory {
-  private content: string;
-  private history: IWalletHistoryData[];
+// class WalletHistory {
+//   private content: string;
+//   private history: IWalletHistoryData[];
 
-  constructor(content: string, history: IWalletHistoryData[]) {
-    this.content = content;
-    this.history = history;
-    this.renderWalletHistory();
-  }
+//   constructor(content: string, history: IWalletHistoryData[]) {
+//     this.content = content;
+//     this.history = history;
+//     this.renderWalletHistory();
+//   }
 
-  private renderWalletHistory(): void {
-    const HistoryHtml = this.history
-      .map(
-        (history) => `
-             <tr class="table__tr">
-               <td class="table__name">${history.name}</td>
-               <td class="table__data">${history.data}</td>
-               <td class="table__time">${history.time}</td>
-               <td class="table__regime">Режим <span>${
-                 history.regime
-               }</span></td>
-               <td class="table__id">ID <span>${history.id}</span></td>
-               <td class="table__win">
-               ${history.result.map((item) => item.win)}
-               </td>
-               <td class="table__money">+ ${history.money} <span>BS</span></td>
-             </tr>`
-      )
-      .join("");
+//   private renderWalletHistory(): void {
+//     const HistoryHtml = this.history
+//       .map(
+//         (history) => `
+//              <tr class="table__tr">
+//                <td class="table__name">${history.name}</td>
+//                <td class="table__data">${history.data}</td>
+//                <td class="table__time">${history.time}</td>
+//                <td class="table__regime">Режим <span>${
+//                  history.regime
+//                }</span></td>
+//                <td class="table__id">ID <span>${history.id}</span></td>
+//                <td class="table__win">
+//                ${history.result.map((item) => item.win)}
+//                </td>
+//                <td class="table__money">+ ${history.money} <span>BS</span></td>
+//              </tr>`
+//       )
+//       .join("");
 
-    const content = document.querySelector(this.content);
-    if (content) {
-      content.innerHTML = HistoryHtml;
+//     const content = document.querySelector(this.content);
+//     if (content) {
+//       content.innerHTML = HistoryHtml;
+//     }
+//   }
+// }
+
+
+
+
+
+function getCookie(cname:any) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
     }
   }
+  return "";
 }
 
-const users = await request(
-  "https://battle-star-app.onrender.com/graphql",
-  GetUser
-);
-
-
-const userData = users.usersPermissionsUsers?.data.at(-1);
+let name = getCookie("name");
+let id = getCookie("id");
+let token = getCookie("token");
+console.log(name, id, token);
 
 
 let infoWallet: any = {
-  id: userData?.id,
-  nickname: userData?.attributes?.username,
+  id: id,
+  nickname: name,
   balance: sumHistory,
 };
-
-console.log(infoWallet);
-
 new Wallet(".wallet__top", infoWallet);
-new WalletHistory(".table__tab", infoWallet);
+// new WalletHistory(".table__tab", infoWallet);
 
 

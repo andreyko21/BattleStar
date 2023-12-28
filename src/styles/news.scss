@@ -72,6 +72,7 @@
          svg {
             width: 24px;
             height: 24px;
+            fill: $gray25;
          }
 
          &_tour {
@@ -104,6 +105,7 @@
             svg {
                width: 23px;
                height: 23px;
+               fill: $gray25;
             }
             &:last-child {
                padding: 7px 14.5px;

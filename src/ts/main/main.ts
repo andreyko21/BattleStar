@@ -24,6 +24,7 @@ import { mainNews } from "./components/mainNews";
 import { sliderTeams } from "./components/sliderTeam";
 import { Slider } from "./../component/slider";
 import { Map } from "./team";
+<<<<<<< HEAD
 
 new Header("#wrapper");
 new AppSidebar("wrapper", "ГЛАВНАЯ");
@@ -39,6 +40,25 @@ const findContent = document.querySelector("#cs-content") as HTMLDivElement;
 findContent.innerHTML = ` <div class="rating__cs"></div> `;
 const createContent = document.querySelector("#dota-content") as HTMLDivElement;
 createContent.innerHTML = ` <div class="rating__dota"></div>`;
+=======
+
+new Header("#wrapper");
+new AppSidebar("wrapper", "ГЛАВНАЯ");
+
+new TabsCreate("rating", "news__rating-tabs", [
+  ["cs", "CS:GO"],
+  ["dota", "DOTA 2"],
+]);
+new BaseTabs("news__rating-tabs");
+new LavaLamp("news__rating-tabs");
+
+const findContent = document.querySelector("#cs-content") as HTMLDivElement;
+findContent.innerHTML = ` <div class="rating__cs"></div> `;
+const createContent = document.querySelector("#dota-content") as HTMLDivElement;
+createContent.innerHTML = ` <div class="rating__dota"></div>`;
+
+
+>>>>>>> 5656a06e80bec625e54b5c36112598de9aa2084b
 
 type MainType = {
   playerNumber: JQuery<HTMLParagraphElement>;
@@ -144,6 +164,10 @@ class Main implements MainType {
         getTopPlayers.topPlayers?.data[0]?.attributes?.cs ?? "Error";
       if (Array.isArray(newsTopPlayers)) {
         const cardArr: any = newsTopPlayers.map((card) => ({
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 5656a06e80bec625e54b5c36112598de9aa2084b
           avatar: card?.avatar?.data[0].attributes?.url,
           nickname: card?.nikcname,
           rating: card?.rating,

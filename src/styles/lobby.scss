@@ -5,6 +5,7 @@
 @import "./components/tabs.scss";
 @import "./components/lobby/createTeams.scss";
 
+
 .wrapper {
    display: grid;
    grid-template:
@@ -26,11 +27,25 @@
    width: 100%;
    height: 654px;
 
-   &__details{
+   &__tab .tabs-block__tabs {
+      padding-top: 27px;
+      width: 594px;
+      margin: 0 auto;
+   }
+   &__tab .tabs-block__tab{
+      width: 100%;
+   }
+   &__tab .tabs-block__lamp {
+      bottom: -15px;
+      background: rgba(196, 196, 196, 0.10);
+backdrop-filter: blur(5px);
+   }
+
+   &__details {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 40px;
+      // margin-top: 40px;
    }
    &__teams {
       display: flex;
@@ -105,7 +120,11 @@
             }
          }
       }
+   }
 
-
+   &__statictic{
+      margin-top: 90px;
    }
 }
+
+

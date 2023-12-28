@@ -1,3 +1,4 @@
+import $ from "jquery";
 import { BaseTabs } from "./../../component/tabs";
 import { LavaLamp } from "./../../component/lava-lamp";
 import { Header } from "./../../component/header/header";
@@ -97,20 +98,20 @@ class FriendsPage {
   }
 }
 
-if (
-  getLocateParam("users-page__filters") == null &&
-  getLocateParam("users-page__filters") == undefined
-) {
-  setLocateParam("users-page__filters", "onlineUsers");
-}
-new TabsCreate("tabs-block", "users-page__filters", [
-  ["onlineUsers", "ОНЛАЙН"],
-  ["allUsers", "ВСЕ"],
-  ["request", "ЗАЯВКИ"],
-  ["search", "ПОИСК"],
-]);
-new BaseTabs("users-page__filters");
-new LavaLamp("users-page__filters");
+$(document).ready(() => {
+  if (!getLocateParam("filters")) {
+    setLocateParam("filters", "onlineUsers");
+  }
 
-new FriendsPage();
-new AppSidebar("wrapper", "ДРУЗЬЯ");
+  new TabsCreate("page__container", "filters", [
+    ["onlineUsers", "ОНЛАЙН"],
+    ["allUsers", "ВСЕ"],
+    ["request", "ЗАЯВКИ"],
+    ["search", "ПОИСК"],
+  ]);
+  new BaseTabs("filters");
+  new LavaLamp("filters");
+
+  new FriendsPage();
+  new AppSidebar("wrapper", "ДРУЗЬЯ");
+});

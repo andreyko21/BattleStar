@@ -5,6 +5,7 @@ import { TournamentCreation } from "./tournament";
 export class Dota2TournamentCreationPage extends TournamentCreation {
   public imgId: number = 116;
   public queryCreate = CreateDota2Tournament;
+  regimeInput: boolean | undefined;
 
   protected initializeSpecificElements(): void {
     new TournamentRegime("main-content", [

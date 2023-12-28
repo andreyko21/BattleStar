@@ -28,7 +28,7 @@ export class AllUsers {
     return `
       <section class="page__chat-section chat-section">
         <div class="chat-section__sidebar chat-section-sidebar">
-          <div class="chat-section-sidebar__search-block">
+          <div class="chat-section-sidebar__search-block search-block">
             <label class="input__search">
   <button class="input__search-button">
     <svg class="input__search-icon">

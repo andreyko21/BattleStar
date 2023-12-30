@@ -62,10 +62,7 @@ class StrimingTab {
       const gameModeFiltering = new GettingGameModeFiltering(
         'filters-find-lobby'
       );
-      const regionFiltering = new RegionFiltering(
-        'filters-find-lobby',
-        'create-content'
-      );
+      const regionFiltering = new RegionFiltering('filters-find-lobby');
 
       mapsFiltering.assembleFilter(mapsData);
       gameModeFiltering.assembleFilter(gameModeData);

@@ -2,9 +2,9 @@ import { getLocateParam } from '../functions/windowLocation.ts';
 import { Header } from '../component/header/header.ts';
 import { AppSidebar } from '../component/sidebar/sidebar.ts';
 //import { CsMatchesPage } from './cs-match-page.ts';
-import { BaseTabs } from '../component/tabs.ts'; //CreatedObjForIRenderMethod
+//import { BaseTabs } from '../component/tabs.ts'; //CreatedObjForIRenderMethod
 //import type { IRenderMethod } from '../component/tabs.ts';
-import { LavaLamp } from '../component/lava-lamp.ts';
+//import { LavaLamp } from '../component/lava-lamp.ts';
 import { SelectedCsMatchPagesTab } from './selected-cs-matches-page-tab.ts';
 import { SelectedDota2MatchPagesTab } from './dota/selected-dota2-matches-page-tab.ts';
 

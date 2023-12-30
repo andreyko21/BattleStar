@@ -5,16 +5,17 @@ import { BtnOnRadioOrCheck } from './btnOnRadioOrCheck';
 
 class RegionFiltering {
   private filterContainer: HTMLDivElement | null;
-  private selectedContainer: HTMLDivElement | null;
+  //  private selectedContainer: HTMLDivElement | null;
 
-  constructor(filterContainerId: string, selectedContainerId: string) {
+  constructor(filterContainerId: string) {
+    //, selectedContainerId: string
     this.filterContainer = document.querySelector(`#${filterContainerId}`);
 
     if (!this.filterContainer) {
       throw new Error(`Container with id #${filterContainerId} not found.`);
     }
 
-    this.selectedContainer = document.querySelector(`#${selectedContainerId}`);
+    // this.selectedContainer = document.querySelector(`#${selectedContainerId}`);
 
     // if (!this.selectedContainer) {
     //   throw new Error(`Container with id #${selectedContainerId} not found.`);

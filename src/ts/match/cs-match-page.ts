@@ -1,4 +1,4 @@
-import { BaseTabs, CreatedObjForIRenderMethod } from '../component/tabs.ts';
+import { BaseTabs } from '../component/tabs.ts'; //CreatedObjForIRenderMethod
 //import { TabsCreate } from '../component/tabs-create.ts';
 //import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
@@ -129,10 +129,7 @@ class CsMatchesPage {
       );
       const gameModeSelected = new GettingGameModeSelected('create-content');
 
-      const regionFiltering = new RegionFiltering(
-        'filters-find-lobby',
-        'create-content'
-      );
+      const regionFiltering = new RegionFiltering('filters-find-lobby');
 
       new AntiCheat('filters-find-lobby');
 

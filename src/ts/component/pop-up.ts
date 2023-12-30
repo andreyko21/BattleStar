@@ -78,7 +78,10 @@ class OpenLobbyPopUp extends BasePopUp {
   //    notNowBtn?.addEventListener('click', () => location.replace('match.html'));
   //  }
 
-  addInnerContent(option: { [key: string]: string | boolean }) {
+  addInnerContent(
+    option: { [key: string]: string | boolean },
+    urlParams: string
+  ) {
     const title = this.popUp.querySelector(
       '.open-lobby-pop-up__title'
     ) as HTMLElement;
@@ -107,7 +110,7 @@ class OpenLobbyPopUp extends BasePopUp {
       '.open-lobby-pop-up__btn'
     ) as HTMLButtonElement;
     button.addEventListener('click', () => {
-      window.location.assign(`lobby.html?id=${option.id}`);
+      window.location.assign(`lobby.html?${urlParams}`);
     });
   }
 }

@@ -21,42 +21,42 @@ class SelectedCsMatchPagesTab {
     new LavaLamp('match-page__content');
   }
 
-  private filterTranslation(selectedTab: string): void {
-    const filtarationSection: HTMLDivElement | null = document.querySelector(
-      '.match-page__filters'
-    );
-    if (filtarationSection !== undefined && filtarationSection !== null) {
-      const filtersBlock = filtarationSection?.querySelector(
-        '#filters-find-lobby'
-      ) as HTMLDivElement;
-      const filtersTabsBlock: HTMLDivElement | null =
-        filtarationSection?.querySelector('.filters__tabs') as HTMLDivElement;
-      const filtersContentBlock: HTMLDivElement | null =
-        filtarationSection.querySelector('.filters__content') as HTMLDivElement;
+  //  private filterTranslation(selectedTab: string): void {
+  //    const filtarationSection: HTMLDivElement | null = document.querySelector(
+  //      '.match-page__filters'
+  //    );
+  //    if (filtarationSection !== undefined && filtarationSection !== null) {
+  //      const filtersBlock = filtarationSection?.querySelector(
+  //        '#filters-find-lobby'
+  //      ) as HTMLDivElement;
+  //      const filtersTabsBlock: HTMLDivElement | null =
+  //        filtarationSection?.querySelector('.filters__tabs') as HTMLDivElement;
+  //      const filtersContentBlock: HTMLDivElement | null =
+  //        filtarationSection.querySelector('.filters__content') as HTMLDivElement;
 
-      const filtersFindLobbyBlock =
-        filtarationSection.querySelector('#find-content');
+  //      const filtersFindLobbyBlock =
+  //        filtarationSection.querySelector('#find-content');
 
-      switch (selectedTab) {
-        case 'open-match':
-          if (filtersTabsBlock?.style.display === 'none') {
-            filtersFindLobbyBlock?.appendChild(filtersBlock);
-            filtersTabsBlock.style.display = 'flex';
-            filtersContentBlock.style.display = 'block';
-          }
+  //      switch (selectedTab) {
+  //        case 'open-match':
+  //          if (filtersTabsBlock?.style.display === 'none') {
+  //            filtersFindLobbyBlock?.appendChild(filtersBlock);
+  //            filtersTabsBlock.style.display = 'flex';
+  //            filtersContentBlock.style.display = 'block';
+  //          }
 
-          break;
+  //          break;
 
-        case 'translation':
-          if (filtersTabsBlock?.style.display !== 'none') {
-            filtarationSection.appendChild(filtersBlock);
-            filtersTabsBlock.style.display = 'none';
-            filtersContentBlock.style.display = 'none';
-          }
+  //        case 'translation':
+  //          if (filtersTabsBlock?.style.display !== 'none') {
+  //            filtarationSection.appendChild(filtersBlock);
+  //            filtersTabsBlock.style.display = 'none';
+  //            filtersContentBlock.style.display = 'none';
+  //          }
 
-          break;
-      }
-    }
-  }
+  //          break;
+  //      }
+  //    }
+  //  }
 }
 export { SelectedCsMatchPagesTab };

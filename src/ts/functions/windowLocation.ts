@@ -27,16 +27,17 @@ function getLocateParam(param: string) {
 }
 
 function delLocateParam(param: string) {
-   const queryParams = getQueryParams();
-   queryParams.delete(param);const newUrl =
-   window.location.protocol +
-   '//' +
-   window.location.host +
-   window.location.pathname +
-   '?' +
-   queryParams;
- window.history.pushState({ path: newUrl }, '', newUrl);
- }
+  const queryParams = getQueryParams();
+  queryParams.delete(param);
+  const newUrl =
+    window.location.protocol +
+    '//' +
+    window.location.host +
+    window.location.pathname +
+    '?' +
+    queryParams;
+  window.history.pushState({ path: newUrl }, '', newUrl);
+}
 
 function removeAllParams() {
   const urlWithoutParams =
@@ -49,6 +50,7 @@ function removeAllParams() {
 }
 
 export {
+  getQueryParams,
   setLocateParam,
   getLocateParam,
   delLocateParam,

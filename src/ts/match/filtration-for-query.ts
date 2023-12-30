@@ -3,7 +3,11 @@ import { OpenLobbyPopUp } from '../component/pop-up.ts';
 import { MatchesQuery } from './newQuery.ts';
 import { MatchRow } from '../match/match-row.ts';
 import { MatchTile } from '../match/match-grid.ts';
-import { setLocateParam, delLocateParam } from '../functions/windowLocation.ts';
+import {
+  setLocateParam,
+  delLocateParam,
+  getQueryParams,
+} from '../functions/windowLocation.ts';
 import { QueryRate } from '../types.ts';
 
 class newFiltration {
@@ -12,6 +16,12 @@ class newFiltration {
 
   private allCheckboxesValues: { [key: string]: string[] } = {};
   private rateSliderHendles: HTMLDivElement[];
+
+  private lobbyOpenning = new OpenLobbyPopUp(
+    'open-lobby-pop-up',
+    'overlay',
+    'content-wrapper'
+  );
 
   filtersObj: {
     country: string[] | null;
@@ -67,7 +77,7 @@ class newFiltration {
       if (Object.prototype.hasOwnProperty.call(this.filtersObj, key)) {
         const element = this.filtersObj[key as keyof typeof this.filtersObj];
 
-        if (element?.length !== 0) {
+        if (element !== null) {
           setLocateParam(key, element?.join(','));
         } else {
           delLocateParam(key);
@@ -76,20 +86,61 @@ class newFiltration {
     }
   }
 
-  private updateFiltersObject() {
-    this.allCheckbox?.forEach((checkbox) => {
-      const valueFilterObj = checkbox.name.replace('-filter', '');
+  //  запуститиЗатримку() {
+  //   // Зупинити попередню затримку, якщо вона вже запущена
+  //   clearTimeout(timeoutId);
 
-      if (checkbox.checked) {
-        this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]?.push(
-          checkbox.value
-        );
+  //   // Запустити нову затримку на 1 секунду
+  //   timeoutId = setTimeout(відправитиЗапит, 1000);
+  //}
+
+  //  private addSelectedCheckboxToFiltersObject(checkbox: HTMLInputElement) {
+  //    const valueFilterObj = checkbox.name.replace('-filter', '');
+
+  //    if (checkbox.checked) {
+  //      this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]?.push(
+  //        checkbox.value
+  //      );
+  //    }
+  //  }
+
+  private updateFiltersObject() {
+    for (const [key, value] of getQueryParams().entries()) {
+      console.log(`${key}, ${value}`);
+      const valueArr = value.split(',');
+      if (this.allCheckbox !== null) {
+        this.allCheckbox.forEach((checkbox) => {
+          const checkboxName = checkbox.name.replace('-filter', '');
+          if (checkboxName === key && valueArr.includes(checkbox.value)) {
+            checkbox.checked = true;
+            this.filtersObj[checkboxName as keyof typeof this.filtersObj]?.push(
+              checkbox.value
+            );
+          }
+        });
       }
-    });
+    }
+
     this.updateContent();
+
+    // this.allCheckbox?.forEach((checkbox) => {
+    //   this.addSelectedCheckboxToFiltersObject(checkbox);
+    // });
   }
 
-  //  !---------Чи потрібно
+  //  private updateFiltersObject() {
+  //    this.allCheckbox?.forEach((checkbox) => {
+  //      const valueFilterObj = checkbox.name.replace('-filter', '');
+
+  //      if (checkbox.checked) {
+  //        this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]?.push(
+  //          checkbox.value
+  //        );
+  //      }
+  //    });
+  //    this.updateContent();
+  //  }
+
   private changeFilters(checkbox: HTMLInputElement) {
     const valueFilterObj = checkbox.name.replace('-filter', '');
 
@@ -114,21 +165,15 @@ class newFiltration {
   }
 
   private async updateContent() {
-    const lobbyOpenning = new OpenLobbyPopUp(
-      'open-lobby-pop-up',
-      'overlay',
-      'content-wrapper'
-    );
     const params = this.changeFiltersObj();
 
     const matchQuery = new MatchesQuery(params);
 
     const query = await matchQuery.getData();
-    console.log(query);
 
     if (query) {
-      new MatchRow('calibration-table', query, lobbyOpenning);
-      new MatchTile('calibration-grid', query, lobbyOpenning);
+      new MatchRow('calibration-table', query, this.lobbyOpenning);
+      new MatchTile('calibration-grid', query, this.lobbyOpenning);
     }
   }
 
@@ -146,8 +191,6 @@ class newFiltration {
       gameMode: [] as number[],
       antyCheat: this.filtersObj.antyCheat?.length === 0 ? false : true,
     };
-
-    console.info(this.filtersObj.rate);
 
     if (this.filtersObj.rate?.length === 0) {
       //!!------------------------Замінити

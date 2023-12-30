@@ -81,10 +81,7 @@ class CsMatchesPage {
     );
     const gameModeSelected = new GettingGameModeSelected('create-content');
 
-    const regionFiltering = new RegionFiltering(
-      'filters-find-lobby',
-      'create-content'
-    );
+    const regionFiltering = new RegionFiltering('filters-find-lobby');
 
     new AntiCheat('filters-find-lobby');
     try {

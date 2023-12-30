@@ -2,17 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/assets/Fav-31aa7ba9.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <title>Battle Star - Calibration</title>
-    <script type="module" crossorigin src="/assets/calibration-56710a11.js"></script>
+    <script type="module" crossorigin src="/assets/calibration-699a173c.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/jquery-e7e79cb6.js">
-    <link rel="modulepreload" crossorigin href="/assets/header-f70ba31e.js">
-    <link rel="modulepreload" crossorigin href="/assets/match-grid-64b4c2fa.js">
-    <link rel="modulepreload" crossorigin href="/assets/tabs-854fe48d.js">
-    <link rel="modulepreload" crossorigin href="/assets/sidebar-bc1ddcde.js">
-    <link rel="stylesheet" href="/assets/calibration-a1de9d74.css">
+    <link rel="modulepreload" crossorigin href="/assets/header-e5047e00.js">
+    <link rel="modulepreload" crossorigin href="/assets/sorting-block-ebef9e6e.js">
+    <link rel="modulepreload" crossorigin href="/assets/tabs-0f134427.js">
+    <link rel="modulepreload" crossorigin href="/assets/sidebar-a515cb42.js">
+    <link rel="stylesheet" href="/assets/calibration-e26b56d8.css">
   </head>
   <body>
     <div class="wrapper" id="wrapper">
@@ -96,8 +96,9 @@
   </div>
 </div>
 
-          <div class="calibration-page__container tabs-block">
-            <div class="calibration-page__view-tabs view-tabs">
+          <div class="calibration-page__container" id="sorting-block-container">
+            <!--<div class="sorting-block tabs-block">
+              <div class="sorting-block__view-tabs view-tabs">
   <div class="view-tabs__title"> Открытые лобби </div>
   <div class="view-tabs__view-box tabs-block__tabs">
     <div class="view-tabs__text">Отобразить</div>
@@ -106,35 +107,73 @@
       data-tab-name="grid"
     >
       <svg>
-        <use xlink:href="/assets/sprite-cca1cbdd.svg#grid-view"></use>
+        <use xlink:href="src/images/sprite.svg#grid-view"></use>
       </svg>
     </div>
     <div class="view-tabs__table tabs-block__tab" data-tab-name="table">
       <svg>
-        <use xlink:href="/assets/sprite-cca1cbdd.svg#table-view"></use>
+        <use xlink:href="src/images/sprite.svg#table-view"></use>
       </svg>
     </div>
   </div>
 </div>
 
-            <div class="calibration-page__content tabs-block__content">
-              <div
-                class="calibration-page__grid-block-wrapper tabs-block__content-container tabs-block__content-container_active"
-                id="grid-content"
-              >
-                <div class="calibration-page__grid-block" id="calibration-grid">
+              <div class="sorting-block__content tabs-block__content">
+                <div
+                  class="sorting-block__grid-block-wrapper tabs-block__content-container tabs-block__content-container_active"
+                  id="grid-content"
+                >
+                  <div class="sorting-block__grid-block" id="calibration-grid">
+                  </div>
+                </div>
+                <div
+                  class="sorting-block__table-wrapper tabs-block__content-container"
+                  id="table-content"
+                >
+                  <table class="sorting-block__table" id="calibration-table">
+                    <tr class="dota-match-tr content__tr" id="">
+  <td class="dota-match-tr__name-cell">
+    <div class="dota-match-tr__name-block">
+      <img
+        src="src/images/temporary/ukr-flag.png"
+        alt="flag"
+        class="dota-match-tr__flag"
+      />
+      <div class="dota-match-tr__name"> PlayFair Display$$ </div>
+    </div>
+  </td>
+  <td class="dota-match-tr__mode">
+    <div class="dota-match-tr__data-title"> Режим </div>
+    <div class="dota-match-tr__rate-value"> All Pick </div>
+  </td>
+  <td class="dota-match-tr__rate-block">
+    <div class="dota-match-tr__data-title"> Ставка </div>
+    <div class="dota-match-tr__rate-value"> 5000 $ </div>
+  </td>
+  <td class="dota-match-tr__mode">
+    <div class="dota-match-tr__data-title"> Лобби </div>
+    <div class="dota-match-tr__rate-value"> 5x5 </div>
+  </td>
+  <td class="dota-match-tr__participants">
+    <div class="dota-match-tr__data-title"> Учасников </div>
+    <div class="dota-match-tr__rate-value"> 8/10 </div>
+  </td>
+  <td class="dota-match-tr__ping-cell">
+    <div class="dota-match-tr__ping-block">
+      <div class="dota-match-tr__ping">23 </div>
+      <div class="dota-match-tr__ping-icon">
+        <svg>
+          <use xlink:href="src/images/sprite.svg#haf_network-strength"></use>
+        </svg>
+      </div>
+    </div>
+  </td>
+</tr>
+
+                  </table>
                 </div>
               </div>
-              <div
-                class="calibration-page__table-wrapper tabs-block__content-container"
-                id="table-content"
-              >
-                <table
-                  class="calibration-page__table"
-                  id="calibration-table"
-                ></table>
-              </div>
-            </div>
+            </div>-->
           </div>
         </div>
       </main>

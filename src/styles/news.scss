@@ -28,6 +28,7 @@
    }
 
    &__title {
+      // font-family: Saira;
       color: $gray25;
       font-size: 36px;
       font-weight: 500;
@@ -108,7 +109,7 @@
                fill: $gray25;
             }
             &:last-child {
-               padding: 7px 14.5px;
+               padding: 7px 11px;
             }
          }
       }
@@ -116,7 +117,7 @@
 }
 
 .info {
-   margin-top: 65px;
+   margin-top: 63px;
    &__container {
       padding-left: 85px;
    }
@@ -152,10 +153,10 @@
    }
    &__img {
       display: inline-block;
-      width: 782px;
+      width: 788px;
       height: 327px;
       background: $gray600;
-      margin: 50px 0 40px;
+      margin: 50px 0 38px;
    }
    &__title {
       width: 1302px;
@@ -178,6 +179,9 @@
             margin-bottom: 22px;
          }
       }
+      &-svg{
+         margin-left: 35px;
+      }
    }
 
    &__likes {
@@ -189,7 +193,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 8px 39px;
-      margin: 75px auto 0;
+      margin: 60px auto 0;
 
       &-btn {
          background: transparent;
@@ -198,9 +202,17 @@
          font-size: 16px;
          font-weight: 500;
          line-height: normal;
+         &_dislike{
+            svg{
+            //    width: 40px;
+            //    height: 40px;
+            // fill: $red500;
+            }
+         }
          svg {
             width: 40px;
             height: 40px;
+            fill: $red500;
          }
          span {
             display: flex;
@@ -212,6 +224,8 @@
                color: $green50;
             }
          }
+
+
       }
       &-line {
          width: 1px;

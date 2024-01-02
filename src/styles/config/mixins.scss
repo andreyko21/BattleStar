@@ -225,6 +225,7 @@
     transform-origin: bottom right;
     transition: transform 0.5s ease-out;
     background-color: $yellow300;
+
   }
 
   &:hover::after {
@@ -246,11 +247,14 @@
     transform-origin: bottom left;
     transform: scaleX(1);
     color: $yellow300;
+    &:last-child {
+      color: $red500;
+    }
   }
 }
 @mixin tabs-menu {
   position: relative;
-  transform-origin: bottom right;
+  transform-origin: bottom left;
   transition: transform 0.5s ease-out;
   &::after {
     content: '';
@@ -260,12 +264,16 @@
     height: 100%;
     right: -3.3px;
     // left: 0;
-    transform-origin: bottom right;
+    transform-origin: bottom left;
     transition: transform 0.5s ease-out;
     background-color: $yellow300;
-    &:last-child {
+
+  }
+  &:last-child {
+    &::after {
       background-color: $red500;
     }
+   
   }
 
   &:hover::after {
@@ -276,20 +284,26 @@
     transform-origin: bottom left;
     transform: scaleX(1);
     color: $yellow300;
+    &:last-child {
+      color: $red500;
+    }
   }
 
   &:hover {
     transform-origin: bottom left;
     color: $yellow300;
-    // &:last-child {
-    //   color: $red500;
-    // }
+    &:last-child {
+      color: $red500;
+    }
   }
 
   &_act {
     transform-origin: bottom left;
     transform: scaleX(1);
     color: $yellow300;
+    &:last-child {
+      color: $red500;
+    }
 
   }
 }

@@ -1142,3 +1142,21 @@ query GetLobbyInfoId($id: ID) {
   }
 }
 
+
+mutation UpdateUser($id: ID!, $newUsername: String, $newBiography: String) {
+  updateUsersPermissionsUser(
+    id: $id
+    data: { username: $newUsername, biography: $newBiography }
+  ) {
+    data {
+      id
+      attributes {
+        username
+        biography
+      }
+    }
+  }
+}
+
+
+

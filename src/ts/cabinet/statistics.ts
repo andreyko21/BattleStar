@@ -5,6 +5,9 @@ import { BaseTabs } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
 import { Header } from "../component/header/header";
 import { AppSidebar } from "../component/sidebar/sidebar";
+import {AsideMenu} from "../component/asideMenu";
+
+new AsideMenu();
 new Header("#wrapper");
 new AppSidebar("wrapper", "");
 
@@ -41,10 +44,13 @@ export class StatisticsCs {
   private content: string;
   private statistics: IStatistics[];
 
+
   constructor(content: string, statistics: IStatistics[]) {
     this.content = content;
     this.statistics = statistics;
     this.renderStatisticsCs();
+
+
   }
 
   renderStatisticsCs() {

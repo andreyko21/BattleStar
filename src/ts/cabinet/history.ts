@@ -3,6 +3,9 @@
 import $ from "jquery";
 import { Header } from "../component/header/header";
 import { AppSidebar } from "../component/sidebar/sidebar";
+import {AsideMenu} from "../component/asideMenu";
+
+new AsideMenu();
 new Header("#wrapper");
 new AppSidebar("wrapper", "");
 export interface IHistoryData {

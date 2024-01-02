@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/Fav.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icon-css@master/css/flag-icon.min.css"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="node_modules/air-datepicker/air-datepicker.css">
   <link rel="stylesheet" href="src/styles/index.scss" />
@@ -16,6 +15,7 @@
   <div id="wrapper" class="wrapper">
     <main class="page">
       <section class="banner">
+        <div class="banner__bg"></div>  
         <div class="banner__container">
           <h1 class="banner__title"><span>BattleStar</span> Новости</h1>
           <div id="banner-swiper" class="swiper banner__swiper">
@@ -32,38 +32,29 @@
             </div>
             <div class="swiper-button-prev "></div>
             <div class="swiper-button-next "></div>
-
           </div>
-
         </div>
       </section>
       <section class="bonus">
         <div class="bonus__container">
           <div class="bonus__content">
             <div class="bonus__content-logo">
-              <img src="./src/images/bonusStar.png" alt="img">
+              <img src="./src/images/bonusStar.png" alt="logo">
             </div>
             <div class="bonus__content-info">
-              <h3 class="bonus__content-title">Акции и бонусы</h3>
+              <h2 class="bonus__content-title">Акции и бонусы</h2>
               <p class="bonus__content-text">Пополни баланс сегодня и полчи +200 <span>BS</span> в качестве бонуса</p>
               <div class="bonus__content-link">
-                <a class="btn btn_transparent" href="#">Перейти в кошелёк</a>
+                <a class="btn btn_transparent" href="wallet.html">Перейти в кошелёк</a>
               </div>
             </div>
-
-
           </div>
         </div>
       </section>
       <section class="news">
         <div class="news__container">
           <div  class="news__content">
-            <div id="rating" class="news__rating">
-
-
-
-
-            </div>
+            <div id="rating" class="news__rating"></div>
             <div class="news__info"></div>
           </div>
         </div>
@@ -105,12 +96,12 @@
               </svg>
             </div>
             <div class="bonus__content-info bonus__content-info_blue">
-              <h3 class="bonus__content-title">Акции и бонусы</h3>
+              <h2 class="bonus__content-title">Акции и бонусы</h2>
               <p class="bonus__content-text bonus__content-text_blue">Пополни баланс сегодня и полчи +200
                 <span>BS</span> в качестве бонуса
               </p>
               <div class="bonus__content-link">
-                <a class="btn btn_transparent" href="#">Перейти в кошелёк</a>
+                <a class="btn btn_transparent" href="wallet.html">Перейти в кошелёк</a>
               </div>
             </div>
 
@@ -121,14 +112,9 @@
       <section class="game">
         <div class="game__container">
           <div class="game__content">
-            <div class="game__column">
-             
-
-
-            </div>
+            <div class="game__column"></div>
             <div class="game__info">
               <h3 class="game__info-title">Популярные матчи</h3>
-
             </div>
           </div>
         </div>

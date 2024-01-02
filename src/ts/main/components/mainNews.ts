@@ -1,4 +1,4 @@
-export const mainNews = [
+export const mainNews:any = [
   {
     img: "https://res.cloudinary.com/dahl2ad8r/image/upload/v1702483605/main_News1_39e6132ad8.webp",
     title: "С другой стороны дальнейшее развитие различных форм",

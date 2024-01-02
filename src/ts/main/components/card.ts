@@ -1,4 +1,4 @@
-export const cardNews = [
+export const cardNews:any = [
    {
       img: "https://res.cloudinary.com/dahl2ad8r/image/upload/v1702239741/1_c1f4feff7d.webp",
       title: "Главные турниры октября",

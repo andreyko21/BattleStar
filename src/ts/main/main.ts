@@ -58,7 +58,6 @@ class Main implements MainType {
   }
 
   init() {
-    this.numberPlayers();
     this.bannerSwiper();
     this.tourneySwiper();
     this.renderCard();
@@ -68,8 +67,6 @@ class Main implements MainType {
     this.renderTopPlayersDota();
     this.renderSliderTeams();
   }
-
-  numberPlayers() {}
 
   bannerSwiper() {
     new Swiper(".banner__swiper", {
@@ -105,6 +102,7 @@ class Main implements MainType {
       },
       pagination: {
         el: ".swiper-pagination",
+        clickable: true,
       },
     });
   }
@@ -145,8 +143,7 @@ class Main implements MainType {
       const newsTopPlayers =
         getTopPlayers.topPlayers?.data[0]?.attributes?.cs ?? "Error";
       if (Array.isArray(newsTopPlayers)) {
-        const cardArr: any = newsTopPlayers.map((card) => ({
-        
+        const cardArr: any = newsTopPlayers.map((card) => ({ 
           avatar: card?.avatar?.data[0].attributes?.url,
           nickname: card?.nikcname,
           rating: card?.rating,
@@ -216,6 +213,7 @@ class Main implements MainType {
       new MainNews(".news__info", mainNews);
     }
   }
+
   renderSliderTeams() {
     new Slider(".tour", sliderTeams);
   }
@@ -225,13 +223,10 @@ class Main implements MainType {
       GetMapsQuery
     );
 
-    console.log(map);
-
     const newMap = map.maps?.data ?? "Error";
 
     if (Array.isArray(newMap)) {
       const mapArr = newMap.map((card: any) => {
-        console.log(card.attributes.logo.data[0].attributes.url);
         return {
           logo: card.attributes.logo.data[0].attributes.url,
         };

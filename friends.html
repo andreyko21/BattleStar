@@ -8,10 +8,16 @@
     <link rel="stylesheet" href="src/styles/chat/chat.scss" />
   </head>
   <body>
+    <div class="flex-wrapper">
+      <div class="flex-wrapper__sidebar" id="sidebar-section"></div>
+      <div class="flex-wrapper__page page" id="page">
+        <div class="page__main main">
+          <div class="page__container" id="page__container"></div>
+        </div>
+      </div>
+    </div>
     <div class="wrapper" id="wrapper">
-      <main class="page users-page">
-        <div class="page__container" id="page__container"></div>
-      </main>
+      <main class="page users-page"></main>
     </div>
 
     <script type="module" src="src/ts/friend/friends/friends.ts"></script>

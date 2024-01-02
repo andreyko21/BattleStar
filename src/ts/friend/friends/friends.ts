@@ -13,28 +13,9 @@ import { getLocateParam, setLocateParam } from "../../functions/windowLocation";
 
 class FriendsPage {
   constructor() {
-    new Header(".wrapper");
+    new Header("#page");
 
-    new OnlineUsers("#onlineUsers-content", [
-      {
-        name: "SergioRicht",
-        status: "Играет в CS:GO",
-        avatar: UserSidebarImg,
-        online: true,
-      },
-      {
-        name: "SergioRicht",
-        status: "Играет в CS:GO",
-        avatar: UserSidebarImg,
-        online: true,
-      },
-      {
-        name: "SergioRicht",
-        status: "Играет в CS:GO",
-        avatar: UserSidebarImg,
-        online: true,
-      },
-    ]);
+    new OnlineUsers("#onlineUsers-content");
     new AllUsers("#allUsers-content", [
       {
         name: "SergioRicht",
@@ -113,5 +94,5 @@ $(document).ready(() => {
   new LavaLamp("filters");
 
   new FriendsPage();
-  new AppSidebar("wrapper", "ДРУЗЬЯ");
+  new AppSidebar("sidebar-section", "ДРУЗЬЯ");
 });

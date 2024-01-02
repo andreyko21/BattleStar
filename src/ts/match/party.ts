@@ -24,7 +24,6 @@ class AddPlayer {
          class="create-lobby__name-input"
          name="name-lobby"
          placeholder="*Введите название лобби"
-         min="100" max="99900"
          />
       </label>
       `;

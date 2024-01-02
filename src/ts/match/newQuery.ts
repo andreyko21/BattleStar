@@ -1,7 +1,7 @@
 import { request } from 'graphql-request';
 import { GetCsLobbies } from '../../../queries.graphql.d';
 
-import type { QueryRate } from './filtration-for-query';
+import type { QueryRate } from '../types';
 
 interface LobbyData {
   [key: string]: string | boolean;

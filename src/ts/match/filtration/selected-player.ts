@@ -1,25 +1,20 @@
 import { request } from 'graphql-request';
 import { GetAllPlayers } from '../../../../queries.graphql.d';
 import { config } from '../../config.ts';
-import type { PlayerDataForLobby } from '../../types.ts';
+import type { CreatorDataForLobby, PlayerDataForLobby } from '../../types.ts';
+import Sprite from './../../../images/sprite.svg';
 
 class AllPlayerList {
   //  private container: HTMLElement | null;
   private savedAllPlayers: PlayerDataForLobby[] = [];
+  private selectedPlayers: PlayerDataForLobby[] = [];
   //  private playersList: HTMLElement;
 
-  //  constructor(containerId: string) {
-  //   // this.container = document.querySelector(`#${containerId}`);
+  constructor(curentPlayer: CreatorDataForLobby) {
+    this.selectedPlayers.push(curentPlayer);
+  }
 
-  //   // if (!this.container) {
-  //   //   throw new Error(`Container with id #${containerId} not found.`);
-  //   // }
-
-  //    // this.saveAllPlayers();
-  //    // this.playersList = this.createPlayersList();
-  //    // this.render();
-  //  }
-
+  //  !!---????????????
   get allPlayers(): PlayerDataForLobby[] {
     return this.savedAllPlayers;
   }
@@ -41,15 +36,15 @@ class AllPlayerList {
       );
       if (players?.data) {
         const playersObj = players.data.map((item) => ({
-          id: item.id as string,
+          userId: item.attributes?.user?.data?.id as string,
           avatarUrl: item.attributes?.avatar?.data?.attributes?.url || '',
-          alternativeText:
+          avatarAltText:
             item.attributes?.avatar?.data?.attributes?.alternativeText || '',
-          userName: item.attributes?.user?.data?.attributes?.username || '',
-          CSGORank: item.attributes?.CSGO?.Default_information?.rank || 0,
-          Dota2Rank: item.attributes?.DOTA2?.Default_information?.rank || 0,
+          username: item.attributes?.user?.data?.attributes?.username || '',
+          csGoRank: item.attributes?.CSGO?.Default_information?.rank || 0,
+          dota2Rank: item.attributes?.DOTA2?.Default_information?.rank || 0,
         }));
-        console.log(playersObj);
+        console.log('All player', playersObj);
         return playersObj;
       }
     } catch (error) {
@@ -63,11 +58,16 @@ class AllPlayerList {
     // this.saveAllPlayers();
     this.savedAllPlayers = await this.getAllPlayers();
     const template = this.savedAllPlayers.reduce((acc, player) => {
-      acc += `<li class="users-list-block__user-item" data-player-id="${player.id}">
-         <div class="users-list-block__user-name">
-         ${player.userName}
-         </div>
-       </li>`;
+      const isSelectedPlayer = this.selectedPlayers.find(
+        (item) => item.userId === player.userId
+      );
+      if (isSelectedPlayer === undefined) {
+        acc += `<li class="users-list-block__user-item" data-player-id="${player.userId}">
+            <div class="users-list-block__user-name">
+            ${player.username}
+            </div>
+          </li>`;
+      }
       return acc;
     }, '');
 
@@ -85,7 +85,7 @@ class AllPlayerList {
     const template = ` 
       <svg>
         <use
-          xlink:href="src/images/sprite.svg#plus-in-dashcircle"
+          xlink:href="${Sprite}#plus-in-dashcircle"
         ></use>
       </svg>
       <div class="patty__users-list-block users-list-block">
@@ -97,7 +97,7 @@ class AllPlayerList {
         <div class="users-list-block__icon-search">
           <svg>
             <use
-              xlink:href="src/images/sprite.svg#search"
+              xlink:href="${Sprite}#search"
             ></use>
           </svg>
         </div>
@@ -109,10 +109,73 @@ class AllPlayerList {
     addUserBlock.classList.add('patty__add-user');
     addUserBlock.innerHTML = template;
 
+    this.searchPlayers(addUserBlock);
+
     return addUserBlock;
   }
 
-  //  private openPlayerList() {}
+  private searchPlayers(addUserBlock: HTMLDivElement) {
+    const searchInput = addUserBlock.querySelector(
+      '.users-list-block__search-input'
+    ) as HTMLInputElement;
+    searchInput.addEventListener('input', () => {});
+  }
+
+  addSelectedPlayer(
+    addedPlayerFunction: (
+      player: PlayerDataForLobby | CreatorDataForLobby
+    ) => void
+  ) {
+    const usersListBlock = document.querySelector(
+      '.users-list-block__users-list'
+    );
+    usersListBlock?.addEventListener('click', (e) => {
+      const selectedPlayerId = this.getIdOfSelectedPlayer(
+        e.target as HTMLElement,
+        usersListBlock as HTMLElement
+      );
+
+      if (selectedPlayerId !== null) {
+        const selectedPlayerObj = this.savedAllPlayers.find(
+          (item) => item.userId === selectedPlayerId
+        );
+        if (selectedPlayerObj !== undefined) {
+          this.selectedPlayers.push(selectedPlayerObj);
+          addedPlayerFunction(selectedPlayerObj);
+        }
+      }
+    });
+  }
+
+  private getIdOfSelectedPlayer(
+    targetElem: HTMLElement,
+    usersListBlock: HTMLElement
+  ): string | null {
+    const parentWithSearchedClass = targetElem.closest(
+      '.users-list-block__user-item'
+    ) as HTMLElement | null;
+    if (
+      parentWithSearchedClass !== null &&
+      usersListBlock.contains(parentWithSearchedClass)
+    ) {
+      const dataAtr = parentWithSearchedClass.dataset.playerId;
+      if (dataAtr !== undefined) {
+        this.removeListItemOfSelectedPlayer(parentWithSearchedClass);
+        return dataAtr;
+      }
+    }
+    return null;
+  }
+
+  private removeListItemOfSelectedPlayer(
+    selectedPlayerElem: HTMLElement
+  ): void {
+    selectedPlayerElem.style.display = 'none';
+  }
+
+  getSelectedPlayers() {
+    return this.selectedPlayers;
+  }
 }
 
 export { AllPlayerList };

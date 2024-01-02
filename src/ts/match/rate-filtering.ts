@@ -1,4 +1,5 @@
 import { CreateingCheckbox } from '../component/checkbox';
+import { getLocateParam } from '../functions/windowLocation';
 import Sprite from './../../images/sprite.svg';
 import noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
@@ -8,6 +9,7 @@ class RateFiltering {
   private readonly MIN_RANGE = 100;
   private readonly MAX_RANGE = 99900;
 
+  //  private sliderStartParams:[number, number] = [this.MIN_RANGE, this.MAX_RANGE]
   private container: HTMLDivElement | null;
   private checkboxHtml: CreateingCheckbox;
   private sliderValue: number[] = [this.MIN_RANGE, this.MAX_RANGE];
@@ -20,9 +22,18 @@ class RateFiltering {
     this.container = document.querySelector(`#${containerID}`);
     this.checkboxHtml = new CreateingCheckbox('rate-filter', rateOptions, null);
     this.render();
+    this.defineStartingParams();
     this.selectAllCheckbox();
     this.initialSlider();
   }
+
+  private defineStartingParams(): void {
+    const rateParams = getLocateParam('rate')?.split(',');
+    if (rateParams?.[0] === 'between') {
+      this.sliderValue = [+rateParams?.[1], +rateParams?.[2]];
+    }
+  }
+
   private render(): void {
     const template = `
     <div class="rate-filter__title-block accordion__header">
@@ -72,7 +83,7 @@ class RateFiltering {
     this.container?.append(rateSelectedElem);
   }
 
-  private selectAllCheckbox() {
+  private selectAllCheckbox(): void {
     this.allCheckbox = this.container?.querySelectorAll(
       'input[id^="rate-filter"]'
     );
@@ -86,7 +97,7 @@ class RateFiltering {
     ) as target;
 
     noUiSlider.create(rateFilterSlider, {
-      start: [this.MIN_RANGE, this.MAX_RANGE],
+      start: [this.sliderValue[0], this.sliderValue[1]],
       connect: true,
       range: {
         min: this.MIN_RANGE,

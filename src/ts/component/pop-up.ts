@@ -69,14 +69,7 @@ class BasePopUp implements IBasePopUp {
 class OpenLobbyPopUp extends BasePopUp {
   constructor(popUp: string, overlay: string, containerId: string) {
     super(popUp, overlay, containerId);
-    // this.addBtnListner();
   }
-
-  //  private addBtnListner() {
-  //    const notNowBtn = this.popUp.querySelector('#not-now');
-
-  //    notNowBtn?.addEventListener('click', () => location.replace('match.html'));
-  //  }
 
   addInnerContent(
     option: { [key: string]: string | boolean },

@@ -1,4 +1,4 @@
-import Sprite from '../../../images/sprite.svg';
+import Sprite from './../../../images/sprite.svg';
 
 class FiltersBlock {
   private container: HTMLElement | null;
@@ -14,7 +14,7 @@ class FiltersBlock {
   private render() {
     const filterBlockHtml = `<div class="find-lobby__filters-title-block">
       <svg>
-        <use xlink:${Sprite}filters"></use>
+        <use xlink:href="${Sprite}#filters"></use>
       </svg>
       <h2 class="find-lobby__filters-title">Фильтры</h2>
     </div>`;

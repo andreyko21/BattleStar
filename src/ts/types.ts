@@ -308,10 +308,10 @@ export type QueryParamsOfCreateCsLobby = {
 };
 
 export type PlayerDataForLobby = {
-  id: string;
-  avatarUrl: string;
-  alternativeText: string;
-  userName: string;
-  CSGORank: number;
-  Dota2Rank: number;
+  userId: string | null;
+  avatarUrl: string | null;
+  avatarAltText: string | null;
+  username: string | null;
+  csGoRank: number | null;
+  dota2Rank: number | null;
 };

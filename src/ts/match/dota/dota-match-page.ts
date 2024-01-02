@@ -53,8 +53,6 @@ class DotaMatchesPage {
 
     new BaseTabs('content__view-block', forSorting.createObj());
 
-    const selectedPlayers = new AllPlayerList(); //'patty-users'
-
     const rateOptions = [
       { value: '100', label: '100' },
       { value: '200', label: '200' },
@@ -66,7 +64,7 @@ class DotaMatchesPage {
 
     try {
       const creatorLobby = new Creator();
-      creatorLobby.transformCreatorData();
+      const creatorData = await creatorLobby.transformCreatorData();
 
       const queryForMapsData = new GettingMapsData(config.ENDPOINT);
       const queryForGameMode = new GettingGameModeData(config.ENDPOINT);
@@ -76,6 +74,7 @@ class DotaMatchesPage {
       const gameModeData = await queryForGameMode.getCheckboxesData();
       const regionData = await queryForRegionData.getCheckboxesData();
 
+      const selectedPlayers = new AllPlayerList(creatorData); //'patty-users'
       const addUserBlock = await selectedPlayers.render();
       new Patty(
         'find-content',

@@ -16,6 +16,7 @@ class newFiltration {
 
   private allCheckboxesValues: { [key: string]: string[] } = {};
   private rateSliderHendles: HTMLDivElement[];
+  private timeoutUpdateContent: number | undefined;
 
   private lobbyOpenning = new OpenLobbyPopUp(
     'open-lobby-pop-up',
@@ -42,7 +43,6 @@ class newFiltration {
     this.rateSliderHendles = this.selectRateSliderHendles();
     this.addEventHandler();
     this.selectAllChaeckboxValue();
-    // this.updateContent();
     this.updateFiltersObject();
   }
 
@@ -66,8 +66,8 @@ class newFiltration {
 
     this.rateSliderHendles.forEach((elem) => {
       elem.addEventListener('changeRateSlider', () => {
-        this.filtersObj.rate = [];
-        this.updateContent();
+        this.changeFilters('rateSlider');
+        this.addLocationParam();
       });
     });
   }
@@ -86,89 +86,106 @@ class newFiltration {
     }
   }
 
-  //  запуститиЗатримку() {
-  //   // Зупинити попередню затримку, якщо вона вже запущена
-  //   clearTimeout(timeoutId);
+  private runDelay() {
+    window.clearTimeout(this.timeoutUpdateContent);
 
-  //   // Запустити нову затримку на 1 секунду
-  //   timeoutId = setTimeout(відправитиЗапит, 1000);
-  //}
-
-  //  private addSelectedCheckboxToFiltersObject(checkbox: HTMLInputElement) {
-  //    const valueFilterObj = checkbox.name.replace('-filter', '');
-
-  //    if (checkbox.checked) {
-  //      this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]?.push(
-  //        checkbox.value
-  //      );
-  //    }
-  //  }
+    this.timeoutUpdateContent = window.setTimeout(
+      () => this.updateContent(),
+      1500
+    );
+  }
 
   private updateFiltersObject() {
     for (const [key, value] of getQueryParams().entries()) {
-      console.log(`${key}, ${value}`);
       const valueArr = value.split(',');
-      if (this.allCheckbox !== null) {
+      if (key === 'rate' && valueArr[0] === 'between') {
+        this.filtersObj.rate = ['between', valueArr[1], valueArr[2]];
+      } else if (this.allCheckbox !== null) {
         this.allCheckbox.forEach((checkbox) => {
           const checkboxName = checkbox.name.replace('-filter', '');
           if (checkboxName === key && valueArr.includes(checkbox.value)) {
             checkbox.checked = true;
-            this.filtersObj[checkboxName as keyof typeof this.filtersObj]?.push(
-              checkbox.value
-            );
+            if (checkboxName !== 'rate') {
+              this.filtersObj.rate?.push(checkbox.value);
+            } else {
+              if (this.filtersObj.rate?.length !== 0) {
+                this.filtersObj.rate?.push(checkbox.value);
+              } else {
+                this.filtersObj.rate = ['in', checkbox.value];
+              }
+            }
           }
         });
       }
     }
 
     this.updateContent();
-
-    // this.allCheckbox?.forEach((checkbox) => {
-    //   this.addSelectedCheckboxToFiltersObject(checkbox);
-    // });
   }
 
-  //  private updateFiltersObject() {
-  //    this.allCheckbox?.forEach((checkbox) => {
-  //      const valueFilterObj = checkbox.name.replace('-filter', '');
-
-  //      if (checkbox.checked) {
-  //        this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]?.push(
-  //          checkbox.value
-  //        );
-  //      }
-  //    });
-  //    this.updateContent();
-  //  }
-
-  private changeFilters(checkbox: HTMLInputElement) {
-    const valueFilterObj = checkbox.name.replace('-filter', '');
-
-    if (checkbox.checked) {
-      this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]?.push(
-        checkbox.value
-      );
+  private changeFilters(checkbox: HTMLInputElement | string) {
+    if (typeof checkbox === 'string') {
+      this.filtersObj.rate = [
+        'between',
+        this.rateSliderHendles[0].innerHTML.slice(2),
+        this.rateSliderHendles[1].innerHTML.slice(2),
+      ];
     } else {
-      const indexValue = this.filtersObj[
-        valueFilterObj as keyof typeof this.filtersObj
-      ]?.indexOf(checkbox.value);
+      const valueFilterObj = checkbox.name.replace('-filter', '');
 
-      if (indexValue !== undefined) {
-        (
-          this.filtersObj[
-            valueFilterObj as keyof typeof this.filtersObj
-          ] as string[]
-        ).splice(indexValue, 1);
+      if (checkbox.checked) {
+        if (valueFilterObj !== 'rate') {
+          this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]?.push(
+            checkbox.value
+          );
+        } else {
+          if (
+            this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]
+              ?.length !== 0 &&
+            this.filtersObj[
+              valueFilterObj as keyof typeof this.filtersObj
+            ]?.[0] == 'in'
+          ) {
+            this.filtersObj[
+              valueFilterObj as keyof typeof this.filtersObj
+            ]?.push(checkbox.value);
+          } else {
+            this.filtersObj.rate = ['in', checkbox.value];
+          }
+        }
+      } else {
+        const indexValue = this.filtersObj[
+          valueFilterObj as keyof typeof this.filtersObj
+        ]?.indexOf(checkbox.value);
+
+        if (indexValue !== undefined) {
+          if (
+            valueFilterObj === 'rate' &&
+            this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]
+              ?.length === 2
+          ) {
+            (
+              this.filtersObj[
+                valueFilterObj as keyof typeof this.filtersObj
+              ] as string[]
+            ).splice(0);
+          } else {
+            (
+              this.filtersObj[
+                valueFilterObj as keyof typeof this.filtersObj
+              ] as string[]
+            ).splice(indexValue, 1);
+          }
+        }
       }
     }
-    this.updateContent();
+
+    this.runDelay();
   }
 
   private async updateContent() {
     const params = this.changeFiltersObj();
 
     const matchQuery = new MatchesQuery(params);
-
     const query = await matchQuery.getData();
 
     if (query) {
@@ -193,15 +210,32 @@ class newFiltration {
     };
 
     if (this.filtersObj.rate?.length === 0) {
-      //!!------------------------Замінити
       objForQuery.rate.between = [
         +this.rateSliderHendles[0].innerHTML.slice(1),
         +this.rateSliderHendles[1].innerHTML.slice(1),
       ];
-    } else if (this.filtersObj.rate) {
-      objForQuery.rate.in = this.filtersObj.rate?.map((item): number =>
-        Number(item)
+    } else if (
+      Array.isArray(this.filtersObj.rate) &&
+      this.filtersObj.rate[0] == 'in'
+    ) {
+      objForQuery.rate.in = this.filtersObj.rate?.reduce(
+        (acc: number[], item, index): number[] => {
+          if (index !== 0) {
+            acc.push(+item);
+          }
+          return acc;
+        },
+        []
       );
+    }
+    if (
+      Array.isArray(this.filtersObj.rate) &&
+      this.filtersObj.rate[0] == 'between'
+    ) {
+      objForQuery.rate.between = [
+        +this.filtersObj.rate[1],
+        +this.filtersObj.rate[2],
+      ];
     }
 
     if (this.filtersObj.gameMode?.length === 0) {
@@ -213,7 +247,6 @@ class newFiltration {
         Number(item)
       );
     }
-    console.log(objForQuery);
 
     return objForQuery;
   }
@@ -230,9 +263,7 @@ class newFiltration {
         this.allCheckboxesValues[valueKey] = [checkbox.value];
       }
     });
-    console.log(this.allCheckboxesValues);
   }
 }
 
 export { newFiltration };
-export type { QueryRate };

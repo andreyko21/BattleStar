@@ -1,13 +1,16 @@
 //import { AllPlayerList } from './selected-player';
-import type { CreatorDataForLobby } from '../../types.ts';
+import type { CreatorDataForLobby, PlayerDataForLobby } from '../../types.ts';
 //PlayerDataForLobby,
 
 class Patty {
   private container: HTMLElement | null;
   private curentPlayer: CreatorDataForLobby;
   private addUserBlock: HTMLElement;
+  private playersBlock: HTMLDivElement | null = null;
   //  private searchInput: HTMLInputElement | null = null;
   //private allPlayerList:PlayerDataForLobby[];
+
+  //  private lobbyPlayersList: (CreatorDataForLobby | PlayerDataForLobby)[] = []; //??????!!!!!
 
   constructor(
     containerId: string,
@@ -30,7 +33,7 @@ class Patty {
       <div class="patty__help-block">
         <div class="patty__help-block-icon">?</div>
         <div class="patty__help-block-text">
-          Дуже корисна підказка! Дуже корисна підказка!
+          Дуже корисна підказка!
         </div>
       </div>`;
 
@@ -55,33 +58,49 @@ class Patty {
     return ratingBlock;
   }
 
+  changeTotalRank(players: PlayerDataForLobby[]) {
+    const rankBlock = this.createRatingBlock();
+    const rankField = rankBlock.querySelector(
+      '.patty__rating'
+    ) as HTMLDivElement;
+    const totalRank = players.reduce((acc, player) => {
+      acc += player.csGoRank !== null ? player.csGoRank : 0;
+      return acc;
+    }, 0);
+    rankField.innerHTML = totalRank.toString();
+  }
+
   private createPlayersBlock() {
     const playersBlock = document.createElement('div');
     playersBlock.classList.add('patty__users');
     playersBlock.id = 'patty-users';
 
-    playersBlock.appendChild(this.createCurentPlayer());
+    // playersBlock.appendChild(this.addPlayer(this.curentPlayer));
     playersBlock.appendChild(this.addUserBlock);
 
+    this.playersBlock = playersBlock;
     return playersBlock;
   }
 
-  private createCurentPlayer() {
-    const curentPlayerHTML = `
+  addPlayer(player: PlayerDataForLobby | CreatorDataForLobby): void {
+    // this.lobbyPlayersList.push(player);
+    const addedPlayerHTML = `
       <div class="user-block__avatar-img-block">
         <img
-          src="${this.curentPlayer.avatarUrl}"
-          alt="${this.curentPlayer.avatarAltText}"
+          src="${player.avatarUrl}"
+          alt="${player.avatarAltText}"
           class="user-block__avatar-img"
         />
         <div class="user-block__avatar-online"></div>
       </div>
-      <div class="user-block__info">${this.curentPlayer.username}</div>`;
+      <div class="user-block__info">${player.username}</div>`;
 
-    const curentPlayer = document.createElement('div');
-    curentPlayer.classList.add('patty__user-block', 'user-block');
-    curentPlayer.innerHTML = curentPlayerHTML;
-    return curentPlayer;
+    const addedPlayer = document.createElement('div');
+    addedPlayer.classList.add('patty__user-block', 'user-block');
+    addedPlayer.innerHTML = addedPlayerHTML;
+
+    this.playersBlock?.insertBefore(addedPlayer, this.addUserBlock);
+    // return addedPlayer;
   }
 
   //private addAddedPlayerBlock() {
@@ -94,6 +113,7 @@ class Patty {
 
     pattyBlock.appendChild(this.createTitleBlock());
     pattyBlock.appendChild(this.createPlayersBlock());
+    this.addPlayer(this.curentPlayer);
     pattyBlock.appendChild(this.createRatingBlock());
 
     this.container?.appendChild(pattyBlock);

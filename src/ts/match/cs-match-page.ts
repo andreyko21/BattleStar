@@ -79,8 +79,6 @@ class CsMatchesPage {
     new SortingBlock('sorting-block-container', true);
     new BaseTabs('sorting-block'); //, forSorting.createObj()
 
-    const selectedPlayers = new AllPlayerList(); //'patty-users'
-
     const rateOptions = [
       { value: '100', label: '100' },
       { value: '200', label: '200' },
@@ -92,7 +90,9 @@ class CsMatchesPage {
 
     try {
       const creatorLobby = new Creator();
-      creatorLobby.transformCreatorData();
+      const creatorData = await creatorLobby.transformCreatorData();
+
+      const selectedPlayers = new AllPlayerList(creatorData);
 
       const queryForMapsData = new GettingMapsData(config.ENDPOINT);
       const queryForGameMode = new GettingGameModeData(config.ENDPOINT);
@@ -103,11 +103,8 @@ class CsMatchesPage {
       const regionData = await queryForRegionData.getCheckboxesData();
 
       const addUserBlock = await selectedPlayers.render();
-      new Patty(
-        'find-content',
-        creatorLobby.transformedCreatorData,
-        addUserBlock
-      );
+      const patty = new Patty('find-content', creatorData, addUserBlock);
+      selectedPlayers.addSelectedPlayer(patty.addPlayer.bind(patty));
 
       new FiltersBlock('find-content');
 
@@ -144,10 +141,7 @@ class CsMatchesPage {
 
       new newFiltration('filters-find-lobby');
 
-      new CreatingCsLobby(
-        'create-content',
-        creatorLobby.transformedCreatorData
-      );
+      new CreatingCsLobby('create-content', creatorData);
     } catch (error) {}
   }
 }

@@ -1,8 +1,9 @@
 import { getRequest } from '../functions/request';
+import { getCookie } from '../functions/cookie';
 import { CreatorLobby, GetMyInfo } from '../../../queries.graphql.d';
 import type { CreatorDataForLobby } from '../types';
 
-export class Creator {
+class Creator {
   transformedCreatorData: CreatorDataForLobby = {
     userId: null,
     username: null,
@@ -58,13 +59,10 @@ export class Creator {
         creatorData.usersPermissionsUser.data.attributes.player?.data
           ?.attributes.DOTA2?.Default_information?.rank || null,
     };
-    console.log(this.transformedCreatorData);
+    console.log('Creator data received');
+
+    return this.transformedCreatorData;
   }
 }
 
-function getCookie(name: string) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
-  return null;
-}
+export { Creator };

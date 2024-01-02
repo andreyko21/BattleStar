@@ -132,8 +132,14 @@ class CreatingCsLobby {
     const titleInput = this.form?.querySelector("input[name='name-lobby']");
 
     if (titleInput !== undefined) {
-      this.params.title = (titleInput as HTMLInputElement).value;
+      this.params.title = (titleInput as HTMLInputElement).value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     }
+    console.log('params.title', this.params.title);
   }
 
   private getAntyCheatData(): void {
@@ -168,12 +174,15 @@ class CreatingCsLobby {
       ])
       .addField('#rate-input', [
         {
-          rule: 'minLength',
+          rule: 'number',
+        },
+        {
+          rule: 'minNumber',
           value: 100,
           errorMessage: 'Введіть ставку від 100 до 999900',
         },
         {
-          rule: 'maxLength',
+          rule: 'maxNumber',
           value: 999900,
           errorMessage: 'Введіть ставку від 100 до 999900',
         },

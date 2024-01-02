@@ -1,4 +1,4 @@
-import Sprite from '../../../images/sprite.svg';
+import Sprite from './../../../images/sprite.svg';
 
 class ContentFilteringSectionForMatch {
   private container: HTMLDivElement | null;

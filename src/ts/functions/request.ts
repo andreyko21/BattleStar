@@ -12,7 +12,7 @@ async function getRequest(
     });
 
     if (response) {
-      console.log('Response:', response);
+      //console.log('Response:', response);
       return response;
     } else {
       throw new Error('No response data received');

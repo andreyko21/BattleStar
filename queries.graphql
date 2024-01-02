@@ -1225,6 +1225,7 @@ query GetAllPlayers {
         }
         user {
           data {
+            id
             attributes {
               username
             }

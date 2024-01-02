@@ -125,7 +125,7 @@ export class OnlineUsers {
       </div>
       <div class="chat__message-block">
         <p class="chat__message-block-user-name">${senderName}</p>
-        <p class="chat__message-block-user-message">${text}</p>
+        <p class="chat__message-block-user-message">${escapeHtml(text)}</p>
       </div>
       <p class="chat__message-time">${time}</p>
     </div>
@@ -295,4 +295,13 @@ export class OnlineUsers {
     }
     return null;
   }
+}
+
+function escapeHtml(unsafe: string) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }

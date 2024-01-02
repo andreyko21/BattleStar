@@ -120,6 +120,9 @@ body {
         font-family: Roboto;
         font-size: 18px;
         font-weight: 500;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        max-width: 800px;
       }
 
       &-user-image {
@@ -189,6 +192,19 @@ body {
         max-height: 38px;
         width: 100%;
         height: 100%;
+      }
+
+      &:hover {
+        background-color: darken(#fac704, 10%);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px lighten(#fac704, 10%);
+      }
+
+      &:active {
+        background-color: lighten(#fac704, 10%);
       }
     }
   }
@@ -593,5 +609,9 @@ body {
   overflow-y: scroll;
   &::-webkit-scrollbar {
     position: absolute;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgb(18, 25, 43);
+    border: none;
   }
 }

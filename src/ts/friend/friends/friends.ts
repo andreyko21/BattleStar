@@ -56,6 +56,7 @@ class FriendsPage {
         online: true,
       },
     ]);
+    //@ts-ignore
     new SearchUsers("#search-content", [
       {
         name: "SergioRicht",

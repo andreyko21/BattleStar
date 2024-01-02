@@ -28,11 +28,10 @@
       left: 0;
       z-index: -1;
    }
-   &__container{
-   display: flex;
-
+   &__container {
+      display: flex;
    }
-   &__content{
+   &__content {
       width: 1227px;
       margin-left: 44px;
       background: $gray800;
@@ -42,7 +41,8 @@
       justify-content: space-between;
    }
 
-   &__item{}
+   &__item {
+   }
 
    &__row {
       display: flex;
@@ -67,6 +67,12 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
+      &-row {
+         display: flex;
+         width: 650px;
+         justify-content: space-between;
+      }
       &-id,
       &-nickname,
       &-biography,
@@ -78,13 +84,13 @@
          line-height: normal;
       }
       &-id {
-         width: 275px;
-         display: flex;
-         align-items: center;
-         justify-content: space-between;
-         span {
-            color: $gray25;
-            margin-left: auto;
+         &_data {
+            display: flex;
+            align-items: center;
+            width: 470px;
+            span {
+               color: $gray25;
+            }
          }
          svg {
             width: 18px;
@@ -94,41 +100,42 @@
          }
       }
       &-nickname {
-         display: flex;
-         align-items: center;
-         justify-content: space-between;
-         width: 307px;
+         &_data {
+            width: 470px;
+         }
          span {
             color: $gray25;
             margin-left: auto;
             font-size: 24px;
-            &._act{
+            &._act {
                border: 1px solid $gray200;
                padding: 4px;
             }
          }
       }
       &-biography {
-         width: 643px;
-         display: flex;
-         justify-content: space-between;
+         &_data {
+            width: 470px;
+         }
+         // width: 470px;
+         // display: flex;
+         // justify-content: space-between;
          span {
             color: $gray25;
             margin-left: auto;
             font-size: 14px;
             width: 469px;
 
-            &._act{
+            &._act {
                border: 1px solid $gray200;
                padding: 4px;
             }
          }
       }
       &-data {
-         width: 265px;
-         display: flex;
-         align-items: center;
-         justify-content: space-between;
+         &_data {
+            width: 470px;
+         }
          span {
             color: $gray25;
             margin-left: auto;
@@ -162,6 +169,7 @@
          width: 24px;
          height: 24px;
          fill: #6fff57;
+         margin-left: 8px;
       }
       &:nth-child(2) {
          width: 290px;
@@ -195,4 +203,46 @@
          }
       }
    }
+
+   &__edit {
+      &-text {
+         color: $gray25;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+      }
+      &-inp {
+         width: 100%;
+         height: 40px;
+         background: $gray800;
+         border: 1px solid $gray200;
+         border-radius: 4px;
+         padding: 0 10px;
+         color: $gray25;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: normal;
+         margin: 10px 0;
+
+         &:last-child {
+            margin-bottom: 0;
+            height: 150px;
+            &::placeholder {
+               position: absolute;
+               top: 12px;
+            }
+         }
+      }
+   }
+}
+
+div:where(.swal2-container) div:where(.swal2-popup) {
+   background: rgba(248, 248, 248, 0.1) !important;
+   backdrop-filter: blur(110px);
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+   border: 1px solid #f8f8f8 !important;
+   background: rgba(248, 248, 248, 0.1) !important;
+   backdrop-filter: blur(40px);
+   width: 152px;
 }

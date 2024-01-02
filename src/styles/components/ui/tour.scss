@@ -29,9 +29,17 @@
          font-size: 16px;
          font-weight: 500;
          margin-bottom: 40px;
+         span {
+            color: $gray100;
+         }
       }
       &-teams {
          margin-bottom: 15px;
+      }
+
+      &-list{
+         height: 196px;
+         overflow: auto;
       }
       &-row {
          display: flex;

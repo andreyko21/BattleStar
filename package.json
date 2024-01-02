@@ -38,6 +38,7 @@
     "just-validate": "^4.3.0",
     "nouislider": "^15.7.1",
     "socket.io-client": "^4.7.2",
+    "sweetalert2": "^11.10.2",
     "swiper": "^11.0.5"
   }
 }

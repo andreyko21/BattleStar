@@ -1,143 +1,200 @@
-
 import Sprite from "./../../images/sprite.svg";
+import Swal from "sweetalert2";
 import $ from "jquery";
 import { Header } from "../component/header/header";
 import { AppSidebar } from "../component/sidebar/sidebar";
+import { AsideMenu } from "../component/asideMenu";
+import { UpdateUser } from "../../../queries.graphql.d";
+import request from "graphql-request";
+
+new AsideMenu();
 new Header("#wrapper");
 new AppSidebar("wrapper", "ГЛАВНАЯ");
 interface IPersonalData {
-   id: number;
-   nickname: string;
-   bio: string;
-   data: string;
-   email: string;
-   account: string;
-   avatar: File[];
+  id: number;
+  nickname: string;
+  bio: string;
+  data: string;
+  email: string;
+  account: string;
+  avatar: string[][];
 }
 class Personal {
-   private content: string;
-   private personal: IPersonalData[];
+  private content: string;
+  private personal: IPersonalData[];
 
+  constructor(content: string, personal: IPersonalData[]) {
+    this.content = content;
+    this.personal = personal;
+    this.renderPersonal();
+    this.changeFile();
+  }
 
-   constructor(content: string, personal: IPersonalData[]) {
-      this.content = content;
-      this.personal = personal;
-      this.renderPersonal();
-      this.changeBio();
-      // this.changeFile();
+  changeFile() {
+    $(".personal__avatar-inp").on("change", function (e) {
+      let file = (e.target as HTMLInputElement).files?.[0];
+      if (file) {
+        let url = URL.createObjectURL(file);
+        $(".personal__avatar-label").css(
+          "background-image",
+          "url(" + url + ")"
+        );
+        personalData[0].avatar.push(url);
+      }
+    });
+  }
 
-   }
-   changeBio(){
-      $('.personal__row-edit_bio').on('click', () => {
-         const bio = $('.personal__info-biography span');
-         const nickname = $('.personal__info-nickname span');
-         nickname.attr('contenteditable', 'true');
-         nickname.addClass('_act');
-         bio.attr('contenteditable', 'true');
-         bio.addClass('_act');
-         console.log('click');
-   
-         bio.on('blur', function() {
-            $(this).removeAttr('contenteditable');
-            $(this).removeClass('_act');
-            const newText = $(this).text();
-            personalData[0].bio = newText;
-            console.log(personalData[0].bio);
-         });
-         nickname.on('blur', function() {
-            $(this).removeAttr('contenteditable');
-            $(this).removeClass('_act');
-            const newText = $(this).text();
-            personalData[0].nickname = newText;
-            console.log(personalData[0].bio);
-         });
-      });
-   }
+  renderEdit() {
+    const editHtml = `
+   <div class="personal__edit">
+   <p class="personal__edit-text">Будь ласка, введіть вашу оновлену інформацію.</p>      
+   <input type="text" class="personal__edit-inp personal__edit-inp_name" placeholder="New nickname">
+   <input type="text" class="personal__edit-inp personal__edit-inp_bio" placeholder="Biography">
+   </div>
+   `;
+    return editHtml;
+  }
 
-   // changeFile(){
-   //    $('.personal__avatar-inp').on('change', function(e) {
-   //       let file = e.target.files[0];
-   //       let url = URL.createObjectURL(file) as string;
-   //       $('.personal__avatar-label').css('background-image', 'url(' + url + ')');
-   //       personalData[0].avatar.push(url);
-   //    });
-   // }
-
-
-   private renderPersonal(): void {
-      const PersonalHtml =`
-            <div class="personal__item">
-            <div class="personal__row">
-               <h2 class="personal__row-title">Основная информация</h2>
-               <button class="personal__row-edit personal__row-edit_bio">Редактировать</button>
-            </div>
-            <div class="personal__info">
-               <p class="personal__info-id">
-                  ID: <span>${this.personal[0].id}</span>
-                  <svg>
-                     <use xlink:href="${Sprite}#copy"></use>
-                  </svg>
-               </p>
-               <p class="personal__info-nickname">
-                  Никнейм: <span>${this.personal[0].nickname}</span>
-               </p>
-               <p class="personal__info-biography">
-                  Био <span>${this.personal[0].bio}</span>
-               </p>
-               <p class="personal__info-data"> Дата регистрации: <span>${this.personal[0].data}</span></p>
-            </div>
-            <hr class="personal__line">
-            </hr>
-            <div class="personal__row">
-               <h2 class="personal__row-title">Адрес электронной почты</h2>
-               <button class="personal__row-edit">Редактировать</button>
-            </div>
-            <p class="personal__email">
-               Электронная почта <span>${this.personal[0].email}</span>
+  renderPersonal() {
+    const PersonalHtml = `
+      <div class="personal__item">
+      <div class="personal__row">
+         <h2 class="personal__row-title">Основная информация</h2>
+         <button class="personal__row-edit personal__row-edit_bio">Редактировать</button>
+      </div>
+      <div class="personal__info">
+         <div class="personal__info-row">
+            <p class="personal__info-id">ID:</p>
+            <p class="personal__info-id personal__info-id_data">
+               <span>${this.personal[0].id}</span>
                <svg>
-                  <use xlink:href="${Sprite}#check"></use>
+                  <use xlink:href="${Sprite}#copy"></use>
                </svg>
             </p>
-            <hr class="personal__line">
-            </hr>
-            <div class="personal__row">
-               <h2 class="personal__row-title">Аккаунт Steam</h2>
-               <button class="personal__row-edit">Редактировать</button>
-            </div>
-            <div class="personal__account">
-               <p class="personal__email">
-                  Электронная почта <span>${this.personal[0].email}</span>
-                  <svg>
-                     <use xlink:href="${Sprite}#check"></use>
-                  </svg>
-               </p>
-               <p class="personal__email">
-                  Аккаунт <span>${this.personal[0].account}</span>
-               </p>
-            </div>
          </div>
-         <div class="personal__avatar">
-            <input class="personal__avatar-inp" type=file id=pct>
-            <label class="personal__avatar-label" for=pct><span>Изменить</span></label>
-         </div>`;
+         <div class="personal__info-row">
+            <p class="personal__info-nickname">Никнейм:</p>
+            <p class="personal__info-nickname personal__info-nickname_data">${this.personal[0].nickname}</p>
+         </div>
+         <div class="personal__info-row">
+            <p class="personal__info-biography">Био</p>
+            <p class="personal__info-biography personal__info-biography_data">${this.personal[0].bio}</p>
+         </div>
+         <div class="personal__info-row">
+            <p class="personal__info-data"> Дата регистрации:</p>
+            <p class="personal__info-data personal__info-data_data">${this.personal[0].data}</p>
+         </div>
+      </div>
+      <hr class="personal__line">
+      </hr>
+      <div class="personal__row">
+         <h2 class="personal__row-title">Адрес электронной почты</h2>
+         <button class="personal__row-edit">Редактировать</button>
+      </div>
+      <p class="personal__email">
+         Электронная почта <span>${this.personal[0].email}</span>
+         <svg>
+            <use xlink:href="${Sprite}#check-mark"></use>
+         </svg>
+      </p>
+      <hr class="personal__line">
+      </hr>
+      <div class="personal__row">
+         <h2 class="personal__row-title">Аккаунт Steam</h2>
+         <button class="personal__row-edit">Редактировать</button>
+      </div>
+      <div class="personal__account">
+         <p class="personal__email">
+            Электронная почта <span>${this.personal[0].email}</span>
+            <svg>
+               <use xlink:href="${Sprite}#check-mark"></use>
+            </svg>
+         </p>
+         <p class="personal__email">
+            Аккаунт <span>${this.personal[0].account}</span>
+         </p>
+      </div>
+   </div>
+   <div class="personal__avatar">
+      <input class="personal__avatar-inp" type=file id=pct>
+      <label class="personal__avatar-label" for=pct><span>Изменить</span></label>
+   </div>`;
 
-   const content = document.querySelector(this.content);
-   if (content) {
+    const content = document.querySelector(this.content);
+    if (content) {
       content.innerHTML = PersonalHtml;
-   }
-   }
+    }
+
+    const context = this;
+
+    $(".personal__row-edit_bio").on("click", async function () {
+      Swal.fire({
+        html: context.renderEdit(),
+        showCancelButton: true,
+        confirmButtonText: "Submit",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const newNickname = $(".personal__edit-inp_name").val();
+          const newBiography = $(".personal__edit-inp_bio").val();
+          const userId = getCookie("id");
+
+         try {
+            const response = await request(
+               "https://battle-star-app.onrender.com/graphql",
+               UpdateUser,
+               {
+                  id: userId,
+                  newUsername: newNickname,
+                  newBiography: newBiography,
+               }
+            );
+            setCookie("name", newNickname);
+
+            console.log(response);
+         } catch (error) {
+            console.error(error);
+          }
+        }
+      });
+    });
+  }
 }
-const personalData = [   {
-   id: 37589023,
-   nickname: "MAX Richter",
-   bio: "Значимость этих проблем настолько очевидна, что консультация с широким активом способствует подготовки и реализации позиций, занимаемых участниками в отношении поставленных задач",
-   data: "16.05.2021",
-   email: "Example@mail.com",
-   account: "VERITA_Luts",
-   avatar: [],
- },
+function setCookie(name:any, value:any) {
+   document.cookie = name + "=" + (value || "") + "; path=/";
+   // document.cookie = bio + "=" + (value || "") + "; path=/";
+ }
+
+function getCookie(cname: string): string {
+  const name = cname + "=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(";");
+
+  for (const cookie of cookieArray) {
+    let cleanCookie = cookie.trim();
+    if (cleanCookie.indexOf(name) === 0) {
+      return cleanCookie.substring(name.length);
+    }
+  }
+
+  return "";
+}
+
+let name = getCookie("name");
+let id = getCookie("id");
+let token = getCookie("token");
+let email = getCookie("email");
+console.log(name, id, token, email);
+
+const personalData: any = [
+  {
+    id: id,
+    nickname: name,
+    bio: "",
+    data: "16.05.2021",
+    email: email,
+    account: "",
+   //  avatar: "",
+  },
 ];
 
-new Personal('.personal__content', personalData);
-
-
+new Personal(".personal__content", personalData);

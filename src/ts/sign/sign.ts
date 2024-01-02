@@ -5,10 +5,9 @@ import { LavaLamp } from "../component/lava-lamp.ts";
 import { Header } from "../component/header/header";
 import { request } from "graphql-request";
 
-
 new Header("#wrapper");
-new BaseTabs('sign__form');
-new LavaLamp('sign__form');
+new BaseTabs("sign__form");
+new LavaLamp("sign__form");
 
 type SignType = {
   signUp: JQuery<HTMLFormElement>;
@@ -55,7 +54,7 @@ class Sign implements SignType {
     this.getFormVal();
     this.singInBtn();
     this.singUpBtn();
-    this.showPassword()
+    this.showPassword();
   }
 
   getFormVal(): IFormVal {
@@ -93,18 +92,24 @@ class Sign implements SignType {
       })
       .then((response) => {
         console.log("Well done!");
-        console.log("User profile", response.data.user);
-        console.log("User token", response.data.jwt);
         document.cookie = `token=${response.data.jwt}`;
+        document.cookie = `id=${response.data.user.id}`;
+        document.cookie = `name=${response.data.user.username}`;
+        document.cookie = `email=${response.data.user.email}`;
+
+        this.resetFormFIelds();
+        window.location.href = 'index.html'
       })
       .catch((error) => {
         console.log("An error occurred:", error.response);
         $("#nickname").addClass("form__signin-inp_error ");
         $("#password").addClass("form__signin-inp_error ");
-        $(".form__signin-label_nickname").css("color", "#f13939")
+        $(".form__signin-label_nickname")
+          .css("color", "#f13939")
           .text(error.response.data.error.details.errors[0].message);
-        $(".form__signin-label_password").css("color", "#f13939").text(error.response.data.error.details.errors[1].message);
-        
+        $(".form__signin-label_password")
+          .css("color", "#f13939")
+          .text(error.response.data.error.details.errors[1].message);
       });
   }
 
@@ -118,12 +123,12 @@ class Sign implements SignType {
       })
       .then(async (response) => {
         console.log("Well done!");
-        console.log("User profile", response.data.user);
-        console.log("User token", response.data.jwt);
         document.cookie = `token=${response.data.jwt}`;
         document.cookie = `id=${response.data.user.id}`;
         document.cookie = `name=${response.data.user.username}`;
-
+        document.cookie = `email=${response.data.user.email}`;
+        window.location.href = 'index.html'
+        this.resetFormFIelds();
         const userId = response.data.user.id;
 
         const mutation = `
@@ -141,7 +146,7 @@ class Sign implements SignType {
             }
           }
         `;
-  
+
         try {
           const data = await request(
             "https://battle-star-app.onrender.com/graphql",
@@ -151,25 +156,27 @@ class Sign implements SignType {
           console.log("GraphQL Mutation Response:", data);
         } catch (error) {
           console.error("GraphQL Mutation Error:", error);
-         
         }
-
-
       })
       .catch((error) => {
         console.log("An error occurred:", error.response);
-        $("#name").addClass("form__signin-inp_error ");
-        $("#email").addClass("form__signin-inp_error ");
-        $("#psw").addClass("form__signin-inp_error ");
-        $(".form__signup-label_name")
-          .css("color", "#f13939")
-          .text(error.response.data.error.details.errors[1].message);
-        $(".form__signup-label_email")
-          .css("color", "#f13939")
-          .text(error.response.data.error.details.errors[0].message);
-        $(".form__signup-label_psw")
-          .css("color", "#f13939")
-          .text(error.response.data.error.details.errors[2].message);
+        $("#name").addClass("form__signin-inp_error");
+        $("#email").addClass("form__signin-inp_error");
+        $("#psw").addClass("form__signin-inp_error");
+        
+        if (error.response.data.error.message === "Email or Username are already taken") {
+          alert("Email або Username вже зайняті");
+        } else {
+          $(".form__signup-label_name")
+            .css("color", "#f13939")
+            .text(error.response.data.error.details.errors[1].message);
+          $(".form__signup-label_email")
+            .css("color", "#f13939")
+            .text(error.response.data.error.details.errors[0].message);
+          $(".form__signup-label_psw")
+            .css("color", "#f13939")
+            .text(error.response.data.error.details.errors[2].message);
+        }
       });
   }
 
@@ -181,10 +188,10 @@ class Sign implements SignType {
         );
         let passwordField = $("#password");
         let pswField = $("#psw");
-        
+
         let passwordType = passwordField.attr("type");
         let pswType = pswField.attr("type");
-        
+
         if (passwordType === "password" || pswType === "password") {
           passwordField.attr("type", "text");
           pswField.attr("type", "text");
@@ -194,6 +201,13 @@ class Sign implements SignType {
         }
       });
     });
+  }
+  resetFormFIelds() {
+    this.nickname.val("");
+    this.password.val("");
+    this.name.val("");
+    this.email.val("");
+    this.pswd.val("");
   }
 }
 

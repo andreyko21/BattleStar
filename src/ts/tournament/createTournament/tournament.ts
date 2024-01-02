@@ -9,6 +9,7 @@ import { EntryRate } from "./components/entryRate";
 import { TournamentSelectTime } from "./components/selectTime";
 import { TournamentRegionLimit } from "./components/regionLimit";
 import { ButtonCreator } from "./components/button";
+import { EntryRank } from "./components/rank";
 
 export abstract class TournamentCreation {
   public validation: JustValidate;
@@ -21,6 +22,9 @@ export abstract class TournamentCreation {
   public tournamentSelectTime: TournamentSelectTime | undefined;
   public tournamentRegionLimit: TournamentRegionLimit | undefined;
   buttonSubmit: ButtonCreator | undefined;
+  CS2TournamentCreationPage: any;
+  Dota2TournamentCreationPage: any;
+  entryRank: EntryRank | undefined;
 
   constructor(mainContainerId: string) {
     this.$mainContent = $(`#${mainContainerId}`);
@@ -51,6 +55,11 @@ export abstract class TournamentCreation {
       "tournament-description",
       "tournamentDescription"
     );
+    this.entryRank = new EntryRank("main-content", [
+      { value: "1000", label: "1000 BS" },
+      { value: "5000", label: "5000 BS" },
+      { value: "10000", label: "10 000 BS" },
+    ]);
     this.teamCountInput = new TeamCountInput("main-content", [4, 8, 16, 32]);
     this.entryRate = new EntryRate("main-content", [
       { value: "1000", label: "1000 BS" },

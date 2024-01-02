@@ -58,6 +58,16 @@ class BaseTabs implements IBaseTabs {
           this.selectContentContainer(hash);
         }
       });
+    } else {
+      this.allTabs.forEach((item, index) => {
+        if (index === 0) {
+          this.changeActiveTab(item);
+          if (this.objectWithMethod) {
+            this.selectMethod(item.dataset.tabName!);
+          }
+          this.selectContentContainer(item.dataset.tabName!);
+        }
+      });
     }
   }
 

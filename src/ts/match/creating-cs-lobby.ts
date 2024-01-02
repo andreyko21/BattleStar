@@ -2,14 +2,14 @@ import { request } from 'graphql-request';
 //@ts-ignore напишіть
 import JustValidate from 'just-validate';
 import { CreateCsLobbies } from '../../../queries.graphql.d';
-import type { CreatorDataForLobby, QueryParamsOfCreateCsLobby } from '../types';
+import type { CreatorDataForLobby } from '../types'; //QueryParamsOfCreateCsLobby
 //import { Creator } from './creator';
 
 class CreatingCsLobby {
   public validation: JustValidate;
   private form: HTMLFormElement | null;
   private creatorData: CreatorDataForLobby;
-  private params: QueryParamsOfCreateCsLobby = {
+  private params: any = {
     title: null,
     creator: null,
     map: null,
@@ -18,13 +18,14 @@ class CreatingCsLobby {
     participant: [],
     ping: 23,
     antyCheat: true,
+    public: '2023-12-25T10:15:30Z',
   };
 
   constructor(formId: string, creatorData: CreatorDataForLobby) {
     this.form = document.querySelector(`#${formId}`);
     this.validation = new JustValidate('#create-content', {
       validateBeforeSubmitting: true,
-      focusInvalidField: false,
+      //focusInvalidField: false,
     });
 
     if (!this.form) {
@@ -32,30 +33,27 @@ class CreatingCsLobby {
     }
 
     this.creatorData = creatorData;
-    this.sendRequest();
-
-    console.log(this.getCookie('token'));
+    this.initValidation();
   }
 
   sendRequest() {
-    this.form?.addEventListener('submit', (e) => {
-      e.preventDefault();
+    this.getMapData();
+    this.getRateData();
+    this.getGameModeData();
+    this.getTiteData();
+    this.getAntyCheatData();
+    this.getPingData();
+    this.getCreatorData();
+    this.getParticipanstData();
+    // this.form?.addEventListener('submit', (e) => {
+    //   //e.preventDefault();
 
-      this.getMapData();
-      this.getRateData();
-      this.getGameModeData();
-      this.getTiteData();
-      this.getAntyCheatData();
-      this.getPingData();
-      this.getCreatorData();
-      this.getParticipanstData();
-      console.log(this.params);
-      this.initValidation();
+    //   //this.createRequest();
 
-      //if (this.validation.isValid) {
-      //this.createRequest();
-      //}
-    });
+    if (this.validation.isValid) {
+      this.createRequest();
+    }
+    // });
   }
 
   getCookie(name: string) {
@@ -151,12 +149,10 @@ class CreatingCsLobby {
   }
 
   private getCreatorData(): void {
-    this.params.creator = this.creatorData.userId;
+    this.params.creator = this.creatorData.playerId;
   }
 
   private getParticipanstData(): void {
-    console.log(this.creatorData.playerId);
-
     if (this.params.participant) {
       this.params.participant?.push(this.creatorData.playerId);
     }
@@ -184,7 +180,8 @@ class CreatingCsLobby {
       ])
       .onSuccess(() => {
         console.log(this.validation.isValid);
-        this.createRequest();
+        this.sendRequest();
+        //  this.createRequest();
       });
   }
 }

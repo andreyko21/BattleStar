@@ -1,5 +1,5 @@
 import $ from "jquery";
-
+import Sprite from "./../../../../images/sprite.svg";
 export class Banner {
   private $container: JQuery;
   private $image!: JQuery;
@@ -32,7 +32,7 @@ export class Banner {
         <label class="tournament-banner__button" for="loadBanner">
           <input id="loadBanner" type="file" style="display: none;" />
           <svg class="tournament-banner__button-svg">
-            <use xlink:href="src/images/sprite.svg#image"></use>
+            <use xlink:href="${Sprite}#image"></use>
           </svg>
           Изменить
         </label>

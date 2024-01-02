@@ -5,6 +5,7 @@ import { CalibrationPopUp } from './calibration-pop-up.ts';
 import { BaseTabs } from '../component/tabs.ts';
 import { MatchRow } from '../match/match-row.ts';
 import { MatchTile } from '../match/match-grid.ts';
+import { MatchRowDota2 } from '../match/match-row-dota2.ts';
 //import mapImg from '../../images/temporary/map-img.png';
 //import flagImg from '../../images/temporary/ukr-flag.png';
 //import { TabsCreate } from '../component/tabs-create.ts';
@@ -12,6 +13,7 @@ import { MatchTile } from '../match/match-grid.ts';
 import { MatchesQueryWithoutFilter } from './calibtationCsQuery.ts';
 import { Header } from '../component/header/header.ts';
 import { AppSidebar } from '../component/sidebar/sidebar.ts';
+import { SortingBlock } from './sorting-block.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
   new Header('#wrapper');
@@ -28,9 +30,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function selectGameForRender() {
   if (getLocateParam('game') == 'dota2') {
-    // const csMathesPage = new CsMatchesPage();
+    new SortingBlock('sorting-block-container', false);
+    new BaseTabs('sorting-block');
+
+    const matchesQuery = new MatchesQueryWithoutFilter();
+
+    const lobbyOpenning = new OpenLobbyPopUp(
+      'open-lobby-pop-up',
+      'overlay',
+      'main-wrapper'
+    );
+
+    try {
+      const matches = await matchesQuery.getData();
+
+      if (matches) {
+        new MatchRowDota2('calibration-table', matches, lobbyOpenning);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   } else {
-    new BaseTabs('calibration-page__container');
+    new SortingBlock('sorting-block-container', true);
+    new BaseTabs('sorting-block');
 
     const matchesQuery = new MatchesQueryWithoutFilter();
 

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="Fav.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/styles/match.scss" />
     <title>Battle Star - Match</title>
@@ -22,10 +22,9 @@
           class="match-page__bg-img"
         />
         <div class="match-page__content-wrapper" id="content-wrapper">
-          <section class="match-page__filters filters tabs-block">
-            <!---->
-            <div class="filters__tabs tabs-block__tabs">
-              <!---->
+          <section class="match-page__filters filters tabs-block" id="filters">
+            <!--<div class="filters__tabs tabs-block__tabs">
+             
               <div class="filters__tab tabs-block__tab" data-tab-name="find"
                 >НАЙТИ ИГРУ</div
               >
@@ -40,148 +39,11 @@
                 class="filters__find-lobby find-lobby tabs-block__content-container tabs-block__content-container_active"
                 id="find-content"
               >
-                <!---->
-                <div class="find-lobby__party party">
-                  <div class="party__title-block">
-                    <div class="party__title">Пати</div>
-                    <div class="party__help-block">
-                      <div class="party__help-block-icon">?</div>
-                      <div class="party__help-block-text">
-                        Дуже корисна підказка! Дуже корисна підказка!
-                      </div>
-                    </div>
-                  </div>
-                  <div class="party__users">
-                    <div class="party__user-block user-block">
-                      <div class="user-block__avatar-img-block">
-                        <img
-                          src="./src/images/temporary/avatar.svg"
-                          class="user-block__avatar-img"
-                        />
-                        <div class="user-block__avatar-online"></div>
-                      </div>
-                      <div class="user-block__info">User Userenco</div>
-                    </div>
-                    <div class="party__user-block user-block">
-                      <div class="user-block__avatar-img-block">
-                        <img
-                          src="./src/images/temporary/avatar.svg"
-                          class="user-block__avatar-img"
-                        />
-                        <div class="user-block__avatar-online"></div>
-                      </div>
-                      <div class="user-block__info">User Userenco</div>
-                    </div>
-                    <div class="party__user-block user-block">
-                      <div class="user-block__avatar-img-block">
-                        <img
-                          src="./src/images/temporary/avatar.svg"
-                          class="user-block__avatar-img"
-                        />
-                        <div class="user-block__avatar-online"></div>
-                      </div>
-                      <div class="user-block__info">User Userenco</div>
-                    </div>
-                    <div class="party__user-block user-block">
-                      <div class="user-block__avatar-img-block">
-                        <img
-                          src="./src/images/temporary/avatar.svg"
-                          class="user-block__avatar-img"
-                        />
-                        <div class="user-block__avatar-online"></div>
-                      </div>
-                      <div class="user-block__info">User Userenco</div>
-                    </div>
-                    <div class="party__add-user">
-                      <svg>
-                        <use
-                          xlink:href="src/images/sprite.svg#plus-in-dashcircle"
-                        ></use>
-                      </svg>
-                      <div class="party__users-list-block users-list-block">
-                        <input
-                          type="text"
-                          class="users-list-block__search-input"
-                          placeholder="Поиск"
-                        />
-                        <div class="users-list-block__icon-search">
-                          <svg>
-                            <use
-                              xlink:href="src/images/sprite.svg#search"
-                            ></use>
-                          </svg>
-                        </div>
-                        <ul class="users-list-block__users-list">
-                          <li class="users-list-block__user-item">
-                            <div class="users-list-block__user-name">
-                              Lutes_Deas
-                            </div>
-                          </li>
-                          <li class="users-list-block__user-item">
-                            <div class="users-list-block__user-name">
-                              Lutes_Deas
-                            </div>
-                          </li>
-                          <li class="users-list-block__user-item">
-                            <div class="users-list-block__user-name">
-                              Lutes_Deas
-                            </div>
-                          </li>
-                          <li class="users-list-block__user-item">
-                            <div class="users-list-block__user-name">
-                              Lutes_Deas
-                            </div>
-                          </li>
-                          <li class="users-list-block__user-item">
-                            <div class="users-list-block__user-name">
-                              Lutes_Deas
-                            </div>
-                          </li>
-                          <li class="users-list-block__user-item">
-                            <div class="users-list-block__user-name">
-                              Lutes_Deas
-                            </div>
-                          </li>
-                          <li class="users-list-block__user-item">
-                            <div class="users-list-block__user-name">
-                              Lutes_Deas
-                            </div>
-                          </li>
-                          <li class="users-list-block__user-item">
-                            <div class="users-list-block__user-name">
-                              Lutes_Deas
-                            </div>
-                          </li>
-                          <li class="users-list-block__user-item">
-                            <div class="users-list-block__user-name">
-                              Lutes_Deas
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="party__rating-block">
-                    <div
-                      class="party__empty-block party__empty-block_left"
-                    ></div>
-                    <div class="party__rating">Ранг: 1320</div>
-                    <div
-                      class="party__empty-block party__empty-block_right"
-                    ></div>
-                  </div>
-                </div>
-                <div class="find-lobby__filters-block" id="filters-find-lobby">
-                  <div class="find-lobby__filters-title-block">
-                    <svg>
-                      <use xlink:href="src/images/sprite.svg#filters"></use>
-                    </svg>
-                    <h2 class="find-lobby__filters-title">Фильтры</h2>
-                  </div>
-                </div>
-              </div>
-              <load ="src/html/components/match/create-lobby.html" /><!---->
-            </div>
+                
+               
+               </div>
+              <load ="src/html/components/match/create-lobby.html" />
+            </div>-->
           </section>
           <section
             class="match-page__content content tabs-block tabs-block_size_big"
@@ -215,11 +77,14 @@
             </div>
             <div class="content__tabs-content">
               <div
-                class="content__tab-content content__tab-content_table tab-content"
+                class="content__tab-content tabs-block__content-container"
                 id="open-match-content"
               >
-                <div class="content__view-block tabs-block">
-                  <load
+                <div
+                  class="content__view-block tabs-block"
+                  id="sorting-block-container"
+                >
+                  <!--<load
                     ="src/html/components/match/sorting-block.html"
                     class="content__view-tabs"
                   />
@@ -236,8 +101,18 @@
                       id="table-content"
                     >
                     </table>
-                  </div>
+                  </div>-->
                 </div>
+              </div>
+              <div
+                class="content__tab-content tabs-block__content-container"
+                id="translation-content"
+              >
+              </div>
+              <div
+                class="content__tab-content tabs-block__content-container"
+                id="completed-content"
+              >
               </div>
             </div>
           </section>

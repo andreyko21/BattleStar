@@ -40,8 +40,6 @@ findContent.innerHTML = ` <div class="rating__cs"></div> `;
 const createContent = document.querySelector("#dota-content") as HTMLDivElement;
 createContent.innerHTML = ` <div class="rating__dota"></div>`;
 
-
-
 type MainType = {
   playerNumber: JQuery<HTMLParagraphElement>;
 };

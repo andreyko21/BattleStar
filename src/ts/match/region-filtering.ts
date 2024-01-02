@@ -5,22 +5,23 @@ import { BtnOnRadioOrCheck } from './btnOnRadioOrCheck';
 
 class RegionFiltering {
   private filterContainer: HTMLDivElement | null;
-  private selectedContainer: HTMLDivElement | null;
+  //  private selectedContainer: HTMLDivElement | null;
 
-  constructor(filterContainerId: string, selectedContainerId: string) {
+  constructor(filterContainerId: string) {
+    //, selectedContainerId: string
     this.filterContainer = document.querySelector(`#${filterContainerId}`);
 
     if (!this.filterContainer) {
       throw new Error(`Container with id #${filterContainerId} not found.`);
     }
 
-    this.selectedContainer = document.querySelector(`#${selectedContainerId}`);
+    // this.selectedContainer = document.querySelector(`#${selectedContainerId}`);
 
-    if (!this.selectedContainer) {
-      throw new Error(`Container with id #${selectedContainerId} not found.`);
-    }
+    // if (!this.selectedContainer) {
+    //   throw new Error(`Container with id #${selectedContainerId} not found.`);
+    // }
 
-   // this.renderSelectionContainer();
+    // this.renderSelectionContainer();
     this.renderFilterContainer();
   }
 
@@ -67,22 +68,22 @@ class RegionFiltering {
     this.filterContainer?.append(rateSelectedElem);
   }
 
-//  private renderSelectionContainer(): void {
-//    const template = `
-//        <div class="region-selected__title create-lobby__title"> Регион </div>
-//        <div class="region-selected__wrapper-btns" id="region-selected-btns">
-           
-//        </div>
-//     `;
+  //  private renderSelectionContainer(): void {
+  //    const template = `
+  //        <div class="region-selected__title create-lobby__title"> Регион </div>
+  //        <div class="region-selected__wrapper-btns" id="region-selected-btns">
 
-//    const rateSelectedElem = document.createElement('div');
-//    rateSelectedElem.classList.add(
-//      'region-selected',
-//      'create-lobby__region-selected'
-//    );
-//    rateSelectedElem.innerHTML = template;
-//    this.selectedContainer?.prepend(rateSelectedElem);
-//  }
+  //        </div>
+  //     `;
+
+  //    const rateSelectedElem = document.createElement('div');
+  //    rateSelectedElem.classList.add(
+  //      'region-selected',
+  //      'create-lobby__region-selected'
+  //    );
+  //    rateSelectedElem.innerHTML = template;
+  //    this.selectedContainer?.prepend(rateSelectedElem);
+  //  }
 
   private async renderRadioBtnHtml(
     radioBtnData: { value: string; label: string; img: string }[]

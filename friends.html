@@ -10,39 +10,10 @@
   <body>
     <div class="wrapper" id="wrapper">
       <main class="page users-page">
-        <div class="page__container">
-          <div class="tabs-block" id="tabs-block"></div>
-          <div class="tabs-block__content-container" id="request-content">
-            <section class="page__search-section search-section">
-              <div class="search-section__container">
-                <div class="search-section__search-block">
-                  <label class="input__search">
-                    <button class="input__search-button">
-                      <svg class="input__search-icon">
-                        <use xlink:href="src/images/sprite.svg#search"></use>
-                      </svg>
-                    </button>
-                    <input
-                      class="input__search-input"
-                      type="text"
-                      placeholder="Поиск по никнейму"
-                    />
-                  </label>
-                </div>
-                <div class="search-section__list-users list-users"></div>
-              </div>
-            </section>
-          </div>
-        </div>
+        <div class="page__container" id="page__container"></div>
       </main>
     </div>
-    <div class="pop-up" id="pop-up">
-      <div class="pop-up__criss-cross">
-        <svg class="pop-up__criss-cross-icon">
-          <use xlink:href="src/images/sprite.svg#criss-cross"></use>
-        </svg>
-      </div>
-    </div>
+
     <script type="module" src="src/ts/friend/friends/friends.ts"></script>
   </body>
 </html>

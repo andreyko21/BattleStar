@@ -325,6 +325,7 @@ mutation CreateCsLobbies(
   $participant: [ID]
   $ping: Long
   $antyCheat: Boolean
+  $public: DateTime
 ) {
   createCsLobby(
     data: {
@@ -336,6 +337,7 @@ mutation CreateCsLobbies(
       participant: { players: $participant }
       ping: $ping
       antyCheat: { value: $antyCheat }
+      publishedAt: $public
     }
   ) {
     data {
@@ -1208,3 +1210,37 @@ query GetLobbyInfoId($id: ID) {
   }
 }
 
+query GetAllPlayers {
+  players {
+    data {
+      id
+      attributes {
+        avatar {
+          data {
+            attributes {
+              url
+              alternativeText
+            }
+          }
+        }
+        user {
+          data {
+            attributes {
+              username
+            }
+          }
+        }
+        CSGO {
+          Default_information {
+            rank
+          }
+        }
+        DOTA2 {
+          Default_information {
+            rank
+          }
+        }
+      }
+    }
+  }
+}

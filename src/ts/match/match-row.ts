@@ -83,7 +83,7 @@ class MatchRow {
       if (targetRow) {
         const option = this.options.find((elem) => elem.id == targetRow.id);
         if (option) {
-          this.popUp.addInnerContent(option);
+          this.popUp.addInnerContent(option, `game=cs2&id=${option.id}`);
           this.popUp.open();
         }
       }

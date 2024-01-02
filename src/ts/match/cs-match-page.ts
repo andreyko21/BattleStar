@@ -1,5 +1,6 @@
-import { BaseTabs, CreatedObjForIRenderMethod } from '../component/tabs.ts';
-import type { IRenderMethod } from '../component/tabs.ts';
+import { BaseTabs } from '../component/tabs.ts'; //CreatedObjForIRenderMethod
+//import { TabsCreate } from '../component/tabs-create.ts';
+//import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
 import { Accordion } from '../component/accordeon.ts';
 //import { StrimingTab } from './striming/striming.ts';
@@ -21,38 +22,64 @@ import { config } from '../config.ts';
 import { newFiltration } from './filtration-for-query.ts';
 import { CreatingCsLobby } from './creating-cs-lobby.ts';
 import { Creator } from './creator.ts';
+import { AllPlayerList } from './filtration/selected-player.ts';
+import { Patty } from './filtration/patty.ts';
+import { FiltersBlock } from './filtration/filters-block.ts';
+import { SortingBlock } from '../calibration/sorting-block.ts';
+import { ContentFilteringSectionForMatch } from './filtration/conten-filters-section-for-match.ts';
 
 class CsMatchesPage {
-  constructor() {}
+  private static instance: CsMatchesPage;
+
+  constructor() {
+    this.renderCsPage();
+  }
+
+  public static async getInstance(): Promise<CsMatchesPage> {
+    if (!CsMatchesPage.instance) {
+      CsMatchesPage.instance = new CsMatchesPage();
+      await this.instance.renderCsPage();
+    }
+    return CsMatchesPage.instance;
+  }
 
   async renderCsPage() {
-    const mayMethods: IRenderMethod = {
-      find: () => {
-        // console.log('find');
-      },
-      translation: () => {
-        //  const translationTab = StrimingTab.getInstance();
-      },
-    };
+    // const mayMethods: IRenderMethod = {
+    //   find: () => {
+    //     // console.log('find');
+    //   },
+    //   translation: () => {
+    //     //  const translationTab = StrimingTab.getInstance();
+    //   },
+    // };
+    // new TabsCreate('content-wrapper', 'match-page__filters', [
+    //   ['find', 'НАЙТИ ИГРУ'],
+    //   ['create', 'СОЗДАТЬ ЛОББИ'],
+    // ]);
+
+    new ContentFilteringSectionForMatch('filters');
 
     new BaseTabs('match-page__filters');
     new LavaLamp('match-page__filters');
 
-    new BaseTabs('match-page__content', mayMethods);
-    new LavaLamp('match-page__content');
+    // new BaseTabs('match-page__content', mayMethods);
+    // new LavaLamp('match-page__content');
 
-    const sortingBlockIdArr = ['grid', 'table'];
-    const addClassForSort = () => {
-      //id:string
-      //  console.log('Hello!');
-    };
+    // const sortingBlockIdArr = ['grid', 'table'];
+    // const addClassForSort = () => {
+    //   //id:string
+    //   //  console.log('Hello!');
+    // };
 
-    const forSorting = new CreatedObjForIRenderMethod(
-      sortingBlockIdArr,
-      addClassForSort
-    );
+    // const forSorting = new CreatedObjForIRenderMethod(
+    //   sortingBlockIdArr,
+    //   addClassForSort
+    // );
 
-    new BaseTabs('content__view-block', forSorting.createObj());
+    new SortingBlock('sorting-block-container', true);
+    new BaseTabs('sorting-block'); //, forSorting.createObj()
+
+    const selectedPlayers = new AllPlayerList(); //'patty-users'
 
     const rateOptions = [
       { value: '100', label: '100' },
@@ -63,30 +90,6 @@ class CsMatchesPage {
       { value: '10000', label: '10000' },
     ];
 
-    new BtnOnRadioOrCheck(
-      'rate-selected',
-      rateOptions,
-      'rate-selected-wrapper',
-      'BS'
-    );
-
-    new RateFiltering('filters-find-lobby', rateOptions);
-    new Accordion('find-lobby__rate-filter');
-
-    const mapsFiltering = new GettingMapsFiltering('filters-find-lobby');
-    const mapsSelected = new GettingMapsSelected('create-content');
-
-    const gameModeFiltering = new GettingGameModeFiltering(
-      'filters-find-lobby'
-    );
-    const gameModeSelected = new GettingGameModeSelected('create-content');
-
-    const regionFiltering = new RegionFiltering(
-      'filters-find-lobby',
-      'create-content'
-    );
-
-    new AntiCheat('filters-find-lobby');
     try {
       const creatorLobby = new Creator();
       creatorLobby.transformCreatorData();
@@ -98,6 +101,37 @@ class CsMatchesPage {
       const mapsData = await queryForMapsData.getCheckboxesData();
       const gameModeData = await queryForGameMode.getCheckboxesData();
       const regionData = await queryForRegionData.getCheckboxesData();
+
+      const addUserBlock = await selectedPlayers.render();
+      new Patty(
+        'find-content',
+        creatorLobby.transformedCreatorData,
+        addUserBlock
+      );
+
+      new FiltersBlock('find-content');
+
+      new RateFiltering('filters-find-lobby', rateOptions);
+      new Accordion('find-lobby__rate-filter');
+
+      new BtnOnRadioOrCheck(
+        'rate-selected',
+        rateOptions,
+        'rate-selected-wrapper',
+        'BS'
+      );
+
+      const mapsFiltering = new GettingMapsFiltering('filters-find-lobby');
+      const mapsSelected = new GettingMapsSelected('create-content');
+
+      const gameModeFiltering = new GettingGameModeFiltering(
+        'filters-find-lobby'
+      );
+      const gameModeSelected = new GettingGameModeSelected('create-content');
+
+      const regionFiltering = new RegionFiltering('filters-find-lobby');
+
+      new AntiCheat('filters-find-lobby');
 
       mapsFiltering.assembleFilter(mapsData);
       gameModeFiltering.assembleFilter(gameModeData);
@@ -119,21 +153,3 @@ class CsMatchesPage {
 }
 
 export { CsMatchesPage };
-
-//const popUp = document.querySelector('.open-lobby-pop-up') as HTMLDivElement;
-//const overlay = document.querySelector('.overlay') as HTMLDivElement;
-//let calibrationPopUp: IBasePopUp;
-//if (popUp && overlay) {
-//  calibrationPopUp = new BasePopUp(popUp, overlay);
-
-//  calibrationPopUp.open();
-//  const calibrationBtn: HTMLElement | null =
-//    popUp.querySelector('#start-calibration');
-//  calibrationBtn?.addEventListener('click', () => calibrationPopUp.close());
-//}
-
-//const lobbyOpenning = new OpenLobbyPopUp(
-//  'open-lobby-pop-up',
-//  'overlay',
-//  'content-wrapper'
-//);

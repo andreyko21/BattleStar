@@ -3,7 +3,11 @@ import { OpenLobbyPopUp } from '../component/pop-up.ts';
 import { MatchesQuery } from './newQuery.ts';
 import { MatchRow } from '../match/match-row.ts';
 import { MatchTile } from '../match/match-grid.ts';
-import { setLocateParam, delLocateParam } from '../functions/windowLocation.ts';
+import {
+  setLocateParam,
+  delLocateParam,
+  getQueryParams,
+} from '../functions/windowLocation.ts';
 import { QueryRate } from '../types.ts';
 
 class newFiltration {
@@ -11,6 +15,13 @@ class newFiltration {
   allCheckbox: NodeListOf<HTMLInputElement> | null;
 
   private allCheckboxesValues: { [key: string]: string[] } = {};
+  private rateSliderHendles: HTMLDivElement[];
+
+  private lobbyOpenning = new OpenLobbyPopUp(
+    'open-lobby-pop-up',
+    'overlay',
+    'content-wrapper'
+  );
 
   filtersObj: {
     country: string[] | null;
@@ -28,10 +39,21 @@ class newFiltration {
     this.allCheckbox = this.container.querySelectorAll(
       'input[type="checkbox"]'
     );
+    this.rateSliderHendles = this.selectRateSliderHendles();
     this.addEventHandler();
     this.selectAllChaeckboxValue();
     // this.updateContent();
     this.updateFiltersObject();
+  }
+
+  private selectRateSliderHendles() {
+    const rateMin = document.querySelector(
+      '.rate-filter__lower-slider-output'
+    ) as HTMLDivElement;
+    const rateMax = document.querySelector(
+      '.rate-filter__upper-slider-output'
+    ) as HTMLDivElement;
+    return [rateMin, rateMax];
   }
 
   private addEventHandler() {
@@ -41,6 +63,13 @@ class newFiltration {
         this.addLocationParam();
       });
     });
+
+    this.rateSliderHendles.forEach((elem) => {
+      elem.addEventListener('changeRateSlider', () => {
+        this.filtersObj.rate = [];
+        this.updateContent();
+      });
+    });
   }
 
   private addLocationParam() {
@@ -48,7 +77,7 @@ class newFiltration {
       if (Object.prototype.hasOwnProperty.call(this.filtersObj, key)) {
         const element = this.filtersObj[key as keyof typeof this.filtersObj];
 
-        if (element?.length !== 0) {
+        if (element !== null) {
           setLocateParam(key, element?.join(','));
         } else {
           delLocateParam(key);
@@ -57,18 +86,60 @@ class newFiltration {
     }
   }
 
-  private updateFiltersObject() {
-    this.allCheckbox?.forEach((checkbox) => {
-      const valueFilterObj = checkbox.name.replace('-filter', '');
+  //  запуститиЗатримку() {
+  //   // Зупинити попередню затримку, якщо вона вже запущена
+  //   clearTimeout(timeoutId);
 
-      if (checkbox.checked) {
-        this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]?.push(
-          checkbox.value
-        );
+  //   // Запустити нову затримку на 1 секунду
+  //   timeoutId = setTimeout(відправитиЗапит, 1000);
+  //}
+
+  //  private addSelectedCheckboxToFiltersObject(checkbox: HTMLInputElement) {
+  //    const valueFilterObj = checkbox.name.replace('-filter', '');
+
+  //    if (checkbox.checked) {
+  //      this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]?.push(
+  //        checkbox.value
+  //      );
+  //    }
+  //  }
+
+  private updateFiltersObject() {
+    for (const [key, value] of getQueryParams().entries()) {
+      console.log(`${key}, ${value}`);
+      const valueArr = value.split(',');
+      if (this.allCheckbox !== null) {
+        this.allCheckbox.forEach((checkbox) => {
+          const checkboxName = checkbox.name.replace('-filter', '');
+          if (checkboxName === key && valueArr.includes(checkbox.value)) {
+            checkbox.checked = true;
+            this.filtersObj[checkboxName as keyof typeof this.filtersObj]?.push(
+              checkbox.value
+            );
+          }
+        });
       }
-    });
+    }
+
     this.updateContent();
+
+    // this.allCheckbox?.forEach((checkbox) => {
+    //   this.addSelectedCheckboxToFiltersObject(checkbox);
+    // });
   }
+
+  //  private updateFiltersObject() {
+  //    this.allCheckbox?.forEach((checkbox) => {
+  //      const valueFilterObj = checkbox.name.replace('-filter', '');
+
+  //      if (checkbox.checked) {
+  //        this.filtersObj[valueFilterObj as keyof typeof this.filtersObj]?.push(
+  //          checkbox.value
+  //        );
+  //      }
+  //    });
+  //    this.updateContent();
+  //  }
 
   private changeFilters(checkbox: HTMLInputElement) {
     const valueFilterObj = checkbox.name.replace('-filter', '');
@@ -94,21 +165,15 @@ class newFiltration {
   }
 
   private async updateContent() {
-    const lobbyOpenning = new OpenLobbyPopUp(
-      'open-lobby-pop-up',
-      'overlay',
-      'content-wrapper'
-    );
     const params = this.changeFiltersObj();
 
     const matchQuery = new MatchesQuery(params);
 
     const query = await matchQuery.getData();
-    console.log(query);
 
     if (query) {
-      new MatchRow('table-content', query, lobbyOpenning);
-      new MatchTile('content-grid-block', query, lobbyOpenning);
+      new MatchRow('calibration-table', query, this.lobbyOpenning);
+      new MatchTile('calibration-grid', query, this.lobbyOpenning);
     }
   }
 
@@ -128,9 +193,11 @@ class newFiltration {
     };
 
     if (this.filtersObj.rate?.length === 0) {
-      objForQuery.rate.in = this.allCheckboxesValues.rate.map((item): number =>
-        Number(item)
-      );
+      //!!------------------------Замінити
+      objForQuery.rate.between = [
+        +this.rateSliderHendles[0].innerHTML.slice(1),
+        +this.rateSliderHendles[1].innerHTML.slice(1),
+      ];
     } else if (this.filtersObj.rate) {
       objForQuery.rate.in = this.filtersObj.rate?.map((item): number =>
         Number(item)

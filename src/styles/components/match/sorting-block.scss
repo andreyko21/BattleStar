@@ -1,5 +1,39 @@
+.sorting-block {
+  &__view-tabs {
+    margin: 0px 0px 12px 0px;
+  }
+
+  &__content {
+    margin: 0px 0px 70px 0px;
+  }
+
+  &__grid-block {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px 45px;
+    .match-card {
+      cursor: pointer;
+    }
+  }
+
+  &__table {
+    min-width: 1064px;
+    width: 100%;
+    margin-top: -20px;
+    border-spacing: 0 20px;
+    table-layout: fixed;
+    tr {
+      height: 80px;
+      background: rgba(248, 248, 248, 0.02);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+    }
+  }
+}
+
 .view-tabs {
   width: 100%;
+  height: 42px;
   display: flex;
   justify-content: space-between;
   align-items: center;

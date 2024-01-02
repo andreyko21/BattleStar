@@ -306,3 +306,12 @@ export type QueryParamsOfCreateCsLobby = {
   ping: number;
   antyCheat: Boolean;
 };
+
+export type PlayerDataForLobby = {
+  id: string;
+  avatarUrl: string;
+  alternativeText: string;
+  userName: string;
+  CSGORank: number;
+  Dota2Rank: number;
+};

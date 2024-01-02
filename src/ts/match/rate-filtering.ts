@@ -6,10 +6,13 @@ import { target } from 'nouislider';
 
 class RateFiltering {
   private readonly MIN_RANGE = 100;
-  private readonly MAX_RANGE = 999900;
+  private readonly MAX_RANGE = 99900;
 
   private container: HTMLDivElement | null;
   private checkboxHtml: CreateingCheckbox;
+  private sliderValue: number[] = [this.MIN_RANGE, this.MAX_RANGE];
+  private allCheckbox: NodeListOf<HTMLInputElement> | undefined;
+
   constructor(
     containerID: string,
     rateOptions: { value: string; label: string }[]
@@ -17,6 +20,7 @@ class RateFiltering {
     this.container = document.querySelector(`#${containerID}`);
     this.checkboxHtml = new CreateingCheckbox('rate-filter', rateOptions, null);
     this.render();
+    this.selectAllCheckbox();
     this.initialSlider();
   }
   private render(): void {
@@ -68,7 +72,15 @@ class RateFiltering {
     this.container?.append(rateSelectedElem);
   }
 
+  private selectAllCheckbox() {
+    this.allCheckbox = this.container?.querySelectorAll(
+      'input[id^="rate-filter"]'
+    );
+  }
+
   private initialSlider(): void {
+    const checkboxes = this.allCheckbox;
+
     let rateFilterSlider = document.querySelector(
       '.rate-filter__slider'
     ) as target;
@@ -98,9 +110,6 @@ class RateFiltering {
       '.rate-filter__upper-slider-output'
     ) as HTMLDivElement;
 
-    const checkboxes: NodeListOf<HTMLInputElement> | undefined =
-      this.container?.querySelectorAll('input[id^="rate-filter"]');
-
     rateFilterSlider.noUiSlider?.on('update', function (values, handle) {
       if (handle) {
         rateMax.innerHTML = `$ ${values[handle]}`;
@@ -110,11 +119,22 @@ class RateFiltering {
       checkboxes?.forEach((elem) => {
         if (elem.checked) {
           elem.checked = false;
-          const changeEvent = new Event('change', { bubbles: true });
+          // const changeEvent = new Event('change', { bubbles: true });
 
-          elem.dispatchEvent(changeEvent);
+          // elem.dispatchEvent(changeEvent);
         }
       });
+    });
+
+    rateFilterSlider.noUiSlider?.on('change', (values, handle) => {
+      const changeEvent = new Event('changeRateSlider', { bubbles: true });
+      if (handle) {
+        this.sliderValue[0] = +`$ ${values[handle]}`;
+        rateMin.dispatchEvent(changeEvent);
+      } else {
+        this.sliderValue[1] = +`$ ${values[handle]}`;
+        rateMax.dispatchEvent(changeEvent);
+      }
     });
 
     checkboxes?.forEach((elem) => {
@@ -122,15 +142,27 @@ class RateFiltering {
         let sliderValues =
           rateFilterSlider.noUiSlider?.get() as any as number[];
 
+        const isCheckedCheckbox = this.checkSelected(checkboxes);
+
         if (
-          sliderValues[0] !== this.MIN_RANGE ||
-          sliderValues[1] !== this.MAX_RANGE
+          (sliderValues[0] !== this.MIN_RANGE ||
+            sliderValues[1] !== this.MAX_RANGE) &&
+          isCheckedCheckbox
         ) {
           rateFilterSlider.noUiSlider?.set([this.MIN_RANGE, this.MAX_RANGE]);
           (e.target as HTMLInputElement).checked = true;
         }
       });
     });
+  }
+
+  private checkSelected(nodesList: NodeListOf<HTMLInputElement>): boolean {
+    const nodesArray = Array.from(nodesList);
+    return nodesArray.find((elem) => elem.checked) === undefined ? false : true;
+  }
+
+  getSliderValue(): number[] {
+    return this.sliderValue;
   }
 }
 

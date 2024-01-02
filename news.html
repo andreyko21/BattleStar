@@ -24,12 +24,10 @@
                            <img src="src/images/news/avatar.png" alt="avatar">
                         </div>
                         <p class="banner__row-name">Максим Рихтер</p>
-
-
                      </div>
                      <div class="banner__row-view">
                         <svg>
-                           <use xlink:href="src/images/sprite.svg#view"></use>
+                           <use xlink:href="./src/images/sprite.svg#view"></use>
                         </svg>
                         <p class="banner__row-number">354</p>
                         <p class="banner__row-data">17 Апр, 2021</p>
@@ -38,22 +36,22 @@
                   <div class="banner__row-social">
                      <a href="#">
                         <svg>
-                           <use xlink:href="src/images/sprite.svg#share"></use>
+                           <use xlink:href="./src/images/sprite.svg#share"></use>
                         </svg>
                      </a>
                      <a href="https://www.instagram.com/" target="_blank">
                         <svg>
-                           <use xlink:href="src/images/sprite.svg#instagtam"></use>
+                           <use xlink:href="./src/images/sprite.svg#instagtam"></use>
                         </svg>
                      </a>
                      <a href="https://twitter.com/" target="_blank">
                         <svg>
-                           <use xlink:href="src/images/sprite.svg#twitter"></use>
+                           <use xlink:href="./src/images/sprite.svg#twitter"></use>
                         </svg>
                      </a>
                      <a href="https://www.facebook.com/" target="_blank">
                         <svg>
-                           <use xlink:href="src/images/sprite.svg#little-facebook"></use>
+                           <use xlink:href="./src/images/sprite.svg#facebook"></use>
                         </svg>
                      </a>
                   </div>
@@ -88,7 +86,7 @@
                   влечет за собой процесс внедрения и модернизации системы обучения кадров, соответствует насущным
                   потребностям.
                </p>
-               <img class="info__img" src="src/images/news/newsImg.png" alt="photo">
+               <img class="info__img" src="src/images/news/newsImg.png" alt="user">
                <p class="info__text">
                   Разнообразный и богатый опыт начало повседневной работы по формированию позиции обеспечивает широкому
                   кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных
@@ -113,7 +111,7 @@
                   повседневной работы по формированию позиции позволяет выполнять важные задания по разработке систем
                   массового участия. Повседневная практика показывает, что новая модель организационной деятельности
                   позволяет оценить значение дальнейших направлений развития.</p>
-               <p class="info__text"> 
+               <p class="info__text">
                   Не следует, однако забывать, что реализация намеченных плановых заданий позволяет
                   выполнять важные задания по разработке форм развития. Идейные соображения высшего порядка, а также
                   новая модель организационной деятельности требуют от нас анализа системы обучения кадров,
@@ -122,13 +120,6 @@
                   активом представляет собой интересный эксперимент проверки форм развития. С другой стороны
                   консультация с широким активом влечет за собой процесс внедрения и модернизации системы обучения
                   кадров, соответствует насущным потребностям.</p>
-
-
-
-
-
-
-
             </div>
          </section>
          <section class="tour">
@@ -164,9 +155,9 @@
                      <a href="#">#Турнир</a>
                   </div>
                   <div class="banner__row-view banner__row-view_tour">
-                     <div>
+                     <div class="tour__column-svg">
                         <svg>
-                           <use xlink:href="src/images/sprite.svg#view"></use>
+                           <use xlink:href="./src/images/sprite.svg#view"></use>
                         </svg>
                         <p class="banner__row-number">354</p>
                      </div>
@@ -175,18 +166,18 @@
                   </div>
                </div>
                <div class="tour__likes">
-                  <button class="tour__likes-btn">
+                  <button data-id="0" class="tour__likes-btn tour__likes-btn_dislike">
                      <svg>
-                        <use xlink:href="src/images/sprite.svg#dislikes"></use>
+                        <use xlink:href="./src/images/sprite.svg#dislike"></use>
                      </svg>
-                     <span>3</span>
+                     <span class="news__likes-num">0</span>
                   </button>
                   <hr class="tour__likes-line">
-                  <button class="tour__likes-btn">
+                  <button data-id="1" class="tour__likes-btn tour__likes-btn_like">
                      <svg>
-                        <use xlink:href="src/images/sprite.svg#likes"></use>
+                        <use xlink:href="./src/images/sprite.svg#likes"></use>
                      </svg>
-                     <span>123</span>
+                     <span class="news__likes-number">0</span>
                   </button>
                </div>
 
@@ -195,13 +186,11 @@
          </section>
          <section class="article">
             <div class="article__container">
-               <h2 class="article__title">Похожие статьи</h2>
+               <h3 class="article__title">Похожие статьи</h3>
                <div class="article__card">
                   <load="src/html/components/ui/card.html" />
                </div>
-               
             </div>
-
          </section>
       </main>
    </div>

@@ -11,6 +11,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
+
       padding: 0 15px 34px 0;
       cursor: pointer;
 
@@ -18,7 +19,8 @@
          width: 24px;
          height: 24px;
          margin-left: 18px;
-         fill: #F8F8F8 ;
+         fill: #f8f8f8;
+         fill-opacity: 0.6;
       }
       color: $gray300;
       text-align: right;
@@ -31,7 +33,32 @@
       &_act {
          color: $yellow300;
          @include tabs-menu;
-
+         svg {
+            fill: $yellow300;
+            fill-opacity: 1;
+         }
+         &:last-child {
+            color: $red500;
+            svg {
+               fill: $red500;
+               fill-opacity: 1;
+            }
+         }
+      }
+      &:hover {
+         color: $yellow300;
+         @include tabs-menu;
+         svg {
+            fill: $yellow300;
+            fill-opacity: 1;
+         }
+         &:last-child {
+            color: $red500;
+            svg {
+               fill: $red500;
+               fill-opacity: 1;
+            }
+         }
       }
    }
 }

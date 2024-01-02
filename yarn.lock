@@ -3418,6 +3418,11 @@ swap-case@^2.0.2:
   dependencies:
     tslib "^2.0.3"
 
+sweetalert2@^11.10.2:
+  version "11.10.2"
+  resolved "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.10.2.tgz"
+  integrity sha512-BYlIxGw6OF9Rw2z1wlnh1U+fvHHkvtg4BGyimV9nZxQRGvCBfx9uonxgwuYpJuYqCtM+2W1KOm8iMIEb/2v7Hg==
+
 swiper@^11.0.5:
   version "11.0.5"
   resolved "https://registry.npmjs.org/swiper/-/swiper-11.0.5.tgz"

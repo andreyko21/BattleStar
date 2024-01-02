@@ -3,6 +3,7 @@ interface ISliderData {
   name: string;
   rank: number;
   avatar: string;
+  number: number;
 }
 
 export class Slider {
@@ -26,7 +27,7 @@ export class Slider {
       <div class="tour__item-info">
       <h2 class="tour__item-title">Major Stochholm 2021</h2>
       <p class="tour__item-data">23 Окт - 7 Ноя</p>
-      <p class="tour__item-teams">36 команд зарегистрированы:</p>
+      <p class="tour__item-teams"><span>${this.slider.length}</span> команд зарегистрированы:</p>
       <ul class="tour__item-list">
       ${this.slider.map((slider) => `
       <li class="tour__item-row">

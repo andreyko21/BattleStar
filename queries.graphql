@@ -1210,37 +1210,21 @@ query GetLobbyInfoId($id: ID) {
   }
 }
 
-query GetAllPlayers {
-  players {
+
+mutation UpdateUser($id: ID!, $newUsername: String, $newBiography: String) {
+  updateUsersPermissionsUser(
+    id: $id
+    data: { username: $newUsername, biography: $newBiography }
+  ) {
     data {
       id
       attributes {
-        avatar {
-          data {
-            attributes {
-              url
-              alternativeText
-            }
-          }
-        }
-        user {
-          data {
-            attributes {
-              username
-            }
-          }
-        }
-        CSGO {
-          Default_information {
-            rank
-          }
-        }
-        DOTA2 {
-          Default_information {
-            rank
-          }
-        }
+        username
+        biography
       }
     }
   }
 }
+
+
+

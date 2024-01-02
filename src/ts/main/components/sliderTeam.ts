@@ -1,4 +1,4 @@
-export const sliderTeams = [
+export const sliderTeams: any = [
      {
        img: "https://res.cloudinary.com/dahl2ad8r/image/upload/v1703707142/major_acda091ed0.png",
        name: "Monte",
@@ -22,5 +22,6 @@ export const sliderTeams = [
        name: "Gamer_Legion",
        rank: 1769,
        avatar: "https://res.cloudinary.com/dahl2ad8r/image/upload/v1700743740/Gamer_Legion_d31fcb52e0.webp",
-     },]
-     .sort((a, b) => b.rank - a.rank);
+     },
+     
+    ].sort((a, b) => b.rank - a.rank);

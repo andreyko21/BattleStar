@@ -9,8 +9,6 @@ interface ICreatePlayersData {
   assist: number;
 }
 
-
-
 export  class LobbySide {
   public content: string;
   public players: ICreatePlayersData[];

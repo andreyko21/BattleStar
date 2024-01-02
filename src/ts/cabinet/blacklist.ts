@@ -1,3 +1,6 @@
+import {AsideMenu} from "../component/asideMenu";
+
+new AsideMenu();
 interface IBlacklistData {
   avatar: string;
   name: string;

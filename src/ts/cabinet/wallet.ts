@@ -5,6 +5,9 @@ import { setLocateParam } from "../functions/windowLocation";
 import { removeAllParams } from "../functions/windowLocation";
 // import { Chart } from "chart.js";
 // import axios from "axios";
+import {AsideMenu} from "../component/asideMenu";
+
+new AsideMenu();
 interface IWalletData {
   id: number;
   nickname: string;

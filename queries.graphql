@@ -245,6 +245,7 @@ query GetCsLobbies(
         { antyCheat: { value: { eq: $antyCheat } } }
       ]
     }
+    pagination: { limit: 1000 }
   ) {
     meta {
       pagination {
@@ -1225,8 +1226,8 @@ mutation UpdateUser($id: ID!, $newUsername: String, $newBiography: String) {
   }
 }
 
-query GetAllPlayers {
-  players {
+query GetAllPlayers($username: String) {
+  players(filters: { user: { username: { containsi: $username } } }) {
     data {
       id
       attributes {

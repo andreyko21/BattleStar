@@ -104,7 +104,10 @@ class CsMatchesPage {
 
       const addUserBlock = await selectedPlayers.render();
       const patty = new Patty('find-content', creatorData, addUserBlock);
-      selectedPlayers.addSelectedPlayer(patty.addPlayer.bind(patty));
+      selectedPlayers.addSelectedPlayer(
+        patty.addPlayer.bind(patty),
+        patty.changeTotalRank.bind(patty)
+      );
 
       new FiltersBlock('find-content');
 

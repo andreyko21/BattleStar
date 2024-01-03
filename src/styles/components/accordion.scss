@@ -3,7 +3,7 @@
   padding: 8px 12px 19px 16px;
   border-radius: 4px;
   background: inherit;
-  transition: $standartTrans;
+  transition: background 0.2s ease-out;
 
   &_active {
     margin-bottom: 19px;
@@ -39,7 +39,7 @@
     max-height: 0px;
     // padding-bottom: 19px;
     overflow: hidden;
-    transition: $standartTrans;
+    transition: max-height 0.2s ease-out;
     box-sizing: border-box;
     p {
       padding: 16px 0px 0px 0px;

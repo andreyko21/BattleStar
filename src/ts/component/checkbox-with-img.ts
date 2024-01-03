@@ -32,8 +32,8 @@ class CreateingCheckboxWithImg {
          value="${option.value}" 
         />
         <label for="${this.nameGroup}${
-        index + 1
-      }" class="custom-checkbox__label">
+          index + 1
+        }" class="custom-checkbox__label">
           <svg>
             <use
               xlink:href="${Sprite}#check-mark"
@@ -47,6 +47,8 @@ class CreateingCheckboxWithImg {
           <img
             src=" ${option.img}"
             alt="Флаг ${option.label}"
+            width="24"
+            height="15"
           />
           <span> ${option.label}</span>
         </label>

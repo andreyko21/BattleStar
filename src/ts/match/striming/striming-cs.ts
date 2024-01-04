@@ -7,8 +7,13 @@ import { GettingGameModeFiltering } from '../geme-modes-filtering.ts';
 import { config } from '../../config.ts';
 import { RateFiltering } from '../rate-filtering.ts';
 import { Accordion } from '../../component/accordeon.ts';
-import { BtnOnRadioOrCheck } from '../btnOnRadioOrCheck.ts';
 import { RegionFiltering } from '../region-filtering.ts';
+import { AntiCheat } from '../anti-cheat.ts';
+import {
+  setLocateParam,
+  removeAllParams,
+} from '../../functions/windowLocation.ts';
+import { StreamingFilters } from './striming-filters.ts';
 
 class StrimingTab {
   private static instance: StrimingTab;
@@ -23,12 +28,26 @@ class StrimingTab {
     return StrimingTab.instance;
   }
 
+  private updateUrlParams() {
+    removeAllParams();
+    setLocateParam('match-page__content', 'translation');
+  }
+
   public async renderTranslateCsPage() {
+    this.updateUrlParams();
+
+    // SortingBlock.getInstance(
+    //   'translation-content',
+    //   'sorting-block-cs-strim',
+    //   true
+    // );
+    // new BaseTabs('sorting-block-cs-strim');
+
     const filterSection = document.querySelector('#filters');
     if (filterSection !== null) {
       filterSection.innerHTML = '';
     }
-    new FiltersBlock('filters');
+    new FiltersBlock('strimming-cs-filters');
 
     const rateOptions = [
       { value: '100', label: '100' },
@@ -51,22 +70,18 @@ class StrimingTab {
       new RateFiltering('filters-find-lobby', rateOptions);
       new Accordion('find-lobby__rate-filter');
 
-      new BtnOnRadioOrCheck(
-        'rate-selected',
-        rateOptions,
-        'rate-selected-wrapper',
-        'BS'
-      );
-
       const mapsFiltering = new GettingMapsFiltering('filters-find-lobby');
       const gameModeFiltering = new GettingGameModeFiltering(
         'filters-find-lobby'
       );
       const regionFiltering = new RegionFiltering('filters-find-lobby');
 
+      new AntiCheat('filters-find-lobby');
       mapsFiltering.assembleFilter(mapsData);
       gameModeFiltering.assembleFilter(gameModeData);
       regionFiltering.assembleFilter(regionData);
+
+      new StreamingFilters('strimming-cs-filters');
     } catch (error) {
       console.error(error);
     }

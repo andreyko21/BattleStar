@@ -326,7 +326,6 @@ mutation CreateCsLobbies(
   $participant: [ID]
   $ping: Long
   $antyCheat: Boolean
-  $public: DateTime
 ) {
   createCsLobby(
     data: {
@@ -338,7 +337,6 @@ mutation CreateCsLobbies(
       participant: { players: $participant }
       ping: $ping
       antyCheat: { value: $antyCheat }
-      publishedAt: $public
     }
   ) {
     data {
@@ -1257,6 +1255,83 @@ query GetAllPlayers($username: String) {
             rank
           }
         }
+      }
+    }
+  }
+}
+
+query GetCsStreaming(
+  $country: [String]
+  $rate: LongFilterInput
+  $map: [String]
+  $gameMode: [Int]
+) {
+  cs2Brodcastings(
+    filters: {
+      and: [
+        {
+          creator: { Options: { selected_country: { name: { in: $country } } } }
+        }
+        { rate: $rate }
+        { map: { name: { in: $map } } }
+        { cs_game_mode: { value: { in: $gameMode } } }
+      ]
+    }
+    pagination: { limit: 1000 }
+  ) {
+    data {
+      id
+      attributes {
+        title
+        creator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      name
+                      flag {
+                        data {
+                          attributes {
+                            alternativeText
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        map {
+          data {
+            attributes {
+              name
+              logo {
+                data {
+                  attributes {
+                    url
+                    alternativeText
+                  }
+                }
+              }
+            }
+          }
+        }
+        rate
+        viewers
+        cs_game_mode {
+          data {
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        videoUrl
       }
     }
   }

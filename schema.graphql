@@ -16,6 +16,11 @@ scalar Long
 # The `Upload` scalar type represents a file upload.
 scalar Upload
 
+type Error {
+  code: String!
+  message: String
+}
+
 type Pagination {
   total: Int!
   page: Int!
@@ -286,6 +291,13 @@ type ComponentAwardsAwards {
   id: ID!
   name: String!
   logo: UploadFileEntityResponse!
+}
+
+type ComponentChatMessage {
+  id: ID!
+  message: String
+  date: DateTime
+  users_permissions_user: UsersPermissionsUserEntityResponse
 }
 
 input ComponentDefaultOptionsFiltersInput {
@@ -1027,6 +1039,9 @@ input UsersPermissionsUserFiltersInput {
   biography: StringFilterInput
   player: PlayerFiltersInput
   balance: FloatFilterInput
+  chats: ChatFiltersInput
+  my_friends: UsersPermissionsUserFiltersInput
+  friends_request: UsersPermissionsUserFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   and: [UsersPermissionsUserFiltersInput]
@@ -1048,6 +1063,10 @@ input UsersPermissionsUserInput {
   biography: String
   player: ID
   balance: Float
+  chats: [ID]
+  my_friends: [ID]
+  friends_request: [ID]
+  avatar: ID
 }
 
 type UsersPermissionsUser {
@@ -1061,6 +1080,23 @@ type UsersPermissionsUser {
   biography: String
   player: PlayerEntityResponse
   balance: Float
+  chats(
+    filters: ChatFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): ChatRelationResponseCollection
+  my_friends(
+    filters: UsersPermissionsUserFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UsersPermissionsUserRelationResponseCollection
+  friends_request(
+    filters: UsersPermissionsUserFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UsersPermissionsUserRelationResponseCollection
+  avatar: UploadFileEntityResponse
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -1088,7 +1124,6 @@ input CardNewFiltersInput {
   card: ComponentUiCardFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
   and: [CardNewFiltersInput]
   or: [CardNewFiltersInput]
   not: CardNewFiltersInput
@@ -1096,7 +1131,6 @@ input CardNewFiltersInput {
 
 input CardNewInput {
   card: [ComponentUiCardInput]
-  publishedAt: DateTime
 }
 
 type CardNew {
@@ -1107,7 +1141,6 @@ type CardNew {
   ): [ComponentUiCard]
   createdAt: DateTime
   updatedAt: DateTime
-  publishedAt: DateTime
 }
 
 type CardNewEntity {
@@ -1122,6 +1155,57 @@ type CardNewEntityResponse {
 type CardNewEntityResponseCollection {
   data: [CardNewEntity!]!
   meta: ResponseCollectionMeta!
+}
+
+union ChatMessagesDynamicZone = ComponentChatMessage | Error
+
+scalar ChatMessagesDynamicZoneInput
+
+input ChatFiltersInput {
+  id: IDFilterInput
+  users: UsersPermissionsUserFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [ChatFiltersInput]
+  or: [ChatFiltersInput]
+  not: ChatFiltersInput
+}
+
+input ChatInput {
+  Messages: [ChatMessagesDynamicZoneInput!]
+  users: [ID]
+  publishedAt: DateTime
+}
+
+type Chat {
+  Messages: [ChatMessagesDynamicZone]
+  users(
+    filters: UsersPermissionsUserFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UsersPermissionsUserRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type ChatEntity {
+  id: ID
+  attributes: Chat
+}
+
+type ChatEntityResponse {
+  data: ChatEntity
+}
+
+type ChatEntityResponseCollection {
+  data: [ChatEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type ChatRelationResponseCollection {
+  data: [ChatEntity!]!
 }
 
 input CountryFiltersInput {
@@ -1442,7 +1526,6 @@ input CsLobbyFiltersInput {
   gameMode: CsGameModeFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
   and: [CsLobbyFiltersInput]
   or: [CsLobbyFiltersInput]
   not: CsLobbyFiltersInput
@@ -1457,7 +1540,6 @@ input CsLobbyInput {
   ping: Long
   antyCheat: ComponentLobbyAntyCheatInput
   gameMode: ID
-  publishedAt: DateTime
 }
 
 type CsLobby {
@@ -1471,7 +1553,6 @@ type CsLobby {
   gameMode: CsGameModeEntityResponse
   createdAt: DateTime
   updatedAt: DateTime
-  publishedAt: DateTime
 }
 
 type CsLobbyEntity {
@@ -2298,6 +2379,7 @@ type TopTeamEntityResponse {
 
 union GenericMorph =
     ComponentAwardsAwards
+  | ComponentChatMessage
   | ComponentDefaultOptions
   | ComponentGameListCsgo
   | ComponentGameListDota2
@@ -2323,6 +2405,7 @@ union GenericMorph =
   | UsersPermissionsRole
   | UsersPermissionsUser
   | CardNew
+  | Chat
   | Country
   | Cs2Award
   | Cs2Brodcasting
@@ -2445,8 +2528,14 @@ type Query {
     filters: CardNewFiltersInput
     pagination: PaginationArg = {}
     sort: [String] = []
-    publicationState: PublicationState = LIVE
   ): CardNewEntityResponseCollection
+  chat(id: ID): ChatEntityResponse
+  chats(
+    filters: ChatFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): ChatEntityResponseCollection
   country(id: ID): CountryEntityResponse
   countries(
     filters: CountryFiltersInput
@@ -2494,7 +2583,6 @@ type Query {
     filters: CsLobbyFiltersInput
     pagination: PaginationArg = {}
     sort: [String] = []
-    publicationState: PublicationState = LIVE
   ): CsLobbyEntityResponseCollection
   dotaTypeLobby(id: ID): DotaTypeLobbyEntityResponse
   dotaTypeLobbies(
@@ -2617,6 +2705,9 @@ type Mutation {
   createCardNew(data: CardNewInput!): CardNewEntityResponse
   updateCardNew(id: ID!, data: CardNewInput!): CardNewEntityResponse
   deleteCardNew(id: ID!): CardNewEntityResponse
+  createChat(data: ChatInput!): ChatEntityResponse
+  updateChat(id: ID!, data: ChatInput!): ChatEntityResponse
+  deleteChat(id: ID!): ChatEntityResponse
   createCountry(data: CountryInput!): CountryEntityResponse
   updateCountry(id: ID!, data: CountryInput!): CountryEntityResponse
   deleteCountry(id: ID!): CountryEntityResponse

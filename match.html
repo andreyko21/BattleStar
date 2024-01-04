@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="Fav.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=1920" />
     <link rel="stylesheet" href="src/styles/match.scss" />
     <title>Battle Star - Match</title>
   </head>
@@ -108,6 +108,33 @@
                 class="content__tab-content tabs-block__content-container"
                 id="translation-content"
               >
+                <div
+                  class="content__view-block tabs-block"
+                  id="sorting-block-cs-strim"
+                >
+                  <load
+                    ="src/html/components/match/sorting-block.html"
+                    class="content__view-tabs"
+                  />
+                  <div class="content__view-content tabs-block__content">
+                    <div
+                      class="content__grid-block-wrapper tabs-block__content-container tabs-block__content-container_active"
+                      id="grid-content"
+                    >
+                      <div class="content__grid-block" id="content-grid-block">
+                        <load
+                          ="src/html/components/striming/cs-striming-card.html"
+                          class="content__grid-card"
+                        />
+                      </div>
+                    </div>
+                    <table
+                      class="content__table tabs-block__content-container"
+                      id="table-content"
+                    >
+                    </table>
+                  </div>
+                </div>
               </div>
               <div
                 class="content__tab-content tabs-block__content-container"

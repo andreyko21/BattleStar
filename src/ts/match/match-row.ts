@@ -51,11 +51,15 @@ class MatchRow {
          </td>
          <td class="match-tr__mode">
            <div class="match-tr__data-title"> Режим </div>
-           <div class="match-tr__rate-value"> ${option.mode}x${option.mode} </div>
+           <div class="match-tr__rate-value"> ${option.mode}x${
+             option.mode
+           } </div>
          </td>
          <td class="match-tr__participants">
            <div class="match-tr__data-title"> Учасников </div>
-           <div class="match-tr__rate-value"> ${option.mode}/${option.participants} </div>
+           <div class="match-tr__rate-value"> ${option.participants}/${
+             2 * +option.mode
+           } </div>
          </td>
          <td class="match-tr__ping-cell">
            <div class="match-tr__ping-block">

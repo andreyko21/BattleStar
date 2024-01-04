@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function selectGameForRender() {
   if (getLocateParam('game') == 'dota2') {
-    new SortingBlock('sorting-block-container', false);
+    new SortingBlock('sorting-block-container', 'sorting-block', false);
     new BaseTabs('sorting-block');
 
     const matchesQuery = new MatchesQueryWithoutFilter();
@@ -51,7 +51,7 @@ async function selectGameForRender() {
       console.error(error);
     }
   } else {
-    new SortingBlock('sorting-block-container', true);
+    new SortingBlock('sorting-block-container', 'sorting-block', true);
     new BaseTabs('sorting-block');
 
     const matchesQuery = new MatchesQueryWithoutFilter();

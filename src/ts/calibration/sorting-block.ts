@@ -1,18 +1,41 @@
 import Sprite from './../../images/sprite.svg';
 
 class SortingBlock {
+  private static instance: { [key: string]: SortingBlock } = {};
   private container: HTMLDivElement | null;
+  private tabsBlockClass: string;
   private renderingTabs: boolean;
 
-  constructor(containerId: string, renderingTabs: boolean) {
+  constructor(
+    containerId: string,
+    tabsBlockClass: string,
+    renderingTabs: boolean
+  ) {
     this.container = document.querySelector(`#${containerId}`);
 
     if (this.container === null) {
       throw new Error(`Container with id #${containerId} not found.`);
     }
 
+    this.tabsBlockClass = tabsBlockClass;
+
     this.renderingTabs = renderingTabs;
     this.render();
+  }
+
+  public static getInstance(
+    containerId: string,
+    tabsBlockClass: string,
+    renderingTabs: boolean
+  ): SortingBlock {
+    if (!SortingBlock.instance[containerId]) {
+      SortingBlock.instance[containerId] = new SortingBlock(
+        containerId,
+        tabsBlockClass,
+        renderingTabs
+      );
+    }
+    return SortingBlock.instance[containerId];
   }
 
   private createTabsTemplate() {
@@ -80,7 +103,7 @@ class SortingBlock {
       </div>`;
 
     const sortingBlocElem: HTMLDivElement = document.createElement('div');
-    sortingBlocElem.classList.add('sorting-block', 'tabs-block');
+    sortingBlocElem.classList.add(this.tabsBlockClass, 'tabs-block');
     sortingBlocElem.innerHTML = template;
 
     this.container?.append(sortingBlocElem);

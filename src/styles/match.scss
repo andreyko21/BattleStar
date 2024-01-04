@@ -22,6 +22,8 @@
 @import './components/match/anti-cheat';
 @import './components/create-lobby/radio-btn';
 
+@import './components/striming/cs-striming-card';
+
 .wrapper {
   overflow: hidden;
   height: 100vh;
@@ -57,7 +59,7 @@
     width: 311px;
     min-height: max-content;
     // height: 100%;
-    padding: 18px 5px 5px 5px;
+    padding: 15px 5px 5px 5px;
     background: rgba(248, 248, 248, 0.05);
     backdrop-filter: blur(10px);
     position: relative;
@@ -567,9 +569,6 @@
   }
 }
 
-.create-lobby {
-}
-
 .tabs-content__tab {
   max-width: 249px;
   width: 100%;
@@ -577,16 +576,16 @@
 .content {
   &__container {
     max-width: 1061px;
-    padding: 0px 37px 0px 38px;
+    padding: 0px 37px 0px 41px;
   }
   &__tabs {
     width: 100%;
-    margin: 31px 0px 70px 0px;
+    margin: 29px 0px 70px 0px;
   }
   &__tabs-content {
     width: 100%;
     padding: 0px 37px 0px 38px;
-    margin: 58px 0px 0px 0px;
+    margin: 52px 0px 0px 0px;
   }
   &__view-block {
   }

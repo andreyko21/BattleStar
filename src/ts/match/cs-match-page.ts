@@ -1,9 +1,6 @@
-import { BaseTabs } from '../component/tabs.ts'; //CreatedObjForIRenderMethod
-//import { TabsCreate } from '../component/tabs-create.ts';
-//import type { IRenderMethod } from '../component/tabs.ts';
+import { BaseTabs } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
 import { Accordion } from '../component/accordeon.ts';
-//import { StrimingTab } from './striming/striming.ts';
 import { BtnOnRadioOrCheck } from './btnOnRadioOrCheck.ts';
 import { RateSelection } from './rate-selection.ts';
 import { TitleCreateLobby } from './title-create-lobby.ts';
@@ -27,6 +24,10 @@ import { Patty } from './filtration/patty.ts';
 import { FiltersBlock } from './filtration/filters-block.ts';
 import { SortingBlock } from '../calibration/sorting-block.ts';
 import { ContentFilteringSectionForMatch } from './filtration/conten-filters-section-for-match.ts';
+import {
+  setLocateParam,
+  removeAllParams,
+} from '../functions/windowLocation.ts';
 
 class CsMatchesPage {
   private static instance: CsMatchesPage;
@@ -43,41 +44,20 @@ class CsMatchesPage {
     return CsMatchesPage.instance;
   }
 
-  async renderCsPage() {
-    // const mayMethods: IRenderMethod = {
-    //   find: () => {
-    //     // console.log('find');
-    //   },
-    //   translation: () => {
-    //     //  const translationTab = StrimingTab.getInstance();
-    //   },
-    // };
-    // new TabsCreate('content-wrapper', 'match-page__filters', [
-    //   ['find', 'НАЙТИ ИГРУ'],
-    //   ['create', 'СОЗДАТЬ ЛОББИ'],
-    // ]);
+  private updateUrlParams() {
+    removeAllParams();
+    setLocateParam('match-page__content', 'open-match');
+  }
 
+  async renderCsPage() {
+    this.updateUrlParams();
     new ContentFilteringSectionForMatch('filters');
 
     new BaseTabs('match-page__filters');
     new LavaLamp('match-page__filters');
 
-    // new BaseTabs('match-page__content', mayMethods);
-    // new LavaLamp('match-page__content');
-
-    // const sortingBlockIdArr = ['grid', 'table'];
-    // const addClassForSort = () => {
-    //   //id:string
-    //   //  console.log('Hello!');
-    // };
-
-    // const forSorting = new CreatedObjForIRenderMethod(
-    //   sortingBlockIdArr,
-    //   addClassForSort
-    // );
-
-    new SortingBlock('sorting-block-container', true);
-    new BaseTabs('sorting-block'); //, forSorting.createObj()
+    SortingBlock.getInstance('sorting-block-container', 'sorting-block', true);
+    new BaseTabs('sorting-block');
 
     const rateOptions = [
       { value: '100', label: '100' },

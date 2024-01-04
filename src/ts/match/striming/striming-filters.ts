@@ -1,6 +1,11 @@
-import { setLocateParam, delLocateParam } from '../../functions/windowLocation';
+import {
+  setLocateParam,
+  delLocateParam,
+  getQueryParams,
+} from '../../functions/windowLocation';
 import { QueryRate } from '../../types';
 import { CsStreamingQuery } from './cs-streaming-query';
+import { StreamingRow } from './streaming-cs-row';
 import { StrimingCard } from './striming-grid-card';
 
 //type ICheckbox = [{ [key: string]: string }];
@@ -16,10 +21,6 @@ class StreamingFilters {
   private readonly container: HTMLElement | null;
   allCheckbox: NodeListOf<HTMLInputElement> | null;
 
-  //?????!!!!
-  //  private readonly containerId: string;
-
-  //  private options: ICsStrimingFiltersOtions;
   private allCheckboxesValues: { [key: string]: string[] } = {};
   private rateSliderHendles: HTMLDivElement[];
   private timeoutUpdateContent: number | undefined;
@@ -32,20 +33,15 @@ class StreamingFilters {
   } = { country: [], rate: [], mapName: [], gameMode: [] };
 
   constructor(containerId: string) {
-    //options: ICsStrimingFiltersOtions
     this.container = document.querySelector(`#${containerId}`) as HTMLElement;
     this.allCheckbox = this.container.querySelectorAll(
       'input[type="checkbox"]'
     );
 
-    // //!!!---??
-    // this.containerId = containerId;
-    // // this.options = options;
-
     this.rateSliderHendles = this.selectRateSliderHendles();
     this.addEventHandler();
     this.selectAllChaeckboxValue();
-    //this.updateFiltersObject();
+    this.updateFiltersObject();
   }
 
   private selectRateSliderHendles() {
@@ -104,8 +100,8 @@ class StreamingFilters {
     const query = await matchQuery.getData();
 
     if (query) {
-      new StrimingCard('calibration-table', query);
-      //  new MatchTile('calibration-grid', query, this.lobbyOpenning);
+      new StrimingCard('streaming-grid', query);
+      new StreamingRow('streaming-table', query);
     }
   }
 
@@ -237,6 +233,33 @@ class StreamingFilters {
         this.allCheckboxesValues[valueKey] = [checkbox.value];
       }
     });
+  }
+
+  private updateFiltersObject() {
+    for (const [key, value] of getQueryParams().entries()) {
+      const valueArr = value.split(',');
+      if (key === 'rate' && valueArr[0] === 'between') {
+        this.filtersObj.rate = ['between', valueArr[1], valueArr[2]];
+      } else if (this.allCheckbox !== null) {
+        this.allCheckbox.forEach((checkbox) => {
+          const checkboxName = checkbox.name.replace('-filter', '');
+          if (checkboxName === key && valueArr.includes(checkbox.value)) {
+            checkbox.checked = true;
+            if (checkboxName !== 'rate') {
+              this.filtersObj.rate?.push(checkbox.value);
+            } else {
+              if (this.filtersObj.rate?.length !== 0) {
+                this.filtersObj.rate?.push(checkbox.value);
+              } else {
+                this.filtersObj.rate = ['in', checkbox.value];
+              }
+            }
+          }
+        });
+      }
+    }
+
+    this.updateContent();
   }
 }
 

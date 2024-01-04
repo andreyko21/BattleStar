@@ -76,7 +76,7 @@ class StrimingCard {
       const target = e.target as HTMLElement;
       const targetRow = target.closest('.striming-card');
       if (targetRow) {
-        window.location.href = `/stream?game=cs2&id=${targetRow.id}`;
+        window.location.href = `/stream.html?game=cs2&id=${targetRow.id}`;
         //  const option = this.options.find((elem) => elem.id == targetRow.id);
         //  if (option) {
 

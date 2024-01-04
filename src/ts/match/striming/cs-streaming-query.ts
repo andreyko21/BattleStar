@@ -1,5 +1,5 @@
 import { request } from 'graphql-request';
-import { GetCsStreaming } from '../../../../queries.graphql';
+import { GetCsStreaming } from '../../../../queries.graphql.d';
 import { QueryRate } from '../../types';
 
 interface LobbyData {

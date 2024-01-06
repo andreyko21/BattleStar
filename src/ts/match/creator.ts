@@ -2,6 +2,7 @@ import { getRequest } from '../functions/request';
 import { getCookie } from '../functions/cookie';
 import { CreatorLobby, GetMyInfo } from '../../../queries.graphql.d';
 import type { CreatorDataForLobby } from '../types';
+import DefaultAvatar from './../../images/chat/default-avatar.png';
 
 class Creator {
   transformedCreatorData: CreatorDataForLobby = {
@@ -47,11 +48,11 @@ class Creator {
         creatorData.usersPermissionsUser.data.attributes.player?.data?.id ||
         null,
       avatarUrl:
-        creatorData.usersPermissionsUser.data.attributes.player?.data
-          ?.attributes.avatar?.data?.attributes.url || null,
+        creatorData.usersPermissionsUser.data.attributes.avatar?.data
+          ?.attributes?.url || DefaultAvatar,
       avatarAltText:
-        creatorData.usersPermissionsUser.data.attributes.player?.data
-          ?.attributes.avatar?.data?.attributes.alternativeText || null,
+        creatorData.usersPermissionsUser.data.attributes.avatar?.data
+          ?.attributes?.alternativeText || 'Default avater',
       csGoRank:
         creatorData.usersPermissionsUser.data.attributes.player?.data
           ?.attributes.CSGO?.Default_information?.rank || null,

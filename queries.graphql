@@ -586,6 +586,14 @@ query CreatorLobby($id: ID) {
       id
       attributes {
         username
+        avatar {
+          data {
+            attributes {
+              url
+              alternativeText
+            }
+          }
+        }
         player {
           data {
             id
@@ -1225,7 +1233,10 @@ mutation UpdateUser($id: ID!, $newUsername: String, $newBiography: String) {
 }
 
 query GetAllPlayers($username: String) {
-  players(filters: { user: { username: { containsi: $username } } }) {
+  players(
+    filters: { user: { username: { containsi: $username } } }
+    pagination: { limit: 1000 }
+  ) {
     data {
       id
       attributes {
@@ -1242,6 +1253,14 @@ query GetAllPlayers($username: String) {
             id
             attributes {
               username
+              avatar {
+                data {
+                  attributes {
+                    url
+                    alternativeText
+                  }
+                }
+              }
             }
           }
         }
@@ -1332,6 +1351,98 @@ query GetCsStreaming(
           }
         }
         videoUrl
+      }
+    }
+  }
+}
+
+query GetDotaLobbies(
+  $country: [String]
+  $rate: LongFilterInput
+  $gameMode: [String]
+  $antyCheat: Boolean
+) {
+  dota2Lobbies(
+    filters: {
+      and: [
+        {
+          creator: { Options: { selected_country: { name: { in: $country } } } }
+        }
+        { rate: $rate }
+        { dota_2_game_modes: { value: { in: $gameMode } } }
+        { antyCheat: { value: { eq: $antyCheat } } }
+      ]
+    }
+    pagination: { limit: 1000 }
+  ) {
+    data {
+      id
+      attributes {
+        title
+        creator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      name
+                      flag {
+                        data {
+                          attributes {
+                            url
+                            alternativeText
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        rate
+        dota_2_game_modes {
+          data {
+            id
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        typeLobby {
+          data {
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        participant {
+          players {
+            data {
+              id
+            }
+          }
+        }
+        ping
+        antyCheat {
+          value
+        }
+      }
+    }
+  }
+}
+
+query GetDota2GameModes {
+  dota2GameModes {
+    data {
+      id
+      attributes {
+        title
+        value
       }
     }
   }

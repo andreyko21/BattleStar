@@ -39,6 +39,10 @@ function delLocateParam(param: string) {
   window.history.pushState({ path: newUrl }, '', newUrl);
 }
 
+function delLocateParams(params: string[]) {
+  params.forEach((param) => delLocateParam(param));
+}
+
 function removeAllParams() {
   const urlWithoutParams =
     window.location.protocol +
@@ -54,6 +58,7 @@ export {
   setLocateParam,
   getLocateParam,
   delLocateParam,
+  delLocateParams,
   removeAllParams,
   setLocateParamReload,
 };

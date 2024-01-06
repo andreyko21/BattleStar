@@ -88,6 +88,8 @@ class Patty {
         <img
           src="${player.avatarUrl}"
           alt="${player.avatarAltText}"
+          width="48"
+          height ="48"
           class="user-block__avatar-img"
         />
         <div class="user-block__avatar-online"></div>

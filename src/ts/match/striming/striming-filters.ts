@@ -4,8 +4,11 @@ import {
   getQueryParams,
 } from '../../functions/windowLocation';
 import { QueryRate } from '../../types';
+//@ts-ignore
 import { CsStreamingQuery } from './cs-streaming-query';
+//@ts-ignore
 import { StreamingRow } from './streaming-cs-row';
+//@ts-ignore
 import { StrimingCard } from './striming-grid-card';
 
 //type ICheckbox = [{ [key: string]: string }];

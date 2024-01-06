@@ -26,26 +26,26 @@ import { SortingBlock } from '../calibration/sorting-block.ts';
 import { ContentFilteringSectionForMatch } from './filtration/conten-filters-section-for-match.ts';
 import {
   setLocateParam,
-  removeAllParams,
+  delLocateParams,
 } from '../functions/windowLocation.ts';
 
 class CsMatchesPage {
-  private static instance: CsMatchesPage;
+  //  private static instance: CsMatchesPage;
 
   constructor() {
     this.renderCsPage();
   }
 
-  public static async getInstance(): Promise<CsMatchesPage> {
-    if (!CsMatchesPage.instance) {
-      CsMatchesPage.instance = new CsMatchesPage();
-      await this.instance.renderCsPage();
-    }
-    return CsMatchesPage.instance;
-  }
+  //  public static async getInstance(): Promise<CsMatchesPage> {
+  //    if (!CsMatchesPage.instance) {
+  //      CsMatchesPage.instance = new CsMatchesPage();
+  //      await this.instance.renderCsPage();
+  //    }
+  //    return CsMatchesPage.instance;
+  //  }
 
   private updateUrlParams() {
-    removeAllParams();
+    delLocateParams(['country', 'rate', 'mapName', 'gameMode', 'antyCheat']);
     setLocateParam('match-page__content', 'open-match');
   }
 

@@ -3,6 +3,7 @@ import { GetAllPlayers } from '../../../../queries.graphql.d';
 import { config } from '../../config.ts';
 import type { CreatorDataForLobby, PlayerDataForLobby } from '../../types.ts';
 import Sprite from './../../../images/sprite.svg';
+import DefaultAvatar from './../../../images/chat/default-avatar.png';
 
 class AllPlayerList {
   //  private container: HTMLElement | null;
@@ -28,13 +29,24 @@ class AllPlayerList {
       if (players?.data) {
         const playersObj = players.data.map((item) => ({
           userId: item.attributes?.user?.data?.id as string,
-          avatarUrl: item.attributes?.avatar?.data?.attributes?.url || '',
+          avatarUrl:
+            item.attributes?.user?.data?.attributes?.avatar?.data?.attributes
+              ?.url || DefaultAvatar,
           avatarAltText:
-            item.attributes?.avatar?.data?.attributes?.alternativeText || '',
+            item.attributes?.user?.data?.attributes?.avatar?.data?.attributes
+              ?.alternativeText || 'Default avater',
           username: item.attributes?.user?.data?.attributes?.username || '',
-          csGoRank: item.attributes?.CSGO?.Default_information?.rank || 0,
-          dota2Rank: item.attributes?.DOTA2?.Default_information?.rank || 0,
+          csGoRank:
+            item.attributes?.CSGO?.Default_information?.rank === null
+              ? 0
+              : item.attributes?.CSGO?.Default_information?.rank || 0,
+          dota2Rank:
+            item.attributes?.DOTA2?.Default_information?.rank === null
+              ? 0
+              : item.attributes?.DOTA2?.Default_information?.rank || 0,
         }));
+        console.table(playersObj);
+
         return playersObj;
       }
     } catch (error) {

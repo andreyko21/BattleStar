@@ -6,8 +6,9 @@ import type { NewCheckboxData } from '../types';
 
 class GettingGameModeFiltering {
   private container: HTMLDivElement | null;
+  private filterBlockId: string | null = null;
 
-  constructor(containerId: string) {
+  constructor(containerId: string, filterBlockId?: string) {
     this.container = document.querySelector(`#${containerId}`);
 
     if (!this.container) {
@@ -15,6 +16,9 @@ class GettingGameModeFiltering {
     }
 
     this.renderFilterContainer();
+    if (filterBlockId !== undefined) {
+      this.filterBlockId = filterBlockId;
+    }
   }
 
   private async renderCheckboxHtml(
@@ -24,7 +28,7 @@ class GettingGameModeFiltering {
       label: string;
     }[]
   ): Promise<void> {
-   const newCheckboxData = this.addCheck(checkboxData);
+    const newCheckboxData = this.addCheck(checkboxData);
     const checkboxObj = new CreateingCheckbox(
       'gameMode-filter',
       newCheckboxData,
@@ -33,24 +37,25 @@ class GettingGameModeFiltering {
     checkboxObj.createChecboxes();
   }
 
-  private addCheck(checkboxData:{
-   id: string;
-   value: string;
-   label: string;
- }[]):NewCheckboxData[]{
+  private addCheck(
+    checkboxData: {
+      id: string;
+      value: string;
+      label: string;
+    }[]
+  ): NewCheckboxData[] {
+    console.log(checkboxData[0].value);
 
-   console.log(checkboxData[0].value);
-   
-   const locateParam = getLocateParam("gameMode")?.split(",");
+    const locateParam = getLocateParam('gameMode')?.split(',');
 
-   const newCheckboxData: NewCheckboxData[] = []
-   checkboxData.forEach((item, index) => {
+    const newCheckboxData: NewCheckboxData[] = [];
+    checkboxData.forEach((item, index) => {
       newCheckboxData.push(item);
       if (locateParam?.includes(item.value)) {
-         newCheckboxData[index].checked = true
-      } 
-   })
-   return newCheckboxData
+        newCheckboxData[index].checked = true;
+      }
+    });
+    return newCheckboxData;
   }
 
   private renderFilterContainer() {
@@ -78,6 +83,9 @@ class GettingGameModeFiltering {
       'game-mode-filter',
       'accordion'
     );
+    if (this.filterBlockId !== null) {
+      rateSelectedElem.id = this.filterBlockId;
+    }
     rateSelectedElem.innerHTML = template;
     this.container?.append(rateSelectedElem);
   }

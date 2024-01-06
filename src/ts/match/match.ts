@@ -1,25 +1,19 @@
-import { getLocateParam } from '../functions/windowLocation.ts';
+import {
+  delLocateParams,
+  getLocateParam,
+} from '../functions/windowLocation.ts';
 import { Header } from '../component/header/header.ts';
 import { AppSidebar } from '../component/sidebar/sidebar.ts';
-//import { CsMatchesPage } from './cs-match-page.ts';
-//import { BaseTabs } from '../component/tabs.ts'; //CreatedObjForIRenderMethod
-//import type { IRenderMethod } from '../component/tabs.ts';
-//import { LavaLamp } from '../component/lava-lamp.ts';
 import { SelectedCsMatchPagesTab } from './selected-cs-matches-page-tab.ts';
 import { SelectedDota2MatchPagesTab } from './dota/selected-dota2-matches-page-tab.ts';
+import { functionObj } from '../component/header/components/function-obj.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
   new Header('#wrapper');
   new AppSidebar('wrapper', 'МАТЧИ');
+  functionObj.doAfterChangeGame = () =>
+    delLocateParams(['country', 'rate', 'mapName', 'gameMode', 'antyCheat']);
   selectGameForRender();
-  //  $('.tournaments-nav__create-button').on('click', () => {
-  //    const locParam = getLocateParam('game');
-  //    if (locParam == undefined || locParam == null) {
-  //      window.location.href = '/createTournament.html?game="cs2"';
-  //    } else {
-  //      window.location.href = `/createTournament.html?game="${locParam}"`;
-  //    }
-  //  });
 });
 
 async function selectGameForRender() {

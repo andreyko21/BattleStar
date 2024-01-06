@@ -11,7 +11,7 @@ import { RegionFiltering } from '../region-filtering.ts';
 import { AntiCheat } from '../anti-cheat.ts';
 import {
   setLocateParam,
-  removeAllParams,
+  delLocateParams,
 } from '../../functions/windowLocation.ts';
 import { StreamingFilters } from './striming-filters.ts';
 import { SortingBlock } from '../../calibration/sorting-block.ts';
@@ -32,8 +32,8 @@ class StrimingTab {
   }
 
   private updateUrlParams() {
-    removeAllParams();
-    setLocateParam('match-page__content', 'translation');
+    delLocateParams(['country', 'rate', 'mapName', 'gameMode', 'antyCheat']);
+    setLocateParam('match-page__content', 'open-match');
   }
 
   public async renderTranslateCsPage() {

@@ -99,7 +99,6 @@ async function getRequest(
     });
 
     if (response) {
-      // console.log("Response:", response);
       return response;
     } else {
       throw new Error("No response data received");
@@ -107,5 +106,39 @@ async function getRequest(
   } catch (error) {
     console.error("Error in getRequest:", error);
     throw error;
+  }
+}
+
+export class SimpleHeader {
+  container: JQuery<HTMLElement>;
+
+  constructor(containerId: string) {
+    this.container = $(containerId);
+    this.render();
+  }
+
+  render() {
+    this.container.append(`
+      <header class="simple-header">
+      <a class="simple-header__logo" href="/index.html">
+        <svg class="simple-header__logo-icon">
+            <use xlink:href="${Sprite}#logo"></use>
+          </svg>
+        </a>
+   
+
+        <label for="HeaderSearch" class="header__search-block">
+          <svg class="header__search-block-icon">
+            <use xlink:href="${Sprite}#search"></use>
+          </svg>
+          <input
+            class="header__search-block-input"
+            id="HeaderSearch"
+            type="text"
+            placeholder="Поиск"
+          />
+        </label>
+      </header>
+    `);
   }
 }

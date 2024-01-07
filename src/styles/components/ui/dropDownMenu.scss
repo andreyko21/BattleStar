@@ -1,4 +1,5 @@
 .dropdown__account {
+  display: block;
   position: absolute;
   right: 87px;
   top: 71px;
@@ -13,6 +14,7 @@
   overflow: auto;
   animation: show 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   &_hide {
+    display: none;
     animation: hide 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   }
 
@@ -33,6 +35,7 @@
       width: 24px;
       height: 24px;
       margin-right: 20px;
+      fill: rgba(248, 248, 248, 0.6);
     }
 
     &:hover {
@@ -176,12 +179,12 @@
     position: relative;
     border-radius: 4px;
     background: $dark600;
-    width: 133px;
+    width: 140px;
     height: 40px;
     display: flex;
     // align-items: center;
     padding: 0 10px;
-    // z-index: -1;
+    cursor: pointer;
   }
 
   &-current {
@@ -242,8 +245,12 @@
       height: 146px;
       cursor: pointer;
       transition: all 0.5s ease;
-      -webkit-transition: opacity 0.5s, visibility 0.5s;
-      transition: opacity 0.5s, visibility 0.5s;
+      -webkit-transition:
+        opacity 0.5s,
+        visibility 0.5s;
+      transition:
+        opacity 0.5s,
+        visibility 0.5s;
       z-index: 1;
     }
   }

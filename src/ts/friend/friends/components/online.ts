@@ -18,16 +18,22 @@ type UserInfo = {
 
 export class OnlineUsers {
   private socket: any;
-  private container: JQuery<HTMLElement>;
-  private users: User[];
+  private container!: JQuery<HTMLElement>;
+  private users!: User[];
   private usersInfo: UserInfo[] = [];
   currentUser: any;
 
   constructor(containerId: string) {
+    if (!this.checkAuthToken()) {
+      window.location.href = "/sign.html";
+      return;
+    }
+
     this.container = $(containerId);
     this.users = [];
     this.connectToSocket();
     this.render();
+    this.setupSearchHandler();
   }
 
   private connectToSocket(): void {
@@ -90,10 +96,25 @@ export class OnlineUsers {
     }
   }
 
-  private renderUsers(): void {
-    const usersHtml = this.users
+  private setupSearchHandler(): void {
+    const searchInput = this.container.find(".input__search-input");
+
+    searchInput.on("input", () => {
+      const searchTerm = searchInput.val()?.toString().toLowerCase().trim();
+      this.renderUsers(searchTerm);
+    });
+  }
+
+  private renderUsers(searchTerm = ""): void {
+    const filteredUsers = this.users.filter(
+      (user) =>
+        user.online_status && user.username.toLowerCase().includes(searchTerm)
+    ); // Filter based on search term
+
+    const usersHtml = filteredUsers
       .map((user) => this.createUserHtml(user))
       .join("");
+
     this.container.find("#list-users").html(usersHtml);
     this.attachMenuEventHandlers();
   }
@@ -153,7 +174,7 @@ export class OnlineUsers {
           </svg>
         </button>
         <div class="user-menu" style="display: none;">
-          <button class="user-menu__button">Открыть профиль</button>
+          <a class="user-menu__button" href="/user.html">Открыть профиль</a>
           <button class="user-menu__button">Поделиться профилем</button>
           <button class="user-menu__button">Удалить из друзей</button>
           <button class="user-menu__button">Пожаловаться</button>
@@ -163,47 +184,39 @@ export class OnlineUsers {
     `;
   }
 
+  private checkAuthToken(): boolean {
+    const token = this.getCookie("token");
+    return token !== null;
+  }
+
   private attachMenuEventHandlers(): void {
     this.container.find(".user").each((_index, element) => {
       const $element = $(element);
-      const userId = $element.data("user-id");
-      const chatId = $element.data("chat-id");
-
-      $element.on("click", () => {
-        this.openChat(chatId);
-        this.setActiveUser(userId);
-      });
 
       $element.find(".user__setting-button").on("click", function () {
-        $element.find(".user-menu").toggle();
+        const $menu = $element.find(".user-menu");
+        const menuHeight = $menu.outerHeight() || 0;
+
+        // Get window height and button offset with type checking
+        const windowHeight = $(window).height() ?? 0;
+        const buttonOffset = $(this).offset()?.top ?? 0;
+
+        // Calculate distance to window bottom
+        const distanceToWindowBottom = windowHeight - buttonOffset;
+
+        if (distanceToWindowBottom < menuHeight) {
+          $menu.css({ top: "auto", bottom: "100%" }); // Position menu above the button
+        } else {
+          $menu.css({ top: "100%", bottom: "auto" }); // Position menu below the button
+        }
+
+        $menu.toggle();
       });
 
       $element.on("mouseleave", function () {
-        $element.find(".user-menu").hide();
+        $(this).find(".user-menu").hide();
       });
     });
-  }
-
-  private openChat(chatId: number | null): void {
-    if (chatId) {
-      this.socket.emit("chat:getMessages", chatId);
-      this.setActiveChat(chatId);
-      this.container.find(".chat__messages-container").show();
-      this.container.find(".chat__message-input-block").show();
-    } else {
-      console.log("No chatId provided, need to create a new chat.");
-    }
-  }
-
-  private setActiveChat(chatId: number): void {
-    this.container
-      .find(".chat__messages-container")
-      .data("active-chat", chatId);
-  }
-
-  private setActiveUser(userId: number): void {
-    this.container.find(".user").removeClass("active");
-    this.container.find(`.user[data-user-id="${userId}"]`).addClass("active");
   }
 
   private renderMessages(messages: any[]): void {

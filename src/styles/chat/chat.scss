@@ -12,6 +12,9 @@ body {
   max-height: 100vh;
 }
 
+.main {
+  position: relative;
+}
 .page {
   overflow: auto;
 }
@@ -56,7 +59,7 @@ body {
 
 .chat {
   display: flex;
-  max-width: 1152px;
+  max-width: none;
   flex-grow: 1;
   width: 100%;
   flex-direction: column;
@@ -210,10 +213,8 @@ body {
   }
 
   &_request {
-    max-width: 962px;
-
     .chat__messages-container {
-      width: 962px;
+      flex: 100%;
       overflow-y: scroll;
       &::-webkit-scrollbar {
         display: none;
@@ -288,6 +289,39 @@ body {
       fill: #6fff57;
     }
 
+    &_user {
+      margin: auto;
+      width: 24px;
+      height: 24px;
+      margin-right: 17px;
+      border-radius: 4px;
+      background: none;
+      &-icon {
+        width: 100%;
+        height: 100%;
+        fill: #6fff57;
+      }
+
+      &:hover,
+      &:focus {
+        .user__submit-button-icon {
+          fill: #aceb98;
+          transform: scale(1.1);
+        }
+      }
+
+      &:active {
+        .user__submit-button-icon {
+          fill: #59bf30;
+          transform: scale(0.9);
+        }
+      }
+    }
+  }
+
+  &__action-button {
+    grid-area: submit;
+
     &_check {
       margin: auto;
       padding: 4.8px;
@@ -297,7 +331,11 @@ body {
       border-radius: 4px;
       border: 1px solid #6fff57;
       background: rgba(111, 255, 87, 0.2);
-
+      svg {
+        width: 100%;
+        height: 100%;
+        fill: #6fff57;
+      }
       &:hover {
         background: rgba(111, 255, 87, 0.3);
         border-color: darken(#6fff57, 10%);
@@ -312,6 +350,16 @@ body {
         background: rgba(111, 255, 87, 0.4);
         border-color: darken(#6fff57, 20%);
       }
+    }
+  }
+
+  &__remove-friend-button {
+    grid-area: submit;
+
+    &-icon {
+      width: 100%;
+      height: 100%;
+      fill: #6fff57;
     }
 
     &_user {
@@ -422,6 +470,7 @@ body {
 
     .user-menu {
       display: block;
+      z-index: 3;
     }
   }
 }
@@ -536,6 +585,15 @@ body {
   }
 }
 
+.search-section__search-block {
+  position: sticky;
+  top: 0;
+  padding-bottom: 10px;
+  background: linear-gradient(180deg, rgba(78, 78, 116, 0) 0%, #0c0c0e 100%);
+  backdrop-filter: blur(110px);
+  z-index: 5;
+}
+
 .search-section {
   max-width: 544px;
   margin-left: auto;
@@ -543,6 +601,7 @@ body {
 
   &__list-users {
     margin-top: 16px;
+    z-index: 0;
   }
 }
 
@@ -603,6 +662,9 @@ body {
 
 .tabs-block__content-container {
   overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .chat__messages-container {
   width: auto;
@@ -613,5 +675,62 @@ body {
   &::-webkit-scrollbar-track {
     background: rgb(18, 25, 43);
     border: none;
+  }
+}
+
+#request-content {
+  .chat-section-sidebar {
+    max-width: 574px;
+  }
+}
+
+.user__remove-button {
+  grid-area: submit;
+  &.user__submit-button_user {
+    margin: auto;
+    width: 24px;
+    height: 24px;
+    margin-right: 17px;
+    border-radius: 4px;
+    background: none;
+    .user__submit-button-icon {
+      width: 100%;
+      height: 100%;
+      fill: red !important;
+    }
+
+    &:hover,
+    &:focus {
+      .user__submit-button-icon {
+        fill: red !important;
+        transform: scale(1.1);
+      }
+    }
+
+    &:active {
+      .user__submit-button-icon {
+        fill: red !important;
+        transform: scale(0.9);
+      }
+    }
+  }
+}
+
+.preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(10, 10, 10);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-width: 70vh;
   }
 }

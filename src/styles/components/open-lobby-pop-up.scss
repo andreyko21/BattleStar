@@ -51,12 +51,13 @@
   &__map-img {
     width: 164px;
     height: 80px;
+    margin: 0px 25px 0px 0;
     display: block;
   }
 
   &__flag-img {
     display: block;
-    margin: 0px 25px 0px 25px;
+    margin: 0px 25px 0px 0;
     width: 37px;
     height: 24px;
     display: block;
@@ -69,11 +70,6 @@
     font-weight: 500;
     line-height: normal;
   }
-
-  &__btn-block {
-    // display: flex;
-    // align-items: center;
-  }
   &__not-now-link {
     //!------------?????
     display: block;
@@ -82,8 +78,5 @@
   &__btn {
     width: 220px;
     height: 47px;
-    // &:first-child {
-    //   margin: 0px 14px 0px 0px;
-    // }
   }
 }

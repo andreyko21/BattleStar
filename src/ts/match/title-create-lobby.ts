@@ -15,7 +15,8 @@ class TitleCreateLobby {
     const template = `
     <div class="create-lobby__title"> Лобби </div>
     <label
-      class="create-lobby__name-input-label text-input text-input_name-lobby"
+      class="create-lobby__name-input-label text-input text-input_name-lobby" 
+      id="name-lobby-label"
     >
       <input
         type="text"
@@ -26,10 +27,11 @@ class TitleCreateLobby {
     </label>
       `;
 
-    const rateSelectedElem = document.createElement('div');
-    rateSelectedElem.classList.add('create-lobby__title-block');
-    rateSelectedElem.innerHTML = template;
-    this.container?.prepend(rateSelectedElem);
+    const titleBlock = document.createElement('div');
+    titleBlock.classList.add('create-lobby__title-block');
+    titleBlock.id = 'create-lobby-title-block';
+    titleBlock.innerHTML = template;
+    this.container?.prepend(titleBlock);
   }
 }
 

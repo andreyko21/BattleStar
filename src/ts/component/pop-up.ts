@@ -86,8 +86,12 @@ class OpenLobbyPopUp extends BasePopUp {
     const img = this.popUp.querySelector(
       '.open-lobby-pop-up__map-img'
     ) as HTMLImageElement;
-    img.src = option.imgSrc as string;
-    img.alt = option.map as string;
+    if (option.imgSrc === undefined) {
+      img.style.display = 'none';
+    } else {
+      img.src = option.imgSrc as string;
+      img.alt = option.map as string;
+    }
 
     const flag = this.popUp.querySelector(
       '.open-lobby-pop-up__flag-img'

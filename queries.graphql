@@ -326,6 +326,7 @@ mutation CreateCsLobbies(
   $participant: [ID]
   $ping: Long
   $antyCheat: Boolean
+  $publishedAt: DateTime
 ) {
   createCsLobby(
     data: {
@@ -337,9 +338,11 @@ mutation CreateCsLobbies(
       participant: { players: $participant }
       ping: $ping
       antyCheat: { value: $antyCheat }
+      publishedAt: $publishedAt
     }
   ) {
     data {
+      id
       attributes {
         title
         creator {
@@ -1443,6 +1446,76 @@ query GetDota2GameModes {
       attributes {
         title
         value
+      }
+    }
+  }
+}
+
+query GetDotaTypeLobbies {
+  dotaTypeLobbies {
+    data {
+      id
+      attributes {
+        title
+        value
+      }
+    }
+  }
+}
+
+mutation CreateDota2Lobby(
+  $title: String
+  $creator: ID
+  $typeLobby: ID
+  $rate: Long
+  $gameMode: [ID]
+  $participant: [ID]
+  $ping: Long
+  $antyCheat: Boolean
+) {
+  createDota2Lobby(
+    data: {
+      title: $title
+      creator: $creator
+      typeLobby: $typeLobby
+      rate: $rate
+      dota_2_game_modes: $gameMode
+      participant: { players: $participant }
+      ping: $ping
+      antyCheat: { value: $antyCheat }
+    }
+  ) {
+    data {
+      id
+      attributes {
+        title
+        creator {
+          data {
+            id
+          }
+        }
+        rate
+        dota_2_game_modes {
+          data {
+            id
+          }
+        }
+        ping
+        antyCheat {
+          value
+        }
+        participant {
+          players {
+            data {
+              id
+            }
+          }
+        }
+        typeLobby {
+          data {
+            id
+          }
+        }
       }
     }
   }

@@ -1540,6 +1540,7 @@ input CsLobbyInput {
   ping: Long
   antyCheat: ComponentLobbyAntyCheatInput
   gameMode: ID
+  publishedAt: DateTime
 }
 
 type CsLobby {

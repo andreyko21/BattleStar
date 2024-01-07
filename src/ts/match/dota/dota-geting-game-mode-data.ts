@@ -25,10 +25,7 @@ class DotaGettingGameModeData {
         return dota2GameModes.data.map((item) => ({
           id: item.id as string,
           label: item.attributes?.title as string,
-          value:
-            typeof item.attributes?.value === 'number'
-              ? item.attributes?.value.toString()
-              : '',
+          value: item.attributes?.value.replace(/\s/g, '_'),
         }));
       }
     } catch (error) {

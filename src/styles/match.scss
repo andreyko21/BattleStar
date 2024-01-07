@@ -22,6 +22,9 @@
 @import './components/match/anti-cheat';
 @import './components/create-lobby/radio-btn';
 
+@import './components/match/dota2-row.scss';
+@import './components/create-lobby/type-mode-selected';
+
 @import './components/striming/cs-striming-card';
 @import './components/striming/cs-streaming-row';
 
@@ -569,6 +572,12 @@
     }
   }
 }
+#game-mode-filter-checkboxes-container.game-mode-filter {
+  &__content {
+    grid-template-columns: 1fr;
+  }
+}
+
 .region-filter {
   &__title-block {
   }

@@ -159,6 +159,7 @@ class Personal {
     });
   }
 }
+
 function setCookie(name:any, value:any) {
    document.cookie = name + "=" + (value || "") + "; path=/";
    // document.cookie = bio + "=" + (value || "") + "; path=/";
@@ -178,6 +179,11 @@ function getCookie(cname: string): string {
 
   return "";
 }
+
+// const users = await request("https://battle-star-app.onrender.com/graphql",GetUser);
+// console.log(users);
+
+
 
 let name = getCookie("name");
 let id = getCookie("id");

@@ -1,5 +1,5 @@
-// import { request } from 'graphql-request';
-// import { GetHistoryMatch } from "../../../queries.graphql.d";
+import { request } from 'graphql-request';
+import { GetLobbyInfoId } from "../../../queries.graphql.d";
 import $ from "jquery";
 import { Header } from "../component/header/header";
 import { AppSidebar } from "../component/sidebar/sidebar";
@@ -19,14 +19,33 @@ export interface IHistoryData {
 }
 export class History   {
   private content: string;
+
   private history: IHistoryData[];
     filterSelect: JQuery<HTMLSelectElement>;
   tableRows: JQuery<HTMLTableRowElement>;
+  urlParams: URLSearchParams;
+  lobbyInfo: any;
+  lobbyInfoParam: any;
+
 
   constructor(content: string, history: IHistoryData[]) {
+    this.urlParams = new URLSearchParams(window.location.search);
+    this.lobbyInfoParam = this.urlParams.get('lobbyInfo');
+    
+    if (this.lobbyInfoParam) {
+      try {
+        const lobbyInfo = JSON.parse(this.lobbyInfoParam);
+        console.log(lobbyInfo);
+      } catch (error) {
+        console.error('Помилка при розпарсюванні lobbyInfo:', error);
+      }
+    } else {
+      console.log('Параметр lobbyInfo не знайдено в URL.');
+    }
+    
     this.content = content;
     this.history = history;
-        this.filterSelect = $("#filter") as JQuery<HTMLSelectElement>;
+    this.filterSelect = $("#filter") as JQuery<HTMLSelectElement>;
     this.tableRows = $(".table__tr") as JQuery<HTMLTableRowElement>;
     this.renderHistory();
     
@@ -116,80 +135,87 @@ export class History   {
   
 }
 
-let infoHistory: any[] =  [
-{
-  name: 'CS:GO',
-  data: '07.06.2021',
-  time: '19:20',
-  regime: '5v5',
-  id: 3758902,
-  result: 'Победа',
-  money: 1200,
-},
-{
-  name: 'CS:GO',
-  data: '07.06.2021',
-  time: '19:20',
-  regime: '5v5',
-  id: 3758902,
-  result: 'Поражение',
-  money: 200,
-},
-{
-  name: 'Dota 2',
-  data: '07.06.2021',
-  time: '19:20',
-  regime: '5v5',
-  id: 3758902,
-  result: 'Поражение',
-  money: 500,
-},
-{
-  name: 'Dota 2',
-  data: '07.06.2021',
-  time: '19:20',
-  regime: '5v5',
-  id: 3758902,
-  result: 'Победа',
-  money: 700,
-},
-{
-  name: 'CS:GO',
-  data: '07.06.2021',
-  time: '19:20',
-  regime: '5v5',
-  id: 3758902,
-  result: 'Победа',
-  money: 1200,
-},
-{
-  name: 'CS:GO',
-  data: '07.06.2021',
-  time: '19:20',
-  regime: '5v5',
-  id: 3758902,
-  result: 'Победа',
-  money: 1200,
-},
-{
-  name: 'Dota 2',
-  data: '07.06.2021',
-  time: '19:20',
-  regime: '5v5',
-  id: 3758902,
-  result: 'Поражение',
-  money: 500,
-},
-{
-  name: 'Dota 2',
-  data: '07.06.2021',
-  time: '19:20',
-  regime: '5v5',
-  id: 3758902,
-  result: 'Победа',
-  money: 1200,
-},
-];
+// const getLobby = await request(
+//   "https://battle-star-app.onrender.com/graphql",
+//   GetLobbyInfoId,
+//   // { id: this.lobbyId}
+// );
+// console.log(getLobby);
+
+// let infoHistory: any[] =  [
+// {
+//   name: 'CS:GO',
+//   data: '07.06.2021',
+//   time: '19:20',
+//   regime: '5v5',
+//   id: 3758902,
+//   result: 'Победа',
+//   money: 1200,
+// },
+// {
+//   name: 'CS:GO',
+//   data: '07.06.2021',
+//   time: '19:20',
+//   regime: '5v5',
+//   id: 3758902,
+//   result: 'Поражение',
+//   money: 200,
+// },
+// {
+//   name: 'Dota 2',
+//   data: '07.06.2021',
+//   time: '19:20',
+//   regime: '5v5',
+//   id: 3758902,
+//   result: 'Поражение',
+//   money: 500,
+// },
+// {
+//   name: 'Dota 2',
+//   data: '07.06.2021',
+//   time: '19:20',
+//   regime: '5v5',
+//   id: 3758902,
+//   result: 'Победа',
+//   money: 700,
+// },
+// {
+//   name: 'CS:GO',
+//   data: '07.06.2021',
+//   time: '19:20',
+//   regime: '5v5',
+//   id: 3758902,
+//   result: 'Победа',
+//   money: 1200,
+// },
+// {
+//   name: 'CS:GO',
+//   data: '07.06.2021',
+//   time: '19:20',
+//   regime: '5v5',
+//   id: 3758902,
+//   result: 'Победа',
+//   money: 1200,
+// },
+// {
+//   name: 'Dota 2',
+//   data: '07.06.2021',
+//   time: '19:20',
+//   regime: '5v5',
+//   id: 3758902,
+//   result: 'Поражение',
+//   money: 500,
+// },
+// {
+//   name: 'Dota 2',
+//   data: '07.06.2021',
+//   time: '19:20',
+//   regime: '5v5',
+//   id: 3758902,
+//   result: 'Победа',
+//   money: 1200,
+// },
+// ];
 // const historyMatches = await request(
 //   "https://battle-star-app.onrender.com/graphql", GetHistoryMatch
 // );
@@ -199,17 +225,17 @@ let infoHistory: any[] =  [
 //   infoHistory.push(item);
 // });
 
- export const sumHistory: number = infoHistory.reduce((acc, item) => {
-  if(item.result === 'Поражение') {
-    acc -= item.money;
-  }else{
-    acc += item.money;
-  }
-  return acc;
-}, 0);
+//  export const sumHistory: number = infoHistory.reduce((acc, item) => {
+//   if(item.result === 'Поражение') {
+//     acc -= item.money;
+//   }else{
+//     acc += item.money;
+//   }
+//   return acc;
+// }, 0);
 
 
-new History(".table__tab", infoHistory);
+new History(".table__tab",[]);
 
 
 

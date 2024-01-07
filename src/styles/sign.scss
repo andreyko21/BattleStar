@@ -13,17 +13,19 @@
       "sidebar main" auto/min-content auto;
    min-height: 0%;
    overflow: clip;
+   // max-height: 100vh;
 }
 .page {
    width: 100%;
    grid-area: main;
+   // overflow: auto;
 }
 
 .sign {
    background:
       $gradient50,
       url(../images/sign.webp) no-repeat center/cover;
-   // height: 100vh;
+   height: 100vh;
 
    &__container {
       padding: 62px 0 0 50px;

@@ -40,6 +40,9 @@
       &-list{
          height: 196px;
          overflow: auto;
+         &::-webkit-scrollbar{
+            display: none;
+         }
       }
       &-row {
          display: flex;

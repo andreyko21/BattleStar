@@ -23,10 +23,12 @@ class Lobby {
   searchParams: URLSearchParams;
   lobbyId: string | null;
   details: JQuery<HTMLDivElement>;
+  lobbyGame: string | null;
 
   constructor() {
     this.searchParams = new URLSearchParams(window.location.search);
     this.lobbyId = this.searchParams.get("id");
+    this.lobbyGame = this.searchParams.get("game");
     this.details = $(".details__teams");
 
     console.log(this.details);
@@ -44,8 +46,10 @@ class Lobby {
     const getLobby = await request(
       "https://battle-star-app.onrender.com/graphql",
       GetLobbyInfoId,
-      { id: this.lobbyId }
+      { id: this.lobbyId}
     );
+    window.location.href = `history.html?lobbyInfo=${JSON.stringify(getLobby)}`;
+    console.log(getLobby);
 
     const lobbyInfoArray = getLobby?.csLobby?.data ?? {};
     const creatorUrl =

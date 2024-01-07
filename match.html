@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=1920" />
     
     <title>Battle Star - Match</title>
-    <script type="module" crossorigin src="/assets/match-5d1b37b9.js"></script>
+    <script type="module" crossorigin src="/assets/match-9da23d59.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/jquery-e7e79cb6.js">
-    <link rel="modulepreload" crossorigin href="/assets/header-b618ca2f.js">
-    <link rel="modulepreload" crossorigin href="/assets/sidebar-a9376a39.js">
-    <link rel="modulepreload" crossorigin href="/assets/tabs-2e8ba6fd.js">
+    <link rel="modulepreload" crossorigin href="/assets/header-28816a11.js">
+    <link rel="modulepreload" crossorigin href="/assets/sidebar-237671d2.js">
+    <link rel="modulepreload" crossorigin href="/assets/tabs-2689d1d5.js">
     <link rel="modulepreload" crossorigin href="/assets/lava-lamp-63313dfc.js">
-    <link rel="modulepreload" crossorigin href="/assets/sorting-block-8737b1dd.js">
+    <link rel="modulepreload" crossorigin href="/assets/sorting-block-7ae6ec2a.js">
     <link rel="modulepreload" crossorigin href="/assets/just-validate.es-936cb47b.js">
-    <link rel="stylesheet" href="/assets/match-f2b29e85.css">
+    <link rel="modulepreload" crossorigin href="/assets/default-avatar-719db09b.js">
+    <link rel="stylesheet" href="/assets/match-64cd4bbc.css">
   </head>
   <body>
     <div class="wrapper" id="wrapper">
@@ -50,32 +51,44 @@
 
 </div>
 
-        <img
-          src="/assets/cs-bg-ddc48684.png"
-          class="match-page__bg-img"
-        />
-        <div class="match-page__content-wrapper" id="content-wrapper">
-          <section class="match-page__filters filters tabs-block" id="filters">
-            <!--<div class="filters__tabs tabs-block__tabs">
-             
-              <div class="filters__tab tabs-block__tab" data-tab-name="find"
-                >НАЙТИ ИГРУ</div
-              >
-              <div class="filters__tab tabs-block__tab" data-tab-name="create">
-                СОЗДАТЬ ЛОББИ
-              </div>
-              <div class="tabs-block__lamp"><span></span></div>
-            </div>
-            
-            <div class="filters__content tabs-block__content">
-              <div
-                class="filters__find-lobby find-lobby tabs-block__content-container tabs-block__content-container_active"
-                id="find-content"
-              >
+        <div class="match-page__bg-img-block">
+          <img src="" class="match-page__bg-img" id="match-bg-img" />
+          <div
+            class="match-page__bg-img-overlay"
+            id="match-bg-img-overlay"
+          ></div>
+          <!--<img
+            src="./src/images/calibration-lobby/cs-bg.png"
+            class="match-page__bg-img"
+          />-->
+        </div>
+        <div class="match-page__content-wrapper">
+          <div class="match-page__content-block" id="content-wrapper">
+            <div class="match-page__filters-background"></div>
+            <section
+              class="match-page__filters filters tabs-block"
+              id="filters"
+            >
+              <!--<div class="filters__tabs tabs-block__tabs">
                 
-               
+                 <div class="filters__tab tabs-block__tab" data-tab-name="find"
+                   >НАЙТИ ИГРУ</div
+                 >
+                 <div class="filters__tab tabs-block__tab" data-tab-name="create">
+                   СОЗДАТЬ ЛОББИ
+                 </div>
+                 <div class="tabs-block__lamp"><span></span></div>
                </div>
-              <form
+               
+               <div class="filters__content tabs-block__content">
+                 <div
+                   class="filters__find-lobby find-lobby tabs-block__content-container tabs-block__content-container_active"
+                   id="find-content"
+                 >
+                   
+                  
+                  </div>
+                 <form
   class="filters__create-lobby create-lobby tabs-block__content-container"
   id="create-content"
 >
@@ -107,34 +120,34 @@
   </button>
 </form>
 
-            </div>-->
-          </section>
-          <section
-            class="match-page__content content tabs-block tabs-block_size_big"
-          >
-            <div class="content__container">
-              <div class="content__tabs tabs-block__tabs">
-                <div
-                  class="tabs-content__tab tabs-block__tab"
-                  data-tab-name="open-match"
-                >
-                  ОТКРЫТЫЕ МАТЧИ
+               </div>-->
+            </section>
+            <section
+              class="match-page__content content tabs-block tabs-block_size_big"
+            >
+              <div class="content__container">
+                <div class="content__tabs tabs-block__tabs">
+                  <div
+                    class="tabs-content__tab tabs-block__tab"
+                    data-tab-name="open-match"
+                  >
+                    ОТКРЫТЫЕ МАТЧИ
+                  </div>
+                  <div
+                    class="tabs-content__tab tabs-block__tab"
+                    data-tab-name="translation"
+                  >
+                    ТРАНСЛЯЦИИ
+                  </div>
+                  <div
+                    class="tabs-content__tab tabs-block__tab"
+                    data-tab-name="completed"
+                  >
+                    ЗАВЕРШЁННЫЕ
+                  </div>
+                  <div class="tabs-block__lamp"><span></span></div>
                 </div>
-                <div
-                  class="tabs-content__tab tabs-block__tab"
-                  data-tab-name="translation"
-                >
-                  ТРАНСЛЯЦИИ
-                </div>
-                <div
-                  class="tabs-content__tab tabs-block__tab"
-                  data-tab-name="completed"
-                >
-                  ЗАВЕРШЁННЫЕ
-                </div>
-                <div class="tabs-block__lamp"><span></span></div>
-              </div>
-              <div class="content__statistics statistics">
+                <div class="content__statistics statistics">
   <div class="statistics__statistic-block">
     <div class="statistics__data">4 058</div>
     <div class="statistics__title-block">игроков онлайн</div>
@@ -149,61 +162,17 @@
   </div>
 </div>
 
-            </div>
-            <div class="content__tabs-content">
-              <div
-                class="content__tab-content tabs-block__content-container"
-                id="open-match-content"
-              >
-                <div
-                  class="content__view-block tabs-block"
-                  id="sorting-block-container"
-                >
-                  <!--<div class="content__view-tabs view-tabs">
-  <h1 class="view-tabs__title"> Открытые лобби </h1>
-  <div class="view-tabs__view-box tabs-block__tabs">
-    <div class="view-tabs__text">Отобразить</div>
-    <div
-      class="view-tabs__grid tabs-block__tab tabs-block__tab_active"
-      data-tab-name="grid"
-    >
-      <svg>
-        <use xlink:href="src/images/sprite.svg#grid-view"></use>
-      </svg>
-    </div>
-    <div class="view-tabs__table tabs-block__tab" data-tab-name="table">
-      <svg>
-        <use xlink:href="src/images/sprite.svg#table-view"></use>
-      </svg>
-    </div>
-  </div>
-</div>
-
-                  <div class="content__view-content tabs-block__content">
-                    <div
-                      class="content__grid-block-wrapper tabs-block__content-container tabs-block__content-container_active"
-                      id="grid-content"
-                    >
-                      <div class="content__grid-block" id="content-grid-block">
-                      </div>
-                    </div>
-                    <table
-                      class="content__table tabs-block__content-container"
-                      id="table-content"
-                    >
-                    </table>
-                  </div>-->
-                </div>
               </div>
-              <div
-                class="content__tab-content tabs-block__content-container"
-                id="translation-content"
-              >
-                <!--<div
-                  class="content__view-block tabs-block"
-                  id="sorting-block-cs-strim"
+              <div class="content__tabs-content">
+                <div
+                  class="content__tab-content tabs-block__content-container"
+                  id="open-match-content"
                 >
-                  <div class="content__view-tabs view-tabs">
+                  <div
+                    class="content__view-block tabs-block"
+                    id="sorting-block-container"
+                  >
+                    <!--<div class="content__view-tabs view-tabs">
   <h1 class="view-tabs__title"> Открытые лобби </h1>
   <div class="view-tabs__view-box tabs-block__tabs">
     <div class="view-tabs__text">Отобразить</div>
@@ -223,13 +192,57 @@
   </div>
 </div>
 
-                  <div class="content__view-content tabs-block__content">
-                    <div
-                      class="content__grid-block-wrapper tabs-block__content-container tabs-block__content-container_active"
-                      id="grid-content"
-                    >
-                      <div class="content__grid-block" id="content-grid-block">
-                        <div class="{='class'} striming-card" id="">
+                     <div class="content__view-content tabs-block__content">
+                       <div
+                         class="content__grid-block-wrapper tabs-block__content-container tabs-block__content-container_active"
+                         id="grid-content"
+                       >
+                         <div class="content__grid-block" id="content-grid-block">
+                         </div>
+                       </div>
+                       <table
+                         class="content__table tabs-block__content-container"
+                         id="table-content"
+                       >
+                       </table>
+                     </div>-->
+                  </div>
+                </div>
+                <div
+                  class="content__tab-content tabs-block__content-container"
+                  id="translation-content"
+                >
+                  <!--<div
+                     class="content__view-block tabs-block"
+                     id="sorting-block-cs-strim"
+                   >
+                     <div class="content__view-tabs view-tabs">
+  <h1 class="view-tabs__title"> Открытые лобби </h1>
+  <div class="view-tabs__view-box tabs-block__tabs">
+    <div class="view-tabs__text">Отобразить</div>
+    <div
+      class="view-tabs__grid tabs-block__tab tabs-block__tab_active"
+      data-tab-name="grid"
+    >
+      <svg>
+        <use xlink:href="src/images/sprite.svg#grid-view"></use>
+      </svg>
+    </div>
+    <div class="view-tabs__table tabs-block__tab" data-tab-name="table">
+      <svg>
+        <use xlink:href="src/images/sprite.svg#table-view"></use>
+      </svg>
+    </div>
+  </div>
+</div>
+
+                     <div class="content__view-content tabs-block__content">
+                       <div
+                         class="content__grid-block-wrapper tabs-block__content-container tabs-block__content-container_active"
+                         id="grid-content"
+                       >
+                         <div class="content__grid-block" id="content-grid-block">
+                           <div class="{='class'} striming-card" id="">
   <div class="striming-card__img-block">
     <div class="striming-card__wrapper-img">
       <img
@@ -275,23 +288,24 @@
   </div>
 </div>
 
-                      </div>
-                    </div>
-                    <table
-                      class="content__table tabs-block__content-container"
-                      id="table-content"
-                    >
-                    </table>
-                  </div>
-                </div>-->
+                         </div>
+                       </div>
+                       <table
+                         class="content__table tabs-block__content-container"
+                         id="table-content"
+                       >
+                       </table>
+                     </div>
+                   </div>-->
+                </div>
+                <div
+                  class="content__tab-content tabs-block__content-container"
+                  id="completed-content"
+                >
+                </div>
               </div>
-              <div
-                class="content__tab-content tabs-block__content-container"
-                id="completed-content"
-              >
-              </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
       </main>
     </div>

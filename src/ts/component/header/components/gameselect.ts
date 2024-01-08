@@ -1,7 +1,8 @@
-import $ from "jquery";
-import CSGOImage from "./../../../../images/csGo.webp";
-import DotaImage from "./../../../../images/dota.webp";
-import SpriteImage from "./../../../../images/sprite.svg";
+import $ from 'jquery';
+import CSGOImage from './../../../../images/csGo.webp';
+import DotaImage from './../../../../images/dota.webp';
+import SpriteImage from './../../../../images/sprite.svg';
+import { functionObj } from './function-obj';
 
 interface GameItem {
   name: string;
@@ -16,8 +17,8 @@ class GameDropdown {
   constructor(containerSelector: string) {
     this.container = $(containerSelector);
     this.games = [
-      { name: "CS:GO", image: CSGOImage, dataGame: "cs2" },
-      { name: "DOTA 2", image: DotaImage, dataGame: "dota2" },
+      { name: 'CS:GO', image: CSGOImage, dataGame: 'cs2' },
+      { name: 'DOTA 2', image: DotaImage, dataGame: 'dota2' },
     ];
 
     this.init();
@@ -51,7 +52,7 @@ class GameDropdown {
             </li>
           `
             )
-            .join("")}
+            .join('')}
         </ul>
       </div>
     `;
@@ -60,12 +61,14 @@ class GameDropdown {
   }
 
   private addEventListeners() {
-    const dropdownArrow = this.container.find(".dropdown__game-arrow");
-    const dropdownList = this.container.find(".dropdown__game-list");
-    const gameItems = this.container.find(".dropdown__game-item");
+    const dropdownArrow = this.container.find('.dropdown__game-arrow');
+    const dropdownList = this.container.find('.dropdown__game-list');
+    const gameItems = this.container.find('.dropdown__game-item');
 
-    dropdownArrow.on("click", () => dropdownList.toggleClass("_show"));
-    gameItems.on("click", (event) => {
+    dropdownArrow.on('click', () => dropdownList.toggleClass('_show'));
+    gameItems.on('click', (event) => {
+      //Об'єкт, в який можна додати функцію, що буде викликатися прир зміні гри
+      functionObj.doAfterChangeGame();
       this.updateGameSelection($(event.currentTarget));
       window.location.reload();
     });
@@ -73,26 +76,26 @@ class GameDropdown {
 
   private updateGameSelection(item: JQuery) {
     const gameName = item.text().trim();
-    const gameIconSrc = item.find("img").attr("src");
+    const gameIconSrc = item.find('img').attr('src');
 
-    const currentGameImg = this.container.find(".dropdown__game-img");
-    const currentGameName = this.container.find(".dropdown__game-name");
+    const currentGameImg = this.container.find('.dropdown__game-img');
+    const currentGameName = this.container.find('.dropdown__game-name');
 
     //@ts-ignore
-    currentGameImg.attr("src", gameIconSrc);
+    currentGameImg.attr('src', gameIconSrc);
     currentGameName.text(gameName);
 
-    this.setLocateParam("game", item.data("game"));
+    this.setLocateParam('game', item.data('game'));
   }
 
   private setLocateParam(key: string, value: string) {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set(key, value);
-    window.history.replaceState(null, "", "?" + urlParams.toString());
+    window.history.replaceState(null, '', '?' + urlParams.toString());
   }
 
   private setInitialGameSelection() {
-    const gameParam = this.getLocateParam("game");
+    const gameParam = this.getLocateParam('game');
     if (gameParam) {
       const selectedGameItem = this.container.find(
         `.dropdown__game-item[data-game="${gameParam}"]`

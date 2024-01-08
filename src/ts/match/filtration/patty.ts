@@ -48,7 +48,7 @@ class Patty {
       <div
         class="patty__empty-block patty__empty-block_left"
       ></div>
-      <div class="patty__rating">Ранг: 2</div>
+      <div class="patty__rating">Ранг: ${this.curentPlayer.csGoRank}</div>
       <div class="patty__empty-block patty__empty-block_right">
       </div>`;
 
@@ -59,8 +59,7 @@ class Patty {
   }
 
   changeTotalRank(players: PlayerDataForLobby[]) {
-    const rankBlock = this.createRatingBlock();
-    const rankField = rankBlock.querySelector(
+    const rankField = document.querySelector(
       '.patty__rating'
     ) as HTMLDivElement;
     const totalRank = players.reduce((acc, player) => {
@@ -89,6 +88,8 @@ class Patty {
         <img
           src="${player.avatarUrl}"
           alt="${player.avatarAltText}"
+          width="48"
+          height ="48"
           class="user-block__avatar-img"
         />
         <div class="user-block__avatar-online"></div>

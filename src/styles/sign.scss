@@ -7,12 +7,12 @@
 // }
 
 .wrapper {
-   display: grid;
-   grid-template:
-      "sidebar header"
-      "sidebar main" auto/min-content auto;
-   min-height: 0%;
-   overflow: clip;
+   // display: grid;
+   // grid-template:
+   //    "sidebar header"
+   //    "sidebar main" auto/min-content auto;
+   // min-height: 0%;
+   // overflow: clip;
    // max-height: 100vh;
 }
 .page {

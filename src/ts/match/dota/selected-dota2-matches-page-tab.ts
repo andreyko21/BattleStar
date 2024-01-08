@@ -1,12 +1,12 @@
-import { BaseTabs } from '../../component/tabs.ts';
-//import type { IRenderMethod } from '../component/tabs.ts';
+import { BaseTabs, IRenderMethod } from '../../component/tabs.ts';
 import { LavaLamp } from '../../component/lava-lamp.ts';
 import { DotaMatchesPage } from './dota-match-page.ts';
+import { ChangingGameBackground } from '../change-game-background.ts';
 
 class SelectedDota2MatchPagesTab {
-  private mayMethods: any = {
+  private mayMethods: IRenderMethod = {
     'open-match': async () => {
-      DotaMatchesPage.getInstance();
+      new DotaMatchesPage(); //.getInstance
     },
     translation: () => {
       //StrimingTab.getInstance();
@@ -16,6 +16,8 @@ class SelectedDota2MatchPagesTab {
   constructor() {
     new BaseTabs('match-page__content', this.mayMethods);
     new LavaLamp('match-page__content');
+
+    new ChangingGameBackground('dota2');
   }
 }
 export { SelectedDota2MatchPagesTab };

@@ -8,7 +8,7 @@ export class AsideMenu {
     this.menuTabs = $(".menu__link");
     this.currentUrl = window.location.href;
     this.checkMenu();
-    console.log(window.location.href);
+    // console.log(window.location.href);
   }
 
   checkMenu() {

@@ -1,9 +1,6 @@
-import { BaseTabs } from '../component/tabs.ts'; //CreatedObjForIRenderMethod
-//import { TabsCreate } from '../component/tabs-create.ts';
-//import type { IRenderMethod } from '../component/tabs.ts';
+import { BaseTabs } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
 import { Accordion } from '../component/accordeon.ts';
-//import { StrimingTab } from './striming/striming.ts';
 import { BtnOnRadioOrCheck } from './btnOnRadioOrCheck.ts';
 import { RateSelection } from './rate-selection.ts';
 import { TitleCreateLobby } from './title-create-lobby.ts';
@@ -27,57 +24,40 @@ import { Patty } from './filtration/patty.ts';
 import { FiltersBlock } from './filtration/filters-block.ts';
 import { SortingBlock } from '../calibration/sorting-block.ts';
 import { ContentFilteringSectionForMatch } from './filtration/conten-filters-section-for-match.ts';
+import {
+  setLocateParam,
+  delLocateParams,
+} from '../functions/windowLocation.ts';
 
 class CsMatchesPage {
-  private static instance: CsMatchesPage;
+  //  private static instance: CsMatchesPage;
 
   constructor() {
     this.renderCsPage();
   }
 
-  public static async getInstance(): Promise<CsMatchesPage> {
-    if (!CsMatchesPage.instance) {
-      CsMatchesPage.instance = new CsMatchesPage();
-      await this.instance.renderCsPage();
-    }
-    return CsMatchesPage.instance;
+  //  public static async getInstance(): Promise<CsMatchesPage> {
+  //    if (!CsMatchesPage.instance) {
+  //      CsMatchesPage.instance = new CsMatchesPage();
+  //      await this.instance.renderCsPage();
+  //    }
+  //    return CsMatchesPage.instance;
+  //  }
+
+  private updateUrlParams() {
+    delLocateParams(['country', 'rate', 'mapName', 'gameMode', 'antyCheat']);
+    setLocateParam('match-page__content', 'open-match');
   }
 
   async renderCsPage() {
-    // const mayMethods: IRenderMethod = {
-    //   find: () => {
-    //     // console.log('find');
-    //   },
-    //   translation: () => {
-    //     //  const translationTab = StrimingTab.getInstance();
-    //   },
-    // };
-    // new TabsCreate('content-wrapper', 'match-page__filters', [
-    //   ['find', 'НАЙТИ ИГРУ'],
-    //   ['create', 'СОЗДАТЬ ЛОББИ'],
-    // ]);
-
+    this.updateUrlParams();
     new ContentFilteringSectionForMatch('filters');
 
     new BaseTabs('match-page__filters');
     new LavaLamp('match-page__filters');
 
-    // new BaseTabs('match-page__content', mayMethods);
-    // new LavaLamp('match-page__content');
-
-    // const sortingBlockIdArr = ['grid', 'table'];
-    // const addClassForSort = () => {
-    //   //id:string
-    //   //  console.log('Hello!');
-    // };
-
-    // const forSorting = new CreatedObjForIRenderMethod(
-    //   sortingBlockIdArr,
-    //   addClassForSort
-    // );
-
-    new SortingBlock('sorting-block-container', true);
-    new BaseTabs('sorting-block'); //, forSorting.createObj()
+    SortingBlock.getInstance('sorting-block-container', 'sorting-block', true);
+    new BaseTabs('sorting-block');
 
     const rateOptions = [
       { value: '100', label: '100' },
@@ -104,7 +84,10 @@ class CsMatchesPage {
 
       const addUserBlock = await selectedPlayers.render();
       const patty = new Patty('find-content', creatorData, addUserBlock);
-      selectedPlayers.addSelectedPlayer(patty.addPlayer.bind(patty));
+      selectedPlayers.addSelectedPlayer(
+        patty.addPlayer.bind(patty),
+        patty.changeTotalRank.bind(patty)
+      );
 
       new FiltersBlock('find-content');
 

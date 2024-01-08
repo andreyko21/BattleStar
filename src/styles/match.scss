@@ -22,6 +22,9 @@
 @import './components/match/anti-cheat';
 @import './components/create-lobby/radio-btn';
 
+@import './components/striming/cs-striming-card';
+@import './components/striming/cs-streaming-row';
+
 .wrapper {
   overflow: hidden;
   height: 100vh;
@@ -34,34 +37,61 @@
   overflow: hidden;
   grid-area: main;
 
-  &__bg-img {
+  &__bg-img-block {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: top;
     z-index: -1;
   }
-  &__content-wrapper {
-    min-height: 100%;
+
+  &__bg-img {
+    width: 100%;
+    // height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  &__bg-img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    display: flex;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #0c0c0e 65.93%);
+  }
+
+  &__content-wrapper {
+    // min-height: 100%;
+    height: 100%;
+    // display: flex;
     // flex-direction: row-reverse;
     overflow: auto;
+  }
+  &__content-block {
+    min-height: 100%;
+    height: max-content;
+    display: flex;
+  }
+
+  &__filters-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 311px;
+    width: 311px;
+    background: rgba(248, 248, 248, 0.05);
+    backdrop-filter: blur(10px);
+    z-index: -1;
   }
 
   &__filters {
     min-width: 311px;
     width: 311px;
     min-height: max-content;
-    // height: 100%;
-    padding: 18px 5px 5px 5px;
-    background: rgba(248, 248, 248, 0.05);
-    backdrop-filter: blur(10px);
-    position: relative;
-    z-index: 1;
 
     .tabs-block {
       &__tabs {
@@ -106,6 +136,13 @@
 }
 
 .filters {
+  padding: 15px 5px 5px 5px;
+  position: relative;
+  z-index: 1;
+  //background: rgba(248, 248, 248, 0.05);
+
+  &__background {
+  }
   &__tabs {
   }
 
@@ -144,13 +181,19 @@
 
 .user-block {
   position: relative;
-  &__avatar {
-  }
 
   &__avatar-img-block {
     position: relative;
-    width: 48px;
+    width: 46px;
     height: 46px;
+
+    img {
+      //width: 46px;
+      //height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+    }
     &:hover + * {
       transform: scale(1);
       visibility: visible;
@@ -189,7 +232,7 @@
   width: 278px;
   max-height: 353px;
   height: max-content;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
 
@@ -451,6 +494,7 @@
       border-radius: 8px;
       border: 3px solid $gray25; // #f8f8f8;
       box-shadow: unset;
+      cursor: pointer;
       &::after,
       &::before {
         display: none;
@@ -567,9 +611,6 @@
   }
 }
 
-.create-lobby {
-}
-
 .tabs-content__tab {
   max-width: 249px;
   width: 100%;
@@ -577,16 +618,16 @@
 .content {
   &__container {
     max-width: 1061px;
-    padding: 0px 37px 0px 38px;
+    padding: 0px 37px 0px 41px;
   }
   &__tabs {
     width: 100%;
-    margin: 31px 0px 70px 0px;
+    margin: 29px 0px 70px 0px;
   }
   &__tabs-content {
     width: 100%;
     padding: 0px 37px 0px 38px;
-    margin: 58px 0px 0px 0px;
+    margin: 52px 0px 0px 0px;
   }
   &__view-block {
   }

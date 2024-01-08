@@ -1,11 +1,12 @@
 import { BaseTabs } from '../component/tabs.ts';
-//import type { IRenderMethod } from '../component/tabs.ts';
+import type { IRenderMethod } from '../component/tabs.ts';
 import { LavaLamp } from '../component/lava-lamp.ts';
 import { CsMatchesPage } from './cs-match-page.ts';
-import { StrimingTab } from './striming/striming.ts';
+import { StrimingTab } from './striming/striming-cs.ts';
+import { ChangingGameBackground } from './change-game-background.ts';
 
 class SelectedCsMatchPagesTab {
-  private mayMethods: any = {
+  private mayMethods: IRenderMethod = {
     'open-match': async () => {
       new CsMatchesPage(); //.getInstance
       //this.filterTranslation('open-match');
@@ -19,44 +20,8 @@ class SelectedCsMatchPagesTab {
   constructor() {
     new BaseTabs('match-page__content', this.mayMethods);
     new LavaLamp('match-page__content');
+
+    new ChangingGameBackground('Cs');
   }
-
-  //  private filterTranslation(selectedTab: string): void {
-  //    const filtarationSection: HTMLDivElement | null = document.querySelector(
-  //      '.match-page__filters'
-  //    );
-  //    if (filtarationSection !== undefined && filtarationSection !== null) {
-  //      const filtersBlock = filtarationSection?.querySelector(
-  //        '#filters-find-lobby'
-  //      ) as HTMLDivElement;
-  //      const filtersTabsBlock: HTMLDivElement | null =
-  //        filtarationSection?.querySelector('.filters__tabs') as HTMLDivElement;
-  //      const filtersContentBlock: HTMLDivElement | null =
-  //        filtarationSection.querySelector('.filters__content') as HTMLDivElement;
-
-  //      const filtersFindLobbyBlock =
-  //        filtarationSection.querySelector('#find-content');
-
-  //      switch (selectedTab) {
-  //        case 'open-match':
-  //          if (filtersTabsBlock?.style.display === 'none') {
-  //            filtersFindLobbyBlock?.appendChild(filtersBlock);
-  //            filtersTabsBlock.style.display = 'flex';
-  //            filtersContentBlock.style.display = 'block';
-  //          }
-
-  //          break;
-
-  //        case 'translation':
-  //          if (filtersTabsBlock?.style.display !== 'none') {
-  //            filtarationSection.appendChild(filtersBlock);
-  //            filtersTabsBlock.style.display = 'none';
-  //            filtersContentBlock.style.display = 'none';
-  //          }
-
-  //          break;
-  //      }
-  //    }
-  //  }
 }
 export { SelectedCsMatchPagesTab };

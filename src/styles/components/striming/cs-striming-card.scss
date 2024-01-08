@@ -1,4 +1,4 @@
-.match-card {
+.striming-card {
   width: 100%;
   height: 100%;
   background: $gray900; // rgba(248 248 248 0.02)
@@ -29,10 +29,17 @@
     padding: 12px 20px 12px 15px;
   }
 
+  &__title-block {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
   &__name-block {
     margin: 0px 0px 3px 0px;
     display: flex;
     align-items: center;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
   }
 
   &__flag {
@@ -48,12 +55,32 @@
     line-height: normal;
   }
 
+  &__online-field {
+    width: 72px;
+    height: 22px;
+    margin: 3px 0px 0px 0px;
+    padding: 1px 0px 0px 0px;
+    border-radius: 25px;
+    background: rgba(241, 57, 57, 0.1);
+    color: #f13939;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+  }
+
   &__map {
-    margin: 0px 0px 2px 0px;
+    margin: 0px 0px 6px 0px;
     color: $gray75; // #afafaf;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    grid-column: 1 / 2;
+    grid-row: 2 /3;
   }
 
   &__other-data {
@@ -72,9 +99,6 @@
     }
   }
 
-  &__rate-block {
-  }
-
   &__data-title {
     color: $DimGray; // #606060
     font-size: 15px;
@@ -91,35 +115,31 @@
     line-height: normal;
   }
 
-  &__mode {
-  }
-
-  &__participants {
-  }
-
-  &__ping-block {
-    margin: 0px 0px 6px 0px;
+  &__viewers-block {
+    margin: 0px 4px 3px 0px;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
   }
 
-  &__ping {
-    margin: 0px 2px 0px 0px;
-    color: $green50; // #6fff57
+  &__viewers {
+    color: #bfbfbf;
     text-align: right;
+    font-family: Roboto;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 700;
-    line-height: 0.75;
+    font-weight: 500;
+    line-height: normal;
   }
 
-  &__ping-icon {
-    width: 24px;
-    height: 24px;
+  &__viewers-icon {
+    width: 20px;
+    height: 20px;
+    margin: 0px 2px 0px 0px;
     svg {
       width: 100%;
       height: 100%;
-      fill: $green50; // #6fff57
+      fill: #bfbfbf;
     }
   }
 }

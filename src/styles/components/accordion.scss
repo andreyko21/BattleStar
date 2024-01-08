@@ -3,7 +3,7 @@
   padding: 8px 12px 19px 16px;
   border-radius: 4px;
   background: inherit;
-  transition: $standartTrans;
+  transition: background 0.2s ease-out;
 
   &_active {
     margin-bottom: 19px;
@@ -17,6 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
   }
 
   &__title {
@@ -29,7 +30,7 @@
   &__arrow {
     width: 24px;
     height: 24px;
-    margin-right: 4.12px;
+    // margin-right: 4.12px;
     transform: rotate(0deg);
     transition: transform 0.2s ease-out;
     fill: $gray25; // #f8f8f8;
@@ -39,7 +40,7 @@
     max-height: 0px;
     // padding-bottom: 19px;
     overflow: hidden;
-    transition: $standartTrans;
+    transition: max-height 0.2s ease-out;
     box-sizing: border-box;
     p {
       padding: 16px 0px 0px 0px;

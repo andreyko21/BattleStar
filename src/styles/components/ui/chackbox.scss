@@ -1,6 +1,7 @@
 .custom-checkbox {
   display: flex;
   align-items: center;
+
   &__input {
     position: absolute;
     z-index: -1;
@@ -11,6 +12,7 @@
       display: inline-flex;
       align-items: center;
       user-select: none;
+      cursor: pointer;
 
       svg {
         //display: none;
@@ -69,5 +71,6 @@
     align-self: center;
     color: $gray200; // #989898
     transition: $standartTrans;
+    cursor: pointer;
   }
 }

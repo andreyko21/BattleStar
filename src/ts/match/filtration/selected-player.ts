@@ -3,6 +3,7 @@ import { GetAllPlayers } from '../../../../queries.graphql.d';
 import { config } from '../../config.ts';
 import type { CreatorDataForLobby, PlayerDataForLobby } from '../../types.ts';
 import Sprite from './../../../images/sprite.svg';
+import DefaultAvatar from './../../../images/chat/default-avatar.png';
 
 class AllPlayerList {
   //  private container: HTMLElement | null;
@@ -14,21 +15,12 @@ class AllPlayerList {
     this.selectedPlayers.push(curentPlayer);
   }
 
-  //  !!---????????????
-  get allPlayers(): PlayerDataForLobby[] {
-    return this.savedAllPlayers;
-  }
-
-  //  private async saveAllPlayers() {
-  //    this.savedAllPlayers = await this.getAllPlayers();
-  //  }
-
-  private async getAllPlayers(): Promise<PlayerDataForLobby[]> {
+  private async getAllPlayers(params: any = {}): Promise<PlayerDataForLobby[]> {
     try {
       const { players } = await request(
         config.ENDPOINT,
         GetAllPlayers,
-        {},
+        params,
         {
           Authorization:
             'Bearer 9c9bf4554f3ecfed253aca7329b2c46511bf3c9b58d2b9a865d9998c75062aab17b1ad96c3c5d878b4aac951441353b066b95b7b20fbd4f31c5466fe8d2479b775f1a398d92e53cfa2e89141d61ee1f32b4850a2daaaebbcf75d3a510bc7e2a3e8613f71c4c84bf7e109f00e2629c12aae3a372fc954fe4de327f478d6857912',
@@ -37,14 +29,24 @@ class AllPlayerList {
       if (players?.data) {
         const playersObj = players.data.map((item) => ({
           userId: item.attributes?.user?.data?.id as string,
-          avatarUrl: item.attributes?.avatar?.data?.attributes?.url || '',
+          avatarUrl:
+            item.attributes?.user?.data?.attributes?.avatar?.data?.attributes
+              ?.url || DefaultAvatar,
           avatarAltText:
-            item.attributes?.avatar?.data?.attributes?.alternativeText || '',
+            item.attributes?.user?.data?.attributes?.avatar?.data?.attributes
+              ?.alternativeText || 'Default avater',
           username: item.attributes?.user?.data?.attributes?.username || '',
-          csGoRank: item.attributes?.CSGO?.Default_information?.rank || 0,
-          dota2Rank: item.attributes?.DOTA2?.Default_information?.rank || 0,
+          csGoRank:
+            item.attributes?.CSGO?.Default_information?.rank === null
+              ? 0
+              : item.attributes?.CSGO?.Default_information?.rank || 0,
+          dota2Rank:
+            item.attributes?.DOTA2?.Default_information?.rank === null
+              ? 0
+              : item.attributes?.DOTA2?.Default_information?.rank || 0,
         }));
-        console.log('All player', playersObj);
+        console.table(playersObj);
+
         return playersObj;
       }
     } catch (error) {
@@ -54,10 +56,9 @@ class AllPlayerList {
     return [];
   }
 
-  private async createPlayersList(): Promise<string> {
-    // this.saveAllPlayers();
-    this.savedAllPlayers = await this.getAllPlayers();
-    const template = this.savedAllPlayers.reduce((acc, player) => {
+  private async createPlayersList(queryParam?: any): Promise<string> {
+    this.savedAllPlayers = await this.getAllPlayers(queryParam);
+    const userList = this.savedAllPlayers.reduce((acc, player) => {
       const isSelectedPlayer = this.selectedPlayers.find(
         (item) => item.userId === player.userId
       );
@@ -70,13 +71,6 @@ class AllPlayerList {
       }
       return acc;
     }, '');
-
-    const userList = `<div class="users-list-block__users-list">
-    ${template}
-    </div>`;
-    // document.createElement('ul');
-    // userList.classList.add('users-list-block__users-list');
-    // userList.innerHTML = template;
     return userList;
   }
 
@@ -101,7 +95,9 @@ class AllPlayerList {
             ></use>
           </svg>
         </div>
-       ${playersList}
+        <ul class="users-list-block__users-list">
+            ${playersList}
+         </ul>
       </div>
     `;
 
@@ -109,21 +105,40 @@ class AllPlayerList {
     addUserBlock.classList.add('patty__add-user');
     addUserBlock.innerHTML = template;
 
-    this.searchPlayers(addUserBlock);
+    this.addLietnerToSearchInput(addUserBlock);
 
     return addUserBlock;
   }
 
-  private searchPlayers(addUserBlock: HTMLDivElement) {
+  private async searchPlayers(
+    searchInpput: HTMLInputElement,
+    addUserBlock: HTMLDivElement
+  ): Promise<void> {
+    const playersListContainer = addUserBlock.querySelector(
+      '.users-list-block__users-list'
+    ) as HTMLElement;
+
+    const inputValue = searchInpput.value;
+    const queryParams = { username: inputValue };
+    const playersListContent = await this.createPlayersList(queryParams);
+    playersListContainer.innerHTML = playersListContent;
+  }
+
+  private addLietnerToSearchInput(addUserBlock: HTMLDivElement): void {
     const searchInput = addUserBlock.querySelector(
       '.users-list-block__search-input'
     ) as HTMLInputElement;
-    searchInput.addEventListener('input', () => {});
+    searchInput.addEventListener('input', async (e) => {
+      await this.searchPlayers(e.target as HTMLInputElement, addUserBlock);
+    });
   }
 
   addSelectedPlayer(
     addedPlayerFunction: (
       player: PlayerDataForLobby | CreatorDataForLobby
+    ) => void,
+    changeTotalRankFunction: (
+      player: (PlayerDataForLobby | CreatorDataForLobby)[]
     ) => void
   ) {
     const usersListBlock = document.querySelector(
@@ -142,6 +157,7 @@ class AllPlayerList {
         if (selectedPlayerObj !== undefined) {
           this.selectedPlayers.push(selectedPlayerObj);
           addedPlayerFunction(selectedPlayerObj);
+          changeTotalRankFunction(this.selectedPlayers);
         }
       }
     });

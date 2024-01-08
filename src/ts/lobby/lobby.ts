@@ -29,9 +29,23 @@ class Lobby {
     this.searchParams = new URLSearchParams(window.location.search);
     this.lobbyId = this.searchParams.get("id");
     this.lobbyGame = this.searchParams.get("game");
+console.log(this.lobbyGame);
+if(this.lobbyGame === 'cs2'){
+  console.log('cs_');
+
+}else{
+  console.log('dota2');
+}
+
     this.details = $(".details__teams");
 
-    console.log(this.details);
+
+
+ 
+
+
+
+    // console.log(this.details);
     this.init();
   }
 
@@ -40,6 +54,7 @@ class Lobby {
     this.renderLobbyTeams();
     this.renderLobbySide();
     this.renderPlayersStatictic();
+    // this.checkGame();
   }
 
   async renderLobbyInfo() {
@@ -48,8 +63,10 @@ class Lobby {
       GetLobbyInfoId,
       { id: this.lobbyId}
     );
-    window.location.href = `history.html?lobbyInfo=${JSON.stringify(getLobby)}`;
+
     console.log(getLobby);
+    // window.location.href = `history.html?lobbyInfo=${JSON.stringify(getLobby)}`;
+    // console.log(getLobby);
 
     const lobbyInfoArray = getLobby?.csLobby?.data ?? {};
     const creatorUrl =
@@ -71,6 +88,7 @@ class Lobby {
     console.log(lobbyInfoData);
     new LobbyInfo(".details__info", lobbyInfoData);
   }
+
   renderLobbyTeams() {
     const now = new Date().getTime();
     let countDownDate = now + 0.3 * 60 * 1000;
@@ -86,6 +104,7 @@ class Lobby {
         new LobbyStatisticSideA('.statictic', playersCs);
     new LobbyStatisticSideB('.statictic', playersCs);
   }
+
 }
 
 new Lobby();

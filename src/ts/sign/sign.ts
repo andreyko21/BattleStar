@@ -52,6 +52,7 @@ class Sign implements SignType {
     this.email = $("#email")
     this.pswd = $("#psw") 
     this.init();
+
     
   }
 
@@ -143,27 +144,37 @@ class Sign implements SignType {
         window.location.href = 'index.html'
         this.resetFormFIelds();
         const userId = response.data.user.id;
+        const publishedAtDate = new Date(); 
+        const publishedAt = publishedAtDate.toISOString();
+ 
         const mutation = `
-          mutation CreatePlayer($id: ID) {
-            createPlayer(data: { user: $id }) {
-              data {
-                attributes {
-                  user {
-                    data {
-                      id
-                    }
+        mutation CreatePlayer($id: ID, $publishedAt: DateTime!) {
+          createPlayer(data: {
+            user: $id
+            publishedAt: $publishedAt
+          }) {
+            data {
+              attributes {
+                publishedAt
+                user {
+                  data {
+                    id
                   }
                 }
               }
             }
           }
+        }
+        
         `;
 
         try {
           const data = await request(
             "https://battle-star-app.onrender.com/graphql",
             mutation,
-            { id: userId,}
+            { id: userId,
+              publishedAt: publishedAt
+            }
           );
           console.log("GraphQL Mutation Response:", data);
         } catch (error) {
@@ -179,6 +190,8 @@ class Sign implements SignType {
           .replace(/>/g, "&gt;")
           .replace(/"/g, "&quot;")
           .replace(/'/g, "&#039;");
+          const errorAlert = error.response.data.error.message
+          alert(errorAlert);
       });
   }
   showPassword() {

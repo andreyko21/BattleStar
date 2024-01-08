@@ -57,7 +57,10 @@
       height: 4px;
       border-radius: 1.5px;
       background: $yellow300;
-      transition: all 0.3s linear;
+      transition:
+        background 0.3s linear,
+        left 0.3s linear,
+        width 0.3s linear;
       pointer-events: none;
     }
   }

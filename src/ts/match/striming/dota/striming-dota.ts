@@ -1,20 +1,18 @@
-import { FiltersBlock } from '../filtration/filters-block';
-import { GettingMapsData } from '../geting-maps-data.ts';
-import { GettingMapsFiltering } from '../maps-filtering.ts';
-import { GettingRegionData } from '../geting-region-data.ts';
-import { GettingGameModeData } from '../geting-game-mode-data.ts';
-import { GettingGameModeFiltering } from '../geme-modes-filtering.ts';
-import { config } from '../../config.ts';
-import { RateFiltering } from '../rate-filtering.ts';
-import { Accordion } from '../../component/accordeon.ts';
-import { RegionFiltering } from '../region-filtering.ts';
-import { AntiCheat } from '../anti-cheat.ts';
-import { delLocateParams } from '../../functions/windowLocation.ts';
-import { StreamingFilters } from './striming-filters.ts';
-import { SortingBlock } from '../../calibration/sorting-block.ts';
-import { BaseTabs } from '../../component/tabs.ts';
+import { SortingBlock } from '../../../calibration/sorting-block';
+import { Accordion } from '../../../component/accordeon';
+import { BaseTabs } from '../../../component/tabs';
+import { config } from '../../../config';
+import { delLocateParams } from '../../../functions/windowLocation';
+import { AntiCheat } from '../../anti-cheat';
+import { DotaGettingGameModeData } from '../../dota/dota-geting-game-mode-data';
+import { FiltersBlock } from '../../filtration/filters-block';
+import { GettingGameModeFiltering } from '../../geme-modes-filtering';
+import { GettingRegionData } from '../../geting-region-data';
+import { RateFiltering } from '../../rate-filtering';
+import { RegionFiltering } from '../../region-filtering';
+import { DotaStreamingFilters } from './dota-striming-filters';
 
-class StrimingTab {
+class DotaStrimingTab {
   //  private static instance: StrimingTab;
 
   constructor() {
@@ -38,11 +36,11 @@ class StrimingTab {
 
     SortingBlock.getInstance(
       'translation-content',
-      'sorting-block-cs-strim',
-      true,
+      'sorting-block-dota-strim',
+      false,
       'streaming'
     );
-    new BaseTabs('sorting-block-cs-strim');
+    new BaseTabs('sorting-block-dota-strim');
 
     const filterSection = document.querySelector('#filters');
     if (filterSection !== null) {
@@ -60,32 +58,28 @@ class StrimingTab {
     ];
 
     try {
-      const queryForMapsData = new GettingMapsData(config.ENDPOINT);
-      const queryForGameMode = new GettingGameModeData(config.ENDPOINT);
+      const queryForGameMode = new DotaGettingGameModeData(config.ENDPOINT);
       const queryForRegionData = new GettingRegionData(config.ENDPOINT);
 
-      const mapsData = await queryForMapsData.getCheckboxesData();
       const gameModeData = await queryForGameMode.getCheckboxesData();
       const regionData = await queryForRegionData.getCheckboxesData();
 
       new RateFiltering('filters-find-streaming', rateOptions);
       new Accordion('find-lobby__rate-filter');
 
-      const mapsFiltering = new GettingMapsFiltering('filters-find-streaming');
       const gameModeFiltering = new GettingGameModeFiltering(
         'filters-find-streaming'
       );
       const regionFiltering = new RegionFiltering('filters-find-streaming');
 
       new AntiCheat('filters-find-streaming');
-      mapsFiltering.assembleFilter(mapsData);
       gameModeFiltering.assembleFilter(gameModeData);
       regionFiltering.assembleFilter(regionData);
 
-      new StreamingFilters('filters-find-streaming');
+      new DotaStreamingFilters('filters-find-streaming');
     } catch (error) {
       console.error(error);
     }
   }
 }
-export { StrimingTab };
+export { DotaStrimingTab };

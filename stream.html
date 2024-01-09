@@ -4,18 +4,161 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="Fav.ico" />
     <meta name="viewport" content="width=1920" />
-    <link rel="stylesheet" href="src/styles/match.scss" />
+    <link rel="stylesheet" href="src/styles/stream.scss" />
     <title>Battle Star - Stream</title>
   </head>
   <body>
     <div class="wrapper" id="wrapper">
-      <main class="match-page" id="app">
-        <img
-          src="./src/images/calibration-lobby/cs-bg.png"
-          class="match-page__bg-img"
-        />
+      <main class="stream-page" id="app">
+        <div class="stream-page__bg-img-block">
+          <!--<img
+            src="./src/images/calibration-lobby/cs-bg.png"
+            class="stream-page__bg-img"
+          />-->
+        </div>
+        <div class="stream-page__content-block">
+          <!--<div class="stream-page__info-block">
+            <div class="stream-page__name-block">
+              <img
+                src="src/images/temporary/ukr-flag.png"
+                alt="flag"
+                class="stream-page__flag"
+              />
+              <div class="stream-page__name">
+                PlayFair Display$$$
+                <svg>
+                  <use xlink:href="src/images/sprite.svg#share"></use>
+                </svg>
+              </div>
+            </div>
+            <div class="stream-page__info stream-page__info_type_map">
+              <div class="stream-page__data-title"> Карта </div>
+              <div class="stream-page__data-value"> Mirage </div>
+            </div>
+            <div class="stream-page__info stream-page__info_type_rate">
+              <div class="stream-page__data-title"> Ставка </div>
+              <div class="stream-page__data-value"> 5000 $ </div>
+            </div>
+            <div class="stream-page__info stream-page__info_type_mode">
+              <div class="stream-page__data-title"> Режим </div>
+              <div class="stream-page__data-value"> 5x5 </div>
+            </div>
+            <div class="stream-page__info stream-page__info_type_participants">
+              <div class="stream-page__data-title"> Учасников </div>
+              <div class="stream-page__data-value"> 8/10 </div>
+            </div>
+            <div class="stream-page__info stream-page__info_type_id">
+              <div class="stream-page__data-title"> ID </div>
+              <div class="stream-page__data-value">
+                54692725
+                <svg>
+                  <use xlink:href="src/images/sprite.svg#copy"></use>
+                </svg>
+              </div>
+            </div>
+          </div>-->
+          <div class="stream-page__info-block" id="info-block">
+            <!--<div class="stream-page__name-block">
+              <img
+                src="src/images/temporary/ukr-flag.png"
+                alt="flag"
+                class="stream-page__flag"
+              />
+              <div class="stream-page__name">
+                PlayFair Display$$$
+                <svg>
+                  <use xlink:href="src/images/sprite.svg#share"></use>
+                </svg>
+              </div>
+            </div>
+            <div class="stream-page__info stream-page__info_type_map">
+              <div class="stream-page__data-title"> Режим </div>
+              <div class="stream-page__data-value"> Captains Mode </div>
+            </div>
+            <div class="stream-page__info stream-page__info_type_rate">
+              <div class="stream-page__data-title"> Ставка </div>
+              <div class="stream-page__data-value"> 5000 $ </div>
+            </div>
+            <div class="stream-page__info stream-page__info_type_mode">
+              <div class="stream-page__data-title"> Лобби </div>
+              <div class="stream-page__data-value"> 5x5 </div>
+            </div>
+            <div class="stream-page__info stream-page__info_type_participants">
+              <div class="stream-page__data-title"> Учасников </div>
+              <div class="stream-page__data-value"> 8/10 </div>
+            </div>
+            <div class="stream-page__info stream-page__info_type_id">
+              <div class="stream-page__data-title"> ID </div>
+              <div class="stream-page__data-value">
+                54692725
+                <svg>
+                  <use xlink:href="src/images/sprite.svg#copy"></use>
+                </svg>
+              </div>
+            </div>-->
+          </div>
+          <div class="stream-page__video-block">
+            <div class="stream-page__video-wrapper">
+              <iframe
+                width="560"
+                height="315"
+                src=""
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+          <div class="stream-page__chat chat">
+            <div class="chat__header-block">
+              <div class="chat__title">
+                <svg>
+                  <use xlink:href="src/images/sprite.svg#chat"></use>
+                </svg>
+                Онлайн чат
+              </div>
+              <div class="chat__viewers" id="chat-viewers"> </div>
+            </div>
+            <div class="chat__messages-container">
+              <div class="chat__message">
+                <div class="chat__message-user-avatar">
+                  <img
+                    src="/src/images/chat/default-avatar.png"
+                    alt="Jack London"
+                  />
+                </div>
+                <div class="chat__message-block-user-name"> Jack London</div>
+                <div class="chat__message-block-user-message">Hello!!! </div>
+              </div>
+              <div class="chat__message chat__message_player_my">
+                <div class="chat__message-user-avatar">
+                  <img src="/src/images/chat/default-avatar.png" alt="You" />
+                </div>
+                <div class="chat__message-block-user-name"> You</div>
+                <div class="chat__message-block-user-message"
+                  >С другой стороны реализация намеченных плановых заданий
+                  обеспе чивает широкому кругу (специалистов) участие в форми
+                  ровании систем массового участия. 😅😅😅!!!
+                </div>
+              </div>
+            </div>
+            <label class="chat__message-input-block">
+              <input
+                class="chat__message-input"
+                type="text"
+                placeholder="Введите текст сообщения..."
+              />
+              <button class="chat__message-submit-button" id="send">
+                <svg class="chat__message-submit-icon">
+                  <use xlink:href="src/images/sprite.svg#enter-message"></use>
+                </svg>
+              </button>
+            </label>
+          </div>
+        </div>
       </main>
     </div>
   </body>
-  <!--<script type="module" src="src/ts/match/match.ts"></script>-->
+  <script type="module" src="src/ts/stream.ts"></script>
 </html>

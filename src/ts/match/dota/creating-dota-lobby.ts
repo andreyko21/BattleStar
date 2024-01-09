@@ -121,7 +121,7 @@ class CreatingDotaLobby {
     allGameModeInputs?.forEach((elem) => {
       const gameModeInput: HTMLInputElement = elem as HTMLInputElement;
       if (gameModeInput.checked) {
-        this.params.gameMode = [gameModeInput.value];
+        this.params.gameMode = [gameModeInput.value.replace(/\s/g, '_')];
       }
     });
   }

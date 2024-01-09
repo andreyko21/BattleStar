@@ -230,7 +230,7 @@ query GetCsLobbies(
   $country: [String]
   $rate: LongFilterInput
   $map: [String]
-  $gameMode: [Int]
+  $gameMode: [ID]
   $antyCheat: Boolean
 ) {
   csLobbies(
@@ -241,7 +241,7 @@ query GetCsLobbies(
         }
         { rate: $rate }
         { map: { name: { in: $map } } }
-        { gameMode: { value: { in: $gameMode } } }
+        { gameMode: { id: { in: $gameMode } } }
         { antyCheat: { value: { eq: $antyCheat } } }
       ]
     }
@@ -1286,7 +1286,7 @@ query GetCsStreaming(
   $country: [String]
   $rate: LongFilterInput
   $map: [String]
-  $gameMode: [Int]
+  $gameMode: [ID]
 ) {
   cs2Brodcastings(
     filters: {
@@ -1296,7 +1296,7 @@ query GetCsStreaming(
         }
         { rate: $rate }
         { map: { name: { in: $map } } }
-        { cs_game_mode: { value: { in: $gameMode } } }
+        { cs_game_mode: { id: { in: $gameMode } } }
       ]
     }
     pagination: { limit: 1000 }
@@ -1362,7 +1362,7 @@ query GetCsStreaming(
 query GetDotaLobbies(
   $country: [String]
   $rate: LongFilterInput
-  $gameMode: [String]
+  $gameMode: [ID]
   $antyCheat: Boolean
 ) {
   dota2Lobbies(
@@ -1372,7 +1372,7 @@ query GetDotaLobbies(
           creator: { Options: { selected_country: { name: { in: $country } } } }
         }
         { rate: $rate }
-        { dota_2_game_modes: { value: { in: $gameMode } } }
+        { dota_2_game_modes: { id: { in: $gameMode } } }
         { antyCheat: { value: { eq: $antyCheat } } }
       ]
     }
@@ -1514,6 +1514,179 @@ mutation CreateDota2Lobby(
         typeLobby {
           data {
             id
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetDotaStreaming(
+  $country: [String]
+  $rate: LongFilterInput
+  $gameMode: [ID]
+) {
+  dota2Brodcastings(
+    filters: {
+      and: [
+        {
+          ctreator: {
+            Options: { selected_country: { name: { in: $country } } }
+          }
+        }
+        { rate: $rate }
+        { gameModes: { id: { in: $gameMode } } }
+      ]
+    }
+    pagination: { limit: 1000 }
+  ) {
+    data {
+      id
+      attributes {
+        title
+        ctreator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      name
+                      flag {
+                        data {
+                          attributes {
+                            alternativeText
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        rate
+        viewers
+        gameModes {
+          data {
+            id
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        participants {
+          id
+        }
+        videoUrl
+      }
+    }
+  }
+}
+
+query GetDotaStreamingData($id: ID) {
+  dota2Brodcasting(id: $id) {
+    data {
+      id
+      attributes {
+        title
+        ctreator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      name
+                      flag {
+                        data {
+                          attributes {
+                            url
+                            alternativeText
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        rate
+        gameModes {
+          data {
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        viewers
+        videoUrl
+        participants {
+          id
+        }
+      }
+    }
+  }
+}
+
+query GetCsStreamingData($id: ID) {
+  cs2Brodcasting(id: $id) {
+    data {
+      id
+      attributes {
+        title
+        creator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      name
+                      flag {
+                        data {
+                          attributes {
+                            url
+                            alternativeText
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        map {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+        rate
+        cs_game_mode {
+          data {
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        viewers
+        videoUrl
+        participants {
+          players {
+            data {
+              id
+            }
           }
         }
       }

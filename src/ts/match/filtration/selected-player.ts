@@ -45,7 +45,6 @@ class AllPlayerList {
               ? 0
               : item.attributes?.DOTA2?.Default_information?.rank || 0,
         }));
-        console.table(playersObj);
 
         return playersObj;
       }

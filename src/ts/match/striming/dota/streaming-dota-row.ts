@@ -1,6 +1,6 @@
-import Sprite from './../../../images/sprite.svg';
+import Sprite from './../../../../images/sprite.svg';
 
-class StreamingRow {
+class StreamingDotaRow {
   private container: HTMLElement;
   private options: { [key: string]: string | boolean }[];
 
@@ -18,15 +18,6 @@ class StreamingRow {
     const template = this.options.reduce(
       (rows: string, option: { [key: string]: string | boolean }): string => {
         rows += `<tr class="streaming-tr content__tr" id="${option.id}">
-        <td class="streaming-tr__img-cell">
-          <div class="streaming-tr__img-block">
-            <img
-              src="${option.imgSrc}"
-              alt=""
-              class="streaming-tr__img"
-            />
-          </div>
-        </td>
         <td class="streaming-tr__name-cell">
           <div class="streaming-tr__name-block">
             <img
@@ -37,9 +28,9 @@ class StreamingRow {
             <div class="streaming-tr__name"> ${option.nameMatch} </div>
           </div>
         </td>
-        <td class="streaming-tr__map">
+        <td class="streaming-tr__mode">
           <div class="streaming-tr__data-title"> Карта </div>
-          <div class="streaming-tr__rate-value">  ${option.map} </div>
+          <div class="streaming-tr__rate-value">  ${option.mode} </div>
         </td>
         <td class="streaming-tr__rate-block">
           <div class="streaming-tr__data-title"> Ставка </div>
@@ -47,7 +38,7 @@ class StreamingRow {
         </td>
         <td class="streaming-tr__mode">
           <div class="streaming-tr__data-title"> Режим </div>
-          <div class="streaming-tr__rate-value"> ${option.mode}x${option.mode} </div>
+          <div class="streaming-tr__rate-value"> ${option.participants}x${option.participants} </div>
         </td>
         <td class="streaming-tr__online-field-block">
           <div class="streaming-tr__online-field"> Онлайн </div>
@@ -76,7 +67,7 @@ class StreamingRow {
       const target = e.target as HTMLElement;
       const targetRow = target.closest('.streaming-tr');
       if (targetRow) {
-        window.location.href = `/stream.html?game=cs2&id=${targetRow.id}`;
+        window.location.href = `/stream.html?game=dota2&id=${targetRow.id}`;
       }
     });
   }
@@ -86,4 +77,4 @@ class StreamingRow {
   //  }
 }
 
-export { StreamingRow };
+export { StreamingDotaRow };

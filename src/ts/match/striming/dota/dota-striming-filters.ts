@@ -1,17 +1,13 @@
 import {
-  setLocateParam,
   delLocateParam,
   getQueryParams,
-} from '../../functions/windowLocation';
-import { QueryRate } from '../../types';
-//@ts-ignore
-import { CsStreamingQuery } from './cs-streaming-query';
-//@ts-ignore
-import { StreamingRow } from './streaming-cs-row';
-//@ts-ignore
-import { StrimingCard } from './striming-grid-card';
+  setLocateParam,
+} from '../../../functions/windowLocation';
+import { QueryRate } from '../../../types';
+import { DotaStreamingQuery } from './dota-streaming-query';
+import { StreamingDotaRow } from './streaming-dota-row';
 
-class StreamingFilters {
+class DotaStreamingFilters {
   private readonly container: HTMLElement | null;
   allCheckbox: NodeListOf<HTMLInputElement> | null;
 
@@ -22,9 +18,8 @@ class StreamingFilters {
   filtersObj: {
     country: string[] | null;
     rate: string[] | null;
-    mapName: string[] | null;
     gameMode: string[] | null;
-  } = { country: [], rate: [], mapName: [], gameMode: [] };
+  } = { country: [], rate: [], gameMode: [] };
 
   constructor(containerId: string) {
     this.container = document.querySelector(`#${containerId}`) as HTMLElement;
@@ -90,12 +85,12 @@ class StreamingFilters {
   private async updateContent() {
     const params = this.changeFiltersObj();
 
-    const matchQuery = new CsStreamingQuery(params);
+    const matchQuery = new DotaStreamingQuery(params);
     const query = await matchQuery.getData();
 
     if (query) {
-      new StrimingCard('streaming-grid', query);
-      new StreamingRow('streaming-table', query);
+      //new StrimingCard('streaming-grid', query);
+      new StreamingDotaRow('streaming-table', query);
     }
   }
 
@@ -166,10 +161,6 @@ class StreamingFilters {
           ? this.allCheckboxesValues.country
           : this.filtersObj.country,
       rate: {} as QueryRate,
-      map:
-        this.filtersObj.mapName?.length === 0
-          ? this.allCheckboxesValues.mapName
-          : this.filtersObj.mapName,
       gameMode: [] as number[],
     };
 
@@ -257,4 +248,4 @@ class StreamingFilters {
   }
 }
 
-export { StreamingFilters };
+export { DotaStreamingFilters };

@@ -1,24 +1,22 @@
 import { request } from 'graphql-request';
-import { GetDotaLobbies } from '../../../../queries.graphql.d';
-import { QueryRate } from '../../types';
+import { GetDotaStreaming } from '../../../../../queries.graphql.d';
+import { QueryRate } from '../../../types';
 
 interface LobbyData {
   [key: string]: string | boolean;
 }
 
-class DotaMatchesQuery {
+class DotaStreamingQuery {
   params: {
     country: string[] | null;
     rate: QueryRate;
-    gameMode: string[] | null;
-    antyCheat: boolean;
+    gameMode: number[];
   };
 
   constructor(params: {
     country: string[] | null;
     rate: QueryRate;
-    gameMode: string[] | null;
-    antyCheat: boolean;
+    gameMode: number[];
   }) {
     this.params = params;
   }
@@ -26,9 +24,9 @@ class DotaMatchesQuery {
     const ENDPOINT = 'https://battle-star-app.onrender.com/graphql';
 
     try {
-      const { dota2Lobbies } = await request(
+      const { dota2Brodcastings } = await request(
         ENDPOINT,
-        GetDotaLobbies,
+        GetDotaStreaming,
         this.params,
         {
           Authorization:
@@ -36,33 +34,31 @@ class DotaMatchesQuery {
         }
       );
 
-      if (dota2Lobbies?.data) {
-        const destructureCsLobbies = dota2Lobbies.data.reduce(
+      if (dota2Brodcastings?.data) {
+        const destructureStrimings = dota2Brodcastings.data.reduce(
           (acc: { [key: string]: string | boolean }[], item) => {
             acc.push({
               id: item.id as string,
               nameMatch: item.attributes?.title as string,
-              mode: item.attributes?.dota_2_game_modes?.data[0].attributes?.value
+              mode: item.attributes?.gameModes?.data[0].attributes?.value
                 .toString()
                 .replace('_', ' ') as string,
               rate: item.attributes?.rate.toString(),
-              flagSrc: item.attributes?.creator?.data?.attributes?.Options
+              flagSrc: item.attributes?.ctreator?.data?.attributes?.Options
                 ?.selected_country?.data?.attributes?.flag?.data?.attributes
                 ?.url as string,
-              region: item.attributes?.creator?.data?.attributes?.Options
+              region: item.attributes?.ctreator?.data?.attributes?.Options
                 ?.selected_country?.data?.attributes?.name as string,
-              ping: item.attributes?.ping,
-              type: item.attributes?.typeLobby?.data?.attributes?.value.toString() as string,
-              participants: (
-                item.attributes?.participant?.players?.data?.length || 0
-              ).toString(),
-              antyCheat: item.attributes?.antyCheat?.value as boolean,
+              participants:
+                item.attributes?.participants.length.toString() as string,
+              viewers: item.attributes?.viewers,
+              videoUrl: item.attributes?.videoUrl as string,
             });
             return acc;
           },
           []
         );
-        return destructureCsLobbies;
+        return destructureStrimings;
       }
     } catch (error) {
       console.error(error);
@@ -70,6 +66,6 @@ class DotaMatchesQuery {
   }
 }
 
-export { DotaMatchesQuery };
+export { DotaStreamingQuery };
 
 export type { LobbyData };

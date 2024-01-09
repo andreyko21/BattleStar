@@ -37,3 +37,5 @@ async function selectGameForRender() {
     // await csMathesPage.renderCsPage();
   }
 }
+
+//.replace(/\s/g, '_')

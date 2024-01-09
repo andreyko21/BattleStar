@@ -16,6 +16,7 @@ class GettingGameModeFiltering {
     }
 
     this.renderFilterContainer();
+
     if (filterBlockId !== undefined) {
       this.filterBlockId = filterBlockId;
     }
@@ -44,8 +45,6 @@ class GettingGameModeFiltering {
       label: string;
     }[]
   ): NewCheckboxData[] {
-    console.log(checkboxData[0].value);
-
     const locateParam = getLocateParam('gameMode')?.split(',');
 
     const newCheckboxData: NewCheckboxData[] = [];
@@ -97,7 +96,10 @@ class GettingGameModeFiltering {
       label: string;
     }[]
   ) {
-    await this.renderCheckboxHtml(checkboxData);
+    const changingCheckboxData = checkboxData.map((item) => {
+      return { id: item.id, value: item.id, label: item.label };
+    });
+    await this.renderCheckboxHtml(changingCheckboxData);
     new Accordion('find-lobby__game-mode-filter');
   }
 }

@@ -4,34 +4,11 @@ import {
   GetCsLobbiesQuery,
   GetCsLobbiesQueryVariables,
 } from '../../../queries.graphql.d';
-
-//import type { QueryRate } from './filtration-for-query';
-
 interface LobbyData {
   [key: string]: string | boolean;
 }
 
 class MatchesQueryWithoutFilter {
-  //  params: {
-  //    country?: string[] | null;
-  //    rate?: QueryRate;
-  //    mapName?: string[] | null;
-  //    gameMode?: number[];
-  //    antyCheat?: boolean;
-  //  };
-
-  //  constructor(
-  //   // params: {
-  //   //   country?: string[] | null;
-  //   //   rate?: QueryRate;
-  //   //   mapName?: string[] | null;
-  //   //   gameMode?: number[];
-  //   //   antyCheat?: boolean;
-  //   // } = {}
-  //  ) {
-  //    this.params = params;
-  //    // this.getData();
-  //  }
   async getData() {
     const ENDPOINT = 'https://battle-star-app.onrender.com/graphql';
 

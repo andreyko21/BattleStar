@@ -14,7 +14,7 @@ class BaseTabs implements IBaseTabs {
   public readonly TAB_CLASS = 'tabs-block__tab'; //Клас для табів
   public readonly TAB_ACTIVE_CLASS = 'tabs-block__tab_active'; // Клас для активного табу
   public readonly TABS_BLOCK_CONTENT_CLASS = 'tabs-block__content'; //Клас для блоку з контентом, що перемикається табами
-  public readonly CONTENT_CONTAINER_CLASS = 'tabs-block__content-container'; //Клас для контенту окремого класу
+  public readonly CONTENT_CONTAINER_CLASS = 'tabs-block__content-container'; //Клас для контенту окремого табу
   public readonly CONTENT_CONTAINER_ACTIVE_CLASS =
     'tabs-block__content-container_active'; //Клас активного контейнера для контенту вибраного табом
 

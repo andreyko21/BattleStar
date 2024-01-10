@@ -10,6 +10,7 @@ import { Header } from '../component/header/header.ts';
 import { AppSidebar } from '../component/sidebar/sidebar.ts';
 import { SortingBlock } from './sorting-block.ts';
 import { Creator } from '../match/creator.ts';
+import { DotaMatchesQuery } from '../match/dota/dota-matches-query.ts';
 
 new Creator().transformCreatorData();
 
@@ -30,7 +31,7 @@ async function selectGameForRender() {
     new SortingBlock('sorting-block-container', 'sorting-block', false);
     new BaseTabs('sorting-block');
 
-    const matchesQuery = new MatchesQueryWithoutFilter();
+    const matchesQuery = new DotaMatchesQuery();
 
     const lobbyOpenning = new OpenLobbyPopUp(
       'open-lobby-pop-up',

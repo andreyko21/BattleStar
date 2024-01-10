@@ -7,20 +7,22 @@ interface LobbyData {
 }
 
 class DotaMatchesQuery {
-  params: {
-    country: string[] | null;
-    rate: QueryRate;
-    gameMode: string[] | null;
-    antyCheat: boolean;
-  };
+  params:
+    | {
+        country: string[] | null;
+        rate: QueryRate;
+        gameMode: string[] | null;
+        antyCheat: boolean;
+      }
+    | {};
 
-  constructor(params: {
+  constructor(params?: {
     country: string[] | null;
     rate: QueryRate;
     gameMode: string[] | null;
     antyCheat: boolean;
   }) {
-    this.params = params;
+    this.params = params !== undefined ? params : {};
   }
   async getData() {
     const ENDPOINT = 'https://battle-star-app.onrender.com/graphql';

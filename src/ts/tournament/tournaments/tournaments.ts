@@ -130,7 +130,7 @@ $(document).ready(async () => {
   if (getLocateParam("page")) {
     currentPage = getLocateParam("page");
   } else {
-    currentPage = 1;
+    currentPage = getLocateParam("page") || 1;
   }
 
   const ENDPOINT = "https://battle-star-app.onrender.com/graphql";

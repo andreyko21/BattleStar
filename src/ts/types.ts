@@ -24,65 +24,83 @@ export type TeamType = {
 
 export class Team implements TeamType {
   id: string;
-  attributes: TeamAttributes;
+  attributes: any;
 
-  constructor(teamData: Team) {
-    this.id = teamData.id ?? '';
-    this.attributes = teamData.attributes ?? '';
+  constructor(teamData: any) {
+    this.id = teamData.id || "";
+    this.attributes = teamData.attributes || {};
   }
 
   getTemplate(): string {
-    if (this.id != undefined && this.attributes != undefined) {
-      let awardsList = '';
-      this.attributes.awards.data.forEach((award) => {
-        awardsList += `<img class="team-item__award-img" src="${award.attributes.logo.data[0].attributes.url}" alt="award">`;
-      });
+    const teamAttributes = this.attributes.Team || {};
 
-      return `<a href="/team.html?id=${this.id}" class="teams-list__team-item team-item">
-        <div class="team-item__img-block">
-        <img class="team-item__img" src="${this.attributes.logo.data.attributes.url}" alt="logo">
-        </div>
-        <p class="team-item__name">${this.attributes.name}</p>
-        <p class="team-item__info team-item__rating">${this.attributes.rating}</p>
-        <p class="team-item__info team-item__tournaments">${this.attributes.tournaments.data.length}</p>
-        <p class="team-item__info team-item__earned">${this.attributes.earned}</p>
-        <p class="team-item__info team-item__participants">${this.attributes.participants.data.length}/15</p>
-        <div class="team-item__awards">${awardsList}</div>
-    </li>`;
-    } else {
-      return `Не знайдено нічого`;
-    }
+    let awardsList = "";
+    const awardsData = this.attributes.awards?.data || [];
+
+    awardsData.forEach((award: any) => {
+      awardsList += `<img class="team-item__award-img" src="${award.attributes.logo.data[0].attributes.url}" alt="award">`;
+    });
+
+    return `<a href="/team.html?id=${
+      this.id
+    }" class="teams-list__team-item team-item">
+      <div class="team-item__img-block">
+        <img class="team-item__img" src="${teamAttributes.logo?.data.attributes
+          .url}" alt="${
+          teamAttributes.logo?.data.attributes.alternativeText || "logo"
+        }">
+      </div>
+      <p class="team-item__name">${teamAttributes.name || "Team Name"}</p>
+      <p class="team-item__info team-item__rating">${
+        teamAttributes.rating || 0
+      }</p>
+      <p class="team-item__info team-item__tournaments">${
+        this.attributes.tournaments?.data.length || 0
+      }</p>
+      <p class="team-item__info team-item__earned">${
+        teamAttributes.earned || 0
+      }</p>
+      <p class="team-item__info team-item__participants">${
+        this.attributes.players?.data.length || 0
+      }/15</p>
+      <div class="team-item__awards">${awardsList}</div>
+    </a>`;
   }
 
   getItemTemplate(): string {
-    if (this.id != undefined && this.attributes != undefined) {
-      let awardsList = '';
-      this.attributes.awards.data.forEach((award) => {
-        awardsList += `<img class="team-item__award-img" src="${award.attributes.logo.data[0].attributes.url}" alt="award">`;
-      });
+    const teamAttributes = this.attributes.Team || {};
 
-      return `
-          <div class="team-page__container">
-          <div class="team-page__avatar">
-          <img class="team-page__avatar-background" src="${
-            this.attributes.logo.data.attributes.url
-          }" alt="" />
-            <img src="${this.attributes.logo.data.attributes.url}" alt="" />
-          </div>
-          <h1 class="team-page__name">${this.attributes.name}</h1>
-          <div class="team-page__awards"></div>
-          <p class="team-page__description">
-            Значимость этих проблем настолько очевидна, что консультация с
-            широким активом способствует подготовки и реализации позиций,
-            занимаемых участниками в отношении поставленных задач
-          </p>
-          <div class="team-page__stats">
-            <div class="team-page__stats-info-item stats-info-item">
+    let awardsList = "";
+    const awardsData = this.attributes.awards?.data || [];
+    awardsData.forEach((award: any) => {
+      awardsList += `<img class="team-item__award-img" src="${award.attributes.logo.data[0].attributes.url}" alt="award">`;
+    });
+
+    return `
+      <div class="team-page__container">
+        <div class="team-page__avatar">
+          <img class="team-page__avatar-background" src="${teamAttributes.logo
+            ?.data.attributes.url}" alt="${
+            teamAttributes.logo?.data.attributes.alternativeText || "logo"
+          }" />
+          <img src="${teamAttributes.logo?.data.attributes.url}" alt="${
+            teamAttributes.logo?.data.attributes.alternativeText || "logo"
+          }" />
+        </div>
+        <h1 class="team-page__name">${teamAttributes.name || "Team Name"}</h1>
+        <div class="team-page__awards">${awardsList}</div>
+        <p class="team-page__description">
+          Значимость этих проблем настолько очевидна, что консультация с
+          широким активом способствует подготовки и реализации позиций,
+          занимаемых участниками в отношении поставленных задач
+        </p>
+        <div class="team-page__stats">
+                      <div class="team-page__stats-info-item stats-info-item">
               <svg class="stats-info-item__icon">
                 <use class="cup" xlink:href="src/images/sprite.svg#cup"></use>
               </svg>
               <h2 class="stats-info-item__title">${
-                this.attributes.victories_in_tournaments
+                teamAttributes.victories_in_tournaments || 0
               } победы</h2>
               <p class="stats-info-item__description">в турнирах</p>
             </div>
@@ -95,7 +113,7 @@ export class Team implements TeamType {
                 ></use>
               </svg>
               <h2 class="stats-info-item__title">${
-                this.attributes.earned
+                teamAttributes.earned
               } BS</h2>
               <p class="stats-info-item__description">Заработано</p>
             </div>
@@ -107,7 +125,7 @@ export class Team implements TeamType {
                 ></use>
               </svg>
               <h2 class="stats-info-item__title">${
-                this.attributes.matches_played | 0
+                teamAttributes.matches_played | 0
               } матчей</h2>
               <p class="stats-info-item__description">Сыграно</p>
             </div>
@@ -119,13 +137,14 @@ export class Team implements TeamType {
                 ></use>
               </svg>
               <h2 class="stats-info-item__title">${
-                this.attributes.participants.data.length
+                this.attributes.players.data.length
               }/15</h2>
               <p class="stats-info-item__description">учасников</p>
             </div>
-          </div>
-          <div class="team-page__participants">
-            <div class="team-page__participants-list">
+
+        </div>
+        <div class="team-page__participants">
+                      <div class="team-page__participants-list">
               <div class="team-page__participants-user-avatar">
                 <img src="./src/images/user.svg" alt="" />
               </div>
@@ -163,19 +182,17 @@ export class Team implements TeamType {
               </svg>
             </button>
             <p class="team-page__participants-rank">Ранг: 1320</p>
-          </div>
 
-          <div class="team-page__nav">
-            <button class="team-page__nav-button">
+        </div>
+        <div class="team-page__nav">
+                      <button class="team-page__nav-button">
               <svg class="stats-info-item__icon">
                 <use xlink:href="src/images/sprite.svg#share"></use></svg
               >Поделиться
             </button>
-          </div>
-        </div>`;
-    } else {
-      return `Не знайдено нічого`;
-    }
+
+        </div>
+      </div>`;
   }
 }
 

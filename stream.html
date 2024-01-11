@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/Fav-31aa7ba9.ico" />
+    <meta name="viewport" content="width=1920" />
+    
+    <title>Battle Star - Stream</title>
+    <script type="module" crossorigin src="/assets/stream-8e145a42.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/jquery-e7e79cb6.js">
+    <link rel="modulepreload" crossorigin href="/assets/header-ec130f68.js">
+    <link rel="modulepreload" crossorigin href="/assets/sidebar-82114b68.js">
+    <link rel="stylesheet" href="/assets/stream-61d6ce05.css">
+  </head>
+  <body>
+    <div class="wrapper" id="wrapper">
+      <main class="stream-page" id="app">
+        <div class="stream-page__bg-img-block">
+          <!--<img
+            src="./src/images/calibration-lobby/cs-bg.png"
+            class="stream-page__bg-img"
+          />-->
+        </div>
+        <div class="stream-page__content-block">
+          <div class="stream-page__info-block" id="info-block"> </div>
+          <div class="stream-page__video-block">
+            <div class="stream-page__video-wrapper">
+              <iframe
+                width="560"
+                height="315"
+                src=""
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+          <div class="stream-page__chat chat">
+            <div class="chat__header-block">
+              <div class="chat__title">
+                <svg>
+                  <use xlink:href="/assets/sprite-3f4ad247.svg#chat"></use>
+                </svg>
+                Онлайн чат
+              </div>
+              <div class="chat__viewers" id="chat-viewers"> </div>
+            </div>
+            <div class="chat__messages-container">
+              <div class="chat__message">
+                <div class="chat__message-user-avatar">
+                  <img
+                    src="/assets/default-avatar-d3ff9e4c.png"
+                    alt="Jack London"
+                  />
+                </div>
+                <div class="chat__message-block-user-name"> Jack London</div>
+                <div class="chat__message-block-user-message">Hello!!! </div>
+              </div>
+              <div class="chat__message chat__message_player_my">
+                <div class="chat__message-user-avatar">
+                  <img src="/assets/default-avatar-d3ff9e4c.png" alt="You" />
+                </div>
+                <div class="chat__message-block-user-name"> You</div>
+                <div class="chat__message-block-user-message"
+                  >С другой стороны реализация намеченных плановых заданий
+                  обеспе чивает широкому кругу (специалистов) участие в форми
+                  ровании систем массового участия. 😅😅😅!!!
+                </div>
+              </div>
+            </div>
+            <label class="chat__message-input-block">
+              <input
+                class="chat__message-input"
+                type="text"
+                placeholder="Введите текст сообщения..."
+              />
+              <button class="chat__message-submit-button" id="send">
+                <svg class="chat__message-submit-icon">
+                  <use xlink:href="/assets/sprite-3f4ad247.svg#enter-message"></use>
+                </svg>
+              </button>
+            </label>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+  
+</html>

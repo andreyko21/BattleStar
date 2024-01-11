@@ -569,3 +569,16 @@ body {
 .content__tabs-content {
   display: flex;
 }
+
+.cs2-content-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dota2-content-block,
+.statistics__dota {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

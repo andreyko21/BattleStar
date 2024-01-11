@@ -112,6 +112,7 @@ export class SearchUsers {
   private createUserHtml(user: User): string {
     const onlineStatusClass = user.online ? "user__online-status_online" : "";
     const avatarUrl = user.avatar || DefaultAvatar;
+    const userStatusText = user.online ? "Online" : "Offline"; // Update status text based on online status
     const friendButtonHtml = user.isFriend
       ? `<button class="user__submit-button remove-friend" data-user-id="${user.id}">
             <svg class="user__submit-button-icon"><use xlink:href="${Sprite}#deleteUser"></use></svg>
@@ -126,7 +127,7 @@ export class SearchUsers {
         <img src="${avatarUrl}" alt="${user.name}" />
       </div>
       <p class="user__name">${user.username}</p>
-      <p class="user__status">${user.status}</p>
+      <p class="user__status">${userStatusText}</p> <!-- Display online/offline status -->
       <div class="user__rank">
         <img src="${RankImg}" alt="Rank"/>
       </div>

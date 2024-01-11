@@ -80,8 +80,8 @@ query GetUser {
   }
 }
 
-query GetUserInfo {
-  usersPermissionsUser(id: 43) {
+query GetUserInfo($id: ID) {
+  usersPermissionsUser(id: $id) {
     data {
       id
       attributes {

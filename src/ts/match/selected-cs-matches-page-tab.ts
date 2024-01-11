@@ -8,8 +8,7 @@ import { ChangingGameBackground } from './change-game-background.ts';
 class SelectedCsMatchPagesTab {
   private mayMethods: IRenderMethod = {
     'open-match': async () => {
-      new CsMatchesPage(); //.getInstance
-      //this.filterTranslation('open-match');
+      new CsMatchesPage();
     },
     translation: () => {
       new StrimingTab(); //.getInstance

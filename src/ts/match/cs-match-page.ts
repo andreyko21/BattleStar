@@ -30,19 +30,9 @@ import {
 } from '../functions/windowLocation.ts';
 
 class CsMatchesPage {
-  //  private static instance: CsMatchesPage;
-
   constructor() {
     this.renderCsPage();
   }
-
-  //  public static async getInstance(): Promise<CsMatchesPage> {
-  //    if (!CsMatchesPage.instance) {
-  //      CsMatchesPage.instance = new CsMatchesPage();
-  //      await this.instance.renderCsPage();
-  //    }
-  //    return CsMatchesPage.instance;
-  //  }
 
   private updateUrlParams() {
     delLocateParams(['country', 'rate', 'mapName', 'gameMode', 'antyCheat']);

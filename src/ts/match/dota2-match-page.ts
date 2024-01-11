@@ -116,21 +116,3 @@ class CsMatchesPage {
 }
 
 export { CsMatchesPage };
-
-//const popUp = document.querySelector('.open-lobby-pop-up') as HTMLDivElement;
-//const overlay = document.querySelector('.overlay') as HTMLDivElement;
-//let calibrationPopUp: IBasePopUp;
-//if (popUp && overlay) {
-//  calibrationPopUp = new BasePopUp(popUp, overlay);
-
-//  calibrationPopUp.open();
-//  const calibrationBtn: HTMLElement | null =
-//    popUp.querySelector('#start-calibration');
-//  calibrationBtn?.addEventListener('click', () => calibrationPopUp.close());
-//}
-
-//const lobbyOpenning = new OpenLobbyPopUp(
-//  'open-lobby-pop-up',
-//  'overlay',
-//  'content-wrapper'
-//);

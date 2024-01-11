@@ -68,7 +68,7 @@ export class Team implements TeamType {
   }
 
   getItemTemplate(): string {
-    const teamAttributes = this.attributes.Team || {};
+    const teamAttributes = this.attributes.Team[0] || {};
 
     let awardsList = "";
     const awardsData = this.attributes.awards?.data || [];

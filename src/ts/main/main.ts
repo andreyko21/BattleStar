@@ -18,14 +18,15 @@ import { Card } from "./../component/card";
 import { cardNews } from "./components/card";
 import { playersCs } from "./components/playersCs";
 import { playersDota } from "./components/playersDota";
-import { teams } from "./components/teams";
+// import { teams } from "./components/teams";
 import { TopPlayersCs, TopPlayersDota } from "./topPlayers";
 import { MainNews } from "./mainNews";
 import { mainNews } from "./components/mainNews";
 import { sliderTeams } from "./components/sliderTeam";
 import { Slider } from "./../component/slider";
-import { Map, TeamSideA, TeamSideB } from "./team";
-
+import { Map,  } from "./team";
+import{sumHistory} from "./../cabinet/history";
+document.cookie = `balance=${sumHistory}`;
 new Header("#wrapper");
 new AppSidebar("wrapper", "ГЛАВНАЯ");
 
@@ -52,8 +53,6 @@ class Main implements MainType {
   constructor() {
     this.playerNumber = $(".news__rating-number") ;
     this.infoTeams =  $('.game__info-teams')
-    console.log(this.infoTeams);
-
     this.init();
   }
 
@@ -140,7 +139,6 @@ class Main implements MainType {
         "https://battle-star-app.onrender.com/graphql",
         GetTopPlayer
       );
-      console.log(getTopPlayers);
 
       const newsTopPlayers =
         getTopPlayers.topPlayers?.data[0]?.attributes?.cs ?? "Error";
@@ -154,12 +152,12 @@ class Main implements MainType {
 
         cardArr.sort((a: any, b: any) => b.rating - a.rating);
 
-        new TopPlayersCs(".rating__cs", cardArr[1]);
+        new TopPlayersCs(".rating__cs", cardArr[1] );
       } else {
         throw new Error("newsTopPlayers is not an array");
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       new TopPlayersCs(".rating__cs", playersCs);
     }
   }
@@ -186,7 +184,7 @@ class Main implements MainType {
         throw new Error("newsTopPlayers is not an array");
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       new TopPlayersDota(".rating__dota", playersDota);
     }
   }
@@ -231,24 +229,15 @@ class Main implements MainType {
       const mapArr = newMap.map((card: any) => {
         return {
           logo: card.attributes.logo.data[0].attributes.url,
+          rigthName: "Renegades",
+          rigthAva: "https://res.cloudinary.com/dahl2ad8r/image/upload/v1704630354/Renegades_logo_1f48bcedfc.png",
+          leftName: "Liquid",
+          ava: "https://res.cloudinary.com/dahl2ad8r/image/upload/v1704630354/Team_Liquid_logo_f79b0572cf.png",
         };
       });
       new Map(".game__column", mapArr);
     }
   }
 
-  // renderTeams() {
-
-  //   const teamsDivision = teams.reduce((acc: any[][], item: any, index: number) => {
-  //     if (index % 8 === 0) {
-  //       acc.push([]);
-  //     }
-  //     acc[acc.length - 1].push(item);
-  //     return acc;
-  //   },[]); 
-  //   // console.log(teamsDivision);
-  //   new TeamSideA(".game__info-item", teamsDivision[0]);
-  //   new TeamSideB(".game__info-item", teamsDivision[1]);
-  // }
 }
 new Main();

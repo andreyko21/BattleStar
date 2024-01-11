@@ -18,6 +18,7 @@ import {
 import { getLocateParam, setLocateParam } from "./functions/windowLocation";
 
 interface Team {
+  id: any;
   link: string;
   avatar: string;
   name: string;
@@ -202,6 +203,7 @@ class TeamManagementPage {
 
       return teamDataArray.map(
         (teamData: {
+          id: string;
           attributes: {
             Team: any[];
             players: { data: string | any[] };
@@ -220,6 +222,7 @@ class TeamManagementPage {
               : null;
 
           return {
+            id: teamData.id,
             link: "#",
             avatar: logo,
             name: team.name,
@@ -245,11 +248,12 @@ class TeamManagementPage {
   }
 
   private createTeamListItem(team: Team): string {
+    const gameParam = getLocateParam("game");
     const awardImageHtml = team.award
       ? `<div class="team-list__team-awards-item"><img src="${team.award}" alt="award" /></div>`
       : "";
 
-    return `<a class="team-list__team" href="${team.link}">
+    return `<a class="team-list__team" href="/team.html?id=${team.id}&game=${gameParam}">
               <div class="team-list__team-avatar">
                 <img src="${team.avatar}" alt="award" />
               </div>

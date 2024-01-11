@@ -1,4 +1,4 @@
-import $, { get } from "jquery";
+import $ from "jquery";
 import { Header } from "../component/header/header";
 import { AppSidebar } from "../component/sidebar/sidebar";
 import request from "graphql-request";
@@ -6,33 +6,34 @@ import { GetUsersId, UpdatePlayerOptions } from "./../../../queries.graphql.d";
 new Header("#wrapper");
 new AppSidebar("wrapper", "");
 class Setting {
-  LogOut: JQuery<HTMLButtonElement>;
 
 
   constructor() {
-    this.LogOut = $(".setting__exit");
     this.init();
   }
 
   init() {
-    // this.getUserId();
     this.logOutAccount();
-
-
   }
-
 
   logOutAccount() {
-    this.LogOut.on("click", () => {
-      document.cookie =
-        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie =
-        "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      window.location.href = "login.html";
-    });
+    const logOutButton = document.querySelector(".setting__exit"); 
+  
+    if (logOutButton) {
+      logOutButton.addEventListener("click", () => {
+        document.cookie =
+          "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie =
+          "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href = "login.html";
+      });
+    } else {
+      console.error("LogOutButton not found!"); 
+    }
   }
+  
 }
 
 new Setting();
@@ -136,7 +137,6 @@ getUserId();
 function  handleSwitchPlatform(checked: any, ) {
   variables.data.Options.news_of_the_platform = checked;
 
-
   sendSettingsToServer();
 }
 function  handleSwitchTournaments(checked: any, ) {
@@ -193,7 +193,7 @@ $("#friends-invit").on("click", function (e) {
   handleSwitchFriendsInvit(target.checked,);
 });
 
-// console.log($("#new-platform"))
+
 
 
 

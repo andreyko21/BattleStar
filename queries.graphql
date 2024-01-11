@@ -80,6 +80,112 @@ query GetUser {
   }
 }
 
+query GetUserInfo($id: ID) {
+  usersPermissionsUser(id: $id) {
+    data {
+      id
+      attributes {
+        username
+        biography
+        online_status
+        my_friends {
+          data {
+            id
+            attributes {
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+              username
+              online_status
+            }
+          }
+        }
+        friends_request {
+          data {
+            id
+            attributes {
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+              username
+              online_status
+            }
+          }
+        }
+        avatar {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        player {
+          data {
+            attributes {
+              cs_2_teams {
+                data {
+                  attributes {
+                    players {
+                      data {
+                        id
+                      }
+                    }
+                    Team {
+                      logo {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                      name
+                      rating
+                      victories_in_tournaments
+                      earned
+                    }
+                  }
+                }
+              }
+              dota_2_teams {
+                data {
+                  attributes {
+                    players {
+                      data {
+                        id
+                      }
+                    }
+                    Team {
+                      name
+                      logo {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                      rating
+                      victories_in_tournaments
+                      earned
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 query GetCurrentUser($id: ID) {
   usersPermissionsUser(id: $id) {
     data {
@@ -230,7 +336,7 @@ query GetCsLobbies(
   $country: [String]
   $rate: LongFilterInput
   $map: [String]
-  $gameMode: [Int]
+  $gameMode: [ID]
   $antyCheat: Boolean
 ) {
   csLobbies(
@@ -241,7 +347,7 @@ query GetCsLobbies(
         }
         { rate: $rate }
         { map: { name: { in: $map } } }
-        { gameMode: { value: { in: $gameMode } } }
+        { gameMode: { id: { in: $gameMode } } }
         { antyCheat: { value: { eq: $antyCheat } } }
       ]
     }
@@ -1220,55 +1326,6 @@ query GetLobbyInfoId($id: ID) {
   }
 }
 
-query GetLobbyInfoDotaId($id: ID) {
-  dota2Lobby(id: $id) {
-    data {
-      id
-      attributes {
-        title
-        rate
-        typeLobby {
-          data {
-            attributes {
-              title
-              value
-            }
-          }
-        }
-        dota_2_game_modes {
-          data {
-            attributes {
-              value
-              title
-            }
-          }
-        }
-        creator {
-          data {
-            attributes {
-              Options {
-                selected_country {
-                  data {
-                    attributes {
-                      flag {
-                        data {
-                          attributes {
-                            url
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 mutation UpdateUser($id: ID!, $newUsername: String, $newBiography: String) {
   updateUsersPermissionsUser(
     id: $id
@@ -1335,7 +1392,7 @@ query GetCsStreaming(
   $country: [String]
   $rate: LongFilterInput
   $map: [String]
-  $gameMode: [Int]
+  $gameMode: [ID]
 ) {
   cs2Brodcastings(
     filters: {
@@ -1345,7 +1402,7 @@ query GetCsStreaming(
         }
         { rate: $rate }
         { map: { name: { in: $map } } }
-        { cs_game_mode: { value: { in: $gameMode } } }
+        { cs_game_mode: { id: { in: $gameMode } } }
       ]
     }
     pagination: { limit: 1000 }
@@ -1411,7 +1468,7 @@ query GetCsStreaming(
 query GetDotaLobbies(
   $country: [String]
   $rate: LongFilterInput
-  $gameMode: [String]
+  $gameMode: [ID]
   $antyCheat: Boolean
 ) {
   dota2Lobbies(
@@ -1421,7 +1478,7 @@ query GetDotaLobbies(
           creator: { Options: { selected_country: { name: { in: $country } } } }
         }
         { rate: $rate }
-        { dota_2_game_modes: { value: { in: $gameMode } } }
+        { dota_2_game_modes: { id: { in: $gameMode } } }
         { antyCheat: { value: { eq: $antyCheat } } }
       ]
     }
@@ -1570,19 +1627,174 @@ mutation CreateDota2Lobby(
   }
 }
 
-query GetPlayersByPage($pageSize: Int!, $page: Int!) {
-  topPlayers(pagination: { pageSize: $pageSize, page: $page }) {
+query GetDotaStreaming(
+  $country: [String]
+  $rate: LongFilterInput
+  $gameMode: [ID]
+) {
+  dota2Brodcastings(
+    filters: {
+      and: [
+        {
+          ctreator: {
+            Options: { selected_country: { name: { in: $country } } }
+          }
+        }
+        { rate: $rate }
+        { gameModes: { id: { in: $gameMode } } }
+      ]
+    }
+    pagination: { limit: 1000 }
+  ) {
     data {
+      id
       attributes {
-        cs {
-          nikcname
+        title
+        ctreator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      name
+                      flag {
+                        data {
+                          attributes {
+                            alternativeText
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        rate
+        viewers
+        gameModes {
+          data {
+            id
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        participants {
+          id
+        }
+        videoUrl
+      }
+    }
+  }
+}
+
+query GetDotaStreamingData($id: ID) {
+  dota2Brodcasting(id: $id) {
+    data {
+      id
+      attributes {
+        title
+        ctreator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      name
+                      flag {
+                        data {
+                          attributes {
+                            url
+                            alternativeText
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        rate
+        gameModes {
+          data {
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        viewers
+        videoUrl
+        participants {
+          id
         }
       }
     }
-    meta {
-      pagination {
-        page
-        pageSize
+  }
+}
+
+query GetCsStreamingData($id: ID) {
+  cs2Brodcasting(id: $id) {
+    data {
+      id
+      attributes {
+        title
+        creator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      name
+                      flag {
+                        data {
+                          attributes {
+                            url
+                            alternativeText
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        map {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+        rate
+        cs_game_mode {
+          data {
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        viewers
+        videoUrl
+        participants {
+          players {
+            data {
+              id
+            }
+          }
+        }
       }
     }
   }
@@ -1611,10 +1823,6 @@ mutation UpdateEmail($id: ID!, $newEmail: String) {
   }
 }
 
-
-
-
-
 query GetMyFriends($id:ID!) {
   usersPermissionsUsers(filters: { id: { eq: $id } }) {
     data {
@@ -1632,11 +1840,6 @@ query GetMyFriends($id:ID!) {
     }
   }
 }
-
-
-
-
-  
 
 query GetUsersId($id:ID!) {
   usersPermissionsUsers(filters: { id: { eq: $id } }) {
@@ -1731,4 +1934,53 @@ mutation UpdatePlayerOptions($id:ID! $data: PlayerInput!) {
 }
 
 
-
+query GetLobbyInfoDotaId($id: ID) {
+  dota2Lobby(id: $id) {
+    data {
+      id
+      attributes {
+              createdAt
+        title
+        rate
+        typeLobby {
+          data {
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        dota_2_game_modes {
+          data {
+            attributes {
+              value
+              title
+            }
+          }
+        }
+        creator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      flag {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+   
+      }
+    }
+  }
+}

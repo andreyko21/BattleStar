@@ -1,9 +1,8 @@
-import { request } from 'graphql-request';
-import { GetLobbyInfoId } from "../../../queries.graphql.d";
 import $ from "jquery";
 import { Header } from "../component/header/header";
 import { AppSidebar } from "../component/sidebar/sidebar";
 import {AsideMenu} from "../component/asideMenu";
+
 
 new AsideMenu();
 new Header("#wrapper");
@@ -28,10 +27,10 @@ export class History   {
   lobbyInfoParam: any;
 
 
+
   constructor(content: string, history: IHistoryData[]) {
     this.urlParams = new URLSearchParams(window.location.search);
     this.lobbyInfoParam = this.urlParams.get('lobbyInfo');
-    
     if (this.lobbyInfoParam) {
       try {
         const lobbyInfo = JSON.parse(this.lobbyInfoParam);
@@ -51,7 +50,9 @@ export class History   {
     
   }
 
-  renderHistory(): void {
+ async renderHistory() {
+
+
     const HistoryHtml = this.history
       .map(
         (history) => `
@@ -135,107 +136,93 @@ export class History   {
   
 }
 
-const getLobby = await request(
-  "https://battle-star-app.onrender.com/graphql",
-  GetLobbyInfoId,
-  { id: 40}
-);
-console.log(getLobby);
+let infoHistory: any[] =  [
+{
+  name: 'CS:GO',
+  data: '07.06.2021',
+  time: '19:20',
+  regime: '5v5',
+  id: 3758902,
+  result: 'Победа',
+  money: 1200,
+},
+{
+  name: 'CS:GO',
+  data: '07.06.2021',
+  time: '19:20',
+  regime: '5v5',
+  id: 3758902,
+  result: 'Поражение',
+  money: 200,
+},
+{
+  name: 'Dota 2',
+  data: '07.06.2021',
+  time: '19:20',
+  regime: '5v5',
+  id: 3758902,
+  result: 'Поражение',
+  money: 500,
+},
+{
+  name: 'Dota 2',
+  data: '07.06.2021',
+  time: '19:20',
+  regime: '5v5',
+  id: 3758902,
+  result: 'Победа',
+  money: 700,
+},
+{
+  name: 'CS:GO',
+  data: '07.06.2021',
+  time: '19:20',
+  regime: '5v5',
+  id: 3758902,
+  result: 'Победа',
+  money: 1200,
+},
+{
+  name: 'CS:GO',
+  data: '07.06.2021',
+  time: '19:20',
+  regime: '5v5',
+  id: 3758902,
+  result: 'Победа',
+  money: 1200,
+},
+{
+  name: 'Dota 2',
+  data: '07.06.2021',
+  time: '19:20',
+  regime: '5v5',
+  id: 3758902,
+  result: 'Поражение',
+  money: 500,
+},
+{
+  name: 'Dota 2',
+  data: '07.06.2021',
+  time: '19:20',
+  regime: '5v5',
+  id: 3758902,
+  result: 'Победа',
+  money: 1200,
+},
+];
 
-// let infoHistory: any[] =  [
-// {
-//   name: 'CS:GO',
-//   data: '07.06.2021',
-//   time: '19:20',
-//   regime: '5v5',
-//   id: 3758902,
-//   result: 'Победа',
-//   money: 1200,
-// },
-// {
-//   name: 'CS:GO',
-//   data: '07.06.2021',
-//   time: '19:20',
-//   regime: '5v5',
-//   id: 3758902,
-//   result: 'Поражение',
-//   money: 200,
-// },
-// {
-//   name: 'Dota 2',
-//   data: '07.06.2021',
-//   time: '19:20',
-//   regime: '5v5',
-//   id: 3758902,
-//   result: 'Поражение',
-//   money: 500,
-// },
-// {
-//   name: 'Dota 2',
-//   data: '07.06.2021',
-//   time: '19:20',
-//   regime: '5v5',
-//   id: 3758902,
-//   result: 'Победа',
-//   money: 700,
-// },
-// {
-//   name: 'CS:GO',
-//   data: '07.06.2021',
-//   time: '19:20',
-//   regime: '5v5',
-//   id: 3758902,
-//   result: 'Победа',
-//   money: 1200,
-// },
-// {
-//   name: 'CS:GO',
-//   data: '07.06.2021',
-//   time: '19:20',
-//   regime: '5v5',
-//   id: 3758902,
-//   result: 'Победа',
-//   money: 1200,
-// },
-// {
-//   name: 'Dota 2',
-//   data: '07.06.2021',
-//   time: '19:20',
-//   regime: '5v5',
-//   id: 3758902,
-//   result: 'Поражение',
-//   money: 500,
-// },
-// {
-//   name: 'Dota 2',
-//   data: '07.06.2021',
-//   time: '19:20',
-//   regime: '5v5',
-//   id: 3758902,
-//   result: 'Победа',
-//   money: 1200,
-// },
-// ];
-// const historyMatches = await request(
-//   "https://battle-star-app.onrender.com/graphql", GetHistoryMatch
-// );
-
-// const  newHistoryMatches = historyMatches.historyMatches?.data[0].attributes?.options;
-// newHistoryMatches?.forEach((item: any) => {
-//   infoHistory.push(item);
-// });
-
-//  export const sumHistory: number = infoHistory.reduce((acc, item) => {
-//   if(item.result === 'Поражение') {
-//     acc -= item.money;
-//   }else{
-//     acc += item.money;
-//   }
-//   return acc;
-// }, 0);
+ export const sumHistory: number = infoHistory.reduce((acc, item) => {
+  if(item.result === 'Поражение') {
+    acc -= item.money;
+  }else{
+    acc += item.money;
+  }
+  return acc;
+}, 0);
 
 
-new History(".table__tab",[]);
+
+new History(".table__tab",infoHistory);
 
 
 

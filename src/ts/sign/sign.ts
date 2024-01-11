@@ -2,13 +2,11 @@ import axios from "axios";
 import $ from "jquery";
 import { BaseTabs } from "../component/tabs.ts";
 import { LavaLamp } from "../component/lava-lamp.ts";
-import { Header } from "../component/header/header";
+import { SimpleHeader } from "../component/header/header";
 import { request } from "graphql-request";
-
 import  'jquery-validation';
 
-
-new Header("#wrapper");
+new SimpleHeader("#wrapper");
 new BaseTabs("sign__form");
 new LavaLamp("sign__form");
 
@@ -126,7 +124,7 @@ class Sign implements SignType {
         document.cookie = `email=${response.data.user.email}`;
   
         this.resetFormFIelds();
-        window.location.href = 'index.html'
+        window.location.href = "index.html";
       })
       .catch((error) => {
         console.log("An error occurred:", error.response);
@@ -147,7 +145,7 @@ class Sign implements SignType {
         document.cookie = `id=${response.data.user.id}`;
         document.cookie = `name=${response.data.user.username}`;
         document.cookie = `email=${response.data.user.email}`;
-        window.location.href = 'index.html'
+        window.location.href = "index.html";
         this.resetFormFIelds();
         const userId = response.data.user.id;
         const publishedAtDate = new Date(); 

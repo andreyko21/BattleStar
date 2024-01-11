@@ -32,16 +32,16 @@ $activeColor: $MidnightBlue;
     }
 
     &:focus {
-      fill: rgb(47, 0, 255);
+      fill: rgb(252, 255, 78);
     }
 
     &:active {
-      fill: #04fa29;
+      fill: #c9c908;
     }
   }
 
   &__nav {
-    margin-top: 20px;
+    margin-top: 33px;
     width: 100%;
 
     &-item {
@@ -49,7 +49,7 @@ $activeColor: $MidnightBlue;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 17px 10px;
+      padding: 17.4px 10px;
 
       &-icon {
         max-width: 36px;

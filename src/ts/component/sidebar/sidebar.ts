@@ -1,4 +1,4 @@
-import Sprite from "./../../../images/sprite.svg";
+import Sprite from './../../../images/sprite.svg';
 
 export type SidebarItem = {
   title: string;
@@ -16,29 +16,29 @@ export class AppSidebar {
     this.activeItemTitle = activeItemTitle;
     this.items = [
       {
-        title: "ГЛАВНАЯ",
+        title: 'ГЛАВНАЯ',
         icon: `${Sprite}#newspaper`,
-        link: "/index.html",
+        link: '/index.html',
       },
       {
-        title: "МАТЧИ",
+        title: 'МАТЧИ',
         icon: `${Sprite}#controller`,
-        link: "/match.html",
+        link: '/calibration.html',
       },
       {
-        title: "ТУРНИРЫ",
+        title: 'ТУРНИРЫ',
         icon: `${Sprite}#cup`,
-        link: "/tournaments.html",
+        link: '/tournaments.html',
       },
       {
-        title: "КОМАНДЫ",
+        title: 'КОМАНДЫ',
         icon: `${Sprite}#people`,
-        link: "/teams.html",
+        link: '/teams.html',
       },
       {
-        title: "ДРУЗЬЯ",
+        title: 'ДРУЗЬЯ',
         icon: `${Sprite}#person`,
-        link: "/friends.html",
+        link: '/friends.html',
       },
     ];
     this.render();
@@ -50,8 +50,8 @@ export class AppSidebar {
       throw new Error(`Container with id #${this.containerId} not found.`);
     }
 
-    const sidebar = document.createElement("div");
-    sidebar.className = "sidebar";
+    const sidebar = document.createElement('div');
+    sidebar.className = 'sidebar';
 
     const logoAnchor = this.createLogoAnchor();
 
@@ -64,22 +64,22 @@ export class AppSidebar {
   }
 
   private createLogoAnchor(): HTMLElement {
-    const logoAnchor = document.createElement("a");
-    logoAnchor.className = "sidebar__logo";
-    logoAnchor.href = "/index";
+    const logoAnchor = document.createElement('a');
+    logoAnchor.className = 'sidebar__logo';
+    logoAnchor.href = '/index';
 
     const logoSvg = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "svg"
+      'http://www.w3.org/2000/svg',
+      'svg'
     );
-    logoSvg.setAttribute("class", "sidebar__logo");
+    logoSvg.setAttribute('class', 'sidebar__logo');
     const logoUse = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "use"
+      'http://www.w3.org/2000/svg',
+      'use'
     );
     logoUse.setAttributeNS(
-      "http://www.w3.org/1999/xlink",
-      "xlink:href",
+      'http://www.w3.org/1999/xlink',
+      'xlink:href',
       `${Sprite}#logo`
     );
     logoSvg.appendChild(logoUse);
@@ -89,8 +89,8 @@ export class AppSidebar {
   }
 
   private createNav(): HTMLElement {
-    const nav = document.createElement("nav");
-    nav.className = "sidebar__nav";
+    const nav = document.createElement('nav');
+    nav.className = 'sidebar__nav';
 
     this.items.forEach((item) => {
       const anchor = this.createNavItem(item);
@@ -101,20 +101,20 @@ export class AppSidebar {
   }
 
   private createNavItem(item: SidebarItem): HTMLElement {
-    const anchor = document.createElement("a");
+    const anchor = document.createElement('a');
     anchor.href = item.link;
     anchor.className = `sidebar__nav-item ${
-      item.title === this.activeItemTitle ? "sidebar__nav-item_active" : ""
+      item.title === this.activeItemTitle ? 'sidebar__nav-item_active' : ''
     }`;
 
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("class", "sidebar__nav-item-icon");
-    const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-    use.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", item.icon);
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'sidebar__nav-item-icon');
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', item.icon);
     svg.appendChild(use);
 
-    const span = document.createElement("span");
-    span.className = "sidebar__nav-item-text";
+    const span = document.createElement('span');
+    span.className = 'sidebar__nav-item-text';
     span.textContent = item.title;
 
     anchor.appendChild(svg);

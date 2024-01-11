@@ -225,7 +225,6 @@
     transform-origin: bottom right;
     transition: transform 0.5s ease-out;
     background-color: $yellow300;
-
   }
 
   &:hover::after {
@@ -267,13 +266,11 @@
     transform-origin: bottom left;
     transition: transform 0.5s ease-out;
     background-color: $yellow300;
-
   }
   &:last-child {
     &::after {
       background-color: $red500;
     }
-   
   }
 
   &:hover::after {
@@ -304,7 +301,6 @@
     &:last-child {
       color: $red500;
     }
-
   }
 }
 @mixin hover-block {

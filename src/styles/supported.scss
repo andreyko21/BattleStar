@@ -1,0 +1,282 @@
+@import './style.scss';
+@import './components/header';
+@import './components/sidebar';
+@import './components/tabs';
+//@import './components/accordion';
+
+.wrapper {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.supported-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0px 0 50px 0px;
+  padding: 0 100px 0 0;
+  overflow: auto;
+  grid-area: main;
+
+  &__wrapper {
+    max-width: 1144px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 157px 0px 136px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    margin: 0px 0px 29px 0px;
+    color: #fff;
+    font-family: Roboto;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__search-label {
+    position: relative;
+    width: 543px;
+    height: 63px;
+
+    svg {
+      position: absolute;
+      left: 26px;
+      top: 19px;
+      width: 24px;
+      height: 24px;
+      fill: #f8f8f8;
+    }
+  }
+
+  &__search-input {
+    width: 100%;
+    height: 100%;
+    padding: 0px 25px 0px 64px;
+    border-radius: 25px;
+    background: rgba(248, 248, 248, 0.1);
+    backdrop-filter: blur(10px);
+
+    color: #fff;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    @include styledPlaceholder(#fff, 18px);
+    @include hidePlaceholder();
+  }
+
+  &__frecuent-question {
+    margin: 161px 0px 108px 0px;
+  }
+
+  &__feedback {
+  }
+}
+.frecuent-question {
+  width: 100%;
+
+  &__title {
+    margin: 0px 0px 51px 0px;
+    color: #fff;
+    font-family: Roboto;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+  }
+
+  &__tabs-block {
+    .tabs-block {
+      &__tabs {
+        width: 672px;
+        height: 30px;
+        margin-bottom: 51px;
+        justify-content: stretch;
+      }
+
+      &__tab {
+        width: 100%;
+        &_active {
+        }
+
+        &_hovered {
+        }
+      }
+
+      &__lamp {
+      }
+
+      &__content {
+      }
+
+      &__content-container {
+      }
+    }
+  }
+}
+.accordion {
+  width: 100%;
+  border-top: 1px solid #23252c;
+
+  &_active {
+    margin-bottom: 46px;
+    .accordion {
+      &__arrow {
+        transform: rotate(45deg);
+      }
+      &__content {
+        //  padding: 2px 0px 46px 0px;
+      }
+    }
+  }
+
+  &__header {
+    width: 100%;
+    padding: 24px 0px 24px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__title {
+    color: #fff;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__arrow {
+    width: 25px;
+    height: 25px;
+    transform: rotate(0deg);
+    transition: transform 0.2s ease-out;
+    fill: $gray25; // #f8f8f8;
+  }
+
+  &__content {
+    width: 908px;
+    padding: 0;
+    color: #f8f8f8;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    max-height: 0px;
+    // padding-bottom: 19px;
+    overflow: hidden;
+    transition:
+      max-height 0.2s ease-out 0.01s,
+      padding-top 0.2s ease-out,
+      padding-bottom 0.2s ease-out;
+    box-sizing: border-box;
+    // p {
+    //   padding: 16px 0px 0px 0px;
+    // }
+  }
+}
+
+.feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    margin: 0px 0px 26px 0px;
+    color: #fff;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__subtitle {
+    margin: 0px 0px 35px 0px;
+    color: #f8f8f8;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  &__form {
+    width: 770px;
+    display: grid;
+    grid-template:
+      'email name' 50px
+      'message message' 179px
+      'btn btn' / auto auto;
+    gap: 20px 18px;
+  }
+
+  &__text-input {
+    padding: 0px 15px 0px 15px;
+    border: 1px solid #bfbfbf;
+    background: rgba(248, 248, 248, 0.05);
+    backdrop-filter: blur(20px);
+    display: block;
+    color: #989898;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    @include hidePlaceholder();
+
+    &_type_email {
+      grid-area: email;
+      width: 394px;
+    }
+
+    &_type_user-name {
+      grid-area: name;
+      width: 357px;
+    }
+
+    &_type_message {
+      grid-area: message;
+      padding: 15px;
+      resize: none;
+      @include styledPlaceholder(#989898, 16px);
+    }
+  }
+  &__subbmit-btn {
+    grid-area: btn;
+    width: 357px;
+    height: 46px;
+    margin: 24px 0px 0px 0px;
+    border: 1px solid #f8f8f8;
+    background: rgba(248, 248, 248, 0.2);
+    backdrop-filter: blur(40px);
+    display: block;
+    transition:
+      color 0.2s ease-out,
+      border 0.2s ease-out;
+    justify-self: center;
+    color: #f8f8f8;
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    &:hover {
+      color: var(--Main, #fac704);
+      border: 1px solid #fac704;
+    }
+  }
+}

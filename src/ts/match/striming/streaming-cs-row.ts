@@ -17,7 +17,7 @@ class StreamingRow {
   private render(): void {
     const template = this.options.reduce(
       (rows: string, option: { [key: string]: string | boolean }): string => {
-        rows += `<tr class="streaming-tr content__tr" id="">
+        rows += `<tr class="streaming-tr content__tr" id="${option.id}">
         <td class="streaming-tr__img-cell">
           <div class="streaming-tr__img-block">
             <img

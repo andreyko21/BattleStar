@@ -7,20 +7,22 @@ interface LobbyData {
 }
 
 class DotaMatchesQuery {
-  params: {
-    country: string[] | null;
-    rate: QueryRate;
-    gameMode: string[] | null;
-    antyCheat: boolean;
-  };
+  params:
+    | {
+        country: string[] | null;
+        rate: QueryRate;
+        gameMode: string[] | null;
+        antyCheat: boolean;
+      }
+    | {};
 
-  constructor(params: {
+  constructor(params?: {
     country: string[] | null;
     rate: QueryRate;
     gameMode: string[] | null;
     antyCheat: boolean;
   }) {
-    this.params = params;
+    this.params = params !== undefined ? params : {};
   }
   async getData() {
     const ENDPOINT = 'https://battle-star-app.onrender.com/graphql';
@@ -42,7 +44,9 @@ class DotaMatchesQuery {
             acc.push({
               id: item.id as string,
               nameMatch: item.attributes?.title as string,
-              mode: item.attributes?.dota_2_game_modes?.data[0].attributes?.value.toString() as string,
+              mode: item.attributes?.dota_2_game_modes?.data[0].attributes?.value
+                .toString()
+                .replace('_', ' ') as string,
               rate: item.attributes?.rate.toString(),
               flagSrc: item.attributes?.creator?.data?.attributes?.Options
                 ?.selected_country?.data?.attributes?.flag?.data?.attributes

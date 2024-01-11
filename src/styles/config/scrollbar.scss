@@ -11,16 +11,18 @@
   }
 
   &::-webkit-scrollbar-track {
-    box-shadow: inset 1px 0 0 #000, inset -1px 0 0 #000;
+    box-shadow:
+      inset 1px 0 0 #000,
+      inset -1px 0 0 #000;
     border-radius: rem(2.5);
-    background: #eee;
+    background: #606060;
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: rem(2.5);
-    border: 0 none #fff;
+    border: 0 none #606060;
     background-color: lighten($yellow300, 10%);
-    transition: all 280ms ease-in-out;
+    transition: background-color 280ms ease-in-out;
 
     &:hover {
       background-color: $yellow300;

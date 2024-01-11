@@ -19,21 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function selectGameForRender() {
   if (getLocateParam('game') == 'dota2') {
     new SelectedDota2MatchPagesTab();
-    // const csMathesPage = new CsMatchesPage();
-
-    // new BaseTabs('match-page__filters');
-    // new LavaLamp('match-page__filters');
-
-    // // new BaseTabs('match-page__content', mayMethods);
-    // new LavaLamp('match-page__content');
   } else {
     new SelectedCsMatchPagesTab();
-    // new BaseTabs('match-page__filters');
-    // new LavaLamp('match-page__filters');
-
-    // new BaseTabs('match-page__content', mayMethods);
-    // new LavaLamp('match-page__content');
-    // const csMathesPage = new CsMatchesPage();
-    // await csMathesPage.renderCsPage();
   }
 }

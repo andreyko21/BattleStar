@@ -64,7 +64,11 @@ export class TeamSideB extends TeamSideA {
   }
 }
 interface IMapData {
+  rigthName: any;
+  rigthAva: any;
+  leftName: any;
   logo: string;
+  ava: string;
 }
 export class Map {
   private content: string;
@@ -86,13 +90,11 @@ export class Map {
       <hr class="game__column-line">
       <div class="game__column-row">
         <div class="game__column-teams">
-          <div class="game__column-logo">
-         
-          </div>
-          <p class="game__column-name">ApacheLeader </p>
+          <img class="game__column-logo" src="${map.ava}">
+          <p class="game__column-name">${map.leftName}</p>
           <div class="game__column-vs">VS</div>
-          <div class="game__column-logo"></div>
-          <p class="game__column-name">DeJaVU</p>
+          <img class="game__column-logo" src="${map.rigthAva}">
+          <p class="game__column-name">${map.rigthName}</p>
         </div>
         <p class="game__column-round">1/16 финала</p>
       </div>

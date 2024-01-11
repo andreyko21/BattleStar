@@ -9,7 +9,7 @@ import Present from "../../images/mdi_gift-outline.png";
 import Swal from "sweetalert2";
 import request from "graphql-request";
 import { GetMyFriends } from "../../../queries.graphql.d";
-
+import { sumHistory } from "./history";
 new AsideMenu();
 new Header("#wrapper");
 new AppSidebar("wrapper", "");
@@ -46,11 +46,8 @@ class Wallet {
     this.renderWallet();
     this.selectSubscription();
     this.renderDropDownFriends();
-    // this.handlesDropDown()
-    // this.loadSavedSubscription();
     this.dropdown();
-    // this.findUser();
-    // this.transaction();
+
   }
 
   renderWallet(): void {
@@ -395,7 +392,6 @@ let id = getCookie("id");
 let infoWallet: any = {
   id: id,
   nickname: name,
-
-  // balance: sumHistory,
+  balance: sumHistory,
 };
 new Wallet(".wallet__top", infoWallet);

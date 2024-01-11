@@ -1,5 +1,4 @@
-// import { LobbyStatisticSideA, LobbyStatisticSideB } from "./lobbyStatistic";
-
+import { LobbyStatisticSideA, LobbyStatisticSideB } from "./lobbyStatistic";
 import $ from "jquery";
 import { BaseTabs } from "../component/tabs.ts";
 import { LavaLamp } from "../component/lava-lamp.ts";
@@ -11,6 +10,7 @@ import { LobbySideA, LobbySideB } from "./components/lobbySide";
 import { playersCs } from "../main/components/playersCs.ts";
 import { Header } from "../component/header/header";
 import { AppSidebar } from "../component/sidebar/sidebar";
+
 new Header("#wrapper");
 new AppSidebar("wrapper", "");
 
@@ -26,7 +26,8 @@ class Lobby {
   constructor() {
     this.searchParams = new URLSearchParams(window.location.search);
     this.lobbyId = this.searchParams.get("id");
-    console.log(this.lobbyId);
+    document.cookie = `lobbyId=${this.lobbyId}`;
+
     this.lobbyGame = this.searchParams.get("game");
     this.details = $(".details__teams");
     this.init();
@@ -104,49 +105,30 @@ class Lobby {
     new CreateTeams(".details__teams", countDownDate);
   }
 
-async renderLobbySide() {
+  async renderLobbySide() {
+    const arrayDivision = playersCs.reduce(
+      (acc: any[][], item: any, index: number) => {
+        if (index % 5 === 0) {
+          acc.push([]);
+        }
+        acc[acc.length - 1].push(item);
+        return acc;
+      },
+      []
+    );
 
-const arrayDivision = playersCs.reduce((acc: any[][], item: any, index: number) => {
-  if (index % 5 === 0) {
-    acc.push([]);
-  }
-  acc[acc.length - 1].push(item);
-  return acc;
-},[])
-
-console.log(arrayDivision);
-
-const myInfo:any = [
-  {
-    nickname: "Alex",
-    rating: 1000,
-    flag: "https://www.countryflags.io/UA/flat/64.png",
-
-  }
-]
+    console.log(arrayDivision);
 
 
-
-
-    // const getLobby = await request(
-    //   "https://battle-star-app.onrender.com/graphql",
-    //   GetLobbyInfoId,
-    //   { id: this.lobbyId }
-    // );
-    // console.log(getLobby);
-    // const playersCsLength =
-    //   getLobby.csLobby?.data?.attributes?.gameMode?.data?.attributes?.value ??
-    //   0;
-    // if (playersCsLength) {
-      new LobbySideA(".details__players-row", myInfo);
-      new LobbySideB(".details__players-row", arrayDivision[1]);
+    new LobbySideA(".details__players-row", arrayDivision[0]);
+    new LobbySideB(".details__players-row", arrayDivision[1]);
     // }
+    new LobbyStatisticSideA(".statictic", arrayDivision[0]);
+    new LobbyStatisticSideB(".statictic", arrayDivision[1]);
   }
-  
 
   // renderPlayersStatictic(){
-  //       new LobbyStatisticSideA('.statictic', playersCs);
-  //   new LobbyStatisticSideB('.statictic', playersCs);
+
   // }
 
   checkGame() {

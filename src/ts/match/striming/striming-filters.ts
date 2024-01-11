@@ -11,15 +11,6 @@ import { StreamingRow } from './streaming-cs-row';
 //@ts-ignore
 import { StrimingCard } from './striming-grid-card';
 
-//type ICheckbox = [{ [key: string]: string }];
-
-//interface ICsStrimingFiltersOtions {
-//  rate: ICheckbox;
-//  map: ICheckbox;
-//  gameMode: ICheckbox;
-//  region: ICheckbox;
-//}
-
 class StreamingFilters {
   private readonly container: HTMLElement | null;
   allCheckbox: NodeListOf<HTMLInputElement> | null;

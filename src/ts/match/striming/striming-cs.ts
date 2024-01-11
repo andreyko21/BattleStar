@@ -9,31 +9,28 @@ import { RateFiltering } from '../rate-filtering.ts';
 import { Accordion } from '../../component/accordeon.ts';
 import { RegionFiltering } from '../region-filtering.ts';
 import { AntiCheat } from '../anti-cheat.ts';
-import {
-  setLocateParam,
-  delLocateParams,
-} from '../../functions/windowLocation.ts';
+import { delLocateParams } from '../../functions/windowLocation.ts';
 import { StreamingFilters } from './striming-filters.ts';
 import { SortingBlock } from '../../calibration/sorting-block.ts';
 import { BaseTabs } from '../../component/tabs.ts';
 
 class StrimingTab {
-  private static instance: StrimingTab;
+  //  private static instance: StrimingTab;
 
   constructor() {
     this.renderTranslateCsPage();
   }
 
-  public static getInstance(): StrimingTab {
-    if (!StrimingTab.instance) {
-      StrimingTab.instance = new StrimingTab();
-    }
-    return StrimingTab.instance;
-  }
+  //  public static getInstance(): StrimingTab {
+  //    if (!StrimingTab.instance) {
+  //      StrimingTab.instance = new StrimingTab();
+  //    }
+  //    return StrimingTab.instance;
+  //  }
 
   private updateUrlParams() {
     delLocateParams(['country', 'rate', 'mapName', 'gameMode', 'antyCheat']);
-    setLocateParam('match-page__content', 'open-match');
+    // setLocateParam('match-page__content', 'open-match');
   }
 
   public async renderTranslateCsPage() {

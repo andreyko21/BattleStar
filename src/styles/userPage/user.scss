@@ -43,8 +43,13 @@ body {
       grid-area: avatar;
       width: 140px;
       height: 140px;
-      border: 50%;
+      border-radius: 50%;
       margin-right: 29px;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
     }
     &-name {
       display: flex;
@@ -563,4 +568,17 @@ body {
 
 .content__tabs-content {
   display: flex;
+}
+
+.cs2-content-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dota2-content-block,
+.statistics__dota {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

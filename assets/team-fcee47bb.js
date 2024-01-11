@@ -1,4 +1,4 @@
-import{$ as c}from"./jquery-e7e79cb6.js";import{S as s,H as l,g as m,F as n,I as o,r as p}from"./header-f05d9198.js";import{A as _}from"./sidebar-1d496e08.js";class d{id;attributes;constructor(a){this.id=a.id||"",this.attributes=a.attributes||{}}getTemplate(){const a=this.attributes.Team||{};let t="";return(this.attributes.awards?.data||[]).forEach(i=>{t+=`<img class="team-item__award-img" src="${i.attributes.logo.data[0].attributes.url}" alt="award">`}),`<a href="/team.html?id=${this.id}" class="teams-list__team-item team-item">
+import{$ as c}from"./jquery-e7e79cb6.js";import{S as s,H as l,g as m,F as n,I as o,r as _}from"./header-f05d9198.js";import{A as p}from"./sidebar-1d496e08.js";class d{id;attributes;constructor(a){this.id=a.id||"",this.attributes=a.attributes||{}}getTemplate(){const a=this.attributes.Team||{};let t="";return(this.attributes.awards?.data||[]).forEach(i=>{t+=`<img class="team-item__award-img" src="${i.attributes.logo.data[0].attributes.url}" alt="award">`}),`<a href="/team.html?id=${this.id}" class="teams-list__team-item team-item">
       <div class="team-item__img-block">
         <img class="team-item__img" src="${a.logo?.data.attributes.url}" alt="${a.logo?.data.attributes.alternativeText||"logo"}">
       </div>
@@ -106,9 +106,9 @@ import{$ as c}from"./jquery-e7e79cb6.js";import{S as s,H as l,g as m,F as n,I as
         <div class="team-page__nav">
                       <button class="team-page__nav-button">
               <svg class="stats-info-item__icon">
-                <use xlink:href="src/images/sprite.svg#share"></use></svg
+                <use xlink:href="${s}#share"></use></svg
               >Поделиться
             </button>
 
         </div>
-      </div>`}}class g{header;teamData;sidebar;teamId;game;constructor(a,t,e){this.header=new l(a),this.sidebar=new _(t,e),this.teamId=m("id")||"",this.game=m("game")||""}async init(){try{if(!this.teamId)throw new Error("Team ID is not specified in the URL");const a=this.game==="dota2"?n:o;if(this.teamData=await p("https://battle-star-app.onrender.com/graphql",a,{id:this.teamId}),!this.teamData||!this.teamData[`${this.game}Team`]?.data&&!this.teamData.cs2Team.data){window.location.href="/teams.html";return}const t=new d(this.teamData[`${this.game}Team`]?.data||this.teamData.cs2Team.data);c(".team-page").append(t.getItemTemplate())}catch(a){console.error(a)}}}c(document).ready(()=>{new g("#wrapper","wrapper","КОМАНДЫ").init()});
+      </div>`}}class g{header;teamData;sidebar;teamId;game;constructor(a,t,e){this.header=new l(a),this.sidebar=new p(t,e),this.teamId=m("id")||"",this.game=m("game")||""}async init(){try{if(!this.teamId)throw new Error("Team ID is not specified in the URL");const a=this.game==="dota2"?n:o;if(this.teamData=await _("https://battle-star-app.onrender.com/graphql",a,{id:this.teamId}),!this.teamData||!this.teamData[`${this.game}Team`]?.data&&!this.teamData.cs2Team.data){window.location.href="/teams.html";return}const t=new d(this.teamData[`${this.game}Team`]?.data||this.teamData.cs2Team.data);c(".team-page").append(t.getItemTemplate())}catch(a){console.error(a)}}}c(document).ready(()=>{new g("#wrapper","wrapper","КОМАНДЫ").init()});

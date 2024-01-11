@@ -29,19 +29,9 @@ import { DotaGettingTypeLobbyData } from './dota-geting-type-lobby-data.ts';
 import { GettingTypeLobbySelected } from './type-lobby-selection.ts';
 
 class DotaMatchesPage {
-  //  private static instance: DotaMatchesPage;
-
   constructor() {
     this.renderDotaPage();
   }
-
-  //  public static async getInstance(): Promise<DotaMatchesPage> {
-  //    if (!DotaMatchesPage.instance) {
-  //      DotaMatchesPage.instance = new DotaMatchesPage();
-  //      await this.instance.renderCsPage();
-  //    }
-  //    return DotaMatchesPage.instance;
-  //  }
 
   private updateUrlParams() {
     delLocateParams(['country', 'rate', 'mapName', 'gameMode', 'antyCheat']);
@@ -80,10 +70,14 @@ class DotaMatchesPage {
 
       const selectedPlayers = new AllPlayerList(creatorData); //'patty-users'
       const addUserBlock = await selectedPlayers.render();
-      new Patty(
+      const patty = new Patty(
         'find-content',
         creatorLobby.transformedCreatorData,
         addUserBlock
+      );
+      selectedPlayers.addSelectedPlayer(
+        patty.addPlayer.bind(patty),
+        patty.changeTotalRank.bind(patty)
       );
 
       new FiltersBlock('find-content');

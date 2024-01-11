@@ -25,7 +25,6 @@ class CreatingCsLobby {
     this.form = document.querySelector(`#${formId}`);
     this.validation = new JustValidate('#create-content', {
       validateBeforeSubmitting: true,
-      //focusInvalidField: false,
     });
 
     if (!this.form) {
@@ -36,7 +35,7 @@ class CreatingCsLobby {
     this.initValidation();
   }
 
-  sendRequest() {
+  private sendRequest() {
     this.getMapData();
     this.getRateData();
     this.getGameModeData();
@@ -45,23 +44,11 @@ class CreatingCsLobby {
     this.getPingData();
     this.getCreatorData();
     this.getParticipanstData();
-    // this.form?.addEventListener('submit', (e) => {
-    //   //e.preventDefault();
-
-    //   //this.createRequest();
 
     if (this.validation.isValid) {
       this.createRequest();
     }
-    // });
   }
-
-  //  getCookie(name: string) {
-  //    const value = `; ${document.cookie}`;
-  //    const parts = value.split(`; ${name}=`);
-  //    if (parts.length === 2) return parts.pop()?.split(';').shift();
-  //    return null;
-  //  }
 
   async createRequest() {
     const ENDPOINT = 'https://battle-star-app.onrender.com/graphql';

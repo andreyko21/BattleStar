@@ -93,6 +93,10 @@ const pages = [
       name: "stream",
       path: resolve(__dirname, "stream.html"),
    },
+   {
+      name: "stream",
+      path: resolve(__dirname, "supported.html"),
+   },
 ];
 
 export default pages;

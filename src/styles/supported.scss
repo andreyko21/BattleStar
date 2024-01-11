@@ -2,7 +2,6 @@
 @import './components/header';
 @import './components/sidebar';
 @import './components/tabs';
-//@import './components/accordion';
 
 .wrapper {
   overflow: hidden;
@@ -74,9 +73,6 @@
   &__frecuent-question {
     margin: 161px 0px 108px 0px;
   }
-
-  &__feedback {
-  }
 }
 .frecuent-question {
   width: 100%;
@@ -103,20 +99,6 @@
 
       &__tab {
         width: 100%;
-        &_active {
-        }
-
-        &_hovered {
-        }
-      }
-
-      &__lamp {
-      }
-
-      &__content {
-      }
-
-      &__content-container {
       }
     }
   }
@@ -130,9 +112,6 @@
     .accordion {
       &__arrow {
         transform: rotate(45deg);
-      }
-      &__content {
-        //  padding: 2px 0px 46px 0px;
       }
     }
   }
@@ -173,16 +152,12 @@
     font-weight: 400;
     line-height: normal;
     max-height: 0px;
-    // padding-bottom: 19px;
     overflow: hidden;
     transition:
       max-height 0.2s ease-out 0.01s,
       padding-top 0.2s ease-out,
       padding-bottom 0.2s ease-out;
     box-sizing: border-box;
-    // p {
-    //   padding: 16px 0px 0px 0px;
-    // }
   }
 }
 
@@ -223,7 +198,25 @@
     gap: 20px 18px;
   }
 
+  &__text-label {
+    &_type_email {
+      grid-area: email;
+      width: 394px;
+    }
+
+    &_type_user-name {
+      grid-area: name;
+      width: 357px;
+    }
+
+    &_type_message {
+      grid-area: message;
+    }
+  }
+
   &__text-input {
+    height: 100%;
+    width: 100%;
     padding: 0px 15px 0px 15px;
     border: 1px solid #bfbfbf;
     background: rgba(248, 248, 248, 0.05);
@@ -237,18 +230,7 @@
     line-height: normal;
     @include hidePlaceholder();
 
-    &_type_email {
-      grid-area: email;
-      width: 394px;
-    }
-
-    &_type_user-name {
-      grid-area: name;
-      width: 357px;
-    }
-
     &_type_message {
-      grid-area: message;
       padding: 15px;
       resize: none;
       @include styledPlaceholder(#989898, 16px);

@@ -1823,12 +1823,11 @@ mutation UpdateEmail($id: ID!, $newEmail: String) {
   }
 }
 
-query GetMyFriends($id:ID!) {
+query GetMyFriends($id: ID!) {
   usersPermissionsUsers(filters: { id: { eq: $id } }) {
     data {
       id
       attributes {
-    
         my_friends {
           data {
             attributes {
@@ -1841,28 +1840,28 @@ query GetMyFriends($id:ID!) {
   }
 }
 
-query GetUsersId($id:ID!) {
+query GetUsersId($id: ID!) {
   usersPermissionsUsers(filters: { id: { eq: $id } }) {
-    data{
+    data {
       id
-      attributes{    
-        player{
-          data{
-            attributes{
-              Options{
+      attributes {
+        player {
+          data {
+            attributes {
+              Options {
                 news_of_the_platform
                 new_tournaments
                 incoming_messages
                 invitations_to_the_team
                 friend_requests
                 allow_only_friends_invit_to_team
-                selected_country{
-                  data{
-                    attributes{
+                selected_country {
+                  data {
+                    attributes {
                       name
-                      flag{
-                        data{
-                          attributes{
+                      flag {
+                        data {
+                          attributes {
                             url
                           }
                         }
@@ -1870,9 +1869,9 @@ query GetUsersId($id:ID!) {
                     }
                   }
                 }
-                selected_language{
-                  data{
-                    attributes{
+                selected_language {
+                  data {
+                    attributes {
                       name
                     }
                   }
@@ -1886,14 +1885,14 @@ query GetUsersId($id:ID!) {
   }
 }
 
-mutation UpdatePlayerOptions($id:ID! $data: PlayerInput!) { 
+mutation UpdatePlayerOptions($id: ID!, $data: PlayerInput!) {
   updatePlayer(id: $id, data: $data) {
     data {
-    id
+      id
       attributes {
-        user {       
+        user {
           data {
-          id
+            id
             attributes {
               username
             }
@@ -1933,13 +1932,12 @@ mutation UpdatePlayerOptions($id:ID! $data: PlayerInput!) {
   }
 }
 
-
 query GetLobbyInfoDotaId($id: ID) {
   dota2Lobby(id: $id) {
     data {
       id
       attributes {
-              createdAt
+        createdAt
         title
         rate
         typeLobby {
@@ -1979,7 +1977,24 @@ query GetLobbyInfoDotaId($id: ID) {
             }
           }
         }
-   
+      }
+    }
+  }
+}
+
+mutation CreateFeadback(
+  $userName: String
+  $userEmail: String
+  $Message: String
+) {
+  createFeadback(
+    data: { userName: $userName, userEmail: $userEmail, Message: $Message }
+  ) {
+    data {
+      attributes {
+        userName
+        userEmail
+        Message
       }
     }
   }

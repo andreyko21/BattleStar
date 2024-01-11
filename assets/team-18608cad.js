@@ -8,7 +8,7 @@ import{$ as m}from"./jquery-e7e79cb6.js";import{H as c,g as r,F as l,I as n,r as
       <p class="team-item__info team-item__earned">${a.earned||0}</p>
       <p class="team-item__info team-item__participants">${this.attributes.players?.data.length||0}/15</p>
       <div class="team-item__awards">${t}</div>
-    </a>`}getItemTemplate(){const a=this.attributes.Team||{};let t="";return(this.attributes.awards?.data||[]).forEach(e=>{t+=`<img class="team-item__award-img" src="${e.attributes.logo.data[0].attributes.url}" alt="award">`}),`
+    </a>`}getItemTemplate(){const a=this.attributes.Team[0]||{};let t="";return(this.attributes.awards?.data||[]).forEach(e=>{t+=`<img class="team-item__award-img" src="${e.attributes.logo.data[0].attributes.url}" alt="award">`}),`
       <div class="team-page__container">
         <div class="team-page__avatar">
           <img class="team-page__avatar-background" src="${a.logo?.data.attributes.url}" alt="${a.logo?.data.attributes.alternativeText||"logo"}" />

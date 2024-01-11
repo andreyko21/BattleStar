@@ -8,75 +8,14 @@ import { AllUsers } from "./components/all";
 import { RequestUsers } from "./components/request";
 import { SearchUsers } from "./components/search";
 import { AppSidebar } from "../../component/sidebar/sidebar";
-import UserSidebarImg from "./../../../images/user-sidebar.svg";
 import { getLocateParam, setLocateParam } from "../../functions/windowLocation";
-
 class FriendsPage {
   constructor() {
     new Header("#page");
-
     new OnlineUsers("#onlineUsers-content");
-    new AllUsers("#allUsers-content", [
-      {
-        name: "SergioRicht",
-        status: "Играет в CS:GO",
-        avatar: UserSidebarImg,
-        online: true,
-      },
-      {
-        name: "SergioRicht",
-        status: "Играет в CS:GO",
-        avatar: UserSidebarImg,
-        online: true,
-      },
-      {
-        name: "SergioRicht",
-        status: "Играет в CS:GO",
-        avatar: UserSidebarImg,
-        online: true,
-      },
-    ]);
-    new RequestUsers("#request-content", [
-      {
-        name: "SergioRicht",
-        status: "Играет в CS:GO",
-        avatar: UserSidebarImg,
-        online: true,
-      },
-      {
-        name: "SergioRicht",
-        status: "Играет в CS:GO",
-        avatar: UserSidebarImg,
-        online: true,
-      },
-      {
-        name: "SergioRicht",
-        status: "Играет в CS:GO",
-        avatar: UserSidebarImg,
-        online: true,
-      },
-    ]);
-    //@ts-ignore
-    new SearchUsers("#search-content", [
-      {
-        name: "SergioRicht",
-        status: "Играет в CS:GO",
-        avatar: UserSidebarImg,
-        online: true,
-      },
-      {
-        name: "SergioRicht",
-        status: "Играет в CS:GO",
-        avatar: UserSidebarImg,
-        online: true,
-      },
-      {
-        name: "SergioRicht",
-        status: "Играет в CS:GO",
-        avatar: UserSidebarImg,
-        online: true,
-      },
-    ]);
+    new AllUsers("#allUsers-content");
+    new RequestUsers("#request-content");
+    new SearchUsers("#search-content");
   }
 }
 

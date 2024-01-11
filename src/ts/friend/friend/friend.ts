@@ -5,10 +5,11 @@ import { TabsCreate } from "../../component/tabs-create";
 import { BaseTabs } from "../../component/tabs";
 import { LavaLamp } from "../../component/lava-lamp";
 import UserAvatar from "./../../../images/user-page/avatar.png";
-import TeamAvatar from "./../../../images/user-page/team-avatar.png";
 import AwardImg from "./../../../images/user-page/award.svg";
 import { Header } from "../../component/header/header";
 import { AppSidebar } from "../../component/sidebar/sidebar";
+import { GetUserInfo } from "../../../../queries.graphql.d";
+import request from "graphql-request";
 
 interface IStatisticsCSRating {
   rang: number;
@@ -593,139 +594,114 @@ class FriendPage {
 
 export default FriendPage;
 
-$(document).ready(() => {
-  const user: User = {
-    avatar: UserAvatar,
-    name: "John Doe",
-    isOnline: true,
-    firstGameDate: "January 1, 2020",
-    biography: "Gamer biography here",
-  };
-
-  const friendsData: FriendsData = {
-    online: [
-      {
-        onlineStatus: "online",
-        avatar: UserAvatar,
-        name: "Friend One",
-        status: "Playing Game A",
-      },
-      {
-        onlineStatus: "offline",
-        avatar: UserAvatar,
-        name: "Friend Two",
-        status: "Last seen 2 hours ago",
-      },
-    ],
-    all: [
-      {
-        onlineStatus: "online",
-        avatar: UserAvatar,
-        name: "Friend One",
-        status: "Playing Game A",
-      },
-      {
-        onlineStatus: "offline",
-        avatar: UserAvatar,
-        name: "Friend Two",
-        status: "Last seen 2 hours ago",
-      },
-      {
-        onlineStatus: "online",
-        avatar: UserAvatar,
-        name: "Friend One",
-        status: "Playing Game A",
-      },
-      {
-        onlineStatus: "offline",
-        avatar: UserAvatar,
-        name: "Friend Two",
-        status: "Last seen 2 hours ago",
-      },
-    ],
-  };
-
-  const teams: Team[] = [
-    {
-      link: "#",
-      avatar: TeamAvatar,
-      name: "Team One",
-      rating: 2000,
-      tournaments: 5,
-      earned: "5000 BS",
-      members: 10,
-      award: AwardImg,
-    },
-    {
-      link: "#",
-      avatar: TeamAvatar,
-      name: "Team One",
-      rating: 2000,
-      tournaments: 5,
-      earned: "5000 BS",
-      members: 10,
-      award: AwardImg,
-    },
-    {
-      link: "#",
-      avatar: TeamAvatar,
-      name: "Team One",
-      rating: 2000,
-      tournaments: 5,
-      earned: "5000 BS",
-      members: 10,
-      award: AwardImg,
-    },
-    {
-      link: "#",
-      avatar: TeamAvatar,
-      name: "Team One",
-      rating: 2000,
-      tournaments: 5,
-      earned: "5000 BS",
-      members: 10,
-      award: AwardImg,
-    },
-    {
-      link: "#",
-      avatar: TeamAvatar,
-      name: "Team One",
-      rating: 2000,
-      tournaments: 5,
-      earned: "5000 BS",
-      members: 10,
-      award: AwardImg,
-    },
-    {
-      link: "#",
-      avatar: TeamAvatar,
-      name: "Team One",
-      rating: 2000,
-      tournaments: 5,
-      earned: "5000 BS",
-      members: 10,
-      award: AwardImg,
-    },
-  ];
+$(document).ready(async () => {
   new Header("#wrapper");
   new AppSidebar("wrapper", "ДРУЗЬЯ");
-  new FriendPage(".page__container", user, friendsData, teams);
-  new TabsCreate("main-statistics", "user-page__filters", [
-    ["cs2", "CS2"],
-    ["dota2", "Dota2"],
-  ]);
 
-  $("#cs2-content").addClass("tabs-block__content-container_active");
+  try {
+    const res = (await getRequest(
+      GetUserInfo,
+      { id: 43 },
+      "token",
+      "http://localhost:1337/graphql"
+    )) as any;
 
-  new BaseTabs("user-page__filters");
-  new LavaLamp("user-page__filters");
-  $("#dota2-content")
-    .append(`<div class="dota2-info-block statistics__top"></div>
+    const userData = res.usersPermissionsUser.data.attributes;
+
+    const user = {
+      avatar: userData.avatar.data
+        ? userData.avatar.data.attributes.url
+        : UserAvatar,
+      name: userData.username,
+      isOnline: userData.online_status,
+      firstGameDate: "January 1, 2020",
+      biography: userData.biography ?? "",
+    };
+
+    const friendsData = {
+      online: userData.my_friends.data.map(
+        (friend: {
+          attributes: {
+            online_status: any;
+            avatar: { data: { attributes: { url: any } } };
+            username: any;
+          };
+        }) => ({
+          onlineStatus: friend.attributes.online_status ? "online" : "offline",
+          avatar: friend.attributes.avatar.data
+            ? friend.attributes.avatar.data.attributes.url
+            : UserAvatar,
+          name: friend.attributes.username,
+          status: "Status unknown",
+        })
+      ),
+      all: [],
+    };
+
+    const dotaTeams = userData.player.data.attributes.dota_2_teams.data.map(
+      (teamData: {
+        attributes: { Team: any[]; players: { data: string | any[] } };
+      }) => {
+        const team = teamData.attributes.Team[0];
+        return {
+          link: "#",
+          avatar: team.logo.data.attributes.url,
+          name: team.name,
+          rating: team.rating,
+          tournaments: team.victories_in_tournaments || 0,
+          earned: team.earned,
+          members: teamData.attributes.players.data.length,
+          award: AwardImg,
+        };
+      }
+    );
+
+    new FriendPage(".page__container", user, friendsData, dotaTeams);
+
+    new TabsCreate("main-statistics", "user-page__filters", [
+      ["cs2", "CS2"],
+      ["dota2", "Dota2"],
+    ]);
+
+    $("#cs2-content").addClass("tabs-block__content-container_active");
+
+    new BaseTabs("user-page__filters");
+    new LavaLamp("user-page__filters");
+    $("#dota2-content")
+      .append(`<div class="dota2-info-block statistics__top"></div>
   <div class="dota2-content-block statistics__dota"></div>`);
-  $("#cs2-content").append(`<div class="cs2-info-block statistics__top"></div>
+    $("#cs2-content").append(`<div class="cs2-info-block statistics__top"></div>
   <div class="cs2-content-block statistics__cs"></div>`);
-  new StatisticsCsRating(".dota2-info-block", statisticsRating);
-  new StatisticsCsRating(".cs2-info-block", statisticsRating);
-  new StatisticsDota(".dota2-content-block", statisticsCs);
-  new StatisticsCs(".cs2-content-block", statisticsCs);
+    new StatisticsCsRating(".dota2-info-block", statisticsRating);
+    new StatisticsCsRating(".cs2-info-block", statisticsRating);
+    new StatisticsDota(".dota2-content-block", statisticsCs);
+    new StatisticsCs(".cs2-content-block", statisticsCs);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
 });
+
+async function getRequest<T>(
+  query: any,
+  paramsObject: any = {},
+  cookieName: string = "token",
+  endpoint: string = "https://battle-star-app.onrender.com/graphql"
+): Promise<T> {
+  const getCookie = (name: string): string | null => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(";").shift() ?? null;
+    return null;
+  };
+
+  const token = getCookie(cookieName);
+
+  if (!token) {
+    window.location.href = "/sign.html";
+    return Promise.reject(new Error("No token found"));
+  }
+
+  return request(endpoint, query, paramsObject, {
+    Authorization: `Bearer ${token}`,
+  });
+}

@@ -9,11 +9,9 @@ import { RequestUsers } from "./components/request";
 import { SearchUsers } from "./components/search";
 import { AppSidebar } from "../../component/sidebar/sidebar";
 import { getLocateParam, setLocateParam } from "../../functions/windowLocation";
-
 class FriendsPage {
   constructor() {
     new Header("#page");
-
     new OnlineUsers("#onlineUsers-content");
     new AllUsers("#allUsers-content");
     new RequestUsers("#request-content");

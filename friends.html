@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="src/styles/chat/chat.scss" />
   </head>
   <body>
+    <div id="overlay" class="overlay"></div>
     <div class="flex-wrapper">
       <div class="flex-wrapper__sidebar" id="sidebar-section"></div>
       <div class="flex-wrapper__page page" id="page">
@@ -18,6 +19,14 @@
     </div>
     <div class="wrapper" id="wrapper">
       <main class="page users-page"></main>
+      <div class="pop-up" id="pop-up">
+        <div class="pop-up__criss-cross">
+          <svg class="pop-up__criss-cross-icon">
+            <use xlink:href="src/images/sprite.svg#criss-cross"></use>
+          </svg>
+        </div>
+        <p>ssssssssss</p>
+      </div>
     </div>
 
     <script type="module" src="src/ts/friend/friends/friends.ts"></script>

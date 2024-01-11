@@ -5,6 +5,7 @@ import RankImg from "./../../../../images/chat/rank.png";
 import DefaultAvatar from "./../../../../images/chat/default-avatar.png";
 
 type User = {
+  id: string;
   username: any;
   online_status: any;
   name: string;
@@ -21,7 +22,7 @@ class UserComponent {
     const avatarUrl = user.avatar || DefaultAvatar;
     //@ts-ignore
     return `
-      <div class="user user_request">
+      <div class="user user_request" data-user-id="${user.id}">
         <div class="user__avatar">
           <div class="user__online-status ${onlineStatusClass}"></div>
           
@@ -40,9 +41,6 @@ class UserComponent {
     return `
       <button class="user__action-button user__action-button_check">
         <svg class="user__action-icon"><use xlink:href="${Sprite}#check-mark"></use></svg>
-      </button>
-      <button class="user__setting-button">
-        <svg class="user__action-icon"><use xlink:href="${Sprite}#more"></use></svg>
       </button>
       <div class="user-menu" style="display: none;">
         ${UserComponent.createUserMenuItems()}
@@ -87,6 +85,7 @@ export class RequestUsers {
     this.users = [];
     this.connectToSocket();
     this.initChatSection();
+    this.setupResponseHandlers();
   }
 
   private connectToSocket() {
@@ -152,8 +151,8 @@ export class RequestUsers {
       </div>`;
   }
 
-  private renderUsers(): void {
-    const usersHtml = this.users.map(UserComponent.create).join("");
+  private renderUsers(users: User[] = this.users): void {
+    const usersHtml = users.map(UserComponent.create).join("");
     this.container.find("#list-users").html(usersHtml);
   }
 
@@ -161,12 +160,75 @@ export class RequestUsers {
     this.container.on("click", ".user__action-button_settings", function () {
       $(this).siblings(".user-menu").toggle();
     });
-
+    this.container.on("click", ".user__action-button_check", (e) => {
+      const userId = $(e.currentTarget).closest(".user").data("user-id");
+      this.sendFriendRequest(userId);
+    });
     this.container.on("mouseleave", ".user", function () {
       $(this).find(".user-menu").hide();
     });
+    const searchInput = this.container.find(".input__search-input");
+    searchInput.on("input", () => {
+      const searchTerm = searchInput.val()?.toString().toLowerCase().trim();
+      this.adjustInputWidth(
+        searchInput,
+        searchTerm || searchInput.attr("placeholder") || ""
+      );
+      const filteredUsers = this.filterUsers(searchTerm);
+      this.renderUsers(filteredUsers);
+    });
+
+    this.container.on("click", ".user__action-button_check", (e) => {
+      const userId = $(e.currentTarget).closest(".user").data("user-id");
+      this.sendFriendRequest(userId);
+    });
   }
 
+  private adjustInputWidth(inputElement: JQuery<HTMLElement>, text: string) {
+    const tempElement = $("<span>")
+      .text(text)
+      .css({
+        "font-size": inputElement.css("font-size"),
+        "font-family": inputElement.css("font-family"),
+        visibility: "hidden",
+        "white-space": "pre",
+      })
+      .appendTo("body");
+
+    const textWidth = tempElement.width() || 0;
+    tempElement.remove();
+    const inputWidth = Math.max(textWidth + 20, 100);
+    inputElement.width(inputWidth);
+  }
+
+  private filterUsers(searchTerm = ""): User[] {
+    if (!searchTerm) return this.users;
+    return this.users.filter((user) =>
+      user.username.toLowerCase().includes(searchTerm)
+    );
+  }
+
+  private setupResponseHandlers() {
+    this.socket.on(
+      "friend:request:response",
+      (response: { success: any; userId: string }) => {
+        if (response.success) {
+          this.removeUserFromList(response.userId);
+        }
+      }
+    );
+  }
+
+  private sendFriendRequest(userId: string) {
+    console.log("Sending friend request to:", userId);
+    this.socket.emit("friend:request", { userId });
+    this.removeUserFromList(userId);
+  }
+
+  private removeUserFromList(userId: string) {
+    this.users = this.users.filter((user) => user.id !== userId);
+    this.renderUsers();
+  }
   private getCookie(name: string): string | null {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);

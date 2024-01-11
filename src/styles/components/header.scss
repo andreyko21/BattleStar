@@ -226,10 +226,11 @@
       justify-content: center;
       &-name {
         color: #f8f8f8;
-        text-align: center;
+        text-align: right;
         font-family: Roboto;
         font-size: 20px;
         font-weight: 500;
+        min-width: 128px;
       }
 
       &-button {

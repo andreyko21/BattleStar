@@ -2,6 +2,8 @@ import $ from "jquery";
 import io from "socket.io-client";
 import Sprite from "./../../../../images/sprite.svg";
 import DefaultAvatar from "./../../../../images/chat/default-avatar.png";
+import tippy from "tippy.js";
+import "tippy.js/dist/tippy.css";
 
 type User = {
   id: number;
@@ -33,7 +35,7 @@ export class AllUsers {
     this.users = [];
     this.connectToSocket();
     this.render();
-    this.setupSearchHandler();
+    this.attachMenuEventHandlers();
   }
 
   private connectToSocket(): void {
@@ -79,8 +81,43 @@ export class AllUsers {
 
   private render(): void {
     this.container.append(this.createChatSectionHtml());
+    this.setupSearchHandler();
     this.renderUsers();
     this.setupMessageInputHandler();
+  }
+
+  private setupSearchHandler(): void {
+    const searchInput = this.container.find(".input__search-input");
+    // Вимірювання ширини плейсхолдера при ініціалізації
+    this.adjustInputWidth(searchInput, searchInput.attr("placeholder") || "");
+
+    searchInput.on("input", () => {
+      const searchTerm = searchInput.val()?.toString().toLowerCase().trim();
+      this.adjustInputWidth(
+        searchInput,
+        searchTerm || searchInput.attr("placeholder") || ""
+      );
+      this.renderUsers(searchTerm);
+    });
+  }
+
+  private adjustInputWidth(inputElement: JQuery<HTMLElement>, text: string) {
+    const tempElement = $("<span>")
+      .text(text)
+      .css({
+        "font-size": inputElement.css("font-size"),
+        "font-family": inputElement.css("font-family"),
+        visibility: "hidden",
+        "white-space": "pre",
+        position: "absolute",
+        left: "-9999px",
+      })
+      .appendTo("body");
+
+    const textWidth = tempElement.width() || 0;
+    tempElement.remove();
+    const inputWidth = Math.max(textWidth + 20, 100); // 20 для додаткового простору, 100 як мінімальна ширина
+    inputElement.width(inputWidth);
   }
 
   private appendNewMessage(message: any): void {
@@ -96,27 +133,70 @@ export class AllUsers {
     }
   }
 
-  private setupSearchHandler(): void {
-    const searchInput = this.container.find(".input__search-input");
+  private renderUsers(searchTerm: string = ""): void {
+    let filteredUsers = this.users;
 
-    searchInput.on("input", () => {
-      const searchTerm = searchInput.val()?.toString().toLowerCase().trim();
-      this.renderUsers(searchTerm);
-    });
-  }
-
-  private renderUsers(searchTerm = ""): void {
-    const filteredUsers = this.users.filter(
-      (user) =>
-        user.online_status && user.username.toLowerCase().includes(searchTerm)
-    );
+    if (searchTerm) {
+      filteredUsers = this.users.filter((user) =>
+        user.username.toLowerCase().includes(searchTerm)
+      );
+    }
 
     const usersHtml = filteredUsers
       .map((user) => this.createUserHtml(user))
       .join("");
-
     this.container.find("#list-users").html(usersHtml);
-    this.attachMenuEventHandlers();
+
+    this.initializeTippy();
+  }
+
+  private initializeTippy() {
+    this.users.forEach((user) => {
+      tippy(`[data-user-id="${user.id}"] .user__setting-button`, {
+        content: this.createUserMenuHtml(),
+        arrow: false,
+        trigger: "click",
+        placement: "bottom-start",
+        allowHTML: true,
+        interactive: true,
+      });
+    });
+  }
+
+  private createUserMenuHtml(
+    userId: number = 0,
+    isFriend: boolean = false
+  ): string {
+    const profileUrl = `/user.html?id=${userId}`;
+    const friendButtonHtml = isFriend
+      ? `<button class="user-menu__button remove-friend" data-user-id="${userId}">
+            <svg class="user-menu__button-icon"><use xlink:href="${Sprite}#deleteUser"></use></svg>
+            Удалить из друзей
+         </button>`
+      : `<button class="user-menu__button add-friend" data-user-id="${userId}">
+            <svg class="user-menu__button-icon"><use xlink:href="${Sprite}#addUser"></use></svg>
+            Добавить в друзья
+         </button>`;
+    return `
+    <div class="user-menu">
+      <a class="user-menu__button" href="${profileUrl}">
+        <svg class="user-menu__button-icon"><use xlink:href="${Sprite}#account"></use></svg>
+        Открыть профиль
+      </a>
+      ${friendButtonHtml}
+      <button class="user-menu__button user-menu__share-profile" data-profile-url="${profileUrl}">
+        <svg class="user-menu__button-icon"><use xlink:href="${Sprite}#share"></use></svg>
+        Поделиться профилем
+      </button>
+      <button class="user-menu__button user-menu__report">
+        <svg class="user-menu__button-icon"><use xlink:href="${Sprite}#flag"></use></svg>
+        Пожаловаться
+      </button>
+      <button class="user-menu__button user-menu__block">
+        <svg class="user-menu__button-icon"><use xlink:href="${Sprite}#blacklist"></use></svg>
+        Заблокировать
+      </button>
+    </div>`;
   }
 
   private createMessageHtml(message: any, isCurrentUser: boolean): string {
@@ -161,26 +241,30 @@ export class AllUsers {
     const avatarUrl = userInfo ? userInfo.avatarUrl : DefaultAvatar;
 
     return `
-      <div class="user" data-user-id="${user.id}" data-chat-id="${user.chatId}">
-        <div class="user__avatar">
-          <div class="user__online-status ${onlineStatusClass}"></div>
-          <img src="${avatarUrl}" alt="${user.username}" />
+        <div class="user" data-user-id="${user.id}" data-chat-id="${
+          user.chatId
+        }" data-id="${user.id}">
+            <div class="user__avatar">
+                <div class="user__online-status ${onlineStatusClass}"></div>
+                <img src="${avatarUrl}" alt="${user.username}" />
+            </div>
+            <p class="user__name">${user.username}</p>
+            <p class="user__status">${
+              user.online_status ? "Online" : "Offline"
+            }</p>
+            <button class="user__setting-button">
+                <svg class="friends-page__sidebar-setting-icon">
+                    <use xlink:href="${Sprite}#more"></use>
+                </svg>
+            </button>
+            <div class="user-menu" style="display: none;">
+                <button class="user-menu__button">Открыть профиль</button>
+                <button class="user-menu__button">Поделиться профилем</button>
+                <button class="user-menu__button">Удалить из друзей</button>
+                <button class="user-menu__button">Пожаловаться</button>
+                <button class="user-menu__button">Заблокировать</button>
+            </div>
         </div>
-        <p class="user__name">${user.username}</p>
-        <p class="user__status">${user.online_status ? "Online" : "Offline"}</p>
-        <button class="user__setting-button">
-          <svg class="friends-page__sidebar-setting-icon">
-            <use xlink:href="${Sprite}#more"></use>
-          </svg>
-        </button>
-        <div class="user-menu" style="display: none;">
-          <button class="user-menu__button">Открыть профиль</button>
-          <button class="user-menu__button">Поделиться профилем</button>
-          <button class="user-menu__button">Удалить из друзей</button>
-          <button class="user-menu__button">Пожаловаться</button>
-          <button class="user-menu__button">Заблокировать</button>
-        </div>
-      </div>
     `;
   }
 
@@ -190,18 +274,37 @@ export class AllUsers {
   }
 
   private attachMenuEventHandlers(): void {
+    const self = this;
+
+    this.container.on("click", ".user", function () {
+      const userId = $(this).data("user-id");
+      const chatId = $(this).data("chat-id");
+      self.openChat(chatId);
+      self.setActiveUser(userId);
+    });
+
     this.container.find(".user").each((_index, element) => {
       const $element = $(element);
-      const userId = $element.data("user-id");
-      const chatId = $element.data("chat-id");
+      const userId = $element.data("data-user-id");
+      const chatId = $element.data("data-chat-id");
 
       $element.on("click", () => {
-        this.openChat(chatId);
-        this.setActiveUser(userId);
+        self.openChat(chatId);
+        self.setActiveUser(userId);
       });
 
-      $element.find(".user__setting-button").on("click", function () {
-        $element.find(".user-menu").toggle();
+      $element.find(".user__setting-button").on("click", function (e) {
+        e.stopPropagation();
+        const $menu = $element.find(".user-menu");
+        const offset = $element.offset();
+        const menuHeight = $menu.outerHeight() || 0;
+        const windowHeight = $(window).height() || 0;
+
+        if (offset && windowHeight - offset.top - 100 < menuHeight) {
+          $menu.addClass("user-menu-upwards").show();
+        } else {
+          $menu.removeClass("user-menu-upwards").show();
+        }
       });
 
       $element.on("mouseleave", function () {

@@ -2,7 +2,6 @@
 @import "./../components/sidebar.scss";
 @import "./../components/header.scss";
 @import "./../components/tabs.scss";
-@import "./../../styles/components/pop-up.scss";
 
 body {
   overflow: hidden;
@@ -14,6 +13,14 @@ body {
 
 .main {
   position: relative;
+  background-image: url("./../../images/newsBg.png"),
+    linear-gradient(180deg, rgba(78, 78, 116, 0) 0%, #0c0c0e 100%);
+  background-repeat: repeat-x, no-repeat;
+  background-position:
+    0 -30px,
+    top;
+  background-size: auto, cover;
+  backdrop-filter: blur(110px);
 }
 .page {
   overflow: auto;
@@ -225,7 +232,7 @@ body {
 
 .input {
   &__search {
-    padding: 8px;
+    padding: 5px;
     width: 100%;
     height: fit-content;
     border-radius: 4px;
@@ -237,16 +244,20 @@ body {
       background: none;
     }
     &-icon {
-      width: 20px;
-      height: 20px;
+      width: 25px;
+      height: 25px;
       fill: #bfbfbf;
-      margin-right: 2px;
+      margin-right: 0px;
       padding-top: 4px;
     }
     &-input {
       width: fit-content;
       min-width: 100px;
       background: none;
+      color: #bfbfbf;
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: 500;
       color: white;
       &::placeholder {
         color: #bfbfbf;
@@ -257,6 +268,11 @@ body {
 
 .chat-section-sidebar__list-users {
   margin-top: 16px;
+
+  width: 100%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .user {
@@ -268,7 +284,7 @@ body {
     "avatar status setting" auto/min-content auto min-content;
 
   &.active {
-    background-color: #58bf3011;
+    background-color: #30312d63;
   }
 
   &__rank {
@@ -282,40 +298,31 @@ body {
 
   &__submit-button {
     grid-area: submit;
+    margin: auto;
+    width: 24px;
+    height: 24px;
+    margin-right: 17px;
+    border-radius: 4px;
+    background: none;
 
     &-icon {
       width: 100%;
       height: 100%;
       fill: #6fff57;
     }
+  }
 
-    &_user {
-      margin: auto;
-      width: 24px;
-      height: 24px;
-      margin-right: 17px;
-      border-radius: 4px;
-      background: none;
-      &-icon {
-        width: 100%;
-        height: 100%;
-        fill: #6fff57;
-      }
+  .add-friend {
+    grid-area: submit;
+    svg {
+      fill: #6fff57;
+    }
+  }
 
-      &:hover,
-      &:focus {
-        .user__submit-button-icon {
-          fill: #aceb98;
-          transform: scale(1.1);
-        }
-      }
-
-      &:active {
-        .user__submit-button-icon {
-          fill: #59bf30;
-          transform: scale(0.9);
-        }
-      }
+  .remove-friend {
+    grid-area: submit;
+    svg {
+      fill: #ff0000;
     }
   }
 
@@ -476,8 +483,6 @@ body {
 }
 
 .user-menu {
-  display: none;
-  position: absolute;
   width: fit-content;
   height: fit-content;
   border-radius: 4px;
@@ -485,22 +490,25 @@ body {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(60px);
   padding: 9px 7px;
-  top: 83%;
-  left: 87%;
   z-index: 10;
+  &.user-menu-upwards {
+    top: -220%;
+  }
 
   &__button {
     background: none;
     padding: 7px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: max-content;
+    width: 100%;
 
     color: #f8f8f8;
     font-family: Roboto;
     font-size: 16px;
     font-weight: 500;
+
+    &.add-friend {
+    }
 
     &-icon {
       margin-right: 23px;
@@ -529,6 +537,7 @@ body {
     margin: auto;
     margin-top: 55px;
     margin-bottom: 39px;
+    height: 30px;
   }
 }
 
@@ -548,10 +557,16 @@ body {
 
 .tabs-block__tab {
   width: 100%;
+
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .input__search {
-  padding-left: 50px;
+  padding-left: 18px;
+  padding-right: 18px;
 }
 
 .user_request {
@@ -586,10 +601,11 @@ body {
 }
 
 .search-section__search-block {
+  width: 514px;
   position: sticky;
   top: 0;
   padding-bottom: 10px;
-  background: linear-gradient(180deg, rgba(78, 78, 116, 0) 0%, #0c0c0e 100%);
+  background: rgb(16, 16, 29);
   backdrop-filter: blur(110px);
   z-index: 5;
 }
@@ -628,6 +644,7 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    background: #10101d;
   }
 }
 
@@ -637,6 +654,7 @@ body {
 }
 
 .main {
+  position: relative;
   order: 2;
   justify-self: end;
   flex-grow: 1;
@@ -681,6 +699,18 @@ body {
 #request-content {
   .chat-section-sidebar {
     max-width: 574px;
+  }
+}
+
+.user__remove-button {
+  margin: auto;
+  width: 24px;
+  height: 24px;
+  margin-right: 17px;
+  border-radius: 4px;
+  background: none;
+  .user__submit-button-icon {
+    fill: red;
   }
 }
 
@@ -733,4 +763,12 @@ body {
     object-fit: contain;
     max-width: 70vh;
   }
+}
+
+.dropdown__game-arrow _rotate {
+  transform: rotate(180deg);
+}
+
+.tippy-content {
+  padding: 0 !important;
 }

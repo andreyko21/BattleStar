@@ -2,6 +2,8 @@ import $ from "jquery";
 import io from "socket.io-client";
 import Sprite from "./../../../../images/sprite.svg";
 import DefaultAvatar from "./../../../../images/chat/default-avatar.png";
+import tippy from "tippy.js";
+import "tippy.js/dist/tippy.css";
 
 type User = {
   id: number;
@@ -33,7 +35,7 @@ export class OnlineUsers {
     this.users = [];
     this.connectToSocket();
     this.render();
-    this.setupSearchHandler();
+    this.attachMenuEventHandlers();
   }
 
   private connectToSocket(): void {
@@ -59,13 +61,11 @@ export class OnlineUsers {
 
     this.socket.on("chat:getMessages", (messages: any) => {
       this.renderMessages(messages);
-      console.log(messages);
     });
 
     this.socket.on("chat:newMessage", (messageData: any) => {
       const { message } = messageData;
       this.appendNewMessage(message);
-      console.log(message);
     });
   }
 
@@ -81,6 +81,7 @@ export class OnlineUsers {
     this.container.append(this.createChatSectionHtml());
     this.renderUsers();
     this.setupMessageInputHandler();
+    this.setupSearchHandler();
   }
 
   private appendNewMessage(message: any): void {
@@ -96,27 +97,71 @@ export class OnlineUsers {
     }
   }
 
-  private setupSearchHandler(): void {
-    const searchInput = this.container.find(".input__search-input");
+  private renderUsers(searchTerm = ""): void {
+    let filteredUsers = this.users;
 
-    searchInput.on("input", () => {
-      const searchTerm = searchInput.val()?.toString().toLowerCase().trim();
-      this.renderUsers(searchTerm);
+    if (searchTerm) {
+      filteredUsers = filteredUsers.filter((user) =>
+        user.username.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    filteredUsers = filteredUsers.filter((user) => user.online_status);
+
+    const onlineUsersHtml = filteredUsers
+      .map((user) => this.createUserHtml(user))
+      .join("");
+    this.container.find("#list-users").html(onlineUsersHtml);
+
+    this.initializeTippy();
+  }
+
+  private initializeTippy() {
+    this.container.find(".user__setting-button").each((_index, element) => {
+      const userId = $(element).closest(".user").data("user-id");
+      const isFriend = true;
+      tippy(element, {
+        content: this.createUserMenuHtml(userId, isFriend),
+        arrow: false,
+        trigger: "click",
+        placement: "bottom-start",
+        allowHTML: true,
+        interactive: true,
+      });
     });
   }
 
-  private renderUsers(searchTerm = ""): void {
-    const filteredUsers = this.users.filter(
-      (user) =>
-        user.online_status && user.username.toLowerCase().includes(searchTerm)
-    ); // Filter based on search term
-
-    const usersHtml = filteredUsers
-      .map((user) => this.createUserHtml(user))
-      .join("");
-
-    this.container.find("#list-users").html(usersHtml);
-    this.attachMenuEventHandlers();
+  private createUserMenuHtml(userId: number, isFriend: boolean): string {
+    const profileUrl = `/user.html?id=${userId}`;
+    const friendButtonHtml = isFriend
+      ? `<button class="user-menu__button remove-friend" data-user-id="${userId}">
+            <svg class="user-menu__button-icon"><use xlink:href="${Sprite}#deleteUser"></use></svg>
+            Удалить из друзей
+         </button>`
+      : `<button class="user-menu__button add-friend" data-user-id="${userId}">
+            <svg class="user-menu__button-icon"><use xlink:href="${Sprite}#addUser"></use></svg>
+            Добавить в друзья
+         </button>`;
+    return `
+    <div class="user-menu">
+      <a class="user-menu__button" href="${profileUrl}">
+        <svg class="user-menu__button-icon"><use xlink:href="${Sprite}#account"></use></svg>
+        Открыть профиль
+      </a>
+      ${friendButtonHtml}
+      <button class="user-menu__button user-menu__share-profile" data-profile-url="${profileUrl}">
+        <svg class="user-menu__button-icon"><use xlink:href="${Sprite}#share"></use></svg>
+        Поделиться профилем
+      </button>
+      <button class="user-menu__button user-menu__report">
+        <svg class="user-menu__button-icon"><use xlink:href="${Sprite}#flag"></use></svg>
+        Пожаловаться
+      </button>
+      <button class="user-menu__button user-menu__block">
+        <svg class="user-menu__button-icon"><use xlink:href="${Sprite}#blacklist"></use></svg>
+        Заблокировать
+      </button>
+    </div>`;
   }
 
   private createMessageHtml(message: any, isCurrentUser: boolean): string {
@@ -173,13 +218,7 @@ export class OnlineUsers {
             <use xlink:href="${Sprite}#more"></use>
           </svg>
         </button>
-        <div class="user-menu" style="display: none;">
-          <a class="user-menu__button" href="/user.html">Открыть профиль</a>
-          <button class="user-menu__button">Поделиться профилем</button>
-          <button class="user-menu__button">Удалить из друзей</button>
-          <button class="user-menu__button">Пожаловаться</button>
-          <button class="user-menu__button">Заблокировать</button>
-        </div>
+       
       </div>
     `;
   }
@@ -188,35 +227,70 @@ export class OnlineUsers {
     const token = this.getCookie("token");
     return token !== null;
   }
+  private setupSearchHandler(): void {
+    const searchInput = this.container.find(".input__search-input");
+    this.adjustInputWidth(searchInput, searchInput.attr("placeholder") || "");
 
-  private attachMenuEventHandlers(): void {
-    this.container.find(".user").each((_index, element) => {
-      const $element = $(element);
-
-      $element.find(".user__setting-button").on("click", function () {
-        const $menu = $element.find(".user-menu");
-        const menuHeight = $menu.outerHeight() || 0;
-
-        // Get window height and button offset with type checking
-        const windowHeight = $(window).height() ?? 0;
-        const buttonOffset = $(this).offset()?.top ?? 0;
-
-        // Calculate distance to window bottom
-        const distanceToWindowBottom = windowHeight - buttonOffset;
-
-        if (distanceToWindowBottom < menuHeight) {
-          $menu.css({ top: "auto", bottom: "100%" }); // Position menu above the button
-        } else {
-          $menu.css({ top: "100%", bottom: "auto" }); // Position menu below the button
-        }
-
-        $menu.toggle();
-      });
-
-      $element.on("mouseleave", function () {
-        $(this).find(".user-menu").hide();
-      });
+    searchInput.on("input", () => {
+      const searchTerm = searchInput.val()?.toString().toLowerCase().trim();
+      this.adjustInputWidth(
+        searchInput,
+        searchTerm || searchInput.attr("placeholder") || ""
+      );
+      this.renderUsers(searchTerm);
     });
+  }
+  private attachMenuEventHandlers(): void {
+    this.container.on("click", ".user", (event) => {
+      const userId = $(event.currentTarget).data("user-id");
+      const chatId = $(event.currentTarget).data("chat-id");
+      this.openChat(chatId);
+      this.setActiveUser(userId);
+    });
+
+    this.container.on("click", ".user__setting-button", function (e) {
+      e.stopPropagation();
+      const $menu = $(this).siblings(".user-menu");
+      $menu.toggle();
+    });
+  }
+
+  private openChat(chatId: number | null): void {
+    if (chatId) {
+      this.socket.emit("chat:getMessages", chatId);
+      this.setActiveChat(chatId);
+      this.container.find(".chat__messages-container").show();
+      this.container.find(".chat__message-input-block").show();
+    } else {
+      console.log("No chatId provided, need to create a new chat.");
+    }
+  }
+  private adjustInputWidth(inputElement: JQuery<HTMLElement>, text: string) {
+    const tempElement = $("<span>")
+      .text(text)
+      .css({
+        "font-size": inputElement.css("font-size"),
+        "font-family": inputElement.css("font-family"),
+        visibility: "hidden",
+        "white-space": "pre",
+        position: "absolute",
+        left: "-9999px",
+      })
+      .appendTo("body");
+
+    const textWidth = tempElement.width() || 0;
+    tempElement.remove();
+    const inputWidth = Math.max(textWidth + 20, 100);
+    inputElement.width(inputWidth);
+  }
+  private setActiveChat(chatId: number): void {
+    this.container
+      .find(".chat__messages-container")
+      .data("active-chat", chatId);
+  }
+  private setActiveUser(userId: number): void {
+    this.container.find(".user").removeClass("active");
+    this.container.find(`.user[data-user-id="${userId}"]`).addClass("active");
   }
 
   private renderMessages(messages: any[]): void {

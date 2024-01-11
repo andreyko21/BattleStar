@@ -80,6 +80,112 @@ query GetUser {
   }
 }
 
+query GetUserInfo {
+  usersPermissionsUser(id: 43) {
+    data {
+      id
+      attributes {
+        username
+        biography
+        online_status
+        my_friends {
+          data {
+            id
+            attributes {
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+              username
+              online_status
+            }
+          }
+        }
+        friends_request {
+          data {
+            id
+            attributes {
+              avatar {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+              username
+              online_status
+            }
+          }
+        }
+        avatar {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        player {
+          data {
+            attributes {
+              cs_2_teams {
+                data {
+                  attributes {
+                    players {
+                      data {
+                        id
+                      }
+                    }
+                    Team {
+                      logo {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                      name
+                      rating
+                      victories_in_tournaments
+                      earned
+                    }
+                  }
+                }
+              }
+              dota_2_teams {
+                data {
+                  attributes {
+                    players {
+                      data {
+                        id
+                      }
+                    }
+                    Team {
+                      name
+                      logo {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                      rating
+                      victories_in_tournaments
+                      earned
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 query GetCurrentUser($id: ID) {
   usersPermissionsUser(id: $id) {
     data {

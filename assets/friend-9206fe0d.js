@@ -1,4 +1,4 @@
-import{$ as r}from"./jquery-e7e79cb6.js";import{C as p}from"./auto-f06b4c5b.js";import{H as v,Q as h,r as g,S as i}from"./header-ec130f68.js";import{T as b}from"./tabs-create-b6236109.js";import{B as f}from"./tabs-296293aa.js";import{L as k}from"./lava-lamp-63313dfc.js";import{A as $}from"./sidebar-82114b68.js";const u="/assets/avatar-b55cc117.png",x="/assets/award-d2bab478.svg";class _{content;statistics;constructor(t,s){this.content=t,this.statistics=s,this.renderStatisticsCsRating()}renderStatisticsCsRating(){const t=`
+import{$ as c}from"./jquery-e7e79cb6.js";import{C as h}from"./auto-f06b4c5b.js";import{H as g,Q as b,g as f,r as k,S as n}from"./header-6881e6b7.js";import{T as $}from"./tabs-create-b6236109.js";import{B as w}from"./tabs-47e33cf8.js";import{L as x}from"./lava-lamp-63313dfc.js";import{U as d}from"./default-avatar-dee36e0e.js";import{A as y}from"./sidebar-01266bb8.js";const C="/assets/award-d2bab478.svg";class m{content;statistics;constructor(t,s){this.content=t,this.statistics=s,this.renderStatisticsCsRating()}renderStatisticsCsRating(){const t=`
    <div class="statistics__top-rating">
    <h1 class="statistics__top-rating-title">Ранг: <span>${this.statistics[0].rang}</span></h1>
    <div class="statistics__top-rating-rang">
@@ -8,24 +8,24 @@ import{$ as r}from"./jquery-e7e79cb6.js";import{C as p}from"./auto-f06b4c5b.js";
 <div class="statistics__top-info">
    <div class="statistics__top-info-tour">
       <svg>
-         <use xlink:href="${i}#tourney"></use>
+         <use xlink:href="${n}#tourney"></use>
       </svg>
       <p class="statistics__top-info-text">${this.statistics[0].tour}<span>Турнира</span></p>
    </div>
    <div class="statistics__top-info-winrate">
       <svg>
-         <use xlink:href="${i}#winrate"></use>
+         <use xlink:href="${n}#winrate"></use>
       </svg>
       <p class="statistics__top-info-text">${this.statistics[0].winrate} %<span>Винрейт</span></p>
    </div>
    <div class="statistics__top-info-time">
       <svg>
-         <use xlink:href="${i}#time"></use>
+         <use xlink:href="${n}#time"></use>
       </svg>
       <p class="statistics__top-info-text">${this.statistics[0].time}<span>Часов в игре</span></p>
    </div>
 </div>
-   `,s=document.querySelector(this.content);s&&(s.innerHTML=t)}}const d=[{rang:1682,rangImg:"../../../src/images/rank.png",tour:2,winrate:60,time:200}];class w{content;statistics;constructor(t,s){this.content=t,this.statistics=s,this.renderStatisticsCs()}renderStatisticsCs(){const t=`
+   `,s=document.querySelector(this.content);s&&(s.innerHTML=t)}}const p=[{rang:1682,rangImg:"../../../src/images/rank.png",tour:2,winrate:60,time:200}];class S{content;statistics;constructor(t,s){this.content=t,this.statistics=s,this.renderStatisticsCs()}renderStatisticsCs(){const t=`
        <div class="statistics__cs-info">
        <h2 class="statistics__cs-title">Статистика</h2>
        <p class="statistics__cs-text">Матчей сыграно: <span>${this.statistics[0].matchesPlayed}</span></p>
@@ -38,7 +38,7 @@ import{$ as r}from"./jquery-e7e79cb6.js";import{C as p}from"./auto-f06b4c5b.js";
     <div class="statistics__cs-schedule">
        <h2 class="statistics__cs-title">Статистика</h2>
        <canvas class="statistics__cs-chart" id="cs"></canvas>
-    </div>`,s=document.querySelector(this.content);s&&(s.innerHTML=t);let a=document.getElementById("cs");if(a){let o=a.getContext("2d");new p(o,{type:"bar",data:{labels:["Точность, %","Попадания в голову, %","Живучесть, %","Живучесть, %","Попадания в голову, %","Точность, %"],datasets:[{label:"Статистика",data:[95,51,80,68,60,30],backgroundColor:"#FAC704",borderColor:"#E1C65E",borderWidth:1,borderRadius:6,barThickness:20}]},options:{scales:{y:{min:0,max:100,beginAtZero:!0,ticks:{autoSkip:!0,maxRotation:0,color:"#fff",stepSize:25},grid:{color:"rgba(248, 248, 248, 0.20)"}},x:{ticks:{autoSkip:!0,maxRotation:0,color:"#fff"},grid:{color:"rgba(248, 248, 248, 0.20)"}}},plugins:{legend:{display:!1,labels:{font:{size:15,family:"Roboto",weight:500}}}}}})}console.log(a)}}const m=[{matchesPlayed:1023,mapsPlayed:23,win:798,defeated:225,kill:2304,death:1389}];class y{content;statistics;constructor(t,s){this.content=t,this.statistics=s,this.renderStatisticsDota()}renderStatisticsDota(){const t=`
+    </div>`,s=document.querySelector(this.content);s&&(s.innerHTML=t);let a=document.getElementById("cs");if(a){let r=a.getContext("2d");new h(r,{type:"bar",data:{labels:["Точность, %","Попадания в голову, %","Живучесть, %","Живучесть, %","Попадания в голову, %","Точность, %"],datasets:[{label:"Статистика",data:[95,51,80,68,60,30],backgroundColor:"#FAC704",borderColor:"#E1C65E",borderWidth:1,borderRadius:6,barThickness:20}]},options:{scales:{y:{min:0,max:100,beginAtZero:!0,ticks:{autoSkip:!0,maxRotation:0,color:"#fff",stepSize:25},grid:{color:"rgba(248, 248, 248, 0.20)"}},x:{ticks:{autoSkip:!0,maxRotation:0,color:"#fff"},grid:{color:"rgba(248, 248, 248, 0.20)"}}},plugins:{legend:{display:!1,labels:{font:{size:15,family:"Roboto",weight:500}}}}}})}console.log(a)}}const v=[{matchesPlayed:1023,mapsPlayed:23,win:798,defeated:225,kill:2304,death:1389}];class T{content;statistics;constructor(t,s){this.content=t,this.statistics=s,this.renderStatisticsDota()}renderStatisticsDota(){const t=`
         <div class="statistics__cs-info">
         <h2 class="statistics__cs-title">Статистика</h2>
         <p class="statistics__cs-text">Матчей сыграно: <span>${this.statistics[0].matchesPlayed}</span></p>
@@ -50,7 +50,7 @@ import{$ as r}from"./jquery-e7e79cb6.js";import{C as p}from"./auto-f06b4c5b.js";
      </div>
      <div class="statistics__cs-schedule">
         <canvas class="statistics__cs-chart" id="dota" width="400" height="400"></canvas>
-     </div>`,s=document.querySelector(this.content);s&&(s.innerHTML=t);let a=document.getElementById("dota"),o=a.getContext("2d");new p(o,{type:"radar",data:{labels:["Гибкость","Файтинг","Пушинг","Поддержка","Фарминг"],datasets:[{data:[10,10,10,10,10],backgroundColor:"rgba(250, 199, 4, 0.30)",borderColor:"#E1C65E",pointBackgroundColor:"#FAC704",pointBorderColor:"#FAC704",pointRadius:5}]},options:{scales:{r:{angleLines:{color:"#BFBFBF"},ticks:{display:!1,maxTicksLimit:7,font:{size:12,family:"Roboto",weight:500}},pointLabels:{font:{size:12,family:"Roboto",weight:500},padding:10},grid:{color:"#23252C"}}},plugins:{legend:{display:!1}},elements:{arc:{backgroundColor:"#fff"}}}}),console.log(a)}}class C{container;user;friendsData;teams;constructor(t,s,a,o){this.container=r(t),this.user=s,this.friendsData=a,this.teams=o,this.render(),this.attachMenuEventHandlers(),this.attachExpandButtonHandler()}render(){this.container.append(this.createSection())}createSection(){return`
+     </div>`,s=document.querySelector(this.content);s&&(s.innerHTML=t);let a=document.getElementById("dota"),r=a.getContext("2d");new h(r,{type:"radar",data:{labels:["Гибкость","Файтинг","Пушинг","Поддержка","Фарминг"],datasets:[{data:[10,10,10,10,10],backgroundColor:"rgba(250, 199, 4, 0.30)",borderColor:"#E1C65E",pointBackgroundColor:"#FAC704",pointBorderColor:"#FAC704",pointRadius:5}]},options:{scales:{r:{angleLines:{color:"#BFBFBF"},ticks:{display:!1,maxTicksLimit:7,font:{size:12,family:"Roboto",weight:500}},pointLabels:{font:{size:12,family:"Roboto",weight:500},padding:10},grid:{color:"#23252C"}}},plugins:{legend:{display:!1}},elements:{arc:{backgroundColor:"#fff"}}}}),console.log(a)}}class U{container;user;friendsData;teams;constructor(t,s,a,r){this.container=c(t),this.user=s,this.friendsData=a,this.teams=r,this.render(),this.attachMenuEventHandlers(),this.attachExpandButtonHandler()}render(){this.container.append(this.createSection())}createSection(){return`
       <section class="page__user-section user-section">
         ${this.createUserHeader()}
         ${this.createUserMain()}
@@ -105,7 +105,7 @@ import{$ as r}from"./jquery-e7e79cb6.js";import{C as p}from"./auto-f06b4c5b.js";
         <div class="user-section__main-sidebar-friends-list">
           ${s.map(a=>this.createUserFriendItem(a)).join("")}
         </div>
-      </div>`}attachMenuEventHandlers(){this.container.find(".user").each((t,s)=>{const a=r(s);a.find(".user__setting-button").on("click",function(){a.find(".user-menu").toggle()}),a.on("mouseleave",function(){a.find(".user-menu").hide()})})}attachExpandButtonHandler(){this.container.on("click",".teams-info-block__more-teams-button",()=>{const t=this.container.find(".team-list__additional-teams");t.toggle();const s=t.is(":visible")?"Свернуть":"Развернуть";this.container.find(".teams-info-block__more-teams-button").text(s)})}createUserFriendItem(t){return`
+      </div>`}attachMenuEventHandlers(){this.container.find(".user").each((t,s)=>{const a=c(s);a.find(".user__setting-button").on("click",function(){a.find(".user-menu").toggle()}),a.on("mouseleave",function(){a.find(".user-menu").hide()})})}attachExpandButtonHandler(){this.container.on("click",".teams-info-block__more-teams-button",()=>{const t=this.container.find(".team-list__additional-teams");t.toggle();const s=t.is(":visible")?"Свернуть":"Развернуть";this.container.find(".teams-info-block__more-teams-button").text(s)})}createUserFriendItem(t){return`
       <div class="user">
         <div class="user__avatar">
           <div class="user__online-status ${t.onlineStatus}"></div>
@@ -115,37 +115,37 @@ import{$ as r}from"./jquery-e7e79cb6.js";import{C as p}from"./auto-f06b4c5b.js";
         <p class="user__status">${t.status}</p>
         <button class="user__setting-button">
           <svg class="friends-page__sidebar-setting-icon">
-            <use xlink:href="${i}#more"></use>
+            <use xlink:href="${n}#more"></use>
           </svg>
         </button>
         <div class="user-menu" style="display: none">
           <button class="user-menu__button">
             <svg class="user-menu__button-icon">
-              <use xlink:href="${i}#account"></use>
+              <use xlink:href="${n}#account"></use>
             </svg>
             Открыть профиль
           </button>
           <button class="user-menu__button">
             <svg class="user-menu__button-icon user-menu__button-icon_succes">
-              <use xlink:href="${i}#addUser"></use>
+              <use xlink:href="${n}#addUser"></use>
             </svg>
             Добавить в друзья
           </button>
           <button class="user-menu__button">
             <svg class="user-menu__button-icon">
-              <use xlink:href="${i}#share"></use>
+              <use xlink:href="${n}#share"></use>
             </svg>
             Поделиться профилем
           </button>
           <button class="user-menu__button">
             <svg class="user-menu__button-icon user-menu__button-icon_warn">
-              <use xlink:href="${i}#flag"></use>
+              <use xlink:href="${n}#flag"></use>
             </svg>
             Пожаловаться
           </button>
           <button class="user-menu__button">
             <svg class="user-menu__button-icon user-menu__button-icon_warn">
-              <use xlink:href="${i}#blacklist"></use>
+              <use xlink:href="${n}#blacklist"></use>
             </svg>
             Заблокировать
           </button>
@@ -195,6 +195,6 @@ import{$ as r}from"./jquery-e7e79cb6.js";import{C as p}from"./auto-f06b4c5b.js";
             <img src="${t.award}" alt="award" />
           </div>
         </div>
-      </a>`}}r(document).ready(async()=>{new v("#wrapper"),new $("wrapper","ДРУЗЬЯ");try{const t=(await S(h,{id:43},"token","http://localhost:1337/graphql")).usersPermissionsUser.data.attributes,s={avatar:t.avatar.data?t.avatar.data.attributes.url:u,name:t.username,isOnline:t.online_status,firstGameDate:"January 1, 2020",biography:t.biography??""},a={online:t.my_friends.data.map(e=>({onlineStatus:e.attributes.online_status?"online":"offline",avatar:e.attributes.avatar.data?e.attributes.avatar.data.attributes.url:u,name:e.attributes.username,status:"Status unknown"})),all:[]},o=t.player.data.attributes.dota_2_teams.data.map(e=>{const c=e.attributes.Team[0];return{link:"#",avatar:c.logo.data.attributes.url,name:c.name,rating:c.rating,tournaments:c.victories_in_tournaments||0,earned:c.earned,members:e.attributes.players.data.length,award:x}});new C(".page__container",s,a,o),new b("main-statistics","user-page__filters",[["cs2","CS2"],["dota2","Dota2"]]),r("#cs2-content").addClass("tabs-block__content-container_active"),new f("user-page__filters"),new k("user-page__filters"),r("#dota2-content").append(`<div class="dota2-info-block statistics__top"></div>
-  <div class="dota2-content-block statistics__dota"></div>`),r("#cs2-content").append(`<div class="cs2-info-block statistics__top"></div>
-  <div class="cs2-content-block statistics__cs"></div>`),new _(".dota2-info-block",d),new _(".cs2-info-block",d),new y(".dota2-content-block",m),new w(".cs2-content-block",m)}catch(n){console.error("Error fetching data:",n)}});async function S(n,t={},s="token",a="https://battle-star-app.onrender.com/graphql"){const e=(c=>{const l=`; ${document.cookie}`.split(`; ${c}=`);return l.length===2?l.pop()?.split(";").shift()??null:null})(s);return e?g(a,n,t,{Authorization:`Bearer ${e}`}):(window.location.href="/sign.html",Promise.reject(new Error("No token found")))}
+      </a>`}}c(document).ready(async()=>{new g("#wrapper"),new y("wrapper","ДРУЗЬЯ");try{let i=function(e){return{onlineStatus:t(e.attributes.online_status),avatar:e.attributes.avatar?.data?e.attributes.avatar.data.attributes.url:d,name:e.attributes.username,status:"Status unknown"}},t=function(e){return e?"online":"offline"};const s=await H(b,{},"token","https://battle-star-app.onrender.com/graphql");s.usersPermissionsUser.data||(window.location.href="/friends.html?filters=search");const a=s.usersPermissionsUser.data.attributes,r={avatar:a.avatar?.data?a.avatar.data.attributes.url:d,name:a.username,isOnline:a.online_status,firstGameDate:"January 1, 2020",biography:a.biography??""},l={online:a.my_friends?.data?a.my_friends.data.filter(e=>e.attributes.online_status).map(e=>i(e)):[],all:a.my_friends?.data?a.my_friends.data.map(e=>i(e)):[]},u=a.player?.data?.attributes?.dota_2_teams?.data?a.player.data.attributes.dota_2_teams.data.map(e=>{const o=e.attributes.Team[0];return{link:"#",avatar:o.logo?.data?.attributes?.url,name:o.name,rating:o.rating,tournaments:o.victories_in_tournaments||0,earned:o.earned,members:e.attributes.players?.data?.length||0,award:C}}):[];new U(".page__container",r,l,u),new $("main-statistics","user-page__filters",[["cs2","CS2"],["dota2","Dota2"]]),c("#cs2-content").addClass("tabs-block__content-container_active"),new w("user-page__filters"),new x("user-page__filters"),c("#dota2-content").append(`<div class="dota2-info-block statistics__top"></div>
+  <div class="dota2-content-block statistics__dota"></div>`),c("#cs2-content").append(`<div class="cs2-info-block statistics__top"></div>
+  <div class="cs2-content-block statistics__cs"></div>`),new m(".dota2-info-block",p),new m(".cs2-info-block",p),new T(".dota2-content-block",v),new S(".cs2-content-block",v)}catch(i){console.error("Error fetching data:",i)}});async function H(i,t={},s="token",a="https://battle-star-app.onrender.com/graphql"){const l=(e=>{const _=`; ${document.cookie}`.split(`; ${e}=`);return _.length===2?_.pop()?.split(";").shift()??null:null})(s);if(!l)return window.location.href="/sign.html",Promise.reject(new Error("No token found"));const u=f("id");return u?k(a,i,{...t,id:u},{Authorization:`Bearer ${l}`}):Promise.reject(new Error("User ID not found"))}

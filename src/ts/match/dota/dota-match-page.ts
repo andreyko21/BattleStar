@@ -12,8 +12,6 @@ import { GettingGameModeFiltering } from './../geme-modes-filtering.ts';
 import { GettingGameModeSelected } from './../geme-modes-selection.ts';
 import { config } from '../../config.ts';
 
-import { newFiltration } from './../filtration-for-query.ts';
-import { CreatingCsLobby } from './../creating-cs-lobby.ts';
 import { Creator } from './../creator.ts';
 import { AllPlayerList } from '../filtration/selected-player.ts';
 import { Patty } from './../filtration/patty.ts';
@@ -25,6 +23,10 @@ import {
 import { ContentFilteringSectionForMatch } from '../filtration/conten-filters-section-for-match.ts';
 import { SortingBlock } from '../../calibration/sorting-block.ts';
 import { DotaGettingGameModeData } from './dota-geting-game-mode-data.ts';
+import { DotaFiltration } from './filtration-for-dota-query.ts';
+import { CreatingDotaLobby } from './creating-dota-lobby.ts';
+import { DotaGettingTypeLobbyData } from './dota-geting-type-lobby-data.ts';
+import { GettingTypeLobbySelected } from './type-lobby-selection.ts';
 
 class DotaMatchesPage {
   //  private static instance: DotaMatchesPage;
@@ -68,10 +70,11 @@ class DotaMatchesPage {
     try {
       const creatorLobby = new Creator();
       const creatorData = await creatorLobby.transformCreatorData();
-
+      const queryForTypeLobby = new DotaGettingTypeLobbyData(config.ENDPOINT);
       const queryForGameMode = new DotaGettingGameModeData(config.ENDPOINT);
       const queryForRegionData = new GettingRegionData(config.ENDPOINT);
 
+      const typeLobbyData = await queryForTypeLobby.getCheckboxesData();
       const gameModeData = await queryForGameMode.getCheckboxesData();
       const regionData = await queryForRegionData.getCheckboxesData();
 
@@ -112,13 +115,21 @@ class DotaMatchesPage {
       new RateSelection('create-content', rateOptions);
       new TitleCreateLobby('create-content');
 
-      new newFiltration('filters-find-lobby');
+      const typeLobbySelected = new GettingTypeLobbySelected(
+        'create-lobby-title-block',
+        'name-lobby-label'
+      );
+      typeLobbySelected.assembleFilter(typeLobbyData);
 
-      new CreatingCsLobby(
+      new DotaFiltration('filters-find-lobby');
+
+      new CreatingDotaLobby(
         'create-content',
         creatorLobby.transformedCreatorData
       );
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 

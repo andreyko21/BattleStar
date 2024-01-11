@@ -75,7 +75,6 @@ query GetUser {
       id
       attributes {
         username
-
       }
     }
   }
@@ -327,6 +326,7 @@ mutation CreateCsLobbies(
   $participant: [ID]
   $ping: Long
   $antyCheat: Boolean
+  $publishedAt: DateTime
 ) {
   createCsLobby(
     data: {
@@ -338,9 +338,11 @@ mutation CreateCsLobbies(
       participant: { players: $participant }
       ping: $ping
       antyCheat: { value: $antyCheat }
+      publishedAt: $publishedAt
     }
   ) {
     data {
+      id
       attributes {
         title
         creator {
@@ -1218,6 +1220,55 @@ query GetLobbyInfoId($id: ID) {
   }
 }
 
+query GetLobbyInfoDotaId($id: ID) {
+  dota2Lobby(id: $id) {
+    data {
+      id
+      attributes {
+        title
+        rate
+        typeLobby {
+          data {
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        dota_2_game_modes {
+          data {
+            attributes {
+              value
+              title
+            }
+          }
+        }
+        creator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      flag {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 mutation UpdateUser($id: ID!, $newUsername: String, $newBiography: String) {
   updateUsersPermissionsUser(
     id: $id
@@ -1448,3 +1499,236 @@ query GetDota2GameModes {
     }
   }
 }
+
+query GetDotaTypeLobbies {
+  dotaTypeLobbies {
+    data {
+      id
+      attributes {
+        title
+        value
+      }
+    }
+  }
+}
+
+mutation CreateDota2Lobby(
+  $title: String
+  $creator: ID
+  $typeLobby: ID
+  $rate: Long
+  $gameMode: [ID]
+  $participant: [ID]
+  $ping: Long
+  $antyCheat: Boolean
+) {
+  createDota2Lobby(
+    data: {
+      title: $title
+      creator: $creator
+      typeLobby: $typeLobby
+      rate: $rate
+      dota_2_game_modes: $gameMode
+      participant: { players: $participant }
+      ping: $ping
+      antyCheat: { value: $antyCheat }
+    }
+  ) {
+    data {
+      id
+      attributes {
+        title
+        creator {
+          data {
+            id
+          }
+        }
+        rate
+        dota_2_game_modes {
+          data {
+            id
+          }
+        }
+        ping
+        antyCheat {
+          value
+        }
+        participant {
+          players {
+            data {
+              id
+            }
+          }
+        }
+        typeLobby {
+          data {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetPlayersByPage($pageSize: Int!, $page: Int!) {
+  topPlayers(pagination: { pageSize: $pageSize, page: $page }) {
+    data {
+      attributes {
+        cs {
+          nikcname
+        }
+      }
+    }
+    meta {
+      pagination {
+        page
+        pageSize
+      }
+    }
+  }
+}
+
+query GetBiography($id: ID!) {
+  usersPermissionsUsers(filters: { id: { eq: $id } }) {
+    data {
+      id
+      attributes {
+        biography
+        createdAt
+      }
+    }
+  }
+}
+
+mutation UpdateEmail($id: ID!, $newEmail: String) {
+  updateUsersPermissionsUser(id: $id, data: { email: $newEmail }) {
+    data {
+      id
+      attributes {
+        email
+      }
+    }
+  }
+}
+
+
+
+
+
+query GetMyFriends($id:ID!) {
+  usersPermissionsUsers(filters: { id: { eq: $id } }) {
+    data {
+      id
+      attributes {
+    
+        my_friends {
+          data {
+            attributes {
+              username
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+  
+
+query GetUsersId($id:ID!) {
+  usersPermissionsUsers(filters: { id: { eq: $id } }) {
+    data{
+      id
+      attributes{    
+        player{
+          data{
+            attributes{
+              Options{
+                news_of_the_platform
+                new_tournaments
+                incoming_messages
+                invitations_to_the_team
+                friend_requests
+                allow_only_friends_invit_to_team
+                selected_country{
+                  data{
+                    attributes{
+                      name
+                      flag{
+                        data{
+                          attributes{
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                selected_language{
+                  data{
+                    attributes{
+                      name
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation UpdatePlayerOptions($id:ID! $data: PlayerInput!) { 
+  updatePlayer(id: $id, data: $data) {
+    data {
+    id
+      attributes {
+        user {       
+          data {
+          id
+            attributes {
+              username
+            }
+          }
+        }
+        Options {
+          news_of_the_platform
+          new_tournaments
+          incoming_messages
+          invitations_to_the_team
+          friend_requests
+          allow_only_friends_invit_to_team
+          selected_country {
+            data {
+              attributes {
+                name
+                flag {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+          selected_language {
+            data {
+              attributes {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+

@@ -181,6 +181,18 @@
    &__avatar {
       position: relative;
       height: 165px;
+      &-img{
+         width: 140px;
+         height: 140px;
+         border-radius: 50%;
+         background-size: cover;
+         background-repeat: no-repeat;
+         background-position: center;
+         &_active{
+            display: none;
+
+         }
+      }
       &-inp {
          display: none;
       }
@@ -249,4 +261,14 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel {
    background: rgba(248, 248, 248, 0.1) !important;
    backdrop-filter: blur(40px);
    width: 152px;
+}
+.swal2-title,
+.swal2-input,
+.swal2-input,
+.swal2-input-label{
+   color: #f8f8f8 !important;
+}
+.swal2-validation-message{
+   background: transparent !important;
+   color: #f27474;
 }

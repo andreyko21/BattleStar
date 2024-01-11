@@ -37,7 +37,7 @@ class MatchRowDota2 {
          </td>
          <td class="dota-match-tr__map">
            <div class="dota-match-tr__data-title"> Режим </div>
-           <div class="dota-match-tr__rate-value"> ${option.map} </div>
+           <div class="dota-match-tr__rate-value"> ${option.mode} </div>
          </td>
          <td class="dota-match-tr__rate-block">
            <div class="dota-match-tr__data-title"> Ставка </div>
@@ -46,13 +46,13 @@ class MatchRowDota2 {
          <td class="dota-match-tr__mode">
            <div class="dota-match-tr__data-title"> Лобби </div>
            <div class="dota-match-tr__rate-value"> 
-           ${option.participants}/${+option.mode * 2}
+           ${option.type}/${+option.type}
            </div>
          </td>
          <td class="dota-match-tr__participants">
            <div class="dota-match-tr__data-title"> Учасников </div>
            <div class="dota-match-tr__rate-value"> 
-           ${option.participants}/${+option.mode * 2}
+           ${option.participants}/${+option.type * 2}
             </div>
          </td>
          <td class="dota-match-tr__ping-cell">

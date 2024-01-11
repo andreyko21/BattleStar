@@ -1,13 +1,24 @@
 import Sprite from "./../../images/sprite.svg";
 import $ from "jquery";
-import { sumHistory } from "./history";
+// import { sumHistory } from "./history";
 import { setLocateParam } from "../functions/windowLocation";
 import { removeAllParams } from "../functions/windowLocation";
 // import { Chart } from "chart.js";
 // import axios from "axios";
 import {AsideMenu} from "../component/asideMenu";
+import { Header } from "../component/header/header";
+import { AppSidebar } from "../component/sidebar/sidebar";
+import Present from "../../images/mdi_gift-outline.png";
+import Swal from "sweetalert2";
+// import { ContentFilteringSectionForMatch } from "../match/filtration/conten-filters-section-for-match";
+
+import request from "graphql-request";
+// Remove the import statement for the non-existent 'GetMyFriends' export
+import {GetMyFriends} from "../../../queries.graphql.d";
 
 new AsideMenu();
+new Header("#wrapper");
+new AppSidebar("wrapper", "ГЛАВНАЯ");
 interface IWalletData {
   id: number;
   nickname: string;
@@ -96,7 +107,7 @@ class Wallet {
                   <use xlink:href="${Sprite}#rigth-arrow"></use>
                </svg>
                <svg>
-                  <use xlink:href="${Sprite}#friend"></use>
+                  <use xlink:href="${Sprite}#people"></use>
                </svg>
             </div>
             <p class="wallet__transaction-btns-text">Перевести <span>BS</span> другу</p>
@@ -152,7 +163,7 @@ class Wallet {
     if (content) {
       content.innerHTML = walletHtml;
     }
-
+const context = this;
     $(".wallet__row-btn").on("click", function () {
       setLocateParam("id", "subscription");
       $(".wallet__content").css("display", "none");
@@ -164,6 +175,13 @@ class Wallet {
       $(".subscription").css("display", "none");
       $(".wallet__content").css("display", "block");
       removeAllParams();
+    });
+
+    $('.wallet__link button').on('click', function(){
+      Swal.fire({
+        html: context.renderPopUp(),
+        confirmButtonText:"Закрыть"
+      })
     });
 
     const userSubscription = localStorage.getItem("userSubscription");
@@ -390,6 +408,60 @@ class Wallet {
     });
   }
 
+  renderPopUp(){
+    const popUpHtml = `
+    <div class="wallet__invite">
+    <div class="wallet__invite-present">
+       <img src="${Present}" alt="present">
+    </div>
+    <h2 class="wallet__invite-title">Пригласите друга и получите 50 <span>BS</span></h2>
+    <p class="wallet__invite-text">После регистрации нового игрока по ссылке вы получите на свой игровой счёт 50 <span>BS</span> </p>
+    <div class="wallet__invite-link">
+       <p class="wallet__invite-text wallet__invite-text_sub">www/referral/link/example.battlestar.com/|534678329327543</p>
+       <svg>
+          <use xlink:href="${Sprite}#copy"></use>
+       </svg>
+    </div>
+    <div class="wallet__invite-social">
+       <a href="https://www.messenger.com/?locale=ua_UA">
+          <svg>
+             <use xlink:href="${Sprite}#mass"></use>
+          </svg>
+       </a>
+       <a href="https://www.facebook.com/">
+          <svg>
+             <use xlink:href="${Sprite}#face"></use>
+          </svg>
+       </a>
+       <a href="https://www.instagram.com/">
+          <svg>
+             <use xlink:href="${Sprite}#inst"></use>
+          </svg>
+       </a>
+       <a href="https://web.whatsapp.com/">
+          <svg>
+             <use xlink:href="${Sprite}#whatsapp"></use>
+          </svg>
+       </a>
+       <a href="https://www.viber.com/">
+          <svg>
+             <use xlink:href="${Sprite}#viber"></use>
+          </svg>
+       </a>
+
+    </div>
+    <div class="wallet__invite-score">
+       <p class="wallet__invite-text wallet__invite-text_sub">
+          Приглашено игроков - 1
+       </p>
+    </div>               
+ </div>
+    `;
+    return popUpHtml;
+  }
+
+  
+
   // balance() {
   //   let charts: { config: { data: { labels: any[]; datasets: { data: any[]; }[]; }; options: { scales: { x: { min: number; max: number; }; }; }; }; update: () => void; };
   //   let pauseMode = false;
@@ -573,15 +645,21 @@ function getCookie(cname:any) {
 
 let name = getCookie("name");
 let id = getCookie("id");
-let token = getCookie("token");
-console.log(name, id, token);
+// let token = getCookie("token");
+console.log(name, id, );
 
 
 let infoWallet: any = {
   id: id,
   nickname: name,
-  balance: sumHistory,
+  // balance: sumHistory,
 };
+const getBio = await request(
+  "https://battle-star-app.onrender.com/graphql",
+  GetMyFriends,
+  { id: id }
+);
+console.log(getBio);
 new Wallet(".wallet__top", infoWallet);
 // new WalletHistory(".table__tab", infoWallet);
 

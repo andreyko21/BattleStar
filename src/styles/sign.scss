@@ -7,18 +7,17 @@
 // }
 
 .wrapper {
-   // display: grid;
-   // grid-template:
-   //    "sidebar header"
-   //    "sidebar main" auto/min-content auto;
-   // min-height: 0%;
-   // overflow: clip;
-   // max-height: 100vh;
+   overflow: hidden;
+   height: 100vh;
 }
 .page {
+flex: 1 1 auto;
+}
+.page-sign{
    width: 100%;
-   grid-area: main;
-   // overflow: auto;
+   height: 100%;
+   overflow: auto;
+   grid-area: main; 
 }
 
 .sign {
@@ -27,8 +26,10 @@
       url(../images/sign.webp) no-repeat center/cover;
    height: 100vh;
 
+
    &__container {
       padding: 62px 0 0 50px;
+
    }
    &__content {
       max-width: 677px;
@@ -36,11 +37,7 @@
       background: $gray550;
       backdrop-filter: blur(30px);
       padding: 41px 101px 44px;
-      // display: flex;
-      // flex-direction: column;
-      // align-items: center;
-      // position: relative;
-      // z-index: -1;
+
    }
 
    &__logo {

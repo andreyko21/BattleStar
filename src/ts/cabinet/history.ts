@@ -135,12 +135,12 @@ export class History   {
   
 }
 
-// const getLobby = await request(
-//   "https://battle-star-app.onrender.com/graphql",
-//   GetLobbyInfoId,
-//   // { id: this.lobbyId}
-// );
-// console.log(getLobby);
+const getLobby = await request(
+  "https://battle-star-app.onrender.com/graphql",
+  GetLobbyInfoId,
+  { id: 40}
+);
+console.log(getLobby);
 
 // let infoHistory: any[] =  [
 // {

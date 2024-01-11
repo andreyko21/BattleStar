@@ -1,31 +1,28 @@
 import { request } from 'graphql-request';
-//@ts-ignore напишіть
+//@ts-ignore
 import JustValidate from 'just-validate';
-import { CreateCsLobbies } from '../../../queries.graphql.d';
-import type { CreatorDataForLobby } from '../types'; //QueryParamsOfCreateCsLobby
-//import { Creator } from './creator';
+import { CreateDota2Lobby } from '../../../../queries.graphql.d';
+import { CreatorDataForLobby } from '../../types';
 
-class CreatingCsLobby {
+class CreatingDotaLobby {
   public validation: JustValidate;
   private form: HTMLFormElement | null;
   private creatorData: CreatorDataForLobby;
   private params: any = {
     title: null,
     creator: null,
-    map: null,
+    typeLobby: null,
     rate: null,
-    gameMode: null,
+    gameMode: [null],
     participant: [],
     ping: 23,
     antyCheat: true,
-    publishedAt: new Date(Date.now()),
   };
 
   constructor(formId: string, creatorData: CreatorDataForLobby) {
     this.form = document.querySelector(`#${formId}`);
     this.validation = new JustValidate('#create-content', {
       validateBeforeSubmitting: true,
-      //focusInvalidField: false,
     });
 
     if (!this.form) {
@@ -37,23 +34,19 @@ class CreatingCsLobby {
   }
 
   sendRequest() {
-    this.getMapData();
+    // this.getMapData();
     this.getRateData();
     this.getGameModeData();
+    this.getTypeLobbyData();
     this.getTiteData();
     this.getAntyCheatData();
     this.getPingData();
     this.getCreatorData();
     this.getParticipanstData();
-    // this.form?.addEventListener('submit', (e) => {
-    //   //e.preventDefault();
-
-    //   //this.createRequest();
 
     if (this.validation.isValid) {
       this.createRequest();
     }
-    // });
   }
 
   //  getCookie(name: string) {
@@ -67,14 +60,14 @@ class CreatingCsLobby {
     const ENDPOINT = 'https://battle-star-app.onrender.com/graphql';
 
     try {
-      const response = await request(ENDPOINT, CreateCsLobbies, this.params, {
+      const response = await request(ENDPOINT, CreateDota2Lobby, this.params, {
         Authorization:
           'Bearer 9c9bf4554f3ecfed253aca7329b2c46511bf3c9b58d2b9a865d9998c75062aab17b1ad96c3c5d878b4aac951441353b066b95b7b20fbd4f31c5466fe8d2479b775f1a398d92e53cfa2e89141d61ee1f32b4850a2daaaebbcf75d3a510bc7e2a3e8613f71c4c84bf7e109f00e2629c12aae3a372fc954fe4de327f478d6857912',
       });
 
       if (response) {
         window.location.assign(
-          `lobby.html?game=dota2&id=${response.createCsLobby?.data?.id}`
+          `lobby.html?game=dota2&id=${response.createDota2Lobby?.data?.id}`
         );
       }
     } catch (error) {
@@ -82,18 +75,18 @@ class CreatingCsLobby {
     }
   }
 
-  private getMapData(): void {
-    const allMapsInputs = this.form?.querySelectorAll(
-      "input[name='map-selected']"
-    );
+  //  private getMapData(): void {
+  //    const allMapsInputs = this.form?.querySelectorAll(
+  //      "input[name='map-selected']"
+  //    );
 
-    allMapsInputs?.forEach((elem) => {
-      const mapInput: HTMLInputElement = elem as HTMLInputElement;
-      if (mapInput.checked) {
-        this.params.map = mapInput.value;
-      }
-    });
-  }
+  //    allMapsInputs?.forEach((elem) => {
+  //      const mapInput: HTMLInputElement = elem as HTMLInputElement;
+  //      if (mapInput.checked) {
+  //        this.params.map = mapInput.value;
+  //      }
+  //    });
+  //  }
   private getRateData(): void {
     const allRatesInputs = this.form?.querySelectorAll(
       "input[name='rate-selected']"
@@ -128,7 +121,20 @@ class CreatingCsLobby {
     allGameModeInputs?.forEach((elem) => {
       const gameModeInput: HTMLInputElement = elem as HTMLInputElement;
       if (gameModeInput.checked) {
-        this.params.gameMode = gameModeInput.value;
+        this.params.gameMode = [gameModeInput.value];
+      }
+    });
+  }
+
+  private getTypeLobbyData(): void {
+    const allTypeLobbyInputs = this.form?.querySelectorAll(
+      "input[name='typeLobby-selected']"
+    );
+
+    allTypeLobbyInputs?.forEach((elem) => {
+      const gameModeInput: HTMLInputElement = elem as HTMLInputElement;
+      if (gameModeInput.checked) {
+        this.params.typeLobby = gameModeInput.value;
       }
     });
   }
@@ -192,9 +198,10 @@ class CreatingCsLobby {
         },
       ])
       .onSuccess(() => {
+        console.log(this.validation.isValid);
         this.sendRequest();
       });
   }
 }
 
-export { CreatingCsLobby };
+export { CreatingDotaLobby };

@@ -4,13 +4,14 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=1920"/>
+   <link rel="icon" type="image/svg+xml" href="/Fav.ico" />
    <link rel="stylesheet" href="src/styles/wallet.scss">
    <title>Personal</title>
 </head>
 
 <body>
    <div id="wrapper" class="wrapper">
-
       <main class="page">
          <section class="wallet">
             <div class="wallet__bg"></div>
@@ -110,7 +111,7 @@
                               <use xlink:href="src/images/sprite.svg#rigth-arrow"></use>
                            </svg>
                            <svg>
-                              <use xlink:href="src/images/sprite.svg#friend"></use>
+                              <use xlink:href="src/images/sprite.svg#people"></use>
                            </svg>
                         </div>
                         <button class="transaction__select-user">
@@ -150,8 +151,6 @@
                            <li class="transaction__dropdown-item"><img src="./src/images/avatar7.png" alt="avatar"> Alex</li>
 
                         </ul>
-
-
                      </div>
                   </div>
                   <div class="transaction__sum">
@@ -178,14 +177,18 @@
 
 
                </div>
+
+               
+            </div>
+
          </section>
          <section>
-            
+
          </section>
       </main>
    </div>
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   <script type="module" src="./src/ts/cabinet/wallet.ts"></script>
+   <script type="module" src="./src/ts/cabinet/walletNew.ts"></script>
 </body>
 
 </html>

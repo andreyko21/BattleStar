@@ -8,11 +8,16 @@
 @import "./components/ui/tour.scss";
 @import "./components/tabs.scss";
 // @import "./libs/swiper.scss";
-
+.wrapper {
+  overflow: hidden;
+  height: 100vh;
+}
 .page {
-  // flex: 1 1 auto;
+  flex: 1 1 auto;
   width: 100%;
-  grid-area: main;
+  height: 100%;
+  overflow: auto;
+  grid-area: main; 
 }
 .banner {
   &__bg {
@@ -141,6 +146,7 @@
     height: 653px;
     background: $gray800;
     padding: 22px 24px 21px 51px;
+    backdrop-filter: blur(5px);
     &-tabs .tabs-block__tab {
       width: 100%;
     }
@@ -201,6 +207,7 @@
     &-row {
       display: flex;
       align-items: center;
+
     }
     &-number {
       background: $gradient300;
@@ -364,6 +371,7 @@
     height: 1105px;
     padding-right: 5px;
     &-item {
+
       width: 693px;
       background: $gray800;
     }
@@ -389,7 +397,7 @@
     &-logo {
       width: 27px;
       height: 21px;
-      background: $gray400;
+     object-fit: contain;
     }
     &-name,
     &-vs {
@@ -425,9 +433,14 @@
         margin-bottom: 6px;
       }
     }
-    &-teams {
+    &-item{
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+    }
+    &-teams {
+      // // display: flex;
+      // justify-content: space-between;
+      width: fit-content;
     }
     &-row {
       display: flex;
@@ -444,7 +457,7 @@
     &-logo {
       width: 58px;
       height: 52px;
-      background: $gray800;
+      object-fit: contain;
     }
 
     &-name {

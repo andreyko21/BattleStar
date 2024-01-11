@@ -18,12 +18,13 @@ import { Card } from "./../component/card";
 import { cardNews } from "./components/card";
 import { playersCs } from "./components/playersCs";
 import { playersDota } from "./components/playersDota";
+import { teams } from "./components/teams";
 import { TopPlayersCs, TopPlayersDota } from "./topPlayers";
 import { MainNews } from "./mainNews";
 import { mainNews } from "./components/mainNews";
 import { sliderTeams } from "./components/sliderTeam";
 import { Slider } from "./../component/slider";
-import { Map } from "./team";
+import { Map, TeamSideA, TeamSideB } from "./team";
 
 new Header("#wrapper");
 new AppSidebar("wrapper", "ГЛАВНАЯ");
@@ -46,11 +47,12 @@ type MainType = {
 
 class Main implements MainType {
   playerNumber: JQuery<HTMLParagraphElement>;
+  infoTeams: JQuery<HTMLDivElement>;
 
   constructor() {
-    this.playerNumber = $(
-      ".news__rating-number"
-    ) as JQuery<HTMLParagraphElement>;
+    this.playerNumber = $(".news__rating-number") ;
+    this.infoTeams =  $('.game__info-teams')
+    console.log(this.infoTeams);
 
     this.init();
   }
@@ -64,6 +66,7 @@ class Main implements MainType {
     this.renderTopPlayersCs();
     this.renderTopPlayersDota();
     this.renderSliderTeams();
+    // this.renderTeams();
   }
 
   bannerSwiper() {
@@ -137,11 +140,12 @@ class Main implements MainType {
         "https://battle-star-app.onrender.com/graphql",
         GetTopPlayer
       );
+      console.log(getTopPlayers);
 
       const newsTopPlayers =
         getTopPlayers.topPlayers?.data[0]?.attributes?.cs ?? "Error";
       if (Array.isArray(newsTopPlayers)) {
-        const cardArr: any = newsTopPlayers.map((card) => ({ 
+        const cardArr: any = newsTopPlayers.map((card) => ({
           avatar: card?.avatar?.data[0].attributes?.url,
           nickname: card?.nikcname,
           rating: card?.rating,
@@ -150,7 +154,7 @@ class Main implements MainType {
 
         cardArr.sort((a: any, b: any) => b.rating - a.rating);
 
-        new TopPlayersCs(".rating__cs", cardArr);
+        new TopPlayersCs(".rating__cs", cardArr[1]);
       } else {
         throw new Error("newsTopPlayers is not an array");
       }
@@ -177,7 +181,7 @@ class Main implements MainType {
         }));
 
         cardArr.sort((a: any, b: any) => b.rating - a.rating);
-        new TopPlayersDota(".rating__dota", cardArr);
+        new TopPlayersDota(".rating__dota", cardArr[0] || cardArr[1]);
       } else {
         throw new Error("newsTopPlayers is not an array");
       }
@@ -213,7 +217,7 @@ class Main implements MainType {
   }
 
   renderSliderTeams() {
-    new Slider(".tour", sliderTeams);
+    new Slider(".tour", sliderTeams );
   }
   async renderMap() {
     const map = await request(
@@ -232,5 +236,19 @@ class Main implements MainType {
       new Map(".game__column", mapArr);
     }
   }
+
+  // renderTeams() {
+
+  //   const teamsDivision = teams.reduce((acc: any[][], item: any, index: number) => {
+  //     if (index % 8 === 0) {
+  //       acc.push([]);
+  //     }
+  //     acc[acc.length - 1].push(item);
+  //     return acc;
+  //   },[]); 
+  //   // console.log(teamsDivision);
+  //   new TeamSideA(".game__info-item", teamsDivision[0]);
+  //   new TeamSideB(".game__info-item", teamsDivision[1]);
+  // }
 }
 new Main();

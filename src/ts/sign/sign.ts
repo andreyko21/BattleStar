@@ -4,6 +4,7 @@ import { BaseTabs } from "../component/tabs.ts";
 import { LavaLamp } from "../component/lava-lamp.ts";
 import { Header } from "../component/header/header";
 import { request } from "graphql-request";
+
 import  'jquery-validation';
 
 
@@ -94,11 +95,16 @@ class Sign implements SignType {
   
 
   singInBtn() {
+    const context = this;
     $("#sign-in").on("click", (e) => {
       e.preventDefault();
-      const isValid = this.signIn.val();
-      if(isValid) {
-        this.authenticateUser();
+      const formIn:any = $(context.signIn); 
+      
+      if(formIn.valid()) {
+        console.log("valid");
+        context.authenticateUser();
+      }else{
+        console.log("not valid");
       }
       
     });
@@ -146,7 +152,7 @@ class Sign implements SignType {
         const userId = response.data.user.id;
         const publishedAtDate = new Date(); 
         const publishedAt = publishedAtDate.toISOString();
- 
+
         const mutation = `
         mutation CreatePlayer($id: ID, $publishedAt: DateTime!) {
           createPlayer(data: {
@@ -155,7 +161,7 @@ class Sign implements SignType {
           }) {
             data {
               attributes {
-                publishedAt
+                publishedAt            
                 user {
                   data {
                     id
@@ -165,7 +171,6 @@ class Sign implements SignType {
             }
           }
         }
-        
         `;
 
         try {
@@ -180,7 +185,9 @@ class Sign implements SignType {
         } catch (error) {
           console.error("GraphQL Mutation Error:", error);
         }
+      console.log(response)
       })
+
       .catch((error) => {
         console.log("An error occurred:", error.response);
         let errorMessage = error.response.data.error.details.message || "An error occurred";
@@ -194,6 +201,7 @@ class Sign implements SignType {
           alert(errorAlert);
       });
   }
+  
   showPassword() {
     $(".form__signin-password svg").each(function () {
       $(this).on("click", function () {
@@ -244,7 +252,7 @@ class Sign implements SignType {
       rules: {
         nickname: {
           required: true,
-          cyrillicEmail: true,
+          // cyrillicEmail: true,
         },
         password: {
           required: true,

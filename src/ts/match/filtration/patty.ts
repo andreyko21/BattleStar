@@ -48,7 +48,7 @@ class Patty {
       <div
         class="patty__empty-block patty__empty-block_left"
       ></div>
-      <div class="patty__rating">Ранг: ${this.curentPlayer.csGoRank}</div>
+      <div class="patty__rating">Ранг: ${this.curentPlayer.csGoRank ?? 0}</div>
       <div class="patty__empty-block patty__empty-block_right">
       </div>`;
 

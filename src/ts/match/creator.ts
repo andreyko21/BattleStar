@@ -30,6 +30,7 @@ class Creator {
         );
         return userInfo2;
       } else {
+        window.location.href = '/sign.html';
         console.error('Token is null or undefined');
       }
     } catch (error) {

@@ -1,4 +1,4 @@
-import{$ as m}from"./jquery-e7e79cb6.js";import{H as c,g as r,F as l,I as n,r as g}from"./header-f05d9198.js";import{A as p}from"./sidebar-1d496e08.js";class o{id;attributes;constructor(a){this.id=a.id||"",this.attributes=a.attributes||{}}getTemplate(){const a=this.attributes.Team||{};let t="";return(this.attributes.awards?.data||[]).forEach(e=>{t+=`<img class="team-item__award-img" src="${e.attributes.logo.data[0].attributes.url}" alt="award">`}),`<a href="/team.html?id=${this.id}" class="teams-list__team-item team-item">
+import{$ as c}from"./jquery-e7e79cb6.js";import{S as s,H as l,g as m,F as n,I as o,r as p}from"./header-f05d9198.js";import{A as _}from"./sidebar-1d496e08.js";class d{id;attributes;constructor(a){this.id=a.id||"",this.attributes=a.attributes||{}}getTemplate(){const a=this.attributes.Team||{};let t="";return(this.attributes.awards?.data||[]).forEach(i=>{t+=`<img class="team-item__award-img" src="${i.attributes.logo.data[0].attributes.url}" alt="award">`}),`<a href="/team.html?id=${this.id}" class="teams-list__team-item team-item">
       <div class="team-item__img-block">
         <img class="team-item__img" src="${a.logo?.data.attributes.url}" alt="${a.logo?.data.attributes.alternativeText||"logo"}">
       </div>
@@ -8,7 +8,7 @@ import{$ as m}from"./jquery-e7e79cb6.js";import{H as c,g as r,F as l,I as n,r as
       <p class="team-item__info team-item__earned">${a.earned||0}</p>
       <p class="team-item__info team-item__participants">${this.attributes.players?.data.length||0}/15</p>
       <div class="team-item__awards">${t}</div>
-    </a>`}getItemTemplate(){const a=this.attributes.Team[0]||{};let t="";return(this.attributes.awards?.data||[]).forEach(e=>{t+=`<img class="team-item__award-img" src="${e.attributes.logo.data[0].attributes.url}" alt="award">`}),`
+    </a>`}getItemTemplate(){const a=this.attributes.Team[0]||{};let t="";return(this.attributes.awards?.data||[]).forEach(i=>{t+=`<img class="team-item__award-img" src="${i.attributes.logo.data[0].attributes.url}" alt="award">`}),`
       <div class="team-page__container">
         <div class="team-page__avatar">
           <img class="team-page__avatar-background" src="${a.logo?.data.attributes.url}" alt="${a.logo?.data.attributes.alternativeText||"logo"}" />
@@ -24,7 +24,7 @@ import{$ as m}from"./jquery-e7e79cb6.js";import{H as c,g as r,F as l,I as n,r as
         <div class="team-page__stats">
                       <div class="team-page__stats-info-item stats-info-item">
               <svg class="stats-info-item__icon">
-                <use class="cup" xlink:href="src/images/sprite.svg#cup"></use>
+                <use class="cup" xlink:href="${s}#cup"></use>
               </svg>
               <h2 class="stats-info-item__title">${a.victories_in_tournaments||0} победы</h2>
               <p class="stats-info-item__description">в турнирах</p>
@@ -34,7 +34,7 @@ import{$ as m}from"./jquery-e7e79cb6.js";import{H as c,g as r,F as l,I as n,r as
               <svg class="stats-info-item__icon">
                 <use
                   class="money"
-                  xlink:href="src/images/sprite.svg#money"
+                  xlink:href="${s}#money"
                 ></use>
               </svg>
               <h2 class="stats-info-item__title">${a.earned} BS</h2>
@@ -44,7 +44,7 @@ import{$ as m}from"./jquery-e7e79cb6.js";import{H as c,g as r,F as l,I as n,r as
               <svg class="stats-info-item__icon">
                 <use
                   class="controller"
-                  xlink:href="src/images/sprite.svg#controller"
+                  xlink:href="${s}#controller"
                 ></use>
               </svg>
               <h2 class="stats-info-item__title">${a.matches_played|0} матчей</h2>
@@ -54,7 +54,7 @@ import{$ as m}from"./jquery-e7e79cb6.js";import{H as c,g as r,F as l,I as n,r as
               <svg class="stats-info-item__icon">
                 <use
                   class="people"
-                  xlink:href="src/images/sprite.svg#people"
+                  xlink:href="${s}#people"
                 ></use>
               </svg>
               <h2 class="stats-info-item__title">${this.attributes.players.data.length}/15</h2>
@@ -97,7 +97,7 @@ import{$ as m}from"./jquery-e7e79cb6.js";import{H as c,g as r,F as l,I as n,r as
             </div>
             <button class="team-page__participants-button">
               <svg class="stats-info-item__icon">
-                <use xlink:href="src/images/sprite.svg#arrow-left"></use>
+                <use xlink:href="${s}#arrow-left"></use>
               </svg>
             </button>
             <p class="team-page__participants-rank">Ранг: 1320</p>
@@ -111,4 +111,4 @@ import{$ as m}from"./jquery-e7e79cb6.js";import{H as c,g as r,F as l,I as n,r as
             </button>
 
         </div>
-      </div>`}}class _{header;teamData;sidebar;teamId;game;constructor(a,t,s){this.header=new c(a),this.sidebar=new p(t,s),this.teamId=r("id")||"",this.game=r("game")||""}async init(){try{if(!this.teamId)throw new Error("Team ID is not specified in the URL");const a=this.game==="dota2"?l:n;if(this.teamData=await g("https://battle-star-app.onrender.com/graphql",a,{id:this.teamId}),!this.teamData||!this.teamData[`${this.game}Team`]?.data&&!this.teamData.cs2Team.data){window.location.href="/teams.html";return}const t=new o(this.teamData[`${this.game}Team`]?.data||this.teamData.cs2Team.data);m(".team-page").append(t.getItemTemplate())}catch(a){console.error(a)}}}m(document).ready(()=>{new _("#wrapper","wrapper","КОМАНДЫ").init()});
+      </div>`}}class g{header;teamData;sidebar;teamId;game;constructor(a,t,e){this.header=new l(a),this.sidebar=new _(t,e),this.teamId=m("id")||"",this.game=m("game")||""}async init(){try{if(!this.teamId)throw new Error("Team ID is not specified in the URL");const a=this.game==="dota2"?n:o;if(this.teamData=await p("https://battle-star-app.onrender.com/graphql",a,{id:this.teamId}),!this.teamData||!this.teamData[`${this.game}Team`]?.data&&!this.teamData.cs2Team.data){window.location.href="/teams.html";return}const t=new d(this.teamData[`${this.game}Team`]?.data||this.teamData.cs2Team.data);c(".team-page").append(t.getItemTemplate())}catch(a){console.error(a)}}}c(document).ready(()=>{new g("#wrapper","wrapper","КОМАНДЫ").init()});

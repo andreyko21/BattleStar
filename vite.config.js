@@ -10,12 +10,12 @@ import typedGraphQL from "vite-plugin-typed-graphql";
 const pagesInput = {};
 
 pages.forEach((page) => {
-   pagesInput[page.name] = page.path;
+  pagesInput[page.name] = page.path;
 });
 
 export default defineConfig({
   build: {
-    target: "es2022", //Змінив Максим з es2017
+    target: "es2022",
     outDir: "build",
     rollupOptions: {
       input: {

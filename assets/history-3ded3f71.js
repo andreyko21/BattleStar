@@ -1,4 +1,4 @@
-import{$ as e}from"./jquery-e7e79cb6.js";import{H as c}from"./header-6881e6b7.js";import{A as f}from"./sidebar-01266bb8.js";import{A as _}from"./asideMenu-3b28381d.js";new _;new c("#wrapper");new f("wrapper","");class h{content;history;filterSelect;tableRows;constructor(i,r){this.content=i,this.history=r,this.filterSelect=e("#filter"),this.tableRows=e(".table__tr"),this.renderHistory()}renderHistory(){const i=this.history.map(t=>`
+import{$ as e}from"./jquery-e7e79cb6.js";import{H as c}from"./header-f05d9198.js";import{A as f}from"./sidebar-1d496e08.js";import{A as _}from"./asideMenu-3b28381d.js";new _;new c("#wrapper");new f("wrapper","");class h{content;history;filterSelect;tableRows;constructor(i,r){this.content=i,this.history=r,this.filterSelect=e("#filter"),this.tableRows=e(".table__tr"),this.renderHistory()}renderHistory(){const i=this.history.map(t=>`
             <tr class="table__tr">
               <td class="table__name">${t.name}</td>
               <td class="table__data">${t.data}</td>

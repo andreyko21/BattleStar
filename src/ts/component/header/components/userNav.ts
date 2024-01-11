@@ -234,6 +234,9 @@ class UserHeader {
       e.stopPropagation();
     });
 
+    const exitButton = this.container.find(".dropdown__account-exit button");
+    exitButton.on("click", this.handleLogout.bind(this));
+
     $(document).on("click", (e) => {
       if (
         !dropdown.is(e.target as unknown as Element) &&
@@ -260,6 +263,16 @@ class UserHeader {
         messagesDropdown.addClass("dropdown__messages_hide");
       }
     });
+  }
+
+  private handleLogout(): void {
+    this.deleteCookie("token"); // Припускаючи, що назва вашого куки токена - "token"
+    window.location.href = "/sign.html"; // Перенаправлення на сторінку входу
+  }
+
+  private deleteCookie(name: string): void {
+    document.cookie =
+      name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
   }
 }
 

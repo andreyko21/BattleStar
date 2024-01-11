@@ -4,12 +4,13 @@ import Sprite from "./../../../images/sprite.svg";
 import { TabsCreate } from "../../component/tabs-create";
 import { BaseTabs } from "../../component/tabs";
 import { LavaLamp } from "../../component/lava-lamp";
-import UserAvatar from "./../../../images/user-page/avatar.png";
+import UserAvatar from "./../../../images/chat/default-avatar.png";
 import AwardImg from "./../../../images/user-page/award.svg";
 import { Header } from "../../component/header/header";
 import { AppSidebar } from "../../component/sidebar/sidebar";
 import { GetUserInfo } from "../../../../queries.graphql.d";
 import request from "graphql-request";
+import { getLocateParam } from "../../functions/windowLocation";
 
 interface IStatisticsCSRating {
   rang: number;
@@ -394,18 +395,18 @@ class FriendPage {
         <div class="user-section__navigation-block">
           <button class="user-section__navigation-block-relationships-button">
             <svg class="user-section__navigation-block-relationships-button-icon">
-              <use xlink:href="src/images/sprite.svg#addUser"></use>
+              <use xlink:href="${Sprite}#addUser"></use>
             </svg>
             Добавить в друзья
           </button>
           <button class="user-section__navigation-block-message-button">
             <svg class="user-section__navigation-block-message-button-icon">
-              <use xlink:href="src/images/sprite.svg#message"></use>
+              <use xlink:href="${Sprite}#message"></use>
             </svg>
           </button>
           <button class="user-section__navigation-block-more-button">
             <svg class="user-section__navigation-block-more-button-icon">
-              <use xlink:href="src/images/sprite.svg#more"></use>
+              <use xlink:href="${Sprite}#more"></use>
             </svg>
           </button>
         </div>
@@ -555,7 +556,7 @@ class FriendPage {
       <button class="teams-info-block__more-teams-button">
         Развернуть
         <svg class="teams-info-block__more-teams-button-icon">
-          <use xlink:href="src/images/sprite.svg#arrow-down"></use>
+          <use xlink:href="${Sprite}#arrow-down"></use>
         </svg>
       </button>`;
   }
@@ -601,15 +602,19 @@ $(document).ready(async () => {
   try {
     const res = (await getRequest(
       GetUserInfo,
-      { id: 43 },
+      {},
       "token",
-      "http://localhost:1337/graphql"
+      "https://battle-star-app.onrender.com/graphql"
     )) as any;
+
+    if (!res.usersPermissionsUser.data) {
+      window.location.href = "/friends.html?filters=search";
+    }
 
     const userData = res.usersPermissionsUser.data.attributes;
 
     const user = {
-      avatar: userData.avatar.data
+      avatar: userData.avatar?.data
         ? userData.avatar.data.attributes.url
         : UserAvatar,
       name: userData.username,
@@ -619,43 +624,61 @@ $(document).ready(async () => {
     };
 
     const friendsData = {
-      online: userData.my_friends.data.map(
-        (friend: {
-          attributes: {
-            online_status: any;
-            avatar: { data: { attributes: { url: any } } };
-            username: any;
-          };
-        }) => ({
-          onlineStatus: friend.attributes.online_status ? "online" : "offline",
-          avatar: friend.attributes.avatar.data
-            ? friend.attributes.avatar.data.attributes.url
-            : UserAvatar,
-          name: friend.attributes.username,
-          status: "Status unknown",
-        })
-      ),
-      all: [],
+      online: userData.my_friends?.data
+        ? userData.my_friends.data
+            .filter(
+              (friend: { attributes: { online_status: any } }) =>
+                friend.attributes.online_status
+            )
+            .map((friend: any) => createFriendObject(friend))
+        : [],
+      all: userData.my_friends?.data
+        ? userData.my_friends.data.map((friend: any) =>
+            createFriendObject(friend)
+          )
+        : [],
     };
 
-    const dotaTeams = userData.player.data.attributes.dota_2_teams.data.map(
-      (teamData: {
-        attributes: { Team: any[]; players: { data: string | any[] } };
-      }) => {
-        const team = teamData.attributes.Team[0];
-        return {
-          link: "#",
-          avatar: team.logo.data.attributes.url,
-          name: team.name,
-          rating: team.rating,
-          tournaments: team.victories_in_tournaments || 0,
-          earned: team.earned,
-          members: teamData.attributes.players.data.length,
-          award: AwardImg,
-        };
-      }
-    );
+    function createFriendObject(friend: {
+      attributes: {
+        online_status: any;
+        avatar: { data: { attributes: { url: any } } };
+        username: any;
+      };
+    }) {
+      return {
+        onlineStatus: getOnlineStatus(friend.attributes.online_status),
+        avatar: friend.attributes.avatar?.data
+          ? friend.attributes.avatar.data.attributes.url
+          : UserAvatar,
+        name: friend.attributes.username,
+        status: "Offline",
+      };
+    }
 
+    function getOnlineStatus(status: any) {
+      return status ? "online" : "offline";
+    }
+
+    const dotaTeams = userData.player?.data?.attributes?.dota_2_teams?.data
+      ? userData.player.data.attributes.dota_2_teams.data.map(
+          (teamData: {
+            attributes: { Team: any[]; players: { data: string | any[] } };
+          }) => {
+            const team = teamData.attributes.Team[0];
+            return {
+              link: "#",
+              avatar: team.logo?.data?.attributes?.url,
+              name: team.name,
+              rating: team.rating,
+              tournaments: team.victories_in_tournaments || 0,
+              earned: team.earned,
+              members: teamData.attributes.players?.data?.length || 0,
+              award: AwardImg,
+            };
+          }
+        )
+      : [];
     new FriendPage(".page__container", user, friendsData, dotaTeams);
 
     new TabsCreate("main-statistics", "user-page__filters", [
@@ -701,7 +724,17 @@ async function getRequest<T>(
     return Promise.reject(new Error("No token found"));
   }
 
-  return request(endpoint, query, paramsObject, {
-    Authorization: `Bearer ${token}`,
-  });
+  const userId = getLocateParam("id");
+  if (!userId) {
+    return Promise.reject(new Error("User ID not found"));
+  }
+
+  return request(
+    endpoint,
+    query,
+    { ...paramsObject, id: userId },
+    {
+      Authorization: `Bearer ${token}`,
+    }
+  );
 }

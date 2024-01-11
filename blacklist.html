@@ -4,132 +4,20 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=1920" />
+   <link rel="icon" type="image/svg+xml" href="/assets/Fav-31aa7ba9.ico" />
    
    <title>Statistics</title>
-  <script type="module" crossorigin src="/assets/jquery-e7e79cb6.js"></script>
-  <script type="module" crossorigin src="/assets/auto-f06b4c5b.js"></script>
-  <script type="module" crossorigin src="/assets/header-fd6cb8f8.js"></script>
-  <script type="module" crossorigin src="/assets/tabs-create-b6236109.js"></script>
-  <script type="module" crossorigin src="/assets/tabs-9af9593e.js"></script>
-  <script type="module" crossorigin src="/assets/lava-lamp-63313dfc.js"></script>
-  <script type="module" crossorigin src="/assets/sidebar-8f810a63.js"></script>
-  <script type="module" crossorigin src="/assets/asideMenu-3b28381d.js"></script>
-  <script type="module" crossorigin src="/assets/statistics-645f094d.js"></script>
-  <link rel="stylesheet" href="/assets/blacklist-414f0f1d.css">
+  <script type="module" crossorigin src="/assets/blacklist-9f532cf4.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/jquery-62de4648.js">
+  <link rel="modulepreload" crossorigin href="/assets/asideMenu-0e310de3.js">
+  <link rel="modulepreload" crossorigin href="/assets/header-fb3b444a.js">
+  <link rel="modulepreload" crossorigin href="/assets/sidebar-6eae4002.js">
+  <link rel="stylesheet" href="/assets/blacklist-8cf29688.css">
 </head>
 
 <body>
-   <div class="wrapper">
-      <header class="header">
-  <div class="header__select-game">
-    <div class="dropdown__game">
-  <!-- <div class="dropdown__game-select">
-      <div class="dropdown__game-current">
-         <img class="dropdown__game-img" src="src/images/csGo.webp" alt="">
-         <p class="dropdown__game-name">CS:GO</p>
-      </div>
-      <div class="dropdown__game-arrow">
-         <svg>
-            <use xlink:href="src/images/sprite.svg#arrow-game"></use>
-         </svg>
-      </div>
-      <ul class="dropdown__game-list">
-         <li class="dropdown__game-item"><img class="dropdown__game-icon" src="src/images/csGo.webp" alt="">Counter Strike: Global Offensive</li>
-         <li class="dropdown__game-item"><img class="dropdown__game-icon" src="src/images/dota.webp" alt="">DOTA 2</li>
-      </ul>
-   </div> -->
-</div>
-
-  </div>
-
-  <label for="headerSearch" class="header__search-block">
-    <svg class="header__search-block-icon">
-      <use xlink:href="/assets/sprite-3f4ad247.svg#search"></use>
-    </svg>
-    <input
-      class="header__search-block-input"
-      id="headerSearch"
-      type="text"
-      placeholder="Поиск"
-    />
-  </label>
-  <div class="header__balance">
-    <h2 class="header__balance-title">Баланс</h2>
-    <button class="header__balance-button">
-      <svg class="header__balance-button-icon">
-        <use xlink:href="/assets/sprite-3f4ad247.svg#plus-box"></use>
-      </svg>
-    </button>
-    <div class="header__balance-value">15600 BS</div>
-  </div>
-  <div class="header__messages">
-    <button class="header__messages-button">
-      <svg class="header__messages-button-icon">
-        <use xlink:href="/assets/sprite-3f4ad247.svg#message"></use>
-      </svg>
-    </button>
-  </div>
-  <div class="header__notification">
-    <button class="header__notification-button">
-      <svg class="header__notification-button-icon">
-        <use xlink:href="/assets/sprite-3f4ad247.svg#bell"></use>
-      </svg>
-    </button>
-  </div>
-  <div class="header__user-navigation">
-    <div class="header__user">
-      <div class="header__user-info">
-        <p class="header__user-info-name">Sergio Richter</p>
-      </div>
-      <button class="header__user-info-button">
-        <svg>
-          <use xlink:href="/assets/sprite-3f4ad247.svg#arrow-down"></use>
-        </svg>
-      </button>
-    </div>
-  </div>
-</header>
-
-      <div class="sidebar">
-  <a class="sidebar__logo" href="/index">
-    <svg class="sidebar__logo">
-      <use xlink:href="/assets/sprite-3f4ad247.svg#logo"></use>
-    </svg>
-  </a>
-  <nav class="sidebar__nav">
-    <a href="" class="sidebar__nav-item sidebar__nav-item_active">
-      <svg class="sidebar__nav-item-icon">
-        <use xlink:href="/assets/sprite-3f4ad247.svg#newspaper"></use>
-      </svg>
-      <span class="sidebar__nav-item-text">ГЛАВНАЯ</span>
-    </a>
-    <a href="/index.html" class="sidebar__nav-item">
-      <svg class="sidebar__nav-item-icon">
-        <use xlink:href="/assets/sprite-3f4ad247.svg#controller"></use>
-      </svg>
-      <span class="sidebar__nav-item-text">МАТЧИ</span>
-    </a>
-    <a href="/tournaments.html" class="sidebar__nav-item">
-      <svg class="sidebar__nav-item-icon">
-        <use xlink:href="/assets/sprite-3f4ad247.svg#cup"></use>
-      </svg>
-      <span class="sidebar__nav-item-text">ТУРНИРЫ</span>
-    </a>
-    <a href="/teams.html" class="sidebar__nav-item">
-      <svg class="sidebar__nav-item-icon">
-        <use xlink:href="/assets/sprite-3f4ad247.svg#people"></use>
-      </svg>
-      <span class="sidebar__nav-item-text">КОМАНДЫ</span>
-    </a>
-    <a href="/friends.html" class="sidebar__nav-item">
-      <svg class="sidebar__nav-item-icon">
-        <use xlink:href="/assets/sprite-3f4ad247.svg#person"></use>
-      </svg>
-      <span class="sidebar__nav-item-text">ДРУЗЬЯ</span>
-    </a>
-  </nav>
-</div>
-
+   <div id="wrapper" class="wrapper">
       <main class="page">
          <section class="blacklist">
             <div class="blacklist__bg"></div>
@@ -139,50 +27,56 @@
    <nav class="menu__body">
       <a class="menu__link" href="statistics.html">Статистика
          <svg>
-            <use xlink:href="/assets/sprite-3f4ad247.svg#static"></use>
+            <use xlink:href="/assets/sprite-08b2025d.svg#static"></use>
          </svg>
       </a>
       <a class="menu__link" href="history.html">История матчей
          <svg>
-            <use xlink:href="/assets/sprite-3f4ad247.svg#history-matches"></use>
+            <use xlink:href="/assets/sprite-08b2025d.svg#history-matches"></use>
          </svg>
       </a>
       <a  class="menu__link" href="personal.html">Личные данные
          <svg>
-            <use xlink:href="/assets/sprite-3f4ad247.svg#account"></use>
+            <use xlink:href="/assets/sprite-08b2025d.svg#account"></use>
          </svg>
       </a>
       <a  class="menu__link" href="wallet.html">Кошелёк
          <svg>
-            <use xlink:href="/assets/sprite-3f4ad247.svg#wallet"></use>
+            <use xlink:href="/assets/sprite-08b2025d.svg#wallet"></use>
          </svg>
       </a>
       <a  class="menu__link" href="setting.html"> Параметры
          <svg>
-            <use xlink:href="/assets/sprite-3f4ad247.svg#setting"></use>
+            <use xlink:href="/assets/sprite-08b2025d.svg#setting"></use>
          </svg>
       </a>
       <a  class="menu__link" href="blacklist.html">Черный список
          <svg>
-            <use xlink:href="/assets/sprite-3f4ad247.svg#blacklist"></use>
+            <use xlink:href="/assets/sprite-08b2025d.svg#blacklist"></use>
          </svg>
       </a>
    </nav>
 </div>
                </aside>
                <div class="blacklist__column">
-                  <h2 class="blacklist__title">Черный список</h2>
+                  <!-- <h1 class="blacklist__title">Черный список</h1> -->
                   <div class="blacklist__content">
                      <div class="blacklist__item"></div>
-                     <div class="blacklist__info">
+                     <!-- <div class="blacklist__info">
                         <svg>
-                           <use xlink:href="/assets/sprite-3f4ad247.svg#alert-circle"></use>
+                           <use xlink:href="src/images/sprite.svg#alert-circle"></use>
                            <p class="blacklist__text">
                               Люди из черного списка не могут приглашать вас в команды, отправлять сообщения или
                               добавлять в пати
                            </p>
                         </svg>
+                     </div> -->
+                     <div class="blacklist__info">
+                        <h2 class="blacklist__title blacklist__title_sub">Черный список пуст</h2>
+                        <h3 class="blacklist__title blacklist__title_h3">Вы еще никого не заблокировали</h3>
+                        <p class="blacklist__text blacklist__text_sub">Люди из черного списка не могут приглашать вас в команды, отправлять сообщения или добавлять в пати</p>
                      </div>
+
                   </div>
                </div>
          </section>

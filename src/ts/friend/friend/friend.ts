@@ -395,18 +395,18 @@ class FriendPage {
         <div class="user-section__navigation-block">
           <button class="user-section__navigation-block-relationships-button">
             <svg class="user-section__navigation-block-relationships-button-icon">
-              <use xlink:href="src/images/sprite.svg#addUser"></use>
+              <use xlink:href="${Sprite}#addUser"></use>
             </svg>
             Добавить в друзья
           </button>
           <button class="user-section__navigation-block-message-button">
             <svg class="user-section__navigation-block-message-button-icon">
-              <use xlink:href="src/images/sprite.svg#message"></use>
+              <use xlink:href="${Sprite}#message"></use>
             </svg>
           </button>
           <button class="user-section__navigation-block-more-button">
             <svg class="user-section__navigation-block-more-button-icon">
-              <use xlink:href="src/images/sprite.svg#more"></use>
+              <use xlink:href="${Sprite}#more"></use>
             </svg>
           </button>
         </div>
@@ -556,7 +556,7 @@ class FriendPage {
       <button class="teams-info-block__more-teams-button">
         Развернуть
         <svg class="teams-info-block__more-teams-button-icon">
-          <use xlink:href="src/images/sprite.svg#arrow-down"></use>
+          <use xlink:href="${Sprite}#arrow-down"></use>
         </svg>
       </button>`;
   }
@@ -652,7 +652,7 @@ $(document).ready(async () => {
           ? friend.attributes.avatar.data.attributes.url
           : UserAvatar,
         name: friend.attributes.username,
-        status: "Status unknown",
+        status: "Offline",
       };
     }
 

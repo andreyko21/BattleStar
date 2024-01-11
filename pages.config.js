@@ -22,6 +22,10 @@ const pages = [
       path: resolve(__dirname, "teams.html"),
    },
    {
+      name: "team",
+      path: resolve(__dirname, "team.html"),
+   },
+   {
       name: "sign",
       path: resolve(__dirname, "sign.html"),
    },
@@ -92,6 +96,10 @@ const pages = [
    {
       name: "stream",
       path: resolve(__dirname, "stream.html"),
+   },
+   {
+      name: "supported",
+      path: resolve(__dirname, "supported.html"),
    },
 ];
 

@@ -27,9 +27,7 @@ export class TopPlayersCs {
               <li class="news__rating-item">
                 <div class="news__rating-row">
                   <p class="news__rating-number news__rating-number_cs">${index + 1}</p>
-                  <img class="news__rating-avatar" src="${
-                    player.avatar
-                  }" alt="Avatar">
+                  <img class="news__rating-avatar" src="${player.avatar}" alt="Avatar">
                   <img class="news__rating-country" src="${
                     player.flag
                   }" alt="Flag">

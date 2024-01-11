@@ -41,9 +41,6 @@
       justify-content: space-between;
    }
 
-   &__item {
-   }
-
    &__row {
       display: flex;
       margin-bottom: 42px;
@@ -102,45 +99,51 @@
       &-nickname {
          &_data {
             width: 470px;
-         }
-         span {
             color: $gray25;
-            margin-left: auto;
             font-size: 24px;
-            &._act {
-               border: 1px solid $gray200;
-               padding: 4px;
-            }
          }
+         // span {
+         //    color: $gray25;
+         //    margin-left: auto;
+         //    font-size: 24px;
+         //    &._act {
+         //       border: 1px solid $gray200;
+         //       padding: 4px;
+         //    }
+         // }
       }
       &-biography {
          &_data {
             width: 470px;
+            color: $gray25;
+            font-size: 14px;
          }
          // width: 470px;
          // display: flex;
          // justify-content: space-between;
-         span {
-            color: $gray25;
-            margin-left: auto;
-            font-size: 14px;
-            width: 469px;
+         // span {
+         //    color: $gray25;
+         //    margin-left: auto;
+         //    font-size: 14px;
+         //    width: 469px;
 
-            &._act {
-               border: 1px solid $gray200;
-               padding: 4px;
-            }
-         }
+         //    &._act {
+         //       border: 1px solid $gray200;
+         //       padding: 4px;
+         //    }
+         // }
       }
       &-data {
          &_data {
             width: 470px;
-         }
-         span {
             color: $gray25;
-            margin-left: auto;
             font-size: 18px;
          }
+         // span {
+         //    color: $gray25;
+         //    margin-left: auto;
+         //    font-size: 18px;
+         // }
       }
    }
    &__line {
@@ -178,6 +181,18 @@
    &__avatar {
       position: relative;
       height: 165px;
+      &-img{
+         width: 140px;
+         height: 140px;
+         border-radius: 50%;
+         background-size: cover;
+         background-repeat: no-repeat;
+         background-position: center;
+         &_active{
+            display: none;
+
+         }
+      }
       &-inp {
          display: none;
       }
@@ -240,9 +255,20 @@ div:where(.swal2-container) div:where(.swal2-popup) {
    background: rgba(248, 248, 248, 0.1) !important;
    backdrop-filter: blur(110px);
 }
-div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm,
+div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel {
    border: 1px solid #f8f8f8 !important;
    background: rgba(248, 248, 248, 0.1) !important;
    backdrop-filter: blur(40px);
    width: 152px;
+}
+.swal2-title,
+.swal2-input,
+.swal2-input,
+.swal2-input-label{
+   color: #f8f8f8 !important;
+}
+.swal2-validation-message{
+   background: transparent !important;
+   color: #f27474;
 }

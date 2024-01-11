@@ -4,6 +4,7 @@ import { BaseTabs } from "../component/tabs.ts";
 import { LavaLamp } from "../component/lava-lamp.ts";
 import { SimpleHeader } from "../component/header/header";
 import { request } from "graphql-request";
+import  'jquery-validation';
 
 new SimpleHeader("#wrapper");
 new BaseTabs("sign__form");
@@ -18,6 +19,7 @@ type SignType = {
   name: JQuery<HTMLInputElement>;
   email: JQuery<HTMLInputElement>;
   pswd: JQuery<HTMLInputElement>;
+
 };
 
 interface IFormVal {
@@ -38,16 +40,19 @@ class Sign implements SignType {
   email: JQuery<HTMLInputElement>;
   pswd: JQuery<HTMLInputElement>;
 
+
   constructor() {
-    this.signUp = $(".form__signup") as JQuery<HTMLFormElement>;
-    this.signIn = $(".form__signin") as JQuery<HTMLFormElement>;
-    this.signTabs = $(".sign__tabs p") as JQuery<HTMLParagraphElement>;
-    this.nickname = $("#nickname") as JQuery<HTMLInputElement>;
-    this.password = $("#password") as JQuery<HTMLInputElement>;
-    this.name = $("#name") as JQuery<HTMLInputElement>;
-    this.email = $("#email") as JQuery<HTMLInputElement>;
-    this.pswd = $("#psw") as JQuery<HTMLInputElement>;
+    this.signUp = $(".form__signup") 
+    this.signIn = $(".form__signin") 
+    this.signTabs = $(".sign__tabs p") 
+    this.nickname = $("#nickname") 
+    this.password = $("#password") 
+    this.name = $("#name") 
+    this.email = $("#email")
+    this.pswd = $("#psw") 
     this.init();
+
+    
   }
 
   init() {
@@ -55,6 +60,8 @@ class Sign implements SignType {
     this.singInBtn();
     this.singUpBtn();
     this.showPassword();
+    this.signInValidation();
+    this.signUpValidation();
   }
 
   getFormVal(): IFormVal {
@@ -70,21 +77,40 @@ class Sign implements SignType {
   }
 
   singUpBtn() {
+    const self = this;
     $("#sign-up").on("click", (e) => {
       e.preventDefault();
-      this.registerUser();
+      const form:any = $(self.signUp); 
+      if (form.valid()) { 
+        self.registerUser();
+        console.log("valid");
+      } else {
+        console.log("not valid");
+      }
     });
   }
+  
+  
 
   singInBtn() {
+    const context = this;
     $("#sign-in").on("click", (e) => {
       e.preventDefault();
-      this.authenticateUser();
+      const formIn:any = $(context.signIn); 
+      
+      if(formIn.valid()) {
+        console.log("valid");
+        context.authenticateUser();
+      }else{
+        console.log("not valid");
+      }
+      
     });
   }
 
   authenticateUser() {
     const formValues: IFormVal = this.getFormVal();
+
     axios
       .post("https://battle-star-app.onrender.com/api/auth/local", {
         identifier: formValues.nickname,
@@ -96,20 +122,12 @@ class Sign implements SignType {
         document.cookie = `id=${response.data.user.id}`;
         document.cookie = `name=${response.data.user.username}`;
         document.cookie = `email=${response.data.user.email}`;
-
+  
         this.resetFormFIelds();
         window.location.href = "index.html";
       })
       .catch((error) => {
         console.log("An error occurred:", error.response);
-        $("#nickname").addClass("form__signin-inp_error ");
-        $("#password").addClass("form__signin-inp_error ");
-        $(".form__signin-label_nickname")
-          .css("color", "#f13939")
-          .text(error.response.data.error.details.errors[0].message);
-        $(".form__signin-label_password")
-          .css("color", "#f13939")
-          .text(error.response.data.error.details.errors[1].message);
       });
   }
 
@@ -130,59 +148,58 @@ class Sign implements SignType {
         window.location.href = "index.html";
         this.resetFormFIelds();
         const userId = response.data.user.id;
+        const publishedAtDate = new Date(); 
+        const publishedAt = publishedAtDate.toISOString();
 
         const mutation = `
-          mutation CreatePlayer($id: ID) {
-            createPlayer(data: { user: $id }) {
-              data {
-                attributes {
-                  user {
-                    data {
-                      id
-                    }
+        mutation CreatePlayer($id: ID, $publishedAt: DateTime!) {
+          createPlayer(data: {
+            user: $id
+            publishedAt: $publishedAt
+          }) {
+            data {
+              attributes {
+                publishedAt            
+                user {
+                  data {
+                    id
                   }
                 }
               }
             }
           }
+        }
         `;
 
         try {
           const data = await request(
             "https://battle-star-app.onrender.com/graphql",
             mutation,
-            { id: userId }
+            { id: userId,
+              publishedAt: publishedAt
+            }
           );
           console.log("GraphQL Mutation Response:", data);
         } catch (error) {
           console.error("GraphQL Mutation Error:", error);
         }
+      console.log(response)
       })
+
       .catch((error) => {
         console.log("An error occurred:", error.response);
-        $("#name").addClass("form__signin-inp_error");
-        $("#email").addClass("form__signin-inp_error");
-        $("#psw").addClass("form__signin-inp_error");
-
-        if (
-          error.response.data.error.message ===
-          "Email or Username are already taken"
-        ) {
-          alert("Email або Username вже зайняті");
-        } else {
-          $(".form__signup-label_name")
-            .css("color", "#f13939")
-            .text(error.response.data.error.details.errors[1].message);
-          $(".form__signup-label_email")
-            .css("color", "#f13939")
-            .text(error.response.data.error.details.errors[0].message);
-          $(".form__signup-label_psw")
-            .css("color", "#f13939")
-            .text(error.response.data.error.details.errors[2].message);
-        }
+        let errorMessage = error.response.data.error.details.message || "An error occurred";
+        errorMessage = errorMessage
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+          const errorAlert = error.response.data.error.message
+          alert(errorAlert);
       });
   }
-
+  
   showPassword() {
     $(".form__signin-password svg").each(function () {
       $(this).on("click", function () {
@@ -212,6 +229,127 @@ class Sign implements SignType {
     this.email.val("");
     this.pswd.val("");
   }
+  signInValidation() {
+    ($ as any).validator.addMethod(
+      "cyrillicEmail",
+      function (value: string) {
+        return /^[а-яА-ЯёЁa-zA-Z0-9._%+-]+@[а-яА-ЯёЁa-zA-Z0-9.-]+\.[а-яА-ЯёЁa-zA-Z]{2,4}$/.test(value);
+      },
+      "Please enter a valid email address"
+    );
+    
+    ($ as any).validator.addMethod(
+      "cyrillicPassword",
+      function (value: string) {
+        return value.length >= 8; 
+      },
+      "Your password must be at least 8 characters long"
+    );
+    
+    ($ as any)(this.signIn).validate({
+      rules: {
+        nickname: {
+          required: true,
+          // cyrillicEmail: true,
+        },
+        password: {
+          required: true,
+          cyrillicPassword: true,
+        },
+      },
+      messages: {
+        nickname: {
+          required: "Please enter a nickname", 
+          cyrillicEmail: "Please enter a valid nickname", 
+        },
+        password: {
+          required: "Please enter a password",
+          cyrillicPassword: "Your password must be at least 8 characters long", 
+        },
+      },
+      errorClass: "invalid",
+      errorElement: "span",
+      errorPlacement: (error: string, element: HTMLElement) => {
+
+      const errorLabel = $(element)
+        .closest(".form__signin")
+        .find(".form__signin-label");
+      
+      errorLabel.html(error);
+    },
+    });
+  }
+  signUpValidation() {
+     
+    ($ as any).validator.addMethod(
+      "cyrillicEmail",
+      function (value: string) {
+        return /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value);
+      },
+      "Please enter a valid email address"
+    );
+
+    ($ as any).validator.addMethod(
+      "cyrillicName", 
+      function (value: string) {
+        return /^[^0-9<>]*$/.test(value);
+      },
+      "Please enter a valid name without digits"
+    );
+
+    ($ as any).validator.addMethod("cyrillicPswd", 
+      function (value: string) {
+        return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/.test(value);
+      },
+      "Please enter a valid password with at least 8 characters, containing at least one digit, one lowercase and one uppercase letter, and one special character."
+    );
+  
+    ($ as any)(this.signUp).validate({
+      rules: {
+        nickname: {
+          required: true,
+          cyrillicName: true,
+          minlength: 3,
+        },
+        email: {
+          required: true,
+          cyrillicEmail: true,
+        },
+        password: {
+          required: true,
+          minlength: 8,
+          cyrillicPswd: true,
+        },
+      },
+      messages: {
+        nickname: {
+          required: "Please enter a name",
+          cyrillicName: "Please enter a valid name without digits",
+          minlength: "Your name must be at least 3 characters long",
+        },
+        email: {
+          required: "Please enter an email address",
+          cyrillicEmail: "Please enter a valid email address",
+        },
+        password: {
+          required: "Please enter a password",
+          minlength: "Your password must be at least 8 characters long",
+        },
+      },
+      errorClass: "invalid",
+      errorElement: "span",
+      errorPlacement: (error: string, element: HTMLElement) => {
+        const errorLabel = $(element)
+        .closest(".form__signup")
+        .find(".form__signin-label");
+      
+      errorLabel.html( error);
+
+      },
+
+    });
+  }
+
 }
 
 new Sign();

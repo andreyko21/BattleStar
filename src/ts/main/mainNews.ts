@@ -90,7 +90,8 @@ export class MainNews {
   }
 
   clickHandlersLike():void {
-    $(".news__info-like").on("click", function () {
+    $(".news__info-like").on("click", function (e) {
+      e.stopPropagation();
       const id = $(this).data("id");
       let clickLike = localStorage.getItem(`clickLike_id_${id}`);
       if (!clickLike) {

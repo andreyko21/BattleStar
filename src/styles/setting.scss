@@ -32,7 +32,7 @@
    &__container {
       display: flex;
    }
-   &__content{
+   &__content {
       width: 1227px;
       margin-left: 44px;
       background: $gray800;
@@ -89,7 +89,8 @@
          padding: 0 50px 0 24px;
       }
       &-current {
-         width: 100%;
+        width: fit-content;
+        margin-left: 60px;
       }
       &-current,
       &-item {
@@ -148,6 +149,18 @@
                visibility 0.5s;
          }
       }
+      &-img {
+         width: 34px;
+         height: 22px;
+         margin-left: 47px;
+      }
+      &-country {
+         color: $gray25;
+         font-size: 18px;
+         font-weight: 400;
+         line-height: normal;
+         margin-left: 19px;
+      }
    }
    &__country {
       height: 30px;
@@ -201,5 +214,4 @@
          margin-right: 15px;
       }
    }
-
 }

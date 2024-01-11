@@ -4,14 +4,14 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=1920" />
+   <link rel="icon" type="image/svg+xml" href="/Fav.ico" />
    <link rel="stylesheet" href="src/styles/blacklist.scss">
    <title>Statistics</title>
 </head>
 
 <body>
-   <div class="wrapper">
-      <load="src/html/header.html" />
-      <load="src/html/sidebar.html" />
+   <div id="wrapper" class="wrapper">
       <main class="page">
          <section class="blacklist">
             <div class="blacklist__bg"></div>
@@ -20,10 +20,10 @@
                   <load="src/html/components/ui/asideMenu.html" />
                </aside>
                <div class="blacklist__column">
-                  <h2 class="blacklist__title">Черный список</h2>
+                  <!-- <h1 class="blacklist__title">Черный список</h1> -->
                   <div class="blacklist__content">
                      <div class="blacklist__item"></div>
-                     <div class="blacklist__info">
+                     <!-- <div class="blacklist__info">
                         <svg>
                            <use xlink:href="src/images/sprite.svg#alert-circle"></use>
                            <p class="blacklist__text">
@@ -31,14 +31,20 @@
                               добавлять в пати
                            </p>
                         </svg>
+                     </div> -->
+                     <div class="blacklist__info">
+                        <h2 class="blacklist__title blacklist__title_sub">Черный список пуст</h2>
+                        <h3 class="blacklist__title blacklist__title_h3">Вы еще никого не заблокировали</h3>
+                        <p class="blacklist__text blacklist__text_sub">Люди из черного списка не могут приглашать вас в команды, отправлять сообщения или добавлять в пати</p>
                      </div>
+
                   </div>
                </div>
          </section>
       </main>
    </div>
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   <script type="module" src="./src/ts/cabinet/statistics.ts"></script>
+   <script type="module" src="./src/ts/cabinet/blacklist.ts"></script>
 </body>
 
 </html>

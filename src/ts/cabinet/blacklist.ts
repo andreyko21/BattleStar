@@ -1,6 +1,10 @@
 import {AsideMenu} from "../component/asideMenu";
+import { Header } from "../component/header/header";
+import { AppSidebar } from "../component/sidebar/sidebar";
 
 new AsideMenu();
+new Header("#wrapper");
+new AppSidebar("wrapper", "");
 interface IBlacklistData {
   avatar: string;
   name: string;

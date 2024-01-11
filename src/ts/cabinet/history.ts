@@ -1,9 +1,8 @@
-// import { request } from 'graphql-request';
-// import { GetHistoryMatch } from "../../../queries.graphql.d";
 import $ from "jquery";
 import { Header } from "../component/header/header";
 import { AppSidebar } from "../component/sidebar/sidebar";
 import {AsideMenu} from "../component/asideMenu";
+
 
 new AsideMenu();
 new Header("#wrapper");
@@ -19,20 +18,41 @@ export interface IHistoryData {
 }
 export class History   {
   private content: string;
+
   private history: IHistoryData[];
     filterSelect: JQuery<HTMLSelectElement>;
   tableRows: JQuery<HTMLTableRowElement>;
+  urlParams: URLSearchParams;
+  lobbyInfo: any;
+  lobbyInfoParam: any;
+
+
 
   constructor(content: string, history: IHistoryData[]) {
+    this.urlParams = new URLSearchParams(window.location.search);
+    this.lobbyInfoParam = this.urlParams.get('lobbyInfo');
+    if (this.lobbyInfoParam) {
+      try {
+        const lobbyInfo = JSON.parse(this.lobbyInfoParam);
+        console.log(lobbyInfo);
+      } catch (error) {
+        console.error('Помилка при розпарсюванні lobbyInfo:', error);
+      }
+    } else {
+      console.log('Параметр lobbyInfo не знайдено в URL.');
+    }
+    
     this.content = content;
     this.history = history;
-        this.filterSelect = $("#filter") as JQuery<HTMLSelectElement>;
+    this.filterSelect = $("#filter") as JQuery<HTMLSelectElement>;
     this.tableRows = $(".table__tr") as JQuery<HTMLTableRowElement>;
     this.renderHistory();
     
   }
 
-  renderHistory(): void {
+ async renderHistory() {
+
+
     const HistoryHtml = this.history
       .map(
         (history) => `
@@ -190,14 +210,6 @@ let infoHistory: any[] =  [
   money: 1200,
 },
 ];
-// const historyMatches = await request(
-//   "https://battle-star-app.onrender.com/graphql", GetHistoryMatch
-// );
-
-// const  newHistoryMatches = historyMatches.historyMatches?.data[0].attributes?.options;
-// newHistoryMatches?.forEach((item: any) => {
-//   infoHistory.push(item);
-// });
 
  export const sumHistory: number = infoHistory.reduce((acc, item) => {
   if(item.result === 'Поражение') {
@@ -209,7 +221,8 @@ let infoHistory: any[] =  [
 }, 0);
 
 
-new History(".table__tab", infoHistory);
+
+new History(".table__tab",infoHistory);
 
 
 

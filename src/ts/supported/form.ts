@@ -6,10 +6,14 @@ import { CreateFeadback } from '../../../queries.graphql.d';
 class SupportedForm {
   public validation: JustValidate;
   private form: HTMLFormElement | null;
+  private email: HTMLInputElement | null = null;
+  private userName: HTMLInputElement | null = null;
+  private message: HTMLInputElement | null = null;
+
   private params: {
-    userName: String;
-    userEmail: String;
-    Message: String;
+    userName: String | undefined;
+    userEmail: String | undefined;
+    Message: String | undefined;
   } = {
     userName: '',
     userEmail: '',
@@ -20,12 +24,13 @@ class SupportedForm {
     this.form = document.querySelector(`#${formId}`);
     this.validation = new JustValidate('#feedback', {
       validateBeforeSubmitting: true,
+      errorFieldCssClass: 'feedback__input-error',
     });
 
     if (!this.form) {
       throw new Error(`Container with id #${formId} not found.`);
     }
-
+    this.getFormFilds();
     this.initValidation();
   }
 
@@ -46,21 +51,109 @@ class SupportedForm {
     }
   }
 
-  //private sendRequest(){
+  private sendRequest() {
+    this.getData();
 
-  //}
+    if (this.validation.isValid) {
+      this.createRequest();
+    }
 
-  //private getData() {
+    this.removeInputValue();
+  }
 
-  //}
+  private getData() {
+    this.params = {
+      userName: this.userName?.value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;'),
+      userEmail: this.email?.value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;'),
+      Message: this.message?.value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;'),
+    };
+  }
 
-  private removeInputValue() {}
+  private removeInputValue() {
+    if (this.userName) {
+      this.userName.value = '';
+    }
 
-  //private getFormFilds(){
+    if (this.email) {
+      this.email.value = '';
+    }
 
-  //}
+    if (this.message) {
+      this.message.value = '';
+    }
+  }
 
-  private initValidation() {}
+  private getFormFilds() {
+    if (this.form !== null) {
+      this.email = this.form.querySelector('#email');
+      this.userName = this.form.querySelector('#user-name');
+      this.message = this.form.querySelector('#message');
+    }
+  }
+
+  private initValidation(): void {
+    this.validation
+      .addField('#email', [
+        {
+          rule: 'email',
+          errorMessage: 'Введіть коректний email',
+        },
+        {
+          rule: 'required',
+          errorMessage: 'Введіть email',
+        },
+      ])
+      .addField('#user-name', [
+        {
+          rule: 'minLength',
+          value: 3,
+          errorMessage: "Ім'я повинно бути не коротше 3-ох символів",
+        },
+        {
+          rule: 'maxLength',
+          value: 30,
+          errorMessage: "Ім'я повинно бути не довше 30-ти символів",
+        },
+        {
+          rule: 'required',
+          errorMessage: "Введіть ім'я",
+        },
+      ])
+      .addField('#message', [
+        {
+          rule: 'minLength',
+          value: 3,
+          errorMessage: 'Повідомлення має містити не менше 3-ох символів',
+        },
+        {
+          rule: 'maxLength',
+          value: 130,
+          errorMessage: 'Повідомлення має містити не більше 130-ти символів',
+        },
+        {
+          rule: 'required',
+          errorMessage: 'Введіть повідомлення',
+        },
+      ])
+      .onSuccess(() => {
+        this.sendRequest();
+      });
+  }
 }
 
 export { SupportedForm };

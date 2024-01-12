@@ -443,24 +443,40 @@
               игры вы хотите добавить и что хотите изменить.</p
             >
             <form name="feedback" id="feedback" class="feedback__form">
-              <input
-                name="email"
-                id="email"
-                class="feedback__text-input feedback__text-input_type_email"
-                placeholder="Электронная почта *"
-              />
-              <input
-                name="user-name"
-                id="user-name"
-                class="feedback__text-input feedback__text-input_type_user-name"
-                placeholder="Ваше имя *"
-              />
-              <textarea
-                name="message"
-                id="message"
-                placeholder="Введите текст сообщения *"
-                class="feedback__text-input feedback__text-input_type_message"
-              ></textarea>
+              <label
+                for="email"
+                class="feedback__text-label feedback__text-label_type_email"
+              >
+                <input
+                  name="email"
+                  id="email"
+                  class="feedback__text-input feedback__text-input_type_email"
+                  placeholder="Электронная почта *"
+                />
+                <!--<p class="feedback__input-error"></p>-->
+              </label>
+              <label
+                for="user-name"
+                class="feedback__text-label feedback__text-label_type_user-name"
+              >
+                <input
+                  name="user-name"
+                  id="user-name"
+                  class="feedback__text-input feedback__text-input_type_user-name"
+                  placeholder="Ваше имя *"
+                />
+              </label>
+              <label
+                for="message"
+                class="feedback__text-label feedback__text-label_type_message"
+              >
+                <textarea
+                  name="message"
+                  id="message"
+                  placeholder="Введите текст сообщения *"
+                  class="feedback__text-input feedback__text-input_type_message"
+                ></textarea>
+              </label>
               <button class="feedback__subbmit-btn" type="submit"
                 >Отправить</button
               >

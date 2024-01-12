@@ -1,12 +1,12 @@
-@import "./style.scss";
-@import "./components/sidebar.scss";
-@import "./components/header.scss";
-@import "./components/ui/card.scss";
-@import "./components/ui/table.scss";
-@import "./components/ui/calendar.scss";
-@import "./components/ui/dropDownMenu.scss";
-@import "./components/ui/tour.scss";
-@import "./components/tabs.scss";
+@import './style.scss';
+@import './components/sidebar.scss';
+@import './components/header.scss';
+@import './components/ui/card.scss';
+@import './components/ui/table.scss';
+@import './components/ui/calendar.scss';
+@import './components/ui/dropDownMenu.scss';
+@import './components/ui/tour.scss';
+@import './components/tabs.scss';
 // @import "./libs/swiper.scss";
 .wrapper {
   overflow: hidden;
@@ -17,7 +17,7 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  grid-area: main; 
+  grid-area: main;
 }
 .banner {
   &__bg {
@@ -207,7 +207,6 @@
     &-row {
       display: flex;
       align-items: center;
-
     }
     &-number {
       background: $gradient300;
@@ -317,18 +316,17 @@
       }
     }
 
-    &-views{
+    &-views {
       position: relative;
     }
-    &-view{  
+    &-view {
       position: absolute;
       right: 0;
     }
 
     &-like {
       position: absolute;
-       z-index: 50;
-
+      z-index: 50;
     }
 
     &-number,
@@ -360,6 +358,7 @@
 }
 .game {
   margin-top: 167px;
+  margin-bottom: 208px;
   &__content {
     display: flex;
     justify-content: space-between;
@@ -371,7 +370,6 @@
     height: 1105px;
     padding-right: 5px;
     &-item {
-
       width: 693px;
       background: $gray800;
     }
@@ -397,7 +395,7 @@
     &-logo {
       width: 27px;
       height: 21px;
-     object-fit: contain;
+      object-fit: contain;
     }
     &-name,
     &-vs {
@@ -433,7 +431,7 @@
         margin-bottom: 6px;
       }
     }
-    &-item{
+    &-item {
       display: flex;
       flex-direction: column;
     }

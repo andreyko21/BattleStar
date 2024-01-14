@@ -1834,3 +1834,203 @@ query GetCsStreamingData($id: ID) {
     }
   }
 }
+
+query GetBiography($id: ID!) {
+  usersPermissionsUsers(filters: { id: { eq: $id } }) {
+    data {
+      id
+      attributes {
+        biography
+        createdAt
+      }
+    }
+  }
+}
+
+mutation UpdateEmail($id: ID!, $newEmail: String) {
+  updateUsersPermissionsUser(id: $id, data: { email: $newEmail }) {
+    data {
+      id
+      attributes {
+        email
+      }
+    }
+  }
+}
+
+query GetMyFriends($id: ID!) {
+  usersPermissionsUsers(filters: { id: { eq: $id } }) {
+    data {
+      id
+      attributes {
+        my_friends {
+          data {
+            attributes {
+              username
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetUsersId($id: ID!) {
+  usersPermissionsUsers(filters: { id: { eq: $id } }) {
+    data {
+      id
+      attributes {
+        player {
+          data {
+            attributes {
+              Options {
+                news_of_the_platform
+                new_tournaments
+                incoming_messages
+                invitations_to_the_team
+                friend_requests
+                allow_only_friends_invit_to_team
+                selected_country {
+                  data {
+                    attributes {
+                      name
+                      flag {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                selected_language {
+                  data {
+                    attributes {
+                      name
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation UpdatePlayerOptions($id: ID!, $data: PlayerInput!) {
+  updatePlayer(id: $id, data: $data) {
+    data {
+      id
+      attributes {
+        user {
+          data {
+            id
+            attributes {
+              username
+            }
+          }
+        }
+        Options {
+          news_of_the_platform
+          new_tournaments
+          incoming_messages
+          invitations_to_the_team
+          friend_requests
+          allow_only_friends_invit_to_team
+          selected_country {
+            data {
+              attributes {
+                name
+                flag {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+          selected_language {
+            data {
+              attributes {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetLobbyInfoDotaId($id: ID) {
+  dota2Lobby(id: $id) {
+    data {
+      id
+      attributes {
+        createdAt
+        title
+        rate
+        typeLobby {
+          data {
+            attributes {
+              title
+              value
+            }
+          }
+        }
+        dota_2_game_modes {
+          data {
+            attributes {
+              value
+              title
+            }
+          }
+        }
+        creator {
+          data {
+            attributes {
+              Options {
+                selected_country {
+                  data {
+                    attributes {
+                      flag {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation CreateFeadback(
+  $userName: String
+  $userEmail: String
+  $Message: String
+) {
+  createFeadback(
+    data: { userName: $userName, userEmail: $userEmail, Message: $Message }
+  ) {
+    data {
+      attributes {
+        userName
+        userEmail
+        Message
+      }
+    }
+  }
+}

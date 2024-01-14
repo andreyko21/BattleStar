@@ -1,17 +1,22 @@
-@import "./style.scss";
-@import "./components/sidebar.scss";
-@import "./components/header.scss";
-@import "./components/ui/card.scss";
-@import "./components/ui/table.scss";
-@import "./components/ui/calendar.scss";
-@import "./components/ui/dropDownMenu.scss";
-@import "./components/ui/tour.scss";
-@import "./components/tabs.scss";
+@import './style.scss';
+@import './components/sidebar.scss';
+@import './components/header.scss';
+@import './components/ui/card.scss';
+@import './components/ui/table.scss';
+@import './components/ui/calendar.scss';
+@import './components/ui/dropDownMenu.scss';
+@import './components/ui/tour.scss';
+@import './components/tabs.scss';
 // @import "./libs/swiper.scss";
-
+.wrapper {
+  overflow: hidden;
+  height: 100vh;
+}
 .page {
-  // flex: 1 1 auto;
+  flex: 1 1 auto;
   width: 100%;
+  height: 100%;
+  overflow: auto;
   grid-area: main;
 }
 .banner {
@@ -141,6 +146,7 @@
     height: 653px;
     background: $gray800;
     padding: 22px 24px 21px 51px;
+    backdrop-filter: blur(5px);
     &-tabs .tabs-block__tab {
       width: 100%;
     }
@@ -310,18 +316,17 @@
       }
     }
 
-    &-views{
+    &-views {
       position: relative;
     }
-    &-view{  
+    &-view {
       position: absolute;
       right: 0;
     }
 
     &-like {
       position: absolute;
-       z-index: 50;
-
+      z-index: 50;
     }
 
     &-number,
@@ -353,6 +358,7 @@
 }
 .game {
   margin-top: 167px;
+  margin-bottom: 208px;
   &__content {
     display: flex;
     justify-content: space-between;
@@ -389,7 +395,7 @@
     &-logo {
       width: 27px;
       height: 21px;
-      background: $gray400;
+      object-fit: contain;
     }
     &-name,
     &-vs {
@@ -425,9 +431,14 @@
         margin-bottom: 6px;
       }
     }
+    &-item {
+      display: flex;
+      flex-direction: column;
+    }
     &-teams {
       display: flex;
       justify-content: space-between;
+      // width: fit-content;
     }
     &-row {
       display: flex;
@@ -444,7 +455,7 @@
     &-logo {
       width: 58px;
       height: 52px;
-      background: $gray800;
+      object-fit: contain;
     }
 
     &-name {

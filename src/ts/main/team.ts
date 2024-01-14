@@ -4,62 +4,79 @@ interface ITeamData {
   rating: string;
 }
 
-export class Team {
-  private content: string;
-  private team: ITeamData[];
+export class TeamSideA {
+  public content: string;
+  public team: ITeamData[];
 
   constructor(content: string, team: ITeamData[]) {
     this.content = content;
     this.team = team;
     this.renderTeam();
-
   }
 
-  renderTeam(): void {
-    const teamHtml = this.team.map(
+  protected renderTeam(): void {
+    const teamHtml = this.team
+      .map(
         (team) => `
-        <div class="game__info-item">
-          <h4 class="game__info-title-sub">Полуфинал Major 2021 Stockholm</h4>
-          <div class="game__info-teams">
-            <div class="game__info-row">
-              <div>
-                <img class="game__info-logo" src="${team.logo}" alt="${team.name}">
-              </div>
-              <p class="game__info-name game__info-name_win">${team.name}</p>
-              <p class="game__info-rank">${team.rating}</p>
-            </div>
-            <div class="game__info-row game__info-row_center">
-              <p class="game__info-time">15:00</p>
-              <p class="game__info-score"><span>3</span> : <span>2</span></p>
-            </div>
-            <div class="game__info-row  game__info-row_sub">
-              <div class="game__info-logo">
-                <img class="game__info-logo" src="${team.logo}" alt="${team.name}">
-              </div>
-              <p class="game__info-name game__info-name_win">${team.name}</p>
-              <p class="game__info-rank">${team.rating}</p>
-            </div>
-          </div>
-          <hr class="game__info-line">
-        </div>`
-    ).join("");
+                <h4 class="game__info-title-sub">Полуфинал Major 2021 Stockholm</h4>
+                <div class="game__info-teams">
+                  <div class="game__info-row">
+                    <div>
+                      <img class="game__info-logo" src="${team.logo}" alt="${team.name}">
+                    </div>
+                    <p class="game__info-name game__info-name_win">${team.name}</p>
+                    <p class="game__info-rank">${team.rating}</p>
+                  </div>
+                  </div>`
+      )
+      .join("");
 
     const content = document.querySelector(this.content);
     if (content) {
-        content.innerHTML = teamHtml;
+      content.innerHTML += teamHtml;
     }
+  }
 }
+
+export class TeamSideB extends TeamSideA {
+  constructor(content: string, team: ITeamData[]) {
+    super(content, team);
+  }
+
+  protected renderTeam(): void {
+    const teamHtml = this.team
+      .map(
+        (team) => `
+        <div class="game__info-row  game__info-row_sub">
+        <div class="game__info-logo">
+          <img class="game__info-logo" src="${team.logo}" alt="${team.name}">
+        </div>
+        <p class="game__info-name game__info-name_win">${team.name}</p>
+        <p class="game__info-rank">${team.rating}</p>
+      </div>`
+      )
+      .join("");
+
+    const content = document.querySelector(this.content);
+    if (content) {
+      content.innerHTML += teamHtml;
+    }
+  }
 }
 interface IMapData {
+  rigthName: any;
+  rigthAva: any;
+  leftName: any;
   logo: string;
+  ava: string;
 }
 export class Map {
   private content: string;
   private map: IMapData[];
   constructor(content: string, map: IMapData[]) {
-      this.content = content;
-      this.map = map;
-      this.renderMap();
+    this.content = content;
+    this.map = map;
+    this.renderMap();
   }
 
   renderMap(): void {
@@ -73,13 +90,11 @@ export class Map {
       <hr class="game__column-line">
       <div class="game__column-row">
         <div class="game__column-teams">
-          <div class="game__column-logo">
-         
-          </div>
-          <p class="game__column-name">ApacheLeader </p>
+          <img class="game__column-logo" src="${map.ava}">
+          <p class="game__column-name">${map.leftName}</p>
           <div class="game__column-vs">VS</div>
-          <div class="game__column-logo"></div>
-          <p class="game__column-name">DeJaVU</p>
+          <img class="game__column-logo" src="${map.rigthAva}">
+          <p class="game__column-name">${map.rigthName}</p>
         </div>
         <p class="game__column-round">1/16 финала</p>
       </div>
@@ -88,9 +103,9 @@ export class Map {
       `
       )
       .join("");
-      const content = document.querySelector(this.content);
-      if (content) {
-        content.innerHTML = mapHtml;
-      }
+    const content = document.querySelector(this.content);
+    if (content) {
+      content.innerHTML = mapHtml;
+    }
   }
 }

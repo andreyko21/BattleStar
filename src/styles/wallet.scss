@@ -24,7 +24,7 @@
 }
 
 .wallet {
-  margin-top: 90px;
+   margin-top: 90px;
    &__bg {
       background: url(../../src/images/newsBg.png) repeat-x;
       height: 200px;
@@ -314,6 +314,117 @@
          }
       }
    }
+   &__invite {
+      // width: 824px;
+      // height: 563px;
+
+      &-close {
+         display: flex;
+         justify-content: flex-end;
+
+         svg {
+            width: 24px;
+            height: 24px;
+            fill: $gray25;
+            margin: 15px 16px 0 0;
+         }
+      }
+      &-present {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         width: 100px;
+         height: 100px;
+         border-radius: 50%;
+         border: 3px solid $yellow300;
+         margin: 21px auto 28px;
+         img {
+            width: 61px;
+            height: 61px;
+         }
+      }
+      &-title {
+         color: $gray25;
+         text-align: center;
+         font-size: 28px;
+         font-weight: 500;
+         line-height: normal;
+         span {
+            color: $gray25;
+            text-decoration: line-through;
+         }
+      }
+      &-text {
+         color: $gray100;
+         text-align: center;
+         font-size: 16px;
+         font-weight: 500;
+         line-height: normal;
+         margin: 7px auto 21px;
+         width: 551px;
+         span {
+            color: $gray25;
+            text-decoration: line-through;
+         }
+         &_sub {
+            color: #fff;
+            margin: 0;
+         }
+      }
+      &-link {
+         width: 618px;
+         height: 57px;
+         border-radius: 18px;
+         background: #606060;
+         margin: 0 auto 20px;
+         display: flex;
+         align-items: center;
+
+         svg {
+            width: 22px;
+            height: 22px;
+            fill: $gray25;
+            margin-right: 35px;
+         }
+      }
+      &-social {
+         width: 260px;
+         margin: 0 auto 15px;
+         display: flex;
+         justify-content: space-between;
+         a {
+            svg {
+               width: 30px;
+               height: 30px;
+               fill: $gray25;
+            }
+         }
+      }
+      &-score {
+         display: flex;
+         justify-content: center;
+      }
+   }
+}
+div:where(.swal2-container) .swal2-html-container {
+   margin: 0 !important;
+   width: 825px;
+}
+div:where(.swal2-container).swal2-center > .swal2-popup {
+   width: 824px;
+   height: 563px;
+   background: rgba(248, 248, 248, 0.1);
+   backdrop-filter: blur(110px);
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+   width: 152px;
+   height: 39px;
+   border: 1px solid #f8f8f8 !important;
+   background: rgba(248, 248, 248, 0.1) !important;
+   backdrop-filter: blur(40px) !important;
+}
+div:where(.swal2-container) button:where(.swal2-styled) {
+   box-shadow: none !important;
 }
 
 .transaction {
@@ -411,7 +522,7 @@
       padding: 0 15px;
       display: none;
       z-index: 50;
-     
+
       &._show {
          display: block;
       }
@@ -509,8 +620,7 @@
          margin-top: 39px;
          width: 253px;
          height: 48px;
-         button{
-
+         button {
          }
       }
    }
@@ -539,9 +649,6 @@
          fill: $gray25;
          margin-right: 10px;
       }
-
-
- 
    }
    &__text {
       color: $gray25;
@@ -555,7 +662,7 @@
       margin-left: 38px;
       display: flex;
       justify-content: space-between;
-     
+
       &-basic,
       &-premium,
       &-pro {
@@ -567,7 +674,7 @@
          position: relative;
          &._act {
             border: 2px solid $yellow300;
-            box-shadow: 0px 0px 20px 0px rgba(250,199,4,1);
+            box-shadow: 0px 0px 20px 0px rgba(250, 199, 4, 1);
          }
       }
 
@@ -625,7 +732,7 @@
          display: flex;
          justify-content: center;
          align-items: center;
-         width:fit-content;
+         width: fit-content;
          svg {
             width: 15px;
             height: 15px;
@@ -633,13 +740,12 @@
             margin-right: 8px;
             display: none;
          }
-         &._act{
+         &._act {
             color: $gray25;
-            svg{
+            svg {
                display: block;
             }
          }
       }
    }
 }
-

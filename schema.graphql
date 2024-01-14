@@ -2244,6 +2244,8 @@ input PlayerInput {
   cs_2_teams: [ID]
   dota_2_teams: [ID]
   publishedAt: DateTime
+
+
 }
 
 type Player {
@@ -2870,3 +2872,6 @@ type Mutation {
   # Confirm an email users email address
   emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
 }
+
+
+

@@ -7,42 +7,38 @@
 // }
 
 .wrapper {
-  display: grid;
-  grid-template-rows: 78px auto;
-  grid-template:
-    "header"
-    "main";
+   overflow: hidden;
+   height: 100vh;
 }
 .page {
-  width: 100%;
-  height: max-content;
-  grid-area: main;
-  background-image:
-    linear-gradient(rgba(78, 78, 116, 0) 0%, rgb(12, 12, 14) 100%),
-    url("/src/images/sign.webp") center center / cover no-repeat;
+flex: 1 1 auto;
+}
+.page-sign{
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   grid-area: main; 
 }
 
 .sign {
-  background:
-    $gradient50,
-    url(../images/sign.webp) no-repeat center/cover;
-  // height: 100vh;
+   background:
+      $gradient50,
+      url(../images/sign.webp) no-repeat center/cover;
+   height: 100vh;
 
-  &__container {
-    padding: 62px 0 0 50px;
-  }
-  &__content {
-    max-width: 677px;
-    width: 100%;
-    background: $gray550;
-    backdrop-filter: blur(30px);
-    padding: 41px 101px 44px;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // position: relative;
-    // z-index: -1;
-  }
+
+   &__container {
+      padding: 62px 0 0 50px;
+
+   }
+   &__content {
+      max-width: 677px;
+      width: 100%;
+      background: $gray550;
+      backdrop-filter: blur(30px);
+      padding: 41px 101px 44px;
+
+   }
 
   &__logo {
     width: 143px;

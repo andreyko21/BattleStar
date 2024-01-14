@@ -1,4 +1,4 @@
-import{$ as d}from"./jquery-62de4648.js";import{S as s}from"./header-fb3b444a.js";class o{content;card;constructor(e,a){this.content=e,this.card=a,this.renderCard(),this.clickHandlers(),this.updateNewsCardClicks()}renderCard(){const e=this.card.map((t,c)=>`
+import{$ as d}from"./jquery-62de4648.js";import{S as s}from"./header-4ffbce13.js";class o{content;card;constructor(e,a){this.content=e,this.card=a,this.renderCard(),this.clickHandlers(),this.updateNewsCardClicks()}renderCard(){const e=this.card.map((t,c)=>`
         <div class="card__news" data-id="${t.id||c}">
             <div class="card__news-img">
               <img src="${t.img}" alt="${t.title}">

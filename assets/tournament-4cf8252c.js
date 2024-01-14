@@ -1,4 +1,4 @@
-import{$ as m}from"./jquery-62de4648.js";import{S as p,H as S,g,r as E,M as b,N as L}from"./header-fb3b444a.js";import{T as y}from"./tabs-create-b6236109.js";import{B as V}from"./tabs-1ceb2202.js";import{L as C}from"./lava-lamp-05022cec.js";import{S as J}from"./swiper-core-75041738.js";/* empty css                      */import{A as T}from"./sidebar-6eae4002.js";class j{container;title;constructor(a,e){this.container=m(a),this.title=e,this.render(),this.setupShareButton()}render(){const a=`
+import{$ as m}from"./jquery-62de4648.js";import{S as p,H as S,g,r as E,M as b,N as L}from"./header-4ffbce13.js";import{T as y}from"./tabs-create-b6236109.js";import{B as V}from"./tabs-18cd2ba9.js";import{L as C}from"./lava-lamp-05022cec.js";import{S as J}from"./swiper-core-75041738.js";/* empty css                      */import{A as T}from"./sidebar-1114d44a.js";class j{container;title;constructor(a,e){this.container=m(a),this.title=e,this.render(),this.setupShareButton()}render(){const a=`
             <div class="tournament-page__title-block">
                 <p class="tournament-page__name">${this.title}</p>
                 <button class="tournament-page__share">

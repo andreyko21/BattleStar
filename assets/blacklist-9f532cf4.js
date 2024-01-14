@@ -1,1 +1,0 @@
-import"./jquery-62de4648.js";import{A as r}from"./asideMenu-0e310de3.js";import{H as e}from"./header-fb3b444a.js";import{A as p}from"./sidebar-6eae4002.js";new r;new e("#wrapper");new p("wrapper","");

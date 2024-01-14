@@ -755,6 +755,24 @@ query GetCS2TeamById($id: ID) {
         players {
           data {
             id
+            attributes {
+              user {
+                data {
+                  id
+                  attributes {
+                    username
+                    avatar {
+                      data {
+                        attributes {
+                          url
+                          alternativeText
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
         tournaments {
@@ -928,6 +946,23 @@ query GetDota2TeamById($id: ID) {
         players {
           data {
             id
+            attributes {
+              user {
+                data {
+                  attributes {
+                    username
+                    avatar {
+                      data {
+                        attributes {
+                          url
+                          alternativeText
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
         tournaments {

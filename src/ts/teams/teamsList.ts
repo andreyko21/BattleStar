@@ -1,10 +1,11 @@
 import $ from "jquery";
 import { RequestDocument, request } from "graphql-request";
-import { AllTeamsRequest, Team, TeamType } from "./../../ts/types";
+import { AllTeamsRequest, TeamType } from "./../../ts/types";
 import prelouder from "./../../images/prelouder.gif";
 import { Filtering } from "./filtering";
 import { Sorting } from "./sorting";
 import { Pagination } from "./pagination";
+import { Team } from "../team";
 
 type ListTeamsType = {
   listBlock: JQuery<HTMLElement>;

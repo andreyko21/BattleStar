@@ -567,8 +567,11 @@ query GetDota2Tournament($id: ID) {
   }
 }
 
-query GetAllCS2Tournaments($page: Int, $pageSize: Int) {
-  cs2Tournaments(pagination: { page: $page, pageSize: $pageSize }) {
+query GetAllCS2Tournaments($page: Int, $pageSize: Int, $date: Date) {
+  cs2Tournaments(
+    pagination: { page: $page, pageSize: $pageSize }
+    filters: { Tournament: { endDate: { gte: $date } } }
+  ) {
     data {
       id
       attributes {
@@ -617,8 +620,11 @@ query GetAllCS2Tournaments($page: Int, $pageSize: Int) {
   }
 }
 
-query GetAllDota2Tournaments($page: Int, $pageSize: Int) {
-  dota2Tournaments(pagination: { page: $page, pageSize: $pageSize }) {
+query GetAllDota2Tournaments($page: Int, $pageSize: Int, $date: Date) {
+  dota2Tournaments(
+    pagination: { page: $page, pageSize: $pageSize }
+    filters: { Tournament: { endDate: { gte: $date } } }
+  ) {
     data {
       id
       attributes {

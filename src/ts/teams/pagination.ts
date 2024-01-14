@@ -1,6 +1,6 @@
 import Sprite from "./../../images/sprite.svg";
 import { Meta } from "../types";
-import { setLocateParam } from "../functions/windowLocation";
+import { setLocateParamReload } from "../functions/windowLocation";
 
 type PaginationType = {
   currentPage: number;
@@ -16,7 +16,8 @@ class Pagination implements PaginationType {
   }
   bindEvents(listBlock: JQuery<HTMLElement>) {
     listBlock.on("click", ".page-pagination__button", (event) => {
-      setLocateParam("page", event.currentTarget.id);
+      setLocateParamReload("page", event.currentTarget.id);
+      window.location.reload();
     });
     listBlock.on("click", ".page-pagination__button-nav", (event) => {
       if (event.currentTarget.id == "next") {
@@ -29,7 +30,8 @@ class Pagination implements PaginationType {
       } else if (this.currentPage < 1) {
         this.currentPage = 1;
       }
-      setLocateParam("page", this.currentPage);
+      setLocateParamReload("page", this.currentPage);
+      window.location.reload();
     });
   }
   render(): string {

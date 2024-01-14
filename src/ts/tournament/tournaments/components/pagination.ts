@@ -1,6 +1,6 @@
 import Sprite from "./../../../../images/sprite.svg";
 import { Meta } from "../../../types";
-import { setLocateParam } from "../../../functions/windowLocation";
+import { setLocateParamReload } from "../../../functions/windowLocation";
 import "./../../../../styles/components/ui/pagination.scss";
 import $ from "jquery";
 
@@ -22,7 +22,7 @@ export class PagePagination {
 
     listBlock.on("click", ".page-pagination__button", (event) => {
       const page = event.currentTarget.id;
-      setLocateParam("page", page);
+      setLocateParamReload("page", page);
       this.currentPage = parseInt(page);
       this.render();
     });
@@ -33,7 +33,7 @@ export class PagePagination {
       } else if (event.currentTarget.id === "prev") {
         this.currentPage = Math.max(this.currentPage - 1, 1);
       }
-      setLocateParam("page", this.currentPage.toString());
+      setLocateParamReload("page", this.currentPage.toString());
       this.render();
     });
   }

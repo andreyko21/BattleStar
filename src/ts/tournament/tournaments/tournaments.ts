@@ -6,7 +6,6 @@ import "./../../../styles/components/tournaments/slider.scss";
 import Sprite from "./../../../images/sprite.svg";
 import TournamentCard from "./components/card";
 import { PagePagination } from "./components/pagination";
-import { Pagination } from "./../../teams/pagination";
 import { BaseTabs } from "./../../component/tabs";
 import { LavaLamp } from "../../component/lava-lamp";
 import "./../../component/header/header";
@@ -127,17 +126,12 @@ $(document).ready(async () => {
   } else {
     queryParam = GetAllCs2Tournaments;
   }
-  if (getLocateParam("page")) {
-    currentPage = getLocateParam("page");
-  } else {
-    currentPage = getLocateParam("page") || 1;
-  }
-
+  currentPage = Number(getLocateParam("page") || 1);
   const ENDPOINT = "https://battle-star-app.onrender.com/graphql";
   tournament = await request(
     ENDPOINT,
     queryParam,
-    { currentPage, pageSize: 9 },
+    { page: currentPage, pageSize: 9, date: "2024-01-14" },
     {
       Authorization:
         "Bearer 9c9bf4554f3ecfed253aca7329b2c46511bf3c9b58d2b9a865d9998c75062aab17b1ad96c3c5d878b4aac951441353b066b95b7b20fbd4f31c5466fe8d2479b775f1a398d92e53cfa2e89141d61ee1f32b4850a2daaaebbcf75d3a510bc7e2a3e8613f71c4c84bf7e109f00e2629c12aae3a372fc954fe4de327f478d6857912",
@@ -149,8 +143,13 @@ $(document).ready(async () => {
   } else {
     tournamentData = tournament.cs2Tournaments;
   }
-  new PagePagination("page-pagination", tournamentData.meta, 1);
-  new Pagination(tournamentData.meta, 1);
+
+  new PagePagination(
+    "page-pagination",
+    tournamentData.meta,
+    Number(getLocateParam("page")) || 1
+  );
+
   new TournamentCard("tournaments-cards-block", [
     ...tournamentData.data.map(
       (item: {
